@@ -1,15 +1,14 @@
 ---
 title: "Introducing the RStudio IDE and R Markdown"
-description: |
-  Gettin' giffy wit it.
-author:
-  - name: Shannon Pileggi
-base_url: https://www.pipinghotdata.com/
-date: 09-07-2020
+description: Gettin' giffy wit it.
+base_url: https://www.pipinghotdata.com
 preview: introducing.PNG
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
+date: 09-07-2020
+author:
+  - name: Shannon Pileggi
 output:
   distill::distill_article:
     toc: true
