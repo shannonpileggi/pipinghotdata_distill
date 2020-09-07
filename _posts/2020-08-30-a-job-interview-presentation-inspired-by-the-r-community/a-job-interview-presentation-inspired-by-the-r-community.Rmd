@@ -1,0 +1,110 @@
+---
+title: "A job interview presentation inspired by the R community"
+description: |
+  How #tidytuesday and twitter helped me secure a job offer
+author:
+  - name: Shannon Pileggi
+base_url: https://www.pipinghotdata.com/
+date: 08-30-2020
+preview: welcome_to_rstats_twitter.png
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    self_contained: false
+draft: FALSE
+creative_commons: CC BY
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+#{target="_blank"}
+```
+
+<base target="_blank">
+
+# TL; DR
+
+I utilized resources from #tidytuesday, twitter, and blog posts to create a job interview [presentation](https://spileggi.shinyapps.io/Pileggi_presentation_shiny/) that provided insights on my prospective employer while showcasing my analytics capabilities.
+
+# Back up
+
+When I was told that my interview at [Adelphi Research](https://adelphiresearch.com/) would involve a presentation, I was pretty happy. A presentation allows the candidate to highlight their strengths, and, after being a college professor for six years, I was confident in my public speaking. The specific presentation instructions were:
+
+> This can be any 20 minute presentation you’d like to share with the team; our recommendation is that it focuses on Market Research, is something innovative, and something that you’re particularly proud of!
+
+It was also briefly mentioned in the phone screening that the analytics group with whom I was interviewing was just beginning to develop [shiny](https://shiny.rstudio.com/) applications.  
+
+# Formulation
+
+Then I faced the dilemma of what to actually present. I wanted to shine as a candidate, but my previous academic experience was tangential to this industry. I took their instructions to heart and decided to create something of which I was truly proud. I developed a project with three goals in mind:
+
+ 1. Learn about my prospective employer.
+ 
+ 2. Cultivate my nascent tidyverse skills.
+ 
+ 3. Invest in new analytic methods and coding techniques that could serve future me.  
+ 
+From there, I had to figure out what I would actually present.
+
+# Fortuitous tweets
+
+This was winter 2018, which also happened to be the inaugural year of [#tidytuesday](https://github.com/rfordatascience/tidytuesday). Prompted by [David Robinson](https://twitter.com/drob)'s [screencast](https://www.youtube.com/watch?v=C69QyycHsgE) analyzing medium articles with [`tidytext`](https://github.com/juliasilge/tidytext), I was inspired to apply the same principles of text analysis to my prospective employer's twitter account.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">In this week&#39;s <a href="https://twitter.com/hashtag/tidytuesday?src=hash&amp;ref_src=twsrc%5Etfw">#tidytuesday</a> screencast, I use tidytext to analyze what titles get claps on Medium posts. Practical guides on tensorflow/keras are the hottest, words like &quot;marketing&quot;, &quot;trends&quot; and &quot;industry&quot; don&#39;t get you far <a href="https://t.co/oNhZm40mpW">https://t.co/oNhZm40mpW</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/cxYO2MIIqz">pic.twitter.com/cxYO2MIIqz</a></p>&mdash; David Robinson (@drob) <a href="https://twitter.com/drob/status/1069954125020958720?ref_src=twsrc%5Etfw">December 4, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+As I started to create my presentation, I was also concerned with the actual format / deliverable for the presentation. I knew I wanted to create something in R, but I was not quite sure which direction to go. I tweeted an #rstats plea for advice and was inspired by [Emily Riederer](https://twitter.com/EmilyRiederer)'s suggestion to use a [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/index.html) for the presentation.  
+
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">If you’re having trouble with xaringan, storyboards in flexdashboqrd can also make pretty nice presentations depending on the type of content / message you are trying to convey <a href="https://t.co/IC3moe01v0">https://t.co/IC3moe01v0</a></p>&mdash; Emily Riederer (@EmilyRiederer) <a href="https://twitter.com/EmilyRiederer/status/1073001289339027456?ref_src=twsrc%5Etfw">December 12, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+# What I did
+
+After many hours at the computer, several re-watches of David Robinson’s screencast, and a lot of research on R functions and analytic methods, I created a presentation about my prospective employer based on trends in their twitter account between 2009 (account start date) and 2018 (interview date).  Here are the packages that I used, alongside their purpose with links to code on github:
+
+1. [`rtweet`](https://github.com/ropensci/rtweet): [retrieve](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/starter.R#L1-L16
+) tweets from [`@AdelphiResearch`](https://twitter.com/adelphiresearch?lang=en).
+
+2. [`dplyr`](https://dplyr.tidyverse.org/), [`forcats`](https://forcats.tidyverse.org/), [`lubridate`](https://lubridate.tidyverse.org/), [`stringr`](https://stringr.tidyverse.org/), and [`purrr`](https://purrr.tidyverse.org/): create new variables with regards to [tweet descriptors](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L88-L112) and [hashtag themes](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L160-L190); [summarize trends](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L195-L214) in top hashtags over time
+
+3. [`ggplot2`](https://ggplot2.tidyverse.org/): exploratory visualization of [tweet frequency](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L277), [trends in likes and re-tweets per tweet](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L383), and [trends in hashtag themes](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L450) over time
+
+4. [`tidytext`](https://github.com/juliasilge/tidytext): [transform](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L559-L564) tweet words to analyzable tokens; [prepare words](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L616) for modeling
+
+5. [`widyr`](https://github.com/dgrtwo/widyr), [`igraph`](https://igraph.org/r/doc/), [`ggraph`](https://ggraph.data-imaginist.com/index.html): network analysis of common [hashtag themes](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L524-L548) and [tweet text](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L566-L606)
+
+6. [`glmnet`](https://glmnet.stanford.edu/): [lasso model](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L622) to assess word associations with likes and retweets
+
+7. [`shiny`](https://shiny.rstudio.com/): develop shiny apps to [search tweets](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/shiny-apps/tweet_lookup/app.R#L1) and [explore the network analyses](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/shiny-apps/tweet_network/app.R#L1)
+
+8. [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/): [assemble](https://github.com/shannonpileggi/Adelphi-tweets/blob/4f088a9020604d7d7673db0ccc7c5982229c723c/Pileggi_presentation.Rmd#L4) it all in a presentation
+
+Yes, it was a lot! Especially because the tidyverse, pulling tweets, text analysis, network analysis, lasso models, flexdashboards, and shiny apps were all very new to me.
+
+
+# Results
+
+I hosted my presentation and the two shiny applications on [shinyapps.io](https://www.shinyapps.io/), and I made my code publicly available on github. 
+
+
+|Link <img width=200/>  | Preview <img width=500/>  |
+|----------|-----------------------|
+| [Interview presentation](https://spileggi.shinyapps.io/Pileggi_presentation_shiny/) |  ![](presentation.png){width=85%} |
+| [Shiny app for tweet look up](https://spileggi.shinyapps.io/tweet_lookup/) | ![](shiny-1.png){width=85%} |
+| [Shiny app for network analysis](https://spileggi.shinyapps.io/tweet_network/) | ![](shiny-2.png){width=85%} |
+| [Code on github](https://github.com/shannonpileggi/Adelphi-tweets) | ![](github.png){width=85%} |
+
+
+In the end, I got the job!  Along the way, I gleaned insights about the values and industry of my prospective employer, empowering me throughout the interview process. Additionally, my interviewers enjoyed the external data-driven view of their company's tweets (despite, or perhaps because of, the fact that none of them were actually on twitter). 
+
+I embraced the interview as an opportunity to create my own side project to foster new skills that would serve me for other potential interviews, personal projects, or work projects. Yes, I probably could have secured a job offer with less effort, but I would have been less confident and I would have missed out on so many data and programming approaches that are now ingrained in my thought processes. And enabled by the #rstats twitter presence, the incredible packages that I used, and the numerous blog posts that I referenced, I had fun. Cheers, R! `r emo::ji("cheers")`   
+
+
+# Acknowledgements
+
+Thumbnail artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en).  Thanks to [Megan McClintock](https://www.linkedin.com/in/megan-mcclintock/) (my sister) for feedback and suggestions.
+
+

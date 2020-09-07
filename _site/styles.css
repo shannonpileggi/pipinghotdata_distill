@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+
+
+.distill-site-nav {
+  color: #FFFFFF;
+  background-color: rgb(249, 83, 85);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-header .title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.distill-site-nav a:hover {
+  color: #383838;
+}
+
+
+.posts-list .metadata .publishedDate {
+    color: rgb(249, 83, 85);
+}
+
+
+html, body, p, h2 {
+  
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+  line-height: 1.3; 
+  font-size: 1.0em;
+  color: #383838;
+  font-style: normal;
+  
+}
+
+code {
+  font-family: 'Fira Mono', sans-serif;
+  color: #383838;
+  background: rgba(249, 83, 85, 0.1);
+  font-weight: 400;
+  font-size: 0.9em;
+}
+
+d-article a {
+    border-bottom: 2px solid rgba(249, 83, 85, 0.4);
+    text-decoration: none;
+}

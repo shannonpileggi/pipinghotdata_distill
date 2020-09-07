@@ -1,0 +1,155 @@
+---
+title: "Introducing the RStudio IDE and R Markdown"
+description: |
+  Gettin' giffy wit it.
+author:
+  - name: Shannon Pileggi
+base_url: https://www.pipinghotdata.com/
+date: 09-07-2020
+preview: introducing.PNG
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    self_contained: false
+draft: FALSE
+creative_commons: CC BY
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# TL; DR
+
+The RStudio IDE has some wonderful features!  Here are some tips and tricks for new learneRs to get started with regards to [customizing the IDE](#ide), [getting started with R Markdown](#rmd), and a bit of [troubleshooting](#error). 
+
+# Background
+
+Gif's were captured in May 2019, likely with RStudio version 1.2.1335-1.  Keyboard shortcuts are for Windows users, Mac users may differ.  For Windows users, I also recommend changing your default settings to [show file extensions](https://support.winzip.com/hc/en-us/articles/115011457948-How-to-configure-Windows-to-show-file-extensions-and-hidden-files){target="_blank"}.  
+
+And if you are not familiar with it, please allow me [introduce](#end) you to Will Smith's 1998 hit "Gettin' Jiggy Wit It."  `r emo::ji("musical_note")`_Na na na na na na na nana_ `r emo::ji("musical_note")`
+
+# Customizing the IDE {#ide}
+
+
+### Adjusting panels
+
+![](gifs/adjust-panels.gif)
+
+
+### Re-arrange panels
+
+`Tools -> Global Options -> Panel Layout`
+
+![](gifs/move-panels.gif)
+
+
+### Recover lost panels
+
+![](gifs/find-panels.gif)
+
+### Font size/resolution
+
+`View -> Zoom in / Zoom out / Actual size`
+
+![](gifs/zoom-in.gif)
+
+### Personalization
+
+`Tools -> Global Options -> Appearance`
+
+![](gifs/appearance.gif)
+
+### Margin column
+
+`Tools -> Global Options -> Code -> Display -> Show margin -> Margin column 80`
+
+Consider placing a margin column at 80 characters as a reminder for code formatting.  Keeping code within 80 characters can make it easier to read when switching displays or sharing code.
+
+![](gifs/margin-column.gif)
+
+
+# R Markdown {#rmd}
+
+### Opening a new R Markdown
+
+`File -> New file -> R Markdown`  &nbsp;&nbsp; or &nbsp;&nbsp; ![](img/green-plus.PNG){width=5%} `-> R Markdown`
+
+![](gifs/new-rmarkdown.gif)
+
+### Knitting an R Markdown
+
+![](gifs/knitting.gif)
+
+### Preview an R Markdown
+
+![](gifs/preview.gif)
+
+### Personalizing R Markdown
+
+![](gifs/style-markdown.gif)
+
+### Inserting/splitting code chunks
+
+![](img/insert-chunk.PNG){width=10%} &nbsp;&nbsp; or &nbsp;&nbsp; `Ctrl + Alt + I`
+
+![](gifs/insert-rchunk.gif)
+
+### Chunk anatomy
+
+![](gifs/chunk-anatomy-2.gif){width=75%}
+
+### Chunk names
+
+Chunk names allow you to quickly navigate code, automatically name figures, and troubleshoot errors. Chunk names must be **unique**! If no name is provided, a default numbered chunk name will be assigned.
+
+![](gifs/chunk-names.gif)
+
+### Chunk execution
+
+![](img/run-chunk.PNG){width=10%} &nbsp;&nbsp; or &nbsp;&nbsp; `Ctrl + Enter`
+
+![](gifs/run-chunk.gif)
+
+### Chunk options
+
+![](gifs/chunk-options.gif)
+
+
+# R Markdown Troubleshooting {#error}
+
+### YAML error
+
+![](gifs/error-yaml.gif)
+
+### Chunk error
+
+![](gifs/error-chunk.gif)
+
+### Chunk error for duplicate chunk name
+
+![](gifs/error-duplicate-chunk-name.gif)
+
+### Layout error
+
+Let your markdown **breathe**! If something doesn't look right, try adding white space.
+
+![](gifs/error-spacing.gif)
+
+
+### R code error
+
+![](gifs/error-rcode.gif)
+
+
+# The end{#end}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3JcmQONgXJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+# Acknowledgments
+
+Thumbnail artwork adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en).

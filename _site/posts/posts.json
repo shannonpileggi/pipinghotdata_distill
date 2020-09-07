@@ -1,0 +1,74 @@
+[
+  {
+    "path": "posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/",
+    "title": "Introducing the RStudio IDE and R Markdown",
+    "description": "Gettin' giffy wit it.",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-09-07",
+    "categories": [],
+    "preview": "posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/introducing.PNG",
+    "last_modified": "2020-09-07T16:13:25-04:00",
+    "input_file": {},
+    "preview_width": 473,
+    "preview_height": 371
+  },
+  {
+    "path": "posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community/",
+    "title": "A job interview presentation inspired by the R community",
+    "description": "How #tidytuesday and twitter helped me secure a job offer",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-08-30",
+    "categories": [],
+    "preview": "posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community/welcome_to_rstats_twitter.png",
+    "last_modified": "2020-09-07T16:07:45-04:00",
+    "input_file": {},
+    "preview_width": 2009,
+    "preview_height": 1942
+  },
+  {
+    "path": "posts/2018-12-11-stringr-4-ways/",
+    "title": "Stringr 4 ways",
+    "description": "Four approaches to feature engineering with regular expressions in R",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2018-12-11",
+    "categories": [],
+    "preview": "posts/2018-12-11-stringr-4-ways/table2.png",
+    "last_modified": "2020-09-07T15:49:45-04:00",
+    "input_file": {},
+    "preview_width": 1010,
+    "preview_height": 319
+  },
+  {
+    "path": "posts/2018-11-05-welcome-to-piping-hot-data/",
+    "title": "Welcome to Piping Hot Data",
+    "description": "What's in a name?",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": "www.pipinghotdata.com"
+      }
+    ],
+    "date": "2018-11-05",
+    "categories": [],
+    "preview": "posts/2018-11-05-welcome-to-piping-hot-data/tidyverse_celestial.png",
+    "last_modified": "2020-09-07T15:43:41-04:00",
+    "input_file": {},
+    "preview_width": 2048,
+    "preview_height": 2048
+  }
+]

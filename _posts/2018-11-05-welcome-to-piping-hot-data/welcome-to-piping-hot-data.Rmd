@@ -1,0 +1,78 @@
+---
+title: "Welcome to Piping Hot Data"
+description: |
+  What's in a name?
+author:
+  - name: Shannon Pileggi 
+    url: www.pipinghotdata.com
+base_url: https://www.pipinghotdata.com/
+date: 11-05-2018
+preview: tidyverse_celestial.png
+output:
+  distill::distill_article:
+    self_contained: false
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+---
+
+So do I have **piping hot** _data_ or am I **piping** _hot data_?  Let's break it down.
+
+**Piping Hot** _Data_
+
+Wow, my _data_ is **piping hot**!  This connotes exciting, newly released data!  I can't promise that I'll fulfill this expectation.  Let's just say that I'll talk about data occasionally, and on special occassions it might even be piping hot.
+
+**Piping** _Hot Data_
+
+Here, I am **piping** my elusive _hot data_. This is what I was really going for - an ode to the **pipe** in R:  
+
+> `%>%`
+
+The [pipe operator](http://r4ds.had.co.nz/pipes.html) simplifies long operations by [linking multiple functions](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) simultaneously.  Although the coding construct of the pipe has been floating around since the 1970's, the floodgates didn't open for R until [2014](http://adolfoalvarez.cl/plumbers-chains-and-famous-painters-the-history-of-the-pipe-operator-in-r/).  I don't know the exact date, but I do remember the first time I saw those three characters and the sea of emotions that rained down.  Confusion. Curiousity. Excitement. 
+
+In just 4 short years, the pipe and its friends in the [tidyverse](https://www.tidyverse.org/) have revolutionized how we code in R, to the point that you may feel illiterate at conferences if you don't have some baseline understanding - _at first_.  Because the beauty of the pipe is that it streamlines readability of R code, such that even if you have never done it, you can still get the gist of what is going on.  So much so that believers are proselytizing ["Teach the tidyverse to beginners"](http://varianceexplained.org/r/teach-tidyverse/)!
+
+Let's lay the pipelines with a quick example using the classic `iris` data set.  To get started, load the `tidyverse` library and get an overview of the data.
+
+```{r message=FALSE, echo=TRUE}
+library(tidyverse)
+glimpse(iris)
+```
+
+Our simple objective is to compute the mean `Sepal.Length` for each `Species` in the data set and then arrange the results in descending order.  There are *many* ways to accomplish this without the tidyverse, but for the sake of side-by-side comparisons I'll demo this using tidyverse functions first without and then with piping.
+
+```{r, echo=TRUE}
+arrange(
+  summarise(
+    group_by(iris, Species), 
+    mean = mean(Sepal.Length)
+  ), 
+  desc(mean)
+)
+```
+
+Without using pipes, we have to read our code _inside_ to _out_ to understand the operations executed.  Our `iris` data set is buried in the middle of the code, and then the operations performed of `group_by`, `summarise`, and `arrange` spring outward from there (reading up from `iris`).  Now let's try the same manipulations utilizing piping.
+
+```{r, echo=TRUE}
+
+iris %>% 
+  group_by(Species) %>% 
+  summarise(mean = mean(Sepal.Length)) %>%
+  arrange(desc(mean))
+
+```
+
+Voilá!  It's clear from the left side of the pipe that all manipulations are done on the `iris` data set, and it's clear from the right side of the pipe that the series of operations performed are `group_by`, `summarise`, and `arrange`.  Wow, I like the way data flow through those pipes!    
+
+While the name of this blog gives an nod to the powerful pipe, the pipe isn't going to permeate every solution to programming challenges.  So here is what to expect from **_Piping Hot Data_**:
+
+* Demo data science tools and methods. 
+* Discover new data and R packages.
+* Deliberate data and technical topics.
+
+
+I hope you enjoy!
+
+# Acknowledgements
+
+Thumbnail artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en).

@@ -1,0 +1,32 @@
+name: "piping-hot-data"
+title: "PIPING HOT DATA"
+description: |
+ Data science demos, deliberations, and discoveries
+base_url: www.pipinghotdata.com
+output_dir: "_site"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - icon: fa fa-github
+      href: https://github.com/shannonpileggi
+    - icon: fa fa-linkedin
+      href: https://www.linkedin.com/in/shannon-m-pileggi/
+    - icon: fa fa-twitter
+      href: https://twitter.com/PipingHotData
+    - icon: fa fa-rss
+      href: index.xml  
+output: 
+  distill::distill_article:
+      css: styles.css
+google_analytics: "UA-128676462-1"
+rss:
+  full_content: TRUE
+collections:
+  posts:
+      share: [twitter, linkedin]
+      citations: true
+      subscribe: _subscribe.html
+      disqus: piping-hot-data
