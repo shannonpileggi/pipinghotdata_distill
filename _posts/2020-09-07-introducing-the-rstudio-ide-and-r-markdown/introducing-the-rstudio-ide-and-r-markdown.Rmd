@@ -1,8 +1,7 @@
 ---
 title: "Introducing the RStudio IDE and R Markdown"
 description: Gettin' giffy wit it.
-base_url: https://www.pipinghotdata.com
-preview: introducing_resize2.PNG
+preview: introducing_resize2.png
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
