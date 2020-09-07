@@ -7,6 +7,9 @@ author:
 base_url: https://www.pipinghotdata.com/
 date: 09-07-2020
 preview: introducing.PNG
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
 output:
   distill::distill_article:
     toc: true
@@ -14,9 +17,6 @@ output:
     self_contained: false
 draft: FALSE
 creative_commons: CC BY
-twitter:
-  site: "@PipingHotData"
-  creator: "@PipingHotData"
 ---
 
 ```{r setup, include=FALSE}
