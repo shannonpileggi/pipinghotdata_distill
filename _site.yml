@@ -2,7 +2,7 @@ name: "piping-hot-data"
 title: "PIPING HOT DATA"
 description: |
  Data science demos, deliberations, and discoveries
-base_url: www.pipinghotdata.com
+base_url: https://www.pipinghotdata.com
 output_dir: "_site"
 navbar:
   right:
