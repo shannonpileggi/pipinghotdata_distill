@@ -1,5 +1,5 @@
 ---
-title: "PIPING HOT DATA"
+title: "Posts"
 site: distill::distill_website
 listing: posts
 ---
