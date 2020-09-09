@@ -1,7 +1,7 @@
 [
   {
     "path": "posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/",
-    "title": "Introducing the RStudio IDE and R Markdown",
+    "title": "Introducing RStudio and R Markdown",
     "description": "Gettin' giffy wit it.",
     "author": [
       {
@@ -12,7 +12,7 @@
     "date": "2020-09-07",
     "categories": [],
     "preview": "posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/introducing_resize2.png",
-    "last_modified": "2020-09-07T17:58:02-04:00",
+    "last_modified": "2020-09-08T20:11:31-04:00",
     "input_file": {},
     "preview_width": 473,
     "preview_height": 371

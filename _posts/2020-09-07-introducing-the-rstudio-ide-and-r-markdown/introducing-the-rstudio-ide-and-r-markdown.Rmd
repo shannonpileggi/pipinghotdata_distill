@@ -1,5 +1,5 @@
 ---
-title: "Introducing the RStudio IDE and R Markdown"
+title: "Introducing RStudio and R Markdown"
 description: Gettin' giffy wit it.
 base_url: https://www.pipinghotdata.com/
 preview: introducing_resize2.png
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # TL; DR
 
-The RStudio IDE has some wonderful features!  Here are some tips and tricks for new learneRs to get started with regards to [customizing the IDE](#ide), [getting started with R Markdown](#rmd), and a bit of [troubleshooting](#error). 
+RStudio has some wonderful features!  Here are some tips and tricks for new learneRs to get started with regards to [customizing your interface](#ide), [getting started with R Markdown](#rmd), and a bit of [troubleshooting](#error). 
 
 # Background
 
@@ -32,7 +32,7 @@ Gif's were captured in May 2019, likely with RStudio version 1.2.1335-1.  Keyboa
 
 And if you are not familiar with it, please allow me [introduce](#end) you to Will Smith's 1998 hit "Gettin' Jiggy Wit It."  `r emo::ji("musical_note")`_Na na na na na na na nana_ `r emo::ji("musical_note")`
 
-# Customizing the IDE {#ide}
+# Customizing the interface {#ide}
 
 
 ### Adjusting panels
@@ -152,3 +152,5 @@ Let your markdown **breathe**! If something doesn't look right, try adding white
 # Acknowledgments
 
 Thumbnail artwork adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en).
+
+The phrase `IDE` was removed from the title and body of this post on Sep. 8, 2020 per [`@TrashBirdEcol`](https://twitter.com/TrashBirdEcol)'s [suggestion](https://github.com/shannonpileggi/pipinghotdata_distill/issues/1).
