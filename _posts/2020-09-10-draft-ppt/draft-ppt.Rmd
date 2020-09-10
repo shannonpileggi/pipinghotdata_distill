@@ -1,0 +1,39 @@
+---
+title: "Draft ppt"
+description: What, why, how, when, and who
+base_url: https://www.pipinghotdata.com/
+preview: 
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 09-10-2020
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    self_contained: TRUE
+draft: TRUE
+creative_commons: CC BY
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# TL; DR
+
+The [`officer`](https://davidgohel.github.io/officer/) and [`rvg`](https://github.com/davidgohel/rvg) packages can be used to create Power Point slides with editable ggplot graphics. Skip to [creating a single Power Point graphic](#how) or to 
+[efficiently exporting multiple Power Point graphics](#more) with `purrr`.
+
+# What is an editable Power Point graphic?
+
+# Why should I create it?
+
+# How do I create it? {#how}
+
+# When should I do this more efficiently? {#more}
+
+# Who should do the editing?
+
