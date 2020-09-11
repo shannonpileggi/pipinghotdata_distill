@@ -29,7 +29,35 @@ The [`officer`](https://davidgohel.github.io/officer/) and [`rvg`](https://githu
 
 # What is an editable Power Point graphic?
 
+An editable Power Point graphic that is created within Power Point typically consists of two 
+sets of editable features:
+
+1. Various [features]() of the graphic are editable, including items like size, color, and font.
+
+2. The [data]() behind the graphic are editable.  This means that you can open the table linked to the chart and manually edit it in order to alter the data displayed in the graphic. 
+
+An editable Power Point graphic constructed in R through the `officer` + `rvg` functions described here produce vector graphics.  This permits editing various features of the graphic (e.g., color, size), but not the data behind it (no linked table is created).
+
 # Why should I create it?
+
+When creating a graphic for a colleague or client, you do have many choices in the 
+format of the deliverable. For example, one possible solution would be to create an image 
+like a `.png`.  R graphics that have been exported either as images or editable Power 
+Point graphics both have pros (`r emo::ji("+1")`) and cons (`r emo::ji("-1")`) as a deliverable.  
+
+
+
+|Feature      |  Power Point editable graphic     | Other graphic device |
+|-------------|-----------------------------------|----------------------|
+| Editability |  `r emo::ji("+1")`                | `r emo::ji("+1")`    |
+| Resizing    |  `r emo::ji("-1")`                | `r emo::ji("+1")`    |
+| Data table  |  `r emo::ji("-1")`                | `r emo::ji("-1")`    |
+
+
+
+
+
+
 
 # How do I create it? {#how}
 

@@ -1993,7 +1993,40 @@ distill-header .nav a {
 <h1 id="tl-dr">TL; DR</h1>
 <p>The <a href="https://davidgohel.github.io/officer/"><code>officer</code></a> and <a href="https://github.com/davidgohel/rvg"><code>rvg</code></a> packages can be used to create Power Point slides with editable ggplot graphics. Skip to <a href="#how">creating a single Power Point graphic</a> or to <a href="#more">efficiently exporting multiple Power Point graphics</a> with <code>purrr</code>.</p>
 <h1 id="what-is-an-editable-power-point-graphic">What is an editable Power Point graphic?</h1>
+<p>An editable Power Point graphic that is created within Power Point typically consists of two sets of editable features:</p>
+<ol type="1">
+<li><p>Various <a href>features</a> of the graphic are editable, including items like size, color, and font.</p></li>
+<li><p>The <a href>data</a> behind the graphic are editable. This means that you can open the table linked to the chart and manually edit it in order to alter the data displayed in the graphic.</p></li>
+</ol>
+<p>An editable Power Point graphic constructed in R through the <code>officer</code> + <code>rvg</code> functions described here produce vector graphics. This permits editing various features of the graphic (e.g., color, size), but not the data behind it (no linked table is created).</p>
 <h1 id="why-should-i-create-it">Why should I create it?</h1>
+<p>When creating a graphic for a colleague or client, you do have many choices in the format of the deliverable. For example, one possible solution would be to create an image like a <code>.png</code>. R graphics that have been exported either as images or editable Power Point graphics both have pros (👍) and cons (👎) as a deliverable.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Power Point editable graphic</th>
+<th>Other graphic device</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Editability</td>
+<td>👍</td>
+<td>👍</td>
+</tr>
+<tr class="even">
+<td>Resizing</td>
+<td>👎</td>
+<td>👍</td>
+</tr>
+<tr class="odd">
+<td>Data table</td>
+<td>👎</td>
+<td>👎</td>
+</tr>
+</tbody>
+</table>
 <h1 id="how">How do I create it?</h1>
 <h1 id="more">When should I do this more efficiently?</h1>
 <h1 id="who-should-do-the-editing">Who should do the editing?</h1>
