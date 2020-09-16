@@ -12,14 +12,14 @@ author:
 output:
   distill::distill_article:
     toc: true
-    toc_depth: 3
+    toc_depth: 1
     self_contained: TRUE
 draft: TRUE
 creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # TL; DR
@@ -32,36 +32,193 @@ The [`officer`](https://davidgohel.github.io/officer/) and [`rvg`](https://githu
 An editable Power Point graphic that is created within Power Point typically consists of two 
 sets of editable features:
 
-1. Various [features]() of the graphic are editable, including items like size, color, and font.
+1. Various [features](#gif1) of the graphic are editable, including items like size, color, and font.
 
-2. The [data]() behind the graphic are editable.  This means that you can open the table linked to the chart and manually edit it in order to alter the data displayed in the graphic. 
+2. The [data](#gif2) behind the graphic are editable.  This means that you can open the table linked to the chart and manually edit it in order to alter the data displayed in the graphic. 
 
 An editable Power Point graphic constructed in R through the `officer` + `rvg` functions described here produce vector graphics.  This permits editing various features of the graphic (e.g., color, size), but not the data behind it (no linked table is created).
 
 # Why should I create it?
 
-When creating a graphic for a colleague or client, you do have many choices in the 
-format of the deliverable. For example, one possible solution would be to create an image 
-like a `.png`.  R graphics that have been exported either as images or editable Power 
-Point graphics both have pros (`r emo::ji("+1")`) and cons (`r emo::ji("-1")`) as a deliverable.  
+In my line of work, the primary deliverable is a Power Point slide deck. When creating an R graphic for this slide deck, I could export the graphic as an image (like a `.png`) to be inserted into Power Point, or I can export the graphic directly to an editable Power Point slide.  Both of these options have pros (`r emo::ji("+1")`) and cons (`r emo::ji("-1")`).  
 
 
 
-|Feature      |  Power Point editable graphic     | Other graphic device |
-|-------------|-----------------------------------|----------------------|
-| Editability |  `r emo::ji("+1")`                | `r emo::ji("+1")`    |
+|Feature      |  Power Point editable graphic     | Image (e.g., `.png`) |
+|-------------|:---------------------------------:|:--------------------:|
+| Editability |  `r emo::ji("+1")`                | `r emo::ji("-1")`    |
 | Resizing    |  `r emo::ji("-1")`                | `r emo::ji("+1")`    |
 | Data table  |  `r emo::ji("-1")`                | `r emo::ji("-1")`    |
 
 
-
-
+The editable Power Point graphic allows for editing whereas a `.png` image does not.  
+The editable Power Point graphic re-sizes poorly when done manually within Power Point
+(however, the re-sizing can also be done from R), whereas a `.png` nicely retains
+image ratios when re-sizing. Lastly, neither method produces a linked
+data table behind the graphic for editing.  
 
 
 
 # How do I create it? {#how}
 
+This work follows up on blog posts by [Len Kiefer](http://lenkiefer.com/2017/10/21/purrrtier-powerpoint-with-r/) and [Bruno Rodrigues](https://www.brodrigues.co/blog/2018-10-05-ggplot2_purrr_officer/), which were fantastic resources to help me get started.  The `officer` package enacted some changes in version 0.3.11(?) which necessitate some updates to these methods.    
+
+```{r}
+library(tidyverse)
+library(here)
+library(glue)
+library(officer)
+library(rvg)
+```
+
+First, let's create a quick graphic for demonstration purposes using the `ggplot2::diamonds` data set. We subset the data on specific values of 
+`color` and `clarity` and produce a scatter plot showing the relationship
+between `price` and `carat`.
+
+```{r}
+p <- diamonds %>% 
+  filter(color == "D" & clarity == "I1") %>% 
+  ggplot(aes(x = carat, y = price, color = cut)) +
+    geom_point() +
+    theme_minimal() +
+    ggtitle("Color: D; Clarity: I1")
+  
+```
+
+```{r}
+p
+```
+
+In order to export this graphic to an editable Power Point slide, first use the `rvg` package to convert the graphic to class `dml`.
+
+```{r}
+p_dml <- rvg::dml(ggobj = p)
+```
+
+Then export the `dml` object to a Power Point slide with `officer`.
+
+```{r, eval = FALSE}
+# initialize Power Point slide ----
+officer::read_pptx() %>% 
+  # add slide ----
+  officer::add_slide() %>% 
+  # specify object and location of object ----
+  officer::ph_with(p_dml, ph_location()) %>% 
+  # export slide -----
+  base::print(target = here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_one.pptx"))
+
+```
+
+Here is a screen shot of the resulting Power Point slide, or you can download `r xfun::embed_file(here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_one.pptx"), text = "demo_one.pptx")`.
+
+![](img/demo_one.png)
+
 # When should I do this more efficiently? {#more}
+
+There are 56 combinations of `color` and `clarity` in the `diamonds` data set; naturally,
+your client wants all 56 plots (at least for the appendix of the report).  So we definitely want an efficient way to do this!
+
+## Automate many plots
+
+First, create a list containing all 56 plots. As with anything in R, there are several
+ways you can do this, but here is what resonates with me.
+
+I start with a grid showing all possible combinations of color and clarity.
+
+```{r}
+diamonds_grid <- diamonds %>% 
+  # obtain all possible combinations ----
+  count(color, clarity) %>% 
+  # for mapping, we need input values to be character ----
+  mutate_all(as.character)
+```
+
+Then I create a function the produces a plot for a single combination of `color` and
+`clarity`.
+
+```{r}
+plot_diamonds <- function(this_color, this_clarity){
+  diamonds %>% 
+    filter(color == this_color & clarity == this_clarity) %>% 
+    ggplot(aes(x = carat, y = price, color = cut)) +
+      geom_point() +
+      theme_minimal() +
+      # maintain consistent plot ranges ----
+      xlim(range(diamonds[["carat"]])) +
+      ylim(range(diamonds[["price"]])) +
+      # title indicates which combination is plotted ----
+      ggtitle(glue::glue("Color: {this_color}; Clarity: {this_clarity}"))
+}
+```
+
+Next I utilize the `plot_diamonds` function with [`purrr`](https://purrr.tidyverse.org/) to create a list of ggplot objects with all possible combinations.
+
+```{r}
+diamonds_gg <- purrr::map2(
+  diamonds_grid[["color"]],
+  diamonds_grid[["clarity"]],
+  plot_diamonds
+)
+```
+
+
+## Export many plots
+
+To export these, I use two helper functions. The first function, `create_dml`, converts the `ggplot` objects to `dml` objects.  
+
+```{r}
+create_dml <- function(plot){
+  rvg::dml(ggobj = plot)
+}
+```
+
+```{r}
+diamonds_dml <- purrr::map(diamonds_gg, create_dml)
+```
+
+The second function automates exporting all slides to powerpoint, with some additional
+options to specify the position and size (inches) of the graphic.  The default size (9in x 4.95in) produces a graphic that fills a standard sized slide.  
+
+```{r}
+create_pptx <- function(plot, path, left = 0.5, top = 1, width = 9, height = 4.95){
+  
+    if (!file.exists(path)) {
+        out <- officer::read_pptx()
+    }
+    else {
+        out <- officer::read_pptx(path)
+    }
+  
+    out %>% 
+      officer::add_slide() %>% 
+      officer::ph_with(plot, location = officer::ph_location(
+        width = width, height = height, left = left, top = top)) %>% 
+      base::print(target = path)
+}
+```
+
+Note that this function does open and close Power Point for each slide created, so more
+slides will take longer to export.  This particular export takes a while due to the 
+number of slides and the density of points on some slides.  
+
+```{r, eval = FALSE}
+purrr::map(diamonds_dml, create_pptx, path = here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_many.pptx"))
+
+```
+
+
 
 # Who should do the editing?
 
+
+# Appendix
+
+## Gif 1 {#gif1}
+
+Demonstration of editable features in graphic created within Power Point.
+
+## Gif 2 {#gif2}
+
+Demonstration of editable data table behind graphic created within Power Point.
+
+![](gif/ppt_2.gif)
