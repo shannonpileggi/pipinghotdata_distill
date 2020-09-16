@@ -19,8 +19,8 @@ I now have two daughters, one of which is my alarm clock and the other is my mid
 
 Want to chat?  Go ahead, pipe up!  Feel free to contact me on [email](mailto:shannon@pipinghotdata.com), [Twitter](https://twitter.com/PipingHotData), or [LinkedIn](https://www.linkedin.com/in/shannon-m-pileggi/). I hope to hear from you!
 
-## R-bloggers
+## R feeds
 
-This blog feeds into [`R-bloggers`](http://www.R-bloggers.com).  Consider adding your blog or subscribing to see all of R's latest and greatest!
+This blog feeds into [`R Weekly`](https://rweekly.org/) and [`R-bloggers`](http://www.R-bloggers.com).  Consider adding your blog or subscribing to see all of R's latest and greatest!
 
 
