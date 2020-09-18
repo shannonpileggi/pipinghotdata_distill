@@ -69,6 +69,7 @@ library(here)
 library(glue)
 library(officer)
 library(rvg)
+library(viridis)
 ```
 
 First, let's create a quick graphic for demonstration purposes using the `ggplot2::diamonds` data set. We subset the data on specific values of 
@@ -134,7 +135,20 @@ diamonds_grid <- diamonds %>%
 ```
 
 Then I create a function the produces a plot for a single combination of `color` and
-`clarity`.
+`clarity`. As `ggplot` will produce a plot for the available data, there are some 
+additional updates to this function to maintain consistency across all plots. 
+
+First, I create a named vector for the colors assigned to `cut` (the names are the levels of `cut`, the values are the colors assigned).
+
+```{r}
+color_cut <- viridis::viridis(5) %>% 
+  # assign names to colors ----
+  rlang::set_names(levels(diamonds[["cut"]]))
+```
+
+We can use this named vector to create consistency in plotting colors
+across all plots, in addition to enforcing consistency in the `x` and `y` 
+plotting ranges.
 
 ```{r}
 plot_diamonds <- function(this_color, this_clarity){
@@ -146,8 +160,12 @@ plot_diamonds <- function(this_color, this_clarity){
       # maintain consistent plot ranges ----
       xlim(range(diamonds[["carat"]])) +
       ylim(range(diamonds[["price"]])) +
+      # maintain consistent colors for cut ----
+      # show all values of cut in legend, regardless if appear in this plot ----
+      scale_color_manual(values = color_cut, drop = F) +
       # title indicates which combination is plotted ----
-      ggtitle(glue::glue("Color: {this_color}; Clarity: {this_clarity}"))
+      ggtitle(glue::glue("Color: {this_color}; Clarity: {this_clarity}")) 
+
 }
 ```
 
@@ -176,7 +194,7 @@ create_dml <- function(plot){
 diamonds_dml <- purrr::map(diamonds_gg, create_dml)
 ```
 
-The second function automates exporting all slides to powerpoint, with some additional
+The second function automates exporting all slides to Power Point, with some additional
 options to specify the position and size (inches) of the graphic.  The default size (9in x 4.95in) produces a graphic that fills a standard sized slide.  
 
 ```{r}
@@ -197,13 +215,14 @@ create_pptx <- function(plot, path, left = 0.5, top = 1, width = 9, height = 4.9
 }
 ```
 
-Note that this function does open and close Power Point for each slide created, so more
-slides will take longer to export.  This particular export takes a while due to the 
-number of slides and the density of points on some slides.  
+Note that this function opens and closes Power Point for each slide created, so more
+slides will take longer to export.  This particular set of graphics took approximately 6 minutes to export due to the number of slides and the density of points on some slides `r emo::ji("grimace")` (which is unusual for my typical applications).  
 
 ```{r, eval = FALSE}
+#x <- Sys.time()
 purrr::map(diamonds_dml, create_pptx, path = here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_many.pptx"))
-
+#y <- Sys.time()
+#y - x
 ```
 
 
@@ -222,3 +241,6 @@ Demonstration of editable features in graphic created within Power Point.
 Demonstration of editable data table behind graphic created within Power Point.
 
 ![](gif/ppt_2.gif)
+# Acknowledgments
+
+[Tom Nowlan](https://www.linkedin.com/in/thomas-nowlan-mph-72398011a/), my colleague at Adelphi Research, figured out the function updates for `officer::ph_with` (formerly `officer::ph_with_vg`) to export figures to a specific size.
