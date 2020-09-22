@@ -1,5 +1,5 @@
 ---
-title: "Creating editable Power Point "
+title: "Exporting editable ggplot graphics to Power Point with officer and purrr"
 description: What, why, how, when, and who
 base_url: https://www.pipinghotdata.com/
 preview: data_cowboy_officer.png
@@ -40,7 +40,7 @@ An editable Power Point graphic constructed in R through the `officer` + `rvg` f
 
 # Why should I create it?
 
-In my line of work, the primary deliverable is a Power Point slide deck. When creating an R graphic for a slide deck, I could export the graphic as an image (like a `.png`) to be inserted into Power Point, or I can export the graphic directly to an editable Power Point slide.  Both of these options have pros (`r emo::ji("+1")`) and cons (`r emo::ji("-1")`).  
+In my line of work, the primary deliverable is a Power Point slide deck. When creating an R graphic for a slide deck, I could export the graphic as an image (like a `.png`) to be inserted into Power Point, or I can export the graphic directly to an editable Power Point slide.  Both of these options have pros and cons.  
 
 
 
@@ -51,9 +51,7 @@ In my line of work, the primary deliverable is a Power Point slide deck. When cr
 | Data table  |  `r emo::ji("-1")`                | `r emo::ji("-1")`    |
 
 
-The editable Power Point graphic allows for editing whereas a `.png` image does not.  
-The editable Power Point graphic re-sizes poorly when done manually within Power Point
-(however, the re-sizing can also be done from R), whereas a `.png` nicely retains
+The editable Power Point graphic allows for direct editing in Power Point, but re-sizes poorly when done manually within Power Point.  A `.png` image does not allow for direct editing within Power Point, but does nicely retain
 image ratios when re-sizing. Lastly, neither method produces a linked
 data table behind the graphic for editing.  
 
@@ -89,13 +87,13 @@ p <- diamonds %>%
 p
 ```
 
-In order to export this graphic to an editable Power Point slide, first use the `rvg` package to convert the object to class `dml`.
+In order to export this graphic to an editable Power Point slide, first use the [`rvg`](https://github.com/davidgohel/rvg){target="_blank"} package to convert the object to class `dml` (required to make graphic editable).
 
 ```{r}
 p_dml <- rvg::dml(ggobj = p)
 ```
 
-Then export the `dml` object to a Power Point slide with `officer`.
+Then export the `dml` object to a Power Point slide with [`officer`](https://davidgohel.github.io/officer/){target="_blank"}.
 
 ```{r, eval = FALSE}
 # initialize Power Point slide ----
@@ -118,16 +116,16 @@ Here is a screen shot of the resulting Power Point slide, or you can download `r
 There are 56 combinations of `color` and `clarity` in the `diamonds` data set; naturally,
 your colleague wants all 56 plots (at least for the appendix of the report `r emo::ji("joy")`).  So we definitely want an efficient way to do this!
 
-## Automate many plots
+### Automate many plots
 
-This work follows up on blog posts by [Laurens Geffert](https://janlauge.github.io/2018/creating-editable-PowerPoint-plots-from-R/){target="_blank"}, [Bruno Rodrigues](https://www.brodrigues.co/blog/2018-10-05-ggplot2_purrr_officer/){target="_blank"}, and [Len Kiefer](http://lenkiefer.com/2017/10/21/purrrtier-powerpoint-with-r/){target="_blank"} which were fantastic resources to help me get started. The `officer` package enacted changes in version 0.3.11(?) which necessitate updates to these methods (see [Acknowldegements](#ack)). In addition, [Amber Thomas](https://amber.rbind.io/2018/03/26/purrr/){target="_blank"} demonstrated a `purrr::map2` work flow that resonates with me.  
+This work follows up on blog posts by [Laurens Geffert](https://janlauge.github.io/2018/creating-editable-PowerPoint-plots-from-R/){target="_blank"}, [Len Kiefer](http://lenkiefer.com/2017/10/21/purrrtier-powerpoint-with-r/){target="_blank"}, and [Bruno Rodrigues](https://www.brodrigues.co/blog/2018-10-05-ggplot2_purrr_officer/){target="_blank"}, which were fantastic resources to help me get started. The `officer` package enacted changes in version 0.3.11(?) which necessitate updates to these methods (see [Acknowledgements](#ack)). In addition, [Amber Thomas](https://amber.rbind.io/2018/03/26/purrr/){target="_blank"} demonstrated a `purrr::map2` work flow that resonates with me.  
 
 
 I start with a table outlining the 56 combinations of `color` and `clarity`.
 
 ```{r}
+# tibble of all possible combinations ----
 diamonds_grid <- diamonds %>% 
-  # obtain all possible combinations ----
   count(color, clarity) %>% 
   # for mapping, we need input values to be character ----
   mutate_all(as.character)
@@ -163,6 +161,7 @@ color_cut
 
 
 ```{r}
+# function to produce scatter plot of carat and price for given values of color and clarity ----
 plot_diamonds <- function(this_color, this_clarity){
   diamonds %>% 
     filter(color == this_color & clarity == this_clarity) %>% 
@@ -195,7 +194,7 @@ diamonds_gg <- purrr::map2(
 ```
 
 
-## Export many plots
+### Export many plots
 
 To export these, I use two helper functions. The first function, `create_dml`, converts the `ggplot` objects to `dml` objects.  
 
@@ -216,6 +215,7 @@ The second function automates exporting all slides to Power Point, with some add
 options to specify the position and size (inches) of the graphic.  The default size (9in x 4.95in) produces a graphic that fills a standard sized slide.  
 
 ```{r}
+# function to export plot to power point ----
 create_pptx <- function(plot, path, left = 0.5, top = 1, width = 9, height = 4.95){
   
     # if file does not yet exist, create new power point ----
@@ -255,7 +255,7 @@ Here is a screen shot of the resulting Power Point slide, or you can download `r
 
 # Who should do the editing?
 
-Now that you have editable Power Point slides, you have two parties capable of doing graphics editing: (1) the R developer, and (2) the collaborator.  
+Now that you have editable Power Point slides, you have two parties capable of editing the graphics: (1) the R developer, and (2) the collaborator.  
 
 The R developer should do further slide editing when:
 
@@ -264,7 +264,7 @@ The R developer should do further slide editing when:
 * edits are data driven (i.e., represent all points where `carat` exceeds a value
 of 3 as a star)
 
-The colleague should do further slide editing when: 
+The collaborator should do further slide editing when: 
 
 * edits are bespoke (i.e. Bob wants to see slide 25 in bold for the marketing team)
 
@@ -287,20 +287,20 @@ allowing them to refine the graphics with their own finishing touches. Do expect
 
 # Appendix
 
-## Gif 1 {#gif1}
+### Gif 1 {#gif1}
 
 Demonstration of editable features in graphic created within Power Point.
 
 ![](gif/ppt_1.gif)
 
 
-## Gif 2 {#gif2}
+### Gif 2 {#gif2}
 
 Demonstration of editable data table behind graphic created within Power Point.
 
 ![](gif/ppt_2.gif)
 
-## Gif 3 {#gif3}
+### Gif 3 {#gif3}
 
 Demonstration of editing title and single point color in graphic exported to Power Point by `rvg` + `officer`.
 
@@ -308,4 +308,4 @@ Demonstration of editing title and single point color in graphic exported to Pow
 
 # Acknowledgments {#ack}
 
-My colleague [Tom Nowlan](https://www.linkedin.com/in/thomas-nowlan-mph-72398011a/){target="_blank"}  figured out the function updates for `officer::ph_with` (formerly `officer::ph_with_vg`) to export figures to a specific size and location.
+The `create_pptx` function was modified from [Bruno Rodrigues](https://www.brodrigues.co/blog/2018-10-05-ggplot2_purrr_officer/){target="_blank"}. My colleague [Tom Nowlan](https://www.linkedin.com/in/thomas-nowlan-mph-72398011a/){target="_blank"}  figured out the function updates for `officer::ph_with` (formerly `officer::ph_with_vg`) to export figures to a specific size and location. Thumbnail artwork was adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en).
