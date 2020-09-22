@@ -2,7 +2,7 @@
 title: "Creating editable Power Point "
 description: What, why, how, when, and who
 base_url: https://www.pipinghotdata.com/
-preview: 
+preview: data_cowboy_officer.png
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -255,7 +255,7 @@ Here is a screen shot of the resulting Power Point slide, or you can download `r
 
 # Who should do the editing?
 
-Now that you have editable Power Point slides, you have two parties now capable of doing graphics editing: (1) the R developer, and (2) the collaborator.  
+Now that you have editable Power Point slides, you have two parties capable of doing graphics editing: (1) the R developer, and (2) the collaborator.  
 
 The R developer should do further slide editing when:
 
