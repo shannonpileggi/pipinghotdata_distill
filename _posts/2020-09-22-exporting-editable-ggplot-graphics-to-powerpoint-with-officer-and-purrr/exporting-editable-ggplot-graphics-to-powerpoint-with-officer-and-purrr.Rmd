@@ -1,12 +1,12 @@
 ---
-title: "Exporting editable ggplot graphics to Power Point with officer and purrr"
+title: "Exporting editable ggplot graphics to PowerPoint with officer and purrr"
 description: What, why, how, when, and who
 base_url: https://www.pipinghotdata.com/
 preview: data_cowboy_officer.png
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
-date: 09-10-2020
+date: 09-22-2020
 author:
   - name: Shannon Pileggi
 output:
@@ -14,7 +14,7 @@ output:
     toc: true
     toc_depth: 1
     self_contained: TRUE
-draft: TRUE
+draft: FALSE
 creative_commons: CC BY
 ---
 
@@ -24,34 +24,34 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
-The [`officer`](https://davidgohel.github.io/officer/){target="_blank"} and [`rvg`](https://github.com/davidgohel/rvg){target="_blank"} packages can be used to create Power Point slides with editable ggplot graphics. Skip to [creating a single Power Point slide](#how) or to 
-[efficiently exporting multiple Power Point graphics](#more) with `purrr`.
+The [`officer`](https://davidgohel.github.io/officer/){target="_blank"} and [`rvg`](https://github.com/davidgohel/rvg){target="_blank"} packages can be used to create PowerPoint slides with editable ggplot graphics. Skip to [creating a single PowerPoint slide](#how) or to 
+[efficiently exporting multiple PowerPoint graphics](#more) with `purrr`.
 
-# What is an editable Power Point graphic?
+# What is an editable PowerPoint graphic? {#what}
 
-An editable Power Point graphic that is created within Power Point consists of two 
+An editable PowerPoint graphic that is created within PowerPoint consists of two 
 sets of editable components:
 
 1. Various features of the graphic are editable, including items like size, color, and font (see [Gif 1](#gif1)).
 
 2. The data behind the graphic are editable (see [Gif 2](#gif2)).  This means that you can open the table linked to the chart and manually edit it in order to alter the data displayed in the graphic. 
 
-An editable Power Point graphic constructed in R through the `officer` + `rvg` functions described here produce vector graphics (i.e., shapes).  This permits editing various features of the graphic (e.g., color, size), but not the data behind it (no linked table is created).
+An editable PowerPoint graphic constructed in R through the `officer` + `rvg` functions described here produce vector graphics (i.e., shapes).  This permits editing various features of the graphic (e.g., color, size), but not the data behind it (no linked table is created).
 
 # Why should I create it?
 
-In my line of work, the primary deliverable is a Power Point slide deck. When creating an R graphic for a slide deck, I could export the graphic as an image (like a `.png`) to be inserted into Power Point, or I can export the graphic directly to an editable Power Point slide.  Both of these options have pros and cons.  
+In my line of work, the primary deliverable is a PowerPoint slide deck. When creating an R graphic for a slide deck, I could export the graphic as an image (like a `.png`) to be inserted into PowerPoint, or I can export the graphic directly to an editable PowerPoint slide.  Both of these options have pros and cons.  
 
 
 
-|Feature      |  Power Point editable graphic     | Image (e.g., `.png`) |
+|Feature      |  PowerPoint editable graphic     | Image (e.g., `.png`) |
 |-------------|:---------------------------------:|:--------------------:|
 | Editability |  `r emo::ji("+1")`                | `r emo::ji("-1")`    |
 | Resizing    |  `r emo::ji("-1")`                | `r emo::ji("+1")`    |
 | Data table  |  `r emo::ji("-1")`                | `r emo::ji("-1")`    |
 
 
-The editable Power Point graphic allows for direct editing in Power Point, but re-sizes poorly when done manually within Power Point.  A `.png` image does not allow for direct editing within Power Point, but does nicely retain
+The editable PowerPoint graphic allows for direct editing in PowerPoint, but re-sizes poorly when done manually within PowerPoint.  A `.png` image does not allow for direct editing within PowerPoint, but does nicely retain
 image ratios when re-sizing. Lastly, neither method produces a linked
 data table behind the graphic for editing.  
 
@@ -87,27 +87,35 @@ p <- diamonds %>%
 p
 ```
 
-In order to export this graphic to an editable Power Point slide, first use the [`rvg`](https://github.com/davidgohel/rvg){target="_blank"} package to convert the object to class `dml` (required to make graphic editable).
+In order to export this graphic to an editable PowerPoint slide, first use the [`rvg`](https://github.com/davidgohel/rvg){target="_blank"} package to convert the object to class `dml` (required to make graphic editable).
 
 ```{r}
 p_dml <- rvg::dml(ggobj = p)
 ```
 
-Then export the `dml` object to a Power Point slide with [`officer`](https://davidgohel.github.io/officer/){target="_blank"}.
+Then export the `dml` object to a PowerPoint slide with [`officer`](https://davidgohel.github.io/officer/){target="_blank"}.
+
 
 ```{r, eval = FALSE}
-# initialize Power Point slide ----
-officer::read_pptx() %>% 
+# initialize PowerPoint slide ----
+officer::read_pptx() %>%
   # add slide ----
-  officer::add_slide() %>% 
+  officer::add_slide() %>%
   # specify object and location of object ----
-  officer::ph_with(p_dml, ph_location()) %>% 
+  officer::ph_with(p_dml, ph_location()) %>%
   # export slide -----
-  base::print(target = here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_one.pptx"))
+  base::print(
+    target = here::here(
+      "_posts",
+      "2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr",
+      "slides",
+      "demo_one.pptx"
+    )
+  )
 
 ```
 
-Here is a screen shot of the resulting Power Point slide, or you can download `r xfun::embed_file(here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_one.pptx"), text = "demo_one.pptx")`.
+Here is a screen shot of the resulting PowerPoint slide, or you can download `r xfun::embed_file(here::here("_posts", "2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr", "slides", "demo_one.pptx"), text = "demo_one.pptx")`.
 
 ![](img/demo_one.png)
 
@@ -118,7 +126,7 @@ your colleague wants all 56 plots (at least for the appendix of the report `r em
 
 ### Automate many plots
 
-This work follows up on blog posts by [Laurens Geffert](https://janlauge.github.io/2018/creating-editable-PowerPoint-plots-from-R/){target="_blank"}, [Len Kiefer](http://lenkiefer.com/2017/10/21/purrrtier-powerpoint-with-r/){target="_blank"}, and [Bruno Rodrigues](https://www.brodrigues.co/blog/2018-10-05-ggplot2_purrr_officer/){target="_blank"}, which were fantastic resources to help me get started. The `officer` package enacted changes in version 0.3.11(?) which necessitate updates to these methods (see [Acknowledgements](#ack)). In addition, [Amber Thomas](https://amber.rbind.io/2018/03/26/purrr/){target="_blank"} demonstrated a `purrr::map2` work flow that resonates with me.  
+This work follows up on blog posts by [Laurens Geffert](https://janlauge.github.io/2018/creating-editable-PowerPoint-plots-from-R/){target="_blank"}, [Len Kiefer](http://lenkiefer.com/2017/10/21/purrrtier-powerpoint-with-r/){target="_blank"}, and [Bruno Rodrigues](https://www.brodrigues.co/blog/2018-10-05-ggplot2_purrr_officer/){target="_blank"}, which were fantastic resources to help me get started. The `officer` package enacted changes in version 0.3.11(?) which necessitate updates to these methods (see [Acknowledgements](#ack)). In addition, [Amber Thomas](https://amber.rbind.io/2018/03/26/purrr/){target="_blank"} outlined a `purrr` work flow that resonates with me.  
 
 
 I start with a table outlining the 56 combinations of `color` and `clarity`.
@@ -211,14 +219,14 @@ Apply this function to the list of `ggplot` objects to create a list of
 diamonds_dml <- purrr::map(diamonds_gg, create_dml)
 ```
 
-The second function automates exporting all slides to Power Point, with some additional
+The second function automates exporting all slides to PowerPoint, with some additional
 options to specify the position and size (inches) of the graphic.  The default size (9in x 4.95in) produces a graphic that fills a standard sized slide.  
 
 ```{r}
-# function to export plot to power point ----
+# function to export plot to PowerPoint ----
 create_pptx <- function(plot, path, left = 0.5, top = 1, width = 9, height = 4.95){
   
-    # if file does not yet exist, create new power point ----
+    # if file does not yet exist, create new PowerPoint ----
     if (!file.exists(path)) {
         out <- officer::read_pptx()
     }
@@ -235,7 +243,7 @@ create_pptx <- function(plot, path, left = 0.5, top = 1, width = 9, height = 4.9
 }
 ```
 
-Note that this function opens and closes Power Point for each slide created, so more
+Note that this function opens and closes PowerPoint for each slide created, so more
 slides will take longer to export.  This particular set of graphics took ~6 minutes to export due to the number of slides and the number of points on some slides `r emo::ji("grimace")` (which is longer than usual for my typical applications).  
 
 ```{r, eval = FALSE}
@@ -245,17 +253,22 @@ purrr::map(
   # exporting function ----
   create_pptx, 
   # additional fixed arguments in create_pptx ----
-  path = here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_many.pptx")
+  path = here::here(
+    "_posts", 
+    "2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr",
+    "slides", 
+    "demo_many.pptx"
+    )
   )
 ```
 
-Here is a screen shot of the resulting Power Point slide, or you can download `r xfun::embed_file(here::here("_posts", "2020-09-10-draft-ppt", "slides", "demo_many.pptx"), text = "demo_many.pptx")`.
+Here is a screen shot of the resulting PowerPoint slide, or you can download `r xfun::embed_file(here::here("_posts", "2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr", "slides", "demo_many.pptx"), text = "demo_many.pptx")`.
 
 ![](img/demo_many.png)
 
 # Who should do the editing?
 
-Now that you have editable Power Point slides, you have two parties capable of editing the graphics: (1) the R developer, and (2) the collaborator.  
+Now that you have editable PowerPoint slides, you have two parties capable of editing the graphics: (1) the R developer, and (2) the collaborator.  
 
 The R developer should do further slide editing when:
 
@@ -268,41 +281,42 @@ The collaborator should do further slide editing when:
 
 * edits are bespoke (i.e. Bob wants to see slide 25 in bold for the marketing team)
 
-* edits are beyond the development budget (i.e., super custom axis adornment)
+* edits are beyond the budget (i.e., super custom axis adornment)
 
-# Limitations
+# Limitations {#lim}
 
-While the graphics exported to Power Point from R are editable, they do have limitations
-compared to graphics created within Power Point. 
+While the graphics exported to PowerPoint from R are editable, they do have limitations
+compared to graphics created within PowerPoint. 
 
 1. As previously mentioned, there is no linked data table behind the graphics, which can be unnerving for a colleague who wants to quality check the figure (I often export labeled and unlabeled versions of figures for this).
 
-2. The points are not naturally grouped features as they would be for graphics created within Power Point.  This means that if your colleagues wants to change the shade of yellow for the ideal cut diamonds they would have to click on _each and every single yellow point in all slides_ (see [Gif 3](#gif3) for preview of what the slide looks like when you click around).  
+2. The points are not naturally grouped features as they would be for graphics created within PowerPoint.  This means that if your colleagues wants to change the shade of yellow for the ideal cut diamonds they would have to click on _each and every single yellow point in all slides_ (see [Gif 3](#gif3) for preview of what the slide looks like when you click around).  
 
 # Summary
 
-Editable Power Point ggplot graphics created through `officer` + `rvg` + `purrr` can
+Editable PowerPoint ggplot graphics created through `officer` + `rvg` + `purrr` can
 be a great way to provide your colleague with fantastic graphics while still 
-allowing them to refine the graphics with their own finishing touches. Do expect a lot of iteration on the graphic to get it as close as possible to their needs before you hit that final send on the Power Point deck.  
+allowing them to refine the graphics with their own finishing touches. Do expect a lot of iteration on the graphic to get it as close as possible to their needs before you hit that final send on the PowerPoint deck.  
 
 # Appendix
 
 ### Gif 1 {#gif1}
 
-Demonstration of editable features in graphic created within Power Point.
+Demonstration of editable features in graphic created within PowerPoint. Notice
+that the points are automatically grouped together. Go back to [_What is an editable PowerPoint graphic?_](#what).
 
 ![](gif/ppt_1.gif)
 
 
 ### Gif 2 {#gif2}
 
-Demonstration of editable data table behind graphic created within Power Point.
+Demonstration of editable data table behind graphic created within PowerPoint. Go back to [_What is an editable PowerPoint graphic?_](#what).
 
 ![](gif/ppt_2.gif)
 
 ### Gif 3 {#gif3}
 
-Demonstration of editing title and single point color in graphic exported to Power Point by `rvg` + `officer`.
+Demonstration of editing title and single point color in graphic exported to PowerPoint by `rvg` + `officer` (notice points are not grouped). Go back to [_Limitations_](#lim).
 
 ![](gif/edit_diamonds.gif)
 

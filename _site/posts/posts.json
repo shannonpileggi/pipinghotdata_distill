@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr/",
+    "title": "Exporting editable ggplot graphics to PowerPoint with officer and purrr",
+    "description": "What, why, how, when, and who",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-09-22",
+    "categories": [],
+    "preview": "posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr/data_cowboy_officer.png",
+    "last_modified": "2020-09-22T22:57:04-04:00",
+    "input_file": "exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr.utf8.md",
+    "preview_width": 678,
+    "preview_height": 382
+  },
+  {
     "path": "posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/",
     "title": "Introducing RStudio and R Markdown",
     "description": "Gettin' giffy wit it.",
