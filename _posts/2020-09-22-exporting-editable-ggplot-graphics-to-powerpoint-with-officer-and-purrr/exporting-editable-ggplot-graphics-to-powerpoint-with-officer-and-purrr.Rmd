@@ -1,6 +1,7 @@
 ---
 title: "Exporting editable ggplot graphics to PowerPoint with officer and purrr"
-description: What, why, how, when, and who
+description: |
+  What, why, how, when, and who
 base_url: https://www.pipinghotdata.com/
 preview: data_cowboy_officer.png
 twitter:
@@ -13,7 +14,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 1
-    self_contained: TRUE
+    self_contained: false
 draft: FALSE
 creative_commons: CC BY
 ---
