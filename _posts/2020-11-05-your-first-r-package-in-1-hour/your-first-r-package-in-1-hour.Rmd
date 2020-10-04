@@ -19,6 +19,11 @@ draft: true
 creative_commons: CC BY
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
 # TL; DR
 
 This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/) workshop on November 12, 2020.  
@@ -26,27 +31,88 @@ Central idea: leverage [devtools](https://github.com/r-lib/devtools) and [usethi
 
 # Abstract
 
-This workshop is for people looking to learn how to make their own R packages and learn how to use “usethis” and “devtools” for package development. The workshop will cover handy one time functions (i.e., use_this::create_package) as well as functions used continuously throughout package development (i.e., devtools::document). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.
+This workshop is for people looking to learn how to make their own R packages and learn how to use “usethis” and “devtools” for package development. The workshop will cover handy one time functions (i.e., `use_this::create_package`) as well as functions used continuously throughout package development (i.e., `devtools::document`). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.
 
 This workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.
 
 # Set up
 
-This material was developed using 
+This material was developed using:
 
-| Software  | Version               |
-|-----------|-----------------------|
-| R         | 4.0.2                 | 
-| RStudio   | 1.3.1073              | 
-| devtools  | 2.3.2                 | 
-| usethis   | 1.6.3                 |
-| tidyverse | 1.3.0                 |
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.0.2                 | 
+| RStudio             | 1.3.1073              | 
+| `devtools`          | 2.3.2                 | 
+| `usethis`           | 1.6.3                 |
+| `tidyverse`         | 1.3.0                 |
+| `broom`             | 
 
-Please update all softwares prior to following along with this tutorial, as
-otherwise unexplained errors may arise.
+Please update all software / packages prior to following along with this tutorial, as otherwise errors may arise.
+
+# Function reference
+
+::: l-body-outset
+| Usage    | Function   | Purpose               |
+|----------|------------|-----------------------|
+| Single   | `usethis::create_package("path/packagename")`  | initialize package   | 
+|          | `usethis::use_mit_license("Your name")`        | adds license         |
+|          | `usethis::use_pipe()`                          | add pipe function as a dependency |
+| Multiple | `devtools::check()`           | build and check package |
+|          | `usethis::use_r("file-name")` | create R script for function |
+|          | `usethis::use_package("package-name")` | add package dependency |
+|          | `devtools::document()` | document a function |
+:::
+
+# Copy and paste materials
+
+## Function
+
+The `compute_corr` function is a wrapper for `cor.test` to produce tidy output for Pearson's correlation estimate (along with a p-value) for the relationship between two quantitative variables.
+
+```{r include=FALSE}
+library(tidyverse)
+```
 
 
-# Handy reference
+```{r define-function, eval = TRUE}
+compute_corr <- function(data, xvar, yvar){
+  
+  cor.test(x = data[[xvar]], y = data[[yvar]]) %>% 
+    # tidy up results ----
+    broom::tidy() %>% 
+    # retain and rename relevant bits ----
+    dplyr::select(
+      correlation = estimate, 
+      pval = p.value
+    )
+  
+}
+```
 
-# The function for your package
+Here is an example execution:
 
+```{r}
+compute_corr(mpg, "cty", "hwy")
+```
+## Documentation
+
+
+# First package
+
+Open an R session and submit the following, modified to your desired location.  Here,
+I am creating a package named `ralph` on my desktop. (This name is inspired by **R**-**L**adies **Ph**illy.) 
+
+```{r create-package, eval=FALSE}
+usethis::create_package("C:/Users/Shannon.Pileggi/Desktop/ralph")
+```
+
+Now you have a package!  
+
+
+# First check
+
+# First function
+
+
+# Summary of steps
