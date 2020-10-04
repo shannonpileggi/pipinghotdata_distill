@@ -13,7 +13,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
-    self_contained: TRUE
+    self_contained: false
 draft: FALSE
 creative_commons: CC BY
 ---
