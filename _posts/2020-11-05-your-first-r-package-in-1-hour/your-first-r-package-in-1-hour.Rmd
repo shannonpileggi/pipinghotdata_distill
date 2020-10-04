@@ -1,0 +1,52 @@
+---
+title: "Your first R package in 1 hour"
+description: |
+  Tools that make R package development easy
+base_url: https://www.pipinghotdata.com/
+preview: workshop_thumnnail3.jpg
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 11-05-2020
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+    self_contained: false
+draft: true
+creative_commons: CC BY
+---
+
+# TL; DR
+
+This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/) workshop on November 12, 2020.  
+Central idea: leverage [devtools](https://github.com/r-lib/devtools) and [usethis](https://usethis.r-lib.org/) in package development!
+
+# Abstract
+
+This workshop is for people looking to learn how to make their own R packages and learn how to use “usethis” and “devtools” for package development. The workshop will cover handy one time functions (i.e., use_this::create_package) as well as functions used continuously throughout package development (i.e., devtools::document). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.
+
+This workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.
+
+# Set up
+
+This material was developed using 
+
+| Software  | Version               |
+|-----------|-----------------------|
+| R         | 4.0.2                 | 
+| RStudio   | 1.3.1073              | 
+| devtools  | 2.3.2                 | 
+| usethis   | 1.6.3                 |
+| tidyverse | 1.3.0                 |
+
+Please update all softwares prior to following along with this tutorial, as
+otherwise unexplained errors may arise.
+
+
+# Handy reference
+
+# The function for your package
+
