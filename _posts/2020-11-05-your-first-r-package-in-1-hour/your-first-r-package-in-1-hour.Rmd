@@ -13,7 +13,7 @@ author:
 output:
   distill::distill_article:
     toc: true
-    toc_depth: 1
+    toc_depth: 3
     self_contained: false
 draft: true
 creative_commons: CC BY
@@ -29,13 +29,17 @@ knitr::opts_chunk$set(echo = TRUE)
 This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/) workshop on November 12, 2020.  
 Central idea: leverage [devtools](https://github.com/r-lib/devtools) and [usethis](https://usethis.r-lib.org/) in package development!
 
+<aside>
+Will update with link to YouTube workshop recording when available.
+</aside>
+
 # Abstract
 
 This workshop is for people looking to learn how to make their own R packages and learn how to use “usethis” and “devtools” for package development. The workshop will cover handy one time functions (i.e., `use_this::create_package`) as well as functions used continuously throughout package development (i.e., `devtools::document`). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.
 
 This workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.
 
-# Set up
+# Getting started
 
 This material was developed using:
 
@@ -46,11 +50,14 @@ This material was developed using:
 | `devtools`          | 2.3.2                 | 
 | `usethis`           | 1.6.3                 |
 | `tidyverse`         | 1.3.0                 |
-| `broom`             | 
+| `broom`             | 0.7.1
 
 Please update all software / packages prior to following along with this tutorial, as otherwise errors may arise.
 
-# Function reference
+# Toolkit
+
+Single usage functions only need to be used one time in the development process;
+multiple usage functions are executed as needed.
 
 ::: l-body-outset
 | Usage    | Function   | Purpose               |
@@ -58,22 +65,83 @@ Please update all software / packages prior to following along with this tutoria
 | Single   | `usethis::create_package("path/packagename")`  | initialize package   | 
 |          | `usethis::use_mit_license("Your name")`        | adds license         |
 |          | `usethis::use_pipe()`                          | add pipe function as a dependency |
-| Multiple | `devtools::check()`           | build and check package |
+| Multiple | `devtools::load_all()`           | simulates package installation |
+|          | `devtools::check()`           | build locally and check package |
+|          | `devtools::build()`           | builds package |
 |          | `usethis::use_r("file-name")` | create R script for function |
 |          | `usethis::use_package("package-name")` | add package dependency |
 |          | `devtools::document()` | document a function |
 :::
 
-# Copy and paste materials
+Other resources:
 
-## Function
+* [Package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf) cheat sheet
 
-The `compute_corr` function is a wrapper for `cor.test` to produce tidy output for Pearson's correlation estimate (along with a p-value) for the relationship between two quantitative variables.
+* [R packages](https://r-pkgs.org/) book by Hadley Wickham and Jenny Bryan
 
-```{r include=FALSE}
-library(tidyverse)
+# First package
+
+Open an R session and submit the following, modified to your desired location.  Here,
+I am creating a package named `ralph` on my desktop. (This name is inspired by **R**-**L**adies **Ph**illy.) 
+
+```{r create-package, eval=FALSE}
+usethis::create_package("C:/Users/Shannon.Pileggi/Desktop/ralph")
 ```
 
+_insert gif_
+
+Now you have a package!  The `usethis::create_package` function:
+
+1. Creates a new R project at your specified location named `ralph`.
+
+2. Opens your `ralph` project in a new RStudio session.
+
+3. Creates the minimal essential files and structure required for R packages.
+
+_in workshop: discuss files, not to include write up in post here?? or include??_
+
+# First check
+
+Now that we have a package, let's check it.  Submitting `devtools::check()` updates package documentation and builds the package. 
+
+```{r check-package-1, eval=FALSE}
+devtools::check()
+```
+
+This can take a while to run, depending on how big your package is.  It
+is really helpful to run *frequently*, especially if you are planning
+on submitting to CRAN.  But even for internal packages, it is still
+good practice.  
+
+_insert gif or screenshot_
+
+Our first check results in a single warning - that our package needs a license.  You can see this in the description file:
+
+_insert screenshot_
+
+To fix this, add the [license](https://r-pkgs.org/description.html#description-license) of your choice.  A standard go-to recommendation is the MIT license.  
+
+```{r use-license, eval=FALSE}
+usethis::use_mit_license("Your name")
+```
+
+This updates the description file, as well as creates two new license files in your project that you never have to touch.
+
+_insert screenshot_
+
+You can go back and complete the remaining [description](https://r-pkgs.org/description.html#description-license) fields later.  For now, re-submit 
+
+```{r check-package-2, eval=FALSE}
+devtools::check()
+```
+
+and now our package is error, warning, and note free.
+
+_insert screenshot_
+
+# First function
+
+### Create
 
 ```{r define-function, eval = TRUE}
 compute_corr <- function(data, xvar, yvar){
@@ -90,29 +158,220 @@ compute_corr <- function(data, xvar, yvar){
 }
 ```
 
-Here is an example execution:
+The `compute_corr` function is a wrapper for `cor.test` to produce tidy output for Pearson's correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables. Let's add the `compute_corr` function to `ralph`.
+
+```{r create-function, eval=FALSE}
+usethis::use_r("compute_corr")
+```
+
+This creates a blank R script named `compute_corr.R` located in `R/` folder.  It is convention that your function name and R script name are the *same*.
+
+Copy and paste the function to the blank R script.
+
+_insert screenshot_
+
+Voila!
+
+### Execute
+
+Take your function for a [test drive](https://r-pkgs.org/workflows101.html#load-all) with `devtool::load_all` ("arguably the most important part of the devtools workflow").
+
+```{r, eval = FALSE}
+devtools::load_all()
+```
+
+This places your function in local memory so that you may tinker and confirm its 
+execution.  Let's give it a try.
+
+```{r include=FALSE}
+library(tidyverse)
+```
+
 
 ```{r}
 compute_corr(mpg, "cty", "hwy")
 ```
-## Documentation
+
+Now we have confirmed our function is working as intended.
+
+### Document
+
+Next [document](https://r-pkgs.org/man.html) the `compute_corr` function using the Roxygen skeleton. You can add this two ways:
+
+1. `Code -> Insert Roxygen Skeleton`, or 
+
+2. `Cntrl + Alt + Shift + R`
+
+Now you should see this:
+
+_insert image_
+
+where we now have a skeleton to fill in.  Note that the three arguments
+in our function (`data`, `xvar`, `yvar`) were automatically detected.  Update the documentation as follows:
 
 
-# First package
-
-Open an R session and submit the following, modified to your desired location.  Here,
-I am creating a package named `ralph` on my desktop. (This name is inspired by **R**-**L**adies **Ph**illy.) 
-
-```{r create-package, eval=FALSE}
-usethis::create_package("C:/Users/Shannon.Pileggi/Desktop/ralph")
+```{r, eval = FALSE}
+#' Computes a tidy correlation
+#'
+#' @param data input data set
+#' @param xvar a quoted character string for the x-variable
+#' @param yvar a quoted character string for the y-variable
+#'
+#' @return A tibble with the Pearson correlation and the p-value
+#' @export
+#'
+#' @examples
+#' compute_corr(data = mtcars, xvar = "hp", yvar = "mpg")
 ```
 
-Now you have a package!  
+
+_insert screenshot_
+
+Now submit
+
+```{r document-function, eval = FALSE}
+devtools::document()
+```
+
+This did a LOT of work for you!
+
+_insert screenshot_
+
+1. The `man` folder (short for `manual`) has been created in your package.
+
+2. The `man` folder now contains a file called `compute_corr.Rd`.  This is the documentation for your function; you *never* edit this manually.
+
+3. Your `NAMESPACE` also now says that we have a function in your package to export. 
+
+We can preview the documentation with:
+
+```{r preview-documentation, eval = FALSE}
+?compute_corr
+```
+
+_insert screenshot_
+
+If you want to modify your documentation, make the changes in the Roxygen skeleton in `compute_corr.R` and then resubmit `devtools::document()`.
 
 
-# First check
+### Check
 
-# First function
+Now submit 
+
+```{r check-package-3, eval=FALSE}
+devtools::check()
+```
+
+and you'll see that we have some concerns.
+
+_insert screenshot_
+
+This is because our `compute_corr` depends on functions from other packages, such as:
+
+1. The pipe function ` %>%` from the `magrittr` package.
+
+2. The `tidy` function from the `broom` package.
+
+3. The `select` function from the `dplyr` package.
+
+### Dependencies
+
+We can fix these errors by specifying the [dependencies](https://r-pkgs.org/description.html#dependencies) in the `compute_corr` function.  
+
+**1. Package dependencies**
+
+To specify a _package_ dependency, the name of the package needs to be listed in the `DESCRIPTION` file.  This can be automatically done for you by submitting
+
+```{r, eval = F}
+usethis::use_package("broom")
+usethis::use_package("dplyr")
+```
+ 
+
+_insert screenshot_
+
+**2. Functions within packages**
+
+There are three ways you can specify functions within packages as a dependency.  
+
+1. Use the `::` notation within your function, as in `broom::tidy`.
+
+2. In the Roxygen section of your function, use `@importFrom pkg fun1 fun2` - if you prefer this over using `::`.
+
+3. In the Roxygen section of your function, `@import pkg` - imports all functions from a package; use sparingly/wisely as this may make your package bulkier.
+
+**Special case** The pipe (`%>%`) is a special case. This is a function from the `magrittr` package.  The easiest way to include the pipe is
+
+```{r, eval = F}
+usethis::use_pipe()  # step 1 ----
+devtools::document() # step 2 ----
+```
+
+Here, step 1 creates `utils-pipe.R` in your `R` folder, and step 2 adds the pipe to your `NAMESPACE` file.
+
+_insert screenshot_
+
+Now let's run the check again:
+
+```{r, eval = F}
+devtools::check()
+```
+
+Can you diagnose the note this time? What steps would you take to correct it?  I'm saving this for discussion in the 
+workshop.^[We missed specifying an additional package dependency in the `compute_corr` function - that the `cor.test` function is from the `stats` package. 
+Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again.] 
 
 
-# Summary of steps
+_insert screenshot_
+
+# Installing your package
+
+Open a new R session.  Install your package from your local directory, load your
+package, and execute your functions. 
+
+```{r, eval = F}
+# install package ----
+devtools::install("C:/Users/Shannon.Pileggi/Desktop/ralph")
+
+# load package ----
+library(ralph)
+```
+
+
+```{r, eval = TRUE}
+# test function ----
+compute_corr(data = mtcars, xvar = "hp", yvar = "mpg")
+```
+
+
+# Summary 
+
+I hope you feel empowered to start developing your own packages now! We went 
+through many of these steps one time only; however, in the development process,
+many of these step are iterative and need to be repeated. Here is a re-cap of our steps, although
+your work flow may differ. Starred steps should be done often.
+
+::: l-body-outset
+| Action                           | How                                       |
+|-----------------------------------------|----------------------------------------------|
+|  1. Load development packages.          | `library(usethis)`, `library(devtools)`      | 
+|  2. Create new package.                 | `usethis::create_package("path/packagename")`|
+|  3. Check build.*                       | `devtools::check()`                          | 
+|  4. Add a license.                      | `usethis::use_mit_license("Your name")`      |
+|  5. Check build.*                       | `devtools::check()`                          |
+|  6. Create a new function.              | `usethis::use_r("function-name")`            |
+|  7. Test drive function.*               | `devtools::load_all()`                       |
+|  8. Insert Roxygen skeleton.            | `Menu -> Code -> Insert Roxygen Skeleton`    |
+|  9. Document package.*                  | `devtools::document()`                       |
+| 10. Check build.*                       | `devtools::check()`                          |
+| 11. Specify package dependencies.       | `usethis::use_package("package-name")`       |
+| 12. Specify functions within packages.  | `package::function`                          |
+| 13. Document package.*                  | `devtools::document()`                       |
+| 14. Check build.*                       | `devtools::check()`                          |
+:::
+
+
+# Acknowledgements
+
+Thank you [R-Ladies Philly](https://www.rladiesphilly.org/) for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/) kindly created the thumbnail image for this workshop.  <insert name(s)> provided feedback on this post and the workshop content. I learned much of this content from 
+attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to [Hillary Parker](https://twitter.com/hspter) for showing us how to [build packages in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
