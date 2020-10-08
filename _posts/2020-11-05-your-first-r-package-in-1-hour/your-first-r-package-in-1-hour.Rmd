@@ -39,6 +39,15 @@ This workshop is for people looking to learn how to make their own R packages an
 
 This workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.
 
+# Disclaimer
+
+Here is where I am on the hill of learning about package development. ![](grimace.PNG){width=5%}
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Knowing so little never felt so fun. <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/Y51lLVeuCD">pic.twitter.com/Y51lLVeuCD</a></p>&mdash; Allison Horst (@allison_horst) <a href="https://twitter.com/allison_horst/status/1202229050284003328?ref_src=twsrc%5Etfw">December 4, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+I  have learned some great tips, but I am by no means an expert.  Please join me on this journey, and please reach out if you
+have any comments or suggestions!
+
 # Getting started
 
 This material was developed using:
@@ -374,4 +383,4 @@ your work flow may differ. Starred steps should be done often.
 # Acknowledgements
 
 Thank you [R-Ladies Philly](https://www.rladiesphilly.org/) for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/) kindly created the thumbnail image for this workshop.  <insert name(s)> provided feedback on this post and the workshop content. I learned much of this content from 
-attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to [Hillary Parker](https://twitter.com/hspter) for showing us how to [build packages in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
+attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop co-instructed by [Charlotte Wickham](https://www.cwick.co.nz/) and [Hadley Wickham](http://hadley.nz/).  Shout out to [Hillary Parker](https://twitter.com/hspter) for showing us how to [build packages in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
