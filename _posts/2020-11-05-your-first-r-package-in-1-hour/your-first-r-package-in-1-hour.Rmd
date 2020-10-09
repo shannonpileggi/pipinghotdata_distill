@@ -41,12 +41,15 @@ This workshop is suitable for beginner to intermediate R users. Attendees should
 
 # Disclaimer
 
-Here is where I am on the hill of learning about package development. ![](grimace.PNG){width=5%}
+![](rollercoaster_package.PNG)
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Knowing so little never felt so fun. <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/Y51lLVeuCD">pic.twitter.com/Y51lLVeuCD</a></p>&mdash; Allison Horst (@allison_horst) <a href="https://twitter.com/allison_horst/status/1202229050284003328?ref_src=twsrc%5Etfw">December 4, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<aside>
+Artwork adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en).
+</aside>
 
-I  have learned some great tips, but I am by no means an expert.  Please join me on this journey, and please reach out if you
-have any comments or suggestions!
+I have learned enough about package development to share with you what has worked
+well for me; however, I am still learning!  Please reach out if you
+have any comments or suggestions.
 
 # Getting started
 
@@ -69,17 +72,17 @@ Single usage functions only need to be used one time in the development process;
 multiple usage functions are executed as needed.
 
 ::: l-body-outset
-| Usage    | Function   | Purpose               |
-|----------|------------|-----------------------|
-| Single   | `usethis::create_package("path/packagename")`  | initialize package   | 
-|          | `usethis::use_mit_license("Your name")`        | adds license         |
+| Usage    | Function                                       | Purpose                           |
+|----------|------------------------------------------------|-----------------------------------|
+| Single   | `usethis::create_package("path/packagename")`  | initialize package                | 
+|          | `usethis::use_mit_license("Your name")`        | adds license                      |
 |          | `usethis::use_pipe()`                          | add pipe function as a dependency |
-| Multiple | `devtools::load_all()`           | simulates package installation |
-|          | `devtools::check()`           | build locally and check package |
-|          | `devtools::build()`           | builds package |
-|          | `usethis::use_r("file-name")` | create R script for function |
-|          | `usethis::use_package("package-name")` | add package dependency |
-|          | `devtools::document()` | document a function |
+| Multiple | `devtools::check()`                            | build locally and check package   |
+|          | `devtools::build()`                            | builds package                    |
+|          | `devtools::load_all()`                         | loads functions in `r emo::ji("folder")` `R/` into memory    |
+|          | `usethis::use_r("file-name")`                  | create R script for function      |
+|          | `usethis::use_package("package-name")`         | add package dependency            |
+|          | `devtools::document()`                         | document a function               |
 :::
 
 Other resources:
@@ -87,6 +90,8 @@ Other resources:
 * [Package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf) cheat sheet
 
 * [R packages](https://r-pkgs.org/) book by Hadley Wickham and Jenny Bryan
+
+* [How to develop good R packages](https://masalmon.eu/2017/12/11/goodrpackages/) by Maëlle Salmon
 
 # First package
 
@@ -101,24 +106,30 @@ _insert gif_
 
 Now you have a package!  The `usethis::create_package` function:
 
-1. Creates a new R project at your specified location named `ralph`.
+1. Creates a new R project named `ralph` at your specified location.
 
 2. Opens your `ralph` project in a new RStudio session.
 
-3. Creates the minimal essential files and structure required for R packages.
+3. Creates the minimal essential files and structure required for R packages, as outlined in this image from the [package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf) cheat sheet.
 
-_in workshop: discuss files, not to include write up in post here?? or include??_
+<aside>
+We discuss the file structure in the workshop.
+</aside>
+
+![](package_structure.PNG){width=40%}
+
+
 
 # First check
 
-Now that we have a package, let's check it.  Submitting `devtools::check()` updates package documentation and builds the package. 
+Now that we have a package, let's check it.  Submitting [`devtools::check()`](https://r-pkgs.org/r-cmd-check.html) updates package documentation, builds the package, and submits over 50 checks for metadata, structure, R code, documentation, and more! 
 
 ```{r check-package-1, eval=FALSE}
 devtools::check()
 ```
 
 This can take a while to run, depending on how big your package is.  It
-is really helpful to run *frequently*, especially if you are planning
+is helpful to run *frequently*, especially if you are planning
 on submitting to CRAN.  But even for internal packages, it is still
 good practice.  
 
@@ -153,9 +164,9 @@ _insert screenshot_
 ### Create
 
 ```{r define-function, eval = TRUE}
-compute_corr <- function(data, xvar, yvar){
+compute_corr <- function(data, var1, var2){
   
-  cor.test(x = data[[xvar]], y = data[[yvar]]) %>% 
+  cor.test(x = data[[var1]], y = data[[var2]]) %>% 
     # tidy up results ----
     broom::tidy() %>% 
     # retain and rename relevant bits ----
@@ -216,21 +227,21 @@ Now you should see this:
 _insert image_
 
 where we now have a skeleton to fill in.  Note that the three arguments
-in our function (`data`, `xvar`, `yvar`) were automatically detected.  Update the documentation as follows:
+in our function (`data`, `var1`, `var2`) were automatically detected.  Update the documentation as follows:
 
 
 ```{r, eval = FALSE}
 #' Computes a tidy correlation
 #'
 #' @param data input data set
-#' @param xvar a quoted character string for the x-variable
-#' @param yvar a quoted character string for the y-variable
+#' @param var1 a quoted character string for the name of variable 1
+#' @param var2 a quoted character string for the name of variable 2
 #'
 #' @return A tibble with the Pearson correlation and the p-value
 #' @export
 #'
 #' @examples
-#' compute_corr(data = mtcars, xvar = "hp", yvar = "mpg")
+#' compute_corr(data = mtcars, var1 = "hp", var2 = "mpg")
 ```
 
 
@@ -349,7 +360,7 @@ library(ralph)
 
 ```{r, eval = TRUE}
 # test function ----
-compute_corr(data = mtcars, xvar = "hp", yvar = "mpg")
+compute_corr(data = mtcars, var1 = "hp", var2 = "mpg")
 ```
 
 
@@ -383,4 +394,4 @@ your work flow may differ. Starred steps should be done often.
 # Acknowledgements
 
 Thank you [R-Ladies Philly](https://www.rladiesphilly.org/) for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/) kindly created the thumbnail image for this workshop.  <insert name(s)> provided feedback on this post and the workshop content. I learned much of this content from 
-attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop co-instructed by [Charlotte Wickham](https://www.cwick.co.nz/) and [Hadley Wickham](http://hadley.nz/).  Shout out to [Hillary Parker](https://twitter.com/hspter) for showing us how to [build packages in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
+attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to Hillary Parker for showing us [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
