@@ -23,11 +23,10 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 # TL; DR
 
-This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/) workshop on November 12, 2020.  
-Central idea: leverage [devtools](https://github.com/r-lib/devtools) and [usethis](https://usethis.r-lib.org/) in package development!
+This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} workshop on November 12, 2020.  
+Central idea: leverage [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} in package development!
 
 <aside>
 Will update with link to YouTube workshop recording when available.
@@ -44,7 +43,7 @@ This workshop is suitable for beginner to intermediate R users. Attendees should
 ![](rollercoaster_package.PNG)
 
 <aside>
-Artwork adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en).
+Artwork adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en){target="_blank"}.
 </aside>
 
 I have learned enough about package development to share with you what has worked
@@ -69,29 +68,30 @@ Please update all software / packages prior to following along with this tutoria
 # Toolkit
 
 Single usage functions only need to be used one time in the development process;
-multiple usage functions are executed as needed.
+multiple usage functions are executed as needed. This table only contains functions
+used in this workshop; please note there are many other handy functions in [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} for package development.
 
-::: l-body-outset
 | Usage    | Function                                       | Purpose                           |
 |----------|------------------------------------------------|-----------------------------------|
-| Single   | `usethis::create_package("path/packagename")`  | initialize package                | 
+| Single   | `usethis::create_package("path/package")`      | initialize package                | 
 |          | `usethis::use_mit_license("Your name")`        | adds license                      |
 |          | `usethis::use_pipe()`                          | add pipe function as a dependency |
 | Multiple | `devtools::check()`                            | build locally and check package   |
 |          | `devtools::build()`                            | builds package                    |
 |          | `devtools::load_all()`                         | loads functions in `r emo::ji("folder")` `R/` into memory    |
-|          | `usethis::use_r("file-name")`                  | create R script for function      |
-|          | `usethis::use_package("package-name")`         | add package dependency            |
+|          | `usethis::use_r("function")`                   | create R script for function      |
+|          | `usethis::use_package("package")     `         | add package dependency            |
 |          | `devtools::document()`                         | document a function               |
-:::
 
 Other resources:
 
-* [Package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf) cheat sheet
+* [Package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf){target="_blank"} cheat sheet
 
-* [R packages](https://r-pkgs.org/) book by Hadley Wickham and Jenny Bryan
+* [R packages](https://r-pkgs.org/){target="_blank"} book by Hadley Wickham and Jenny Bryan
 
-* [How to develop good R packages](https://masalmon.eu/2017/12/11/goodrpackages/) by Maëlle Salmon
+* [How to develop good R packages](https://masalmon.eu/2017/12/11/goodrpackages/){target="_blank"} by Maëlle Salmon
+
+* [R Package Primer](https://kbroman.org/pkg_primer/){target="_blank"} by Karl Broman.
 
 # First package
 
@@ -108,28 +108,24 @@ Now you have a package!  The `usethis::create_package` function:
 
 1. Creates a new R project named `ralph` at your specified location.
 
-2. Opens your `ralph` project in a new RStudio session.
+2. Opens the `ralph` project in a new RStudio session.
 
-3. Creates the minimal essential files and structure required for R packages, as outlined in this image from the [package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf) cheat sheet.
+3. Creates the minimal essential files and structure required for R packages. 
 
 <aside>
-We discuss the file structure in the workshop.
+See the [package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf){target="_blank"} cheat sheet for picture overview of the full file structure. 
 </aside>
-
-![](package_structure.PNG){width=40%}
-
-
 
 # First check
 
-Now that we have a package, let's check it.  Submitting [`devtools::check()`](https://r-pkgs.org/r-cmd-check.html) updates package documentation, builds the package, and submits over 50 checks for metadata, structure, R code, documentation, and more! 
+Now that we have a package, let's check it.  Submitting [`devtools::check()`](https://r-pkgs.org/r-cmd-check.html){target="_blank"} updates package documentation, builds the package, and submits over 50 checks for metadata, structure, R code, documentation, and more! 
 
 ```{r check-package-1, eval=FALSE}
 devtools::check()
 ```
 
 This can take a while to run, depending on how big your package is.  It
-is helpful to run *frequently*, especially if you are planning
+is helpful to run frequently, especially if you are planning
 on submitting to CRAN.  But even for internal packages, it is still
 good practice.  
 
@@ -139,7 +135,7 @@ Our first check results in a single warning - that our package needs a license. 
 
 _insert screenshot_
 
-To fix this, add the [license](https://r-pkgs.org/description.html#description-license) of your choice.  A standard go-to recommendation is the MIT license.  
+To fix this, add the [license](https://r-pkgs.org/description.html#description-license){target="_blank"} of your choice.  A standard recommendation is the MIT license due to broad permissions.  
 
 ```{r use-license, eval=FALSE}
 usethis::use_mit_license("Your name")
@@ -149,7 +145,7 @@ This updates the description file, as well as creates two new license files in y
 
 _insert screenshot_
 
-You can go back and complete the remaining [description](https://r-pkgs.org/description.html#description-license) fields later.  For now, re-submit 
+You can go back and complete the remaining [description](https://r-pkgs.org/description.html){target="_blank"} fields later.  For now, re-submit 
 
 ```{r check-package-2, eval=FALSE}
 devtools::check()
@@ -162,6 +158,8 @@ _insert screenshot_
 # First function
 
 ### Create
+
+The `compute_corr` function is a wrapper for `cor.test` to produce tidy output for Pearson's correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables.
 
 ```{r define-function, eval = TRUE}
 compute_corr <- function(data, var1, var2){
@@ -178,23 +176,19 @@ compute_corr <- function(data, var1, var2){
 }
 ```
 
-The `compute_corr` function is a wrapper for `cor.test` to produce tidy output for Pearson's correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables. Let's add the `compute_corr` function to `ralph`.
+Let's add the `compute_corr` function to `ralph`.
 
 ```{r create-function, eval=FALSE}
 usethis::use_r("compute_corr")
 ```
 
-This creates a blank R script named `compute_corr.R` located in `R/` folder.  It is convention that your function name and R script name are the *same*.
-
-Copy and paste the function to the blank R script.
+This creates a blank R script named `compute_corr.R` located in `R/` folder.  It is convention that your function name and R script name are the same.  Copy and paste the function to the blank R script, and then save.
 
 _insert screenshot_
 
-Voila!
-
 ### Execute
 
-Take your function for a [test drive](https://r-pkgs.org/workflows101.html#load-all) with `devtool::load_all` ("arguably the most important part of the devtools workflow").
+Take your function for a [test drive](https://r-pkgs.org/workflows101.html#load-all){target="_blank"} with `devtool::load_all` ("arguably the most important part of the devtools workflow").
 
 ```{r, eval = FALSE}
 devtools::load_all()
@@ -212,11 +206,9 @@ library(tidyverse)
 compute_corr(mpg, "cty", "hwy")
 ```
 
-Now we have confirmed our function is working as intended.
-
 ### Document
 
-Next [document](https://r-pkgs.org/man.html) the `compute_corr` function using the Roxygen skeleton. You can add this two ways:
+Next [document](https://r-pkgs.org/man.html){target="_blank"} the `compute_corr` function using the Roxygen skeleton. You can add this two ways:
 
 1. `Code -> Insert Roxygen Skeleton`, or 
 
@@ -226,7 +218,7 @@ Now you should see this:
 
 _insert image_
 
-where we now have a skeleton to fill in.  Note that the three arguments
+where we now have an outline to fill in.  Note that the three arguments
 in our function (`data`, `var1`, `var2`) were automatically detected.  Update the documentation as follows:
 
 
@@ -253,13 +245,13 @@ Now submit
 devtools::document()
 ```
 
-This did a LOT of work for you!
+This did a lot of work for you!
 
 _insert screenshot_
 
 1. The `man` folder (short for `manual`) has been created in your package.
 
-2. The `man` folder now contains a file called `compute_corr.Rd`.  This is the documentation for your function; you *never* edit this manually.
+2. The `man` folder now contains a file called `compute_corr.Rd`.  This is the documentation for your function; you never edit this manually.
 
 3. Your `NAMESPACE` also now says that we have a function in your package to export. 
 
@@ -296,11 +288,11 @@ This is because our `compute_corr` depends on functions from other packages, suc
 
 ### Dependencies
 
-We can fix these errors by specifying the [dependencies](https://r-pkgs.org/description.html#dependencies) in the `compute_corr` function.  
+We can fix these errors by specifying the dependencies in the `compute_corr` function.  
 
 **1. Package dependencies**
 
-To specify a _package_ dependency, the name of the package needs to be listed in the `DESCRIPTION` file.  This can be automatically done for you by submitting
+To specify a [package dependency](https://r-pkgs.org/description.html#dependencies){target="_blank"}, the name of the package needs to be listed in the `DESCRIPTION` file.  This can be automatically done for you by submitting
 
 ```{r, eval = F}
 usethis::use_package("broom")
@@ -312,15 +304,17 @@ _insert screenshot_
 
 **2. Functions within packages**
 
-There are three ways you can specify functions within packages as a dependency.  
+There are three ways you can specify required [functions within packages](https://r-pkgs.org/namespace.html#import-r){target="_blank"}.  
 
-1. Use the `::` notation within your function, as in `broom::tidy`.
+1. Use the `::` notation within your function, as in `broom::tidy` (recommended, used in this post).
 
 2. In the Roxygen section of your function, use `@importFrom pkg fun1 fun2` - if you prefer this over using `::`.
 
-3. In the Roxygen section of your function, `@import pkg` - imports all functions from a package; use sparingly/wisely as this may make your package bulkier.
+3. In the Roxygen section of your function, `@import pkg` - imports all functions from a package; use sparingly/wisely as makes your package bulkier.
 
-**Special case** The pipe (`%>%`) is a special case. This is a function from the `magrittr` package.  The easiest way to include the pipe is
+**Special case** 
+
+The pipe (`%>%`) function from the `magrittr` package is a special case. The easiest way to include the pipe is
 
 ```{r, eval = F}
 usethis::use_pipe()  # step 1 ----
@@ -352,14 +346,17 @@ package, and execute your functions.
 ```{r, eval = F}
 # install package ----
 devtools::install("C:/Users/Shannon.Pileggi/Desktop/ralph")
+```
 
+
+```{r, eval = F}
 # load package ----
 library(ralph)
 ```
 
 
 ```{r, eval = TRUE}
-# test function ----
+# execute function ----
 compute_corr(data = mtcars, var1 = "hp", var2 = "mpg")
 ```
 
@@ -368,30 +365,28 @@ compute_corr(data = mtcars, var1 = "hp", var2 = "mpg")
 
 I hope you feel empowered to start developing your own packages now! We went 
 through many of these steps one time only; however, in the development process,
-many of these step are iterative and need to be repeated. Here is a re-cap of our steps, although
-your work flow may differ. Starred steps should be done often.
+many of these step are iterative. Here is a re-cap of our steps, although
+your work flow may differ. 
 
-::: l-body-outset
-| Action                           | How                                       |
+| Action                                  | How                                          |
 |-----------------------------------------|----------------------------------------------|
 |  1. Load development packages.          | `library(usethis)`, `library(devtools)`      | 
-|  2. Create new package.                 | `usethis::create_package("path/packagename")`|
-|  3. Check build.*                       | `devtools::check()`                          | 
+|  2. Create new package.                 | `usethis::create_package("path/package")`    |
+|  3. Check build.                        | `devtools::check()`                          | 
 |  4. Add a license.                      | `usethis::use_mit_license("Your name")`      |
-|  5. Check build.*                       | `devtools::check()`                          |
-|  6. Create a new function.              | `usethis::use_r("function-name")`            |
-|  7. Test drive function.*               | `devtools::load_all()`                       |
+|  5. Check build.                        | `devtools::check()`                          |
+|  6. Create a new function.              | `usethis::use_r("function")`                 |
+|  7. Test drive function.                | `devtools::load_all()`                       |
 |  8. Insert Roxygen skeleton.            | `Menu -> Code -> Insert Roxygen Skeleton`    |
-|  9. Document package.*                  | `devtools::document()`                       |
-| 10. Check build.*                       | `devtools::check()`                          |
-| 11. Specify package dependencies.       | `usethis::use_package("package-name")`       |
+|  9. Document package.                   | `devtools::document()`                       |
+| 10. Check build.                        | `devtools::check()`                          |
+| 11. Specify package dependencies.       | `usethis::use_package("package")`            |
 | 12. Specify functions within packages.  | `package::function`                          |
-| 13. Document package.*                  | `devtools::document()`                       |
-| 14. Check build.*                       | `devtools::check()`                          |
-:::
+| 13. Document package.                   | `devtools::document()`                       |
+| 14. Check build.                        | `devtools::check()`                          |
 
 
 # Acknowledgements
 
-Thank you [R-Ladies Philly](https://www.rladiesphilly.org/) for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/) kindly created the thumbnail image for this workshop.  <insert name(s)> provided feedback on this post and the workshop content. I learned much of this content from 
-attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools) workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to Hillary Parker for showing us [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
+Thank you [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/){target="_blank"} kindly created the thumbnail image for this workshop.  <insert name(s)> provided feedback on this post and the workshop content. I learned much of this content from 
+attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to Hillary Parker for showing us [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.
