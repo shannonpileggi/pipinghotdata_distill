@@ -25,8 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
-This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} workshop on November 12, 2020.  
-Central idea: leverage [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} in package development!
+This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} workshop on November 12, 2020.  We demonstrate how leveraging the  [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} packages in package development can automate folder structure and file creation, speeding up the development process while minimizing errors.  
 
 <aside>
 Will update with link to YouTube workshop recording when available.
@@ -34,7 +33,7 @@ Will update with link to YouTube workshop recording when available.
 
 # Abstract
 
-This workshop is for people looking to learn how to make their own R packages and learn how to use “usethis” and “devtools” for package development. The workshop will cover handy one time functions (i.e., `use_this::create_package`) as well as functions used continuously throughout package development (i.e., `devtools::document`). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.
+This workshop is for people looking to learn how to make their own R packages and learn how to use “usethis” and “devtools” for package development. The workshop will cover handy one time functions (i.e., `usethis::create_package`) as well as functions used continuously throughout package development (i.e., `devtools::document`). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.
 
 This workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.
 
@@ -65,7 +64,7 @@ This material was developed using:
 
 Please update all software / packages prior to following along with this tutorial, as otherwise errors may arise.
 
-# Toolkit
+# Tool kit
 
 Single usage functions only need to be used one time in the development process;
 multiple usage functions are executed as needed. This table only contains functions
@@ -91,7 +90,7 @@ Other resources:
 
 * [How to develop good R packages](https://masalmon.eu/2017/12/11/goodrpackages/){target="_blank"} by Maëlle Salmon
 
-* [R Package Primer](https://kbroman.org/pkg_primer/){target="_blank"} by Karl Broman.
+* [R Package Primer](https://kbroman.org/pkg_primer/){target="_blank"} by Karl Broman
 
 # First package
 
@@ -113,7 +112,7 @@ Now you have a package!  The `usethis::create_package` function:
 3. Creates the minimal essential files and structure required for R packages. 
 
 <aside>
-See the [package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf){target="_blank"} cheat sheet for picture overview of the full file structure. 
+See the [package development](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf){target="_blank"} cheat sheet for a picture overview of the full file structure. 
 </aside>
 
 # First check
