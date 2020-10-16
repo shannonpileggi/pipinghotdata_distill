@@ -70,9 +70,12 @@ Single usage functions only need to be used one time in the development process;
 multiple usage functions are executed as needed. This table only contains functions
 used in this workshop; please note there are many other handy functions in [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} for package development.
 
+
 | Usage    | Function                                       | Purpose                           |
 |----------|------------------------------------------------|-----------------------------------|
 | Single   | `usethis::create_package("path/package")`      | initialize package                | 
+|          | `usethis::use_git()`                           | initialize Git repo               |
+|          | `usethis::use_github()`                        | connect local project to GitHub   |
 |          | `usethis::use_mit_license("Your name")`        | adds license                      |
 |          | `usethis::use_pipe()`                          | add pipe function as a dependency |
 | Multiple | `devtools::check()`                            | build locally and check package   |
@@ -116,14 +119,14 @@ See the [package development](https://rawgit.com/rstudio/cheatsheets/master/pack
 
 _Optional:_ 
 
-The `usethis` package has some handy functions to quickly connect your local package to a GitHub repository. 
+If you are already authenticated, the `usethis` package has some handy functions to quickly connect your local package to a GitHub repository, 
 
 ```{r, eval=FALSE}
 usethis::use_git()     # step 1 ----
 usethis::use_github()  # step 2 ----
 ```
 
-For more references on using git / GitHub, see Jenny Bryan's [Happy Git and GitHub for the useR](https://happygitwithr.com/) or [Ch 18](https://r-pkgs.org/) in R Packages by Jenny Bryan and Hadley Wickham.  
+For more references on using git / GitHub, see Jenny Bryan's [Happy Git and GitHub for the useR](https://happygitwithr.com/) or [Ch 18](https://r-pkgs.org/git.html) in R Packages by Hadley Wickham and Jenny Bryan.  
 
 # First check
 
@@ -294,9 +297,9 @@ and you'll see that we have some concerns.
 
 _insert screenshot_
 
-This is because our `compute_corr` depends on functions from other packages, such as:
+This is because `compute_corr` depends on functions from other packages, such as:
 
-1. The pipe function (` %>%`) from the `magrittr` package.
+1. The pipe function (`%>%`) from the `magrittr` package.
 
 2. The `tidy` function from the `broom` package.
 
@@ -367,7 +370,7 @@ Open a new R session.  Install your package from your local directory or GitHub,
 devtools::install("C:/Users/Shannon.Pileggi/Desktop/ralph")
 
 # or install package from GitHub ----
-#devtools::install_github("shannonpileggi/ralph")
+# devtools::install_github("shannonpileggi/ralph")
 ```
 
 
