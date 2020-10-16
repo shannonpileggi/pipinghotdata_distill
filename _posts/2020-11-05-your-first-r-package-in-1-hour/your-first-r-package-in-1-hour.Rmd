@@ -376,7 +376,7 @@ compute_corr(data = mtcars, var1 = "hp", var2 = "mpg")
 
 I hope you feel empowered to start developing your own packages now! We went 
 through many of these steps one time only; however, in the development process,
-some of these step are iterative. Here is a recap of our steps, although
+some of these steps are iterative. Here is a recap of our steps, although
 your work flow may differ. 
 
 | Step                                    | How                                          |
