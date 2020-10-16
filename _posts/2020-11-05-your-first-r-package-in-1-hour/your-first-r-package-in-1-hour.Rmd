@@ -289,7 +289,7 @@ _insert screenshot_
 
 This is because our `compute_corr` depends on functions from other packages, such as:
 
-1. The pipe function ` %>%` from the `magrittr` package.
+1. The pipe function (` %>%`) from the `magrittr` package.
 
 2. The `tidy` function from the `broom` package.
 
@@ -402,4 +402,4 @@ your work flow may differ.
 # Acknowledgements
 
 Thank you [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/){target="_blank"} kindly created the thumbnail image for this workshop, as well as provided feedback on this post and the workshop content (thank you for so generously sharing your time!). I learned much of this content from 
-attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to Hillary Parker for showing us [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.
+attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to Hillary Parker for showing us all [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.
