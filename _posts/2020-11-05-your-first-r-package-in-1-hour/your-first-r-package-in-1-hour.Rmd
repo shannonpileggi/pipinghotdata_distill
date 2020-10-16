@@ -206,6 +206,8 @@ devtools::load_all()
 This places your function in local memory so that you may tinker and confirm its 
 execution.  Let's give it a try.
 
+
+
 ```{r include=FALSE}
 library(tidyverse)
 ```
@@ -214,6 +216,11 @@ library(tidyverse)
 ```{r}
 compute_corr(mpg, "cty", "hwy")
 ```
+
+<aside>
+Depending on which packages are loaded in your R session, you
+may have a small hiccup here, which we discuss in the workshop.
+</aside>
 
 ### Document
 
@@ -295,6 +302,10 @@ This is because our `compute_corr` depends on functions from other packages, suc
 
 3. The `select` function from the `dplyr` package.
 
+<aside>
+Anything else?
+</aside>
+
 ### Dependencies
 
 We can fix these errors by specifying the dependencies in the `compute_corr` function.  
@@ -319,7 +330,7 @@ There are three ways you can specify required [functions within packages](https:
 
 2. In the Roxygen section of your function, use `@importFrom pkg fun1 fun2` - if you prefer this over using `::`.
 
-3. In the Roxygen section of your function, `@import pkg` - imports all functions from a package; use sparingly/wisely as makes your package bulkier.
+3. In the Roxygen section of your function, `@import pkg` - imports all functions from a package; use sparingly/wisely as this makes your package bulkier.
 
 **Special case** 
 
