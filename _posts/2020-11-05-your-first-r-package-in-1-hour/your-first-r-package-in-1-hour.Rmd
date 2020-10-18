@@ -55,14 +55,14 @@ This material was developed using:
 
 | Software / package  | Version               |
 |---------------------|-----------------------|
-| R                   | 4.0.2                 | 
+| R                   | 4.0.3                 | 
 | RStudio             | 1.3.1073              | 
 | `devtools`          | 2.3.2                 | 
 | `usethis`           | 1.6.3                 |
 | `tidyverse`         | 1.3.0                 |
 | `broom`             | 0.7.1
 
-Please update all software / packages prior to following along with this tutorial, as otherwise errors may arise.
+Please install and update all software / packages prior to following along with this tutorial, as otherwise errors may arise.
 
 # Tool kit
 
@@ -103,7 +103,7 @@ I am creating a package named `ralph` on my desktop. (This name is inspired by *
 usethis::create_package("C:/Users/Shannon.Pileggi/Desktop/ralph")
 ```
 
-_insert gif_
+![](gif/create_package.gif)
 
 Now you have a package!  The `usethis::create_package` function:
 
@@ -126,7 +126,12 @@ usethis::use_git()     # step 1 ----
 usethis::use_github()  # step 2 ----
 ```
 
-For more references on using git / GitHub, see Jenny Bryan's [Happy Git and GitHub for the useR](https://happygitwithr.com/) or [Ch 18](https://r-pkgs.org/git.html) in R Packages by Hadley Wickham and Jenny Bryan.  
+<aside>
+GitHub is [renaming](https://github.com/github/renaming){target="_blank"} the default branch from `master` to `main`. Currently, `usethis::use_github()` creates a repo with the default branch named `master`.  
+</aside>
+
+For more references on using git / GitHub, see Jenny Bryan's [Happy Git and GitHub for the useR](https://happygitwithr.com/){target="_blank"} or [Ch 18](https://r-pkgs.org/git.html){target="_blank"} in R Packages by Hadley Wickham and Jenny Bryan.  
+
 
 # First check
 
@@ -141,11 +146,9 @@ is helpful to run frequently, especially if you are planning
 on submitting to CRAN.  But even for internal packages, it is still
 good practice.  
 
-_insert gif or screenshot_
-
 Our first check results in a single warning - that our package needs a license.  You can see this in the description file:
 
-_insert screenshot_
+![](img/check1.png)
 
 To fix this, add the [license](https://r-pkgs.org/description.html#description-license){target="_blank"} of your choice.  A standard recommendation is the MIT license due to broad permissions.  
 
@@ -155,7 +158,7 @@ usethis::use_mit_license("Your name")
 
 This updates the description file, as well as creates two new license files in your project that you never have to touch.
 
-_insert screenshot_
+![](img/add_license.png)
 
 You can go back and complete the remaining [description](https://r-pkgs.org/description.html){target="_blank"} fields later.  For now, re-submit 
 
@@ -165,7 +168,7 @@ devtools::check()
 
 and now our package is error, warning, and note free.
 
-_insert screenshot_
+![](img/check_no_error.png)
 
 # First function
 
@@ -196,7 +199,7 @@ usethis::use_r("compute_corr")
 
 This creates a blank R script named `compute_corr.R` located in the `R/` folder.  It is convention that your function name and R script name are the same.  Copy and paste the function to the blank R script, and then save.
 
-_insert screenshot_
+![](img/add_function.png)
 
 ### Execute
 
@@ -217,7 +220,7 @@ library(tidyverse)
 
 
 ```{r}
-compute_corr(mpg, "cty", "hwy")
+compute_corr(data = faithful, var1 = "eruptions", var2 = "waiting")
 ```
 
 <aside>
@@ -235,7 +238,7 @@ Next [document](https://r-pkgs.org/man.html){target="_blank"} the `compute_corr`
 
 Now you should see this:
 
-_insert image_
+![](img/document.png)
 
 where we now have an outline to fill in.  Note that the three arguments
 in our function (`data`, `var1`, `var2`) were automatically detected.  Update the documentation as follows:
@@ -252,11 +255,8 @@ in our function (`data`, `var1`, `var2`) were automatically detected.  Update th
 #' @export
 #'
 #' @examples
-#' compute_corr(data = mtcars, var1 = "hp", var2 = "mpg")
+#' compute_corr(data = faithful, var1 = "eruptions", var2 = "waiting")
 ```
-
-
-_insert screenshot_
 
 Now submit
 
@@ -272,15 +272,15 @@ _insert screenshot_
 
 2. The `man` folder now contains a file called `compute_corr.Rd`.  This is the documentation for your function; you never edit this manually.
 
-3. Your `NAMESPACE` also now says that we have a function in your package to export. 
+3. The `NAMESPACE` now specifies that the package will export the `compute_corr` function.  
 
-We can preview the documentation with:
+Preview the documentation with:
 
 ```{r preview-documentation, eval = FALSE}
 ?compute_corr
 ```
 
-_insert screenshot_
+![](img/document2.png)
 
 If you want to modify your documentation, make the changes in the Roxygen skeleton in `compute_corr.R` and then resubmit `devtools::document()`.
 
@@ -295,7 +295,7 @@ devtools::check()
 
 and you'll see that we have some concerns.
 
-_insert screenshot_
+![](img/check2.png)
 
 This is because `compute_corr` depends on functions from other packages, such as:
 
@@ -306,12 +306,12 @@ This is because `compute_corr` depends on functions from other packages, such as
 3. The `select` function from the `dplyr` package.
 
 <aside>
-Anything else?
+Are any other functions missing from this list?
 </aside>
 
 ### Dependencies
 
-We can fix these errors by specifying the dependencies in the `compute_corr` function.  
+We can fix these errors, warnings, and  notes by specifying the dependencies in the `compute_corr` function.  
 
 **1. Package dependencies**
 
@@ -322,8 +322,7 @@ usethis::use_package("broom")
 usethis::use_package("dplyr")
 ```
  
-
-_insert screenshot_
+![](img/use_package.png)
 
 **2. Functions within packages**
 
@@ -346,7 +345,7 @@ devtools::document() # step 2 ----
 
 Here, step 1 creates `utils-pipe.R` in your `R` folder, and step 2 adds the pipe to your `NAMESPACE` file.
 
-_insert screenshot_
+![](img/use_pipe.png)
 
 Now let's run the check again:
 
@@ -355,11 +354,9 @@ devtools::check()
 ```
 
 Can you diagnose the note this time? What steps would you take to correct it?  I'm saving this for discussion in the 
-workshop.^[We missed specifying an additional package dependency in the `compute_corr` function - that the `cor.test` function is from the `stats` package. 
-Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again.] 
-
-
-_insert screenshot_
+workshop.^[We missed specifying an additional package dependency in the `compute_corr` function - that the `cor.test` function is from the `stats` package (which is [loaded by default](https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Default-packages){target="_blank"} on start up). 
+Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again. The notes regarding _no visible binding..._ remain; see [here](https://community.rstudio.com/t/how-to-solve-no-visible-binding-for-global-variable-note/28887){target="_blank"} for possible solutions.] 
+![](img/check3.png)
 
 # Installing your package
 
@@ -373,6 +370,11 @@ devtools::install("C:/Users/Shannon.Pileggi/Desktop/ralph")
 # devtools::install_github("shannonpileggi/ralph")
 ```
 
+
+<aside>
+Due to [GitHub renaming](https://github.com/github/renaming){target="_blank"} the default branch from `master` to `main`, you may need to fiddle with the
+`ref` argument in `devtools::install_github`.
+</aside>
 
 ```{r, eval = F}
 # load package ----
@@ -397,11 +399,11 @@ your work flow may differ.
 |-----------------------------------------|----------------------------------------------|
 |  1. Load development packages.          | `library(usethis)`, `library(devtools)`      | 
 |  2. Create new package.                 | `usethis::create_package("path/package")`    |
-|  3. Connect to GitHub repository.       | `usethis::use_git()`, `usethis::use_github()`|
+|  3. _Optional:_ Connect to GitHub repo. | `usethis::use_git()`, `usethis::use_github()`|
 |  4. Check build.                        | `devtools::check()`                          | 
-|  5. Add a license.                      | `usethis::use_mit_license("Your name")`      |
+|  5. Add license.                        | `usethis::use_mit_license("Your name")`      |
 |  6. Check build.                        | `devtools::check()`                          |
-|  7. Create a new function.              | `usethis::use_r("function")`                 |
+|  7. Create new function.                | `usethis::use_r("function")`                 |
 |  8. Test drive function.                | `devtools::load_all()`                       |
 |  9. Insert Roxygen skeleton.            | `Menu -> Code -> Insert Roxygen Skeleton`    |
 | 10. Document package.                   | `devtools::document()`                       |
