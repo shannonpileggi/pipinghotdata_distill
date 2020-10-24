@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
-This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} [workshop](https://www.meetup.com/rladies-philly/events/268783126/){target="_blank"} on November 12, 2020.  We demonstrate how leveraging the  [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} packages in package development can automate folder structure and file creation, speeding up the development process while minimizing errors.  
+This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} [workshop](https://www.meetup.com/rladies-philly/events/268783126/){target="_blank"} on November 12, 2020.  We demonstrate how leveraging the  [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} packages in package development can automate folder structure and file creation, speeding up the development process.  
 
 <aside>
 This post will be updated with the YouTube workshop recording link when it is available.
@@ -62,25 +62,25 @@ This material was developed using:
 | `rlang`             | 0.4.8                 |
 | `broom`             | 0.7.1                 |
 
-Please install and update all software / packages prior to following along with this tutorial, as otherwise errors may arise.
+Please install and update all software / packages prior to following along, as otherwise errors may arise.
 
 # Tool kit
 
 Single usage functions only need to be used one time in the development process;
 multiple usage functions are executed as needed. This table only contains functions
-used in this workshop; please note there are many other handy functions in [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} for package development.
+used in this workshop; there are many other handy functions in [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} for package development.
 
 
 | Usage    | Function                                       | Purpose                           |
 |----------|------------------------------------------------|-----------------------------------|
 | Single   | `usethis::create_package("path/package")`      | initialize package                | 
-|          | `usethis::use_mit_license("Your name")`        | adds license                      |
+|          | `usethis::use_mit_license("Your name")`        | add  license                      |
 |          | `usethis::use_pipe()`                          | add pipe function as a dependency |
 | Multiple | `devtools::check()`                            | build locally and check package   |
-|          | `devtools::load_all()`                         | loads functions in `r emo::ji("folder")` `R/` into memory    |
+|          | `devtools::load_all()`                         | load functions in `r emo::ji("folder")` `R/` into memory    |
 |          | `usethis::use_r("function")`                   | create R script for function      |
 |          | `usethis::use_package("package")     `         | add package dependency            |
-|          | `devtools::document()`                         | document a function               |
+|          | `devtools::document()`                         | build and add documentation       |
 
 Other resources:
 
@@ -151,24 +151,25 @@ Our first check results in a single warning - that our package needs a license. 
 To fix this, add the [license](https://r-pkgs.org/description.html#description-license){target="_blank"} of your choice.  A standard recommendation is the MIT license due to broad permissions.  
 
 ```{r use-license, eval=FALSE}
-usethis::use_mit_license("Your name")
+usethis::use_mit_license("Shannon Pileggi")
 ```
 
 This updates the description file, as well as creates two new license files in your project that you never have to touch.
 
 ![](img/add_license.png)
+
 <aside>
 The `DESCRITPION` file automatically populates with some fields from your [`.Rprofile`](https://usethis.r-lib.org/articles/articles/usethis-setup.html#store-default-values-for-description-fields-and-other-preferences-1){target="_blank"}, which can be modified with `usethis::edit_r_profile()`.
 </aside>
 
 
-You can go back and complete the remaining [description](https://r-pkgs.org/description.html){target="_blank"} fields later.  For now, re-submit 
+You can go back and complete the remaining [description](https://r-pkgs.org/description.html){target="_blank"} fields later.  Re-submit 
 
 ```{r check-package-2, eval=FALSE}
 devtools::check()
 ```
 
-and now our package is error, warning, and note free.
+and our package is error, warning, and note free.
 
 ![](img/check_no_error.png)
 
@@ -181,6 +182,7 @@ The `compute_corr` function is a wrapper for `cor.test` to produce tidy output f
 ```{r define-function, eval = TRUE}
 compute_corr <- function(data, var1, var2){
   
+    # compute correlation ----
     cor.test(
       x = data %>% dplyr::pull({{var1}}),
       y = data %>% dplyr::pull({{var2}})
@@ -195,6 +197,10 @@ compute_corr <- function(data, var1, var2){
   
 }
 ```
+
+<aside>
+This function uses [tidy evaluation](https://dplyr.tidyverse.org/articles/programming.html#introduction-1){target="_blank"} by embracing (`{{`) unquoted variable names.
+</aside>
 
 Let's add the `compute_corr` function to `ralph`.
 
@@ -241,7 +247,7 @@ Next [document](https://r-pkgs.org/man.html){target="_blank"} the `compute_corr`
 
 2. `Cntrl + Alt + Shift + R`
 
-Now you should see this:
+You should see this:
 
 ![](img/document.png)
 
@@ -263,7 +269,7 @@ in our function (`data`, `var1`, `var2`) were automatically detected.  Update th
 #' compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
 ```
 
-Now submit
+Save your function and submit:
 
 ```{r document-function, eval = FALSE}
 devtools::document()
@@ -271,7 +277,7 @@ devtools::document()
 
 This did a lot of work for you!
 
-_insert screenshot_
+![](img/document2.png)
 
 1. The `man` folder (short for `manual`) has been created in your package.
 
@@ -285,16 +291,16 @@ Preview the documentation with:
 ?compute_corr
 ```
 
-![](img/document2.png)
+![](img/document3.png)
 
-If you want to modify your documentation, make the changes in the Roxygen skeleton in `compute_corr.R` and then resubmit `devtools::document()`.
+If you want to modify your documentation, make the changes in the Roxygen skeleton in `compute_corr.R`, save, and then resubmit `devtools::document()`.
 
 
 ### Check
 
 Now submit 
 
-```{r check-package-3, eval=FALSE}
+```{r, eval=FALSE}
 devtools::check()
 ```
 
@@ -362,7 +368,8 @@ devtools::check()
 
 Can you diagnose the note(s) this time? What steps would you take to correct it?  I'm saving this for discussion in the 
 workshop.^[In the `compute_corr` function we failed to specify that the `cor.test` function is from the `stats` package (which is [loaded by default](https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Default-packages){target="_blank"} on start up). 
-Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again. The notes regarding _no visible binding..._ remain; solve with the [.data pronoun](https://dplyr.tidyverse.org/articles/programming.html#how-tos-1). First, add `rlang` to your `DESCRIPTION` file with `usethis::use_package("rlang")`. Second, in the `compute_corr` function, replace `estimate ` with `.data$estimate` and `p.value` with `.data$p.value`.] 
+Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again. The notes regarding _no visible binding..._ remain; solve with the [.data pronoun](https://dplyr.tidyverse.org/articles/programming.html#how-tos-1){target="_blank"}. (1) Add `rlang` to your `DESCRIPTION` file with `usethis::use_package("rlang")`. (2) Include `#' @importFrom rlang .data` in the Roxygen section of your function documentation. (3) In the `compute_corr` function, replace `estimate ` with `.data$estimate` and `p.value` with `.data$p.value`. The link to the error, warning, and note free `ralph` package on github will be updated here after the workshop.] 
+
 ![](img/check3.png)
 
 # Installing your package
@@ -430,5 +437,4 @@ Although not explicitly written in these steps, I also recommend [restarting R f
 
 # Acknowledgements
 
-Thank you [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} for hosting this workshop!  [Chun Su](https://learniningwithsckinta.netlify.app/){target="_blank"} kindly created the thumbnail image for this workshop, as well as provided feedback on this post and the workshop content (thank you for so generously sharing your time!). [Mayra Valdés](https://twitter.com/mayrop) exchanged some ideas with me on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/) regarding different ways to write the `compute_corr` function.  I learned much of this content from 
-attending the rstudio::conf2020 [Building Tidy Tools](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} workshop co-instructed by Charlotte Wickham and Hadley Wickham.  Shout out to Hillary Parker for showing us all [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.
+Thank you [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} for hosting this workshop! [Chun Su](https://learniningwithsckinta.netlify.app/){target="_blank"} kindly created the thumbnail image for this workshop, as well as provided feedback on this post and the workshop content (thank you for so generously sharing your time!). On [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"}, [Mayra Valdés](https://twitter.com/mayrop){target="_blank"} exchanged some ideas with me regarding different ways to write the `compute_corr` function and [Jenny Bryan](https://twitter.com/JennyBryan){target="_blank"} helped me better understand where [`{{`](https://dplyr.tidyverse.org/articles/programming.html#indirection-2){target="_blank"} lives and how it works.  I learned much of this content from attending the rstudio::conf2020 [Building Tidy Tools workshop](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} co-instructed by [Charlotte Wickham](https://twitter.com/CVWickham){target="_blank"} and [Hadley Wickham](https://twitter.com/hadleywickham){target="_blank"}.  Shout out to Hillary Parker for showing us all [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.
