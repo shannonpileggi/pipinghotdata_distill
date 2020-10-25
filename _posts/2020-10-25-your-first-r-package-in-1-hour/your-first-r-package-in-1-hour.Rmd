@@ -7,7 +7,7 @@ preview: workshop_thumnnail3.jpg
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
-date: 11-05-2020
+date: 10-25-2020
 author:
   - name: Shannon Pileggi
 output:
@@ -76,7 +76,7 @@ used in this workshop; there are many other handy functions in [devtools](https:
 | Single   | `usethis::create_package("path/package")`      | initialize package                | 
 |          | `usethis::use_mit_license("Your name")`        | add  license                      |
 |          | `usethis::use_pipe()`                          | add pipe function as a dependency |
-| Multiple | `devtools::check()`                            | build locally and check package   |
+| Multiple | `devtools::check()`                            | build package locally and check   |
 |          | `devtools::load_all()`                         | load functions in `r emo::ji("folder")` `R/` into memory    |
 |          | `usethis::use_r("function")`                   | create R script for function      |
 |          | `usethis::use_package("package")     `         | add package dependency            |
@@ -144,7 +144,8 @@ is helpful to run frequently, especially if you are planning
 on submitting to CRAN.  But even for internal packages, it is still
 good practice.  
 
-Our first check results in a single warning - that our package needs a license.  You can see this in the description file:
+Our first check results in a single warning - that our package needs a license in the 
+`DESCRIPTION` file:
 
 ![](img/check1.png)
 
@@ -163,7 +164,7 @@ The `DESCRITPION` file automatically populates with some fields from your [`.Rpr
 </aside>
 
 
-You can go back and complete the remaining [description](https://r-pkgs.org/description.html){target="_blank"} fields later.  Re-submit 
+You can go back and complete the remaining [DESCRIPTION](https://r-pkgs.org/description.html){target="_blank"} fields later.  Re-submit 
 
 ```{r check-package-2, eval=FALSE}
 devtools::check()
@@ -177,7 +178,7 @@ and our package is error, warning, and note free.
 
 ### Create
 
-The `compute_corr` function is a wrapper for `cor.test` to produce tidy output for Pearson's correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables.
+The `compute_corr` function is a wrapper for `cor.test` that produces tidy output for Pearson's correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables.
 
 ```{r define-function, eval = TRUE}
 compute_corr <- function(data, var1, var2){
@@ -279,11 +280,9 @@ This did a lot of work for you!
 
 ![](img/document2.png)
 
-1. The `man` folder (short for `manual`) has been created in your package.
+1. The `man` folder (short for `manual`) now contains a file called `compute_corr.Rd`.  This is the documentation for your function; you never edit this manually.
 
-2. The `man` folder now contains a file called `compute_corr.Rd`.  This is the documentation for your function; you never edit this manually.
-
-3. The `NAMESPACE` now specifies that the package will export the `compute_corr` function.  
+2. The `NAMESPACE` now specifies that the package will export the `compute_corr` function.  
 
 Preview the documentation with:
 
@@ -356,7 +355,7 @@ usethis::use_pipe()  # step 1 ----
 devtools::document() # step 2 ----
 ```
 
-Here, step 1 creates `utils-pipe.R` in your `R` folder, and step 2 adds the pipe to your `NAMESPACE` file.
+Here, step 1 creates `utils-pipe.R` in your `R` folder and adds `magrittr` to imports in the `DESCRIPTION` file; step 2 adds the pipe to your `NAMESPACE` file.
 
 ![](img/use_pipe.png)
 

@@ -26,8 +26,8 @@
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2020-11-05"/>
-  <meta property="article:created" itemprop="dateCreated" content="2020-11-05"/>
+  <meta property="article:published" itemprop="datePublished" content="2020-10-25"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-10-25"/>
   <meta name="article:author" content="Shannon Pileggi"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -49,7 +49,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","base_url","preview","twitter","date","author","output","draft","creative_commons"]}},"value":[{"type":"character","attributes":{},"value":["Your first R package in 1 hour"]},{"type":"character","attributes":{},"value":["Tools that make R package development easy\n"]},{"type":"character","attributes":{},"value":["https://www.pipinghotdata.com/"]},{"type":"character","attributes":{},"value":["workshop_thumnnail3.jpg"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["site","creator"]}},"value":[{"type":"character","attributes":{},"value":["@PipingHotData"]},{"type":"character","attributes":{},"value":["@PipingHotData"]}]},{"type":"character","attributes":{},"value":["11-05-2020"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["CC BY"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","base_url","preview","twitter","date","author","output","draft","creative_commons"]}},"value":[{"type":"character","attributes":{},"value":["Your first R package in 1 hour"]},{"type":"character","attributes":{},"value":["Tools that make R package development easy\n"]},{"type":"character","attributes":{},"value":["https://www.pipinghotdata.com/"]},{"type":"character","attributes":{},"value":["workshop_thumnnail3.jpg"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["site","creator"]}},"value":[{"type":"character","attributes":{},"value":["@PipingHotData"]},{"type":"character","attributes":{},"value":["@PipingHotData"]}]},{"type":"character","attributes":{},"value":["10-25-2020"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["CC BY"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -958,7 +958,7 @@
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Your first R package in 1 hour","description":"Tools that make R package development easy","authors":[{"author":"Shannon Pileggi","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-11-05T00:00:00.000-05:00","citationText":"Pileggi, 2020"}
+{"title":"Your first R package in 1 hour","description":"Tools that make R package development easy","authors":[{"author":"Shannon Pileggi","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-10-25T00:00:00.000-04:00","citationText":"Pileggi, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -975,7 +975,7 @@
 <div class="d-byline">
   Shannon Pileggi  
   
-<br/>11-05-2020
+<br/>10-25-2020
 </div>
 
 <div class="d-article">
@@ -1087,7 +1087,7 @@ Artwork adapted from <a href="https://twitter.com/allison_horst?lang=en" target=
 <tr class="even">
 <td>Multiple</td>
 <td><code>devtools::check()</code></td>
-<td>build locally and check package</td>
+<td>build package locally and check</td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -1152,7 +1152,7 @@ GitHub is <a href="https://github.com/github/renaming" target="_blank">renaming<
 devtools::check()</code></pre>
 </div>
 <p>This can take a while to run, depending on how big your package is. It is helpful to run frequently, especially if you are planning on submitting to CRAN. But even for internal packages, it is still good practice.</p>
-<p>Our first check results in a single warning - that our package needs a license. You can see this in the description file:</p>
+<p>Our first check results in a single warning - that our package needs a license in the <code>DESCRIPTION</code> file:</p>
 <p><img src="img/check1.PNG" /></p>
 <p>To fix this, add the <a href="https://r-pkgs.org/description.html#description-license" target="_blank">license</a> of your choice. A standard recommendation is the MIT license due to broad permissions.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1164,7 +1164,7 @@ usethis::use_mit_license(&quot;Shannon Pileggi&quot;)</code></pre>
 <aside>
 The <code>DESCRITPION</code> file automatically populates with some fields from your <a href="https://usethis.r-lib.org/articles/articles/usethis-setup.html#store-default-values-for-description-fields-and-other-preferences-1" target="_blank"><code>.Rprofile</code></a>, which can be modified with <code>usethis::edit_r_profile()</code>.
 </aside>
-<p>You can go back and complete the remaining <a href="https://r-pkgs.org/description.html" target="_blank">description</a> fields later. Re-submit</p>
+<p>You can go back and complete the remaining <a href="https://r-pkgs.org/description.html" target="_blank">DESCRIPTION</a> fields later. Re-submit</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 devtools::check()</code></pre>
@@ -1173,7 +1173,7 @@ devtools::check()</code></pre>
 <p><img src="img/check_no_error.PNG" /></p>
 <h1 id="first-function">First function</h1>
 <h3 id="create">Create</h3>
-<p>The <code>compute_corr</code> function is a wrapper for <code>cor.test</code> to produce tidy output for Pearson’s correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables.</p>
+<p>The <code>compute_corr</code> function is a wrapper for <code>cor.test</code> that produces tidy output for Pearson’s correlation estimate (along with a p-value) to quantify the linear relationship between two quantitative variables.</p>
 <div class="layout-chunk" data-layout="l-body">
 <pre class="r"><code>
 compute_corr &lt;- function(data, var1, var2){
@@ -1253,8 +1253,7 @@ devtools::document()</code></pre>
 <p>This did a lot of work for you!</p>
 <p><img src="img/document2.PNG" /></p>
 <ol type="1">
-<li><p>The <code>man</code> folder (short for <code>manual</code>) has been created in your package.</p></li>
-<li><p>The <code>man</code> folder now contains a file called <code>compute_corr.Rd</code>. This is the documentation for your function; you never edit this manually.</p></li>
+<li><p>The <code>man</code> folder (short for <code>manual</code>) now contains a file called <code>compute_corr.Rd</code>. This is the documentation for your function; you never edit this manually.</p></li>
 <li><p>The <code>NAMESPACE</code> now specifies that the package will export the <code>compute_corr</code> function.</p></li>
 </ol>
 <p>Preview the documentation with:</p>
@@ -1306,7 +1305,7 @@ usethis::use_package(&quot;dplyr&quot;)</code></pre>
 usethis::use_pipe()  # step 1 ----
 devtools::document() # step 2 ----</code></pre>
 </div>
-<p>Here, step 1 creates <code>utils-pipe.R</code> in your <code>R</code> folder, and step 2 adds the pipe to your <code>NAMESPACE</code> file.</p>
+<p>Here, step 1 creates <code>utils-pipe.R</code> in your <code>R</code> folder and adds <code>magrittr</code> to imports in the <code>DESCRIPTION</code> file; step 2 adds the pipe to your <code>NAMESPACE</code> file.</p>
 <p><img src="img/use_pipe.PNG" /></p>
 <p>Now let’s run the check again:</p>
 <div class="layout-chunk" data-layout="l-body">
