@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/2020-10-25-your-first-r-package-in-1-hour/",
+    "title": "Your first R package in 1 hour",
+    "description": "Tools that make R package development easy",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-25",
+    "categories": [],
+    "preview": "posts/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg",
+    "last_modified": "2020-10-25T11:00:09-04:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr/",
     "title": "Exporting editable ggplot graphics to PowerPoint with officer and purrr",
     "description": "What, why, how, when, and who",

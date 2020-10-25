@@ -3,7 +3,7 @@ title: "Your first R package in 1 hour"
 description: |
   Tools that make R package development easy
 base_url: https://www.pipinghotdata.com/
-preview: workshop_thumnnail3.jpg
+preview: workshop_thumnnail4.jpg
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -15,7 +15,7 @@ output:
     toc: true
     toc_depth: 3
     self_contained: false
-draft: true
+draft: false
 creative_commons: CC BY
 ---
 
@@ -160,11 +160,11 @@ This updates the description file, as well as creates two new license files in y
 ![](img/add_license.png)
 
 <aside>
-The `DESCRITPION` file automatically populates with some fields from your [`.Rprofile`](https://usethis.r-lib.org/articles/articles/usethis-setup.html#store-default-values-for-description-fields-and-other-preferences-1){target="_blank"}, which can be modified with `usethis::edit_r_profile()`.
+The `DESCRIPTION` file automatically populates with some fields from your [`.Rprofile`](https://usethis.r-lib.org/articles/articles/usethis-setup.html#store-default-values-for-description-fields-and-other-preferences-1){target="_blank"}, which can be modified with `usethis::edit_r_profile()`.
 </aside>
 
 
-You can go back and complete the remaining [DESCRIPTION](https://r-pkgs.org/description.html){target="_blank"} fields later.  Re-submit 
+You can go back and complete the remaining [description](https://r-pkgs.org/description.html){target="_blank"} fields later.  Re-submit 
 
 ```{r check-package-2, eval=FALSE}
 devtools::check()
