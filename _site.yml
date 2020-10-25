@@ -22,8 +22,11 @@ output:
   distill::distill_article:
       css: styles.css
 google_analytics: "UA-128676462-1"
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
 rss:
-  full_content: TRUE
+  full_content: true
 collections:
   posts:
       share: [twitter, linkedin]
