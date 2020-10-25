@@ -39,7 +39,7 @@ This workshop is suitable for beginner to intermediate R users. Attendees should
 
 # Disclaimer
 
-![](rollercoaster_package.PNG)
+![](img/rollercoaster_package.PNG)
 
 <aside>
 Artwork adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en){target="_blank"}.
