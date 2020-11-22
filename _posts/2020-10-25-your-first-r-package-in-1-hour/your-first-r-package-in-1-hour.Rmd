@@ -25,10 +25,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
-This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} [workshop](https://www.meetup.com/rladies-philly/events/268783126/){target="_blank"} on November 12, 2020.  We demonstrate how leveraging the  [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} packages in package development can automate folder structure and file creation, speeding up the development process.  
+This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} [workshop](https://www.youtube.com/watch?v=xcXzaEmZ-m4&feature=youtu.be){target="_blank"} on November 12, 2020.  We demonstrate how leveraging the  [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} packages in package development can automate folder structure and file creation, speeding up the development process.  
 
 <aside>
-This post will be updated with the YouTube workshop recording link when it is available.
+This post was updated on Nov 21, 2020 with the [YouTube workshop recording](https://www.youtube.com/watch?v=xcXzaEmZ-m4&feature=youtu.be){target="_blank"}.
 </aside>
 
 # Abstract
@@ -420,20 +420,21 @@ your work flow may differ.
 |  8. Test drive function.                | `devtools::load_all()`                       |
 |  9. Insert Roxygen skeleton.            | `Menu -> Code -> Insert Roxygen Skeleton`    |
 | 10. Document package.                   | `devtools::document()`                       |
-| 11. Check build.                        | `devtools::check()`                          |
-| 12. Specify package dependencies.       | `usethis::use_package("package")`            |
-| 13. Specify functions within packages.  | `package::function`                          |
-| 14. Document package.                   | `devtools::document()`                       |
-| 15. Check build.                        | `devtools::check()`                          |
-| 16. Install package.                    | `devtools::install("path/package")`, or      |
+| 11. Preview documentation.              | `?function           `                       |
+| 12. Check build.                        | `devtools::check()`                          |
+| 13. Specify package dependencies.       | `usethis::use_package("package")`            |
+| 14. Specify functions within packages.  | `package::function`                          |
+| 15. Document package.                   | `devtools::document()`                       |
+| 16. Check build.                        | `devtools::check()`                          |
+| 17. Install package.                    | `devtools::install("path/package")`, or      |
 |                                         | `devtools::install_github("user/repo")`      |
 
 
 <aside>
 Although not explicitly written in these steps, I also recommend [restarting R frequently](https://rstats.wtf/save-source.html#restart-r-often-during-development){target="_blank"} in the development process
-(`Session -> Restart R` or `Ctrl + Shift + F10`) in order to test your package in a clean environment.
+(`Session -> Restart R` or `Ctrl + Shift + F10`) in order to test your package in a clean environment. 
 </aside>
 
 # Acknowledgements
 
-Thank you [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} for hosting this workshop! [Chun Su](https://learniningwithsckinta.netlify.app/){target="_blank"} kindly created the thumbnail image for this workshop, as well as provided feedback on this post and the workshop content (thank you for so generously sharing your time!). On [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"}, [Mayra Valdés](https://twitter.com/mayrop){target="_blank"} exchanged some ideas with me regarding different ways to write the `compute_corr` function and [Jenny Bryan](https://twitter.com/JennyBryan){target="_blank"} helped me better understand where [`{{`](https://dplyr.tidyverse.org/articles/programming.html#indirection-2){target="_blank"} lives and how it works.  I learned much of this content from attending the rstudio::conf2020 [Building Tidy Tools workshop](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} co-instructed by [Charlotte Wickham](https://twitter.com/CVWickham){target="_blank"} and [Hadley Wickham](https://twitter.com/hadleywickham){target="_blank"}.  Shout out to Hillary Parker for showing us all [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.
+Thank you [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} for hosting this workshop! [Chun Su](https://learniningwithsckinta.netlify.app/){target="_blank"} kindly created the thumbnail image for this workshop, as well as provided feedback on this post and the workshop content (thank you for so generously sharing your time!). On [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"}, [Mayra Valdés](https://twitter.com/mayrop){target="_blank"} exchanged some ideas with me regarding different ways to write the `compute_corr` function and [Jenny Bryan](https://twitter.com/JennyBryan){target="_blank"} helped me better understand where [`{{`](https://dplyr.tidyverse.org/articles/programming.html#indirection-2){target="_blank"} lives and how it works.  I learned much of this content from attending the rstudio::conf2020 [Building Tidy Tools workshop](https://github.com/rstudio-conf-2020/build-tidy-tools){target="_blank"} co-instructed by [Charlotte Wickham](https://twitter.com/CVWickham){target="_blank"} and [Hadley Wickham](https://twitter.com/hadleywickham){target="_blank"}.  Shout out to [Hillary Parker](https://twitter.com/hspter){target="_blank"} for showing us all [how to build packages from scratch in 2014](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/){target="_blank"}.

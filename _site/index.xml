@@ -12,7 +12,96 @@
       <title>Your first R package in 1 hour</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour</link>
-      <description>Tools that make R package development easy</description>
+      <description>
+
+
+&lt;div class="container-fluid main-container"&gt;
+
+
+
+
+&lt;div class="fluid-row" id="header"&gt;
+
+
+
+
+&lt;/div&gt;
+
+
+&lt;div class="line-block"&gt;&lt;br /&gt;
+ 1. Load development packages. | &lt;code&gt;library(usethis)&lt;/code&gt;, &lt;code&gt;library(devtools)&lt;/code&gt; |&lt;br /&gt;
+ 2. Create new package. | &lt;code&gt;usethis::create_package("path/package")&lt;/code&gt; |&lt;br /&gt;
+ 3. &lt;em&gt;Optional:&lt;/em&gt; Connect to GitHub repo. | &lt;code&gt;usethis::use_git()&lt;/code&gt;, &lt;code&gt;usethis::use_github()&lt;/code&gt;|&lt;br /&gt;
+ 4. Check build. | &lt;code&gt;devtools::check()&lt;/code&gt; |&lt;br /&gt;
+ 5. Add license. | &lt;code&gt;usethis::use_mit_license("Your name")&lt;/code&gt; |&lt;br /&gt;
+ 6. Check build. | &lt;code&gt;devtools::check()&lt;/code&gt; |&lt;br /&gt;
+ 7. Create new function. | &lt;code&gt;usethis::use_r("function")&lt;/code&gt; |&lt;br /&gt;
+ 8. Test drive function. | &lt;code&gt;devtools::load_all()&lt;/code&gt; |&lt;br /&gt;
+ 9. Insert Roxygen skeleton. | &lt;code&gt;Menu -&amp;gt; Code -&amp;gt; Insert Roxygen Skeleton&lt;/code&gt; |&lt;br /&gt;
+10. Document package. | &lt;code&gt;devtools::document()&lt;/code&gt; |&lt;br /&gt;
+11. Preview documentation. | &lt;code&gt;?function&lt;/code&gt; |&lt;br /&gt;
+12. Check build. | &lt;code&gt;devtools::check()&lt;/code&gt; |&lt;br /&gt;
+13. Specify package dependencies. | &lt;code&gt;usethis::use_package("package")&lt;/code&gt; |&lt;br /&gt;
+14. Specify functions within packages. | &lt;code&gt;package::function&lt;/code&gt; |&lt;br /&gt;
+15. Document package. | &lt;code&gt;devtools::document()&lt;/code&gt; |&lt;br /&gt;
+16. Check build. | &lt;code&gt;devtools::check()&lt;/code&gt; |&lt;br /&gt;
+17. Install package. | &lt;code&gt;devtools::install("path/package")&lt;/code&gt;, or |&lt;br /&gt;
+                                        | &lt;code&gt;devtools::install_github("user/repo")&lt;/code&gt; |&lt;/div&gt;
+&lt;aside&gt;
+Although not explicitly written in these steps, I also recommend &lt;a href="https://rstats.wtf/save-source.html#restart-r-often-during-development" target="_blank"&gt;restarting R frequently&lt;/a&gt; in the development process (&lt;code&gt;Session -&amp;gt; Restart R&lt;/code&gt; or &lt;code&gt;Ctrl + Shift + F10&lt;/code&gt;) in order to test your package in a clean environment.
+&lt;/aside&gt;
+&lt;div id="acknowledgements" class="section level1"&gt;
+&lt;h1&gt;Acknowledgements&lt;/h1&gt;
+&lt;p&gt;Thank you &lt;a href="https://www.rladiesphilly.org/" target="_blank"&gt;R-Ladies Philly&lt;/a&gt; for hosting this workshop! &lt;a href="https://learniningwithsckinta.netlify.app/" target="_blank"&gt;Chun Su&lt;/a&gt; kindly created the thumbnail image for this workshop, as well as provided feedback on this post and the workshop content (thank you for so generously sharing your time!). On &lt;a href="https://rladies-community-slack.herokuapp.com/" target="_blank"&gt;R-Ladies slack&lt;/a&gt;, &lt;a href="https://twitter.com/mayrop" target="_blank"&gt;Mayra Valdés&lt;/a&gt; exchanged some ideas with me regarding different ways to write the &lt;code&gt;compute_corr&lt;/code&gt; function and &lt;a href="https://twitter.com/JennyBryan" target="_blank"&gt;Jenny Bryan&lt;/a&gt; helped me better understand where &lt;a href="https://dplyr.tidyverse.org/articles/programming.html#indirection-2" target="_blank"&gt;&lt;code&gt;{{&lt;/code&gt;&lt;/a&gt; lives and how it works. I learned much of this content from attending the rstudio::conf2020 &lt;a href="https://github.com/rstudio-conf-2020/build-tidy-tools" target="_blank"&gt;Building Tidy Tools workshop&lt;/a&gt; co-instructed by &lt;a href="https://twitter.com/CVWickham" target="_blank"&gt;Charlotte Wickham&lt;/a&gt; and &lt;a href="https://twitter.com/hadleywickham" target="_blank"&gt;Hadley Wickham&lt;/a&gt;. Shout out to &lt;a href="https://twitter.com/hspter" target="_blank"&gt;Hillary Parker&lt;/a&gt; for showing us all &lt;a href="https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/" target="_blank"&gt;how to build packages from scratch in 2014&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;/div&gt;
+
+&lt;script&gt;
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+&lt;/script&gt;
+
+&lt;!-- tabsets --&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown &gt; .nav-tabs &gt; li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+&lt;/script&gt;
+
+&lt;!-- code folding --&gt;
+
+
+&lt;!-- dynamically load mathjax for compatibility with self-contained --&gt;
+&lt;script&gt;
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+&lt;/script&gt;
+
+</description>
+      <distill:md5>5a8f3229c9312db7e53fbdfa8f38d261</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour</guid>
       <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg" medium="image" type="image/jpeg"/>
