@@ -1006,7 +1006,7 @@
 <h1 id="tl-dr">TL; DR</h1>
 <p>This blog post accompanies the <a href="https://www.rladiesphilly.org/" target="_blank">R-Ladies Philly</a> <a href="https://www.youtube.com/watch?v=xcXzaEmZ-m4&amp;feature=youtu.be" target="_blank">workshop</a> on November 12, 2020. We demonstrate how leveraging the <a href="https://github.com/r-lib/devtools" target="_blank">devtools</a> and <a href="https://usethis.r-lib.org/" target="_blank">usethis</a> packages in package development can automate folder structure and file creation, speeding up the development process.</p>
 <aside>
-This post was updated on Nov 21, 2020 with the <a href="https://www.youtube.com/watch?v=xcXzaEmZ-m4&amp;feature=youtu.be" target="_blank">YouTube workshop recording</a>.
+This post was updated on Nov 21, 2020 with the <a href="https://www.youtube.com/watch?v=xcXzaEmZ-m4&amp;feature=youtu.be" target="_blank">YouTube workshop recording</a>. Some Q&amp;A from the workshop are <a href="https://twitter.com/PipingHotData/status/1330352475698847751?s=20" target="_blank">here</a>.
 </aside>
 <h1 id="abstract">Abstract</h1>
 <p>This workshop is for people looking to learn how to make their own R packages and learn how to use <code>usethis</code> and <code>devtools</code> for package development. The workshop will cover handy one time functions (i.e., <code>usethis::create_package</code>) as well as functions used continuously throughout package development (i.e., <code>devtools::document</code>). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.</p>
@@ -1092,7 +1092,7 @@ Artwork adapted from <a href="https://twitter.com/allison_horst?lang=en" target=
 <tr class="odd">
 <td></td>
 <td><code>devtools::load_all()</code></td>
-<td>load functions in 📁 <code>R/</code> into memory</td>
+<td>load functions in 📂 <code>R/</code> into memory</td>
 </tr>
 <tr class="even">
 <td></td>
@@ -1438,7 +1438,7 @@ Although not explicitly written in these steps, I also recommend <a href="https:
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>In the <code>compute_corr</code> function we failed to specify that the <code>cor.test</code> function is from the <code>stats</code> package (which is <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Default-packages" target="_blank">loaded by default</a> on start up). Update the <code>compute_corr</code> function with <code>stats::cor.test</code>, and then <code>devtools::check()</code> again. The notes regarding <em>no visible binding…</em> remain; solve with the <a href="https://dplyr.tidyverse.org/articles/programming.html#how-tos-1" target="_blank">.data pronoun</a>. (1) Add <code>rlang</code> to your <code>DESCRIPTION</code> file with <code>usethis::use_package("rlang")</code>. (2) Include <code>#' @importFrom rlang .data</code> in the Roxygen section of your function documentation. (3) In the <code>compute_corr</code> function, replace <code>estimate</code> with <code>.data$estimate</code> and <code>p.value</code> with <code>.data$p.value</code>. The link to the error, warning, and note free <code>ralph</code> package on github will be updated here after the workshop.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>In the <code>compute_corr</code> function we failed to specify that the <code>cor.test</code> function is from the <code>stats</code> package (which is <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Default-packages" target="_blank">loaded by default</a> on start up). Update the <code>compute_corr</code> function with <code>stats::cor.test</code>, and then <code>devtools::check()</code> again. The notes regarding <em>no visible binding…</em> remain; solve with the <a href="https://dplyr.tidyverse.org/articles/programming.html#how-tos-1" target="_blank">.data pronoun</a>. (1) Add <code>rlang</code> to your <code>DESCRIPTION</code> file with <code>usethis::use_package("rlang")</code>. (2) Include <code>#' @importFrom rlang .data</code> in the Roxygen section of your function documentation. (3) In the <code>compute_corr</code> function, replace <code>estimate</code> with <code>.data$estimate</code> and <code>p.value</code> with <code>.data$p.value</code>. Here is <a href="https://github.com/shannonpileggi/ralph" target="_blank">the link</a> to the error, warning, and note free <code>ralph</code> package on github.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

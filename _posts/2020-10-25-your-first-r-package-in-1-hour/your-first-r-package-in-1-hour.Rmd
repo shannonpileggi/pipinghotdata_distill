@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
 This blog post accompanies the [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"} [workshop](https://www.youtube.com/watch?v=xcXzaEmZ-m4&feature=youtu.be){target="_blank"} on November 12, 2020.  We demonstrate how leveraging the  [devtools](https://github.com/r-lib/devtools){target="_blank"} and [usethis](https://usethis.r-lib.org/){target="_blank"} packages in package development can automate folder structure and file creation, speeding up the development process.  
 
 <aside>
-This post was updated on Nov 21, 2020 with the [YouTube workshop recording](https://www.youtube.com/watch?v=xcXzaEmZ-m4&feature=youtu.be){target="_blank"}.
+This post was updated on Nov 21, 2020 with the [YouTube workshop recording](https://www.youtube.com/watch?v=xcXzaEmZ-m4&feature=youtu.be){target="_blank"}. Some Q&A from the workshop are [here](https://twitter.com/PipingHotData/status/1330352475698847751?s=20){target="_blank"}.
 </aside>
 
 # Abstract
@@ -367,7 +367,7 @@ devtools::check()
 
 Can you diagnose the note(s) this time? What steps would you take to correct it?  I'm saving this for discussion in the 
 workshop.^[In the `compute_corr` function we failed to specify that the `cor.test` function is from the `stats` package (which is [loaded by default](https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Default-packages){target="_blank"} on start up). 
-Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again. The notes regarding _no visible binding..._ remain; solve with the [.data pronoun](https://dplyr.tidyverse.org/articles/programming.html#how-tos-1){target="_blank"}. (1) Add `rlang` to your `DESCRIPTION` file with `usethis::use_package("rlang")`. (2) Include `#' @importFrom rlang .data` in the Roxygen section of your function documentation. (3) In the `compute_corr` function, replace `estimate ` with `.data$estimate` and `p.value` with `.data$p.value`. The link to the error, warning, and note free `ralph` package on github will be updated here after the workshop.] 
+Update the `compute_corr` function with `stats::cor.test`, and then `devtools::check()` again. The notes regarding _no visible binding..._ remain; solve with the [.data pronoun](https://dplyr.tidyverse.org/articles/programming.html#how-tos-1){target="_blank"}. (1) Add `rlang` to your `DESCRIPTION` file with `usethis::use_package("rlang")`. (2) Include `#' @importFrom rlang .data` in the Roxygen section of your function documentation. (3) In the `compute_corr` function, replace `estimate ` with `.data$estimate` and `p.value` with `.data$p.value`. Here is [the link](https://github.com/shannonpileggi/ralph){target="_blank"} to the error, warning, and note free `ralph` package on github.] 
 
 ![](img/check3.png)
 
