@@ -1,7 +1,7 @@
 ---
 title: "Leveraging labelled data in R"
 description: |
-  When you want to work with SAS and SPSS data sets in R
+  Embracing SAS, SPSS, and Stata data sets with haven, labelled, and sjlabelled
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
@@ -26,41 +26,115 @@ knitr::opts_chunk$set(echo = TRUE)
 
 metadata in the form of variable labels and value labels is awesome!  it wasn't entirely native to R, but with haven/labelled/sjlabelled packages you can leverage it effectively, with some challenges of course. this post is for you if have a .sav or .sas file with labels that you want to import into R. 
 
+# Introduction 
+
+Labelled data traditionally, though not exclusively, arises in survey data. SAS, SPSS, and Stata have established infrastructures for labelled data. This post is for R users who already have a SAS (`.sas7bdat`), SPSS (`.sav`), or Stata (`.dta`) data file and want to incorporate the labelled data features into their R workflow. With R’s `haven`, `labelled`, and `sjlabelled` packages, you can leverage the inherent data labelling structure in these data sets to put metadata about your data (variable labels, value labels) at your fingertips, making it easier to navigate data while also allowing the user to convert metadata to data. This post discusses general characteristics of labelled data and practical tips for data analysis with labelled data.  
+
+<aside>
+I work exclusively with SPSS (`.sav`) data files, and so I have not evaluated this process on SAS (`.sas7bdat`) or Stata (`.dta`) data files. `r emo::ji("crossed fingers")` everything works the same!
+</aside>
+
 # YRBSS labelled data
 
-Labelled data traditionally, though not exclusively, arises in survey data. Both SAS and SPSS have an established infrastructures for labelled data. The Youth Risk Behavior Surveillance System (YRBSS) is a publicly available data set from the CDC that "monitors health-related behaviors that contribute to the leading causes of death and disability among youth and adults."  I downloaded the 2017 national data from [here](https://www.cdc.gov/healthyyouth/data/yrbs/data.htm) on Aug 9, 2020 (`sadc_2017_national.dat`). I then used the SPSS syntax (same link) to convert the `.dat` file to an SPSS labelled data file (`sadc_2017_national.spss`). 
+The Youth Risk Behavior Surveillance System (YRBSS) is a publicly available data set from the Centers for Disease Control and Prevention (CDC) that "monitors health-related behaviors that contribute to the leading causes of death and disability among youth and adults." On Aug 9, 2020 I downloaded YRBSS materials from the [CDC website](https://www.cdc.gov/healthyyouth/data/yrbs/data.htm). This site has both the the 2017 national data (`sadc_2017_national.dat`) and the SPSS syntax to convert the `.dat` file to an SPSS labelled data file (`2017_sadc_spss_input_program.sps`). I do have an SPSS license, and I used the SPSS syntax to convert the `.dat` file to an SPSS labelled data file (`sadc_2017_national.sav`). As the `.sav` data file is not available on the CDC site, you can download the `.dat` data, `.sav` data, and SPSS syntax from my [github repo](https://github.com/shannonpileggi/pipinghotdata_distill/tree/master/_posts/2020-12-18-leverage-labelled-data-in-r/data).
 
-# Packages 
+# Getting started 
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.0.3                 | 
+| RStudio             | 1.3.1073              | 
+| `tidyverse`         | 1.3.0                 |
+| `here`              | 0.4.8                 |
+| `haven`             | 2.3.1                 |
+| `labelled`          | 2.5.0                 |
 
 ```{r}
-library(tidyverse)
-library(here)
-library(haven)
-library(labelled)
+library(tidyverse) # general use ----
+library(here)      # file paths  ----
+library(haven)     # import .sav files ----  
+library(labelled)  # tools for labelled data ----
 ```
+
 
 # Importing labelled data
 
 ```{r}
-# import data ----
-dat_raw <- haven::read_spss(here::here( "_posts", "2020-12-18-leverage-labelled-data-in-r", "data", "sadc_2017_national.sav"))
+#knitr::knit_exit()
 ```
 
+I use the [`haven`](https://haven.tidyverse.org/) package to import SPSS (`.sav`) data files.  
+
+```{r}
+# import data ----
+dat_raw <- haven::read_sav(here::here( "_posts", "2020-12-18-leverage-labelled-data-in-r", "data", "sadc_2017_national.sav"))
+```
+
+Variables in a data set have an as
+signed `class`, which consists of assignments like `numeric`, `character`, and `factor`, among others. When labelled features are present, the `haven` package assigns a class of `haven_labelled`. 
+
+When I first started working with SPSS data files, I also explored the [foreign](https://cran.r-project.org/web/packages/foreign/index.html) package, which preceeds `haven`.
+Using `foreign` takes a bit longer than `haven`, can result in truncation of open end fields, and produces a different labelled data structure compared to `haven`. I have a strong preference for the `haven` package. 
 
 
+# Creating a data dictionary
 
-# Defining labelled data
+A data dictionary contains metadata about your data, extracted from your data.  The usefulness
+of the data dictionary depends on the quality of your metadata.  The `labelled::look_for` function
+can be used to create a data dictionary.
 
+```{r}
+# create data dictionary ----
+dictionary <- labelled::look_for(dat_raw, details = TRUE)
+```
+
+The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set.  I can interactively explore the `dictionary` to quickly find variables or documentation of interest.  For example, I can find all variables related to "weapons" with a search.
+
+<insert gif>
+
+
+# Identifying the labelled features
+
+Standard data consists of variables (e.g., country) and values (e.g. US, UK, CA). When
+working with labelled data, variables and values each have two features. Variables consist
+of a name and a label; values consist of a code and a label. For example, here are the 
+features of the `q8` variable.
+
+| Feature        | Assignment    |
+|----------------|---------------|
+| Variable name  | q8            |
+| Variable label | Seat belt use |
+| Value codes    | 1, 2, 3, 4, 5 |
+| Value labels   | Never, Rarely, Sometimes, Most of the time, Always |
+
+You can see this information in the data dictionary - here is a snippet of the dictionary
+for three variables. The `value_labels` field combines the value codes and value labels.
+
+```{r}
+dictionary %>% 
+  dplyr::filter(variable %in% c("q8", "q11", "q12")) %>% 
+  dplyr::select(class, variable, label, value_labels) 
+```
+
+To dive a bit deeper, you can see how the metadata of `q8` is stored as attributes, in the same spirit as factors.  
 
 ```{r}
 dat_raw %>% 
-  dplyr::select(q12) %>% 
+  dplyr::select(q8) %>% 
   str(.)
 ```
+You don't need to get into the weeds of this to work effectively with labelled data, but knowing
+this can help troubleshoot errors. 
 
-# Tools for labelled data
+# Viewing labelled features
+
+Beyond the dictionary, labelled features can also be seen when working with your data interactively. The 
+console prints value codes and labels simultaneously.
 
 ```{r}
-dictionary <- dat_raw %>% labelled::look_for(details = TRUE)
+dat_raw %>% 
+  dplyr::select(q8, q11, q12) 
 ```
 
