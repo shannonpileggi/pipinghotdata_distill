@@ -73,7 +73,7 @@ dat_raw <- haven::read_sav(here::here( "_posts", "2020-12-18-leverage-labelled-d
 ```
 
 Variables in a data set have an as
-signed `class`, which consists of assignments like `numeric`, `character`, and `factor`, among others. When labelled features are present, the `haven` package assigns a class of `haven_labelled`. 
+signed `class`, which consists of assignments like `numeric`, `character`, and `factor`, among others. When labelled features are present, the `haven` package assigns a class of `haven_labelled`. This is important to know as some packages that you work with may have methods for `haven_labelled` objects, but many may not.
 
 When I first started working with SPSS data files, I also explored the [foreign](https://cran.r-project.org/web/packages/foreign/index.html) package, which preceeds `haven`.
 Using `foreign` takes a bit longer than `haven`, can result in truncation of open end fields, and produces a different labelled data structure compared to `haven`. I have a strong preference for the `haven` package. 
@@ -92,10 +92,10 @@ dictionary <- labelled::look_for(dat_raw, details = TRUE)
 
 The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set.  I can interactively explore the `dictionary` to quickly find variables or documentation of interest.  For example, I can find all variables related to "weapons" with a search.
 
-<insert gif>
+insert gif
 
 
-# Identifying the labelled features
+# Identifying labelled features
 
 Standard data consists of variables (e.g., country) and values (e.g. US, UK, CA). When
 working with labelled data, variables and values each have two features. Variables consist
@@ -112,13 +112,23 @@ features of the `q8` variable.
 You can see this information in the data dictionary - here is a snippet of the dictionary
 for three variables. The `value_labels` field combines the value codes and value labels.
 
-```{r}
+```{r, layout="l-body-outset"}
 dictionary %>% 
   dplyr::filter(variable %in% c("q8", "q11", "q12")) %>% 
-  dplyr::select(class, variable, label, value_labels) 
+  dplyr::select(variable, label, value_labels) %>% 
+  knitr::kable() 
 ```
 
-To dive a bit deeper, you can see how the metadata of `q8` is stored as attributes, in the same spirit as factors.  
+
+To dive a bit deeper, you can see the `class` of the `q8` variable:
+
+```{r}
+dat_raw %>% 
+  dplyr::pull(q8) %>% 
+  class(.)
+```
+
+and how the metadata of `q8` is stored as attributes, similar in spirit to factors.  
 
 ```{r}
 dat_raw %>% 
@@ -131,10 +141,19 @@ this can help troubleshoot errors.
 # Viewing labelled features
 
 Beyond the dictionary, labelled features can also be seen when working with your data interactively. The 
-console prints value codes and labels simultaneously.
+console simultaneously prints value codes and labels.
 
 ```{r}
 dat_raw %>% 
   dplyr::select(q8, q11, q12) 
 ```
+
+Sometimes the alignment throws me a bit when I am reading this as the value codes and labels are left aligned, which places the value codes associated with `q12` closer to `q11`.
+
+When viewing the data frame in RStudio, the data frame displays the variable label under the variable name; however, only value codes (and not value labels) are displayed.
+
+insert screenshot
+
+# Common operations
+
 
