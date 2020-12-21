@@ -1,8 +1,9 @@
 ---
 title: "Leveraging labelled data in R"
 description: |
-  Embracing SAS, SPSS, and Stata data sets with haven, labelled, and sjlabelled
+  Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages
 base_url: https://www.pipinghotdata.com/
+preview: labelled_preview.png
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -24,11 +25,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
-metadata in the form of variable labels and value labels is awesome!  it wasn't entirely native to R, but with haven/labelled/sjlabelled packages you can leverage it effectively, with some challenges of course. this post is for you if have a .sav or .sas file with labels that you want to import into R. 
+The `haven`, `labelled`, and `sjlabelled` packages can be used to effectively work
+with SAS, SPSS, and Stata data sets in R. The `haven_labelled` class stores variable and value labels. Challenges incurred by the `haven_labelled` class can be easily resolved with conversion to `numeric` and `factor` classes. Here are my most used functions for getting started with labelled data:
+
+
+| Purpose                                          | Function                             | 
+|--------------------------------------------------|--------------------------------------|
+| 1. Import SPSS labelled data                     | `haven::read_sav()`                  | 
+| 2. Create data dictionary                        | `labelled::look_for(details = TRUE)` | 
+| 3. Identify if variable is `haven_labelled`      | `haven::is.labelled()`               | 
+| 4. Convert `haven_labelled` variables to numeric | `base::as.numeric()`                 |
+| 5. Convert `haven_labelled` variables to factors | `haven::as_factor()`                 |
+| 6. Convert variable label to variable name       | `sjlabelled::label_to_colnames()`    |
 
 # Introduction 
 
-Labelled data traditionally, though not exclusively, arises in survey data. SAS, SPSS, and Stata have established infrastructures for labelled data. This post is for R users who already have a SAS (`.sas7bdat`), SPSS (`.sav`), or Stata (`.dta`) data file and want to incorporate the labelled data features into their R workflow. With R’s `haven`, `labelled`, and `sjlabelled` packages, you can leverage the inherent data labelling structure in these data sets to put metadata about your data (variable labels, value labels) at your fingertips, making it easier to navigate data while also allowing the user to convert metadata to data. This post discusses general characteristics of labelled data and practical tips for data analysis with labelled data.  
+Labelled data traditionally, though not exclusively, arises in survey data. SAS, SPSS, and Stata have established infrastructures for labelled data. This post is for R users who already have a SAS (`.sas7bdat`), SPSS (`.sav`), or Stata (`.dta`) data file and want to incorporate the labelled data features into their R workflow. With R’s `haven`, `labelled`, and `sjlabelled` packages, you can leverage the inherent data labelling structure in these data sets to worik interactively with metadata (variable labels, value labels), making it easier to navigate data while also allowing the user to convert metadata to data. This post discusses general characteristics of labelled data and practical tips for data analysis with labelled data.  
 
 <aside>
 I work exclusively with SPSS (`.sav`) data files, and so I have not evaluated this process on SAS (`.sas7bdat`) or Stata (`.dta`) data files. `r emo::ji("crossed fingers")` everything works the same!
@@ -50,20 +62,18 @@ This material was developed using:
 | `here`              | 0.4.8                 |
 | `haven`             | 2.3.1                 |
 | `labelled`          | 2.5.0                 |
+| `sjlabelled`        | 1.1.7                 |
 
 ```{r}
-library(tidyverse) # general use ----
-library(here)      # file paths  ----
-library(haven)     # import .sav files ----  
-library(labelled)  # tools for labelled data ----
+library(tidyverse)  # general use ----
+library(here)       # file paths  ----
+library(haven)      # import .sav files ----  
+library(labelled)   # tools for labelled data ----
+library(sjlabelled) # more tools for labelled data ----
 ```
 
 
 # Importing labelled data
-
-```{r}
-#knitr::knit_exit()
-```
 
 I use the [`haven`](https://haven.tidyverse.org/) package to import SPSS (`.sav`) data files.  
 
@@ -72,8 +82,7 @@ I use the [`haven`](https://haven.tidyverse.org/) package to import SPSS (`.sav`
 dat_raw <- haven::read_sav(here::here( "_posts", "2020-12-18-leverage-labelled-data-in-r", "data", "sadc_2017_national.sav"))
 ```
 
-Variables in a data set have an as
-signed `class`, which consists of assignments like `numeric`, `character`, and `factor`, among others. When labelled features are present, the `haven` package assigns a class of `haven_labelled`. This is important to know as some packages that you work with may have methods for `haven_labelled` objects, but many may not.
+Variables in a data set have a `class`, which consists of assignments like `numeric`, `character`, and `factor`, among others. When labelled features are present, the `haven` package assigns a class of `haven_labelled`. This is important to know as many packages you work with may not have methods for `haven_labelled` objects.
 
 When I first started working with SPSS data files, I also explored the [foreign](https://cran.r-project.org/web/packages/foreign/index.html) package, which preceeds `haven`.
 Using `foreign` takes a bit longer than `haven`, can result in truncation of open end fields, and produces a different labelled data structure compared to `haven`. I have a strong preference for the `haven` package. 
@@ -156,4 +165,146 @@ insert screenshot
 
 # Common operations
 
+I primarily use three packages for working with labelled data: `haven`, `labelled`, and `sjlabelled`. These three packages do have some overlap in functionality, in addition to naming schemes that differ but achieve the same objective (e.g., `haven::as_factor` vs `sjlabelled::as_label`), or naming schemes that are the same but achieve different objectives (e.g., `haven::as_factor` vs `sjlabelled::as_factor`). `r emo::ji("grimace")` To compound confusion, the concept of a _label_ can refer to either a 
+variable label or value labels. Frequently, function names refer to value labels in the plural, as in `haven::zap_labels` or `labelled::remove_val_labels`. 
+
+Here are operations I commonly perform on labelled data:
+
+1. Evaluate if variable is of class `haven_labelled`.
+
+   + _Why?_  Troubleshooting, exploring, mutating.
+
+   + _Function(s):_ `haven::is.labelled()`
+
+2. Convert `haven_labelled` variable to `numeric` value codes.
+
+   + _Why?_  To treat the variable as continuous for analysis. For example, if a 1-7 rating scale imports as labelled and you want to compute a mean.
+
+   + _Function(s):_ `base::as.numeric()` (strips variable of all metadata/attributes), `haven::zap_labels()` and `labelled::remove_val_labels` (removes value labels, retains other metadata/attributes) 
+
+3. Convert `haven_labelled()` variable to `factor` with value labels.
+
+   + _Why?_ To treat the variable as categorical for analysis.
+
+   + _Function(s):_ `haven::as_factor()`, `labelled::to_factor()`, `sjlabelled::as_label()`.  As far as I can tell, these three functions have the same result. By default, the factor levels are ordered by value codes. 
+
+4. Convert variable label to variable name.
+
+   + _Why?_ For more informative or readable variable names.
+
+   + _Function(s):_ `sjlabelled::label_to_colnames()`
+
+
+# Example
+
+For this example, I reduce the data set to 2017 records only and select three variables related
+to carrying weapons and safety, all of which are measured on the same scale.
+
+```{r}
+# retain info on weapons and safety for 2017 ----
+dat_2017 <- dat_raw %>% 
+  dplyr::filter(year == 2017) %>% 
+  dplyr::select(record, q12, q13, q15) 
+
+```
+
+```{r}
+# preview data ----
+dat_2017
+```
+
+This code produces a barplot showing the frequencies of the three variables from the original labelled data.
+
+```{r}
+# bar plot 1 ----
+dat_2017 %>% 
+   pivot_longer(
+    cols = -1,
+    names_to = "variable",
+    values_to = "days"
+  ) %>% 
+  count(variable, days) %>% 
+  # include factor(days) to correctly show value codes in ggplot ----
+  ggplot(aes(x = n, y = factor(days))) +
+  facet_wrap(. ~ variable) +
+  geom_col() +
+  ggtitle("Bar plot 1: Displaying variable names and value codes")
+```
+
+Now I add two lines of code to implement two changes - convert the variables to factors and convert the variable labels to variable names. I do not claim that this barplot is beautiful, but
+it is readable!
+
+```{r}
+# bar plot 2 ----
+dat_2017 %>% 
+  # --------------------------------------------------------------
+  # change 1: convert haven_labelled variables to factors ----
+  mutate_if(haven::is.labelled, haven::as_factor) %>% 
+  # change 2: convert variable labels to variable names ----
+  sjlabelled::label_to_colnames() %>% 
+  # --------------------------------------------------------------
+  pivot_longer(
+    cols = -1,
+    names_to = "variable",
+    values_to = "days"
+  ) %>% 
+  count(variable, days) %>% 
+  # unnecessary to include factor(days) here ----
+  ggplot(aes(x = n, y = days)) +
+  facet_wrap(. ~ variable) +
+  geom_col() +
+  ggtitle("Bar plot 2: Displaying variable labels and value labels")
+```
+
+
+
+
+# Other packages and `haven_labelled` objects 
+
+It is probably safe to assume that most packages you work with don't know how to 
+handle the `haven_labelled` class - if the package does produce a result, it is likely
+making an educated guess which may not be in line with your needs.
+
+For example, in using `ggplot` for `bar plot 1` above, I included the line `y = factor(days)`; if instead I had `y = days` in `bar plot 1`, `ggplot` yields the following message: 
+
+> Don't know how to automatically pick scale for object of type haven_labelled/vctrs_vctr/double. Defaulting to continuous.
+
+Treating the `days` variable as continuous resulted in an uninformative plot (not shown), which
+was corrected by converting the variable to `factor`.
+
+What about other packages I use? In `skimr` 2.1.2 `haven_labelled` inputs result in value codes  treated as character values, and in `gtsummary` 1.3.5 `haven_labelled` inputs are omitted from output as it is not an accepted class. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing  when using`haven_labelled` variables with other packages.   These issues can be resolved by converting the `haven_labelled` variables to `numeric` or `factor`, depending on the context.
+
+
+# Workflow for labelled data manipulation
+
+When converting `haven_labelled` objects to `factor` or `numeric`, be intentional about
+where the conversion happens in your workflow. The [Intro to labelled](https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html) vignette
+by Joseph Larmarange outlines two different approaches:
+
+1. First convert `haven_labelled` variables; second perform data manipulation utilizing variable labels (if factor).
+
+2. First perform data utilizing variable codes; second convert `haven_labelled` variables.  
+
+For me this question usually distills down to: for data manipulation, are the value codes or the value labels easier to work with? Sometimes the brevity of the value code helps, whereas other times the context of the value label makes the programming more readable. Note that the placement of the conversion can have downstream effects on your code. 
+
+# Summary
+
+```{r include=FALSE}
+knitr::knit_exit()
+```
+
+```{r}
+check <- dat_raw %>% 
+  mutate(
+    f1 = haven::as_factor(q8),
+    f2 = labelled::to_factor(q8),
+    f3 = sjlabelled::as_label(q8),
+    f4 = sjlabelled::as_factor(q8),
+    n1 = base::as.numeric(q8),
+    n2 = sjlabelled::as_numeric(q8),
+    n3 = haven::zap_labels(q8),
+    n4 = labelled::remove_val_labels(q8)
+  ) %>% 
+  dplyr::select(q8, f1, f2, f3, f4, n1, n2, n3, n4)
+```
 
