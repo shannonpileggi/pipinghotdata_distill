@@ -107,7 +107,7 @@ dictionary <- labelled::look_for(dat_raw, details = TRUE)
 
 The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set.  I can interactively explore the `dictionary` to quickly find variables or documentation of interest.  For example, I can find all variables related to "weapons" with a search.
 
-insert gif
+![](gif/demo_dictionary2.gif)
 
 
 # Identifying labelled features
@@ -150,6 +150,7 @@ dat_raw %>%
   dplyr::select(q8) %>% 
   str(.)
 ```
+
 You don't need to get into the weeds of this to work effectively with labelled data, but knowing
 this can help troubleshoot errors. 
 
@@ -167,7 +168,8 @@ Sometimes the alignment throws me a bit when I am reading this as the value code
 
 When viewing the data frame in RStudio, the data frame displays the variable label under the variable name; however, only value codes (and not value labels) are displayed.
 
-insert screenshot
+![](img/demo_data.PNG){width=55%}
+
 
 # Common operations
 
