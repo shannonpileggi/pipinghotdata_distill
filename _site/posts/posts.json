@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/2020-12-23-leveraging-labelled-data-in-r/",
+    "title": "Leveraging labelled data in R",
+    "description": "Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-12-23",
+    "categories": [],
+    "preview": "posts/2020-12-23-leveraging-labelled-data-in-r/labelled_preview.png",
+    "last_modified": "2020-12-23T22:33:44-05:00",
+    "input_file": "leveraging-labelled-data-in-r.utf8.md",
+    "preview_width": 671,
+    "preview_height": 617
+  },
+  {
     "path": "posts/2020-10-25-your-first-r-package-in-1-hour/",
     "title": "Your first R package in 1 hour",
     "description": "Tools that make R package development easy",

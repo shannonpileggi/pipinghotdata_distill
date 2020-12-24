@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Leveraging labelled data in R</title>
+
+  <meta property="description" itemprop="description" content="Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages"/>
+
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2020-12-23"/>
+  <meta property="article:created" itemprop="dateCreated" content="2020-12-23"/>
+  <meta name="article:author" content="Shannon Pileggi"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Leveraging labelled data in R"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages"/>
+  <meta property="og:image" content="https://www.pipinghotdata.com/labelled_preview.png"/>
+  <meta property="og:image:width" content="671"/>
+  <meta property="og:image:height" content="617"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:title" content="Leveraging labelled data in R"/>
+  <meta property="twitter:description" content="Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages"/>
+  <meta property="twitter:image" content="https://www.pipinghotdata.com/labelled_preview.png"/>
+  <meta property="twitter:image:width" content="671"/>
+  <meta property="twitter:image:height" content="617"/>
+  <meta property="twitter:site" content="@PipingHotData"/>
+  <meta property="twitter:creator" content="@PipingHotData"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","base_url","preview","twitter","date","author","output","draft","creative_commons"]}},"value":[{"type":"character","attributes":{},"value":["Leveraging labelled data in R"]},{"type":"character","attributes":{},"value":["Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages\n"]},{"type":"character","attributes":{},"value":["https://www.pipinghotdata.com/"]},{"type":"character","attributes":{},"value":["labelled_preview.png"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["site","creator"]}},"value":[{"type":"character","attributes":{},"value":["@PipingHotData"]},{"type":"character","attributes":{},"value":["@PipingHotData"]}]},{"type":"character","attributes":{},"value":["12-23-2020"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/sadc_2017_national.sav","gif/demo_dictionary.gif","gif/demo_dictionary2.gif","img/approaches.png","img/bakers_8.png","img/demo_data.PNG","img/haven.png","img/labelled.png","img/monster_support.jpg","img/sjlabelled.png","labelled_preview.PNG","leveraging-labelled-data-in-r_files/anchor-4.2.2/anchor.min.js","leveraging-labelled-data-in-r_files/bowser-1.9.3/bowser.min.js","leveraging-labelled-data-in-r_files/distill-2.2.21/template.v2.js","leveraging-labelled-data-in-r_files/figure-html5/bar-plot-1-1.png","leveraging-labelled-data-in-r_files/figure-html5/bar-plot-2-1.png","leveraging-labelled-data-in-r_files/header-attrs-2.6/header-attrs.js","leveraging-labelled-data-in-r_files/jquery-1.11.3/jquery.min.js","leveraging-labelled-data-in-r_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for table of contents */
+
+  .d-toc {
+    color: rgba(0,0,0,0.8);
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+
+  .d-toc-header {
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 1.3em;
+  }
+
+  .d-toc a {
+    border-bottom: none;
+  }
+
+  .d-toc ul {
+    padding-left: 0;
+  }
+
+  .d-toc li>ul {
+    padding-top: 0.8em;
+    padding-left: 16px;
+    margin-bottom: 0.6em;
+  }
+
+  .d-toc ul,
+  .d-toc li {
+    list-style-type: none;
+  }
+
+  .d-toc li {
+    margin-bottom: 0.9em;
+  }
+
+  .d-toc-separator {
+    margin-top: 20px;
+    margin-bottom: 2em;
+  }
+
+  .d-article-with-toc {
+    border-top: none;
+    padding-top: 0;
+  }
+
+
+
+  /* Tweak code blocks (note that this CSS is repeated above in an injection
+     into the d-code shadow dom) */
+
+  d-code {
+    overflow-x: auto !important;
+  }
+
+  pre.d-code code.d-code {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  pre.text-output {
+
+    font-size: 12px;
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  @media(min-width: 768px) {
+
+  d-code {
+    overflow-x: visible !important;
+  }
+
+  pre.d-code code.d-code  {
+      padding-left: 18px;
+      font-size: 14px;
+  }
+  pre.text-output {
+    font-size: 14px;
+  }
+  }
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // create d-bibliography
+    var bibliography = $('<d-bibliography></d-bibliography>');
+    $('#distill-bibliography').wrap(bibliography);
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace citations with <d-cite>
+    $('.citation').each(function(i, val) {
+      appendix = true;
+      var cites = $(this).attr('data-cites').split(" ");
+      var dt_cite = $('<d-cite></d-cite>');
+      dt_cite.attr('key', cites.join());
+      $(this).replaceWith(dt_cite);
+    });
+    // remove refs
+    $('#refs').remove();
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-toc a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // replace code blocks with d-code
+    $('pre>code').each(function(i, val) {
+      var code = $(this);
+      var pre = code.parent();
+      var clz = "";
+      var language = pre.attr('class');
+      if (language) {
+        // map unknown languages to "clike" (without this they just dissapear)
+        if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                                 "javascript", "js", "julia", "lua", "markdown",
+                                 "markup", "mathml", "python", "svg", "xml"]) == -1)
+          language = "clike";
+        language = ' language="' + language + '"';
+        var dt_code = $('<d-code block' + language + clz + '></d-code>');
+        dt_code.text(code.text());
+        pre.replaceWith(dt_code);
+      } else {
+        code.addClass('text-output').unwrap().changeElementType('pre');
+      }
+    });
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('d-code, pre.text-output, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // table of contents
+      if (have_authors) // adjust border if we are in authors
+        $('.d-toc').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+      $('d-code').each(function(i, val) {
+        var style = document.createElement('style');
+        style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                          '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+        if (this.shadowRoot)
+          this.shadowRoot.appendChild(style);
+      });
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-toc-header').remove();
+    $('.d-toc').remove();
+    $('.d-toc-separator').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="leveraging-labelled-data-in-r_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="leveraging-labelled-data-in-r_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="leveraging-labelled-data-in-r_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="leveraging-labelled-data-in-r_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="leveraging-labelled-data-in-r_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Leveraging labelled data in R","description":"Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages","authors":[{"author":"Shannon Pileggi","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2020-12-23T00:00:00.000-05:00","citationText":"Pileggi, 2020"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Leveraging labelled data in R</h1>
+<p><p>Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages</p></p>
+</div>
+
+<div class="d-byline">
+  Shannon Pileggi  
+  
+<br/>12-23-2020
+</div>
+
+<div class="d-article">
+<h3 class="d-toc-header">Table of Contents</h3>
+<nav class="d-toc" id="TOC">
+<ul>
+<li><a href="#tl-dr">TL; DR</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#yrbss-labelled-data">YRBSS labelled data</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#importing-labelled-data">Importing labelled data</a></li>
+<li><a href="#creating-a-data-dictionary">Creating a data dictionary</a></li>
+<li><a href="#identifying-labelled-features">Identifying labelled features</a></li>
+<li><a href="#viewing-labelled-features">Viewing labelled features</a></li>
+<li><a href="#common-operations">Common operations</a></li>
+<li><a href="#example">Example</a></li>
+<li><a href="#other-packages-and-haven_labelled-objects">Other packages and <code>haven_labelled</code> objects</a></li>
+<li><a href="#workflow-for-labelled-data-manipulation">Workflow for labelled data manipulation</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
+</ul>
+</nav>
+<hr class="d-toc-separator"/>
+<h1 id="tl-dr">TL; DR</h1>
+<p>The <a href="https://haven.tidyverse.org/" target="_blank"><code>haven</code></a>, <a href="https://larmarange.github.io/labelled/" target="_blank"><code>labelled</code></a>, and <a href="https://strengejacke.github.io/sjlabelled/articles/labelleddata.html" target="_blank"><code>sjlabelled</code></a> packages can be used to effectively work with SPSS, SAS, and Stata data sets in R through implementation of the <code>haven_labelled</code> class, which stores variable and value labels. Here are my most used functions for getting started with labelled data:</p>
+<table>
+<colgroup>
+<col style="width: 56%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Purpose</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Import SPSS labelled data</td>
+<td><code>haven::read_sav()</code></td>
+</tr>
+<tr class="even">
+<td>2. Create data dictionary</td>
+<td><code>labelled::look_for(details = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td>3. Identify if variable is <code>haven_labelled</code></td>
+<td><code>haven::is.labelled()</code></td>
+</tr>
+<tr class="even">
+<td>4. Convert <code>haven_labelled</code> variables to numeric</td>
+<td><code>base::as.numeric()</code></td>
+</tr>
+<tr class="odd">
+<td>5. Convert <code>haven_labelled</code> variables to factors</td>
+<td><code>haven::as_factor()</code></td>
+</tr>
+<tr class="even">
+<td>6. Convert variable label to variable name</td>
+<td><code>sjlabelled::label_to_colnames()</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="introduction">Introduction</h1>
+<p>Labelled data traditionally, though not exclusively, arises in survey data. SAS, SPSS, and Stata have established infrastructures for labelled data, which consists of metadata in the form of variable and value labels. This post is for R users who already have a SPSS (<code>.sav</code>), SAS (<code>.sas7bdat</code>), or Stata (<code>.dta</code>) data file and want to incorporate the labelled data features into their R workflow. With R’s <code>haven</code>, <code>labelled</code>, and <code>sjlabelled</code> packages, you can leverage the inherent data labelling structure in these data sets to work interactively with variable and value labels, making it easier to navigate data while also allowing the user to convert metadata to data. This post discusses general characteristics of labelled data and practical tips for data analysis with labelled data.</p>
+<aside>
+I work exclusively with SPSS (<code>.sav</code>) data files, and so I have not evaluated this process on SAS (<code>.sas7bdat</code>) or Stata (<code>.dta</code>) data files. 🤞 everything works the same!
+</aside>
+<h1 id="yrbss-labelled-data">YRBSS labelled data</h1>
+<p>The Youth Risk Behavior Surveillance System (YRBSS) is a publicly available data set from the Centers for Disease Control and Prevention (CDC) that “monitors health-related behaviors that contribute to the leading causes of death and disability among youth and adults.” On Aug 9, 2020, I downloaded YRBSS materials from the <a href="https://www.cdc.gov/healthyyouth/data/yrbs/data.htm" target="_blank">CDC website</a>. This site has both the the 2017 national data (<code>sadc_2017_national.dat</code>) and the SPSS syntax to convert the <code>.dat</code> file to an SPSS labelled data file (<code>2017_sadc_spss_input_program.sps</code>). I do have an SPSS license, and I used the SPSS syntax to convert the <code>.dat</code> file to an SPSS labelled data file (<code>sadc_2017_national.sav</code>). As the <code>.sav</code> data file is not available on the CDC site, you can download the <code>.sav</code> data from my <a href="https://github.com/shannonpileggi/pipinghotdata_distill/tree/master/_posts/2020-12-23-leveraging-labelled-data-in-r/data" target="_blank">github repo</a>.</p>
+<h1 id="getting-started">Getting started</h1>
+<p>This material was developed using:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Software / package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>4.0.3</td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td>1.3.1073</td>
+</tr>
+<tr class="odd">
+<td><code>tidyverse</code></td>
+<td>1.3.0</td>
+</tr>
+<tr class="even">
+<td><code>here</code></td>
+<td>0.4.8</td>
+</tr>
+<tr class="odd">
+<td><code>haven</code></td>
+<td>2.3.1</td>
+</tr>
+<tr class="even">
+<td><code>labelled</code></td>
+<td>2.5.0</td>
+</tr>
+<tr class="odd">
+<td><code>sjlabelled</code></td>
+<td>1.1.7</td>
+</tr>
+</tbody>
+</table>
+<aside>
+As of Dec 23, 2020, the most current version of the <code>labelled</code> package is 2.7.0. I am using <code>labelled</code> 2.5.0 due to an issue I encountered with 2.7.0 and the <code>look_for</code> function. You <a href="https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages" target="_blank">can install</a> older versions of a package. I’ll update this post when the issue is resolved.
+</aside>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+library(tidyverse)  # general use ----
+library(here)       # file paths  ----
+library(haven)      # import .sav files ----  
+library(labelled)   # tools for labelled data ----
+library(sjlabelled) # more tools for labelled data ----</code></pre>
+</div>
+<h1 id="importing-labelled-data">Importing labelled data</h1>
+<p>I use the <a href="https://haven.tidyverse.org/" target="_blank"><code>haven</code></a> package to import SPSS (<code>.sav</code>) data files.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# import data ----
+dat_raw &lt;- haven::read_sav(here::here( &quot;_posts&quot;, &quot;2020-12-23-leveraging-labelled-data-in-r&quot;, &quot;data&quot;, &quot;sadc_2017_national.sav&quot;))</code></pre>
+</div>
+<p>Variables in a data set have a <code>class</code>, which consists of assignments like <code>numeric</code>, <code>character</code>, and <code>factor</code>, among others. When labelled features are present, the <code>haven</code> package assigns a class of <code>haven_labelled</code>. This is important to know as many packages you work with may not have methods for <code>haven_labelled</code> objects.</p>
+<p>When I first started working with SPSS data files, I also explored the <a href="https://cran.r-project.org/web/packages/foreign/index.html" target="_blank">foreign</a> package, which preceeds <code>haven</code>. Using <code>foreign</code> takes a bit longer than <code>haven</code>, can result in truncation of long character variables, and produces a different labelled data structure compared to <code>haven</code>. I have a strong preference for the <code>haven</code> package.</p>
+<h1 id="creating-a-data-dictionary">Creating a data dictionary</h1>
+<p>A data dictionary contains metadata about your data. The <code>labelled::look_for</code> function can be used to create a data dictionary, extracted straight from your data. The usefulness of the data dictionary depends on the quality of your metadata.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# create data dictionary ----
+dictionary &lt;- labelled::look_for(dat_raw, details = TRUE)</code></pre>
+</div>
+<p>The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set. I can interactively explore the <code>dictionary</code> in R to quickly find variables or documentation of interest. For example, I can find all variables related to “weapons” with a search.</p>
+<p><img src="gif/demo_dictionary2.gif" /></p>
+<h1 id="identifying-labelled-features">Identifying labelled features</h1>
+<p>Standard data consists of variables (e.g., country) and values (e.g. US, UK, CA). When working with labelled data, variables and values each have two features. Variables consist of a name and a label; values consist of a code and a label. For example, here are the features of the <code>q8</code> variable.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Assignment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variable name</td>
+<td>q8</td>
+</tr>
+<tr class="even">
+<td>Variable label</td>
+<td>Seat belt use</td>
+</tr>
+<tr class="odd">
+<td>Value codes</td>
+<td>1, 2, 3, 4, 5</td>
+</tr>
+<tr class="even">
+<td>Value labels</td>
+<td>Never, Rarely, Sometimes, Most of the time, Always</td>
+</tr>
+</tbody>
+</table>
+<p>You can see this information in the data dictionary - here is a snippet of the dictionary for three variables. The <code>value_labels</code> field combines the value codes and value labels.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+dictionary %&gt;% 
+  dplyr::filter(variable %in% c(&quot;q8&quot;, &quot;q11&quot;, &quot;q12&quot;)) %&gt;% 
+  dplyr::select(variable, label, value_labels) %&gt;% 
+  knitr::kable() </code></pre>
+<table>
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 12%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: left;">label</th>
+<th style="text-align: left;">value_labels</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">q8</td>
+<td style="text-align: left;">Seat belt use</td>
+<td style="text-align: left;">[1] Never; [2] Rarely; [3] Sometimes; [4] Most of the time; [5] Always</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">q11</td>
+<td style="text-align: left;">Texting and driving</td>
+<td style="text-align: left;">[1] Did not drive; [2] 0 days; [3] 1 or 2 days; [4] 3 to 5 days; [5] 6 to 9 days; [6] 10 to 19 days; [7] 20 to 29 days; [8] All 30 days</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">q12</td>
+<td style="text-align: left;">Weapon carrying</td>
+<td style="text-align: left;">[1] 0 days; [2] 1 day; [3] 2 or 3 days; [4] 4 or 5 days; [5] 6 or more days</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>To dive a bit deeper, you can see the <code>class</code> of the <code>q8</code> variable:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+dat_raw %&gt;% 
+  dplyr::pull(q8) %&gt;% 
+  class(.)</code></pre>
+<pre><code>
+[1] &quot;haven_labelled&quot; &quot;vctrs_vctr&quot;     &quot;double&quot;        </code></pre>
+</div>
+<p>and how the metadata of <code>q8</code> is stored.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+dat_raw %&gt;% 
+  dplyr::select(q8) %&gt;% 
+  str(.)</code></pre>
+<pre><code>
+tibble [203,663 x 1] (S3: tbl_df/tbl/data.frame)
+ $ q8: dbl+lbl [1:203663]  2, NA,  4,  4,  1,  1,  3,  5,  4,  4,  ...
+   ..@ label        : chr &quot;Seat belt use&quot;
+   ..@ format.spss  : chr &quot;F1.0&quot;
+   ..@ display_width: int 4
+   ..@ labels       : Named num [1:5] 1 2 3 4 5
+   .. ..- attr(*, &quot;names&quot;)= chr [1:5] &quot;Never&quot; &quot;Rarely&quot; &quot;Sometimes&quot; &quot;Most of the time&quot; ...</code></pre>
+</div>
+<p>You don’t need to get into the weeds of this to work effectively with labelled data, but knowing this can help troubleshoot errors.</p>
+<h1 id="viewing-labelled-features">Viewing labelled features</h1>
+<p>Beyond the dictionary, labelled features can also be seen when working with your data interactively. The console simultaneously prints value codes and labels side by side, with the code first followed by the label in brackets.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+dat_raw %&gt;% 
+  dplyr::select(q8, q11, q12) </code></pre>
+<pre><code>
+# A tibble: 203,663 x 3
+                      q8       q11                 q12
+               &lt;dbl+lbl&gt; &lt;dbl+lbl&gt;           &lt;dbl+lbl&gt;
+ 1  2 [Rarely]                  NA  4 [4 or 5 days]   
+ 2 NA                           NA NA                 
+ 3  4 [Most of the time]        NA  3 [2 or 3 days]   
+ 4  4 [Most of the time]        NA  5 [6 or more days]
+ 5  1 [Never]                   NA  5 [6 or more days]
+ 6  1 [Never]                   NA  1 [0 days]        
+ 7  3 [Sometimes]               NA  2 [1 day]         
+ 8  5 [Always]                  NA  1 [0 days]        
+ 9  4 [Most of the time]        NA  5 [6 or more days]
+10  4 [Most of the time]        NA NA                 
+# ... with 203,653 more rows</code></pre>
+</div>
+<p>Sometimes the alignment throws me a bit when I am reading this as the value codes and labels are left aligned, which places the value codes associated with <code>q12</code> closer to <code>q11</code>.</p>
+<p>When viewing the data frame in RStudio, the data frame displays the variable label under the variable name; however, only value codes (and not value labels) are displayed.</p>
+<p><img src="img/demo_data.PNG" style="width:55.0%" /></p>
+<h1 id="common-operations">Common operations</h1>
+<p>I primarily use three packages for working with labelled data: <a href="https://haven.tidyverse.org/" target="_blank"><code>haven</code></a>, <a href="https://larmarange.github.io/labelled/" target="_blank"><code>labelled</code></a>, and <a href="https://strengejacke.github.io/sjlabelled/articles/labelleddata.html" target="_blank"><code>sjlabelled</code></a>. These three packages do have some overlap in functionality, in addition to naming schemes that differ but achieve the same objective (e.g., <code>haven::as_factor</code> vs <code>sjlabelled::as_label</code>), or naming schemes that are the same but achieve different objectives (e.g., <code>haven::as_factor</code> vs <code>sjlabelled::as_factor</code>). 😬 To compound confusion, the concept of a <em>label</em> can refer to either variable or value labels. Frequently, plural function names refer to value labels, as in <code>haven::zap_labels</code> or <code>labelled::remove_val_labels</code>.</p>
+<p>Here are operations I commonly perform on labelled data:</p>
+<ol type="1">
+<li><p>Evaluate if variable is of class <code>haven_labelled</code>.</p>
+<ul>
+<li><p><em>Why?</em> Troubleshooting, exploring, mutating.</p></li>
+<li><p><em>Function(s):</em> <code>haven::is.labelled()</code></p></li>
+</ul></li>
+<li><p>Convert <code>haven_labelled</code> variable to <code>numeric</code> value codes.</p>
+<ul>
+<li><p><em>Why?</em> To treat the variable as continuous for analysis. For example, if a 1-7 rating scale imports as labelled and you want to compute a mean.</p></li>
+<li><p><em>Function(s):</em> <code>base::as.numeric()</code> (strips variable of all metadata), <code>haven::zap_labels()</code> and <code>labelled::remove_val_labels</code> (removes value labels, retains other metadata)</p></li>
+</ul></li>
+<li><p>Convert <code>haven_labelled()</code> variable to <code>factor</code> with value labels.</p>
+<ul>
+<li><p><em>Why?</em> To treat the variable as categorical for analysis.</p></li>
+<li><p><em>Function(s):</em> <code>haven::as_factor()</code>, <code>labelled::to_factor()</code>, <code>sjlabelled::as_label()</code>. As far as I can tell, these three functions have the same result. By default, the factor levels are ordered by value codes.</p></li>
+</ul></li>
+<li><p>Convert variable label to variable name.</p>
+<ul>
+<li><p><em>Why?</em> For more informative or readable variable names.</p></li>
+<li><p><em>Function(s):</em> <code>sjlabelled::label_to_colnames()</code></p></li>
+</ul></li>
+</ol>
+<h1 id="example">Example</h1>
+<p>For this example, I reduce the data set to 2017 records only and select three variables related to carrying weapons and safety, all of which are measured on the same scale.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# retain info on weapons and safety for 2017 ----
+dat_2017 &lt;- dat_raw %&gt;% 
+  dplyr::filter(year == 2017) %&gt;% 
+  dplyr::select(record, q12, q13, q15) </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# preview data ----
+dat_2017</code></pre>
+<pre><code>
+# A tibble: 14,765 x 4
+    record                q12        q13                q15
+     &lt;dbl&gt;          &lt;dbl+lbl&gt;  &lt;dbl+lbl&gt;          &lt;dbl+lbl&gt;
+ 1 1509749 5 [6 or more days] 1 [0 days] 1 [0 days]        
+ 2 1509750 1 [0 days]         1 [0 days] 1 [0 days]        
+ 3 1509751 1 [0 days]         1 [0 days] 3 [2 or 3 days]   
+ 4 1509752 1 [0 days]         1 [0 days] 1 [0 days]        
+ 5 1509753 1 [0 days]         1 [0 days] 1 [0 days]        
+ 6 1509754 1 [0 days]         1 [0 days] 2 [1 day]         
+ 7 1509755 5 [6 or more days] 1 [0 days] 5 [6 or more days]
+ 8 1509756 1 [0 days]         1 [0 days] 1 [0 days]        
+ 9 1509757 1 [0 days]         1 [0 days] 1 [0 days]        
+10 1509758 1 [0 days]         1 [0 days] 1 [0 days]        
+# ... with 14,755 more rows</code></pre>
+</div>
+<p>This code produces a bar plot showing the frequencies of the three variables from data as imported, displaying variable names and value codes.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# bar plot 1 ----
+dat_2017 %&gt;% 
+   pivot_longer(
+    cols = -1,
+    names_to = &quot;variable&quot;,
+    values_to = &quot;days&quot;
+  ) %&gt;% 
+  count(variable, days) %&gt;% 
+  # include factor(days) to correctly show value codes in ggplot ----
+  ggplot(aes(x = n, y = factor(days))) +
+  facet_wrap(. ~ variable) +
+  geom_col() </code></pre>
+<div class="figure"><span id="fig:bar-plot-1"></span>
+<img src="leveraging-labelled-data-in-r_files/figure-html5/bar-plot-1-1.png" alt="Bar plot 1 displays variable names and value codes" width="624" />
+<p class="caption">
+Figure 1: Bar plot 1 displays variable names and value codes
+</p>
+</div>
+</div>
+<p>Now I add two lines of code to implement two changes - convert the variables to factors and convert the variable labels to variable names. This plot displays variable labels and value labels, producing a more informative figure.</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# bar plot 2 ----
+dat_2017 %&gt;% 
+  # --------------------------------------------------------------
+  # change 1: convert haven_labelled variables to factors ----
+  mutate_if(haven::is.labelled, haven::as_factor) %&gt;% 
+  # change 2: convert variable labels to variable names ----
+  sjlabelled::label_to_colnames() %&gt;% 
+  # --------------------------------------------------------------
+  pivot_longer(
+    cols = -1,
+    names_to = &quot;variable&quot;,
+    values_to = &quot;days&quot;
+  ) %&gt;% 
+  count(variable, days) %&gt;% 
+  # unnecessary to include factor(days) here ----
+  ggplot(aes(x = n, y = days)) +
+  facet_wrap(. ~ variable) +
+  geom_col() </code></pre>
+<div class="figure"><span id="fig:bar-plot-2"></span>
+<img src="leveraging-labelled-data-in-r_files/figure-html5/bar-plot-2-1.png" alt="Bar plot 2 displays variable labels and value labels" width="624" />
+<p class="caption">
+Figure 2: Bar plot 2 displays variable labels and value labels
+</p>
+</div>
+</div>
+<h1 id="other-packages-and-haven_labelled-objects">Other packages and <code>haven_labelled</code> objects</h1>
+<p>It is probably safe to assume that most packages you work with don’t know how to handle the <code>haven_labelled</code> class - if the package does produce a result, it is likely making an educated guess which may not be in line with your needs.</p>
+<p>For example, in using <code>ggplot</code> for Figure <a href="#fig:bar-plot-1">1</a> above, I included the line <code>y = factor(days)</code>; if instead I had <code>y = days</code> in Figure <a href="#fig:bar-plot-1">1</a>, <code>ggplot</code> yields the following message:</p>
+<blockquote>
+<p>Don’t know how to automatically pick scale for object of type haven_labelled/vctrs_vctr/double. Defaulting to continuous.</p>
+</blockquote>
+<p>Treating the <code>days</code> variable as continuous resulted in an uninformative plot (not shown), which was corrected by converting the variable to <code>factor</code>.</p>
+<p>What about other packages I use? In <a href="https://github.com/ropensci/skimr" target="_blank"><code>skimr</code></a> 2.1.2 <code>haven_labelled</code> inputs result in value codes treated as character values, and in <a href="http://www.danieldsjoberg.com/gtsummary/" target="_blank"><code>gtsummary</code></a> 1.3.5 <code>haven_labelled</code> inputs are omitted from output as it is not an accepted class. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing when using <code>haven_labelled</code> variables with other packages. These issues can be resolved by converting the <code>haven_labelled</code> variables to <code>numeric</code> or <code>factor</code>, depending on the context.</p>
+<h1 id="workflow-for-labelled-data-manipulation">Workflow for labelled data manipulation</h1>
+<p>When converting <code>haven_labelled</code> objects to <code>factor</code> or <code>numeric</code>, be intentional about where the conversion happens in your workflow. The <a href="https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html" target="_blank">Introduction to labelled</a> vignette by Joseph Larmarange outlines two different approaches:</p>
+<ol type="1">
+<li><p>First convert <code>haven_labelled</code> variables; second perform data manipulation utilizing variable labels (if factor).</p></li>
+<li><p>First perform data manipulation utilizing variable codes; second convert <code>haven_labelled</code> variables.</p></li>
+</ol>
+<p>For me this question usually distills down to: for data manipulation, are the value codes or the value labels easier to work with? Sometimes the brevity of the value code helps (i.e., <code>q12 == 1</code>), whereas other times the context of the value label makes the code more readable (i.e., <code>q12 == "0 days"</code>). Note that the placement of the conversion can have downstream effects on your code.</p>
+<h1 id="summary">Summary</h1>
+<p>The <code>haven</code>, <code>labelled</code>, <code>sjlabelled</code> packages create new structures and work flows for labelled data that allow you to harness the power of R while still honoring the valuable metadata framework that exists in SPSS, SAS, and Stata data sets. The functions discussed in this post cover most of my daily needs with labelled data; if you want to do more, next steps might include handling specific types of coded missing data or creating labelled data within R.</p>
+<h1 id="acknowledgments">Acknowledgments</h1>
+<p>Thumbnail artwork was adapted from <a href="https://twitter.com/allison_horst?lang=en"><code>@allison_horst</code></a>.</p>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
