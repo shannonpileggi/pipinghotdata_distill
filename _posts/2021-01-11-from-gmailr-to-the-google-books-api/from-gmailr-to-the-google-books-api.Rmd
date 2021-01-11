@@ -523,7 +523,7 @@ This project was certainly a learning experience! I used the `gmailr` and `httr`
 
 8. I encountered more issues with `NULL`, `integer(0)`, and empty items than ever before (which is not the same as `NA` `r emo::ji("laugh")`).
 
-Alternative solutions to these challenges are welcome! You can download `books.rda` (which contains `message_body`, `books_1`, and `books_2`) from my [github repo](){target="_blank"}.
+Alternative solutions to these challenges are welcome! You can download `books.rda` (which contains `message_body`, `books_1`, and `books_2`) from my [github repo](https://github.com/shannonpileggi/pipinghotdata_distill/tree/master/_posts/2021-01-11-from-gmailr-to-the-google-books-api/data){target="_blank"}.
 
 # Personal note
 
