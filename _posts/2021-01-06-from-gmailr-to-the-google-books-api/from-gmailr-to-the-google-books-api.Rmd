@@ -1,0 +1,193 @@
+---
+title: "From gmailr to the Google Books API"
+description: |
+  A personal project to construct my childrens' 2020 library history
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 01-06-2021
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    self_contained: false
+draft: true
+creative_commons: CC BY
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load-data, echo = FALSE}
+dat_raw <- load(here::here( "_posts", "2021-01-06-from-gmailr-to-the-google-books-api", "data", "books.rda"))
+```
+
+
+# TL; DR
+
+# Background
+
+I live in Doylestown, PA, which is within Bucks County. On March 14, 2020, the Bucks County library system closed due to COVID-19. On June 22, 2020, the library opened for curbside pick-up. The library allows up to 15 holds at a time, and when a hold arrives, I receive 
+an email notice like this:
+
+![](img/email-notification.PNG)
+
+Email notifications are generally sent around midnight, collating any books that 
+arrived that day. I removed my home address and cell phone number from this screen shot and from the data for this post.
+
+# Getting started
+
+```{r}
+library(gmailr)
+library(tidyverse)
+library(lubridate)
+library(httr)
+library(gt)
+```
+
+
+# Retrieving email notifications with gmailr
+
+I followed the [`gmailr` set up instructions](https://gmailr.r-lib.org/index.html#setup){target="_blank"} to authenticate myself and enable R's `gmailr`
+package to interact with the Gmail API for my personal Gmail account, which was 
+fairly straightforward. This required some point and click in other interfaces, 
+followed by two lines of R code.
+
+```{r, eval = FALSE}
+gm_auth_configure(path = "path/credentials.json")
+gm_auth()
+```
+
+Once authenticated, I retrieved the email notifications from my gmail account. It was not 
+immediately clear to me how to do this, but this [stack overflow thread](https://stackoverflow.com/questions/62420703/extracting-all-emails-using-gmailr){target="_blank"} helped.  
+
+```{r, eval = FALSE}
+# 1 - retrieve messages corresponding to this search ----
+messages <- gmailr::gm_messages("Bucks County Library System - Available Hold Pickup Notice")
+
+# 2 - extract ids from messages corresponding to search ----
+message_ids <- gmailr::gm_id(messages)
+
+# 3 - extract contents from messages with these ids -----
+message_full <- purrr::map(message_ids, gmailr::gm_message)
+
+# 4 - extract message body from contents -----
+message_body <- purrr::map(message_full, gmailr::gm_body)
+```
+
+This resulted in 67 email notifications from June 22, 2020 to December 30, 3020, containing from 1 to 11 books per email. Here is an example character string returned to me, corresponding to the email notification shown above.
+
+```{r}
+message_body[[66]]
+```
+
+
+# Parsing the email body
+
+I then did my best to convert the date of the email notification, the book title, and book author to a tibble. This was a three step iterative process.
+
+First, I created a list with the dates of the 67 emails. 
+
+```{r}
+# 1 - extract date of email notification ----
+message_date <- purrr::map(
+  message_body, 
+    # start string at first character, end where 2020 ends ----
+    ~ stringr::str_sub(.x , start = 1, end = str_locate(.x, "2020") %>% .[2]) %>% 
+    # convert text string to date ----
+    lubridate::mdy(.)
+    )
+```
+
+```{r}
+# view last 6 entries ----
+tail(message_date)
+```
+
+Second, I did some initial cleaning to remove the introductory text, and then 
+split the strings to one rows per book entry. 
+
+```{r}
+message_books <- purrr::map(
+  message_body,  
+    # remove formatting text, affect other stringr code ----
+    ~ str_remove_all(.x, "[\\r|\\n]") %>% 
+    # remove all introductory text ----
+    str_remove(".* listed above.  ") %>%
+    # split string when any digit is identified ----
+    str_split("[[:digit:]]   ")
+)
+```
+
+```{r}
+# view last 6 entries ----
+tail(message_books)
+```
+
+Third, I converted this to a tibble, removed all non-book rows, and iterated with 
+stringr functions to get the title and author as best as I could. This was challenging
+as not all entries had consitent formatting, and some adjustments I could make here
+improved the Google Books API search below.
+
+```{r}
+# split author and books into separate variables ----
+books <- message_books %>% 
+  # coerce list to tibble ----
+  tibble() %>% 
+  # rename first column ----
+  rename("text" = 1) %>% 
+  # unnest list text field ----
+  unnest(cols = "text") %>%
+  # merge in notice date ----
+  mutate(notice_date = message_date %>% unlist() %>% as_date()) %>% 
+  # unnest one more time ----
+  unnest(cols = "text") %>% 
+  # remove strings starting with spaces, these are not books ----
+  filter(!str_sub(text, 1, 1) %in% c(" ", "")) %>% 
+  # a lot of iteration here to extract author/title ----
+  # sort by notice date before assigning id ----
+  arrange(notice_date) %>% 
+  mutate(
+    # create id ----
+    id = row_number(),
+    # clean title until looks ok ----
+    title = str_remove(text, " /.*") %>% 
+      str_remove("Wells.*") %>%
+      str_remove(" \\[.*") %>% 
+      str_remove(": from.*") %>% 
+      str_remove("\\*") %>%
+      str_remove("Nino") %>% # affected api search ----
+      str_remove("American [Gg]irl.") %>% # affected api search ----
+      str_trim(),
+    # clean author until looks ok ----
+    author = str_remove(text, ".* /") %>% 
+      str_remove("Sendak, Maurice") %>% 
+      str_remove(" ; .*") %>% 
+      str_remove("\\[") %>% 
+      str_remove("\\]") %>% 
+      str_remove(".* by ") %>%
+      str_remove(".*! ") %>% 
+      str_remove("and .*") %>%
+      # remove everything after a period, but affected authors with first or middle initial ----
+      str_remove("\\..*") %>% 
+      str_remove("\\*") %>% 
+      str_remove_all("& Sue .*| an |book") %>% 
+      str_squish()
+  ) %>% 
+  # remove non pre-k books ----
+  dplyr::filter(!(title %in% c("Pax", "Luster", "Last night in Montreal : a novel"))) %>% 
+  # count number of books per emails ----
+  group_by(notice_date) %>% 
+  add_count() %>% 
+  ungroup()
+```
+
+```{r}
+# view first 6 entries, as now sorted by notice date ----
+head(books)
+```

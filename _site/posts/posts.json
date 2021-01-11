@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/2021-01-11-from-gmailr-to-the-google-books-api/",
+    "title": "From gmailr to the Google Books API",
+    "description": "A parenting project to catalog my childrens' 2020 library history",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2021-01-11",
+    "categories": [],
+    "preview": "posts/2021-01-11-from-gmailr-to-the-google-books-api/preview_books.png",
+    "last_modified": "2021-01-11T07:16:38-05:00",
+    "input_file": "from-gmailr-to-the-google-books-api.utf8.md",
+    "preview_width": 705,
+    "preview_height": 459
+  },
+  {
     "path": "posts/2020-12-23-leveraging-labelled-data-in-r/",
     "title": "Leveraging labelled data in R",
     "description": "Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages",
