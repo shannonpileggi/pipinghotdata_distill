@@ -4,6 +4,7 @@ description: |
  Data science demos, deliberations, and discoveries
 base_url: https://www.pipinghotdata.com
 output_dir: "_site"
+theme: theme.css
 navbar:
   right:
     - text: "Home"
@@ -19,8 +20,7 @@ navbar:
     - icon: fa fa-rss
       href: index.xml  
 output: 
-  distill::distill_article:
-      css: styles.css
+  distill::distill_article
 google_analytics: "UA-128676462-1"
 twitter:
   site: "@PipingHotData"

@@ -1,0 +1,19 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "Shannon Pileggi",
+      "author": [],
+      "contents": "\r\n\r\nI’m an enthusiastic professional educator and statistical consultant with over ten years of experience collaborating on data analysis with diverse partners in industry, tech, public health, and clinical research. My previous work experiences include supporting research on parasitic diseases at the CDC, contributing to curriculum development at the Institute for Quantitative Theory and Methods at Emory University, and instructing advanced programming and modeling courses at California Polytechnic State University, San Luis Obispo. I am currently a Statistician at Adelphi Research in Doylestown, PA.\r\nPersonal\r\n\r\nI now have two daughters, one of which is my alarm clock and the other is my midnight collaborator. My partner is incredibly supportive and inspirational, and he schools me daily on data and R programming. I’ve won many coveted recreational soccer league Champion t-shirts, and on the weekends we like to cruise around on our bikes. On the rare occasions when both children are asleep and we aren’t working or talking about data, you’ll find us relaxing with adult beverages and board games.\r\nPhoto Cred\r\nContact\r\nWant to chat? Go ahead, pipe up! Feel free to contact me on email, Twitter, or LinkedIn. I hope to hear from you!\r\nR feeds\r\nThis blog feeds into R Weekly and R-bloggers. Consider adding your blog or subscribing to see all of R’s latest and greatest!\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-01-17T21:58:03-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Posts",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-01-17T21:58:16-05:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
