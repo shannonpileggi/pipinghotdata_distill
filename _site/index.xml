@@ -7,7 +7,243 @@
     <description>Data science demos, deliberations, and discoveries
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 11 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>GGanimating a geographic introduction</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction</link>
+      <description>
+
+
+&lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
+&lt;p&gt;To kick off my week curating the &lt;a href="https://twitter.com/WeAreRLadies" target="_blank"&gt;&lt;code&gt;@WeAreRLadies&lt;/code&gt;&lt;/a&gt; twitter account I created a gif to introduce myself using &lt;a href="https://gganimate.com/index.html" target="_blank"&gt;gganimate&lt;/a&gt; and &lt;a href="https://wilkelab.org/ggtext/" target="_blank"&gt;ggtext&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
+&lt;p&gt;This material was developed using:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Software / package&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;4.0.3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;RStudio&lt;/td&gt;
+&lt;td&gt;1.4.1103&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;tidyverse&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1.3.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;gganimate&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1.0.7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;extrafont&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.17&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;ggtext&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.1.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;glue&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1.4.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;pre class="r"&gt;&lt;code&gt;library(tidyverse) # general use ----
+library(gganimate) # to create animated gif ----
+library(extrafont) # access and enable fonts ----
+library(ggtext)    # style text in ggplot ----
+library(glue)      # paste strings ----  &lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="fonts"&gt;Fonts&lt;/h1&gt;
+&lt;p&gt;Fonts were challenging for me to get started with in R, and I got some great &lt;a href="https://twitter.com/PipingHotData/status/1354993948931055623" target="_blank"&gt;tips on twitter&lt;/a&gt;. I ended up manually installing new fonts on my Windows 10 OS and then using the &lt;a href="https://cran.r-project.org/web/packages/extrafont/README.html" target="_blank"&gt;&lt;code&gt;extrafont&lt;/code&gt;&lt;/a&gt; package to access the fonts in R.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;# import fonts; only needed one time or after new font installation ----
+# fonts may install to multiple directories; figure out where yours are installed ----
+# and adjust path accordingly if needed ----
+# this can take a while ----
+extrafont::font_import()
+
+# do this each R session in which you want to use fonts ----
+extrafont::loadfonts(device = &amp;quot;win&amp;quot;)
+
+# examine font family names available for use (output not shown) ----
+extrafont::fonts()&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="the-data"&gt;The data&lt;/h1&gt;
+&lt;p&gt;The data needed to create a map of the US is already contained within &lt;code&gt;ggplot2&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;us_states &amp;lt;- ggplot2::map_data(&amp;quot;state&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To show locations where I have lived, I manually compiled a data frame with city, state, latitude, longitude, and a description.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;# use &amp;lt;br&amp;gt; to render line breaks with ggtext ----
+residence &amp;lt;- tribble(
+  ~city,           ~state,  ~lat,   ~long, ~years, ~description,
+  &amp;quot;Raleigh&amp;quot;,         &amp;quot;NC&amp;quot;, 35.82,  -78.66,  17,    &amp;quot;Childhood&amp;quot;,
+  &amp;quot;Greenville&amp;quot;,      &amp;quot;NC&amp;quot;, 35.60,  -77.37,   4,    &amp;quot;Undergrad at ECU&amp;quot;,
+  &amp;quot;Atlanta&amp;quot;,         &amp;quot;GA&amp;quot;, 33.76,  -84.42,  10,    &amp;quot;Grad school at Emory&amp;lt;br&amp;gt;Statistician at CDC&amp;lt;br&amp;gt;Lecturer at Emory&amp;quot;,
+  &amp;quot;San Luis Obispo&amp;quot;, &amp;quot;CA&amp;quot;, 35.28, -120.66,   3,    &amp;quot;Asst. Professor at Cal Poly SLO&amp;quot;,
+  &amp;quot;Williamsburg&amp;quot;,    &amp;quot;VA&amp;quot;, 37.27,  -76.71, 0.5,    &amp;quot;Time with family&amp;quot;,
+  &amp;quot;Doylestown&amp;quot;,      &amp;quot;PA&amp;quot;, 40.31,  -75.13,   2,    &amp;quot;Statistician at Adelphi Research&amp;quot;
+) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then I needed to create a transition state for gganimate (&lt;code&gt;city_order&lt;/code&gt;) as well as indicate connections between residences for the arrows.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;residence_connections_prelim &amp;lt;- residence %&amp;gt;% 
+  mutate(
+    # need this to create transition state ----
+    city_order = row_number() + 1,
+    # where I moved to next, for curved arrows ----
+    lat_next = lead(lat),
+    long_next = lead(long),
+    # label to show in plot, styled using ggtext ---
+    label = glue::glue(&amp;quot;**{city}, {state}** ({years} yrs)&amp;lt;br&amp;gt;*{description}*&amp;quot;),
+    # label of next location ----
+    label_next = lead(label)
+  ) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lastly, I modified this data a bit so that the first residence shows the label at the residence with no arrow and all remaining residences show an arrow with the label positioned at the next residence.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;residence_connections &amp;lt;- residence_connections_prelim %&amp;gt;%
+  # get first row of residence ----
+  slice(1) %&amp;gt;% 
+  # manually modify for plotting ----
+  mutate(
+    city_order = 1,
+    label_next = label,
+    lat_next = lat,
+    long_next = long,
+    ) %&amp;gt;% 
+  # combine with all other residences ----
+  bind_rows(residence_connections_prelim) %&amp;gt;% 
+  # last (7th) row irrelevant ----
+  slice(1:6) %&amp;gt;% 
+  # keep what we neeed ----
+  dplyr::select(city_order, lat, long, lat_next, long_next, label_next)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;residence_connections&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 6 x 6
+  city_order   lat   long lat_next long_next label_next               
+       &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;    &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;glue&amp;gt;                   
+1          1  35.8  -78.7     35.8     -78.7 **Raleigh, NC** (17 yrs)~
+2          2  35.8  -78.7     35.6     -77.4 **Greenville, NC** (4 yr~
+3          3  35.6  -77.4     33.8     -84.4 **Atlanta, GA** (10 yrs)~
+4          4  33.8  -84.4     35.3    -121.  **San Luis Obispo, CA** ~
+5          5  35.3 -121.      37.3     -76.7 **Williamsburg, VA** (0.~
+6          6  37.3  -76.7     40.3     -75.1 **Doylestown, PA** (2 yr~&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="base-map"&gt;Base map&lt;/h1&gt;
+&lt;p&gt;For the map itself, I created a base map showing pins of the locations I have lived. Hex codes for R-Ladies colors were obtained from &lt;a href="https://alison.rbind.io/post/2017-12-18-r-ladies-presentation-ninja/" target="_blank"&gt;this blog post&lt;/a&gt; by Alison Hill. I briefly experimented with &lt;code&gt;coord_map&lt;/code&gt; for projection, but then the subsequent curved arrows presented incorrectly.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;base_map &amp;lt;- ggplot() +
+  # plot states ----
+  geom_polygon(
+    data = us_states,
+    aes(
+      x     = long, 
+      y     = lat, 
+      group = group
+      ),
+    fill  = &amp;quot;#F2F2F2&amp;quot;,
+    color = &amp;quot;white&amp;quot;
+  ) +
+  # lines for pins ----
+  geom_segment(
+    data = residence,
+    aes(
+      x    = long,
+      xend = long,
+      y    = lat,
+      yend = lat + 0.5
+      ),
+    color = &amp;quot;#181818&amp;quot;,
+    size = 0.3
+    ) +
+    # pin heads, a bit above actual location, color with R ladies lighter purple ----
+  geom_point(
+    data = residence,
+    aes(
+      x = long, 
+      y = lat + 0.5
+      ),
+    size = 0.5,
+    color = &amp;quot;#88398A&amp;quot;
+  ) +
+  theme_void()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The sizing of the pins in the &lt;code&gt;base_map&lt;/code&gt; appears different than in the gif below as increasing the resolution of the output gif alters plotting ratios.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;base_map&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="file1a482f21244f_files/figure-html/unnamed-chunk-9-1.png" width="672" /&gt;&lt;/p&gt;
+&lt;h1 id="animated-map"&gt;Animated map&lt;/h1&gt;
+&lt;pre class="r"&gt;&lt;code&gt;anim &amp;lt;- base_map +
+  # show arrows connecting residences ----
+  geom_curve(
+    # do not include 1st residence in arrows as no arrow is intended ----
+    # and inclusion messes up transition ---
+    data = residence_connections %&amp;gt;% slice(-1),
+    # add slight adjustment to arrow positioning ----
+    aes(
+      y     = lat - 0.1,
+      x     = long,
+      yend  = lat_next - 0.2,
+      xend  = long_next,
+      # group is used to create the transition ----
+      group = seq_along(city_order)
+    ),
+    color = &amp;quot;#181818&amp;quot;,
+    curvature = -0.5,
+    arrow = arrow(length = unit(0.02, &amp;quot;npc&amp;quot;)),
+    size  = 0.2
+  ) +
+  # add in labels for pins, with inward positioning ----
+  # show labels either top left or top right of pin ----
+  geom_richtext(
+    data = residence_connections,
+    aes(
+      x     = ifelse(long_next &amp;lt; -100, long_next + 1, long_next - 1),
+      y     = lat_next + 5,
+      label = label_next,
+      vjust = &amp;quot;top&amp;quot;,
+      hjust = ifelse(long_next &amp;lt; -100, 0, 1),
+      # group is used to create the transition ----
+      group = seq_along(city_order)
+    ),
+    size = 2,
+    label.colour = &amp;quot;white&amp;quot;,
+    # R ladies purple ----
+    color = &amp;quot;#562457&amp;quot;,
+    # R ladies font used in xaringan theme ----
+    family = &amp;quot;Lato&amp;quot;
+  ) +
+  # title determined by group value in transition ----
+  ggtitle(&amp;quot;Home {closest_state} of 6&amp;quot;) +
+  # create animation ----
+  transition_states(
+    city_order,
+    transition_length = 2,
+    state_length = 5
+    ) +
+  # style title ----
+  theme(
+    plot.title = element_text(
+      color = &amp;quot;#562457&amp;quot;,
+      family = &amp;quot;Permanent Marker&amp;quot;,
+      size = 12
+      )
+    )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;# render and save transition ----
+# the default nframes 100 frames, 150 makes the gif a bit longer for readability ----
+# changing dimensions for output w/ height &amp;amp; width ----
+# increasing resolution with res ----
+animate(anim, nframes = 150, height = 2, width = 3, units = &amp;quot;in&amp;quot;, res = 150)
+anim_save(&amp;quot;homes_animation.gif&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introductionhomes_animation.gif" style="width:70.0%" /&gt;&lt;/p&gt;
+&lt;h1 id="discussion"&gt;Discussion&lt;/h1&gt;
+&lt;p&gt;I hope this gif helped you learn a little bit about me! I’m a southern girl who was never quite cool enough for California still learning how to navigate personalities in the northeast. 😂&lt;/p&gt;
+&lt;p&gt;I do have two additional short-term residences not shown here. Although I was born in Raleigh, NC, I lived in Accra, Ghana until I was 1 year old (my father served in the US military and worked at the American Embassy in Accra). I also lived in Seville, Spain for a semester abroad during college.&lt;/p&gt;
+&lt;p&gt;In this gif I did not include transitions between countries (because, you know, I’m a parent working in a pandemic and I have to draw the line on my free time somewhere). In addition, aligning sizing with resolution of the output device took some experimentation.&lt;/p&gt;
+&lt;p&gt;I would love to get to know you through your gif - if you happen to replicate this for yourself please share with me on &lt;a href="https://twitter.com/PipingHotData" target="_blank"&gt;Twitter&lt;/a&gt;, &lt;a href="https://www.linkedin.com/in/shannon-m-pileggi/" target="_blank"&gt;LinkedIn&lt;/a&gt;, or &lt;a href="mailto:shannon@pipinghotdata.com" target="_blank"&gt;email&lt;/a&gt;! I also invite you to improve this gif with cooler transitions, international locations, awesome styles, or anything else. 😃 💜&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>229cd63db4031692d50a7003514642a4</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction</guid>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction/homes_preview.png" medium="image" type="image/png" width="919" height="461"/>
+    </item>
     <item>
       <title>From gmailr to the Google Books API</title>
       <dc:creator>Shannon Pileggi</dc:creator>

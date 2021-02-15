@@ -3,7 +3,7 @@ title: "GGanimating a geographic introduction"
 description: |
   A gif for social media
 base_url: https://www.pipinghotdata.com/
-preview: home_preview.png
+preview: homes_preview.png
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -15,7 +15,7 @@ output:
     toc: true
     toc_depth: 3
     self_contained: false
-draft: true
+draft: false
 creative_commons: CC BY
 ---
 
@@ -266,8 +266,8 @@ personalities in the northeast. `r emo::ji("joy")`
 
 I do have two additional short-term residences not shown here. Although I was born in Raleigh, NC, I lived in Accra, Ghana until I was 1 year old (my father served in the US military and worked at the American Embassy in Accra). I also lived in Seville, Spain for a semester abroad during college. 
 
-In this gif I did not include transitions between countries. In addition, aligning sizing with resolution of the output device took some experimentation. 
+In this gif I did not include transitions between countries (because, you know, I'm a parent working in a pandemic and I have to draw the line on my free time somewhere). In addition, aligning sizing with resolution of the output device took some experimentation. 
 
 I would love to get to know you through your gif - if you happen to replicate this
-for yourself please share with me on [Twitter](https://twitter.com/PipingHotData){target="_blank"}, [LinkedIn](https://www.linkedin.com/in/shannon-m-pileggi/){target="_blank"}, or [email](mailto:shannon@pipinghotdata.com){target="_blank"}! I also invite you improve this gif with cooler transitions, international locations, awesome styles, or anything else. `r emo::ji("happy")` `r emo::ji("purple heart")`
+for yourself please share with me on [Twitter](https://twitter.com/PipingHotData){target="_blank"}, [LinkedIn](https://www.linkedin.com/in/shannon-m-pileggi/){target="_blank"}, or [email](mailto:shannon@pipinghotdata.com){target="_blank"}! I also invite you to improve this gif with cooler transitions, international locations, awesome styles, or anything else. `r emo::ji("happy")` `r emo::ji("purple heart")`
 
