@@ -277,6 +277,10 @@ was corrected by converting the variable to `factor`.
 
 What about other packages I use? In [`skimr`](https://github.com/ropensci/skimr){target="_blank"} 2.1.2 `haven_labelled` inputs result in value codes  treated as character values, and in [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/){target="_blank"} 1.3.5 `haven_labelled` inputs are omitted from output as it is not an accepted class. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing  when using `haven_labelled` variables with other packages. These issues can be resolved by converting the `haven_labelled` variables to `numeric` or `factor`, depending on the context.
 
+<aside>
+Note added Feb 20, 2021: Although `gtsummary` does not currently support value labels, it does support variable labels! See [this tweet](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} for a quick demo. 
+</aside>
+
 
 # Workflow for labelled data manipulation
 
