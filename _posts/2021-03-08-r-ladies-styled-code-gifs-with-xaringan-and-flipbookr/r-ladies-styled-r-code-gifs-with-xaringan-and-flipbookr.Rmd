@@ -29,9 +29,11 @@ knitr::opts_chunk$set(echo = TRUE)
 I curated the [`@WeAreRLadies`](https://twitter.com/WeAreRLadies){target="_blank"} twitter account from Feb 15 - 20, 2021. During my curation, I shared brief R code gifs created with [`xaringan`](https://slides.yihui.org/xaringan/#1){target="_blank"},   [`flipbookr`](https://github.com/EvaMaeRey/flipbookr){target="_blank"},
 a bit of custom CSS, and the [`ScreenToGif`](https://www.screentogif.com/){target="_blank"} recorder. Full code is available in the [rladies-flipbookr](https://github.com/shannonpileggi/rladies-flipbookr){target="_blank"} repo; here is an example gif:
 
-```{r echo=FALSE, fig.cap="Walrus operator gif."}
+
+```{r echo=FALSE, fig.cap="Walrus operator gif. You can read more about this topic at https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/."}
 knitr::include_graphics("gifs/demo-walrus-flipbook-quality.gif")
 ```
+
 
 # Getting started
 
