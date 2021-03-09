@@ -154,7 +154,7 @@ any of my content accessible, please let me know!
 I have to give [Silvia Canelón](https://silvia.rbind.io/){target="_blank"} ([`@spcanelon`](https://twitter.com/spcanelon){target="_blank"}) a **huge** shout out here. My curating week started on a Monday, and on Monday night I was still trying to figure out how 
 I wanted to style my code. We chatted on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"}, and she quickly helped me make CSS adjustments to the default xaringan R-Ladies theme. After the curating week, Silvia helped me fine tune the bits to share that are now in the [rladies-flipbookr](https://github.com/shannonpileggi/rladies-flipbookr){target="_blank"} repo. Additionally, she advises me on inclusivity and accessibility best practices, which I am still striving to meet. Thank you, Silvia! `r emo::ji("purple heart")` `r emo::ji("pray")`
 
-Lastly, thanks to the friendly [RStudio Community](https://community.rstudio.com/){target="_blank"} forum for helping me figure out both the [in line verbatim](https://community.rstudio.com/t/rmarkdown-verbatim-in-line-code/98165){target="_blank"} I used in this post and the [dplyr::select portion](https://community.rstudio.com/t/tidy-eval-glue-custom-names-w-dplyr-select/95010){target="_blank"} of the walrus operator gif. 
+Lastly, thanks to the friendly [RStudio Community](https://community.rstudio.com/){target="_blank"} forum for helping me figure out both the [in line verbatim](https://community.rstudio.com/t/rmarkdown-verbatim-in-line-code/98165){target="_blank"} I used in this post and the [dplyr::select() portion](https://community.rstudio.com/t/tidy-eval-glue-custom-names-w-dplyr-select/95010){target="_blank"} of the walrus operator gif. 
 
 # Outtakes 
 
