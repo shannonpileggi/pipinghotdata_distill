@@ -28,9 +28,22 @@ working title:
 
 Working description:
 
+# TL; DR
+
 # Signing up
 
+R-Ladies has a [comprehensive guide](https://guide.rladies.org/rocur/about/) describing why the program exists, procedures and protocols for the week, and 
+tips for successful curation. You sign up by [submitting a form](https://docs.google.com/forms/d/e/1FAIpQLSevtboT8TNjz87qe5HZzuBHuY0aNteaZNF5e2xFQXtSeU0c0w/viewform) - give yourself at least 30 minutes to sign up as part of the
+form includes filling out details that complete your [curating profile](https://twitter.com/WeAreRLadies/status/1361139211819180032).
+
 # Picking a date
+
+You can view the [schedule](https://docs.google.com/spreadsheets/d/1pmphnR9EinGuAKbVqGzMIt6cWYmHNbeFVzaKJB59JdY/edit#gid=1429703967) of previous and upcoming
+curators to identify available dates.  
+
+Being a curator will be time intensive, so be kind to yourself. Choose dates when you will have time to invest and a flexible work schedule. I chose Feb 15-20 
+because I hoped by then I should be recovered from a very intense Q4 work cycle;
+additionally, Feb 15 (President's Day) was a company holiday.
 
 # Countdown
 
