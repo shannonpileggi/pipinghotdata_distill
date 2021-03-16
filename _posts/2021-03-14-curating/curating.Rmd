@@ -36,7 +36,9 @@ library(ggiraph)
 
 working title:
 
-Working description:
+working description:
+
+preview image: maybe a cute behind the curtain?
 
 # TL; DR
 
@@ -130,11 +132,11 @@ questions to inspire content.
 | 2. Rotating curator Megan Stodel ([`@MeganStodel`](https://twitter.com/MeganStodel){target="_blank"}) tweets a [project](https://twitter.com/WeAreRLadies/status/1313177623128944645){target="_blank"} inspired by curating | An R project to [introduce myself](https://twitter.com/WeAreRLadies/status/1361286341317779456){target="_blank"} as a curator |
 | 3. Rotating curator Julia Piaskowski ([`@SeedsAndBreeds`](https://twitter.com/SeedsAndBreeds){target="_blank"}) tweets a great technical thread on [ANOVA](https://twitter.com/WeAreRLadies/status/1223790298024726528){target="_blank"} | A thread on [blogging resources](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} |
 | 4. Prior experience as an educator | Starting discussion with a [question](https://twitter.com/WeAreRLadies/status/1361332603274612739){target="_blank"} |
-| 5. What am I passionate about lately? | [blogging](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} |
-| 6. What did I have to overcome to be where I am today? | learning how to [ask questions online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"} |
-| 7. What have colleagues or students asked me about? | what needs [updating](https://twitter.com/WeAreRLadies/status/1362114431090573315){target="_blank"}  and when |
+| 5. What am I passionate about lately? | [Blogging](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} |
+| 6. What did I have to overcome to be where I am today? | Learning how to [ask questions online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"} |
+| 7. What have colleagues or students asked me about? | What needs [updating](https://twitter.com/WeAreRLadies/status/1362114431090573315){target="_blank"}  and when |
 | 8. What are some R functions or packages that have helped me recently? | [sortable ](https://twitter.com/WeAreRLadies/status/1361418527870132226){target="_blank"} package |
-| 9. What are R-Ladies voices I can amplify while I have this large platform? | Re-tweeting things like [this](){target="_blank"} |
+| 9. What are R-Ladies voices I can amplify while I have this large platform? | Re-tweeting recognition like [this](https://twitter.com/lisalendway/status/1363159170531401729){target="_blank"} |
 
 # Drafting content
 
@@ -143,7 +145,7 @@ The week before curation, I started fleshing out those ideas into actual tweets 
 and rarely did the draft get tweeted out exactly as I had written. 
 
 One challenge with drafting tweets in a document was being mindful of character limits
-and anticipating where the breaks would be for threads. I actually started copying into a send tweet window to preview and then pasting it back into my draft document. There is software out there can facilitate drafting tweets - for example, someone recommended
+and anticipating where the breaks would be for threads. I actually started copying into a send tweet window to preview and then pasting it back into my draft document. There is software that facilitates drafting tweets - for example, someone recommended
  [getchirrapp.com](https://getchirrapp.com/){target="_blank"} to me the week of my curation, but I didn't end up using it.
 
 # Polls
@@ -238,28 +240,29 @@ that added challenges to curating, which included:
 
 2. Consequently, I could not draft and save threads in TweetDeck to send later.
 
-3. I could not send polls from TweetDeck, so I could not send polls from the curator account. I had to send polls from my personal account and then re-tweet from the
-curator account.
+3. I could not send polls from the curator account on TweetDeck; I had to send polls from my personal account and then re-tweet from the curator account.
 
-4. Depending on the content already in the send tweet interface, sometimes other options in TweetDeck would disappear, like the emoji, gifs, and upload image buttons. I kept [emojipedia]() open to easily copy and paste emojis into my tweets, and it took trial and error to get everything I wanted in a single tweet.
+4. Depending on the content already in the send tweet interface, sometimes other options in TweetDeck would disappear, like the emoji, gifs, and upload image buttons. I kept [emojipedia](https://emojipedia.org/){target="_blank"} open to easily copy and paste emojis into my tweets, and it took trial and error to get everything I wanted in a single tweet.
 
-5. alt text
+5. When uploading local content, you can add [descriptions](https://help.twitter.com/en/using-twitter/picture-descriptions){target="_blank"} to both gifs and images in the regular twitter interface to create inclusive content for community members that use assistive reading technology; however, in TweetDeck, descriptions were enabled for images and not gifs.
 
-I spent a lot of time my first couple of days as a curator getting used to TweetDeck and researching alternative solutions and plug-ins that ultimately did not help. Twitter has said that they are further developing TweetDeck and that improvements
-are coming later in 2021, so I don't think it is worth documenting all of my methods and work-arounds. However, if you are serving as a curator and struggling with TweetDeck, please reach out - I am happy to share what ended up working for me.
+I spent a lot of time my first couple of days as a curator getting used to TweetDeck and researching alternative solutions and plug-ins that ultimately did not help. Twitter is targeting TweetDeck [enhancements](https://www.theverge.com/2021/3/9/22321991/twitter-tweetdeck-overhaul-redesign-product-changes){target="_blank"} later in 2021, so I don't think it is worth documenting all of my methods and work-arounds. However, if you are serving as a curator and struggling with TweetDeck, please reach out - I am happy to share what ended up working for me.
 
 # Reflection
 
 _this is getting long, break into multiple sections?_
 
-Just because a twitter account has >20K followers, the likes, re-tweets, and comments don't come automatically. You still have to earn engagement with your content. Many of the tweets I sent had little engagement, and that is OK. Supporting your curators by engaging with their tweets or sending notes of encouragement is _much_ appreciated.
+Just because a twitter account has >20K followers, the likes, re-tweets, and comments don't come automatically. You still have to earn engagement with your content. Many of the tweets I sent had little engagement, and that is OK. Supporting your curators by engaging with their tweets or sending notes of encouragement is _much_ appreciated. I thank everyone who engaged with me during my curation, with a special shout out to Alison Hill who re-energized me mid-week with comments on the R-Ladies bloggers [thread](https://twitter.com/WeAreRLadies/status/1362021673239785473){target="_blank"}.
 
-My tweets were not perfect, and that is also OK. I messed up threads, had typos, and shared deprecated code, among other things. You can see things that drove me crazy in
-my blooper reel tweet.
+My tweets were not perfect, and that is also OK. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"} for tweets that I bungled.
 
-One regret that I do have from my curating week is failing to explicitly knowledge Black History Month as I was tweeting in February. I wish had prepared at least one tweet or better amplified the voices of black members of the rstats community while I had the large platform. 
+One regret that I do have from my curating week is failing to explicitly knowledge Black History Month as I was tweeting in February. I wish had prepared at least one tweet or better amplified the voices of black members of the R community while I had the large platform. 
 
 Serving as a curator was intimidating and time consuming, but I am very glad I did it. Many good things have happened as direct result of that week, including: 
+
+* [discussing](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} comparisons between blogdown and distill with Alison Hill 
+
+* [collaborating](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"} with Silvia Canelón to style code gifs
 
 * engaging with new people on twitter that I want to continue to engage with
 
@@ -267,13 +270,11 @@ Serving as a curator was intimidating and time consuming, but I am very glad I d
 
 * being invited to speak for R-Ladies Miami
 
-* seeing my content re-used in Sharla Gelfand's []() presentation
+* seeing my "Asking for help online" content re-used in Sharla Gelfand's ["make a reprex... please"](https://twitter.com/sharlagelfand/status/1365665149063987201){target="_blank"} presentation
 
-* collaborating with Silvia Canelon to style code gifs
+* developing a unit testing workshop with Gordon Shotwell ???(maybe)
 
-* discussing with Alison Hill comparisons between blogdown and distill
-
-* collaborating on this blog post with 
+During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I learned how to create my own public garden. 
 
 # Acknowledgements
 
