@@ -166,7 +166,7 @@ questions to inspire content.
 | 3. Rotating curator Julia Piaskowski ([`@SeedsAndBreeds`](https://twitter.com/SeedsAndBreeds){target="_blank"}) tweets a great technical thread on [ANOVA](https://twitter.com/WeAreRLadies/status/1223790298024726528){target="_blank"} | A thread on [blogging resources](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} |
 | 4. Prior experience as an educator | Starting discussion with a [question](https://twitter.com/WeAreRLadies/status/1361332603274612739){target="_blank"} |
 | 5. What am I passionate about lately? | [Blogging](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} |
-| 6. What did I have to overcome to be where I am today? | Learning how to [ask questions online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"} |
+| 6. What did I have to overcome to be where I am today? | Learning how to [ask for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"} |
 | 7. What have colleagues or students asked me about? | What needs [updating](https://twitter.com/WeAreRLadies/status/1362114431090573315){target="_blank"}  and when |
 | 8. What are some R functions or packages that have helped me recently? | [sortable ](https://twitter.com/WeAreRLadies/status/1361418527870132226){target="_blank"} package |
 | 9. What are R-Ladies voices I can amplify while I have this large platform? | Quote tweeting questions like [this](https://twitter.com/WeAreRLadies/status/1362866281918128132){target="_blank"} |
@@ -322,7 +322,7 @@ Serving as a curator was intimidating and time consuming, but I am very glad I d
 
 * co-developing a unit testing workshop with [Gordon Shotwell](https://twitter.com/gshotwell/status/1362769538631221251){target="_blank"}
 
-During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I learned how to create my own public garden, cultivating new connections and collaborations. 
+During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I created a own public garden that cultivated new connections and collaborations. 
 
 # Acknowledgements
 
