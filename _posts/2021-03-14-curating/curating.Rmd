@@ -35,9 +35,24 @@ library(ggiraph)
 
 _i don't love the title_
 
-working title: Curating a public garden
+_title & description 1:_
 
-working description: Before, during, and after my week curating for `@WeAreRLadies` on Twitter
+Curating a public garden
+
+Before, during, and after my week curating for `@WeAreRLadies` on Twitter
+
+_title & description 2:_ 
+
+Before, during, and after my week curating for `@WeAreRLadies` on Twitter
+
+Cultivating connections and collaborations through Twitter curation
+
+_title & description 3:_
+
+From strategy to fruition: Curating for `@WeAreRLadies` on Twitter
+
+?
+
 
 preview image: maybe a cute behind the curtain? something with a bird? open windows/open doors?
 
@@ -53,6 +68,12 @@ _needs more work_
 
 In February 2021 I served as the [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} rotating curator. I tweeted [a lot](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} and had some [blunders](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"}; it was a great opportunity to share knowledge, connect with others with similar interests, and learn something in return.
 
+
+_alt_
+
+In February 2021 I tweeted to a daunting >10k followers by curating for [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} on Twitter, ultimately cultivating new connections
+and collaborations. From strategy to fruition, I hope this post helps you confidently enroll as a curator!
+
 # About `@WeAreRLadies`
 
 The `@WeAreRLadies` rotating Twitter curator exists to "encourage and maintain Twitter engagement within the R-Ladies community", and to "spotlight female and minority genders" working with R. R-Ladies has a [comprehensive guide](https://guide.rladies.org/rocur/about/){target="_blank"} describing the program, procedures and protocols for the week, and tips for successful curation. 
@@ -62,7 +83,7 @@ The `@WeAreRLadies` rotating Twitter curator exists to "encourage and maintain T
 You can view the [schedule](https://docs.google.com/spreadsheets/d/1pmphnR9EinGuAKbVqGzMIt6cWYmHNbeFVzaKJB59JdY/edit#gid=1429703967){target="_blank"} of upcoming curators to identify available dates; records of previous curators are also maintained here.  
 
 Being a curator will be time intensive, so be kind to yourself. Choose dates when you will have time to invest and a flexible work schedule. I chose Feb 15-20 
-because I hoped by then I should be recovered from an intense Q4 work cycle;
+because I hoped by then I would be recovered from an intense Q4 work cycle;
 additionally, Feb 15 (President's Day) was a company holiday. Additionally, you may
 want to select a date far enough in the future that allows you time to prepare
 content.
@@ -79,14 +100,22 @@ form includes filling out details that complete your [curating profile](https://
 
 # Timeline
 
-_This section needs more work._
+_This section needs more work,or cut, or just bit about manager?_
 
-_1. Graphical or table presentation?_
+_1. Graphical or table presentation or none?_
 
 _2. For table - format with inline options vs knitr-esqe options?_
 
-_3. Also not shown - noted brief content ideas starting when I signed up to the day of curation._
+_3. some overlap here with drafting content section, where best placed?_
 
+I gave myself three months between signing up and my selected date to start strategizing. 
+After enrolling, I regularly jotted down quick content ideas as they surfaced.
+
+About three weeks before my curation, I started planning my curating efforts a bit more
+seriously. I notified my manager that I was curating, and I discussed potential work-related content with her. One idea was approved and another was reasonably denied. This honest conversation alleviated my concerns about Twitter curation potentially impacting my work either through time spent or content shared. Discussing this with her also facilitated new awareness about my passions - my manager was not aware of R-Ladies, and she was enthusiastic and supportive.
+
+
+_table or graphical presenation worth it?_
 
 ```{r}
 timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv")) %>% 
@@ -96,20 +125,13 @@ timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv"
     )
 ```
 
-I signed up to curate in 2021, giving myself three months notice to start thinking
-about content. After I signed up, I started jotting down quick content ideas as they popped into my head.
-
-_some overlap here with drafting content section, where best placed?_
 
 ```{r}
 timeline %>% 
   dplyr::select(time_frame, action)
 ```
 
-About three weeks before my curation, I started planning my curating efforts a bit more
-seriously.  First, I notified my manager that I was curating - my manager had no idea that R-Ladies even existed, and she was enthusiastic and supportive. Next, I discussed potential work-related content with her. One idea was given the green light and another was reasonably denied. I am very glad we had this honest conversation.
 
-Additionally, I considered how to style visual content; I asked on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"} about R-Ladies styles, and I was directed to the xaringan R-Ladies [css](https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources){target="_blank"} and the R-Ladies [branding](https://guide.rladies.org/organization/tech/brand/){target="_blank"} guides. I developed visual layouts like [this one](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} and R code gifs using [custom CSS and `{flipbookr}`](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"}.
 
 _Alternative presentation: I don't think this figure has much promise, maybe
 just stick to table format._
@@ -129,9 +151,9 @@ timeline %>%
     ))
 ```
 
-
-
 # Content inspiration
+
+_can't decide if this should go upfront or later_
 
 As I approached my curating week, I recalled previous `@WeAreRLadies` that were
 memorable for me, my previous experience as an educator, and some reflection
@@ -152,12 +174,12 @@ questions to inspire content.
 # Drafting content
 
 Leading up to my curation week, I regularly jotted down brief notes of content ideas.
-The week before curation, I started fleshing out those ideas into actual tweets and actually wrote them down in a document. Not all of my ideas ended up in a draft,
+The week before curation, I started fleshing out those ideas into actual tweets and wrote them down in a document. Not all of my ideas ended up in a draft,
 and rarely did the draft get tweeted out exactly as I had written. 
 
 One challenge with drafting tweets in a document was being mindful of character limits
 and anticipating where the breaks would be for threads. I started copying content into a send tweet window to preview and then pasting it back into my draft document. There is software that facilitates drafting tweets - for example, [Daphna Harel](https://twitter.com/DaphnaHarel){target="_blank"} recommended
- [getchirrapp.com](https://getchirrapp.com/){target="_blank"} to me the week of my curation, but I didn't end up using it.
+ [getchirrapp.com](https://getchirrapp.com/){target="_blank"} to me the week of my curation.
 
 # Polls
 
@@ -229,6 +251,24 @@ girafe(ggobj = p,
 
 
 
+# Styling content
+
+Additionally, I considered how to visually style content beyond text in a tweet. I asked on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"} about R-Ladies styles, and I was directed to the xaringan R-Ladies [css](https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources){target="_blank"} and the R-Ladies [branding](https://guide.rladies.org/organization/tech/brand/){target="_blank"} guides. You are not required to use R-Ladies style and branding, but it was convenient for me. 
+
+I developed two visual layouts using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} from R-Ladies branding (see tweets for [blogdown vs dstill](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} and [asking for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"}).
+
+```{r echo=FALSE, fig.cap="Comparison of blogdown vs distill styled using R-Ladies Google slide template."}
+knitr::include_graphics("img/compare_blogdown_distill.svg")
+```
+
+
+I also created five R-Ladies styled code gifs with xaringan and flipbookr - methods and code are in this [blog post](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"}. Here is an example code gif:
+
+```{r echo=FALSE, fig.cap="Example R-Ladies styled code gif."}
+knitr::include_graphics("img/demo-walrus-flipbook-quality.gif")
+```
+
+
 
 
 # First and last tweets
@@ -240,17 +280,9 @@ To address this, I aimed to create content-rich [first](https://twitter.com/WeAr
 
 # TweetDeck
 
-When you serve as a curator, you will be tweeting from [TweetDeck](https://tweetdeck.twitter.com/){target="_blank"}, and it is hard to separate curator experience from the technology. Tweeting from TweetDeck is a different Twitter interface and experience, and feels like
+When you serve as a curator, you will be tweeting from [TweetDeck](https://tweetdeck.twitter.com/){target="_blank"}, and it is hard to separate curator experience from the technology. Tweeting from TweetDeck can be overwhelming compared to the standard Twitter interface.
 
-_find right gif - looking for someone standing in front of screen or window with code all around them_
-
-https://giphy.com/gifs/trainline-spy-l0HUbESbGqYn8kNlC
-
-https://giphy.com/gifs/the-matrix-neo-thomas-anderson-fV0oSDsZ4UgdW
-
-
-TweetDeck had a learning curve for me, and there were limitations to the platform
-that added challenges to curating, which included:
+Moreover, there were limitations to the platform that added challenges to curating, which included:
 
 1. There was no `+` enabled to easily create threads (I had to send a tweet and then comment on the tweet, and it was initially hard to ensure the thread appeared in correct order).
 
@@ -262,17 +294,17 @@ that added challenges to curating, which included:
 
 5. When uploading local content, you can add [descriptions](https://help.twitter.com/en/using-twitter/picture-descriptions){target="_blank"} to both gifs and images in the regular Twitter interface to create inclusive content for community members that use assistive reading technology; however, in TweetDeck, descriptions were enabled for images but not gifs.
 
-I spent a lot of time my first couple of days as a curator getting used to TweetDeck and researching alternative solutions and plug-ins that ultimately did not help. Twitter is targeting TweetDeck [enhancements](https://www.theverge.com/2021/3/9/22321991/twitter-tweetdeck-overhaul-redesign-product-changes){target="_blank"} later in 2021, so I don't think it is worth documenting all of my methods and work-arounds. However, if you are serving as a curator and struggling with TweetDeck, please reach out - I am happy to share what ended up working for me. You can also prepare yourself by practicing tweeting from TweetDeck with your personal account prior to curating.
+I spent a lot of time my first couple of days as a curator getting used to TweetDeck, reaching out to other curators for tips, and researching alternative solutions and plug-ins that ultimately did not help. Twitter is targeting TweetDeck [enhancements](https://www.theverge.com/2021/3/9/22321991/twitter-tweetdeck-overhaul-redesign-product-changes){target="_blank"} later in 2021, so I don't think it is worth documenting all of my methods and work-arounds. However, if you are serving as a curator and struggling with TweetDeck, please reach out - I am happy to share what ended up working for me. You can also prepare yourself by practicing tweeting from TweetDeck with your personal account prior to curating.
 
 # Reflection
 
 _this is getting long, break into multiple sections?_
 
-Between prepared and ad-hoc content and discussions with followers, I tweeted a lot! (At least for me.)  Here is a [summary thread](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} of my tweets for the week. My tweets were not perfect, and that is OK. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"} for tweets that I bungled.
+Between prepared and ad-hoc content and discussions with followers, I tweeted a lot! (At least for me.)  Here is a [summary thread](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} of my tweets for the week. My tweets were not perfect, and that is okay. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"} for tweets that I bungled.
 
 One regret that I do have from my curating week is failing to explicitly knowledge Black History Month as I was tweeting in February. I wish had prepared at least one tweet or better amplified the voices of black members of the R community while I had the large platform. 
 
-Just because a twitter account has >20K followers, the likes, re-tweets, and comments don't come automatically. You still have to earn engagement with your content. Many of the tweets I sent had little engagement, and that is OK. Supporting your curators by engaging with their tweets or sending notes of encouragement is _much_ appreciated. I thank everyone who engaged with me during my curation, with a special shout out to Alison Hill who re-energized me mid-week with comments on the R-Ladies bloggers [thread](https://twitter.com/WeAreRLadies/status/1362021673239785473){target="_blank"}.
+Just because a twitter account has >20K followers, the likes, re-tweets, and comments don't come automatically. You still have to earn engagement with your content. Many of the tweets I sent had little engagement, and that is okay. Supporting your curators by engaging with their tweets or sending notes of encouragement is _much_ appreciated. I thank everyone who engaged with me during my curation, with a special shout out to Alison Hill who re-energized me mid-week with comments on the R-Ladies bloggers [thread](https://twitter.com/WeAreRLadies/status/1362021673239785473){target="_blank"}.
 
 Serving as a curator was intimidating and time consuming, but I am very glad I did it. Many good things have happened as direct result of that week, including: 
 
@@ -290,7 +322,7 @@ Serving as a curator was intimidating and time consuming, but I am very glad I d
 
 * co-developing a unit testing workshop with [Gordon Shotwell](https://twitter.com/gshotwell/status/1362769538631221251){target="_blank"}
 
-During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I learned how to create my own public garden. 
+During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I learned how to create my own public garden, cultivating new connections and collaborations. 
 
 # Acknowledgements
 
