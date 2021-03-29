@@ -192,9 +192,14 @@ questions to inspire content.
 #tweet_screenshot(tweet_url("WeAreRLadies", "1361332603274612739"), file = here::here("tweet1.png"))
 ```
 
+```{r}
+full_path <- "C:/Users/Shannon.Pileggi/Documents/pipinghotdata_distill/_posts/2021-03-14-curating/img/"
+```
+
+
 
 ```{r}
-p<-include_tweet("https://twitter.com/WeAreRLadies/status/1361332603274612739")
+#p<-include_tweet("https://twitter.com/WeAreRLadies/status/1361332603274612739")
 ```
 
 
@@ -219,7 +224,7 @@ polls <- read_csv(here::here("_posts", folder, "data", "rladies_polls.csv")) %>%
     # html embedding using tweetrmd package
     embed2 = purrr::map(url, include_tweet),
     embed3 = purrr::map(embed2, ~ .x[[2]]),
-    img_source = glue::glue('<img src="_posts/{folder}/img/tweet1.png">')
+    img_source = glue::glue('<img src="{full_path}tweet1.png">')
     ) 
 ```
 
