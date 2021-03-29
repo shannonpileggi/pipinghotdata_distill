@@ -31,6 +31,7 @@ folder <- "2021-03-14-curating"
 library(tidyverse)
 library(ggtext)
 library(ggiraph)
+library(tweetrmd)
 ```
 
 _i don't love the title_
@@ -187,6 +188,18 @@ questions to inspire content.
 
 # Polls
 
+```{r}
+#tweet_screenshot(tweet_url("WeAreRLadies", "1361332603274612739"), file = here::here("tweet1.png"))
+```
+
+
+```{r}
+p<-include_tweet("https://twitter.com/WeAreRLadies/status/1361332603274612739")
+```
+
+
+
+
 As I already mentioned, I love starting discussion with questions! Reminiscing about my 
 days teaching in large lectures halls with students actively participating in polling questions through clickers, I planned three polls for the week. Polls on twitter are open for 24 hours and allow up to four response options. The approach was to launch the poll, collect responses, and then discuss. Here are the polls that I launched during my curation:
 
@@ -202,8 +215,12 @@ polls <- read_csv(here::here("_posts", folder, "data", "rladies_polls.csv")) %>%
     content_label = glue::glue("{type}:\n{content}"),
     content_click = sprintf("window.open(\"%s%s\")", url, ""),
     content_url = 
-       str_c("<a href='", content, "' target='_blank'>", url, "</a>")
-    )
+       str_c("<a href='", content, "' target='_blank'>", url, "</a>"),
+    # html embedding using tweetrmd package
+    embed2 = purrr::map(url, include_tweet),
+    embed3 = purrr::map(embed2, ~ .x[[2]]),
+    img_source = glue::glue('<img src="_posts/{folder}/img/tweet1.png">')
+    ) 
 ```
 
 
@@ -214,7 +231,10 @@ polls <- read_csv(here::here("_posts", folder, "data", "rladies_polls.csv")) %>%
 
 ```{r}
 p <- polls %>% 
-  ggplot(aes(x = 1, y = tweet_label, fill = poll_label, tooltip = embed, onclick = content_click)) +
+  # embed is html copied and pasted from twitter ---
+  # embed3 comes from tweetrmd package, looks same as embed ----
+  # img_source is image taken from tweetrmd, couldn't get this to work ----
+  ggplot(aes(x = 1, y = tweet_label, fill = poll_label, tooltip = embed3, onclick = content_click)) +
   facet_wrap(. ~ day, ncol = 6, drop = F) +
   geom_tile_interactive(color = "white") +
   geom_text(aes(label = content_label), size = 2.5) +
