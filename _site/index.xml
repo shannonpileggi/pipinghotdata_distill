@@ -11,169 +11,85 @@
     <item>
       <title>Deploy previews with Netlifly</title>
       <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/posts/2021-04-01-deploying-branches-with-netlifly</link>
+      <link>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</link>
       <description>
 
 
 &lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
+&lt;p&gt;If you are deploying your &lt;a href="https://rstudio.github.io/distill/" target="_blank"&gt;{distill}&lt;/a&gt; website through Netlifly, you can enable &lt;a href="https://docs.netlify.com/site-deploys/overview/#definitions" target="_blank"&gt;deploy previews&lt;/a&gt; to create temporary urls to preview a branch.&lt;/p&gt;
+&lt;h1 id="background"&gt;Background&lt;/h1&gt;
+&lt;p&gt;My usual website workflow so far has been to draft posts in my master branch with &lt;code&gt;draft: true&lt;/code&gt; in the &lt;code&gt;yaml&lt;/code&gt;, and then when I am ready to publish switch to &lt;code&gt;draft: false&lt;/code&gt; and commit to my main/master branch. Recently, I’ve been inspired to try alternative workflows:&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;
+&lt;p lang="en" dir="ltr"&gt;
+I’m also a huge convert to the church of making PRs to yourself. Start with an R Markdown project like a simple slide deck or a bookdown book, then get into the habit of every change is a branch + PR. Low cost, but teaches you a lot! &lt;a href="https://t.co/Ee3tuoS4Ef"&gt;pic.twitter.com/Ee3tuoS4Ef&lt;/a&gt;
+&lt;/p&gt;
+— Alison Presmanes Hill (&lt;span class="citation"&gt;@apreshill&lt;/span&gt;) &lt;a href="https://twitter.com/apreshill/status/1363104026460577793?ref_src=twsrc%5Etfw"&gt;February 20, 2021&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;I also collaborated with someone on a blog post for the first time, and I learned that you can send links to &lt;em&gt;preview&lt;/em&gt; branches! 🎉 For both solo and collaborative posts, this is my new workflow.&lt;/p&gt;
+&lt;p&gt;I did a quick search for existing guides, and I found that Garrick Aden‑Buie has a comprehensive 2019 blog post titled &lt;a href="https://www.garrickadenbuie.com/blog/blogdown-netlify-new-post-workflow/" target="_blank"&gt;A Blogdown New Post Workflow with Github and Netlify&lt;/a&gt;. Some of the steps are specific to {blogdown}, so here is my {distill} take on it.&lt;/p&gt;
 &lt;h1 id="netlifly-settings"&gt;Netlifly settings&lt;/h1&gt;
-&lt;p&gt;First, make sure you have deploy previews enabled on Netlifly. Go to your site, and then:&lt;/p&gt;
+&lt;p&gt;First, make sure you have &lt;a href="https://docs.netlify.com/site-deploys/overview/#definitions" target="_blank"&gt;deploy previews&lt;/a&gt; enabled on Netlifly. Login to Netlifly, go to your site, and then:&lt;/p&gt;
 &lt;p&gt;➡️ Site settings&lt;/p&gt;
 &lt;p&gt;➡️ Build &amp;amp; deploy&lt;/p&gt;
 &lt;p&gt;➡️ Deploy contexts&lt;/p&gt;
 &lt;p&gt;➡️ Deploy previews&lt;/p&gt;
 &lt;p&gt;➡️ Select &lt;strong&gt;Any pull request against your production branch / branch deploy branches&lt;/strong&gt; &lt;em&gt;Netlify will generate a deploy preview with a unique URL for each built pull request.&lt;/em&gt;&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-04-01-deploying-branches-with-netliflyimg/netlifly-settings.png" alt="Screenshot of Netlifly settings with Deploy previews set to &amp;quot;Any pull request...&amp;quot;." width="894" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netliflyimg/netlifly-settings.png" alt="Screenshot of Netlifly settings with Deploy previews set to &amp;quot;Any pull request...&amp;quot;." width="894" /&gt;
 &lt;p class="caption"&gt;
 (#fig:unnamed-chunk-1)Screenshot of Netlifly settings with Deploy previews set to “Any pull request…”.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;h1 id="back-in-r"&gt;Back in R&lt;/h1&gt;
+&lt;h1 id="back-in-website-development"&gt;Back in website development&lt;/h1&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;Create a branch for your repo/website:&lt;/li&gt;
+&lt;li&gt;Create a branch for your website repository. I am naming my branch &lt;code&gt;netlifly-deploy-branch&lt;/code&gt;, and in the R console submit:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="r"&gt;&lt;code&gt;usethis::pr_init(&amp;quot;netlifly-deploy-branch&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;ol start="2" style="list-style-type: decimal"&gt;
-&lt;li&gt;Create a post:&lt;/li&gt;
+&lt;li&gt;Create a post. In R console submit:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="r"&gt;&lt;code&gt;distill::create_post(&amp;quot;Deploy previews with Netlifly&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;ol start="3" style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Draft post; set &lt;code&gt;draft: false&lt;/code&gt; in the &lt;code&gt;yaml&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Knit post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Commit everything. In terminal submit:&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;pre class="r"&gt;&lt;code&gt;git add .
+git commit -m &amp;quot;draft netlifly post&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="6" style="list-style-type: decimal"&gt;
+&lt;li&gt;Push to GitHub. In R console submit:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::pr_push()&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="7" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;In GitHub, click &lt;strong&gt;“Create pull request”&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Some automatic checks will run. Click on &lt;strong&gt;“Details”&lt;/strong&gt; where it says &lt;strong&gt;“Deploy preview ready!”&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netliflyimg/netlifly-checks.PNG" alt="Screenshot of checks run on GitHub pull request. Click on &amp;quot;Details&amp;quot; where it says &amp;quot;Deploy preview ready!&amp;quot;" width="679" /&gt;
+&lt;p class="caption"&gt;
+(#fig:unnamed-chunk-6)Screenshot of checks run on GitHub pull request. Click on “Details” where it says “Deploy preview ready!”
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This opens up a window in my browser with the url &lt;code&gt;https://deploy-preview-3--flamboyant-mccarthy-854a9b.netlify.app/&lt;/code&gt;. Send this link to a friend for review!&lt;/p&gt;
+&lt;ol start="9" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Edit draft, repeat steps 5-8.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When ready to publish, back in GitHub click on &lt;strong&gt;“Merge pull request”&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I’m new to this workflow and this post was written quickly - edits and suggestions are welcome!&lt;/p&gt;
 &lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
-&lt;p&gt;Thanks, Alison Hill.&lt;/p&gt;
+&lt;p&gt;Thanks, &lt;a href="https://twitter.com/apreshill" target="_blank"&gt;Alison Hill&lt;/a&gt;!🤗&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>5698ab070324558767a5a05561a744cc</distill:md5>
-      <guid>https://www.pipinghotdata.com/posts/2021-04-01-deploying-branches-with-netlifly</guid>
+      <distill:md5>3f11b1ffc11970e8bad0803f5999b5f5</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</guid>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/img/netlifly-checks.png" medium="image" type="image/png" width="1358" height="704"/>
     </item>
     <item>
       <title>R-Ladies styled code gifs with xaringan and flipbookr</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr</link>
-      <description>
-
-
-&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
-&lt;p&gt;I curated the &lt;a href="https://twitter.com/WeAreRLadies" target="_blank"&gt;&lt;code&gt;@WeAreRLadies&lt;/code&gt;&lt;/a&gt; twitter account from Feb 15 - 20, 2021. During my curation, I shared brief R code gifs created with &lt;a href="https://slides.yihui.org/xaringan/#1" target="_blank"&gt;&lt;code&gt;xaringan&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://github.com/EvaMaeRey/flipbookr" target="_blank"&gt;&lt;code&gt;flipbookr&lt;/code&gt;&lt;/a&gt;, a bit of custom CSS, and the &lt;a href="https://www.screentogif.com/" target="_blank"&gt;&lt;code&gt;ScreenToGif&lt;/code&gt;&lt;/a&gt; recorder. Full code is available in the &lt;a href="https://github.com/shannonpileggi/rladies-flipbookr" target="_blank"&gt;rladies-flipbookr&lt;/a&gt; repo; here is an example gif:&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookrgifs/demo-walrus-flipbook-quality.gif" alt="Walrus operator gif. You can read more about this topic at https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/."  /&gt;
-&lt;p class="caption"&gt;
-(#fig:unnamed-chunk-1)Walrus operator gif. You can read more about this topic at &lt;a href="https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/" class="uri"&gt;https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/&lt;/a&gt;.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
-&lt;p&gt;This material was developed using:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class="header"&gt;
-&lt;th&gt;Software / package&lt;/th&gt;
-&lt;th&gt;Version&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class="odd"&gt;
-&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;4.0.3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class="even"&gt;
-&lt;td&gt;RStudio&lt;/td&gt;
-&lt;td&gt;1.4.1103&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class="odd"&gt;
-&lt;td&gt;&lt;code&gt;tidyverse&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;1.3.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class="even"&gt;
-&lt;td&gt;&lt;code&gt;xaringan&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;0.19&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class="odd"&gt;
-&lt;td&gt;&lt;code&gt;flipbookr&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;0.1.0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h1 id="creating-slides"&gt;Creating slides&lt;/h1&gt;
-&lt;p&gt;The &lt;code&gt;flipbookr&lt;/code&gt; &lt;a href="https://github.com/EvaMaeRey/flipbookr#template" target="_blank"&gt;template&lt;/a&gt; makes it easy to quickly create content! I used the classic flipbook, with defaults to walk through the code pipeline (slides 3-4 in the template).&lt;/p&gt;
-&lt;p&gt;To create a flipbook slide that advances code line by line, create a named R code chunk with the &lt;code&gt;include = FALSE&lt;/code&gt; option, and then present the code chunk with &lt;code&gt;flipbookr::chunk_reveal&lt;/code&gt;. The order of defining the chunk versus revealing the chunk does not matter in your RMarkdown document. Longer content was broken into multiple code chunks.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;`r chunk_reveal("walrus", title = "## Walrus operator")`&lt;/code&gt;&lt;/p&gt;
-&lt;pre class="markdown"&gt;&lt;code&gt;```{r walrus, include = FALSE}
-library(tidyverse)
-library(rlang)
-library(glue)
-
-suffix &amp;lt;- &amp;quot;A&amp;quot; 
-
-dat &amp;lt;- tibble(x = 1:5) %&amp;gt;%
-  mutate(
-    &amp;quot;x_{suffix}&amp;quot; := x
-  ) 
-
-dat %&amp;gt;% 
-  dplyr::select(
-    glue::glue(&amp;quot;x_{suffix}&amp;quot;)
-    ) 
-```&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="styling-slides"&gt;Styling slides&lt;/h1&gt;
-&lt;p&gt;I first styled the content used Alison Hill’s &lt;a href="https://alison.rbind.io/project/rladies-xaringan/" target="_blank"&gt;R-Ladies xaringan theme&lt;/a&gt; by declaring R-Ladies CSS options in the &lt;code&gt;yaml&lt;/code&gt; parameters:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;css: ["default", "rladies", "rladies-fonts"]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;resulting in&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookrimg/walrus-default.PNG" alt="Flipbookr walrus operator content styled with R-Ladies xaringan theme." width="834" /&gt;
-&lt;p class="caption"&gt;
-(#fig:unnamed-chunk-2)Flipbookr walrus operator content styled with R-Ladies xaringan theme.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;However, the highlighting shade was a tad too dark for me, and I was concerned that the font size would be too small to be legible in a gif on twitter. I updated the CSS with bits lifted from &lt;a href="https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources" target="_blank"&gt;xaringan templates&lt;/a&gt; and some modifications on font size and color kindly developed by &lt;a href="https://silvia.rbind.io/" target="_blank"&gt;Silvia Canelón&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookrwalrus-adjusted.png" alt="Flipbookr walrus operator content styled with R-Ladies xaringan theme adjusted with lighter highlight shade and larger font size." width="768" /&gt;
-&lt;p class="caption"&gt;
-(#fig:unnamed-chunk-3)Flipbookr walrus operator content styled with R-Ladies xaringan theme adjusted with lighter highlight shade and larger font size.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;The changes are subtle, but I hope they improve readability! The increased font size did create a challenge for code formatting and for the amount of code that could be shown on a single slide.&lt;/p&gt;
-&lt;p&gt;Silvia showed me how to modify the CSS through (1) inclusion of a CSS code chunk, and (2) calling a &lt;a href="https://github.com/shannonpileggi/rladies-flipbookr/blob/main/css/rladies-adjusted.css" target="_blank"&gt;separate CSS sheet&lt;/a&gt;. For option (2), change the yaml to point to your custom CSS:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;css: ["default", "default-fonts", "css/rladies-adjusted.css"]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;You can see the full code for the default xaringan theme and the two ways of adjusting the CSS for all the gifs I created in the &lt;a href="https://github.com/shannonpileggi/rladies-flipbookr" target="_blank"&gt;shannonpileggi/rladies-flipbookr&lt;/a&gt; github repository.&lt;/p&gt;
-&lt;p&gt;If you have configured a GitHub personal access token, you can fork and clone this repo with:&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;usethis::create_from_github(&amp;quot;shannonpileggi/rladies-flipbookr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="recording-the-gif"&gt;Recording the gif&lt;/h1&gt;
-&lt;p&gt;I recorded the gifs by manually advancing the slides with the screen recorder &lt;a href="https://www.screentogif.com/" target="_blank"&gt;&lt;code&gt;ScreenToGif&lt;/code&gt;&lt;/a&gt; (for Windows OS). Bryan Shalloway has some code to &lt;a href="https://github.com/brshallo/flipbookr-gifs-examples" target="_blank"&gt;automatically create gifs from xaringan slides&lt;/a&gt;, but I didn’t go that route this time - maybe next!&lt;/p&gt;
-&lt;h1 id="code-gifs-shared"&gt;Code gifs shared&lt;/h1&gt;
-&lt;p&gt;Here are the R code gifs that I shared on twitter during my &lt;code&gt;@WeAreRLadies&lt;/code&gt; curating week:&lt;/p&gt;
-&lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://twitter.com/WeAreRLadies/status/1361802517735178243" target="_blank"&gt;walrus operator&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://twitter.com/WeAreRLadies/status/1362442398790516741" target="_blank"&gt;mutate_at + vars + matches&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://twitter.com/WeAreRLadies/status/1362450901445865472" target="_blank"&gt;mutate + across + matches&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://twitter.com/WeAreRLadies/status/1363186751133667330" target="_blank"&gt;haven + gtsummary&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://twitter.com/WeAreRLadies/status/1363286611971170304" target="_blank"&gt;named color vectors + scale_color_manual&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id="other-options"&gt;Other options&lt;/h1&gt;
-&lt;p&gt;During my curating week, I learned about the &lt;a href="https://github.com/yonicd/carbonate" target="_blank"&gt;carbonate&lt;/a&gt; package! This also seems like a fantastic option for aesthetically appealing code sharing.&lt;/p&gt;
-&lt;h1 id="accessibility"&gt;Accessibility&lt;/h1&gt;
-&lt;p&gt;Visual code sharing through gifs and images can be a great way to share content! However, please remember to share the content with everyone. Gifs and images on their own are not accessible to members of our community that use assistive technology to read digital content. In order to make gifs and images accessible to screen readers, you can include &lt;a href="https://help.twitter.com/en/using-twitter/picture-descriptions" target="_blank"&gt;descriptions&lt;/a&gt; or share code in otherwise accessible formats like &lt;a href="https://gist.github.com/" target="_blank"&gt;GitHub gists&lt;/a&gt;. If I miss making any of my content accessible, please let me know!&lt;/p&gt;
-&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
-&lt;p&gt;I have to give &lt;a href="https://silvia.rbind.io/" target="_blank"&gt;Silvia Canelón&lt;/a&gt; (&lt;a href="https://twitter.com/spcanelon" target="_blank"&gt;&lt;code&gt;@spcanelon&lt;/code&gt;&lt;/a&gt;) a &lt;strong&gt;huge&lt;/strong&gt; shout out here. My curating week started on a Monday, and on Monday night I was still trying to figure out how I wanted to style my code. We chatted on &lt;a href="https://rladies-community-slack.herokuapp.com/" target="_blank"&gt;R-Ladies slack&lt;/a&gt;, and she quickly helped me make CSS adjustments to the default xaringan R-Ladies theme. After the curating week, Silvia helped me fine tune the bits to share that are now in the &lt;a href="https://github.com/shannonpileggi/rladies-flipbookr" target="_blank"&gt;rladies-flipbookr&lt;/a&gt; repo. Additionally, she advises me on inclusivity and accessibility best practices, which I am still striving to meet. Thank you, Silvia! 💜 🙏&lt;/p&gt;
-&lt;p&gt;Lastly, thanks to the friendly &lt;a href="https://community.rstudio.com/" target="_blank"&gt;RStudio Community&lt;/a&gt; forum for helping me figure out both the &lt;a href="https://community.rstudio.com/t/rmarkdown-verbatim-in-line-code/98165" target="_blank"&gt;in line verbatim&lt;/a&gt; I used in this post and the &lt;a href="https://community.rstudio.com/t/tidy-eval-glue-custom-names-w-dplyr-select/95010" target="_blank"&gt;dplyr::select() portion&lt;/a&gt; of the walrus operator gif.&lt;/p&gt;
-&lt;h1 id="outtakes"&gt;Outtakes&lt;/h1&gt;
-&lt;p&gt;I experimented with, and actually recorded, some alternative formats before I landed on &lt;code&gt;flipbookr&lt;/code&gt;. Here are two gifs that didn’t make the cut! 🙈&lt;/p&gt;
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookrgifs/demo-walrus-rmarkdown.gif" alt="Walrus operator gif recorded as a scrolling RMarkdown document."  /&gt;
-&lt;p class="caption"&gt;
-(#fig:unnamed-chunk-5)Walrus operator gif recorded as a scrolling RMarkdown document.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookrgifs/demo-walrus-console.gif" alt="Walrus operator gif recorded as code submitted to console."  /&gt;
-&lt;p class="caption"&gt;
-(#fig:unnamed-chunk-6)Walrus operator gif recorded as code submitted to console.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>856444a02075a12ae1022f1782766019</distill:md5>
+      <description>The code behind my @WeAreRLadies curating week</description>
       <guid>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr</guid>
       <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/walrus-adjusted.png" medium="image" type="image/png" width="1536" height="861"/>
