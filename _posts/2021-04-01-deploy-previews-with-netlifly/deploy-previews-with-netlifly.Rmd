@@ -98,7 +98,7 @@ knitr::include_graphics("img/netlifly-checks.png")
 
 This opens up a window in my browser with the url `https://deploy-preview-3--flamboyant-mccarthy-854a9b.netlify.app/`. Send this link to a friend for review!
 
-9. Edit draft, repeat steps 5-8.
+9. Edit draft, repeat steps 4-8.
 
 10. When ready to publish, back in GitHub click on **"Merge pull request"**
 
