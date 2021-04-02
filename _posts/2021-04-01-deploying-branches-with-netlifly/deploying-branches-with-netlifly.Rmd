@@ -1,0 +1,70 @@
+---
+title: "Deploy previews with Netlifly"
+description: |
+  Collaborative {distill} website development
+base_url: https://www.pipinghotdata.com/
+preview: walrus-adjusted.png
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 04-01-2021
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# TL; DR
+
+# Netlifly settings
+
+First, make sure you have deploy previews enabled on Netlifly. Go to your site, and then:
+
+`r emo::ji("right arrow")` Site settings
+
+`r emo::ji("right arrow")` Build & deploy
+
+`r emo::ji("right arrow")` Deploy contexts 
+
+`r emo::ji("right arrow")` Deploy previews 
+
+`r emo::ji("right arrow")` Select **Any pull request against your production branch / branch deploy branches** _Netlify will generate a deploy preview with a unique URL for each built pull request._
+
+```{r echo=FALSE, fig.cap='Screenshot of Netlifly settings with Deploy previews set to "Any pull request...".'}
+knitr::include_graphics("img/netlifly-settings.png")
+```
+
+# Back in R
+
+1. Create a branch for your repo/website:
+
+```{r, eval = FALSE}
+usethis::pr_init("netlifly-deploy-branch")
+```
+
+2. Create a post:
+
+```{r, eval = FALSE}
+distill::create_post("Deploy previews with Netlifly")
+```
+
+3. Draft post; set `draft: false` in the `yaml`.
+
+4. 
+
+
+
+
+# Acknowledgements
+
+Thanks, Alison Hill.
+

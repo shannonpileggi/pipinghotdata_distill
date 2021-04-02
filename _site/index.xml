@@ -7,7 +7,48 @@
     <description>Data science demos, deliberations, and discoveries
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Deploy previews with Netlifly</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-04-01-deploying-branches-with-netlifly</link>
+      <description>
+
+
+&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
+&lt;h1 id="netlifly-settings"&gt;Netlifly settings&lt;/h1&gt;
+&lt;p&gt;First, make sure you have deploy previews enabled on Netlifly. Go to your site, and then:&lt;/p&gt;
+&lt;p&gt;➡️ Site settings&lt;/p&gt;
+&lt;p&gt;➡️ Build &amp;amp; deploy&lt;/p&gt;
+&lt;p&gt;➡️ Deploy contexts&lt;/p&gt;
+&lt;p&gt;➡️ Deploy previews&lt;/p&gt;
+&lt;p&gt;➡️ Select &lt;strong&gt;Any pull request against your production branch / branch deploy branches&lt;/strong&gt; &lt;em&gt;Netlify will generate a deploy preview with a unique URL for each built pull request.&lt;/em&gt;&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-04-01-deploying-branches-with-netliflyimg/netlifly-settings.png" alt="Screenshot of Netlifly settings with Deploy previews set to &amp;quot;Any pull request...&amp;quot;." width="894" /&gt;
+&lt;p class="caption"&gt;
+(#fig:unnamed-chunk-1)Screenshot of Netlifly settings with Deploy previews set to “Any pull request…”.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="back-in-r"&gt;Back in R&lt;/h1&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;Create a branch for your repo/website:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::pr_init(&amp;quot;netlifly-deploy-branch&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="2" style="list-style-type: decimal"&gt;
+&lt;li&gt;Create a post:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="r"&gt;&lt;code&gt;distill::create_post(&amp;quot;Deploy previews with Netlifly&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="3" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Draft post; set &lt;code&gt;draft: false&lt;/code&gt; in the &lt;code&gt;yaml&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
+&lt;p&gt;Thanks, Alison Hill.&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>5698ab070324558767a5a05561a744cc</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2021-04-01-deploying-branches-with-netlifly</guid>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>R-Ladies styled code gifs with xaringan and flipbookr</title>
       <dc:creator>Shannon Pileggi</dc:creator>

@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-04-01-deploying-branches-with-netlifly/",
+    "title": "Deploy previews with Netlifly",
+    "description": "Collaborative {distill} website development",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2021-04-01",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nTL; DR\r\nNetlifly settings\r\nBack in R\r\nAcknowledgements\r\n\r\nTL; DR\r\nNetlifly settings\r\nFirst, make sure you have deploy previews enabled on Netlifly. Go to your site, and then:\r\n➡️ Site settings\r\n➡️ Build & deploy\r\n➡️ Deploy contexts\r\n➡️ Deploy previews\r\n➡️ Select Any pull request against your production branch / branch deploy branches Netlify will generate a deploy preview with a unique URL for each built pull request.\r\n\r\n\r\n\r\nFigure 1: Screenshot of Netlifly settings with Deploy previews set to “Any pull request…”.\r\n\r\n\r\n\r\nBack in R\r\nCreate a branch for your repo/website:\r\n\r\n\r\nusethis::pr_init(\"netlifly-deploy-branch\")\r\n\r\n\r\n\r\nCreate a post:\r\n\r\n\r\ndistill::create_post(\"Deploy previews with Netlifly\")\r\n\r\n\r\n\r\nDraft post; set draft: false in the yaml.\r\n\r\nAcknowledgements\r\nThanks, Alison Hill.\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-04-01T21:37:40-04:00",
+    "input_file": "deploying-branches-with-netlifly.utf8.md"
+  },
+  {
     "path": "posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/",
     "title": "R-Ladies styled code gifs with xaringan and flipbookr",
     "description": "The code behind my @WeAreRLadies curating week",
