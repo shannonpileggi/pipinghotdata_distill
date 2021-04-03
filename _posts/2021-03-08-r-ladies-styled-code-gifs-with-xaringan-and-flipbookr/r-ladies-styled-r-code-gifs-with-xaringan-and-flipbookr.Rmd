@@ -148,6 +148,9 @@ Visual code sharing through gifs and images can be a great way to share
 content! However, please remember to share the content with everyone. Gifs and images on their own are not accessible to members of our community that use assistive technology to read digital content. In order to make gifs and images accessible to screen readers, you can include [descriptions](https://help.twitter.com/en/using-twitter/picture-descriptions){target="_blank"} or share code in otherwise accessible formats like [GitHub gists](https://gist.github.com/){target="_blank"}. If I miss making
 any of my content accessible, please let me know!
 
+<aside>
+Added April 3, 2020: This [article](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81){target="_blank"} provides a framework for how to write alt text for data visualization. In addition, you can install [chrome](https://chrome.google.com/webstore/detail/twitter-required-alt-text/fpjlpckbikddocimpfcgaldjghimjiik/related){target="_blank"} or [firefox](https://addons.mozilla.org/en-US/firefox/addon/twitter-required-alt-text/){target="_blank"} browser plugins to prevent yourself from tweeting an image without  alt text.
+</aside>
 
 # Acknowledgements
 
