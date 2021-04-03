@@ -1548,7 +1548,7 @@ Figure 1: Screenshot of Netlifly settings with Deploy previews set to “Any pul
 </div>
 <ol start="3" type="1">
 <li><p>Draft post; set <code>draft: false</code> in the <code>yaml</code>.</p></li>
-<li><p>Knit post.</p></li>
+<li><p>Knit post. Depending on what you are doing in your branch, you may also need to 🔨 <code>Build Website</code>.</p></li>
 <li><p>Commit everything. In terminal submit:</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
@@ -1570,20 +1570,26 @@ Figure 1: Screenshot of Netlifly settings with Deploy previews set to “Any pul
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span id="fig:unnamed-chunk-6"></span>
-<img src="img/netlifly-checks.PNG" alt="Screenshot of checks run on GitHub pull request. Click on &quot;Details&quot; where it says &quot;Deploy preview ready!&quot;" width="679" />
+<img src="img/netlifly-checks.PNG" alt="Screenshot of checks run on GitHub pull request. Click on &quot;Details&quot; where it says &quot;Deploy preview ready!&quot; to open the preview url." width="679" />
 <p class="caption">
-Figure 2: Screenshot of checks run on GitHub pull request. Click on “Details” where it says “Deploy preview ready!”
+Figure 2: Screenshot of checks run on GitHub pull request. Click on “Details” where it says “Deploy preview ready!” to open the preview url.
 </p>
 </div>
 </div>
 <p>This opens up a window in my browser with the url <code>https://deploy-preview-3--flamboyant-mccarthy-854a9b.netlify.app/</code>. Send this link to a friend for review!</p>
 <ol start="9" type="1">
 <li><p>Edit draft, repeat steps 4-8.</p></li>
-<li><p>When ready to publish, back in GitHub click on <strong>“Merge pull request”</strong></p></li>
+<li><p>When ready to publish, back in GitHub click on <strong>“Merge pull request”</strong>.</p></li>
 </ol>
+<p><em>Added April 3, 2020:</em></p>
+<ul>
+<li><p><a href="https://twitter.com/ma_salmon/status/1377844053207879685?s=20" target="_blank">Maëlle Salmon</a> recommends “Squash and merge” from the drop down menu to create a cleaner commit history.</p></li>
+<li><p>She also recommends deleting branches after merging and provided this link to <a href="https://github.com/sindresorhus/refined-github#editing-pull-requests" target="_blank">Refined GitHub</a>, a “browser extension that simplifies the GitHub interface and adds useful features.” 😄</p></li>
+</ul>
 <p>I’m new to this workflow and this post was written quickly - edits and suggestions are welcome!</p>
 <h1 id="acknowledgements">Acknowledgements</h1>
 <p>Thanks, <a href="https://twitter.com/apreshill" target="_blank">Alison Hill</a>!🤗</p>
+<p>Also, thanks for the additional recommendations, <a href="https://twitter.com/ma_salmon" target="_blank">Maëlle Salmon</a>!</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

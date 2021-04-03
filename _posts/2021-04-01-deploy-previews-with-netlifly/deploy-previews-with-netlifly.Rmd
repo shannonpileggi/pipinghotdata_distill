@@ -72,7 +72,7 @@ distill::create_post("Deploy previews with Netlifly")
 
 3. Draft post; set `draft: false` in the `yaml`. 
 
-4. Knit post.
+4. Knit post. Depending on what you are doing in your branch, you may also need to `r emo::ji("hammer")` `Build Website`.
 
 5. Commit everything. In terminal submit:
 
@@ -92,7 +92,7 @@ usethis::pr_push()
 
 8. Some automatic checks will run. Click on **"Details"** where it says **"Deploy preview ready!"**
 
-```{r echo=FALSE, fig.cap='Screenshot of checks run on GitHub pull request. Click on "Details" where it says "Deploy preview ready!"'}
+```{r echo=FALSE, fig.cap='Screenshot of checks run on GitHub pull request. Click on "Details" where it says "Deploy preview ready!" to open the preview url.'}
 knitr::include_graphics("img/netlifly-checks.png")
 ```
 
@@ -100,11 +100,19 @@ This opens up a window in my browser with the url `https://deploy-preview-3--fla
 
 9. Edit draft, repeat steps 4-8.
 
-10. When ready to publish, back in GitHub click on **"Merge pull request"**
+10. When ready to publish, back in GitHub click on **"Merge pull request"**. 
+
+_Added April 3, 2020:_
+
+  * [Maëlle Salmon](https://twitter.com/ma_salmon/status/1377844053207879685?s=20){target="_blank"} recommends "Squash and merge" from the drop down menu to create a cleaner commit history. 
+  
+  * She also recommends deleting branches after merging and provided this link to [Refined GitHub](https://github.com/sindresorhus/refined-github#editing-pull-requests){target="_blank"}, a "browser extension that simplifies the GitHub interface and adds useful features." `r emo::ji("smile")`
 
 I'm new to this workflow and this post was written quickly - edits and suggestions are welcome!
 
 # Acknowledgements
 
 Thanks, [Alison Hill](https://twitter.com/apreshill){target="_blank"}!`r emo::ji("hug")`
+
+Also, thanks for the additional recommendations, [Maëlle Salmon](https://twitter.com/ma_salmon){target="_blank"}!
 

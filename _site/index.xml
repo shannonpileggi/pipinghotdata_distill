@@ -52,7 +52,7 @@ I’m also a huge convert to the church of making PRs to yourself. Start with an
 &lt;pre class="r"&gt;&lt;code&gt;distill::create_post(&amp;quot;Deploy previews with Netlifly&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;ol start="3" style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Draft post; set &lt;code&gt;draft: false&lt;/code&gt; in the &lt;code&gt;yaml&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Knit post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Knit post. Depending on what you are doing in your branch, you may also need to 🔨 &lt;code&gt;Build Website&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Commit everything. In terminal submit:&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="r"&gt;&lt;code&gt;git add .
@@ -66,19 +66,25 @@ git commit -m &amp;quot;draft netlifly post&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;p&gt;Some automatic checks will run. Click on &lt;strong&gt;“Details”&lt;/strong&gt; where it says &lt;strong&gt;“Deploy preview ready!”&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netliflyimg/netlifly-checks.PNG" alt="Screenshot of checks run on GitHub pull request. Click on &amp;quot;Details&amp;quot; where it says &amp;quot;Deploy preview ready!&amp;quot;" width="679" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netliflyimg/netlifly-checks.PNG" alt="Screenshot of checks run on GitHub pull request. Click on &amp;quot;Details&amp;quot; where it says &amp;quot;Deploy preview ready!&amp;quot; to open the preview url." width="679" /&gt;
 &lt;p class="caption"&gt;
-(#fig:unnamed-chunk-6)Screenshot of checks run on GitHub pull request. Click on “Details” where it says “Deploy preview ready!”
+(#fig:unnamed-chunk-6)Screenshot of checks run on GitHub pull request. Click on “Details” where it says “Deploy preview ready!” to open the preview url.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This opens up a window in my browser with the url &lt;code&gt;https://deploy-preview-3--flamboyant-mccarthy-854a9b.netlify.app/&lt;/code&gt;. Send this link to a friend for review!&lt;/p&gt;
 &lt;ol start="9" style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Edit draft, repeat steps 4-8.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;When ready to publish, back in GitHub click on &lt;strong&gt;“Merge pull request”&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;When ready to publish, back in GitHub click on &lt;strong&gt;“Merge pull request”&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;&lt;em&gt;Added April 3, 2020:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://twitter.com/ma_salmon/status/1377844053207879685?s=20" target="_blank"&gt;Maëlle Salmon&lt;/a&gt; recommends “Squash and merge” from the drop down menu to create a cleaner commit history.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;She also recommends deleting branches after merging and provided this link to &lt;a href="https://github.com/sindresorhus/refined-github#editing-pull-requests" target="_blank"&gt;Refined GitHub&lt;/a&gt;, a “browser extension that simplifies the GitHub interface and adds useful features.” 😄&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;I’m new to this workflow and this post was written quickly - edits and suggestions are welcome!&lt;/p&gt;
 &lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
 &lt;p&gt;Thanks, &lt;a href="https://twitter.com/apreshill" target="_blank"&gt;Alison Hill&lt;/a&gt;!🤗&lt;/p&gt;
+&lt;p&gt;Also, thanks for the additional recommendations, &lt;a href="https://twitter.com/ma_salmon" target="_blank"&gt;Maëlle Salmon&lt;/a&gt;!&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>3f11b1ffc11970e8bad0803f5999b5f5</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</guid>
