@@ -7,7 +7,20 @@
     <description>Data science demos, deliberations, and discoveries
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 03 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>sunburst</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-04-03-sunburst</link>
+      <description>
+
+
+&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>dbe56724294bb0c082989f777e84276c</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2021-04-03-sunburst</guid>
+      <pubDate>Sat, 03 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Deploy previews with Netlifly</title>
       <dc:creator>Shannon Pileggi</dc:creator>

@@ -1,0 +1,26 @@
+---
+title: "sunburst"
+description: |
+  description
+base_url: https://www.pipinghotdata.com/
+preview: 
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 04-03-2021
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 1
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# TL; DR
