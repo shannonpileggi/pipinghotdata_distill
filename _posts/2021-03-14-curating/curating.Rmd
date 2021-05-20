@@ -1,9 +1,9 @@
 ---
-title: "Curating for `@WeAreRLadies` on Twitter"
+title: "Curating for @WeAreRLadies on Twitter"
 description: |
   From preparation to cultivating connections 
 base_url: https://www.pipinghotdata.com/
-preview: 
+preview: img/arno-smit-iI72r3gSwWY-unsplash.jpg
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -58,7 +58,7 @@ _open to alternative images_
 
 _needs more work_
 
-In February 2021 I served as the [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} rotating curator. I tweeted [a lot](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} and had some [blunders](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"}; it was a great opportunity to share knowledge, connect with others with similar interests, and learn something in return.
+In February 2021 I curated the [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} rotating Twitter account. I tweeted [a lot](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} and had some [blunders](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"}; it was a great opportunity to share knowledge, connect with others with similar interests, and learn something in return.
 
 
 _alt_
@@ -70,6 +70,19 @@ and collaborations. From strategy to fruition, I hope this post helps you confid
 
 The `@WeAreRLadies` rotating Twitter curator exists to "encourage and maintain Twitter engagement within the R-Ladies community", and to "spotlight female and minority genders" working with R. R-Ladies has a [comprehensive guide](https://guide.rladies.org/rocur/about/){target="_blank"} describing the program, procedures and protocols for the week, and tips for successful curation. 
 
+# Overcoming imposter syndrome
+
+You may be hesitant to sign up as a curator due to [imposter syndrome](https://caitlinhudon.com/2018/01/19/imposter-syndrome-in-data-science/){target="_blank"} - I certainly was. I was on Twitter for three years before I gathered the courage. However, you do not need to know everything about R in order to be a successful `@WeAreRLadies` curator - that is impossible! In fact,
+
+
+```{r}
+tweetrmd::include_tweet("https://twitter.com/WeAreRLadies/status/1361660625718571010")
+```
+
+Every R user, new or experienced, has a valuable perspective to share. I was particularly  impressed when [Danielle Brantley](@daniebrant){target="_blank"} excellently curated in September 2020, after being an R user for one year!
+
+My personal strategy for combating imposter syndrome is to prepare. For my curating week, my preparation involved reflecting on past curators and preparing some content in advance. I hope this post helps you to prepare and motivates you to sign up. `r emo::ji("wink")`
+
 # Date selection
 
 You can view the [schedule](https://docs.google.com/spreadsheets/d/1pmphnR9EinGuAKbVqGzMIt6cWYmHNbeFVzaKJB59JdY/edit#gid=1429703967){target="_blank"} of upcoming curators to identify available dates; records of previous curators are also maintained here.  
@@ -77,7 +90,7 @@ You can view the [schedule](https://docs.google.com/spreadsheets/d/1pmphnR9EinGu
 Being a curator will be time intensive, so be kind to yourself. Choose dates when you will have time to invest and a flexible work schedule. I chose Feb 15-20 
 because I hoped by then I would be recovered from an intense Q4 work cycle;
 additionally, Feb 15 (President's Day) was a company holiday. Additionally, you may
-want to select a date far enough in the future that allows you time to prepare
+want to select a date far enough in the future that allows you time to create
 content.
 
 Another consideration is to schedule your curation to coincide with dates that align with your interests. For example, are you passionate about Black History Month in February, LGBT Pride Month in June, or Universal Human Rights Month in December? 
@@ -92,22 +105,7 @@ form includes filling out details that complete your [curating profile](https://
 
 # Timeline
 
-_This section needs more work,or cut, or just bit about manager?_
-
-_1. Graphical or table presentation or none?_
-
-_2. For table - format with inline options vs knitr-esqe options?_
-
-_3. some overlap here with drafting content section, where best placed?_
-
-I gave myself three months between signing up and my selected date to start strategizing. 
-After enrolling, I regularly jotted down quick content ideas as they surfaced.
-
-About three weeks before my curation, I started planning my curating efforts a bit more
-seriously. I notified my manager that I was curating, and I discussed potential work-related content with her. One idea was approved and another was reasonably denied. This honest conversation alleviated my concerns about Twitter curation potentially impacting my work either through time spent or content shared. Discussing this with her also facilitated new awareness about my passions - my manager was not aware of R-Ladies, and she was enthusiastic and supportive.
-
-
-_table or graphical presenation worth it?_
+I gave myself three months between signing up and my curating week to create content. 
 
 ```{r}
 timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv")) %>% 
@@ -120,28 +118,14 @@ timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv"
 
 ```{r}
 timeline %>% 
-  dplyr::select(time_frame, action)
+  dplyr::select(`Time before curation` = time_frame, `Action taken` = action) %>% 
+  knitr::kable()
 ```
 
+# Notifying my manager
 
-
-_Alternative presentation: I don't think this figure has much promise, maybe
-just stick to table format._
-
-```{r}
-timeline %>% 
-  ggplot() +
-  geom_segment(aes(x = 1, xend = 7, y = 0, yend = 0), size = 0.5) +
-  geom_segment(aes(x = id, xend = id, y = 0, yend = ifelse(even_odd, -.3, 0.3)), size = 0.3) +
-   geom_richtext(
-    aes(
-      x     = id,
-      y     = ifelse(even_odd, -.3, 0.3),
-      label = label,
-      #vjust = "top",
-      #hjust = ifelse(long_next < -100, 0, 1),
-    ))
-```
+About three weeks before my curation, I started planning my curating efforts a bit more
+seriously. I notified my manager that I was curating, and I discussed potential work-related content with her. One idea was approved and another was reasonably denied. This honest conversation alleviated my concerns about Twitter curation potentially impacting my work. Discussing this with her also facilitated new awareness about my passions - my manager was not aware of R-Ladies, and she was enthusiastic and supportive.
 
 
 # Drafting content
@@ -157,8 +141,6 @@ and anticipating where the breaks would be for threads. I started copying conten
 Not all content was premeditated - I also tweeted in the moment. For example, the [W.E.B. Du Bois'](https://twitter.com/WeAreRLadies/status/1362016896116219904?s=20){target="_blank"} `#TidyTuesday` visualizations were incredible that week, or when I [realized](https://twitter.com/WeAreRLadies/status/1362509983368249346?s=20){target="_blank"} a new colleague wasn't yet taking advantage of RStudio projects.
 
 # Content inspiration
-
-_can't decide if this should go upfront or later_
 
 As I approached my curating week, I recalled previous `@WeAreRLadies` that were
 memorable for me, my previous experience as an educator, and some reflection
@@ -197,7 +179,7 @@ full_path <- "C:/Users/Shannon.Pileggi/Documents/pipinghotdata_distill/_posts/20
 
 
 As I already mentioned, I love starting discussion with questions! Reminiscing about my 
-days teaching in large lectures halls with students actively participating in polling questions through clickers, I planned three polls for the week. Polls on twitter are open for 24 hours and allow up to four response options. The approach was to launch the poll, collect responses, and then discuss. Here are the polls that I launched during my curation:
+days teaching in large lectures halls with students actively participating in polling questions through clickers, I planned three polls for the week. Polls on twitter are open for 24 hours and allow up to four response options. The approach was to launch the poll, collect responses, and then discuss. Here are the three polls that I launched during my curation, with follow up discussion:
 
 ```{r}
 polls <- read_csv(here::here("_posts", folder, "data", "rladies_polls.csv")) %>% 
@@ -257,9 +239,6 @@ p <- polls %>%
     axis.title.y = element_blank(),
     )
 ```
-
-_What do you think of this graphical presentation? The graphic has both hover enabled to show the tweek and click enabled to take you to the tweet. The hover over was taken from embed tweet on twitter and runs off the page - I would need to make adjustments
-here for readability if I keep.  Also need a custom color scheme._
 
 
 ```{r}
