@@ -1,7 +1,7 @@
 ---
-title: "curating"
+title: "Curating for `@WeAreRLadies` on Twitter"
 description: |
-  A short description of the post.
+  From preparation to cultivating connections 
 base_url: https://www.pipinghotdata.com/
 preview: 
 twitter:
@@ -34,34 +34,15 @@ library(ggiraph)
 library(tweetrmd)
 ```
 
-_i don't love the title_
 
-_title & description 1:_
-
-Curating a public garden
-
-Before, during, and after my week curating for `@WeAreRLadies` on Twitter
-
-_title & description 2:_ 
-
-Before, during, and after my week curating for `@WeAreRLadies` on Twitter
-
-Cultivating connections and collaborations through Twitter curation
-
-_title & description 3:_
-
-From strategy to fruition: Curating for `@WeAreRLadies` on Twitter
-
-?
+```{r, fig.cap="Photo by Arno Smit on Unsplash (https://unsplash.com/photos/iI72r3gSwWY)", fig.alt="Image of open door to porch with inviting sitting chair, surrounded by plants."}
+knitr::include_graphics("img/arno-smit-iI72r3gSwWY-unsplash.jpg")
+```
 
 
-preview image: maybe a cute behind the curtain? something with a bird? open windows/open doors?
+_Still open to title suggestions!_
 
-opening windows: https://unsplash.com/photos/XYBnYhMqaVg
-
-open door to public garden: https://unsplash.com/photos/tCT032aX0Ds
-
-purple lit hallway: https://www.pexels.com/photo/purple-string-lights-and-lamps-with-curtains-1042152/
+_open to alternative images_
 
 # Suggestions
 
