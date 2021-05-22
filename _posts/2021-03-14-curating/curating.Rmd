@@ -244,7 +244,7 @@ girafe(ggobj = p,
 
 Additionally, I considered how to visually style content beyond text in a tweet. I asked on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"} about R-Ladies styles, and I was directed to the xaringan R-Ladies [css](https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources){target="_blank"} and the R-Ladies [branding](https://guide.rladies.org/organization/tech/brand/){target="_blank"} guides. You are not required to use R-Ladies style and branding, but it was convenient for me. 
 
-I developed two visual layouts using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} from R-Ladies branding (see tweets for [blogdown vs dstill](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} and [asking for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"}).
+I developed two visual layouts using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} from R-Ladies branding (see tweets for [blogdown vs distill](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} and [asking for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"}).
 
 ```{r echo=FALSE, fig.cap="Comparison of blogdown vs distill styled using R-Ladies Google slide template."}
 knitr::include_graphics("img/compare_blogdown_distill.svg")
