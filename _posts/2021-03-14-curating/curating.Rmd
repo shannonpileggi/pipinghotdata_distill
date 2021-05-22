@@ -1,7 +1,7 @@
 ---
 title: "Curating for @WeAreRLadies on Twitter"
 description: |
-  From creating content to cultivating connections 
+  From creating content to cultivating connections.
 base_url: https://www.pipinghotdata.com/
 preview: img/arno-smit-iI72r3gSwWY-unsplash.jpg
 twitter:
@@ -326,4 +326,3 @@ Serving as a curator was intimidating and time consuming, but I am very glad I d
 During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I created my own public garden that cultivated new connections and collaborations. 
 
 # Acknowledgements
-
