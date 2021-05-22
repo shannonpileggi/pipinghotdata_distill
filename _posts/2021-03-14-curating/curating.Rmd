@@ -326,6 +326,6 @@ Serving as a curator was intimidating and time consuming, but I am very glad I d
 
 * co-developing a unit testing workshop with [Gordon Shotwell](https://twitter.com/gshotwell/status/1362769538631221251){target="_blank"}.
 
-During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. And to borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I created my own public garden that cultivated new connections and collaborations. 
+During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. To borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I created my own public garden that cultivated new connections and collaborations. And now, I am more confident in continuing these practices from my personal Twitter account.
 
 # Acknowledgements
