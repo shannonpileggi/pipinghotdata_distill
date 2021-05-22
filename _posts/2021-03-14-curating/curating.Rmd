@@ -270,15 +270,17 @@ When you serve as a curator, you will be tweeting from [TweetDeck](https://tweet
 
 Moreover, there were limitations to the platform that added challenges to curating, which included:
 
-1. There was no `+` enabled to easily create threads (I had to send a tweet and then comment on the tweet, and it was initially hard to ensure the thread appeared in correct order).
+1. There was no `+` enabled to easily create threads (I had to send a tweet and then comment on the tweet, and it was initially hard to ensure the thread appeared in correct order). Yes, I deleted many out of order tweets.
 
 2. Consequently, I could not draft and save threads in TweetDeck to send later.
 
-3. I could not send polls from the curator account on TweetDeck; polls were sent from my personal account and then re-tweeted from the curator account.
+3. I could not send polls from the curator account on TweetDeck; polls were sent from my personal account and then re-tweeted from the curator account. Adding this context can help better frame polls.
 
 4. Depending on the content already in the send tweet interface, sometimes other options in TweetDeck would disappear, like the emoji, gifs, and upload image buttons. I kept [emojipedia](https://emojipedia.org/){target="_blank"} open to easily copy and paste emojis into my tweets, and it took trial and error to get everything I wanted in a single tweet.
 
 5. When uploading local content, you can add [descriptions](https://help.twitter.com/en/using-twitter/picture-descriptions){target="_blank"} to both gifs and images in the regular Twitter interface to create inclusive content for community members that use assistive reading technology; however, in TweetDeck, descriptions were enabled for images but not gifs.
+
+6. With TweetDeck, you can tweet from both your personal account and your curator account. You can set the options to default to the curator account, _but_ there were still some instances where I still managed to inadvertently tweet from my personal account when I meant to tweet from the curator account. (I did delete the tweet and re-tweet from the correct account.)
 
 I spent a lot of time my first couple of days as a curator getting used to TweetDeck, reaching out to other curators for tips, and researching alternative solutions and plug-ins that ultimately did not help. Twitter is targeting TweetDeck [enhancements](https://www.theverge.com/2021/3/9/22321991/twitter-tweetdeck-overhaul-redesign-product-changes){target="_blank"} later in 2021, so I don't think it is worth documenting all of my methods and work-arounds. However, if you are serving as a curator and struggling with TweetDeck, please reach out - I am happy to share what ended up working for me. You can also prepare yourself by practicing tweeting from TweetDeck with your personal account prior to curating.
 
