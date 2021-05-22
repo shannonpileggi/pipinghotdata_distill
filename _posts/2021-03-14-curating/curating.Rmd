@@ -306,7 +306,9 @@ I cannot emphasize this enough: every like, re-tweet, comment, and direct messag
 
 # Reflection
 
-Between prepared and ad-hoc content and discussions with followers, I tweeted a lot! (At least for me.)  Here is a [summary thread](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} of my tweets for the week. My tweets were not perfect, and that is okay. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"} for tweets that I bungled.
+Between prepared and ad-hoc content and discussions with followers, I tweeted a lot! (At least for me.)  Here is a [summary thread](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} of my tweets for the week. My tweets were not perfect, and that is okay. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"}^[A blooper is an American English term for an embarrassing mistake, which is often humorous in retrospect.] for tweets that I bungled.
+
+
 
 Serving as a curator was intimidating and time consuming, but I am very glad I did it. Many good things have happened as direct result of that week, including: 
 
