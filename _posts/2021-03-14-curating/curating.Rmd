@@ -57,7 +57,7 @@ You may be hesitant to sign up as a curator due to [imposter syndrome](https://c
 tweetrmd::include_tweet("https://twitter.com/WeAreRLadies/status/1361660625718571010")
 ```
 
-Every R user, new or experienced, has a valuable perspective to share. I was particularly  impressed when [Danielle Brantley](@daniebrant){target="_blank"} excellently curated in September 2020, after being an R user for one year!
+Every R user, new or experienced, has a valuable perspective to share. I was particularly  impressed when [Danielle Brantley](https://twitter.com/daniebrant){target="_blank"} excellently curated in September 2020, after being an R user for one year!
 
 My personal strategy for combating imposter syndrome is to prepare. For my curating week, my preparation involved reflecting on past curators and creating some content in advance. I hope this post helps you to prepare and motivates you to sign up. `r emo::ji("wink")`
 
