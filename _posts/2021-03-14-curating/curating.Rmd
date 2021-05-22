@@ -330,4 +330,4 @@ During my curating week I tried to embody the tweets that I value: honest questi
 
 # Acknowledgements
 
-Thank you to [Maëlle Salmon](https://twitter.com/ma_salmon){target="_blank"} and [Alison Hill](https://twitter.com/apreshill){target="_blank"} for encouraging me to write this - this might not have happened without you! Thank you also to Maëlle Salmon, Alison Hill, and [Ale Segura](https://twitter.com/alehsegura13){target="_blank"} for your suggestions; I truly appreciate your sharp eyes and thoughtful feedback.  `r emo::ji("purple heart")`
+Thank you to [Maëlle Salmon](https://twitter.com/ma_salmon){target="_blank"} and [Alison Hill](https://twitter.com/apreshill){target="_blank"} for encouraging me to write this - it might not have happened without you! Thank you also to Maëlle Salmon, Alison Hill, and [Ale Segura](https://twitter.com/alehsegura13){target="_blank"} for your suggestions; I truly appreciate your sharp eyes and thoughtful feedback.  `r emo::ji("purple heart")`
