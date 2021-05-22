@@ -246,14 +246,14 @@ Additionally, I considered how to visually style content beyond text in a tweet.
 
 I developed two visual layouts using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} from R-Ladies branding (see tweets for [blogdown vs distill](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} and [asking for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"}).
 
-```{r echo=FALSE, fig.cap="Comparison of blogdown vs distill styled using R-Ladies Google slide template."}
+```{r echo=FALSE, fig.cap="Comparison of blogdown vs distill styled using R-Ladies Google slide template.", fig.alt="R-Ladies style includes purple accents and R logo; slide shows tabular layout comparing distill to blogdown on attributes of learning curve, dependencies, supporting tools, customization, and layout."}
 knitr::include_graphics("img/compare_blogdown_distill.svg")
 ```
 
 
 I also created five R-Ladies styled code gifs with xaringan and flipbookr - methods and code are in this [blog post](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"}. Here is an example code gif:
 
-```{r echo=FALSE, fig.cap="Example R-Ladies styled code gif."}
+```{r echo=FALSE, fig.cap="Example R-Ladies styled code gif.", fig.alt="Code-gif uses R-Ladies purple for slide title and code highlighting; gif shows usage of walrus operator."}
 knitr::include_graphics("img/demo-walrus-flipbook-quality.gif")
 ```
 
