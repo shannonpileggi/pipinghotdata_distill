@@ -50,7 +50,7 @@ The `@WeAreRLadies` rotating Twitter curator exists to "encourage and maintain T
 
 # Overcoming imposter syndrome
 
-You may be hesitant to sign up as a curator due to [imposter syndrome](https://caitlinhudon.com/2018/01/19/imposter-syndrome-in-data-science/){target="_blank"} - I certainly was. I was on Twitter for three years before I gathered the courage. However, you do not need to know everything about R in order to be a successful `@WeAreRLadies` curator - that is impossible! In fact,
+You may be hesitant to sign up as a curator due to [imposter syndrome](https://caitlinhudon.com/2018/01/19/imposter-syndrome-in-data-science/){target="_blank"} - I certainly was. I was on Twitter for three years before I gathered the courage. However, you do not need to know everything about R nor Twitter in order to be a successful `@WeAreRLadies` curator - that is impossible! In fact,
 
 
 ```{r}
