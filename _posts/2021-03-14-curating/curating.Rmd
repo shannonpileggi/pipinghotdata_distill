@@ -262,10 +262,7 @@ knitr::include_graphics("img/demo-walrus-flipbook-quality.gif")
 
 # First and last tweets
 
-The introduction and farewell tweets as a curator are important as this is when you actually tell people your name or personal twitter handle. I have seen 
-many excellent curators fall short on engagement (likes and re-tweets) with their first and last tweets, resulting in less than merited recognition for the wonderful curator. 
-
-To address this, I aimed to create content-rich [first](https://twitter.com/WeAreRLadies/status/1361286341317779456){target="_blank"} and [last](https://twitter.com/WeAreRLadies/status/1363286037846511616){target="_blank"} tweets to give users more motivation to like or re-tweet, and I also connected the content with links to my blog so that users could easily learn more about me.
+The introduction and farewell tweets as a curator are important as this is when you actually tell people your name or personal twitter handle. To generate engagement, I aimed to create content-rich [first](https://twitter.com/WeAreRLadies/status/1361286341317779456){target="_blank"} and [last](https://twitter.com/WeAreRLadies/status/1363286037846511616){target="_blank"} tweets to give users more motivation to like or re-tweet, and I also connected the content with links to my blog so that users could easily learn more about me.
 
 # TweetDeck
 
