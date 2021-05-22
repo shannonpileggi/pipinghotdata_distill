@@ -50,14 +50,15 @@ The `@WeAreRLadies` rotating Twitter curator exists to "encourage and maintain T
 
 # Overcoming imposter syndrome
 
-You may be hesitant to sign up as a curator due to [imposter syndrome](https://caitlinhudon.com/2018/01/19/imposter-syndrome-in-data-science/){target="_blank"} - I certainly was. I was on Twitter for three years before I gathered the courage. However, you do not need to know everything about R nor Twitter in order to be a successful `@WeAreRLadies` curator - that is impossible! In fact,
+You may be hesitant to sign up as a curator due to imposter syndrome - I certainly was. I was on Twitter for three years before I gathered the courage. However, you do not need to know everything about R nor Twitter in order to be a successful `@WeAreRLadies` curator - that is impossible! In fact,
 
 
 ```{r}
 tweetrmd::include_tweet("https://twitter.com/WeAreRLadies/status/1361660625718571010")
 ```
 
-Every R user, new or experienced, has a valuable perspective to share. I was particularly  impressed when [Danielle Brantley](https://twitter.com/daniebrant){target="_blank"} excellently curated in September 2020, after being an R user for one year!
+Every R user, new or experienced, has a valuable perspective to share. I was particularly  impressed when [Danielle Brantley](https://twitter.com/daniebrant){target="_blank"} excellently curated in September 2020, after being an R user for one year! To help alleviate 
+general R imposter syndrome check out Catlin Hudon's blog post on [imposter syndrome in data science](https://caitlinhudon.com/2018/01/19/imposter-syndrome-in-data-science/){target="_blank"}; to increase comfort with Twitter, try [Twitter for R Programmers](https://www.t4rstats.com/) by Oscar Baruffa and Veerle van Son.
 
 My personal strategy for combating imposter syndrome is to prepare. For my curating week, my preparation involved reflecting on past curators and creating some content in advance. I hope this post helps you to prepare and motivates you to sign up. `r emo::ji("wink")`
 
