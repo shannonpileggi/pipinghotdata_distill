@@ -139,7 +139,7 @@ questions to inspire content.
 | 6. What did I have to overcome to be where I am today? | Learning how to [ask for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"} |
 | 7. What have colleagues or students asked me about? | What needs [updating](https://twitter.com/WeAreRLadies/status/1362114431090573315){target="_blank"}  and when |
 | 8. What are some R functions or packages that have helped me recently? | [sortable ](https://twitter.com/WeAreRLadies/status/1361418527870132226){target="_blank"} package |
-| 9. What are R-Ladies voices I can amplify while I have this large platform? | Quote tweeting questions like [this](https://twitter.com/WeAreRLadies/status/1362866281918128132){target="_blank"} |
+| 9. What are R-Ladies voices I can amplify while I have this large platform? | [Quote tweeting questions](https://twitter.com/WeAreRLadies/status/1362866281918128132){target="_blank"} |
 
 
 # Polls
