@@ -42,7 +42,7 @@ knitr::include_graphics("img/arno-smit-iI72r3gSwWY-unsplash.jpg")
 
 # TL; DR
 
-In February 2021 I tweeted to a daunting >20k followers by curating for [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} on Twitter. This was great opportunity to share knowledge, interact with others, and learn something in return, ultimately cultivating new connections and collaborations. From strategy to fruition, I hope this post helps you confidently enroll as a curator!
+In February 2021 I tweeted to a daunting >20k followers by curating for [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} on Twitter. This was great opportunity to share knowledge, interact with others, and learn something in return, ultimately cultivating new connections and collaborations. From preparation to fruition, I hope this post helps you confidently enroll as a curator!
 
 # About `@WeAreRLadies`
 
@@ -87,8 +87,6 @@ which I suspect was due to timings and holidays. Be kind, be patient - all organ
 
 # Timeline
 
-I gave myself three months between signing up and my curating week to create content. 
-
 ```{r}
 timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv")) %>% 
   mutate(
@@ -131,7 +129,7 @@ questions to inspire content.
 
 | Inspiration  source | Example realization   |
 |---------------------|-----------------------|
-| 1. Rotating curator Mine Çetinkaya-Rundel ([`@minebocek`](https://twitter.com/minebocek){target="_blank"}) tweets awesome [gifs](https://twitter.com/WeAreRLadies/status/1064704918102163457){target="_blank"}| Gifs for R code demos like [this one](https://twitter.com/WeAreRLadies/status/1361802517735178243){target="_blank"}  |
+| 1. Rotating curator Mine Çetinkaya-Rundel ([`@minebocek`](https://twitter.com/minebocek){target="_blank"}) tweets awesome [gifs](https://twitter.com/WeAreRLadies/status/1064704918102163457){target="_blank"}| [Gifs](https://twitter.com/WeAreRLadies/status/1361802517735178243){target="_blank"} for R code demos |
 | 2. Rotating curator Megan Stodel ([`@MeganStodel`](https://twitter.com/MeganStodel){target="_blank"}) tweets a [project](https://twitter.com/WeAreRLadies/status/1313177623128944645){target="_blank"} inspired by curating | An R project to [introduce myself](https://twitter.com/WeAreRLadies/status/1361286341317779456){target="_blank"} as a curator |
 | 3. Rotating curator Julia Piaskowski ([`@SeedsAndBreeds`](https://twitter.com/SeedsAndBreeds){target="_blank"}) tweets a great technical thread on [ANOVA](https://twitter.com/WeAreRLadies/status/1223790298024726528){target="_blank"} | A thread on [blogging resources](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} |
 | 4. Prior experience as an educator | Starting discussion with a [question](https://twitter.com/WeAreRLadies/status/1361332603274612739){target="_blank"} |
@@ -159,7 +157,7 @@ full_path <- "C:/Users/Shannon.Pileggi/Documents/pipinghotdata_distill/_posts/20
 ```
 
 
-Reminiscing about my days teaching in large lectures halls with students actively participating in polling questions through clickers, I planned three polls for the week. Polls on twitter are open for 24 hours and allow up to four response options. The approach was to launch the poll, collect responses, and then discuss. Here are the three polls that I launched during my curation, with follow up discussion (click on tiles to see tweet):
+Reminiscing about my days teaching in large lectures halls with students actively participating in polling questions through clickers, I planned three polls for the week. Polls on twitter are open for 24 hours and allow up to four response options. The approach was to launch the poll, collect responses, and then discuss. Here are the three polls that I launched during my curation, with follow up discussion:
 
 ```{r}
 polls <- read_csv(here::here("_posts", folder, "data", "rladies_polls.csv")) %>% 
@@ -308,7 +306,7 @@ In addition, if you have curated in the past, consider sending new curators a pe
 
 # Reflection
 
-Between prepared and ad-hoc content and discussions with followers, I tweeted a lot! (At least for me.)  Here is a [summary thread](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} of my tweets for the week. My tweets were not perfect, and that is okay. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"}^[A blooper is an American English term for an embarrassing mistake, which is often humorous in retrospect.] for tweets that I bungled.
+Between prepared and ad-hoc content and discussions with followers, I tweeted a lot! (At least for me.)  Here is a [summary thread](https://twitter.com/spcanelon/status/1363518469782843396){target="_blank"} of my tweets for the week. My tweets were not perfect, and that is okay. I messed up threads, had typos, and shared deprecated code, among other things. Check out my [blooper reel](https://twitter.com/PipingHotData/status/1364183660744896513){target="_blank"}^[A blooper is an embarrassing mistake, often sports-related, and humorous in retrospect; a blooper reel is a compilation of multiple bloopers.] for tweets that I bungled.
 
 
 
