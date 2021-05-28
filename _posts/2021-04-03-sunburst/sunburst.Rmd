@@ -24,3 +24,70 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # TL; DR
+
+
+
+# The data
+
+I was recently reading up on `tidymodels` and came across Julia Silge's post [Multinomial classification with tidymodels and #TidyTuesday volcano eruptions](https://juliasilge.com/blog/multinomial-volcano-eruptions/){target="_blank"}. For this post, I'll be using the same volcano data originally posted on [`#TidyTuesday`](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-05-12/readme.md) (as well borrowing a bit of her code!){target="_blank"}.
+
+# Data processing
+
+```{r}
+library(tidyverse)
+library(sp)
+library(rworldmap)
+```
+
+```{r}
+volcano_raw <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/volcano.csv")
+```
+
+```{r}
+volcano_raw %>% count(region)
+```
+
+I wanted to efficiently assign a broader region classification the volcano locations. The function shown below is the solution from the Stack Overflow post [Get country (and continent) from longitude and latitude point in R](https://stackoverflow.com/questions/21708488/get-country-and-continent-from-longitude-and-latitude-point-in-r){target="_blank"}
+
+```{r}
+coords2continent <- function(points){  
+  countriesSP <- getMap(resolution='low')
+  pointsSP    <- SpatialPoints(points, proj4string=CRS(proj4string(countriesSP)))  
+  indices     <- over(pointsSP, countriesSP)
+  indices$REGION   
+  }
+```
+
+
+```{r}
+volcano <- volcano_raw %>% 
+  mutate(
+    continent = coords2continent(cbind(longitude, latitude)) %>% 
+      fct_explicit_na(., na_level = "Other")
+    ) %>% 
+  group_by(continent) %>% 
+  mutate(
+    region_lump = fct_lump_min(region, 20)
+  ) %>% 
+  ungroup()
+```
+
+
+```{r}
+world <- map_data("world")
+
+ggplot() +
+  geom_map(
+    data = world, map = world,
+    aes(long, lat, map_id = region),
+    color = "white", fill = "gray50", size = 0.05, alpha = 0.2
+  ) +
+  geom_point(
+    data = volcano,
+    aes(longitude, latitude, color = continent),
+    alpha = 0.8
+  ) +
+  theme_void() +
+  labs(x = NULL, y = NULL, color = NULL)
+```
+
