@@ -44,6 +44,26 @@ volcano_raw <- readr::read_csv("https://raw.githubusercontent.com/rfordatascienc
 ```
 
 ```{r}
+colors_continent <- pals::cubicyf(n = 7) 
+  #viridis::viridis(7) %>% 
+  set_names(c("Asia", "South America", "Europe", "North America", "Africa", "Australia", "Antarctica"))
+```
+
+
+
+
+https://learnui.design/tools/data-color-picker.html#palette
+
+
+
+
+
+
+
+
+
+
+```{r}
 volcano_raw %>% count(region)
 ```
 
@@ -62,15 +82,28 @@ coords2continent <- function(points){
 ```{r}
 volcano <- volcano_raw %>% 
   mutate(
-    continent = coords2continent(cbind(longitude, latitude)) %>% 
-      fct_explicit_na(., na_level = "Other")
+    continent = coords2continent(cbind(longitude, latitude))
     ) %>% 
+  # only consider continental volcanos ----
+  drop_na(continent) %>% 
   group_by(continent) %>% 
   mutate(
-    region_lump = fct_lump_min(region, 20)
+    # within each continent, lump together regions with few levels ----
+    region_lump = fct_lump_min(region, 20),
+    # multiple regions are named other, create unique identifier for region ----
+    region_unique = glue::glue("{str_sub(continent, 1, 3)}: {region_lump}"),
+    # total number of volcanos per continent ----
+    n_continent = n()
   ) %>% 
-  ungroup()
+  ungroup() %>% 
+  add_count(name = "n_total") %>% 
+  arrange(desc(n_continent), continent) 
+  #mutate(
+  #  # order continent by number of volcanos ----
+  #  continent = fct_inorder(continent)
+  #)
 ```
+
 
 
 ```{r}
@@ -88,6 +121,160 @@ ggplot() +
     alpha = 0.8
   ) +
   theme_void() +
-  labs(x = NULL, y = NULL, color = NULL)
+  labs(x = NULL, y = NULL, color = NULL) + 
+  scale_color_manual(values = colors_continent)
 ```
+
+https://learnr.wordpress.com/2009/03/29/ggplot2-variable-width-column-chart/
+
+```{r}
+volcano_burst <- volcano %>% 
+  group_by(n_total, continent, region_unique, n_continent) %>% 
+  summarize(
+    # total number of volcanos per region ----
+    n_region = n(),
+    # median elevatation in each region ----
+    med_elevation = median(elevation)
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    # compute percents ----
+    pct_continent = n_continent / n_total,
+    pct_region = n_region / n_total,
+    # a scaled version of elevation for plotting ----
+    med_elevation_scaled = med_elevation / max(med_elevation)
+  ) %>% 
+  # join colors to data frame ----
+    left_join(enframe(colors_continent, name = "continent", value = "color_continent"), 
+            by = "continent") %>%
+  # arrange descending continent but ascending region
+  # to compute region colors
+  arrange(desc(n_continent), continent, n_region, region_unique) %>% 
+  group_by(continent) %>% 
+  mutate(
+    # enumerate region in continent ----
+    id_region = row_number(),
+    # number of regions per continent ----
+    num_region = max(id_region)
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    # degree of transparency based on number of attributes ----
+    color_trans = id_region / num_region ,
+    color_region = map2_chr(color_continent, color_trans, ~ adjustcolor(.x, .y))
+  ) %>% 
+  # this arrange specifies the ordering of the figure
+  # clockwise ---
+  arrange(-pct_continent, continent, -pct_region, region_unique) %>%
+  # counter clockwise ---
+  # arrange(pct_continent, continent, pct_region, region_unique) %>% 
+  mutate(
+    continent = fct_inorder(continent),
+    region_unique = fct_inorder(region_unique)
+  ) %>% 
+  group_by(continent) %>% 
+  mutate(cum_region_pct = cumsum(pct_region)) %>% 
+  ungroup() %>% 
+  mutate(
+    cum_continent_pct = cumsum(cum_region_pct),
+    cum_all = cumsum(pct_region)
+  ) %>% 
+  mutate(
+    # compute coordinates of the rectangles ----
+    # the 0.0003 is an adjustment on the 0 to 1 scales to add a small
+    # amount of white space between rectangles
+    rect_x_max = cumsum(pct_region) - 0.003,      # xmax ----
+    rect_x_min = rect_x_max - pct_region + 0.003, # xmin ----
+    rect_x_mid = (rect_x_min + rect_x_max)/2      # xmid ----
+  ) 
+
+```
+
+
+
+
+```{r}
+colors_region <- volcano_burst[["color_region"]]
+names(colors_region) <- volcano_burst[["region_unique"]]
+
+all_colors <- c(colors_continent, colors_region)
+```
+
+
+
+```{r}
+# create an inner ring for continents ----
+layer_continent <- volcano_burst %>% 
+  dplyr::select(continent, pct_continent, rect_x_max, rect_x_min) %>% 
+  # first, get stopping point for each rectangle ----
+  arrange(continent, desc(rect_x_max)) %>% 
+  group_by(continent) %>%
+  # keep one entry per continent ----
+  slice(1) %>% 
+  ungroup() %>% 
+  dplyr::select(continent, pct_continent, stop = rect_x_max) %>% 
+  # second, get starting point for each rectangle ----
+  left_join(
+    volcano_burst %>% 
+      dplyr::select(continent, pct_continent, rect_x_max, rect_x_min) %>% 
+      arrange(continent, rect_x_max) %>% 
+      group_by(continent) %>% 
+      slice(1) %>% 
+      ungroup() %>% 
+      dplyr::select(continent, pct_continent, start = rect_x_min),
+    by = c("continent", "pct_continent")
+  ) %>% 
+  # insert blank row for extra white space where circle starts/stops ---
+  bind_rows(
+    tibble(
+      attr_category = NA, 
+      start = 0.98433, 
+      stop = 1.001)
+  ) %>% 
+  mutate(
+    # compute midpoint for labeling if needed ----
+    mid = (stop - start)/2 + start,
+    # a label for continent pct ----
+    continent_pct = ifelse(is.na(continent), NA, glue::glue('{scales::percent(pct_continent, accuracy = 1)}'))
+  )
+
+```
+
+
+
+
+```{r}
+volcano_burst %>% 
+  # width = level_2, height = box_pct ----
+ggplot(aes(
+  ymin = 36,
+  ymax = 80, 
+  xmin = rect_x_min, 
+  xmax = rect_x_max,
+  fill = region_unique
+ )) +
+  geom_rect(show.legend = FALSE) +
+  coord_polar() +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(), 
+    axis.text.y = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "none",
+  ) +
+  ylim(-25, 122) +
+  scale_fill_manual(values = all_colors) +
+  geom_rect(
+    data = layer_continent,
+    aes(
+      ymin = 0,
+      ymax = 35, 
+      xmin = start, 
+      xmax = stop,
+      fill = continent
+    )
+  ) 
+```
+
+
 
