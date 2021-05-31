@@ -25,26 +25,56 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
+I manually defined `geom_rect` to create custom sunbursts with `ggplot`.
 
+
+# Background
+
+Sunbursts in R first caught my eye from the [`sunburstR`](https://cran.r-project.org/web/packages/sunburstR/vignettes/sunburst-2-0-0.html){target="_blank"} package with its awesome interactivity through `d3`. However, I had trouble customizing it and sought a `ggplot` alternative. You can create a version using `geom_col`, as shown in this [RStudio Community Post](https://community.rstudio.com/t/how-to-create-a-ggplot2-pie-and-donut-chart-on-same-plot/42798/3){target="_blank"}; I chose to go the more complex `geom_rect` route for more customization options. It was pretty exciting when I got it to work!
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">pretty pumped I got this custom &quot;sunburst&quot;-esque figure to work!! <a href="https://twitter.com/hashtag/ggplot?src=hash&amp;ref_src=twsrc%5Etfw">#ggplot</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/L88IQWoVCs">pic.twitter.com/L88IQWoVCs</a></p>&mdash; Shannon Pileggi (@PipingHotData) <a href="https://twitter.com/PipingHotData/status/1215699305555746816?ref_src=twsrc%5Etfw">January 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 # The data
 
-tidytuesday salary data
+To illustrate the concept on a publicly available data set, I am using the May 2021 [`#TidyTuesday` salary data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-05-18/readme.md){target="_blank"}. Here, I'll be looking at the top 5 industries and job titles. 
+
+The data attributes that work well for this set up include:
+
+1. 4-6 categories, with associated weight or frequency of occurrence
+
+   * our categories are the top 5 industries 
+
+2. 4-6 sub-items within each category, with associated weight or frequency of occurrence
+
+  * our sub-items are the top 5 job titles within industry
+
+3. _optional:_ a metric for the sub-items
+
+  * our metric is the median salary for the titles
 
 # Libraries
 
 ```{r}
-library(tidyverse)
-library(pals)
+library(tidyverse) # general use
+library(glue)      # pasting strings
+library(pals)      # color palette
+
 ```
 
 # Data processing
 
+## Import
+
+First, import the data from GitHub.
 
 ```{r}
+# import data
 survey_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv')
 ```
 
+## Summarize
+
+Next, summarize the data in terms of the top 5 industries and top 5 job titles. For the job title, we'll get (1) the percent of respondents with that title, and (2) the median salary for that title.
 
 ```{r}
 survey_summary <- survey_raw %>% 
@@ -58,6 +88,7 @@ survey_summary <- survey_raw %>%
   arrange(desc(n_industry), industry) %>%
   mutate(
     # rank of industry in terms of number of survey respondents
+    # know a better way to do this bit? pls let me know!
     n_industry_rank = as.numeric(factor(-n_industry)),
     # very light cleaning of job title
     job_title = tolower(job_title) %>% 
@@ -65,8 +96,9 @@ survey_summary <- survey_raw %>%
       str_trim() %>% 
       ifelse(. == "rn", "registered nurse", .)
   ) %>% 
-  filter(n_industry_rank %in% 1:6) %>% 
-  # identify top 6 job titles in each industry 
+  # reduce to top 5 industries present
+  filter(n_industry_rank %in% 1:5) %>% 
+  # identify top 5 job titles in each industry 
   group_by(n_industry_rank, n_industry, industry, job_title) %>%
   summarize(
     # number of titles within industry
@@ -78,7 +110,7 @@ survey_summary <- survey_raw %>%
   arrange(n_industry_rank, industry, desc(n_title)) %>% 
   group_by(industry) %>% 
   # keep top 6 job titles within industry
-  slice(1:6) %>%
+  slice(1:5) %>%
   # recompute number of respondents per industry based on titles selected
   mutate(n_industry = sum(n_title)) %>% 
   ungroup() %>% 
@@ -89,25 +121,38 @@ survey_summary <- survey_raw %>%
     n_total = sum(n_title),
     # percent of respondents per title
     pct_title = n_title / n_total * 100,
-    pct_industry = n_industry / n_total * 100
+    pct_industry = n_industry / n_total * 100,
+    # unique job title, as some repeat across industry
+    title_unique = glue::glue("{str_sub(industry, 1, 3)}: {job_title}")
   ) %>% 
-  arrange(desc(n_industry, n_title))
+  arrange(desc(pct_industry, pct_title))
 ```
 
-
-
+Here is a preview of our data, which is the basis needed for the sunburst's custom rectangles.
 
 ```{r}
-colors_industry <- pals::cubicyf(n = 6) %>% 
+# view input data
+DT::datatable(survey_summary)
+```
+
+## Assign colors
+
+Pick a color palette for industry, and name the color vector.
+
+```{r}
+colors_industry <- pals::cubicyf(n = 5) %>% 
   set_names(unique(survey_summary[["industry"]]))
 ```
 
+```{r}
+colors_industry
+```
 
+## Compute rectangles
 
+Next, I manually define the rectangles. I figured out the bits to create custom rectangles from various blog posts that I did not save. It could have been this post on [variable width column charts](https://learnr.wordpress.com/2009/03/29/ggplot2-variable-width-column-chart/){target="_blank"}. I got tips on how to angle text for labels from the [R Graph Gallery's circular barplots](http://www.r-graph-gallery.com/296-add-labels-to-circular-barplot.html){target="_blank"}. 
 
-
-
-https://learnr.wordpress.com/2009/03/29/ggplot2-variable-width-column-chart/
+The idea of the rectangles' color assignment is that darker shades represent more frequent items within a category. To create the colors, I concocted a solution to implement a degree of transparency off of the original industry colors based on the total number of sub-categories. Jake Riley shared with me [an alternative solution for sub-category color assignment](https://stackoverflow.com/questions/56120815/how-to-factor-sub-group-by-category){target="_blank"} that he contributed on Stack Overflow.
 
 ```{r}
 survey_burst <- survey_summary %>% 
@@ -119,9 +164,10 @@ survey_burst <- survey_summary %>%
   arrange(desc(n_industry), industry, n_title, title_unique) %>% 
   group_by(industry) %>% 
   mutate(
-    # enumerate title in industry ----
+    # enumerate title in industry
     id_title = row_number(),
-    # number of titles per industry ----
+    # number of titles per industry
+    # this can vary - it does not have to be same number per category
     num_title = max(id_title)
   ) %>% 
   ungroup() %>% 
@@ -148,30 +194,41 @@ survey_burst <- survey_summary %>%
   ) %>% 
   mutate(
     # compute coordinates of the rectangles ----
-    # the 0.0003 is an adjustment on the 0 to 1 scales to add a small
+    # the 0.3 is an adjustment on the 0 to 100 scale to add a small
     # amount of white space between rectangles
-    rect_x_max = cumsum(pct_title) - 0.003,      # xmax ----
-    rect_x_min = rect_x_max - pct_title + 0.003, # xmin ----
-    rect_x_mid = (rect_x_min + rect_x_max)/2      # xmid ----
+    rect_x_max = cumsum(pct_title) - 0.3,      # xmax ----
+    rect_x_min = rect_x_max - pct_title + 0.3, # xmin ----
+    rect_x_mid = (rect_x_min + rect_x_max)/2,  # xmid ----
+    # angles in case adding text to plot, omitting here ----
+    angle = 90 - 360 * rect_x_mid / 100,
+    hjust = ifelse(angle < -90, 1, 0),
+    angle = ifelse(angle < -90, angle + 180, angle)
   ) 
-
 ```
 
+```{r}
+# view sunburst data
+DT::datatable(surveyburst)
+```
 
+## Combine colors
 
+Combine all industry and title colors in a single vector.
 
 ```{r}
-colors_title <- volcano_burst[["color_title"]]
-names(colors_title) <- volcano_burst[["title_unique"]]
+colors_title <- survey_burst[["color_title"]] %>% 
+  set_names(survey_burst[["title_unique"]])
 
 all_colors <- c(colors_industry, colors_title)
 ```
 
+## Inner ring
 
+Lastly in data prep, we create a smaller data set of rectangle coordinates just for the industries.
 
 ```{r}
-# create an inner ring for industrys ----
-layer_industry <- volcano_burst %>% 
+# create an inner ring for industry ----
+layer_industry <- survey_burst %>% 
   dplyr::select(industry, pct_industry, rect_x_max, rect_x_min) %>% 
   # first, get stopping point for each rectangle ----
   arrange(industry, desc(rect_x_max)) %>% 
@@ -182,7 +239,7 @@ layer_industry <- volcano_burst %>%
   dplyr::select(industry, pct_industry, stop = rect_x_max) %>% 
   # second, get starting point for each rectangle ----
   left_join(
-    volcano_burst %>% 
+    survey_burst %>% 
       dplyr::select(industry, pct_industry, rect_x_max, rect_x_min) %>% 
       arrange(industry, rect_x_max) %>% 
       group_by(industry) %>% 
@@ -195,27 +252,35 @@ layer_industry <- volcano_burst %>%
   bind_rows(
     tibble(
       attr_category = NA, 
-      start = 0.98433, 
-      stop = 1.001)
+      start = 99.7, 
+      stop = 100.1)
   ) %>% 
   mutate(
     # compute midpoint for labeling if needed ----
     mid = (stop - start)/2 + start,
     # a label for industry pct ----
-    industry_pct = ifelse(is.na(industry), NA, glue::glue('{scales::percent(pct_industry, accuracy = 1)}'))
+    industry_label = ifelse(is.na(industry), NA, glue::glue('{industry}\n{scales::percent(pct_industry/100, accuracy = 1)}'))
   )
-
 ```
 
+```{r}
+# view industry rectangles
+DT::datatable(layer_industry)
+```
 
+# Finally, sunbursts!
 
+## Variable length sunburst
+
+Finally, we can plot! This first figure has variable length bars, which are represented by the scaled median salary.
 
 ```{r}
-volcano_burst %>% 
-  # width = level_2, height = box_pct ----
+survey_burst %>% 
+  # title ring ----
 ggplot(aes(
-  ymin = 36,
-  ymax = 80, 
+  ymin = 1,
+  # variable length bars
+  ymax = median_salary_scaled, 
   xmin = rect_x_min, 
   xmax = rect_x_max,
   fill = title_unique
@@ -229,13 +294,61 @@ ggplot(aes(
     panel.grid = element_blank(),
     legend.position = "none",
   ) +
-  ylim(-25, 122) +
+  # fiddle with what you like here for white space
+  ylim(-40, 100) +
   scale_fill_manual(values = all_colors) +
+  # inner industry ring ----
   geom_rect(
     data = layer_industry,
     aes(
-      ymin = 0,
-      ymax = 35, 
+      ymin = -20,
+      ymax = 0, 
+      xmin = start, 
+      xmax = stop,
+      fill = industry
+    )
+  ) 
+  # could add reference line of some sort
+  # geom_hline(yintercept = 50, color = "gray", lty = 2)
+```
+
+Well, it is an example! Not quite as aesthetically appealing as my original example shown in the tweet, but it will do to put code to the page. 
+
+Although I think this figure can be eye-catching, it is challenging to make it informative with labeling and still maintain appeal.
+
+## Double donut sunburst
+
+For a simpler alternative, drop the job title metric of median salary and only show the frequency of industry and title in survey respondents by fixing the rectangle height. This figure can effectively communicate parts of a whole.
+
+
+```{r}
+survey_burst %>% 
+  # title ring ----
+ggplot(aes(
+  ymin = 1,
+  # fix rectangle height here
+  ymax = 20, 
+  xmin = rect_x_min, 
+  xmax = rect_x_max,
+  fill = title_unique
+ )) +
+  geom_rect(show.legend = FALSE) +
+  coord_polar() +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(), 
+    axis.text.y = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "none",
+  ) +
+  ylim(-40, 40) +
+  scale_fill_manual(values = all_colors) +
+  # industry ring ----
+  geom_rect(
+    data = layer_industry,
+    aes(
+      ymin = -20,
+      ymax = 0, 
       xmin = start, 
       xmax = stop,
       fill = industry
@@ -243,5 +356,5 @@ ggplot(aes(
   ) 
 ```
 
-
+## Interactive sunburst
 
