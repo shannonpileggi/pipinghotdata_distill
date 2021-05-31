@@ -29,162 +29,129 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # The data
 
-I was recently reading up on `tidymodels` and came across Julia Silge's post [Multinomial classification with tidymodels and #TidyTuesday volcano eruptions](https://juliasilge.com/blog/multinomial-volcano-eruptions/){target="_blank"}. For this post, I'll be using the same volcano data originally posted on [`#TidyTuesday`](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-05-12/readme.md) (as well borrowing a bit of her code!){target="_blank"}.
+tidytuesday salary data
 
-# Data processing
+# Libraries
 
 ```{r}
 library(tidyverse)
-library(sp)
-library(rworldmap)
+library(pals)
 ```
 
-```{r}
-volcano_raw <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/volcano.csv")
-```
-
-```{r}
-colors_continent <- pals::cubicyf(n = 7) 
-  #viridis::viridis(7) %>% 
-  set_names(c("Asia", "South America", "Europe", "North America", "Africa", "Australia", "Antarctica"))
-```
-
-
-
-
-https://learnui.design/tools/data-color-picker.html#palette
-
-
-
-
-
-
-
-
+# Data processing
 
 
 ```{r}
-volcano_raw %>% count(region)
-```
-
-I wanted to efficiently assign a broader region classification the volcano locations. The function shown below is the solution from the Stack Overflow post [Get country (and continent) from longitude and latitude point in R](https://stackoverflow.com/questions/21708488/get-country-and-continent-from-longitude-and-latitude-point-in-r){target="_blank"}
-
-```{r}
-coords2continent <- function(points){  
-  countriesSP <- getMap(resolution='low')
-  pointsSP    <- SpatialPoints(points, proj4string=CRS(proj4string(countriesSP)))  
-  indices     <- over(pointsSP, countriesSP)
-  indices$REGION   
-  }
+survey_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv')
 ```
 
 
 ```{r}
-volcano <- volcano_raw %>% 
+survey_summary <- survey_raw %>% 
+  # identify top industries
+  group_by(industry) %>% 
   mutate(
-    continent = coords2continent(cbind(longitude, latitude))
-    ) %>% 
-  # only consider continental volcanos ----
-  drop_na(continent) %>% 
-  group_by(continent) %>% 
+    # number of respondents per industry
+    n_industry = n()
+  ) %>%
+  ungroup() %>% 
+  arrange(desc(n_industry), industry) %>%
   mutate(
-    # within each continent, lump together regions with few levels ----
-    region_lump = fct_lump_min(region, 20),
-    # multiple regions are named other, create unique identifier for region ----
-    region_unique = glue::glue("{str_sub(continent, 1, 3)}: {region_lump}"),
-    # total number of volcanos per continent ----
-    n_continent = n()
+    # rank of industry in terms of number of survey respondents
+    n_industry_rank = as.numeric(factor(-n_industry)),
+    # very light cleaning of job title
+    job_title = tolower(job_title) %>% 
+      str_remove_all("[:digit:]+") %>% 
+      str_trim() %>% 
+      ifelse(. == "rn", "registered nurse", .)
+  ) %>% 
+  filter(n_industry_rank %in% 1:6) %>% 
+  # identify top 6 job titles in each industry 
+  group_by(n_industry_rank, n_industry, industry, job_title) %>%
+  summarize(
+    # number of titles within industry
+    n_title = n(),
+    # median salary per title
+    median_salary = median(annual_salary)
   ) %>% 
   ungroup() %>% 
-  add_count(name = "n_total") %>% 
-  arrange(desc(n_continent), continent) 
-  #mutate(
-  #  # order continent by number of volcanos ----
-  #  continent = fct_inorder(continent)
-  #)
+  arrange(n_industry_rank, industry, desc(n_title)) %>% 
+  group_by(industry) %>% 
+  # keep top 6 job titles within industry
+  slice(1:6) %>%
+  # recompute number of respondents per industry based on titles selected
+  mutate(n_industry = sum(n_title)) %>% 
+  ungroup() %>% 
+  mutate(
+    # relative scale of salary for plotting
+    median_salary_scaled = median_salary / max(median_salary) * 100,
+    # base n respondents
+    n_total = sum(n_title),
+    # percent of respondents per title
+    pct_title = n_title / n_total * 100,
+    pct_industry = n_industry / n_total * 100
+  ) %>% 
+  arrange(desc(n_industry, n_title))
 ```
+
 
 
 
 ```{r}
-world <- map_data("world")
-
-ggplot() +
-  geom_map(
-    data = world, map = world,
-    aes(long, lat, map_id = region),
-    color = "white", fill = "gray50", size = 0.05, alpha = 0.2
-  ) +
-  geom_point(
-    data = volcano,
-    aes(longitude, latitude, color = continent),
-    alpha = 0.8
-  ) +
-  theme_void() +
-  labs(x = NULL, y = NULL, color = NULL) + 
-  scale_color_manual(values = colors_continent)
+colors_industry <- pals::cubicyf(n = 6) %>% 
+  set_names(unique(survey_summary[["industry"]]))
 ```
+
+
+
+
+
 
 https://learnr.wordpress.com/2009/03/29/ggplot2-variable-width-column-chart/
 
 ```{r}
-volcano_burst <- volcano %>% 
-  group_by(n_total, continent, region_unique, n_continent) %>% 
-  summarize(
-    # total number of volcanos per region ----
-    n_region = n(),
-    # median elevatation in each region ----
-    med_elevation = median(elevation)
-  ) %>% 
-  ungroup() %>% 
-  mutate(
-    # compute percents ----
-    pct_continent = n_continent / n_total,
-    pct_region = n_region / n_total,
-    # a scaled version of elevation for plotting ----
-    med_elevation_scaled = med_elevation / max(med_elevation)
-  ) %>% 
+survey_burst <- survey_summary %>% 
   # join colors to data frame ----
-    left_join(enframe(colors_continent, name = "continent", value = "color_continent"), 
-            by = "continent") %>%
-  # arrange descending continent but ascending region
-  # to compute region colors
-  arrange(desc(n_continent), continent, n_region, region_unique) %>% 
-  group_by(continent) %>% 
+    left_join(enframe(colors_industry, name = "industry", value = "color_industry"), 
+            by = "industry") %>%
+  # arrange descending industry but ascending title
+  # to compute title colors
+  arrange(desc(n_industry), industry, n_title, title_unique) %>% 
+  group_by(industry) %>% 
   mutate(
-    # enumerate region in continent ----
-    id_region = row_number(),
-    # number of regions per continent ----
-    num_region = max(id_region)
+    # enumerate title in industry ----
+    id_title = row_number(),
+    # number of titles per industry ----
+    num_title = max(id_title)
   ) %>% 
   ungroup() %>% 
   mutate(
     # degree of transparency based on number of attributes ----
-    color_trans = id_region / num_region ,
-    color_region = map2_chr(color_continent, color_trans, ~ adjustcolor(.x, .y))
+    color_trans = id_title / num_title ,
+    color_title = map2_chr(color_industry, color_trans, ~ adjustcolor(.x, .y))
   ) %>% 
   # this arrange specifies the ordering of the figure
   # clockwise ---
-  arrange(-pct_continent, continent, -pct_region, region_unique) %>%
+  arrange(-pct_industry, industry, -pct_title, title_unique) %>%
   # counter clockwise ---
-  # arrange(pct_continent, continent, pct_region, region_unique) %>% 
+  # arrange(pct_industry, industry, pct_title, title_unique) %>% 
   mutate(
-    continent = fct_inorder(continent),
-    region_unique = fct_inorder(region_unique)
+    industry = fct_inorder(industry),
+    title_unique = fct_inorder(title_unique)
   ) %>% 
-  group_by(continent) %>% 
-  mutate(cum_region_pct = cumsum(pct_region)) %>% 
+  group_by(industry) %>% 
+  mutate(cum_title_pct = cumsum(pct_title)) %>% 
   ungroup() %>% 
   mutate(
-    cum_continent_pct = cumsum(cum_region_pct),
-    cum_all = cumsum(pct_region)
+    cum_industry_pct = cumsum(cum_title_pct),
+    cum_all = cumsum(pct_title)
   ) %>% 
   mutate(
     # compute coordinates of the rectangles ----
     # the 0.0003 is an adjustment on the 0 to 1 scales to add a small
     # amount of white space between rectangles
-    rect_x_max = cumsum(pct_region) - 0.003,      # xmax ----
-    rect_x_min = rect_x_max - pct_region + 0.003, # xmin ----
+    rect_x_max = cumsum(pct_title) - 0.003,      # xmax ----
+    rect_x_min = rect_x_max - pct_title + 0.003, # xmin ----
     rect_x_mid = (rect_x_min + rect_x_max)/2      # xmid ----
   ) 
 
@@ -194,35 +161,35 @@ volcano_burst <- volcano %>%
 
 
 ```{r}
-colors_region <- volcano_burst[["color_region"]]
-names(colors_region) <- volcano_burst[["region_unique"]]
+colors_title <- volcano_burst[["color_title"]]
+names(colors_title) <- volcano_burst[["title_unique"]]
 
-all_colors <- c(colors_continent, colors_region)
+all_colors <- c(colors_industry, colors_title)
 ```
 
 
 
 ```{r}
-# create an inner ring for continents ----
-layer_continent <- volcano_burst %>% 
-  dplyr::select(continent, pct_continent, rect_x_max, rect_x_min) %>% 
+# create an inner ring for industrys ----
+layer_industry <- volcano_burst %>% 
+  dplyr::select(industry, pct_industry, rect_x_max, rect_x_min) %>% 
   # first, get stopping point for each rectangle ----
-  arrange(continent, desc(rect_x_max)) %>% 
-  group_by(continent) %>%
-  # keep one entry per continent ----
+  arrange(industry, desc(rect_x_max)) %>% 
+  group_by(industry) %>%
+  # keep one entry per industry ----
   slice(1) %>% 
   ungroup() %>% 
-  dplyr::select(continent, pct_continent, stop = rect_x_max) %>% 
+  dplyr::select(industry, pct_industry, stop = rect_x_max) %>% 
   # second, get starting point for each rectangle ----
   left_join(
     volcano_burst %>% 
-      dplyr::select(continent, pct_continent, rect_x_max, rect_x_min) %>% 
-      arrange(continent, rect_x_max) %>% 
-      group_by(continent) %>% 
+      dplyr::select(industry, pct_industry, rect_x_max, rect_x_min) %>% 
+      arrange(industry, rect_x_max) %>% 
+      group_by(industry) %>% 
       slice(1) %>% 
       ungroup() %>% 
-      dplyr::select(continent, pct_continent, start = rect_x_min),
-    by = c("continent", "pct_continent")
+      dplyr::select(industry, pct_industry, start = rect_x_min),
+    by = c("industry", "pct_industry")
   ) %>% 
   # insert blank row for extra white space where circle starts/stops ---
   bind_rows(
@@ -234,8 +201,8 @@ layer_continent <- volcano_burst %>%
   mutate(
     # compute midpoint for labeling if needed ----
     mid = (stop - start)/2 + start,
-    # a label for continent pct ----
-    continent_pct = ifelse(is.na(continent), NA, glue::glue('{scales::percent(pct_continent, accuracy = 1)}'))
+    # a label for industry pct ----
+    industry_pct = ifelse(is.na(industry), NA, glue::glue('{scales::percent(pct_industry, accuracy = 1)}'))
   )
 
 ```
@@ -251,7 +218,7 @@ ggplot(aes(
   ymax = 80, 
   xmin = rect_x_min, 
   xmax = rect_x_max,
-  fill = region_unique
+  fill = title_unique
  )) +
   geom_rect(show.legend = FALSE) +
   coord_polar() +
@@ -265,13 +232,13 @@ ggplot(aes(
   ylim(-25, 122) +
   scale_fill_manual(values = all_colors) +
   geom_rect(
-    data = layer_continent,
+    data = layer_industry,
     aes(
       ymin = 0,
       ymax = 35, 
       xmin = start, 
       xmax = stop,
-      fill = continent
+      fill = industry
     )
   ) 
 ```
