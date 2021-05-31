@@ -101,12 +101,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="og:title" content="sunburst"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="description"/>
+  <meta property="og:image" content="https://www.pipinghotdata.com/sunburst_files/figure-html5/unnamed-chunk-12-1.png"/>
+  <meta property="og:image:width" content="1248"/>
+  <meta property="og:image:height" content="768"/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
-  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:card" content="summary_large_image"/>
   <meta property="twitter:title" content="sunburst"/>
   <meta property="twitter:description" content="description"/>
+  <meta property="twitter:image" content="https://www.pipinghotdata.com/sunburst_files/figure-html5/unnamed-chunk-12-1.png"/>
+  <meta property="twitter:image:width" content="1248"/>
+  <meta property="twitter:image:height" content="768"/>
   <meta property="twitter:site" content="@PipingHotData"/>
   <meta property="twitter:creator" content="@PipingHotData"/>
 
@@ -119,7 +125,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"NULL"}
+  {"type":"character","attributes":{},"value":["sunburst_files/anchor-4.2.2/anchor.min.js","sunburst_files/bowser-1.9.3/bowser.min.js","sunburst_files/distill-2.2.21/template.v2.js","sunburst_files/figure-html5/unnamed-chunk-12-1.png","sunburst_files/figure-html5/unnamed-chunk-13-1.png","sunburst_files/header-attrs-2.6/header-attrs.js","sunburst_files/jquery-1.11.3/jquery.min.js","sunburst_files/popper-2.6.0/popper.min.js","sunburst_files/tippy-6.2.7/tippy-bundle.umd.min.js","sunburst_files/tippy-6.2.7/tippy-light-border.css","sunburst_files/tippy-6.2.7/tippy.css","sunburst_files/tippy-6.2.7/tippy.umd.min.js","sunburst_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1437,8 +1443,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="sunburst_files/header-attrs-2.6/header-attrs.js"></script>
-  <script src="sunburst_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="sunburst_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="sunburst_files/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+  <script src="sunburst_files/jquery-1.12.4/jquery.min.js"></script>
+  <link href="sunburst_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+  <script src="sunburst_files/datatables-binding-0.15/datatables.js"></script>
+  <link href="sunburst_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="sunburst_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="sunburst_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+  <link href="sunburst_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+  <script src="sunburst_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+  <script src="sunburst_files/d3-5.7.0/d3.min.js"></script>
+  <script src="sunburst_files/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+  <link href="sunburst_files/ggiraphjs-0.3.0/ggiraphjs.min.css" rel="stylesheet" />
+  <script src="sunburst_files/ggiraphjs-0.3.0/ggiraphjs.min.js"></script>
+  <script src="sunburst_files/girafe-binding-0.7.8/girafe.js"></script>
   <script src="sunburst_files/popper-2.6.0/popper.min.js"></script>
   <link href="sunburst_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="sunburst_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1486,11 +1505,431 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#tl-dr">TL; DR</a></li>
+<li><a href="#background">Background</a></li>
+<li><a href="#the-data">The data</a></li>
+<li><a href="#libraries">Libraries</a></li>
+<li><a href="#data-processing">Data processing</a></li>
+<li><a href="#sunbursts">Sunbursts</a></li>
+<li><a href="#for-fun">For fun</a></li>
 </ul>
 </nav>
 </div>
 <h1 id="tl-dr">TL; DR</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>I manually defined <code>geom_rect</code> to create custom sunbursts with <code>ggplot</code>. Pair this with <code>ggiraph</code> package to create an awesome interactive graphic!</p>
+<h1 id="background">Background</h1>
+<p>Sunbursts in R first caught my eye from the <a href="https://cran.r-project.org/web/packages/sunburstR/vignettes/sunburst-2-0-0.html" target="_blank"><code>sunburstR</code></a> package with its awesome interactivity through <code>d3</code>. However, I had trouble customizing it and sought a <code>ggplot</code> alternative. You can create a version using <code>geom_col</code>, as shown in this <a href="https://community.rstudio.com/t/how-to-create-a-ggplot2-pie-and-donut-chart-on-same-plot/42798/3" target="_blank">RStudio Community Post</a>; I chose to go the more complex <code>geom_rect</code> route for more customization options. It was pretty exciting when I got it to work!</p>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+pretty pumped I got this custom “sunburst”-esque figure to work!! <a href="https://twitter.com/hashtag/ggplot?src=hash&amp;ref_src=twsrc%5Etfw">#ggplot</a> <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://t.co/L88IQWoVCs">pic.twitter.com/L88IQWoVCs</a>
+</p>
+— Shannon Pileggi (<span class="citation" data-cites="PipingHotData">@PipingHotData</span>) <a href="https://twitter.com/PipingHotData/status/1215699305555746816?ref_src=twsrc%5Etfw">January 10, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<h1 id="the-data">The data</h1>
+<p>To illustrate the concept on a publicly available data set, I am using the May 2021 <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-05-18/readme.md" target="_blank"><code>#TidyTuesday</code> salary data</a>. Here, I’ll be looking at the top 5 industries and job titles.</p>
+<p>The data attributes that work well for this set up include:</p>
+<ol type="1">
+<li><p>4-6 categories, with associated weight or frequency of occurrence</p>
+<ul>
+<li>our categories are the top 5 industries</li>
+</ul></li>
+<li><p>4-6 sub-items within each category, with associated weight or frequency of occurrence</p></li>
+</ol>
+<ul>
+<li>our sub-items are the top 5 job titles within industry</li>
+</ul>
+<ol start="3" type="1">
+<li><em>optional:</em> a metric for the sub-items</li>
+</ol>
+<ul>
+<li>our metric is the median salary for the titles</li>
+</ul>
+<h1 id="libraries">Libraries</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span> <span class='co'># general use</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://davidgohel.github.io/ggiraph'>ggiraph</a></span><span class='op'>)</span>   <span class='co'># interactive ggplots</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidyverse/glue'>glue</a></span><span class='op'>)</span>      <span class='co'># pasting strings</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://kwstat.github.io/pals/'>pals</a></span><span class='op'>)</span>      <span class='co'># color palette</span>
+</code></pre>
+</div>
+</div>
+<h1 id="data-processing">Data processing</h1>
+<h2 id="import">Import</h2>
+<p>First, import the data from GitHub.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># import data</span>
+<span class='va'>survey_raw</span> <span class='op'>&lt;-</span> <span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-05-18/survey.csv'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="summarize">Summarize</h2>
+<p>Next, summarize the data in terms of the top 5 industries and top 5 job titles. For the job title, we’ll get (1) the percent of respondents with that title, and (2) the median salary for that title.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>survey_summary</span> <span class='op'>&lt;-</span> <span class='va'>survey_raw</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># identify top industries</span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># number of respondents per industry</span>
+    n_industry <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>n_industry</span><span class='op'>)</span>, <span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># rank of industry in terms of number of survey respondents</span>
+    <span class='co'># know a better way to do this bit? pls let me know!</span>
+    n_industry_rank <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>n_industry</span><span class='op'>)</span><span class='op'>)</span>,
+    <span class='co'># very light cleaning of job title</span>
+    job_title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/chartr.html'>tolower</a></span><span class='op'>(</span><span class='va'>job_title</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_remove_all</span><span class='op'>(</span><span class='st'>"[:digit:]+"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_trim</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>.</span> <span class='op'>==</span> <span class='st'>"rn"</span>, <span class='st'>"registered nurse"</span>, <span class='va'>.</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># reduce to top 5 industries present</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n_industry_rank</span> <span class='op'>%in%</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># identify top 5 job titles in each industry </span>
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>n_industry_rank</span>, <span class='va'>n_industry</span>, <span class='va'>industry</span>, <span class='va'>job_title</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>
+    <span class='co'># number of titles within industry</span>
+    n_title <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span>,
+    <span class='co'># median salary per title</span>
+    median_salary <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>annual_salary</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>n_industry_rank</span>, <span class='va'>industry</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='va'>n_title</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># keep top 6 job titles within industry</span>
+  <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># recompute number of respondents per industry based on titles selected</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>n_industry <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n_title</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># relative scale of salary for plotting</span>
+    median_salary_scaled <span class='op'>=</span> <span class='va'>median_salary</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>median_salary</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>100</span>,
+    <span class='co'># base n respondents</span>
+    n_total <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n_title</span><span class='op'>)</span>,
+    <span class='co'># percent of respondents per title</span>
+    pct_title <span class='op'>=</span> <span class='va'>n_title</span> <span class='op'>/</span> <span class='va'>n_total</span> <span class='op'>*</span> <span class='fl'>100</span>,
+    pct_industry <span class='op'>=</span> <span class='va'>n_industry</span> <span class='op'>/</span> <span class='va'>n_total</span> <span class='op'>*</span> <span class='fl'>100</span>,
+    <span class='co'># unique job title, as some repeat across industry</span>
+    title_unique <span class='op'>=</span> <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{str_sub(industry, 1, 3)}: {job_title}"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>pct_industry</span>, <span class='va'>pct_title</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Here is a preview of our data, which is the basis needed for the sunburst’s custom rectangles.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># view input data</span>
+<span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>survey_summary</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-07aec3fe13d6e5569eed" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-07aec3fe13d6e5569eed">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,5,5,5,5,5,4,4,4,4,4],[809,809,809,809,809,317,317,317,317,317,216,216,216,216,216,177,177,177,177,177,122,122,122,122,122],["Computing or Tech","Computing or Tech","Computing or Tech","Computing or Tech","Computing or Tech","Education (Higher Education)","Education (Higher Education)","Education (Higher Education)","Education (Higher Education)","Education (Higher Education)","Nonprofits","Nonprofits","Nonprofits","Nonprofits","Nonprofits","Health care","Health care","Health care","Health care","Health care","Government and Public Administration","Government and Public Administration","Government and Public Administration","Government and Public Administration","Government and Public Administration"],["software engineer","senior software engineer","software developer","product manager","engineering manager","assistant professor","librarian","associate professor","professor","academic advisor","executive director","program manager","director","program coordinator","program director","registered nurse","nurse practitioner","executive assistant","pharmacist","project manager","librarian","analyst","policy analyst","director","manager"],[334,210,99,97,69,104,82,55,41,35,62,58,39,30,27,92,28,19,19,19,39,28,20,18,17],[125000,151500,95000,120000,173500,77250,64800,82000,95000,50000,82000,60000,100000,46425,71350,72900,106785,65000,106840,88000,59000,85650,89074,127500,120000],[72.0461095100865,87.3198847262248,54.7550432276657,69.164265129683,100,44.5244956772334,37.3487031700288,47.2622478386167,54.7550432276657,28.8184438040346,47.2622478386167,34.5821325648415,57.6368876080692,26.7579250720461,41.1239193083574,42.0172910662824,61.5475504322767,37.463976945245,61.5792507204611,50.7204610951009,34.0057636887608,49.3659942363112,51.3394812680115,73.4870317002882,69.164265129683],[1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641],[20.3534430225472,12.7970749542962,6.03290676416819,5.91102985984156,4.20475319926874,6.33759902498477,4.99695307739183,3.35161486898233,2.49847653869592,2.13284582571603,3.77818403412553,3.53443022547227,2.37659963436929,1.82815356489945,1.64533820840951,5.60633759902498,1.70627666057282,1.15783059110299,1.15783059110299,1.15783059110299,2.37659963436929,1.70627666057282,1.2187690432663,1.09689213893967,1.03595368677636],[49.2992078001219,49.2992078001219,49.2992078001219,49.2992078001219,49.2992078001219,19.3174893357709,19.3174893357709,19.3174893357709,19.3174893357709,19.3174893357709,13.1627056672761,13.1627056672761,13.1627056672761,13.1627056672761,13.1627056672761,10.7861060329068,10.7861060329068,10.7861060329068,10.7861060329068,10.7861060329068,7.43449116392444,7.43449116392444,7.43449116392444,7.43449116392444,7.43449116392444],["Com: software engineer","Com: senior software engineer","Com: software developer","Com: product manager","Com: engineering manager","Edu: assistant professor","Edu: librarian","Edu: associate professor","Edu: professor","Edu: academic advisor","Non: executive director","Non: program manager","Non: director","Non: program coordinator","Non: program director","Hea: registered nurse","Hea: nurse practitioner","Hea: executive assistant","Hea: pharmacist","Hea: project manager","Gov: librarian","Gov: analyst","Gov: policy analyst","Gov: director","Gov: manager"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>n_industry_rank<\/th>\n      <th>n_industry<\/th>\n      <th>industry<\/th>\n      <th>job_title<\/th>\n      <th>n_title<\/th>\n      <th>median_salary<\/th>\n      <th>median_salary_scaled<\/th>\n      <th>n_total<\/th>\n      <th>pct_title<\/th>\n      <th>pct_industry<\/th>\n      <th>title_unique<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,5,6,7,8,9,10]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<h2 id="assign-colors">Assign colors</h2>
+<p>Pick a color palette for industry, and name the color vector.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>colors_industry</span> <span class='op'>&lt;-</span> <span class='fu'>pals</span><span class='fu'>::</span><span class='fu'><a href='http://kwstat.github.io/pals/reference/niccoli.html'>cubicyf</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>set_names</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>survey_summary</span><span class='op'>[[</span><span class='st'>"industry"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>colors_industry</span>
+</code></pre>
+</div>
+<pre><code>                   Computing or Tech 
+                           &quot;#830CAB&quot; 
+        Education (Higher Education) 
+                           &quot;#6574FA&quot; 
+                          Nonprofits 
+                           &quot;#3BBCAC&quot; 
+                         Health care 
+                           &quot;#62E44A&quot; 
+Government and Public Administration 
+                           &quot;#CCEC5A&quot; </code></pre>
+</div>
+<h2 id="compute-rectangles">Compute rectangles</h2>
+<p>Next, I manually define the rectangles. I figured out the bits to create custom rectangles from various blog posts that I did not save. It could have been this post on <a href="https://learnr.wordpress.com/2009/03/29/ggplot2-variable-width-column-chart/" target="_blank">variable width column charts</a>. I got tips on how to angle text for labels from the <a href="http://www.r-graph-gallery.com/296-add-labels-to-circular-barplot.html" target="_blank">R Graph Gallery’s circular barplots</a>.</p>
+<p>The idea of the rectangles’ color assignment is that darker shades represent more frequent items within a category. To create the colors, I concocted a solution to implement a degree of transparency off of the original industry colors based on the total number of sub-categories. Jake Riley shared with me <a href="https://stackoverflow.com/questions/56120815/how-to-factor-sub-group-by-category" target="_blank">an alternative solution for sub-category color assignment</a> that he contributed on Stack Overflow.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>survey_burst</span> <span class='op'>&lt;-</span> <span class='va'>survey_summary</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># join colors to data frame ----</span>
+    <span class='fu'>left_join</span><span class='op'>(</span><span class='fu'>enframe</span><span class='op'>(</span><span class='va'>colors_industry</span>, name <span class='op'>=</span> <span class='st'>"industry"</span>, value <span class='op'>=</span> <span class='st'>"color_industry"</span><span class='op'>)</span>, 
+            by <span class='op'>=</span> <span class='st'>"industry"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># arrange descending industry but ascending title</span>
+  <span class='co'># to compute title colors</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>n_industry</span><span class='op'>)</span>, <span class='va'>industry</span>, <span class='va'>n_title</span>, <span class='va'>title_unique</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># enumerate title in industry</span>
+    id_title <span class='op'>=</span> <span class='fu'>row_number</span><span class='op'>(</span><span class='op'>)</span>,
+    <span class='co'># number of titles per industry</span>
+    <span class='co'># this can vary - it does not have to be same number per category</span>
+    num_title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>id_title</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># degree of transparency based on number of attributes ----</span>
+    color_trans <span class='op'>=</span> <span class='va'>id_title</span> <span class='op'>/</span> <span class='va'>num_title</span> ,
+    color_title <span class='op'>=</span> <span class='fu'>map2_chr</span><span class='op'>(</span><span class='va'>color_industry</span>, <span class='va'>color_trans</span>, <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/adjustcolor.html'>adjustcolor</a></span><span class='op'>(</span><span class='va'>.x</span>, <span class='va'>.y</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># this arrange specifies the ordering of the figure</span>
+  <span class='co'># clockwise ---</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='op'>-</span><span class='va'>pct_industry</span>, <span class='va'>industry</span>, <span class='op'>-</span><span class='va'>pct_title</span>, <span class='va'>title_unique</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># counter clockwise ---</span>
+  <span class='co'># arrange(pct_industry, industry, pct_title, title_unique) %&gt;% </span>
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    industry <span class='op'>=</span> <span class='fu'>fct_inorder</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span>,
+    title_unique <span class='op'>=</span> <span class='fu'>fct_inorder</span><span class='op'>(</span><span class='va'>title_unique</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>cum_title_pct <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='va'>pct_title</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    cum_industry_pct <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='va'>cum_title_pct</span><span class='op'>)</span>,
+    cum_all <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='va'>pct_title</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># compute coordinates of the rectangles ----</span>
+    <span class='co'># the 0.3 is an adjustment on the 0 to 100 scale to add a small</span>
+    <span class='co'># amount of white space between rectangles</span>
+    rect_x_max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cumsum.html'>cumsum</a></span><span class='op'>(</span><span class='va'>pct_title</span><span class='op'>)</span> <span class='op'>-</span> <span class='fl'>0.3</span>,      <span class='co'># xmax ----</span>
+    rect_x_min <span class='op'>=</span> <span class='va'>rect_x_max</span> <span class='op'>-</span> <span class='va'>pct_title</span> <span class='op'>+</span> <span class='fl'>0.3</span>, <span class='co'># xmin ----</span>
+    rect_x_mid <span class='op'>=</span> <span class='op'>(</span><span class='va'>rect_x_min</span> <span class='op'>+</span> <span class='va'>rect_x_max</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span>,  <span class='co'># xmid ----</span>
+    <span class='co'># angles in case adding text to plot, omitting here ----</span>
+    angle <span class='op'>=</span> <span class='fl'>90</span> <span class='op'>-</span> <span class='fl'>360</span> <span class='op'>*</span> <span class='va'>rect_x_mid</span> <span class='op'>/</span> <span class='fl'>100</span>,
+    hjust <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>angle</span> <span class='op'>&lt;</span> <span class='op'>-</span><span class='fl'>90</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>,
+    angle <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>angle</span> <span class='op'>&lt;</span> <span class='op'>-</span><span class='fl'>90</span>, <span class='va'>angle</span> <span class='op'>+</span> <span class='fl'>180</span>, <span class='va'>angle</span><span class='op'>)</span>,
+    <span class='co'># label</span>
+    label_title <span class='op'>=</span> <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>'{scales::percent(pct_industry/100, accuracy = 1)} {industry}\n {scales::percent(pct_title/100, accuracy = 1)} {job_title} \n {scales::dollar(median_salary)} median salary'</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># view sunburst data</span>
+<span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>survey_burst</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-961747df9f677be4a3ea" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-961747df9f677be4a3ea">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25"],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3,5,5,5,5,5,4,4,4,4,4],[809,809,809,809,809,317,317,317,317,317,216,216,216,216,216,177,177,177,177,177,122,122,122,122,122],["Computing or Tech","Computing or Tech","Computing or Tech","Computing or Tech","Computing or Tech","Education (Higher Education)","Education (Higher Education)","Education (Higher Education)","Education (Higher Education)","Education (Higher Education)","Nonprofits","Nonprofits","Nonprofits","Nonprofits","Nonprofits","Health care","Health care","Health care","Health care","Health care","Government and Public Administration","Government and Public Administration","Government and Public Administration","Government and Public Administration","Government and Public Administration"],["software engineer","senior software engineer","software developer","product manager","engineering manager","assistant professor","librarian","associate professor","professor","academic advisor","executive director","program manager","director","program coordinator","program director","registered nurse","nurse practitioner","executive assistant","pharmacist","project manager","librarian","analyst","policy analyst","director","manager"],[334,210,99,97,69,104,82,55,41,35,62,58,39,30,27,92,28,19,19,19,39,28,20,18,17],[125000,151500,95000,120000,173500,77250,64800,82000,95000,50000,82000,60000,100000,46425,71350,72900,106785,65000,106840,88000,59000,85650,89074,127500,120000],[72.0461095100865,87.3198847262248,54.7550432276657,69.164265129683,100,44.5244956772334,37.3487031700288,47.2622478386167,54.7550432276657,28.8184438040346,47.2622478386167,34.5821325648415,57.6368876080692,26.7579250720461,41.1239193083574,42.0172910662824,61.5475504322767,37.463976945245,61.5792507204611,50.7204610951009,34.0057636887608,49.3659942363112,51.3394812680115,73.4870317002882,69.164265129683],[1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641,1641],[20.3534430225472,12.7970749542962,6.03290676416819,5.91102985984156,4.20475319926874,6.33759902498477,4.99695307739183,3.35161486898233,2.49847653869592,2.13284582571603,3.77818403412553,3.53443022547227,2.37659963436929,1.82815356489945,1.64533820840951,5.60633759902498,1.70627666057282,1.15783059110299,1.15783059110299,1.15783059110299,2.37659963436929,1.70627666057282,1.2187690432663,1.09689213893967,1.03595368677636],[49.2992078001219,49.2992078001219,49.2992078001219,49.2992078001219,49.2992078001219,19.3174893357709,19.3174893357709,19.3174893357709,19.3174893357709,19.3174893357709,13.1627056672761,13.1627056672761,13.1627056672761,13.1627056672761,13.1627056672761,10.7861060329068,10.7861060329068,10.7861060329068,10.7861060329068,10.7861060329068,7.43449116392444,7.43449116392444,7.43449116392444,7.43449116392444,7.43449116392444],["Com: software engineer","Com: senior software engineer","Com: software developer","Com: product manager","Com: engineering manager","Edu: assistant professor","Edu: librarian","Edu: associate professor","Edu: professor","Edu: academic advisor","Non: executive director","Non: program manager","Non: director","Non: program coordinator","Non: program director","Hea: registered nurse","Hea: nurse practitioner","Hea: executive assistant","Hea: pharmacist","Hea: project manager","Gov: librarian","Gov: analyst","Gov: policy analyst","Gov: director","Gov: manager"],["#830CAB","#830CAB","#830CAB","#830CAB","#830CAB","#6574FA","#6574FA","#6574FA","#6574FA","#6574FA","#3BBCAC","#3BBCAC","#3BBCAC","#3BBCAC","#3BBCAC","#62E44A","#62E44A","#62E44A","#62E44A","#62E44A","#CCEC5A","#CCEC5A","#CCEC5A","#CCEC5A","#CCEC5A"],[5,4,3,2,1,5,4,3,2,1,5,4,3,2,1,5,4,1,2,3,5,4,3,2,1],[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],[1,0.8,0.6,0.4,0.2,1,0.8,0.6,0.4,0.2,1,0.8,0.6,0.4,0.2,1,0.8,0.2,0.4,0.6,1,0.8,0.6,0.4,0.2],["#830CABFF","#830CABCC","#830CAB99","#830CAB66","#830CAB33","#6574FAFF","#6574FACC","#6574FA99","#6574FA66","#6574FA33","#3BBCACFF","#3BBCACCC","#3BBCAC99","#3BBCAC66","#3BBCAC33","#62E44AFF","#62E44ACC","#62E44A33","#62E44A66","#62E44A99","#CCEC5AFF","#CCEC5ACC","#CCEC5A99","#CCEC5A66","#CCEC5A33"],[20.3534430225472,33.1505179768434,39.1834247410116,45.0944546008531,49.2992078001219,6.33759902498477,11.3345521023766,14.6861669713589,17.1846435100548,19.3174893357709,3.77818403412553,7.31261425959781,9.68921389396709,11.5173674588665,13.1627056672761,5.60633759902498,7.31261425959781,8.47044485070079,9.62827544180378,10.7861060329068,2.37659963436929,4.08287629494211,5.30164533820841,6.39853747714808,7.43449116392444],[20.3534430225472,53.5039609993906,92.6873857404022,137.781840341255,187.081048141377,193.418647166362,204.753199268739,219.439366240098,236.624009750152,255.941499085923,259.719683120049,267.032297379647,276.721511273614,288.23887873248,301.401584399756,307.007921998781,314.320536258379,322.79098110908,332.419256550884,343.20536258379,345.58196221816,349.664838513102,354.96648385131,361.365021328458,368.799512492383],[20.3534430225472,33.1505179768434,39.1834247410116,45.0944546008531,49.2992078001219,55.6368068251066,60.6337599024985,63.9853747714808,66.4838513101767,68.6166971358927,72.3948811700183,75.9293113954906,78.3059110298598,80.1340645947593,81.7794028031688,87.3857404021938,89.0920170627666,90.2498476538696,91.4076782449726,92.5655088360756,94.9421084704449,96.6483851310177,97.867154174284,98.9640463132236,100],[20.0534430225472,32.8505179768434,38.8834247410116,44.7944546008531,48.9992078001219,55.3368068251066,60.3337599024985,63.6853747714808,66.1838513101767,68.3166971358928,72.0948811700183,75.6293113954906,78.0059110298598,79.8340645947593,81.4794028031688,87.0857404021938,88.7920170627666,89.9498476538696,91.1076782449726,92.2655088360756,94.6421084704449,96.3483851310177,97.567154174284,98.6640463132237,99.7],[-7.21644966006352e-16,20.3534430225472,33.1505179768434,39.1834247410116,45.0944546008531,49.2992078001219,55.6368068251066,60.6337599024985,63.9853747714808,66.4838513101767,68.6166971358927,72.3948811700183,75.9293113954906,78.3059110298598,80.1340645947593,81.7794028031688,87.3857404021938,89.0920170627666,90.2498476538696,91.4076782449726,92.5655088360756,94.9421084704449,96.6483851310177,97.867154174284,98.9640463132236],[10.0267215112736,26.6019804996953,36.0169713589275,41.9889396709324,47.0468312004875,52.3180073126143,57.9852833638026,62.1595673369896,65.0846130408288,67.4002742230347,70.3557891529555,74.0120962827544,76.9676112126752,79.0699878123096,80.8067336989641,84.4325716026813,88.0888787324802,89.5209323583181,90.6787629494211,91.8365935405241,93.6038086532602,95.6452468007313,97.1077696526508,98.2656002437538,99.3320231566118],[53.903802559415,-5.76712979890311,-39.6610968921389,-61.1601828153565,-79.368592321755,81.6551736745887,61.2529798903108,46.2255575868373,35.6953930530165,27.359012797075,16.7191590493602,3.5564533820841,-7.08340036563072,-14.6519561243144,-20.9042413162706,-33.9572577696526,-47.1199634369287,-52.2753564899452,-56.4435466179158,-60.6117367458866,-66.9737111517368,-74.3228884826325,-79.5879707495429,-83.7561608775138,-87.5952833638026],[0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],["49% Computing or Tech\n20% software engineer \n$125,000 median salary","49% Computing or Tech\n13% senior software engineer \n$151,500 median salary","49% Computing or Tech\n6% software developer \n$95,000 median salary","49% Computing or Tech\n6% product manager \n$120,000 median salary","49% Computing or Tech\n4% engineering manager \n$173,500 median salary","19% Education (Higher Education)\n6% assistant professor \n$77,250 median salary","19% Education (Higher Education)\n5% librarian \n$64,800 median salary","19% Education (Higher Education)\n3% associate professor \n$82,000 median salary","19% Education (Higher Education)\n2% professor \n$95,000 median salary","19% Education (Higher Education)\n2% academic advisor \n$50,000 median salary","13% Nonprofits\n4% executive director \n$82,000 median salary","13% Nonprofits\n4% program manager \n$60,000 median salary","13% Nonprofits\n2% director \n$100,000 median salary","13% Nonprofits\n2% program coordinator \n$46,425 median salary","13% Nonprofits\n2% program director \n$71,350 median salary","11% Health care\n6% registered nurse \n$72,900 median salary","11% Health care\n2% nurse practitioner \n$106,785 median salary","11% Health care\n1% executive assistant \n$65,000 median salary","11% Health care\n1% pharmacist \n$106,840 median salary","11% Health care\n1% project manager \n$88,000 median salary","7% Government and Public Administration\n2% librarian \n$59,000 median salary","7% Government and Public Administration\n2% analyst \n$85,650 median salary","7% Government and Public Administration\n1% policy analyst \n$89,074 median salary","7% Government and Public Administration\n1% director \n$127,500 median salary","7% Government and Public Administration\n1% manager \n$120,000 median salary"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>n_industry_rank<\/th>\n      <th>n_industry<\/th>\n      <th>industry<\/th>\n      <th>job_title<\/th>\n      <th>n_title<\/th>\n      <th>median_salary<\/th>\n      <th>median_salary_scaled<\/th>\n      <th>n_total<\/th>\n      <th>pct_title<\/th>\n      <th>pct_industry<\/th>\n      <th>title_unique<\/th>\n      <th>color_industry<\/th>\n      <th>id_title<\/th>\n      <th>num_title<\/th>\n      <th>color_trans<\/th>\n      <th>color_title<\/th>\n      <th>cum_title_pct<\/th>\n      <th>cum_industry_pct<\/th>\n      <th>cum_all<\/th>\n      <th>rect_x_max<\/th>\n      <th>rect_x_min<\/th>\n      <th>rect_x_mid<\/th>\n      <th>angle<\/th>\n      <th>hjust<\/th>\n      <th>label_title<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,5,6,7,8,9,10,13,14,15,17,18,19,20,21,22,23,24]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<h2 id="combine-colors">Combine colors</h2>
+<p>Combine all industry and title colors in a single vector.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>colors_title</span> <span class='op'>&lt;-</span> <span class='va'>survey_burst</span><span class='op'>[[</span><span class='st'>"color_title"</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>set_names</span><span class='op'>(</span><span class='va'>survey_burst</span><span class='op'>[[</span><span class='st'>"title_unique"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+
+<span class='va'>all_colors</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>colors_industry</span>, <span class='va'>colors_title</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="inner-ring">Inner ring</h2>
+<p>Lastly in data prep, we create a smaller data set of rectangle coordinates just for the industries.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create an inner ring for industry ----</span>
+<span class='va'>layer_industry</span> <span class='op'>&lt;-</span> <span class='va'>survey_burst</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>industry</span>, <span class='va'>pct_industry</span>, <span class='va'>rect_x_max</span>, <span class='va'>rect_x_min</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># first, get stopping point for each rectangle ----</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>industry</span>, <span class='fu'>desc</span><span class='op'>(</span><span class='va'>rect_x_max</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># keep one entry per industry ----</span>
+  <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>industry</span>, <span class='va'>pct_industry</span>, stop <span class='op'>=</span> <span class='va'>rect_x_max</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># second, get starting point for each rectangle ----</span>
+  <span class='fu'>left_join</span><span class='op'>(</span>
+    <span class='va'>survey_burst</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>industry</span>, <span class='va'>pct_industry</span>, <span class='va'>rect_x_max</span>, <span class='va'>rect_x_min</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>industry</span>, <span class='va'>rect_x_max</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>industry</span>, <span class='va'>pct_industry</span>, start <span class='op'>=</span> <span class='va'>rect_x_min</span><span class='op'>)</span>,
+    by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"industry"</span>, <span class='st'>"pct_industry"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># insert blank row for extra white space where circle starts/stops ---</span>
+  <span class='fu'>bind_rows</span><span class='op'>(</span>
+    <span class='fu'>tibble</span><span class='op'>(</span>
+      attr_category <span class='op'>=</span> <span class='cn'>NA</span>, 
+      start <span class='op'>=</span> <span class='fl'>99.7</span>, 
+      stop <span class='op'>=</span> <span class='fl'>100.1</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>
+    <span class='co'># compute midpoint for labeling if needed ----</span>
+    mid <span class='op'>=</span> <span class='op'>(</span><span class='va'>stop</span> <span class='op'>-</span> <span class='va'>start</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>2</span> <span class='op'>+</span> <span class='va'>start</span>,
+    <span class='co'># a label for industry pct ----</span>
+    industry_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>industry</span><span class='op'>)</span>, <span class='cn'>NA</span>, <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>'{industry}\n{scales::percent(pct_industry/100, accuracy = 1)}'</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># view industry rectangles</span>
+<span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>layer_industry</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-db0659dfb3be1f262359" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-db0659dfb3be1f262359">{"x":{"filter":"none","data":[["1","2","3","4","5","6"],["Computing or Tech","Education (Higher Education)","Nonprofits","Health care","Government and Public Administration",null],[49.2992078001219,19.3174893357709,13.1627056672761,10.7861060329068,7.43449116392444,null],[48.9992078001219,68.3166971358928,81.4794028031688,92.2655088360756,99.7,100.1],[-7.21644966006352e-16,49.2992078001219,68.6166971358927,81.7794028031688,92.5655088360756,99.7],[null,null,null,null,null,null],[24.4996039000609,58.8079524680073,75.0480499695308,87.0224558196222,96.1327544180378,99.9],["Computing or Tech\n49%","Education (Higher Education)\n19%","Nonprofits\n13%","Health care\n11%","Government and Public Administration\n7%",null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>industry<\/th>\n      <th>pct_industry<\/th>\n      <th>stop<\/th>\n      <th>start<\/th>\n      <th>attr_category<\/th>\n      <th>mid<\/th>\n      <th>industry_label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<h1 id="sunbursts">Sunbursts</h1>
+<h2 id="variable-length-sunburst">Variable length sunburst</h2>
+<p>Finally, we can plot! This first figure has variable length bars, which are represented by the scaled median salary.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>survey_burst</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># title ring ----</span>
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>
+  ymin <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='co'># variable length bars</span>
+  ymax <span class='op'>=</span> <span class='va'>median_salary_scaled</span>, 
+  xmin <span class='op'>=</span> <span class='va'>rect_x_min</span>, 
+  xmax <span class='op'>=</span> <span class='va'>rect_x_max</span>,
+  fill <span class='op'>=</span> <span class='va'>title_unique</span>
+ <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_rect</span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>coord_polar</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>
+    axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>, 
+    axis.text.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    legend.position <span class='op'>=</span> <span class='st'>"none"</span>,
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># fiddle with what you like here for white space</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>ylim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>40</span>, <span class='fl'>100</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>all_colors</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># inner industry ring ----</span>
+  <span class='fu'>geom_rect</span><span class='op'>(</span>
+    data <span class='op'>=</span> <span class='va'>layer_industry</span>,
+    <span class='fu'>aes</span><span class='op'>(</span>
+      ymin <span class='op'>=</span> <span class='op'>-</span><span class='fl'>20</span>,
+      ymax <span class='op'>=</span> <span class='fl'>0</span>, 
+      xmin <span class='op'>=</span> <span class='va'>start</span>, 
+      xmax <span class='op'>=</span> <span class='va'>stop</span>,
+      fill <span class='op'>=</span> <span class='va'>industry</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span> 
+</code></pre>
+</div>
+<img src="sunburst_files/figure-html5/unnamed-chunk-12-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r">  <span class='co'># could add reference line of some sort</span>
+  <span class='co'># geom_hline(yintercept = 50, color = "gray", lty = 2)</span>
+</code></pre>
+</div>
+</div>
+<p>Well, it is an example! Not quite as aesthetically appealing as my original example shown in the tweet, but it will do to put code to the page.</p>
+<p>Although I think this figure can be eye-catching, it is challenging to make it informative with labeling and still maintain appeal.</p>
+<h2 id="fixed-length-sunburst">Fixed length sunburst</h2>
+<p>For a simpler alternative, drop the job title metric of median salary and only show the frequency of industry and title in survey respondents by fixing the rectangle height. This figure can effectively communicate parts of a whole.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>survey_burst</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># title ring ----</span>
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>
+  ymin <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='co'># fix rectangle height here</span>
+  ymax <span class='op'>=</span> <span class='fl'>20</span>, 
+  xmin <span class='op'>=</span> <span class='va'>rect_x_min</span>, 
+  xmax <span class='op'>=</span> <span class='va'>rect_x_max</span>,
+  fill <span class='op'>=</span> <span class='va'>title_unique</span>
+ <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_rect</span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>coord_polar</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>
+    axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>, 
+    axis.text.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    legend.position <span class='op'>=</span> <span class='st'>"none"</span>,
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>ylim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>40</span>, <span class='fl'>40</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>all_colors</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># industry ring ----</span>
+  <span class='fu'>geom_rect</span><span class='op'>(</span>
+    data <span class='op'>=</span> <span class='va'>layer_industry</span>,
+    <span class='fu'>aes</span><span class='op'>(</span>
+      ymin <span class='op'>=</span> <span class='op'>-</span><span class='fl'>20</span>,
+      ymax <span class='op'>=</span> <span class='fl'>0</span>, 
+      xmin <span class='op'>=</span> <span class='va'>start</span>, 
+      xmax <span class='op'>=</span> <span class='va'>stop</span>,
+      fill <span class='op'>=</span> <span class='va'>industry</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span> 
+</code></pre>
+</div>
+<p><img src="sunburst_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<h2 id="interactive-sunburst">Interactive sunburst</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gg_interactive</span> <span class='op'>&lt;-</span> <span class='va'>survey_burst</span> <span class='op'>%&gt;%</span> 
+  <span class='co'># title ring ----</span>
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>
+  ymin <span class='op'>=</span> <span class='fl'>1</span>,
+  <span class='co'># fix rectangle height here</span>
+  ymax <span class='op'>=</span> <span class='fl'>20</span>, 
+  xmin <span class='op'>=</span> <span class='va'>rect_x_min</span>, 
+  xmax <span class='op'>=</span> <span class='va'>rect_x_max</span>,
+  fill <span class='op'>=</span> <span class='va'>title_unique</span>
+ <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>ggiraph</span><span class='fu'>::</span><span class='fu'><a href='https://davidgohel.github.io/ggiraph/reference/geom_rect_interactive.html'>geom_rect_interactive</a></span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span> <span class='co'># add id for tooltip ---</span>
+  tooltip <span class='op'>=</span> <span class='va'>label_title</span><span class='op'>)</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>coord_polar</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme</span><span class='op'>(</span>
+    axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>, 
+    axis.text.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+    legend.position <span class='op'>=</span> <span class='st'>"none"</span>,
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.window.html'>ylim</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>40</span>, <span class='fl'>40</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>all_colors</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># industry ring ----</span>
+  <span class='fu'>geom_rect</span><span class='op'>(</span>
+    data <span class='op'>=</span> <span class='va'>layer_industry</span>,
+    <span class='fu'>aes</span><span class='op'>(</span>
+      ymin <span class='op'>=</span> <span class='op'>-</span><span class='fl'>20</span>,
+      ymax <span class='op'>=</span> <span class='fl'>0</span>, 
+      xmin <span class='op'>=</span> <span class='va'>start</span>, 
+      xmax <span class='op'>=</span> <span class='va'>stop</span>,
+      fill <span class='op'>=</span> <span class='va'>industry</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span> 
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://davidgohel.github.io/ggiraph/reference/girafe.html'>girafe</a></span><span class='op'>(</span>ggobj <span class='op'>=</span> <span class='va'>gg_interactive</span>,
+       options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://davidgohel.github.io/ggiraph/reference/opts_tooltip.html'>opts_tooltip</a></span><span class='op'>(</span>use_fill <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="htmlwidget-c6485feee5e1efcdecbb" style="width:624px;height:384px;" class="girafe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c6485feee5e1efcdecbb">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546' viewBox='0 0 432.00 360.00'>\n  <g>\n    <defs>\n      <clipPath id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_1'>\n        <rect x='0.00' y='0.00' width='432.00' height='360.00'/>\n      <\/clipPath>\n    <\/defs>\n    <rect x='0.00' y='0.00' width='432.00' height='360.00' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_1' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_1)' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round'/>\n    <defs>\n      <clipPath id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_2'>\n        <rect x='0.00' y='0.00' width='432.00' height='360.00'/>\n      <\/clipPath>\n    <\/defs>\n    <defs>\n      <clipPath id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_3'>\n        <rect x='36.00' y='0.00' width='360.00' height='360.00'/>\n      <\/clipPath>\n    <\/defs>\n    <defs>\n      <clipPath id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_4'>\n        <rect x='0.00' y='0.00' width='432.00' height='360.00'/>\n      <\/clipPath>\n    <\/defs>\n    <defs>\n      <clipPath id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5'>\n        <rect x='44.22' y='5.48' width='346.30' height='346.30'/>\n      <\/clipPath>\n    <\/defs>\n    <polygon points='217.37,74.74 222.21,74.85 227.04,75.19 231.85,75.75 236.63,76.54 241.37,77.55 246.05,78.78 250.67,80.22 255.22,81.88 259.69,83.75 264.07,85.83 268.34,88.10 272.51,90.58 276.55,93.24 280.46,96.09 284.24,99.12 287.87,102.33 291.35,105.69 294.67,109.22 297.82,112.90 300.80,116.72 303.59,120.68 306.20,124.76 308.61,128.96 310.83,133.26 312.84,137.67 314.65,142.16 316.24,146.73 311.77,148.18 307.30,149.62 302.82,151.06 298.35,152.51 293.88,153.95 289.41,155.39 284.93,156.83 283.34,152.41 281.46,148.10 279.30,143.92 276.87,139.90 274.17,136.05 271.23,132.38 268.05,128.92 264.65,125.67 261.04,122.66 257.23,119.89 253.26,117.38 249.12,115.14 244.85,113.17 240.46,111.50 235.96,110.12 231.39,109.04 226.75,108.26 222.07,107.79 217.37,107.64 217.37,102.94 217.37,98.24 217.37,93.54 217.37,88.84 217.37,84.14 217.37,79.44 217.37,74.74' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_2' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#830CAB' fill-opacity='1' stroke='none' title='49% Computing or Tech&amp;lt;br&amp;gt;20% software engineer &amp;lt;br&amp;gt;$125,000 median salary'/>\n    <polygon points='316.83,148.60 318.11,153.22 319.17,157.89 320.02,162.61 320.65,167.36 321.06,172.14 321.25,176.93 321.21,181.72 320.96,186.51 320.49,191.28 319.79,196.02 318.88,200.73 317.76,205.39 316.41,209.99 314.86,214.52 313.10,218.98 311.14,223.36 308.98,227.63 304.83,225.42 300.69,223.20 296.54,220.98 292.40,218.77 288.26,216.55 284.11,214.33 279.97,212.12 282.19,207.57 284.09,202.88 285.65,198.06 286.86,193.15 287.72,188.16 288.22,183.12 288.36,178.06 288.14,173.01 287.56,167.98 286.62,163.00 285.33,158.11 289.83,156.75 294.33,155.39 298.83,154.03 303.33,152.68 307.83,151.32 312.33,149.96 316.83,148.60' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_3' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#830CAB' fill-opacity='0.8' stroke='none' title='49% Computing or Tech&amp;lt;br&amp;gt;13% senior software engineer &amp;lt;br&amp;gt;$151,500 median salary'/>\n    <polygon points='308.04,229.35 305.31,233.94 302.35,238.39 299.17,242.68 295.77,246.79 292.17,250.73 288.36,254.48 284.37,258.03 281.34,254.44 278.31,250.84 275.28,247.25 272.25,243.66 269.22,240.07 266.18,236.48 263.15,232.89 266.94,229.45 270.46,225.76 273.71,221.82 276.67,217.65 279.33,213.29 283.43,215.58 287.53,217.88 291.63,220.17 295.73,222.47 299.83,224.76 303.94,227.06 308.04,229.35' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_4' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#830CAB' fill-opacity='0.6' stroke='none' title='49% Computing or Tech&amp;lt;br&amp;gt;6% software developer &amp;lt;br&amp;gt;$95,000 median salary'/>\n    <polygon points='282.86,259.28 278.72,262.47 274.43,265.45 269.99,268.21 265.42,270.74 260.73,273.04 255.92,275.10 251.02,276.92 249.50,272.47 247.98,268.03 246.46,263.58 244.93,259.13 243.41,254.69 241.89,250.24 240.37,245.79 245.04,244.01 249.57,241.90 253.94,239.48 258.13,236.75 262.12,233.74 265.09,237.39 268.05,241.03 271.01,244.68 273.98,248.33 276.94,251.98 279.90,255.63 282.86,259.28' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_5' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#830CAB' fill-opacity='0.4' stroke='none' title='49% Computing or Tech&amp;lt;br&amp;gt;6% product manager &amp;lt;br&amp;gt;$120,000 median salary'/>\n    <polygon points='249.17,277.53 244.28,278.97 239.33,280.17 234.33,281.13 229.29,281.83 224.22,282.29 223.91,277.61 223.60,272.92 223.29,268.23 222.98,263.54 222.67,258.85 222.36,254.16 222.05,249.47 227.81,248.85 233.51,247.76 239.10,246.22 240.54,250.69 241.97,255.16 243.41,259.64 244.85,264.11 246.29,268.59 247.73,273.06 249.17,277.53' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_6' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#830CAB' fill-opacity='0.2' stroke='none' title='49% Computing or Tech&amp;lt;br&amp;gt;4% engineering manager &amp;lt;br&amp;gt;$173,500 median salary'/>\n    <polygon points='222.26,282.41 217.34,282.52 212.42,282.40 207.52,282.05 202.63,281.47 197.78,280.66 192.97,279.61 188.21,278.35 183.52,276.85 185.05,272.41 186.59,267.97 188.12,263.52 189.65,259.08 191.18,254.64 192.71,250.19 194.24,245.75 199.39,247.31 204.64,248.47 209.97,249.23 215.33,249.59 220.71,249.54 220.94,254.24 221.16,258.93 221.38,263.63 221.60,268.32 221.82,273.02 222.04,277.71 222.26,282.41' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_7' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#6574FA' fill-opacity='1' stroke='none' title='19% Education (Higher Education)&amp;lt;br&amp;gt;6% assistant professor &amp;lt;br&amp;gt;$77,250 median salary'/>\n    <polygon points='181.68,276.20 176.93,274.33 172.28,272.23 167.74,269.90 163.31,267.35 159.02,264.59 154.87,261.62 157.70,257.86 160.52,254.11 163.35,250.35 166.18,246.60 169.01,242.85 171.83,239.09 174.66,235.34 178.95,238.33 183.45,241.00 188.14,243.32 192.98,245.30 191.37,249.72 189.75,254.13 188.14,258.54 186.52,262.96 184.91,267.37 183.29,271.78 181.68,276.20' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_8' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#6574FA' fill-opacity='0.8' stroke='none' title='19% Education (Higher Education)&amp;lt;br&amp;gt;5% librarian &amp;lt;br&amp;gt;$64,800 median salary'/>\n    <polygon points='153.32,260.43 149.48,257.27 145.79,253.93 142.27,250.41 138.92,246.74 142.47,243.65 146.02,240.57 149.56,237.49 153.11,234.41 156.66,231.33 160.21,228.25 163.76,225.17 168.46,230.08 173.60,234.52 170.70,238.22 167.81,241.92 164.91,245.62 162.01,249.33 159.11,253.03 156.22,256.73 153.32,260.43' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_9' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#6574FA' fill-opacity='0.6' stroke='none' title='19% Education (Higher Education)&amp;lt;br&amp;gt;3% associate professor &amp;lt;br&amp;gt;$82,000 median salary'/>\n    <polygon points='137.65,245.25 134.67,241.51 131.87,237.64 129.24,233.65 133.23,231.16 137.22,228.67 141.20,226.18 145.19,223.69 149.18,221.20 153.16,218.71 157.15,216.22 159.88,220.29 162.89,224.15 159.29,227.17 155.68,230.18 152.07,233.19 148.47,236.21 144.86,239.22 141.26,242.23 137.65,245.25' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_10' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#6574FA' fill-opacity='0.4' stroke='none' title='19% Education (Higher Education)&amp;lt;br&amp;gt;2% professor &amp;lt;br&amp;gt;$95,000 median salary'/>\n    <polygon points='128.22,231.98 125.30,226.76 122.69,221.39 126.97,219.46 131.25,217.52 135.54,215.59 139.82,213.65 144.10,211.72 148.39,209.79 152.67,207.85 156.45,215.08 152.42,217.50 148.39,219.91 144.35,222.32 140.32,224.74 136.29,227.15 132.26,229.56 128.22,231.98' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_11' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#6574FA' fill-opacity='0.2' stroke='none' title='19% Education (Higher Education)&amp;lt;br&amp;gt;2% academic advisor &amp;lt;br&amp;gt;$50,000 median salary'/>\n    <polygon points='121.90,219.60 119.81,214.33 118.00,208.96 116.50,203.49 115.29,197.95 119.91,197.08 124.53,196.20 129.15,195.33 133.76,194.45 138.38,193.58 143.00,192.71 147.62,191.83 148.76,196.87 150.27,201.81 152.13,206.63 147.81,208.48 143.49,210.33 139.18,212.19 134.86,214.04 130.54,215.89 126.22,217.75 121.90,219.60' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_12' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#3BBCAC' fill-opacity='1' stroke='none' title='13% Nonprofits&amp;lt;br&amp;gt;4% executive director &amp;lt;br&amp;gt;$82,000 median salary'/>\n    <polygon points='114.95,196.03 114.20,190.81 113.71,185.56 113.49,180.29 113.54,175.02 118.24,175.18 122.94,175.34 127.63,175.51 132.33,175.67 137.03,175.83 141.72,176.00 146.42,176.16 146.42,180.96 146.74,185.76 147.38,190.52 142.75,191.30 138.11,192.09 133.48,192.88 128.85,193.66 124.21,194.45 119.58,195.24 114.95,196.03' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_13' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#3BBCAC' fill-opacity='0.8' stroke='none' title='13% Nonprofits&amp;lt;br&amp;gt;4% program manager &amp;lt;br&amp;gt;$60,000 median salary'/>\n    <polygon points='113.63,173.06 114.21,166.32 115.23,159.62 119.85,160.48 124.47,161.34 129.09,162.20 133.71,163.06 138.34,163.92 142.96,164.78 147.58,165.64 146.48,174.83 141.79,174.57 137.09,174.32 132.40,174.07 127.71,173.82 123.01,173.57 118.32,173.31 113.63,173.06' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_14' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#3BBCAC' fill-opacity='0.6' stroke='none' title='13% Nonprofits&amp;lt;br&amp;gt;2% director &amp;lt;br&amp;gt;$100,000 median salary'/>\n    <polygon points='115.61,157.71 116.73,152.85 118.08,148.06 122.57,149.44 127.06,150.82 131.56,152.20 136.05,153.59 140.54,154.97 145.03,156.35 149.52,157.74 147.83,164.33 143.23,163.38 138.63,162.44 134.02,161.49 129.42,160.54 124.82,159.60 120.21,158.65 115.61,157.71' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_15' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#3BBCAC' fill-opacity='0.4' stroke='none' title='13% Nonprofits&amp;lt;br&amp;gt;2% program coordinator &amp;lt;br&amp;gt;$46,425 median salary'/>\n    <polygon points='118.67,146.19 121.76,137.98 126.09,139.82 130.41,141.66 134.74,143.50 139.06,145.34 143.39,147.18 147.71,149.02 152.04,150.85 149.93,156.46 145.46,155.00 141.00,153.53 136.53,152.06 132.07,150.59 127.60,149.13 123.14,147.66 118.67,146.19' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_16' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#3BBCAC' fill-opacity='0.2' stroke='none' title='13% Nonprofits&amp;lt;br&amp;gt;2% program director &amp;lt;br&amp;gt;$71,350 median salary'/>\n    <polygon points='122.54,136.19 124.67,131.73 127.01,127.37 129.55,123.13 132.29,119.02 135.22,115.04 138.33,111.20 141.63,107.52 145.06,110.74 148.48,113.95 151.91,117.17 155.34,120.39 158.76,123.60 162.19,126.82 165.62,130.04 162.50,133.59 159.62,137.34 157.00,141.28 154.65,145.38 152.57,149.63 148.28,147.71 143.99,145.79 139.70,143.87 135.41,141.95 131.12,140.03 126.83,138.11 122.54,136.19' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_17' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#62E44A' fill-opacity='1' stroke='none' title='11% Health care&amp;lt;br&amp;gt;6% registered nurse &amp;lt;br&amp;gt;$72,900 median salary'/>\n    <polygon points='142.98,106.10 149.67,99.83 152.73,103.39 155.79,106.96 158.86,110.52 161.92,114.09 164.98,117.65 168.04,121.22 171.11,124.78 166.54,129.07 163.17,125.79 159.81,122.51 156.44,119.23 153.08,115.95 149.71,112.67 146.35,109.39 142.98,106.10' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_18' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#62E44A' fill-opacity='0.8' stroke='none' title='11% Health care&amp;lt;br&amp;gt;2% nurse practitioner &amp;lt;br&amp;gt;$106,785 median salary'/>\n    <polygon points='151.16,98.57 155.57,95.12 158.36,98.90 161.16,102.68 163.96,106.45 166.75,110.23 169.55,114.01 172.34,117.79 175.14,121.57 172.13,123.92 169.13,120.30 166.14,116.68 163.14,113.06 160.15,109.43 157.15,105.81 154.16,102.19 151.16,98.57' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_19' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#62E44A' fill-opacity='0.2' stroke='none' title='11% Health care&amp;lt;br&amp;gt;1% executive assistant &amp;lt;br&amp;gt;$65,000 median salary'/>\n    <polygon points='157.15,93.97 161.79,90.85 164.31,94.83 166.82,98.80 169.34,102.77 171.85,106.74 174.37,110.71 176.88,114.68 179.39,118.65 176.22,120.78 173.50,116.95 170.77,113.12 168.05,109.29 165.32,105.46 162.60,101.63 159.88,97.80 157.15,93.97' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_20' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#62E44A' fill-opacity='0.4' stroke='none' title='11% Health care&amp;lt;br&amp;gt;1% pharmacist &amp;lt;br&amp;gt;$106,840 median salary'/>\n    <polygon points='163.46,89.82 168.31,87.05 170.53,91.19 172.75,95.34 174.97,99.48 177.19,103.62 179.41,107.77 181.63,111.91 183.85,116.05 180.53,117.95 178.09,113.93 175.65,109.91 173.21,105.89 170.77,101.88 168.33,97.86 165.90,93.84 163.46,89.82' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_21' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#62E44A' fill-opacity='0.6' stroke='none' title='11% Health care&amp;lt;br&amp;gt;1% project manager &amp;lt;br&amp;gt;$88,000 median salary'/>\n    <polygon points='170.05,86.14 176.17,83.26 182.47,80.78 184.05,85.20 185.63,89.63 187.21,94.06 188.79,98.48 190.36,102.91 191.94,107.34 193.52,111.76 185.03,115.43 182.89,111.25 180.75,107.06 178.61,102.88 176.47,98.69 174.33,94.51 172.19,90.33 170.05,86.14' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_22' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#CCEC5A' fill-opacity='1' stroke='none' title='7% Government and Public Administration&amp;lt;br&amp;gt;2% librarian &amp;lt;br&amp;gt;$59,000 median salary'/>\n    <polygon points='184.32,80.14 193.13,77.61 194.23,82.18 195.32,86.75 196.42,91.32 197.52,95.89 198.61,100.46 199.71,105.03 200.81,109.60 194.79,111.33 193.29,106.87 191.79,102.42 190.30,97.96 188.80,93.50 187.31,89.05 185.81,84.59 184.32,80.14' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_23' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#CCEC5A' fill-opacity='0.8' stroke='none' title='7% Government and Public Administration&amp;lt;br&amp;gt;2% analyst &amp;lt;br&amp;gt;$85,650 median salary'/>\n    <polygon points='195.04,77.17 200.92,76.05 201.67,80.69 202.41,85.33 203.15,89.97 203.90,94.61 204.64,99.25 205.39,103.89 206.13,108.53 202.11,109.30 201.10,104.71 200.09,100.12 199.08,95.53 198.07,90.94 197.06,86.35 196.05,81.76 195.04,77.17' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_24' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#CCEC5A' fill-opacity='0.6' stroke='none' title='7% Government and Public Administration&amp;lt;br&amp;gt;1% policy analyst &amp;lt;br&amp;gt;$89,074 median salary'/>\n    <polygon points='202.86,75.76 208.02,75.16 208.44,79.84 208.86,84.52 209.29,89.20 209.71,93.88 210.13,98.57 210.56,103.25 210.98,107.93 207.45,108.33 206.80,103.68 206.14,99.03 205.48,94.37 204.83,89.72 204.17,85.07 203.51,80.41 202.86,75.76' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_25' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#CCEC5A' fill-opacity='0.4' stroke='none' title='7% Government and Public Administration&amp;lt;br&amp;gt;1% director &amp;lt;br&amp;gt;$127,500 median salary'/>\n    <polygon points='209.97,75.00 214.76,74.77 214.88,79.47 215.00,84.17 215.12,88.87 215.23,93.57 215.35,98.26 215.47,102.96 215.59,107.66 212.31,107.82 211.98,103.13 211.64,98.44 211.31,93.76 210.97,89.07 210.64,84.38 210.30,79.69 209.97,75.00' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_26' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#CCEC5A' fill-opacity='0.2' stroke='none' title='7% Government and Public Administration&amp;lt;br&amp;gt;1% manager &amp;lt;br&amp;gt;$120,000 median salary'/>\n    <polygon points='217.37,109.37 222.10,109.53 226.81,110.02 231.47,110.82 236.07,111.94 240.58,113.37 244.98,115.11 249.26,117.15 253.38,119.47 257.34,122.07 261.11,124.93 264.67,128.04 268.02,131.39 271.13,134.96 273.98,138.73 276.58,142.69 278.89,146.82 280.92,151.09 282.65,155.50 284.08,160.01 285.20,164.61 286.00,169.27 286.47,173.98 286.63,178.71 286.46,183.44 285.97,188.15 285.16,192.81 284.04,197.41 282.60,201.92 280.85,206.32 278.82,210.59 276.49,214.71 273.89,218.67 271.02,222.43 267.90,225.99 264.55,229.33 260.98,232.44 257.20,235.29 253.24,237.88 249.11,240.19 244.83,242.21 240.42,243.94 235.91,245.36 231.31,246.47 226.64,247.27 221.93,247.74 221.61,242.80 221.28,237.87 220.96,232.93 220.63,227.99 220.30,223.06 219.98,218.12 219.65,213.18 224.45,212.53 229.10,211.21 233.53,209.26 237.64,206.71 241.35,203.61 244.60,200.03 247.31,196.02 249.45,191.68 250.95,187.08 251.80,182.32 251.98,177.49 251.48,172.68 250.32,167.98 248.52,163.49 246.10,159.30 243.13,155.49 239.65,152.12 235.74,149.27 231.47,147.00 226.93,145.34 222.20,144.34 217.37,144.00 217.37,139.05 217.37,134.11 217.37,129.16 217.37,124.21 217.37,119.26 217.37,114.32 217.37,109.37' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_27' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#830CAB' fill-opacity='1' stroke='none'/>\n    <polygon points='220.63,247.81 215.77,247.87 210.92,247.59 206.09,246.97 201.33,246.01 196.64,244.72 192.05,243.10 187.59,241.16 183.28,238.92 179.13,236.38 175.18,233.55 171.43,230.46 167.90,227.11 164.62,223.52 161.60,219.71 158.86,215.69 156.40,211.50 154.25,207.14 158.76,205.10 163.27,203.07 167.77,201.03 172.28,198.99 176.79,196.96 181.30,194.92 185.81,192.88 188.28,197.42 191.40,201.53 195.09,205.14 199.28,208.16 203.87,210.52 208.76,212.17 213.84,213.08 219.00,213.22 219.23,218.16 219.47,223.11 219.70,228.05 219.93,232.99 220.17,237.93 220.40,242.87 220.63,247.81' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_28' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#6574FA' fill-opacity='1' stroke='none'/>\n    <polygon points='153.72,205.94 151.89,201.20 150.41,196.34 149.29,191.38 148.54,186.36 148.16,181.29 148.15,176.21 148.52,171.14 149.25,166.11 150.35,161.15 151.82,156.28 153.63,151.53 158.18,153.47 162.74,155.40 167.29,157.34 171.84,159.27 176.39,161.21 180.95,163.15 185.50,165.08 183.74,170.38 182.85,175.90 182.86,181.48 183.76,186.99 185.55,192.29 181.00,194.24 176.45,196.19 171.91,198.14 167.36,200.09 162.82,202.04 158.27,203.99 153.72,205.94' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_29' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#3BBCAC' fill-opacity='1' stroke='none'/>\n    <polygon points='154.15,150.34 156.39,145.79 158.95,141.42 161.83,137.26 165.00,133.31 168.45,129.60 172.16,126.16 176.12,123.00 180.29,120.13 184.67,117.58 187.00,121.94 189.34,126.30 191.67,130.66 194.01,135.02 196.35,139.38 198.68,143.74 201.02,148.10 196.24,151.19 192.03,155.03 188.51,159.50 185.76,164.48 181.25,162.46 176.73,160.44 172.21,158.42 167.70,156.40 163.18,154.38 158.67,152.36 154.15,150.34' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_30' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#62E44A' fill-opacity='1' stroke='none'/>\n    <polygon points='185.82,116.97 190.51,114.79 195.34,112.97 200.30,111.51 205.35,110.42 210.47,109.71 215.63,109.39 215.76,114.34 215.88,119.28 216.00,124.23 216.13,129.17 216.25,134.12 216.38,139.07 216.50,144.01 211.36,144.53 206.36,145.80 201.60,147.80 199.34,143.40 197.09,138.99 194.84,134.59 192.58,130.18 190.33,125.78 188.08,121.38 185.82,116.97' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_31' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='#CCEC5A' fill-opacity='1' stroke='none'/>\n    <polyline points='215.63,109.39 217.37,109.37 217.37,114.32 217.37,119.26 217.37,124.21 217.37,129.16 217.37,134.11 217.37,139.05 217.37,144.00 216.50,144.01 216.38,139.07 216.25,134.12 216.13,129.17 216.00,124.23 215.88,119.28 215.76,114.34 215.63,109.39 215.63,109.39' id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_el_32' clip-path='url(#svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_5)' fill='none' stroke='none'/>\n    <defs>\n      <clipPath id='svg_0166029c-8f0f-4187-92e1-8b6708a95546_cl_6'>\n        <rect x='0.00' y='0.00' width='432.00' height='360.00'/>\n      <\/clipPath>\n    <\/defs>\n  <\/g>\n<\/svg>","js":null,"uid":"svg_0166029c-8f0f-4187-92e1-8b6708a95546","ratio":1.2,"settings":{"tooltip":{"css":".tooltip_SVGID_ { padding:5px;background:black;color:white;border-radius:2px 2px 2px 2px ; position:absolute;pointer-events:none;z-index:999;}\n","offx":10,"offy":0,"use_cursor_pos":true,"opacity":0.9,"usefill":true,"usestroke":false,"delay":{"over":200,"out":500}},"hover":{"css":".hover_SVGID_ { fill:orange;stroke:gray; }\n","reactive":false},"hoverkey":{"css":".hover_key_SVGID_ { stroke:red; }\n","reactive":false},"hovertheme":{"css":".hover_theme_SVGID_ { fill:green; }\n","reactive":false},"hoverinv":{"css":""},"zoom":{"min":1,"max":1},"capture":{"css":".selected_SVGID_ { fill:red;stroke:gray; }\n","type":"multiple","only_shiny":true,"selected":[]},"capturekey":{"css":".selected_key_SVGID_ { stroke:gray; }\n","type":"single","only_shiny":true,"selected":[]},"capturetheme":{"css":".selected_theme_SVGID_ { stroke:gray; }\n","type":"single","only_shiny":true,"selected":[]},"toolbar":{"position":"topright","saveaspng":true,"pngname":"diagram"},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+<h1 id="for-fun">For fun</h1>
+<p>I did experiment with some variations on this figure that did not make the cut!</p>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+Monday's work 🤔🥰 <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/ggplot?src=hash&amp;ref_src=twsrc%5Etfw">#ggplot</a> <a href="https://t.co/GbZWLhLeDA">pic.twitter.com/GbZWLhLeDA</a>
+</p>
+— Shannon Pileggi (<span class="citation" data-cites="PipingHotData">@PipingHotData</span>) <a href="https://twitter.com/PipingHotData/status/1224700519496765440?ref_src=twsrc%5Etfw">February 4, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

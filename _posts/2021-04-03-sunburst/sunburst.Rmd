@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL; DR
 
-I manually defined `geom_rect` to create custom sunbursts with `ggplot`.
+I manually defined `geom_rect` to create custom sunbursts with `ggplot`. Pair this with `ggiraph` package to create an awesome interactive graphic!
 
 
 # Background
@@ -56,6 +56,7 @@ The data attributes that work well for this set up include:
 
 ```{r}
 library(tidyverse) # general use
+library(ggiraph)   # interactive ggplots
 library(glue)      # pasting strings
 library(pals)      # color palette
 
@@ -202,13 +203,14 @@ survey_burst <- survey_summary %>%
     # angles in case adding text to plot, omitting here ----
     angle = 90 - 360 * rect_x_mid / 100,
     hjust = ifelse(angle < -90, 1, 0),
-    angle = ifelse(angle < -90, angle + 180, angle)
-  ) 
+    angle = ifelse(angle < -90, angle + 180, angle),
+    # label
+    label_title = glue::glue('{scales::percent(pct_industry/100, accuracy = 1)} {industry}\n {scales::percent(pct_title/100, accuracy = 1)} {job_title} \n {scales::dollar(median_salary)} median salary'))
 ```
 
 ```{r}
 # view sunburst data
-DT::datatable(surveyburst)
+DT::datatable(survey_burst)
 ```
 
 ## Combine colors
@@ -268,7 +270,7 @@ layer_industry <- survey_burst %>%
 DT::datatable(layer_industry)
 ```
 
-# Finally, sunbursts!
+# Sunbursts
 
 ## Variable length sunburst
 
@@ -316,7 +318,7 @@ Well, it is an example! Not quite as aesthetically appealing as my original exam
 
 Although I think this figure can be eye-catching, it is challenging to make it informative with labeling and still maintain appeal.
 
-## Double donut sunburst
+## Fixed length sunburst
 
 For a simpler alternative, drop the job title metric of median salary and only show the frequency of industry and title in survey respondents by fixing the rectangle height. This figure can effectively communicate parts of a whole.
 
@@ -357,4 +359,53 @@ ggplot(aes(
 ```
 
 ## Interactive sunburst
+
+```{r}
+gg_interactive <- survey_burst %>% 
+  # title ring ----
+ggplot(aes(
+  ymin = 1,
+  # fix rectangle height here
+  ymax = 20, 
+  xmin = rect_x_min, 
+  xmax = rect_x_max,
+  fill = title_unique
+ )) +
+  ggiraph::geom_rect_interactive(aes( # add id for tooltip ---
+  tooltip = label_title), show.legend = FALSE) +
+  coord_polar() +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_blank(), 
+    axis.text.y = element_blank(),
+    panel.grid = element_blank(),
+    legend.position = "none",
+  ) +
+  ylim(-40, 40) +
+  scale_fill_manual(values = all_colors) +
+  # industry ring ----
+  geom_rect(
+    data = layer_industry,
+    aes(
+      ymin = -20,
+      ymax = 0, 
+      xmin = start, 
+      xmax = stop,
+      fill = industry
+    )
+  ) 
+```
+
+
+```{r}
+girafe(ggobj = gg_interactive,
+       options = list(opts_tooltip(use_fill = TRUE)))
+```
+
+
+# For fun
+
+I did experiment with some variations on this figure that did not make the cut!
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Monday&#39;s work 🤔🥰 <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/ggplot?src=hash&amp;ref_src=twsrc%5Etfw">#ggplot</a> <a href="https://t.co/GbZWLhLeDA">pic.twitter.com/GbZWLhLeDA</a></p>&mdash; Shannon Pileggi (@PipingHotData) <a href="https://twitter.com/PipingHotData/status/1224700519496765440?ref_src=twsrc%5Etfw">February 4, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
