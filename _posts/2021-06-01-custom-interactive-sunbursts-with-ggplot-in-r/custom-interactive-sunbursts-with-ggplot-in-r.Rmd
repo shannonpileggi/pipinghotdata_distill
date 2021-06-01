@@ -30,7 +30,7 @@ I manually defined coordinates for [`geom_rect()`](https://ggplot2.tidyverse.org
 
 # Background
 
-Sunbursts in R first caught my eye from the [`sunburstR`](https://cran.r-project.org/web/packages/sunburstR/vignettes/sunburst-2-0-0.html){target="_blank"} package with its amazing interactivity through `d3`. However, I had trouble customizing it and sought a `ggplot` alternative. You can create a version using `geom_col`, as shown in this [RStudio Community post](https://community.rstudio.com/t/how-to-create-a-ggplot2-pie-and-donut-chart-on-same-plot/42798/3){target="_blank"}; I chose to go the more complex `geom_rect` route for more customization options. I was pretty excited when I got it to work!^[Alt text for tweet: Thin inner ring with solid shades shows relative frequency of broader categories. Outer ring juts out - shades and width indicate relative frequency of items within category; bar length indicates a metric on item.]
+Sunbursts in R first caught my eye from the [`sunburstR`](https://cran.r-project.org/web/packages/sunburstR/vignettes/sunburst-2-0-0.html){target="_blank"} package with its amazing interactivity through `d3`. However, I had trouble customizing it and sought a `ggplot` alternative. You can create a version using `geom_col`, as shown in this [RStudio Community post](https://community.rstudio.com/t/how-to-create-a-ggplot2-pie-and-donut-chart-on-same-plot/42798/3){target="_blank"}; I chose to go the more complex `geom_rect` route for more customization options.^[Alt text for tweet: Thin inner ring with solid shades shows relative frequency of broader categories. Outer ring juts out - shades and width indicate relative frequency of items within category; bar length indicates a metric on item.]
 
 
 ```{r, echo = FALSE}
@@ -183,7 +183,7 @@ The idea of the rectangles' color assignment is that darker shades represent mor
 ```{r}
 ring_outer <- survey_summary %>%
   # join colors to data frame ----
-left_join(enframe(colors_industry, name = "industry", value = "color_industry"),
+  left_join(enframe(colors_industry, name = "industry", value = "color_industry"),
           by = "industry") %>%
   # arrange descending industry but ascending title
   # to compute title colors
@@ -293,7 +293,7 @@ ring_inner <- ring_outer %>%
     ungroup() %>%
     dplyr::select(industry, pct_industry, n_industry, n_total, start = rect_x_min),
   by = c("industry", "pct_industry", "n_industry", "n_total")
-) %>%
+  ) %>%
   # insert blank row for extra white space where circle starts/stops ---
   bind_rows(tibble(
     attr_category = NA,
