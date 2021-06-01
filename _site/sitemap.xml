@@ -10,7 +10,11 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-04-03-sunburst/</loc>
-    <lastmod>2021-05-31T21:32:04-04:00</lastmod>
+    <lastmod>2021-05-31T22:39:21-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r/</loc>
+    <lastmod>2021-05-31T22:51:27-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/</loc>

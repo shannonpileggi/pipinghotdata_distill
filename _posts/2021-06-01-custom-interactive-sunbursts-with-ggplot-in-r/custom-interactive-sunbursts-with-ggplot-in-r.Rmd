@@ -75,7 +75,6 @@ library(tidyverse) # general use
 library(ggiraph)   # interactive ggplots
 library(glue)      # pasting strings
 library(pals)      # color palette
-
 ```
 
 # Data processing
@@ -94,43 +93,39 @@ survey_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience
 Next, summarize the data in terms of the top 5 industries and top 5 job titles. For the job title, we'll get (1) the percent of respondents with that title, and (2) the median salary for that title.
 
 ```{r}
-survey_summary <- survey_raw %>% 
+survey_summary <- survey_raw %>%
   # identify top industries
-  group_by(industry) %>% 
-  mutate(
-    # number of respondents per industry
-    n_industry = n()
-  ) %>%
-  ungroup() %>% 
+  group_by(industry) %>%
+  mutate(# number of respondents per industry
+    n_industry = n()) %>%
+  ungroup() %>%
   arrange(desc(n_industry), industry) %>%
   mutate(
     # rank of industry in terms of number of survey respondents
     # know a better way to do this bit? pls let me know!
     n_industry_rank = as.numeric(factor(-n_industry)),
     # very light cleaning of job title
-    job_title = tolower(job_title) %>% 
-      str_remove_all("[:digit:]+") %>% 
-      ifelse(. == "rn", "registered nurse", .) %>% 
-      str_trim() 
-    ) %>% 
+    job_title = tolower(job_title) %>%
+      str_remove_all("[:digit:]+") %>%
+      ifelse(. == "rn", "registered nurse", .) %>%
+      str_trim()
+  ) %>%
   # reduce to top 5 industries present
-  filter(n_industry_rank %in% 1:5) %>% 
-  # identify top 5 job titles in each industry 
+  filter(n_industry_rank %in% 1:5) %>%
+  # identify top 5 job titles in each industry
   group_by(n_industry_rank, n_industry, industry, job_title) %>%
-  summarize(
-    # number of titles within industry
+  summarize(# number of titles within industry
     n_title = n(),
     # median salary per title
-    median_salary = median(annual_salary)
-  ) %>% 
-  ungroup() %>% 
-  arrange(n_industry_rank, industry, desc(n_title)) %>% 
-  group_by(industry) %>% 
+    median_salary = median(annual_salary)) %>%
+  ungroup() %>%
+  arrange(n_industry_rank, industry, desc(n_title)) %>%
+  group_by(industry) %>%
   # keep top 5 job titles within industry
   slice(1:5) %>%
   # recompute number of respondents per industry based on titles selected
-  mutate(n_industry = sum(n_title)) %>% 
-  ungroup() %>% 
+  mutate(n_industry = sum(n_title)) %>%
+  ungroup() %>%
   mutate(
     # relative scale of salary for plotting, on 0 - 100 scale
     median_salary_scaled = median_salary / max(median_salary) * 100,
@@ -141,7 +136,7 @@ survey_summary <- survey_raw %>%
     pct_industry = n_industry / n_total * 100,
     # unique job title, as some repeat across industry
     title_unique = glue::glue("{str_sub(industry, 1, 3)}: {job_title}")
-  ) %>% 
+  ) %>%
   arrange(desc(pct_industry, pct_title))
 ```
 
@@ -149,9 +144,20 @@ Here is a preview of our data, which is the basis needed for the sunburst's cust
 
 ```{r}
 # view input data
-survey_summary %>% 
-  dplyr::select(industry, n_industry, pct_industry, job_title, n_title, pct_title, median_salary, median_salary_scaled) %>% 
-  mutate_at(vars(pct_industry,pct_title, median_salary_scaled), scales::number, accuracy = 0.1) %>% 
+survey_summary %>%
+  dplyr::select(
+    industry,
+    n_industry,
+    pct_industry,
+    job_title,
+    n_title,
+    pct_title,
+    median_salary,
+    median_salary_scaled
+  ) %>%
+  mutate_at(vars(pct_industry, pct_title, median_salary_scaled),
+            scales::number,
+            accuracy = 0.1) %>%
   DT::datatable()
 ```
 
@@ -175,57 +181,57 @@ Next, I manually define rectangles for the outer ring of the sunburst. I figured
 The idea of the rectangles' color assignment is that darker shades represent more frequent or heavier weight items within a category. To create the colors, I concocted a solution to implement a degree of transparency off of the original industry colors based on the total number of sub-categories. Jake Riley shared with me [an alternative solution for sub-category color assignment](https://stackoverflow.com/questions/56120815/how-to-factor-sub-group-by-category){target="_blank"} that he contributed on Stack Overflow.
 
 ```{r}
-ring_outer <- survey_summary %>% 
+ring_outer <- survey_summary %>%
   # join colors to data frame ----
-    left_join(enframe(colors_industry, name = "industry", value = "color_industry"), 
-            by = "industry") %>%
+left_join(enframe(colors_industry, name = "industry", value = "color_industry"),
+          by = "industry") %>%
   # arrange descending industry but ascending title
   # to compute title colors
-  arrange(desc(n_industry), industry, n_title, job_title) %>% 
-  group_by(industry) %>% 
-  mutate(
-    # enumerate title in industry
+  arrange(desc(n_industry), industry, n_title, job_title) %>%
+  group_by(industry) %>%
+  mutate(# enumerate title in industry
     id_title = row_number(),
     # number of titles per industry
     # this can vary - it does not have to be same number per category
-    num_title = max(id_title)
-  ) %>% 
-  ungroup() %>% 
+    num_title = max(id_title)) %>%
+  ungroup() %>%
   mutate(
     # degree of transparency based on number of attributes ----
     color_trans = id_title / num_title ,
     color_title = map2_chr(color_industry, color_trans, ~ adjustcolor(.x, .y))
-  ) %>% 
+  ) %>%
   # this arrange specifies the ordering of the figure
   # clockwise ---
   # had to include job title here as health care had ties in title frequency
-  arrange(-pct_industry, industry, -pct_title, desc(job_title)) %>%
+  arrange(-pct_industry, industry,-pct_title, desc(job_title)) %>%
   # counter clockwise ---
-  # arrange(pct_industry, industry, pct_title, job_title) %>% 
-  mutate(
-    industry = fct_inorder(industry),
-    title_unique = fct_inorder(title_unique)
-  ) %>% 
-  group_by(industry) %>% 
-  mutate(cum_title_pct = cumsum(pct_title)) %>% 
-  ungroup() %>% 
-  mutate(
-    cum_industry_pct = cumsum(cum_title_pct),
-    cum_all = cumsum(pct_title)
-  ) %>% 
+  # arrange(pct_industry, industry, pct_title, job_title) %>%
+  mutate(industry = fct_inorder(industry),
+         title_unique = fct_inorder(title_unique)) %>%
+  group_by(industry) %>%
+  mutate(cum_title_pct = cumsum(pct_title)) %>%
+  ungroup() %>%
+  mutate(cum_industry_pct = cumsum(cum_title_pct),
+         cum_all = cumsum(pct_title)) %>%
   mutate(
     # compute coordinates of the rectangles ----
     # the 0.3 is an adjustment on the 0 to 100 scale to add a small
     # amount of white space between rectangles
-    rect_x_max = cumsum(pct_title) - 0.3,      # xmax ----
-    rect_x_min = rect_x_max - pct_title + 0.3, # xmin ----
-    rect_x_mid = (rect_x_min + rect_x_max)/2,  # xmid ----
+    rect_x_max = cumsum(pct_title) - 0.3,
+    # xmax ----
+    rect_x_min = rect_x_max - pct_title + 0.3,
+    # xmin ----
+    rect_x_mid = (rect_x_min + rect_x_max) / 2,
+    # xmid ----
     # angles in case adding text to plot, not shown in figures below ----
     angle = 90 - 360 * rect_x_mid / 100,
     hjust = ifelse(angle < -90, 1, 0),
     angle = ifelse(angle < -90, angle + 180, angle),
     # label for ggiraph
-    label_title = glue::glue('{scales::percent(pct_industry/100, accuracy = 1)} ({n_industry}/{n_total}) {industry}\n {scales::percent(pct_title/100, accuracy = 1)} ({n_title}/{n_total}) {job_title} \n {scales::dollar(median_salary)} median salary'))
+    label_title = glue::glue(
+      '{scales::percent(pct_industry/100, accuracy = 1)} ({n_industry}/{n_total}) {industry}\n {scales::percent(pct_title/100, accuracy = 1)} ({n_title}/{n_total}) {job_title} \n {scales::dollar(median_salary)} median salary'
+    )
+  )
 ```
 
 ```{r}
@@ -254,49 +260,66 @@ Lastly in data prep, we create a smaller data set of rectangle coordinates just 
 
 ```{r}
 # create an inner ring for industry ----
-# there is probably a better way to do this too, please let me know 
-# if you have suggestions to streamline! 
-ring_inner <- ring_outer %>% 
-  dplyr::select(industry, pct_industry, n_industry, n_total, rect_x_max, rect_x_min) %>% 
+# there is probably a better way to do this too, please let me know
+# if you have suggestions to streamline!
+ring_inner <- ring_outer %>%
+  dplyr::select(industry,
+                pct_industry,
+                n_industry,
+                n_total,
+                rect_x_max,
+                rect_x_min) %>%
   # first, get stopping point for each rectangle from least common item ----
-  arrange(industry, desc(rect_x_max)) %>% 
+  arrange(industry, desc(rect_x_max)) %>%
   group_by(industry) %>%
   # keep one entry per industry ----
-  slice(1) %>% 
-  ungroup() %>% 
-  dplyr::select(industry, pct_industry, n_industry, n_total, stop = rect_x_max) %>% 
+  slice(1) %>%
+  ungroup() %>%
+  dplyr::select(industry, pct_industry, n_industry, n_total, stop = rect_x_max) %>%
   # second, get starting point for each rectangle from most common item ----
   left_join(
-    ring_outer %>% 
-      dplyr::select(industry, pct_industry, n_industry, n_total, rect_x_max, rect_x_min) %>% 
-      arrange(industry, rect_x_max) %>% 
-      group_by(industry) %>% 
-      slice(1) %>% 
-      ungroup() %>% 
-      dplyr::select(industry, pct_industry, n_industry, n_total, start = rect_x_min),
-    by = c("industry", "pct_industry", "n_industry", "n_total")
-  ) %>% 
+  ring_outer %>%
+    dplyr::select(
+      industry,
+      pct_industry,
+      n_industry,
+      n_total,
+      rect_x_max,
+      rect_x_min
+    ) %>%
+    arrange(industry, rect_x_max) %>%
+    group_by(industry) %>%
+    slice(1) %>%
+    ungroup() %>%
+    dplyr::select(industry, pct_industry, n_industry, n_total, start = rect_x_min),
+  by = c("industry", "pct_industry", "n_industry", "n_total")
+) %>%
   # insert blank row for extra white space where circle starts/stops ---
-  bind_rows(
-    tibble(
-      attr_category = NA, 
-      start = 99.7, 
-      stop = 100.1)
-  ) %>% 
+  bind_rows(tibble(
+    attr_category = NA,
+    start = 99.7,
+    stop = 100.1
+  )) %>%
   mutate(
     # compute midpoint for labeling if needed ----
-    mid = (stop - start)/2 + start,
+    mid = (stop - start) / 2 + start,
     # a label for industry pct ----
-    label_industry = ifelse(is.na(industry), NA, glue::glue('{scales::percent(pct_industry/100, accuracy = 1)} ({n_industry}/{n_total}) {industry} '))
+    label_industry = ifelse(
+      is.na(industry),
+      NA,
+      glue::glue(
+        '{scales::percent(pct_industry/100, accuracy = 1)} ({n_industry}/{n_total}) {industry} '
+      )
+    )
   )
 ```
 
 ```{r}
 # view industry rectangles
 ring_inner %>%
-  dplyr::select(industry, pct_industry, start, stop) %>% 
-   mutate_at(vars(pct_industry, start, stop), scales::number, accuracy = 0.1) %>% 
-DT::datatable()
+  dplyr::select(industry, pct_industry, start, stop) %>%
+  mutate_at(vars(pct_industry, start, stop), scales::number, accuracy = 0.1) %>%
+  DT::datatable()
 ```
 
 # Non-interactive sunbursts
