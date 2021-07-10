@@ -13,6 +13,10 @@
     <lastmod>2021-07-08T23:29:27-04:00</lastmod>
   </url>
   <url>
+    <loc>https://www.pipinghotdata.com/talks.html</loc>
+    <lastmod>2021-07-09T22:41:08-04:00</lastmod>
+  </url>
+  <url>
     <loc>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r/</loc>
     <lastmod>2021-06-01T11:18:22-04:00</lastmod>
   </url>
@@ -59,5 +63,9 @@
   <url>
     <loc>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data/</loc>
     <lastmod>2020-12-23T22:19:55-05:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour/</loc>
+    <lastmod>2021-07-09T22:46:43-04:00</lastmod>
   </url>
 </urlset>

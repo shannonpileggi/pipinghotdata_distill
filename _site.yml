@@ -11,8 +11,12 @@ navbar:
       href: index.html
     - text: "Blog"
       href: blog.html
+    - text: "Talks"
+      href: talks.html
     - text: "About"
       href: about.html
+    - text: "CV"
+      href: shannon_pileggi_cv.html
     - icon: fa fa-github
       href: https://github.com/shannonpileggi
     - icon: fa fa-linkedin

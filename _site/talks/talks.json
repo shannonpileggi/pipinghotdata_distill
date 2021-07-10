@@ -1,0 +1,19 @@
+[
+  {
+    "path": "talks/2020-10-25-your-first-r-package-in-1-hour/",
+    "title": "Your first R package in 1 hour",
+    "description": "Tools that make R package development easy",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-25",
+    "categories": [],
+    "contents": "\r\n\r\nContents\r\nOverview\r\nAbstract\r\n\r\n\r\n materials video\r\n\r\nOverview\r\nA zoom workshop on introductory R package development for R-Ladies Philly.\r\nAbstract\r\nThis workshop is for people looking to learn how to make their own R packages and learn how to use usethis and devtools for package development. The workshop will cover handy one time functions (i.e., usethis::create_package) as well as functions used continuously throughout package development (i.e., devtools::document). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.\r\nThis workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.\r\n\r\n\r\n\r\n",
+    "preview": "talks/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg",
+    "last_modified": "2021-07-09T22:46:43-04:00",
+    "input_file": {}
+  }
+]

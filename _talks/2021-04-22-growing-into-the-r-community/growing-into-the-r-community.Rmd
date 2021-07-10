@@ -1,0 +1,35 @@
+---
+title: "Growing into the R community"
+description: |
+  An R-Ladies meet-up
+base_url: https://www.pipinghotdata.com/
+preview: workshop_thumnnail4.jpg
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 2021-04-22
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r icon-links}
+icon_link(icon = "images",
+          text = "slides",
+          url = "https://shannonpileggi.github.io/growing-into-r/#1")
+```

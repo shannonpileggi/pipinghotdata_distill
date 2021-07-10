@@ -133,3 +133,25 @@ ul > li::marker {
    60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
   100% { transform: rotate( 0.0deg) }
 }
+
+
+/* styling for icon-link buttons (see distilltools::icon_link()) */
+/* adapted from Ella Kaye */
+.icon-link {
+    background-color: transparent;
+    color: rgba(249, 83, 85, 1.0);
+    border: 1px solid;
+    border-color: rgba(249, 83, 85, 1.0);
+    padding: 5px .4rem 5px .4rem;
+    /*margin: 4px;*/
+    margin-top: 4px;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    border-radius: 5px; /* Rounded edges */
+}
+
+.icon-link:hover {
+    background-color: rgba(249, 83, 85, 1.0);
+    border-color: rgba(249, 83, 85, 1.0);
+    color: white;
+}
