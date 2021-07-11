@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.pipinghotdata.com/about.html</loc>
-    <lastmod>2021-07-08T23:51:43-04:00</lastmod>
+    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/blog.html</loc>
-    <lastmod>2021-07-08T23:13:52-04:00</lastmod>
+    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/</loc>
-    <lastmod>2021-07-08T23:29:27-04:00</lastmod>
+    <lastmod>2021-07-10T23:44:43-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks.html</loc>
-    <lastmod>2021-07-09T22:41:08-04:00</lastmod>
+    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r/</loc>
@@ -66,10 +66,10 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/</loc>
-    <lastmod>2021-07-10T22:42:07-04:00</lastmod>
+    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour/</loc>
-    <lastmod>2021-07-10T22:45:20-04:00</lastmod>
+    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
   </url>
 </urlset>
