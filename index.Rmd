@@ -31,7 +31,7 @@ meta() %>%
   meta_social(
     title = "https://www.pipinghotdata.com/",
     url = "https://www.pipinghotdata.com/",
-    image = "https://github.com/shannonpileggi/pipinghotdata_distill/blob/master/shannon-circle.png",
+    image = "https://github.com/shannonpileggi/pipinghotdata_distill/blob/master/shannon-circle.png?raw=true",
     image_alt = "A photo of Shannon Pileggi",
     og_type = "website",
     og_author = c("Shannon Pileggi"),
