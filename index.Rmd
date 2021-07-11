@@ -20,6 +20,24 @@ output:
   postcards::jolla
 ---
  
- 
+```{r setup, message=FALSE, warning=FALSE, include=FALSE}
+library(metathis)
+meta() %>%
+  meta_description(
+    "The personal website of Shannon Pileggi"
+  ) %>%
+  #meta_name("github-repo" = "jhelvy/jhelvy.com") %>%
+  meta_viewport() %>%
+  meta_social(
+    title = "https://www.pipinghotdata.com/",
+    url = "https://www.pipinghotdata.com/",
+    image = "https://github.com/shannonpileggi/pipinghotdata_distill/blob/master/shannon-circle.png",
+    image_alt = "A photo of Shannon Pileggi",
+    og_type = "website",
+    og_author = c("Shannon Pileggi"),
+    twitter_card_type = "summary",
+    twitter_creator = "@PipingHotData"
+  )
+```
  
 Hi! <span class="wave">👋</span> I am a former statistics college professor turned to industry. I love wrangling, analyzing, and visualizing data, and helping others do the same. 
