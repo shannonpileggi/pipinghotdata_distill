@@ -1,7 +1,7 @@
 name: "piping-hot-data"
 title: "PIPING HOT DATA"
 description: |
- Data science demos, deliberations, and discoveries
+ The personsal website of Shannon Pileggi
 base_url: https://www.pipinghotdata.com
 output_dir: "_site"
 theme: theme.css
@@ -9,8 +9,14 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Blog"
+      href: blog.html
+    - text: "Talks"
+      href: talks.html
     - text: "About"
       href: about.html
+    - text: "CV"
+      href: shannon_pileggi_cv.html
     - icon: fa fa-github
       href: https://github.com/shannonpileggi
     - icon: fa fa-linkedin
@@ -29,6 +35,7 @@ rss:
   full_content: true
 collections:
   posts:
+      categories: true
       share: [twitter, linkedin]
       citations: true
       subscribe: _subscribe.html

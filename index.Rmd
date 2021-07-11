@@ -1,5 +1,25 @@
 ---
-title: "Posts"
+title: "Shannon Pileggi, PhD"
 site: distill::distill_website
-listing: posts
+image: "shannon-circle.png"
+links:
+  - label: '<i class="fab fa-twitter"></i> Twitter'
+    url: "https://twitter.com/PipingHotData"
+  - label: '<i class="fab fa-github"></i> GitHub'
+    url: "https://github.com/shannonpileggi"
+  - label: '<i class="fab fa-linkedin"></i> LinkedIn'
+    url: "https://www.linkedin.com/in/shannon-m-pileggi/"
+  - label: '<i class="fas fa-envelope"></i> Email'
+    url: "mailto:shannon@pipinghotdata.com"
+base_url: https://www.pipinghotdata.com
+preview: shannon-circle.png
+twitter:
+  creator: "@PipingHotData"
+  site: "@PipingHotData"
+output:
+  postcards::jolla
 ---
+ 
+ 
+ 
+Hi! <span class="wave">👋</span> I am a former statistics college professor turned to industry. I love wrangling, analyzing, and visualizing data, and helping others do the same. 
