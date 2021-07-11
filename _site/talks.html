@@ -2215,13 +2215,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /*-- Change links on postcard --*/
 
   .btn-outline-dark {
-      background-color: rgba(249, 83, 85, 0.4);
-      color: #FFFFFF;
-      border: 0px;
+      background-color: transparent;
+      color: rgba(249, 83, 85, 1.0);
+      border: 1px solid;
+      border-color: rgba(249, 83, 85, 1.0);
   }
 
   .btn-outline-dark:hover {
       background-color: rgba(249, 83, 85, 1.0);
+      border-color: rgba(249, 83, 85, 1.0);
+      color: white;
   }
 
   /*-- animated hand wave --*/
@@ -2620,6 +2623,23 @@ function init_posts_list() {
 <div class="posts-container posts-apply-limit l-page">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption="Talks">Talks</h1>
+<a href="talks/2021-04-22-growing-into-the-r-community/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<div class="metadata">
+<div class="publishedDate">April 22, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Shannon Pileggi</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="talks/2021-04-22-growing-into-the-r-community/cover.PNG"/>
+</div>
+<div class="description">
+<h2>Growing into the R community</h2>
+<div class="dt-tags"></div>
+<p>An R-Ladies meet-up</p>
+</div>
+</a>
 <a href="talks/2020-10-25-your-first-r-package-in-1-hour/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":[]}</script>
 <div class="metadata">

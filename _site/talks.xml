@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 25 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Growing into the R community</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community</link>
+      <description>An R-Ladies meet-up</description>
+      <guid>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community</guid>
+      <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/cover.PNG" medium="image" type="image/png" width="700" height="364"/>
+    </item>
     <item>
       <title>Your first R package in 1 hour</title>
       <dc:creator>Shannon Pileggi</dc:creator>
