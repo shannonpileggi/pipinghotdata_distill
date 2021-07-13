@@ -33,7 +33,7 @@ A colleague learning R just told me that he spent 45 minutes searching for a sum
 
 <iframe src="https://giphy.com/embed/5VKbvrjxpVJCM" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/5VKbvrjxpVJCM">via GIPHY</a></p>
 
-This blog post is to promote `gtsummary` and make it more searchable. The `gtsummary` documentation is excellent so I won't cover all of its awesome functionality, but I will add a bit of my specific experience. 
+This blog post is to promote `gtsummary` and make it more searchable for those still seeking the one table to rule them all. The `gtsummary` documentation is excellent so I won't cover all of its awesome functionality, but I will add a bit of my specific experience. 
 
 If you are still searching for your favorite table package, here are two round up resources:
 
@@ -79,6 +79,7 @@ library(gtsummary)  # produce summary tables ----
 First, I import the data with `haven::read_sav`.
 
 ```{r}
+# import data ----
 dat_raw <- haven::read_sav(here::here( "_posts", "2020-12-23-leveraging-labelled-data-in-r", "data", "sadc_2017_national.sav"))
 ```
 
@@ -89,7 +90,7 @@ dat <- dat_raw %>%
   # two most recent years ----
   dplyr::filter(year %in% c(2015, 2017)) %>% 
   # a few variables
-  dplyr::select(record, year, q12, stheight) 
+  dplyr::select(record, year, stheight, q12, q69) 
 ```
 
 Here is a quick preview of the data.
@@ -99,27 +100,42 @@ Here is a quick preview of the data.
 dat
 ```
 
+I recommend reading [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/){target="_blank"} for more details on labelled data, but for now here is a quick preview of the metadata.
+
+```{r}
+# create data dictionary ----
+dictionary <- labelled::look_for(dat, details = TRUE)
+```
+
+```{r}
+# view select items from dictionary ----
+dictionary %>% 
+  dplyr::select(variable, label, value_labels) %>% 
+  knitr::kable() 
+```
+
+
 # The best, quickest table
 
 To get a quick summary table, first retain only the variables you want to see in the summary table. In this case, I removed `record` to avoid summary statistics of an ID. Next, because the imported data has value labels from the `.sav` data file, I converted those variables to a factor for summarizing.
 
 ```{r}
 dat %>% 
-  # remove from summary table
+  # remove from summary table ----
   dplyr::select(-record) %>% 
   # convert labelled values to a factor ----
-  mutate_at(vars(q12), haven::as_factor) %>% 
+  mutate_at(vars(matches("q")), haven::as_factor) %>% 
   # create a table with columns for year ----
   gtsummary::tbl_summary(by = year)
 ```
 
 So easy to obtain, and so readable!
 
-And *wait* - did you see that?! The raw data had variable names of `q12`, `stheight`, but the table printed the variable label! (I previously [tweeted](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} about the awesome package pairing of `haven` and `gtsummary`.) If your data does not come with handy labels, you can create them with the [`label` option in `tbl_summary`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html){target="_blank"} or with the [`var_label` function](https://larmarange.github.io/labelled/reference/var_label.html){target="_blank"} in the `labelled` package.
+And *wait* - did you see that?! The raw data had variable names of `q12`, `stheight`, and `q69` but the table printed the variable label! (I previously [tweeted](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} about the awesome package pairing of `haven` and `gtsummary`.) If your data does not come with handy labels, you can create them with the [`label` option in `tbl_summary`](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html){target="_blank"} or with the [`var_label` function](https://larmarange.github.io/labelled/reference/var_label.html){target="_blank"} in the `labelled` package.
 
 # A few modifications
 
-Here are a few modifications you might be interested in trying to customize your table.
+Here are a few modifications you might be interested in trying to customize your table, including adding an overall column, custom statistic formatting, and table styling. Note that there is an overall N that corresponds to the number of observations, and each each variable can have its own N that corresponds to the number of non-missing observations for that variable. 
 
 ```{r}
 dat %>% 
@@ -130,9 +146,7 @@ dat %>%
   tbl_summary(by = year,
     # custom statistic formats ----
     statistic = list(all_continuous() ~ "{mean} ({sd})",
-                     all_categorical() ~ "{n} / {N} ({p}%)"), 
-    # don't list missing data separately
-    missing = "no" 
+                     all_categorical() ~ "{p}% ({n} / {N})")
   ) %>%
   add_n() %>% # add column with total number of non-missing observations
   add_p() %>% # test for a difference between groups
@@ -140,7 +154,7 @@ dat %>%
   bold_labels() 
 ```
 
-Note that `gtsummary` makes an educated guess on  how to summarize your data and which statistical test to use. Pay attention to the footnote on the statistical tests performed and adjust if needed with the [`test` argument](http://www.danieldsjoberg.com/gtsummary/reference/add_p.tbl_summary.html){target="_blank"} in the `add_p` function..
+In addition, `gtsummary` makes an educated guess on  how to summarize your data and which statistical test to use. Pay attention to the footnote on the statistical tests performed and adjust if needed with the [`test` argument](http://www.danieldsjoberg.com/gtsummary/reference/add_p.tbl_summary.html){target="_blank"} in the `add_p` function..
 
 # Discrete numeric values
 
@@ -160,7 +174,7 @@ dat %>%
   gtsummary::tbl_summary()
 ```
 
-In this table, a 4 represents carrying a weapon to school 4 days in the past month. Notice the default is provide a frequency summary as if it is a categorical variable due the few values present. If instead you want a mean to summarize this variable, specify the variable as continuous with the [`type` argument](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html){target="_blank"} in `tbl_summary`.
+In this table, a 4 represents carrying a weapon to school 4 days in the past month. Notice the default is to provide a frequency summary as if it is a categorical variable due the few values present. If instead you want a mean to summarize this variable, specify the variable as continuous with the [`type` argument](http://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html){target="_blank"} in `tbl_summary`.
 
 ```{r}
 dat %>% 
@@ -185,21 +199,21 @@ dat %>%
 Before we part, let's make sure we understand how the package handles missing data and our options.
 
 ```{r}
-dat_raw %>% 
-  filter(year == 2017) %>% 
+dat %>% 
   dplyr::select(q69) %>% 
-  mutate_at(vars(q69), haven::as_factor) %>% 
+  # convert labelled values to a factor ----
+  mutate_at(vars(matches("q")), haven::as_factor) %>% 
   gtsummary::tbl_summary()
 ```
 
-From this summary table, I can infer that there are 14,765 records in the year 2017; 11,541 of them have non-missing values and 3,224 have missing values. The percents shown in the table are the percent of the non-missing base n; that is, 5,462 / 11,541 is 47%.
+From this summary table, I can infer that there are 30,389 records in the years 2015 and 2017; 25,385 of them have non-missing values and 5,004 have missing values. The percents shown in the table are the percent of the non-missing base n; that is, 12,138 / 25,385 is 48%.
 
 You can remove printing of the count of unknown values if you like, which does not change any of other numbers in your table.
 
 ```{r}
-dat_raw %>% 
-  filter(year == 2017) %>% 
+dat %>% 
   dplyr::select(q69) %>% 
+  # convert labelled values to a factor ----
   mutate_at(vars(q69), haven::as_factor) %>% 
   gtsummary::tbl_summary(
     # supress printing count of unknown values ----
@@ -210,9 +224,10 @@ dat_raw %>%
 If you want your `n` at the top of the column to reflect the n for non-missing observations, I would remove those in your data cleaning process.
 
 ```{r}
-dat_raw %>% 
-  filter(year == 2017) %>% 
-  dplyr::select(q69) %>%
+dat %>% 
+  dplyr::select(q69) %>% 
+  # convert labelled values to a factor ----
+  mutate_at(vars(q69), haven::as_factor) %>% 
   # remove all observations with missing values ----
   drop_na() %>% 
   mutate_at(vars(q69), haven::as_factor) %>% 
@@ -222,18 +237,30 @@ dat_raw %>%
 On the other hand, if the missing data represented a valid category that you wanted counted, you could replace the missing values (which would shift the percentages).
 
 ```{r}
-dat_raw %>% 
-  filter(year == 2017) %>% 
-  dplyr::select(q69) %>%
+dat %>% 
+  dplyr::select(q69) %>% 
+  # convert labelled values to a factor ----
   mutate_at(vars(q69), haven::as_factor) %>% 
   # replace missing values for factor ----
-  mutate_at(vars(q69), fct_explicit_na, "Missing weight action") %>% 
+  mutate_at(vars(q69), forcats::fct_explicit_na, "Missing weight action") %>% 
   gtsummary::tbl_summary()
 ```
 
-# Limitations
+# Outputs
 
-There really aren't many! The `gtsummary` package has readable output that is easily customizable. The one hang up for me is that I work with many who prefer to see tables in excel, and this an output not currently supported in `gtsummary` (see [supported output types](http://www.danieldsjoberg.com/gtsummary/index.html#gtsummary--r-markdown){target="_blank"}). No shade here, I'm waiting patiently for this to happen in the [`gt` package](https://github.com/rstudio/gt/issues/240){target="_blank"}. `r emo::ji("grin")`
+`gtsummay` has a variety of [supported output types](http://www.danieldsjoberg.com/gtsummary/index.html#gtsummary--r-markdown){target="_blank"}). I work with many who prefer to see tables in excel, and this an output not _directly_ supported in `gtsummary`. (No shade here, I'm waiting patiently for this to happen in the [`gt` package](https://github.com/rstudio/gt/issues/240){target="_blank"}. `r emo::ji("grin")`.)  However, `gtsummary` does have a work around available with the [`gt_summary::as_tibble()`](https://www.danieldsjoberg.com/gtsummary/reference/as_tibble.gtsummary.html){target="_blank"} function. Save the table as an object, convert to a tibble, and then export.
+
+```{r}
+
+```
+
+
+# Conclusion
+
+The `gtsummary` package has readable output that is easily customizable with a variety of export options. Try it out!
+
+as_tibble(gt_table) %>%
+  write_xlsx("pulse_dat.xlsx")
 
 # Acknowledgements
 
