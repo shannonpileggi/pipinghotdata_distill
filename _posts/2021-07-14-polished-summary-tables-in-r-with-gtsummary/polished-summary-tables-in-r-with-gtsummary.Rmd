@@ -3,7 +3,7 @@ title: "Polished summary tables in R with gtsummary"
 description: |
   Also plays well with labelled data
 base_url: https://www.pipinghotdata.com/
-preview: sunburst_preview.PNG
+preview: r-gtsummary.png.PNG
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -22,6 +22,15 @@ creative_commons: CC BY
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+```{r echo=FALSE, fig.cap="Happy R adapted from artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en); the beach and cocktail images are from [pngtree.com](https://pngtree.com),", fig.alt="A happy R lounging in a beach chair with tropical scenery holding a cocktail."}
+knitr::include_graphics("r-gtsummary.png")
+```
+
+<a href='https://pngtree.com/so/beach-umbrella'>beach umbrella png from pngtree.com</a>
+
+<a href='https://pngtree.com/so/cocktail-vector'>cocktail vector png from pngtree.com</a>
 
 # TL; DR
 
@@ -64,6 +73,7 @@ This material was developed using:
 | `haven`             | 2.3.1                 |
 | `labelled`          | 2.5.0                 |
 | `gtsummary`         | 1.3.5                 |
+| `writexl`           | 1.4.0                 |
 
 
 ```{r}
@@ -72,11 +82,12 @@ library(here)       # file paths  ----
 library(haven)      # import .sav files ----  
 library(labelled)   # tools for labelled data ----
 library(gtsummary)  # produce summary tables ----
+library(writexl)    # export excel tables ----
 ```
 
 # Data preparation
 
-First, I import the data with `haven::read_sav`.
+First, I import the data with `haven::read_sav()`.
 
 ```{r}
 # import data ----
@@ -158,7 +169,7 @@ In addition, `gtsummary` makes an educated guess on  how to summarize your data 
 
 # Discrete numeric values
 
-One default I frequently correct is treatment of discrete numeric values. For example, consider a rating scale with possible values of 1, 2, 3, ... 7, but in which respondents only select values of 3, 4, 5. Making an educated guess and only seeing three unique values, `gtsummary` will treat this as a categorical variable and return frequencies of those values; however, you may still want a mean. You can override these potentially undesirable defaults in `gtsummary` `r emo::ji("raising hands")`.
+One default I frequently correct is treatment of discrete numeric values. For example, consider a rating scale with possible values of 1, 2, 3, ... 7, but in which respondents only select values of 3, 4, 5. Making an educated guess and only seeing three unique values, `gtsummary` will treat this as a categorical variable and return frequencies of those values; however, you may still want a mean. You can override these potentially undesirable defaults in `gtsummary`. `r emo::ji("raising hands")`
 
 This data set does not have a great example of this, so I'll make one. I am going to _pretend_ that `q12` is numeric for demonstration,
 
@@ -169,7 +180,7 @@ dat %>%
   # convert labelled values to numeric by removing value labels ----
   mutate_at(vars(q12), haven::zap_labels) %>% 
   # subtract one to make pretend example more realistic ----
-  mutate_at(vars(q12), ~ . -1) %>% 
+  mutate_at(vars(q12), ~ . - 1) %>% 
   # create a table with columns for year ----
   gtsummary::tbl_summary()
 ```
@@ -183,7 +194,7 @@ dat %>%
   # convert labelled values to numeric by removing value labels ----
   mutate_at(vars(q12), haven::zap_labels) %>% 
   # subtract one to make pretend example more realistic ----
-  mutate_at(vars(q12), ~ . -1) %>% 
+  mutate_at(vars(q12), ~ . - 1) %>% 
   # create a table with columns for year ----
   gtsummary::tbl_summary(
     # treat q12 variable as continuous ----
@@ -206,9 +217,9 @@ dat %>%
   gtsummary::tbl_summary()
 ```
 
-From this summary table, I can infer that there are 30,389 records in the years 2015 and 2017; 25,385 of them have non-missing values and 5,004 have missing values. The percents shown in the table are the percent of the non-missing base n; that is, 12,138 / 25,385 is 48%.
+This summary table tells us that there are 30,389 records in the years 2015 and 2017; 25,385 of them have non-missing values and 5,004 have missing values. The percents shown in the table are the percent of the non-missing base N; that is, 12,138 / 25,385 is 48%.
 
-You can remove printing of the count of unknown values if you like, which does not change any of other numbers in your table.
+You can suppress printing the count of unknown values if you like, which does not change any of other numbers in your table.
 
 ```{r}
 dat %>% 
@@ -221,7 +232,7 @@ dat %>%
   )
 ```
 
-If you want your `n` at the top of the column to reflect the n for non-missing observations, I would remove those in your data cleaning process.
+If you want the N at the top of the column to reflect the N for non-missing observations, I would remove those in your data cleaning process.
 
 ```{r}
 dat %>% 
@@ -230,11 +241,10 @@ dat %>%
   mutate_at(vars(q69), haven::as_factor) %>% 
   # remove all observations with missing values ----
   drop_na() %>% 
-  mutate_at(vars(q69), haven::as_factor) %>% 
   gtsummary::tbl_summary()
 ```
 
-On the other hand, if the missing data represented a valid category that you wanted counted, you could replace the missing values (which would shift the percentages).
+On the other hand, if the missing data represents a valid category that you want counted, you could replace the missing values (which would shift the percentages).
 
 ```{r}
 dat %>% 
@@ -248,20 +258,34 @@ dat %>%
 
 # Outputs
 
-`gtsummay` has a variety of [supported output types](http://www.danieldsjoberg.com/gtsummary/index.html#gtsummary--r-markdown){target="_blank"}). I work with many who prefer to see tables in excel, and this an output not _directly_ supported in `gtsummary`. (No shade here, I'm waiting patiently for this to happen in the [`gt` package](https://github.com/rstudio/gt/issues/240){target="_blank"}. `r emo::ji("grin")`.)  However, `gtsummary` does have a work around available with the [`gt_summary::as_tibble()`](https://www.danieldsjoberg.com/gtsummary/reference/as_tibble.gtsummary.html){target="_blank"} function. Save the table as an object, convert to a tibble, and then export.
+`gtsummay` has a variety of [supported outputs](http://www.danieldsjoberg.com/gtsummary/index.html#gtsummary--r-markdown){target="_blank"}, including html and word. I work with many who prefer to see tables in excel, and this an output not _directly_ supported in `gtsummary`. (No shade here, I'm waiting patiently for this to happen in the [`gt` package](https://github.com/rstudio/gt/issues/240){target="_blank"}. `r emo::ji("grin")`)  However, `gtsummary` does have a work around available with the [`gt_summary::as_tibble()`](https://www.danieldsjoberg.com/gtsummary/reference/as_tibble.gtsummary.html){target="_blank"} function. Save the table as an object, convert to a tibble, and then export.
 
 ```{r}
-
+# 1 - save table ----
+gt_table <- dat %>% 
+  dplyr::select(q69) %>% 
+  # convert labelled values to a factor ----
+  mutate_at(vars(matches("q")), haven::as_factor) %>% 
+  gtsummary::tbl_summary() %>% 
+  # 2 convert to tibble ----
+  gtsummary::as_tibble()
 ```
+
+And now you can export to excel.
+
+```{r}
+# 3 - export to excel ----
+writexl::write_xlsx(gt_table, here::here( "_posts", "2021-07-14-polished-summary-tables-in-r-with-gtsummary",  "example_gtsummary.xlsx"))
+```
+
+You can download the exported output `r xfun::embed_file(here::here("_posts", "2021-07-14-polished-summary-tables-in-r-with-gtsummary",  "example_gtsummary.xlsx"), text = "example_gtsummary.xlsx")`.
 
 
 # Conclusion
 
-The `gtsummary` package has readable output that is easily customizable with a variety of export options. Try it out!
+The `gtsummary` package has readable output that is easily customizable. My quest for the best presentation ready R table is over! `r emo::ji("partying_face")`
 
-as_tibble(gt_table) %>%
-  write_xlsx("pulse_dat.xlsx")
 
 # Acknowledgements
 
-Daniel Sjoberg + team rocks for their work on `gtsummary`. Thanks to new learneRs who inspire me to write. `r emo::ji("purple heart")`
+Daniel Sjoberg + team rock for their work on `gtsummary`! Thanks my colleague [Patrick Freeman](https://www.linkedin.com/in/patrick-freeman-a96092b6/){target="_blank"} for reviewing this post and providing feedback, and thanks to new learneRs who inspire me to write. `r emo::ji("purple heart")`
