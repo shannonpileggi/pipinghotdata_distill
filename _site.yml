@@ -24,7 +24,7 @@ navbar:
     - icon: fa fa-twitter
       href: https://twitter.com/PipingHotData
     - icon: fa fa-rss
-      href: index.xml  
+      href: blog.xml  
 output: 
   distill::distill_article
 google_analytics: "UA-128676462-1"
