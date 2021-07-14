@@ -155,9 +155,9 @@ dat %>%
     statistic = list(all_continuous() ~ "{mean} ({sd})",
                      all_categorical() ~ "{p}% ({n} / {N})")
   ) %>%
+  add_overall() %>% # add an overall column
   add_n() %>% # add column with total number of non-missing observations
   add_p() %>% # test for a difference between groups
-  add_overall() %>% # add an overall column
   bold_labels() 
 ```
 
@@ -254,7 +254,7 @@ dat %>%
 
 # Outputs
 
-`gtsummay` has a variety of [supported outputs](http://www.danieldsjoberg.com/gtsummary/index.html#gtsummary--r-markdown){target="_blank"}, including html and word. I work with many who prefer to see tables in excel, and this an output not _directly_ supported in `gtsummary`. (No shade here, I'm waiting patiently for this to happen in the [`gt` package](https://github.com/rstudio/gt/issues/240){target="_blank"}. `r emo::ji("grin")`)  However, `gtsummary` does have a work around available with the [`gt_summary::as_tibble()`](https://www.danieldsjoberg.com/gtsummary/reference/as_tibble.gtsummary.html){target="_blank"} function. Save the table as an object, convert to a tibble, and then export.
+`gtsummay` has a variety of [supported outputs](http://www.danieldsjoberg.com/gtsummary/index.html#gtsummary--r-markdown){target="_blank"}, including html and word. I work with many who prefer to see tables in excel, and this an output not _directly_ supported in `gtsummary`. (No shade here, I'm waiting patiently for this to happen in the [`gt` package](https://github.com/rstudio/gt/issues/240){target="_blank"}. `r emo::ji("grin")`)  However, `gtsummary` does have a work around available with the [`gtsummary::as_tibble()`](https://www.danieldsjoberg.com/gtsummary/reference/as_tibble.gtsummary.html){target="_blank"} function. Save the table as an object, convert to a tibble, and then export.
 
 ```{r}
 # 1 - save table ----
