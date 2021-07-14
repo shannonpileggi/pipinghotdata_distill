@@ -28,10 +28,6 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::include_graphics("r-gtsummary.png")
 ```
 
-<a href='https://pngtree.com/so/beach-umbrella'>beach umbrella png from pngtree.com</a>
-
-<a href='https://pngtree.com/so/cocktail-vector'>cocktail vector png from pngtree.com</a>
-
 # TL; DR
 
 The [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/index.html){target="_blank} package in R creates amazing publication / presentation / whatever-you-need-it-for ready tables of summary statistics. Try it out!
@@ -288,4 +284,4 @@ The `gtsummary` package has readable output that is easily customizable. My ques
 
 # Acknowledgements
 
-Daniel Sjoberg + team rock for their work on `gtsummary`! Thanks my colleague [Patrick Freeman](https://www.linkedin.com/in/patrick-freeman-a96092b6/){target="_blank"} for reviewing this post and providing feedback, and thanks to new learneRs who inspire me to write. `r emo::ji("purple heart")`
+Daniel Sjoberg + team rock for their work on `gtsummary`! Thanks to my colleague [Patrick Freeman](https://www.linkedin.com/in/patrick-freeman-a96092b6/){target="_blank"} for reviewing this post and providing feedback, and thanks to new learneRs who inspire me to write. `r emo::ji("purple heart")`
