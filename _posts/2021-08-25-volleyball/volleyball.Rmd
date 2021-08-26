@@ -1,0 +1,141 @@
+---
+title: "volleyball"
+description: |
+  A short description of the post.
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 08-25-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# TL; DR
+
+I took an alternative approach to predicting volleyball wins.
+
+# Background
+
+# Getting started 
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.0.5                 | 
+| RStudio             | 1.4.1103              | 
+| `tidyverse`         | 1.3.1                 |
+| `tidymodels`        | 0.1.3                 |
+
+
+```{r}
+library(tidyverse)  # general use ----
+library(tidymodels) # modeling ----
+```
+
+# The data
+
+```{r}
+dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-19/vb_matches.csv', guess_max = 76000) %>% 
+  mutate(id = row_number())
+
+dat_raw
+```
+
+
+```{r}
+vars_keep <- c("id", "circuit", "gender", "year")
+```
+
+
+```{r}
+dat <- dat_raw %>% 
+  dplyr::select(all_of(vars_keep), matches("attacks|kills|errors|aces|blocks|digs")) %>% 
+  drop_na() %>% 
+  pivot_longer(
+    -all_of(vars_keep),
+    names_to = "variable",
+    values_to = "value"
+  ) %>% 
+  mutate(
+    status = str_sub(variable, start = 1, end = 1) %>% fct_relevel("l"),
+    player = str_extract(variable, "p[12]"),
+    metric = str_sub(variable, start = 10, end = -1)
+  )  %>% 
+  group_by(id, circuit, gender, year, status, metric) %>% 
+  summarize(
+    total = sum(value)
+  ) %>% 
+  ungroup() %>% 
+  arrange(id, metric, status) %>% 
+  group_by(id, metric) %>% 
+  mutate(
+    lag = lag(total),
+    diff = total - lag
+  ) %>% 
+  ungroup() %>% 
+  filter(status == "w") %>% 
+  dplyr::select(all_of(vars_keep), metric, diff)
+```
+
+```{r}
+dat %>% 
+  ggplot(aes(x = diff)) +
+  geom_histogram(aes(color = diff > 0, fill = diff > 0)) +
+  facet_wrap(.~ metric, scales = "free")
+```
+
+
+
+```{r}
+dat_model <- dat %>% 
+  pivot_wider(
+    names_from = "metric",
+    values_from = diff
+  )
+```
+
+```{r}
+# initial split
+set.seed(123)
+vb_split <- initial_split(dat_model)
+vb_train <- training(vb_split)
+vb_test  <- testing(vb_split)
+```
+
+
+```{r}
+xgb_spec <- boost_tree(
+  trees = 1000, 
+  tree_depth = tune(), min_n = tune(), 
+  loss_reduction = tune(),                     ## first three: model complexity
+  sample_size = tune(), mtry = tune(),         ## randomness
+  learn_rate = tune(),                         ## step size
+) %>% 
+  set_engine("xgboost") %>% 
+  set_mode("classification")
+```
+
+```{r}
+xgb_grid <- grid_latin_hypercube(
+  tree_depth(),
+  min_n(),
+  loss_reduction(),
+  sample_size = sample_prop(),
+  finalize(mtry(), vb_train),
+  learn_rate(),
+  size = 30
+)
+
+```
+xgb_wf <- workflow() %>%
+  add_formula(win ~ .) %>%
+  add_model(xgb_spec)
+
+xgb_wf
