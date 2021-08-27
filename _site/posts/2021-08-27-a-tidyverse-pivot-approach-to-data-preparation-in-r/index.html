@@ -2859,7 +2859,7 @@ do you ever have to pivot_longer() first to get pivot_wider() to do what you wan
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># step 3: sum values of player 1 and player 2 for all metrics ----</span>
 <span class='va'>step3</span> <span class='op'>&lt;-</span> <span class='va'>step2</span> <span class='op'>%&gt;%</span>
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>circuit</span>, <span class='va'>gender</span>, <span class='va'>year</span>, <span class='va'>status</span>, <span class='va'>metric</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>summarize</span><span class='op'>(</span>total <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>summarize</span><span class='op'>(</span>total <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>value</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>

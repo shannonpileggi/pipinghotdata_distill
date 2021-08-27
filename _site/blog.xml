@@ -268,7 +268,7 @@ step2 &amp;lt;- step1 %&amp;gt;%
 &lt;pre class="r"&gt;&lt;code&gt;# step 3: sum values of player 1 and player 2 for all metrics ----
 step3 &amp;lt;- step2 %&amp;gt;%
   group_by(id, circuit, gender, year, status, metric) %&amp;gt;%
-    summarize(total = sum(value)) %&amp;gt;%
+  summarize(total = sum(value)) %&amp;gt;%
   ungroup()&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="r"&gt;&lt;code&gt;step3&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;# A tibble: 200,648 x 7

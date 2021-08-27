@@ -215,7 +215,7 @@ step2
 # step 3: sum values of player 1 and player 2 for all metrics ----
 step3 <- step2 %>%
   group_by(id, circuit, gender, year, status, metric) %>%
-    summarize(total = sum(value)) %>%
+  summarize(total = sum(value)) %>%
   ungroup()
 ```
 
