@@ -1,0 +1,246 @@
+---
+title: "A tidyverse pivot approach to data preparation in R"
+description: |
+  Going from wide to long with #TidyTuesday beach volleyball
+base_url: https://www.pipinghotdata.com/
+preview: gatherspread_modified.jpg
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 08-27-2021
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, fig.cap="Artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en), modified to substitute pivot_wider() and pivot_longer() for spread and gather.", fig.alt="Cute monsters moving colored shapes arranged in two long columns and then 4 short columns."}
+knitr::include_graphics("gatherspread_modified.jpg")
+```
+
+
+# TL; DR
+
+I demonstrate a `pivot_longer()` plus `pivot_wider()` approach to data preparation as 
+an alternative to explicitly coding computations. This approach might be beneficial  for you if you have:
+
+`r emo::ji("check")` wide data, 
+
+`r emo::ji("check")` with a consistent naming structure, 
+
+`r emo::ji("check")` and many variables to aggregate.
+
+
+# Background
+
+I love reading and watching Julia Silge's #TidyTuesday tidymodels tutorials! Recently I was following her post about [xgboost classification models with the beach volleyball data](https://juliasilge.com/blog/xgboost-tune-volleyball/){target="_blank"}. The first 15 minutes of the 50 minute video are about getting familiar with the data and preparing it for modeling, and I realized I would have taken a different approach to the data preparation involving `pivot_longer()` and `pivot_wider()`. Also, Spencer Zeigler recently tweeted asking about this approach.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">do you ever have to pivot_longer() first to get pivot_wider() to do what you want? or is my data just formatted badly? or am I bad at pivoting data? or both? <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/tidyr?src=hash&amp;ref_src=twsrc%5Etfw">#tidyr</a></p>&mdash; Spencer Zeigler (@spenceometry) <a href="https://twitter.com/spenceometry/status/1430015436196704256?ref_src=twsrc%5Etfw">August 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Yes Spencer, I do this all the time!
+
+# Getting started
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.0.5                 | 
+| RStudio             | 1.4.1103              | 
+| `tidyverse`         | 1.3.1                 |
+
+
+```{r}
+library(tidyverse)  # general use ----
+```
+
+# Import the data
+
+`#TidyTuesday` provides more information about the [beach volleyball data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-05-19/readme.md){target="_blank"}. 
+
+```{r}
+vb_matches  <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-19/vb_matches.csv', guess_max = 76000)
+```
+
+
+```{r}
+vb_matches 
+```
+
+# Original data preparation
+
+This is copied straight from Julia's [blog post](https://juliasilge.com/blog/xgboost-tune-volleyball/){target="_blank"}. The original data preparation involves writing formulas with `transmute()` followed by stacking data for winners and losers with `bind_rows()`.
+
+```{r}
+vb_parsed <- vb_matches %>%
+  transmute(
+    circuit,
+    gender,
+    year,
+    w_attacks = w_p1_tot_attacks + w_p2_tot_attacks,
+    w_kills = w_p1_tot_kills + w_p2_tot_kills,
+    w_errors = w_p1_tot_errors + w_p2_tot_errors,
+    w_aces = w_p1_tot_aces + w_p2_tot_aces,
+    w_serve_errors = w_p1_tot_serve_errors + w_p2_tot_serve_errors,
+    w_blocks = w_p1_tot_blocks + w_p2_tot_blocks,
+    w_digs = w_p1_tot_digs + w_p2_tot_digs,
+    l_attacks = l_p1_tot_attacks + l_p2_tot_attacks,
+    l_kills = l_p1_tot_kills + l_p2_tot_kills,
+    l_errors = l_p1_tot_errors + l_p2_tot_errors,
+    l_aces = l_p1_tot_aces + l_p2_tot_aces,
+    l_serve_errors = l_p1_tot_serve_errors + l_p2_tot_serve_errors,
+    l_blocks = l_p1_tot_blocks + l_p2_tot_blocks,
+    l_digs = l_p1_tot_digs + l_p2_tot_digs
+  ) %>%
+  na.omit()
+
+winners <- vb_parsed %>%
+  select(circuit, gender, year,
+         w_attacks:w_digs) %>%
+  rename_with(~ str_remove_all(., "w_"), w_attacks:w_digs) %>%
+  mutate(win = "win")
+
+losers <- vb_parsed %>%
+  select(circuit, gender, year,
+         l_attacks:l_digs) %>%
+  rename_with(~ str_remove_all(., "l_"), l_attacks:l_digs) %>%
+  mutate(win = "lose")
+
+vb_df <- bind_rows(winners, losers) %>%
+  mutate_if(is.character, factor)
+```
+
+```{r}
+vb_df
+```
+
+# Alternative data preparation
+
+This approach leverages `pivot_wider()` and `pivot_longer()` to avoid writing out explicit computations. This can work well if you need to aggregate many variables with a sum or a mean. This approach does require a unique identifier for each record. 
+
+
+```{r}
+vb_df <- vb_matches  %>%
+  mutate(id = row_number()) %>%
+  dplyr::select(
+    id, circuit, gender, year,
+    matches("attacks|kills|errors|aces|blocks|digs")
+    ) %>%
+  drop_na() %>%
+  pivot_longer(
+    cols = -c(id, circuit, gender, year),
+    names_to = c("status", "player", "method", "metric"),
+    names_pattern = "([wl])_(p[12])_(tot)_(.*)",
+    values_to = "value"
+  ) %>% 
+  group_by(id, circuit, gender, year, status, metric) %>%
+  summarize(total = sum(value)) %>%
+  ungroup() %>%
+  pivot_wider(
+    names_from = "metric",
+    values_from = total
+    )
+```
+
+
+And here is what the final data looks like!
+
+```{r}
+vb_df
+```
+
+In case that was hard to follow in one long code chunk, below I show what the data looks like at each of four steps annotated with comments.
+
+
+
+
+## Step 1: initial manipulation of wide data
+
+```{r}
+# step 1: initial manipulation of wide data ----
+step1 <- vb_matches  %>%
+  # create unique identifier ----
+  mutate(id = row_number()) %>%
+  # retain relevant variables ----
+  dplyr::select(
+    id, circuit, gender, year,
+    matches("attacks|kills|errors|aces|blocks|digs")
+    ) %>%
+  # remove records where any observations are missing ----
+  drop_na() 
+```
+
+```{r}
+step1
+```
+
+
+## Step 2: reshape data to long
+
+
+
+```{r}
+# step 2: reshape data to long ----
+step2 <- step1 %>% 
+  pivot_longer(
+    # specify variables to hold fixed and not pivot ----
+    cols = -c(id, circuit, gender, year),
+    # create four new variables extracted from the variable name ----
+    names_to = c("status", "player", "method", "metric"),
+    # regex pattern to extract values from variable name ---
+    names_pattern = "([wl])_(p[12])_(tot)_(.*)",
+    # the value of the metric ---
+    values_to = "value"
+  ) 
+```
+
+
+```{r}
+step2
+```
+
+## Step 3: sum values of player 1 and player 2 for all metrics
+
+```{r}
+# step 3: sum values of player 1 and player 2 for all metrics ----
+step3 <- step2 %>%
+  group_by(id, circuit, gender, year, status, metric) %>%
+    summarize(total = sum(value)) %>%
+  ungroup()
+```
+
+```{r}
+step3
+```
+
+## Step 4: reshape data to wide for modeling
+
+```{r}
+# step 4: reshape data to wide for modeling ----
+step4 <- step3 %>% 
+  pivot_wider(
+    names_from = "metric",
+    values_from = total
+    )
+```
+
+
+```{r, echo = FALSE}
+step4
+```
+
+
+# Summary
+
+If you are fortunate enough to have wide data with a consistent naming structure,
+using a `pivot_longer()` / `pivot_wider()` data preparation approach can save you from writing out tedious formulas. Let me know what you think!
