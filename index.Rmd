@@ -40,4 +40,4 @@ meta() %>%
   )
 ```
  
-Hi! <span class="wave">👋</span> I am a former statistics college professor turned to industry. I love wrangling, analyzing, and visualizing data, and helping others do the same. 
+Hi! <span class="wave">👋</span> I am a former statistics college professor now working in industry. I love wrangling, analyzing, and visualizing data, and helping others do the same. 
