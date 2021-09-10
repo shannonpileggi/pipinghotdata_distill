@@ -1,0 +1,78 @@
+---
+title: "Adjusted correlations"
+description: |
+  A short description of the post.
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 09-09-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{r}
+penguins %>% 
+  group_by(species) %>% 
+  nest() %>% 
+  mutate(corr = map(data, ralph::compute_corr, var1 = flipper_length_mm, var2 = bill_length_mm)) %>% 
+  ungroup() %>% 
+  unnest(corr)
+```
+
+```{r}
+ralph::compute_corr(penguins, var1 = flipper_length_mm, var2 = bill_length_mm)
+```
+
+
+```{r}
+olympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv')
+```
+
+```{r}
+dat <- olympics %>% 
+  filter(year == 2016) %>% 
+  filter(sport %in% c("Swimming",  "Gymnastics", "Shooting")) %>% 
+  filter(sex == "F") %>% 
+  dplyr::select(id, sport, height, weight) %>% 
+  drop_na()
+```
+
+```{r}
+dat %>% 
+  bind_rows(dat %>% mutate(sport = "Total")) %>% 
+  group_by(sport) %>% 
+  nest() %>% 
+  mutate(
+    base_n = map_int(data, nrow),
+    corr = map(data, ~ cor.test(x = .x$height, y = .x$weight) %>% broom::tidy())
+    ) %>% 
+  ungroup() %>% 
+  unnest(c(data, corr)) %>% 
+  mutate(
+    corr_label =  glue::glue("{sport}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
+    sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")) %>% 
+  ggplot(aes(x = height, y = weight)) +
+  geom_point(aes(color = corr_label), show.legend = FALSE) +
+  facet_wrap(. ~ corr_label, ncol = 4) +
+  scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
+  theme_bw()
+  
+```
+
+```{r}
+mixed_mod_1 <- lme4::lmer(weight ~ height + (1 | sport), dat)
+sqrt(performance::r2(mixed_mod_1)[["R2_marginal"]])
+```
+
+
