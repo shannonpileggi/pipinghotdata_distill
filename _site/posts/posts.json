@@ -1,5 +1,24 @@
 [
   {
+    "path": "posts/2021-09-09-adjusted-correlations/",
+    "title": "Adjusted correlations",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2021-09-09",
+    "categories": [],
+    "contents": "\r\n\r\n\r\nlibrary(tidyverse)   # general use ----\r\nlibrary(broom)       # tidying of stats results ----\r\nlibrary(performance) # to obtain marginal r-squared ----\r\nlibrary(lme4)        # linear mixed models ----   \r\n\r\n\r\n\r\nData\r\n\r\n\r\nolympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv')\r\n\r\n\r\n\r\n\r\n\r\ndat <- olympics %>% \r\n  filter(year == 2016) %>% \r\n  filter(sport %in% c(\"Swimming\",  \"Gymnastics\", \"Shooting\")) %>% \r\n  filter(sex == \"F\") %>% \r\n  dplyr::select(id, sport, height, weight) %>% \r\n  drop_na()\r\n\r\n\r\n\r\nCorrelations\r\nCorrelations are a common technique used to assess the strength of the linear association between two numeric variables. The main assumptions that go into this are:\r\nThe relationship is linear.\r\nThe observations are independent.\r\nA common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption.\r\nUnadjusted correlations\r\nFor example, consider the three sports individually, yielding correlations between height and weight of 0.79, 0.46, and 0.73. One might expect an overall correlation between height and weight to be between 0.46 and 0.79; however, when estimated in total ignoring sport, this yields an estimate of 0.81.\r\n\r\n\r\ndat %>% \r\n  bind_rows(dat %>% mutate(sport = \"Total\")) %>% \r\n  group_by(sport) %>% \r\n  nest() %>% \r\n  mutate(\r\n    base_n = map_int(data, nrow),\r\n    corr = map(data, ~ cor.test(x = .x$height, y = .x$weight) %>% broom::tidy())\r\n    ) %>% \r\n  ungroup() %>% \r\n  unnest(c(data, corr)) %>% \r\n  mutate(\r\n    corr_label =  glue::glue(\"{sport}\\nn = {base_n}\\n r = {scales::number(estimate, 0.01)}\"),\r\n    sport = fct_relevel(sport, \"Shooting\", \"Gymnasitics\", \"Swimming\", \"Total\")) %>% \r\n  ggplot(aes(x = height, y = weight)) +\r\n  geom_point(aes(color = corr_label), show.legend = FALSE) +\r\n  facet_wrap(. ~ corr_label, ncol = 4) +\r\n  scale_color_manual(values = c(\"darkorange\",\"purple\",\"cyan4\", \"gray\")) + \r\n  theme_bw()\r\n\r\n\r\n\r\n\r\nAdjusted correlations\r\nTo estimate a correlation that adjusts for sport, implement a linear mixed model with a fixed effect for height and a random effect for sport. The correlation estimate adjusting for sport is the sign of the height coefficient multiplied by the marginal r-squared of the model, which is the variance of the fixed effects.\r\n\r\n\r\nmixed_model <- lme4::lmer(weight ~ height + (1 | sport), dat)\r\n\r\nheight_sign <- mixed_model %>% \r\n  broom.mixed::tidy() %>% \r\n  filter(term == \"height\") %>% \r\n  pull(estimate) %>% \r\n  sign()\r\n\r\n# marginal rsq is the variance of fixed effects ----\r\nadj_corr <- height_sign * sqrt(performance::r2(mixed_model)[[\"R2_marginal\"]])\r\n\r\nadj_corr\r\n\r\n\r\nMarginal R2 \r\n  0.7553849 \r\n\r\nThis yields a more sensible result for the overall correlation between height and weight.\r\n\r\n\r\n\r\n",
+    "preview": "posts/2021-09-09-adjusted-correlations/adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png",
+    "last_modified": "2021-09-10T19:28:12-04:00",
+    "input_file": "adjusted-correlations.utf8.md",
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
     "path": "posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r/",
     "title": "A tidyverse pivot approach to data preparation in R",
     "description": "Going from wide to long with #TidyTuesday beach volleyball",

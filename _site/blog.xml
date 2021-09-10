@@ -7,310 +7,81 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 27 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Adjusted correlations</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations</link>
+      <description>
+
+
+&lt;pre class="r"&gt;&lt;code&gt;library(tidyverse)   # general use ----
+library(broom)       # tidying of stats results ----
+library(performance) # to obtain marginal r-squared ----
+library(lme4)        # linear mixed models ----   &lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="data"&gt;Data&lt;/h1&gt;
+&lt;pre class="r"&gt;&lt;code&gt;olympics &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat &amp;lt;- olympics %&amp;gt;% 
+  filter(year == 2016) %&amp;gt;% 
+  filter(sport %in% c(&amp;quot;Swimming&amp;quot;,  &amp;quot;Gymnastics&amp;quot;, &amp;quot;Shooting&amp;quot;)) %&amp;gt;% 
+  filter(sex == &amp;quot;F&amp;quot;) %&amp;gt;% 
+  dplyr::select(id, sport, height, weight) %&amp;gt;% 
+  drop_na()&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="correlations"&gt;Correlations&lt;/h1&gt;
+&lt;p&gt;Correlations are a common technique used to assess the strength of the linear association between two numeric variables. The main assumptions that go into this are:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;The relationship is linear.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The observations are independent.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;A common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption.&lt;/p&gt;
+&lt;h1 id="unadjusted-correlations"&gt;Unadjusted correlations&lt;/h1&gt;
+&lt;p&gt;For example, consider the three sports individually, yielding correlations between height and weight of 0.79, 0.46, and 0.73. One might expect an overall correlation between height and weight to be between 0.46 and 0.79; however, when estimated in total ignoring sport, this yields an estimate of 0.81.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat %&amp;gt;% 
+  bind_rows(dat %&amp;gt;% mutate(sport = &amp;quot;Total&amp;quot;)) %&amp;gt;% 
+  group_by(sport) %&amp;gt;% 
+  nest() %&amp;gt;% 
+  mutate(
+    base_n = map_int(data, nrow),
+    corr = map(data, ~ cor.test(x = .x$height, y = .x$weight) %&amp;gt;% broom::tidy())
+    ) %&amp;gt;% 
+  ungroup() %&amp;gt;% 
+  unnest(c(data, corr)) %&amp;gt;% 
+  mutate(
+    corr_label =  glue::glue(&amp;quot;{sport}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}&amp;quot;),
+    sport = fct_relevel(sport, &amp;quot;Shooting&amp;quot;, &amp;quot;Gymnasitics&amp;quot;, &amp;quot;Swimming&amp;quot;, &amp;quot;Total&amp;quot;)) %&amp;gt;% 
+  ggplot(aes(x = height, y = weight)) +
+  geom_point(aes(color = corr_label), show.legend = FALSE) +
+  facet_wrap(. ~ corr_label, ncol = 4) +
+  scale_color_manual(values = c(&amp;quot;darkorange&amp;quot;,&amp;quot;purple&amp;quot;,&amp;quot;cyan4&amp;quot;, &amp;quot;gray&amp;quot;)) + 
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="filef5087c7ea6_files/figure-html/unnamed-chunk-4-1.png" width="672" /&gt; # Adjusted correlations&lt;/p&gt;
+&lt;p&gt;To estimate a correlation that adjusts for sport, implement a linear mixed model with a fixed effect for height and a random effect for sport. The correlation estimate adjusting for sport is the sign of the height coefficient multiplied by the marginal r-squared of the model, which is the variance of the fixed effects.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;mixed_model &amp;lt;- lme4::lmer(weight ~ height + (1 | sport), dat)
+
+height_sign &amp;lt;- mixed_model %&amp;gt;% 
+  broom.mixed::tidy() %&amp;gt;% 
+  filter(term == &amp;quot;height&amp;quot;) %&amp;gt;% 
+  pull(estimate) %&amp;gt;% 
+  sign()
+
+# marginal rsq is the variance of fixed effects ----
+adj_corr &amp;lt;- height_sign * sqrt(performance::r2(mixed_model)[[&amp;quot;R2_marginal&amp;quot;]])
+
+adj_corr&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Marginal R2 
+  0.7553849 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This yields a more sensible result for the overall correlation between height and weight.&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>3ab13d49cea0341fdf813f37ee89917d</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations</guid>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations/adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>A tidyverse pivot approach to data preparation in R</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r</link>
-      <description>
-
-
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-rgatherspread_modified.jpg" alt="Cute monsters moving colored shapes arranged in two long columns and then 4 short columns." width="986" /&gt;
-&lt;p class="caption"&gt;
-(#fig:unnamed-chunk-1)Artwork by &lt;a href="https://twitter.com/allison_horst?lang=en"&gt;&lt;code&gt;@allison_horst&lt;/code&gt;&lt;/a&gt;, modified to substitute pivot_wider() and pivot_longer() for spread and gather.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
-&lt;p&gt;I demonstrate a &lt;code&gt;pivot_longer()&lt;/code&gt; plus &lt;code&gt;pivot_wider()&lt;/code&gt; approach to data preparation as an alternative to explicitly coding computations. This approach might be beneficial for you if you have:&lt;/p&gt;
-&lt;p&gt;✅ wide data,&lt;/p&gt;
-&lt;p&gt;✅ with a consistent naming structure,&lt;/p&gt;
-&lt;p&gt;✅ and many variables to aggregate.&lt;/p&gt;
-&lt;h1 id="background"&gt;Background&lt;/h1&gt;
-&lt;p&gt;I love reading and watching Julia Silge’s #TidyTuesday tidymodels tutorials! Recently I was following her post about &lt;a href="https://juliasilge.com/blog/xgboost-tune-volleyball/" target="_blank"&gt;xgboost classification models with the beach volleyball data&lt;/a&gt;. The first 15 minutes of the 50 minute video are about getting familiar with the data and preparing it for modeling, and I realized I would have taken a different approach to the data preparation involving &lt;code&gt;pivot_longer()&lt;/code&gt; and &lt;code&gt;pivot_wider()&lt;/code&gt;. Also, Spencer Zeigler recently tweeted asking about this approach.&lt;/p&gt;
-&lt;blockquote class="twitter-tweet"&gt;
-&lt;p lang="en" dir="ltr"&gt;
-do you ever have to pivot_longer() first to get pivot_wider() to do what you want? or is my data just formatted badly? or am I bad at pivoting data? or both? &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/tidyr?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#tidyr&lt;/a&gt;
-&lt;/p&gt;
-— Spencer Zeigler (&lt;span class="citation"&gt;@spenceometry&lt;/span&gt;) &lt;a href="https://twitter.com/spenceometry/status/1430015436196704256?ref_src=twsrc%5Etfw"&gt;August 24, 2021&lt;/a&gt;
-&lt;/blockquote&gt;
-&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;p&gt;Yes Spencer, I do this all the time!&lt;/p&gt;
-&lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
-&lt;p&gt;This material was developed using:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr class="header"&gt;
-&lt;th&gt;Software / package&lt;/th&gt;
-&lt;th&gt;Version&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr class="odd"&gt;
-&lt;td&gt;R&lt;/td&gt;
-&lt;td&gt;4.0.5&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class="even"&gt;
-&lt;td&gt;RStudio&lt;/td&gt;
-&lt;td&gt;1.4.1103&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr class="odd"&gt;
-&lt;td&gt;&lt;code&gt;tidyverse&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;1.3.1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;pre class="r"&gt;&lt;code&gt;library(tidyverse)  # general use ----&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="import-the-data"&gt;Import the data&lt;/h1&gt;
-&lt;p&gt;&lt;code&gt;#TidyTuesday&lt;/code&gt; provides more information about the &lt;a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-05-19/readme.md" target="_blank"&gt;beach volleyball data&lt;/a&gt;.&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;vb_matches  &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-19/vb_matches.csv&amp;#39;, guess_max = 76000)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="r"&gt;&lt;code&gt;vb_matches &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 76,756 x 65
-   circuit tournament     country     year date       gender match_num
-   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;date&amp;gt;     &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
- 1 AVP     Huntington Be~ United St~  2002 2002-05-24 M              1
- 2 AVP     Huntington Be~ United St~  2002 2002-05-24 M              2
- 3 AVP     Huntington Be~ United St~  2002 2002-05-24 M              3
- 4 AVP     Huntington Be~ United St~  2002 2002-05-24 M              4
- 5 AVP     Huntington Be~ United St~  2002 2002-05-24 M              5
- 6 AVP     Huntington Be~ United St~  2002 2002-05-24 M              6
- 7 AVP     Huntington Be~ United St~  2002 2002-05-24 M              7
- 8 AVP     Huntington Be~ United St~  2002 2002-05-24 M              8
- 9 AVP     Huntington Be~ United St~  2002 2002-05-24 M              9
-10 AVP     Huntington Be~ United St~  2002 2002-05-24 M             10
-# ... with 76,746 more rows, and 58 more variables: w_player1 &amp;lt;chr&amp;gt;,
-#   w_p1_birthdate &amp;lt;date&amp;gt;, w_p1_age &amp;lt;dbl&amp;gt;, w_p1_hgt &amp;lt;dbl&amp;gt;,
-#   w_p1_country &amp;lt;chr&amp;gt;, w_player2 &amp;lt;chr&amp;gt;, w_p2_birthdate &amp;lt;date&amp;gt;,
-#   w_p2_age &amp;lt;dbl&amp;gt;, w_p2_hgt &amp;lt;dbl&amp;gt;, w_p2_country &amp;lt;chr&amp;gt;, w_rank &amp;lt;chr&amp;gt;,
-#   l_player1 &amp;lt;chr&amp;gt;, l_p1_birthdate &amp;lt;date&amp;gt;, l_p1_age &amp;lt;dbl&amp;gt;,
-#   l_p1_hgt &amp;lt;dbl&amp;gt;, l_p1_country &amp;lt;chr&amp;gt;, l_player2 &amp;lt;chr&amp;gt;,
-#   l_p2_birthdate &amp;lt;date&amp;gt;, l_p2_age &amp;lt;dbl&amp;gt;, l_p2_hgt &amp;lt;dbl&amp;gt;,
-#   l_p2_country &amp;lt;chr&amp;gt;, l_rank &amp;lt;chr&amp;gt;, score &amp;lt;chr&amp;gt;, duration &amp;lt;time&amp;gt;,
-#   bracket &amp;lt;chr&amp;gt;, round &amp;lt;chr&amp;gt;, w_p1_tot_attacks &amp;lt;dbl&amp;gt;,
-#   w_p1_tot_kills &amp;lt;dbl&amp;gt;, w_p1_tot_errors &amp;lt;dbl&amp;gt;,
-#   w_p1_tot_hitpct &amp;lt;dbl&amp;gt;, w_p1_tot_aces &amp;lt;dbl&amp;gt;,
-#   w_p1_tot_serve_errors &amp;lt;dbl&amp;gt;, w_p1_tot_blocks &amp;lt;dbl&amp;gt;,
-#   w_p1_tot_digs &amp;lt;dbl&amp;gt;, w_p2_tot_attacks &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_kills &amp;lt;dbl&amp;gt;, w_p2_tot_errors &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_hitpct &amp;lt;dbl&amp;gt;, w_p2_tot_aces &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_serve_errors &amp;lt;dbl&amp;gt;, w_p2_tot_blocks &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_digs &amp;lt;dbl&amp;gt;, l_p1_tot_attacks &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_kills &amp;lt;dbl&amp;gt;, l_p1_tot_errors &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_hitpct &amp;lt;dbl&amp;gt;, l_p1_tot_aces &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_serve_errors &amp;lt;dbl&amp;gt;, l_p1_tot_blocks &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_digs &amp;lt;dbl&amp;gt;, l_p2_tot_attacks &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_kills &amp;lt;dbl&amp;gt;, l_p2_tot_errors &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_hitpct &amp;lt;dbl&amp;gt;, l_p2_tot_aces &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_serve_errors &amp;lt;dbl&amp;gt;, l_p2_tot_blocks &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_digs &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="original-data-preparation"&gt;Original data preparation&lt;/h1&gt;
-&lt;p&gt;This is copied straight from Julia’s &lt;a href="https://juliasilge.com/blog/xgboost-tune-volleyball/" target="_blank"&gt;blog post&lt;/a&gt;. The original data preparation involves writing formulas with &lt;code&gt;transmute()&lt;/code&gt; followed by stacking data for winners and losers with &lt;code&gt;bind_rows()&lt;/code&gt;.&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;vb_parsed &amp;lt;- vb_matches %&amp;gt;%
-  transmute(
-    circuit,
-    gender,
-    year,
-    w_attacks = w_p1_tot_attacks + w_p2_tot_attacks,
-    w_kills = w_p1_tot_kills + w_p2_tot_kills,
-    w_errors = w_p1_tot_errors + w_p2_tot_errors,
-    w_aces = w_p1_tot_aces + w_p2_tot_aces,
-    w_serve_errors = w_p1_tot_serve_errors + w_p2_tot_serve_errors,
-    w_blocks = w_p1_tot_blocks + w_p2_tot_blocks,
-    w_digs = w_p1_tot_digs + w_p2_tot_digs,
-    l_attacks = l_p1_tot_attacks + l_p2_tot_attacks,
-    l_kills = l_p1_tot_kills + l_p2_tot_kills,
-    l_errors = l_p1_tot_errors + l_p2_tot_errors,
-    l_aces = l_p1_tot_aces + l_p2_tot_aces,
-    l_serve_errors = l_p1_tot_serve_errors + l_p2_tot_serve_errors,
-    l_blocks = l_p1_tot_blocks + l_p2_tot_blocks,
-    l_digs = l_p1_tot_digs + l_p2_tot_digs
-  ) %&amp;gt;%
-  na.omit()
-
-winners &amp;lt;- vb_parsed %&amp;gt;%
-  select(circuit, gender, year,
-         w_attacks:w_digs) %&amp;gt;%
-  rename_with(~ str_remove_all(., &amp;quot;w_&amp;quot;), w_attacks:w_digs) %&amp;gt;%
-  mutate(win = &amp;quot;win&amp;quot;)
-
-losers &amp;lt;- vb_parsed %&amp;gt;%
-  select(circuit, gender, year,
-         l_attacks:l_digs) %&amp;gt;%
-  rename_with(~ str_remove_all(., &amp;quot;l_&amp;quot;), l_attacks:l_digs) %&amp;gt;%
-  mutate(win = &amp;quot;lose&amp;quot;)
-
-vb_df &amp;lt;- bind_rows(winners, losers) %&amp;gt;%
-  mutate_if(is.character, factor)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="r"&gt;&lt;code&gt;vb_df&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 28,664 x 11
-   circuit gender  year attacks kills errors  aces serve_errors blocks
-   &amp;lt;fct&amp;gt;   &amp;lt;fct&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;        &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
- 1 AVP     M       2004      45    24      7     0            2      5
- 2 AVP     M       2004      71    31     16     3            8      7
- 3 AVP     M       2004      43    26      5     2            4      7
- 4 AVP     M       2004      42    32      5     2            3      7
- 5 AVP     M       2004      44    31      1     0            5      6
- 6 AVP     M       2004      55    31      6     0            4      8
- 7 AVP     M       2004      39    26      8     5            3      4
- 8 AVP     M       2004      41    21      8     1            1      6
- 9 AVP     M       2004      60    33     12     0            1      9
-10 AVP     M       2004      32    11      5     1            5      8
-# ... with 28,654 more rows, and 2 more variables: digs &amp;lt;dbl&amp;gt;,
-#   win &amp;lt;fct&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="alternative-data-preparation"&gt;Alternative data preparation&lt;/h1&gt;
-&lt;p&gt;This approach leverages &lt;code&gt;pivot_wider()&lt;/code&gt; and &lt;code&gt;pivot_longer()&lt;/code&gt; to avoid writing out explicit computations. This can work well if you need to aggregate many variables with a sum or a mean. This approach does require a unique identifier for each record.&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;vb_df &amp;lt;- vb_matches  %&amp;gt;%
-  mutate(id = row_number()) %&amp;gt;%
-  dplyr::select(
-    id, circuit, gender, year,
-    matches(&amp;quot;attacks|kills|errors|aces|blocks|digs&amp;quot;)
-    ) %&amp;gt;%
-  drop_na() %&amp;gt;%
-  pivot_longer(
-    cols = -c(id, circuit, gender, year),
-    names_to = c(&amp;quot;status&amp;quot;, &amp;quot;player&amp;quot;, &amp;quot;method&amp;quot;, &amp;quot;metric&amp;quot;),
-    names_pattern = &amp;quot;([wl])_(p[12])_(tot)_(.*)&amp;quot;,
-    values_to = &amp;quot;value&amp;quot;
-  ) %&amp;gt;% 
-  group_by(id, circuit, gender, year, status, metric) %&amp;gt;%
-  summarize(total = sum(value)) %&amp;gt;%
-  ungroup() %&amp;gt;%
-  pivot_wider(
-    names_from = &amp;quot;metric&amp;quot;,
-    values_from = total
-    )&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And here is what the final data looks like!&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;vb_df&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 28,664 x 12
-      id circuit gender  year status  aces attacks blocks  digs errors
-   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
- 1  1846 AVP     M       2004 l          1      57      2    17     17
- 2  1846 AVP     M       2004 w          0      45      5    11      7
- 3  1847 AVP     M       2004 l          0      61      5    23     13
- 4  1847 AVP     M       2004 w          3      71      7    21     16
- 5  1848 AVP     M       2004 l          1      36      2    11      7
- 6  1848 AVP     M       2004 w          2      43      7    10      5
- 7  1849 AVP     M       2004 l          0      41      4    12      8
- 8  1849 AVP     M       2004 w          2      42      7     7      5
- 9  1850 AVP     M       2004 l          1      45      1     7      6
-10  1850 AVP     M       2004 w          0      44      6    15      1
-# ... with 28,654 more rows, and 2 more variables: kills &amp;lt;dbl&amp;gt;,
-#   serve_errors &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In case that was hard to follow in one long code chunk, below I show what the data looks like at each of four steps annotated with comments.&lt;/p&gt;
-&lt;h2 id="step-1-initial-manipulation-of-wide-data"&gt;Step 1: initial manipulation of wide data&lt;/h2&gt;
-&lt;pre class="r"&gt;&lt;code&gt;# step 1: initial manipulation of wide data ----
-step1 &amp;lt;- vb_matches  %&amp;gt;%
-  # create unique identifier ----
-  mutate(id = row_number()) %&amp;gt;%
-  # retain relevant variables ----
-  dplyr::select(
-    id, circuit, gender, year,
-    matches(&amp;quot;attacks|kills|errors|aces|blocks|digs&amp;quot;)
-    ) %&amp;gt;%
-  # remove records where any observations are missing ----
-  drop_na() &lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="r"&gt;&lt;code&gt;step1&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 14,332 x 32
-      id circuit gender  year w_p1_tot_attacks w_p1_tot_kills
-   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt;            &amp;lt;dbl&amp;gt;          &amp;lt;dbl&amp;gt;
- 1  1846 AVP     M       2004               11              6
- 2  1847 AVP     M       2004               32             13
- 3  1848 AVP     M       2004               19             11
- 4  1849 AVP     M       2004               19             13
- 5  1850 AVP     M       2004               24             21
- 6  1851 AVP     M       2004               20              7
- 7  1852 AVP     M       2004               17             11
- 8  1853 AVP     M       2004                7              2
- 9  1854 AVP     M       2004               16             10
-10  1855 AVP     M       2004               13              5
-# ... with 14,322 more rows, and 26 more variables:
-#   w_p1_tot_errors &amp;lt;dbl&amp;gt;, w_p1_tot_aces &amp;lt;dbl&amp;gt;,
-#   w_p1_tot_serve_errors &amp;lt;dbl&amp;gt;, w_p1_tot_blocks &amp;lt;dbl&amp;gt;,
-#   w_p1_tot_digs &amp;lt;dbl&amp;gt;, w_p2_tot_attacks &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_kills &amp;lt;dbl&amp;gt;, w_p2_tot_errors &amp;lt;dbl&amp;gt;, w_p2_tot_aces &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_serve_errors &amp;lt;dbl&amp;gt;, w_p2_tot_blocks &amp;lt;dbl&amp;gt;,
-#   w_p2_tot_digs &amp;lt;dbl&amp;gt;, l_p1_tot_attacks &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_kills &amp;lt;dbl&amp;gt;, l_p1_tot_errors &amp;lt;dbl&amp;gt;, l_p1_tot_aces &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_serve_errors &amp;lt;dbl&amp;gt;, l_p1_tot_blocks &amp;lt;dbl&amp;gt;,
-#   l_p1_tot_digs &amp;lt;dbl&amp;gt;, l_p2_tot_attacks &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_kills &amp;lt;dbl&amp;gt;, l_p2_tot_errors &amp;lt;dbl&amp;gt;, l_p2_tot_aces &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_serve_errors &amp;lt;dbl&amp;gt;, l_p2_tot_blocks &amp;lt;dbl&amp;gt;,
-#   l_p2_tot_digs &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="step-2-reshape-data-to-long"&gt;Step 2: reshape data to long&lt;/h2&gt;
-&lt;pre class="r"&gt;&lt;code&gt;# step 2: reshape data to long ----
-step2 &amp;lt;- step1 %&amp;gt;% 
-  pivot_longer(
-    # specify variables to hold fixed and not pivot ----
-    cols = -c(id, circuit, gender, year),
-    # create four new variables extracted from the variable name ----
-    names_to = c(&amp;quot;status&amp;quot;, &amp;quot;player&amp;quot;, &amp;quot;method&amp;quot;, &amp;quot;metric&amp;quot;),
-    # regex pattern to extract values from variable name ---
-    names_pattern = &amp;quot;([wl])_(p[12])_(tot)_(.*)&amp;quot;,
-    # the value of the metric ---
-    values_to = &amp;quot;value&amp;quot;
-  ) &lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="r"&gt;&lt;code&gt;step2&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 401,296 x 9
-      id circuit gender  year status player method metric       value
-   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
- 1  1846 AVP     M       2004 w      p1     tot    attacks         11
- 2  1846 AVP     M       2004 w      p1     tot    kills            6
- 3  1846 AVP     M       2004 w      p1     tot    errors           1
- 4  1846 AVP     M       2004 w      p1     tot    aces             0
- 5  1846 AVP     M       2004 w      p1     tot    serve_errors     1
- 6  1846 AVP     M       2004 w      p1     tot    blocks           0
- 7  1846 AVP     M       2004 w      p1     tot    digs             7
- 8  1846 AVP     M       2004 w      p2     tot    attacks         34
- 9  1846 AVP     M       2004 w      p2     tot    kills           18
-10  1846 AVP     M       2004 w      p2     tot    errors           6
-# ... with 401,286 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="step-3-sum-values-of-player-1-and-player-2-for-all-metrics"&gt;Step 3: sum values of player 1 and player 2 for all metrics&lt;/h2&gt;
-&lt;pre class="r"&gt;&lt;code&gt;# step 3: sum values of player 1 and player 2 for all metrics ----
-step3 &amp;lt;- step2 %&amp;gt;%
-  group_by(id, circuit, gender, year, status, metric) %&amp;gt;%
-  summarize(total = sum(value)) %&amp;gt;%
-  ungroup()&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="r"&gt;&lt;code&gt;step3&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 200,648 x 7
-      id circuit gender  year status metric       total
-   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
- 1  1846 AVP     M       2004 l      aces             1
- 2  1846 AVP     M       2004 l      attacks         57
- 3  1846 AVP     M       2004 l      blocks           2
- 4  1846 AVP     M       2004 l      digs            17
- 5  1846 AVP     M       2004 l      errors          17
- 6  1846 AVP     M       2004 l      kills           31
- 7  1846 AVP     M       2004 l      serve_errors     5
- 8  1846 AVP     M       2004 w      aces             0
- 9  1846 AVP     M       2004 w      attacks         45
-10  1846 AVP     M       2004 w      blocks           5
-# ... with 200,638 more rows&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id="step-4-reshape-data-to-wide-for-modeling"&gt;Step 4: reshape data to wide for modeling&lt;/h2&gt;
-&lt;pre class="r"&gt;&lt;code&gt;# step 4: reshape data to wide for modeling ----
-step4 &amp;lt;- step3 %&amp;gt;% 
-  pivot_wider(
-    names_from = &amp;quot;metric&amp;quot;,
-    values_from = total
-    )&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;# A tibble: 28,664 x 12
-      id circuit gender  year status  aces attacks blocks  digs errors
-   &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
- 1  1846 AVP     M       2004 l          1      57      2    17     17
- 2  1846 AVP     M       2004 w          0      45      5    11      7
- 3  1847 AVP     M       2004 l          0      61      5    23     13
- 4  1847 AVP     M       2004 w          3      71      7    21     16
- 5  1848 AVP     M       2004 l          1      36      2    11      7
- 6  1848 AVP     M       2004 w          2      43      7    10      5
- 7  1849 AVP     M       2004 l          0      41      4    12      8
- 8  1849 AVP     M       2004 w          2      42      7     7      5
- 9  1850 AVP     M       2004 l          1      45      1     7      6
-10  1850 AVP     M       2004 w          0      44      6    15      1
-# ... with 28,654 more rows, and 2 more variables: kills &amp;lt;dbl&amp;gt;,
-#   serve_errors &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="summary"&gt;Summary&lt;/h1&gt;
-&lt;p&gt;If you are fortunate enough to have wide data with a consistent naming structure, using a &lt;code&gt;pivot_longer()&lt;/code&gt; / &lt;code&gt;pivot_wider()&lt;/code&gt; data preparation approach can save you from writing out tedious formulas. Let me know what you think!&lt;/p&gt;
-&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>ce35898c6dca21f0b75aa932fd20eb07</distill:md5>
+      <description>Going from wide to long with #TidyTuesday beach volleyball</description>
       <guid>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r</guid>
       <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r/gatherspread_modified.jpg" medium="image" type="image/jpeg"/>

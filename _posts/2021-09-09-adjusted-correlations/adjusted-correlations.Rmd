@@ -17,23 +17,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-library(tidyverse)
-library(palmerpenguins)
+library(tidyverse)   # general use ----
+library(broom)       # tidying of stats results ----
+library(performance) # to obtain marginal r-squared ----
+library(lme4)        # linear mixed models ----   
 ```
 
-```{r}
-penguins %>% 
-  group_by(species) %>% 
-  nest() %>% 
-  mutate(corr = map(data, ralph::compute_corr, var1 = flipper_length_mm, var2 = bill_length_mm)) %>% 
-  ungroup() %>% 
-  unnest(corr)
-```
-
-```{r}
-ralph::compute_corr(penguins, var1 = flipper_length_mm, var2 = bill_length_mm)
-```
-
+# Data
 
 ```{r}
 olympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv')
@@ -47,6 +37,28 @@ dat <- olympics %>%
   dplyr::select(id, sport, height, weight) %>% 
   drop_na()
 ```
+
+# Correlations
+
+Correlations are a common technique used to assess the strength of the linear
+association between two numeric variables. The main assumptions that go into this are:
+
+1. The relationship is linear.
+
+2. The observations are independent.
+
+A common mistake that I see is when the request is to estimate the overall correlation, some 
+may not to take into account important sources of variation in the data, which can negate
+the independent observations assumption.
+
+
+# Unadjusted correlations
+
+
+For example, consider the three sports individually, yielding correlations between 
+height and weight of 0.79, 0.46, and 0.73. One might expect an overall correlation 
+between height and weight to be between 0.46 and 0.79; however, when estimated
+in total ignoring sport, this yields an estimate of 0.81.
 
 ```{r}
 dat %>% 
@@ -69,10 +81,27 @@ dat %>%
   theme_bw()
   
 ```
+# Adjusted correlations
+
+To estimate a correlation that adjusts for sport, implement a linear mixed model
+with a fixed effect for height and a random effect for sport. The correlation
+estimate adjusting for sport is the sign of the height coefficient multiplied by the
+marginal r-squared of the model, which is the variance of the fixed effects.
 
 ```{r}
-mixed_mod_1 <- lme4::lmer(weight ~ height + (1 | sport), dat)
-sqrt(performance::r2(mixed_mod_1)[["R2_marginal"]])
+mixed_model <- lme4::lmer(weight ~ height + (1 | sport), dat)
+
+height_sign <- mixed_model %>% 
+  broom.mixed::tidy() %>% 
+  filter(term == "height") %>% 
+  pull(estimate) %>% 
+  sign()
+
+# marginal rsq is the variance of fixed effects ----
+adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
+
+adj_corr
 ```
 
+This yields a more sensible result for the overall correlation between height and weight.
 
