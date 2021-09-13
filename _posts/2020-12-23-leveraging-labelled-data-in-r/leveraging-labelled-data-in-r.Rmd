@@ -23,7 +23,7 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r echo=FALSE, fig.cap="Artwork adapted from  [`@allison_horst`](https://twitter.com/allison_horst?lang=en).", fig.alt="Cute monster pointing to string banner with hex symbols for the labelled, haven, and sjlabelled pacakges."}
+```{r, echo=FALSE, out.width = "100%", fig.cap="Artwork adapted from  [`@allison_horst`](https://twitter.com/allison_horst?lang=en).", fig.alt="Cute monster pointing to string banner with hex symbols for the labelled, haven, and sjlabelled pacakges."}
 knitr::include_graphics("labelled_preview.png")
 ```
 
@@ -112,7 +112,7 @@ dictionary <- labelled::generate_dictionary(dat_raw)
 
 The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set.  I can interactively explore the `dictionary` in R to quickly find variables or documentation of interest.  For example, I can find all variables related to "weapons" with a search.
 
-```{r echo=FALSE, fig.cap="Gif demonstrating search feature in data viewer utilized to find variables with the word `weapon` in the data dictionary.", fig.alt="5 variables containing the word weapon in the label appear, 2 of which are haven labelled class and 3 of which are numeric."}
+```{r, echo=FALSE, out.width = "100%", fig.cap="Gif demonstrating search feature in data viewer utilized to find variables with the word `weapon` in the data dictionary.", fig.alt="5 variables containing the word weapon in the label appear, 2 of which are haven labelled class and 3 of which are numeric."}
 knitr::include_graphics("gif/demo_dictionary3.gif")
 ```
 
@@ -174,11 +174,9 @@ Sometimes the alignment throws me a bit when I am reading this as the value code
 
 When viewing the data frame in RStudio, the data frame displays the variable label under the variable name; however, only value codes (and not value labels) are displayed.
 
-```{r echo=FALSE, fig.cap="Screenshot showing how haven labelled data appear in the viewer pane, with variable labels under the variable name, and value codes (not value labels) displayed.", fig.alt="Screenshot provided for variables q8, q11, and q12."}
-knitr::include_graphics("img/demo_data.PNG")
+```{r, echo=FALSE, fig.cap="Screenshot showing how haven labelled data appear in the viewer pane, with variable labels under the variable name, and value codes (not value labels) displayed.", fig.alt="Screenshot provided for variables q8, q11, and q12."}
+knitr::include_graphics("img/demo_data2.PNG")
 ```
-
-![](img/demo_data.PNG){width=55%}
 
 # Common operations
 

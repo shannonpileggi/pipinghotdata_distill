@@ -79,7 +79,7 @@
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rlabelled_preview.PNG" alt="Cute monster pointing to string banner with hex symbols for the labelled, haven, and sjlabelled pacakges." width="336" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rlabelled_preview.PNG" alt="Cute monster pointing to string banner with hex symbols for the labelled, haven, and sjlabelled pacakges." width="100%" /&gt;
 &lt;p class="caption"&gt;
 (#fig:unnamed-chunk-1)Artwork adapted from &lt;a href="https://twitter.com/allison_horst?lang=en"&gt;&lt;code&gt;@allison_horst&lt;/code&gt;&lt;/a&gt;.
 &lt;/p&gt;
@@ -177,8 +177,7 @@ I work exclusively with SPSS (&lt;code&gt;.sav&lt;/code&gt;) data files, and so 
 library(here)       # file paths  ----
 library(haven)      # import .sav files ----  
 library(labelled)   # tools for labelled data ----
-library(sjlabelled) # more tools for labelled data ----
-library(gtsummary)  # for demonstration with labelled data ----&lt;/code&gt;&lt;/pre&gt;
+library(sjlabelled) # more tools for labelled data ----&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="importing-labelled-data"&gt;Importing labelled data&lt;/h1&gt;
 &lt;p&gt;I use the &lt;a href="https://haven.tidyverse.org/" target="_blank"&gt;&lt;code&gt;haven&lt;/code&gt;&lt;/a&gt; package to import SPSS (&lt;code&gt;.sav&lt;/code&gt;) data files.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;# import data ----
@@ -191,7 +190,7 @@ dat_raw &amp;lt;- haven::read_sav(here::here( &amp;quot;_posts&amp;quot;, &amp;q
 dictionary &amp;lt;- labelled::generate_dictionary(dat_raw)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set. I can interactively explore the &lt;code&gt;dictionary&lt;/code&gt; in R to quickly find variables or documentation of interest. For example, I can find all variables related to “weapons” with a search.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rgif/demo_dictionary3.gif" alt="5 variables containing the word weapon in the label appear, 2 of which are haven labelled class and 3 of which are numeric."  /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rgif/demo_dictionary3.gif" alt="5 variables containing the word weapon in the label appear, 2 of which are haven labelled class and 3 of which are numeric." width="100%" /&gt;
 &lt;p class="caption"&gt;
 (#fig:unnamed-chunk-5)Gif demonstrating search feature in data viewer utilized to find variables with the word &lt;code&gt;weapon&lt;/code&gt; in the data dictionary.
 &lt;/p&gt;
@@ -274,12 +273,11 @@ dictionary &amp;lt;- labelled::generate_dictionary(dat_raw)&lt;/code&gt;&lt;/pre
 &lt;p&gt;Sometimes the alignment throws me a bit when I am reading this as the value codes and labels are left aligned, which places the value codes associated with &lt;code&gt;q12&lt;/code&gt; closer to &lt;code&gt;q11&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;When viewing the data frame in RStudio, the data frame displays the variable label under the variable name; however, only value codes (and not value labels) are displayed.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rimg/demo_data.PNG" alt="Screenshot provided for variables q8, q11, and q12." width="187" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rimg/demo_data2.PNG" alt="Screenshot provided for variables q8, q11, and q12." width="862" /&gt;
 &lt;p class="caption"&gt;
 (#fig:unnamed-chunk-10)Screenshot showing how haven labelled data appear in the viewer pane, with variable labels under the variable name, and value codes (not value labels) displayed.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;img src="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-rimg/demo_data.PNG" style="width:55.0%" /&gt;&lt;/p&gt;
 &lt;h1 id="common-operations"&gt;Common operations&lt;/h1&gt;
 &lt;p&gt;I primarily use three packages for working with labelled data: &lt;a href="https://haven.tidyverse.org/" target="_blank"&gt;&lt;code&gt;haven&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://larmarange.github.io/labelled/" target="_blank"&gt;&lt;code&gt;labelled&lt;/code&gt;&lt;/a&gt;, and &lt;a href="https://strengejacke.github.io/sjlabelled/articles/labelleddata.html" target="_blank"&gt;&lt;code&gt;sjlabelled&lt;/code&gt;&lt;/a&gt;. These three packages do have some overlap in functionality, in addition to naming schemes that differ but achieve the same objective (e.g., &lt;code&gt;haven::as_factor&lt;/code&gt; vs &lt;code&gt;sjlabelled::as_label&lt;/code&gt;), or naming schemes that are the same but achieve different objectives (e.g., &lt;code&gt;haven::as_factor&lt;/code&gt; vs &lt;code&gt;sjlabelled::as_factor&lt;/code&gt;). 😬 To compound confusion, the concept of a &lt;em&gt;label&lt;/em&gt; can refer to either variable or value labels. Frequently, plural function names refer to value labels, as in &lt;code&gt;haven::zap_labels&lt;/code&gt; or &lt;code&gt;labelled::remove_val_labels&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Here are operations I commonly perform on labelled data:&lt;/p&gt;
@@ -341,7 +339,7 @@ dat_2017 %&amp;gt;%
   facet_wrap(. ~ variable) +
   geom_col() &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="figure"&gt;
-&lt;img src="file31ec4e35338f_files/figure-html/bar-plot-1-1.png" alt="Bar plot 1 displays variable names and value codes" width="672" /&gt;
+&lt;img src="file4ee03928451c_files/figure-html/bar-plot-1-1.png" alt="Bar plot 1 displays variable names and value codes" width="672" /&gt;
 &lt;p class="caption"&gt;
 (#fig:bar-plot-1)Bar plot 1 displays variable names and value codes
 &lt;/p&gt;
@@ -366,7 +364,7 @@ dat_2017 %&amp;gt;%
   facet_wrap(. ~ variable) +
   geom_col() &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="figure"&gt;
-&lt;img src="file31ec4e35338f_files/figure-html/bar-plot-2-1.png" alt="Bar plot 2 displays variable labels and value labels" width="672" /&gt;
+&lt;img src="file4ee03928451c_files/figure-html/bar-plot-2-1.png" alt="Bar plot 2 displays variable labels and value labels" width="672" /&gt;
 &lt;p class="caption"&gt;
 (#fig:bar-plot-2)Bar plot 2 displays variable labels and value labels
 &lt;/p&gt;
