@@ -23,6 +23,16 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r echo=FALSE, fig.cap="Artwork adapted from  [`@allison_horst`](https://twitter.com/allison_horst?lang=en).", fig.alt="Cute monster pointing to string banner with hex symbols for the labelled, haven, and sjlabelled pacakges."}
+knitr::include_graphics("labelled_preview.png")
+```
+
+
+# Last updated
+
+This post was last updated on `r Sys.Date()` to reflect package updates.
+
+
 # TL; DR
 
 The [`haven`](https://haven.tidyverse.org/){target="_blank"}, [`labelled`](https://larmarange.github.io/labelled/){target="_blank"}, and [`sjlabelled`](https://strengejacke.github.io/sjlabelled/articles/labelleddata.html){target="_blank"} packages can be used to effectively work
@@ -32,7 +42,7 @@ with SPSS, SAS, and Stata data sets in R through implementation of the `haven_la
 | Purpose                                          | Function                             | 
 |--------------------------------------------------|--------------------------------------|
 | 1. Import SPSS labelled data                     | `haven::read_sav()`                  | 
-| 2. Create data dictionary                        | `labelled::look_for(details = TRUE)` | 
+| 2. Create data dictionary                        | `labelled::generate_dictionary()`    | 
 | 3. Identify if variable is `haven_labelled`      | `haven::is.labelled()`               | 
 | 4. Convert `haven_labelled` variables to numeric | `base::as.numeric()`                 |
 | 5. Convert `haven_labelled` variables to factors | `haven::as_factor()`                 |
@@ -56,19 +66,14 @@ This material was developed using:
 
 | Software / package  | Version               |
 |---------------------|-----------------------|
-| R                   | 4.0.3                 | 
-| RStudio             | 1.3.1073              | 
-| `tidyverse`         | 1.3.0                 |
-| `here`              | 0.4.8                 |
+| R                   | 4.0.5                 | 
+| RStudio             | 1.4.1103              | 
+| `tidyverse`         | 1.3.1                 |
+| `here`              | 0.1                   |
 | `haven`             | 2.3.1                 |
-| `labelled`          | 2.5.0                 |
+| `labelled`          | 2.8.0                 |
 | `sjlabelled`        | 1.1.7                 |
 
-<aside>
-As of Dec 23, 2020, the most current version of the `labelled` package is 2.7.0. I am 
-using `labelled` 2.5.0 due to an issue I encountered with 2.7.0 and the 
-`look_for` function.  You [can install](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages){target="_blank"} older versions of a package. I'll update this post when the issue is resolved.
-</aside>
 
 ```{r}
 library(tidyverse)  # general use ----
@@ -96,18 +101,20 @@ Using `foreign` takes a bit longer than `haven`, can result in truncation of lon
 
 # Creating a data dictionary
 
-A data dictionary contains metadata about your data. The `labelled::look_for` function
+A data dictionary contains metadata about your data. The `labelled::generate_dictionary` function
 can be used to create a data dictionary, extracted straight from your data. The usefulness
 of the data dictionary depends on the quality of your metadata.  
 
 ```{r}
 # create data dictionary ----
-dictionary <- labelled::look_for(dat_raw, details = TRUE)
+dictionary <- labelled::generate_dictionary(dat_raw)
 ```
 
 The result is a data frame in my R environment with the number of observations equal to number of variables in the original data set.  I can interactively explore the `dictionary` in R to quickly find variables or documentation of interest.  For example, I can find all variables related to "weapons" with a search.
 
-![](gif/demo_dictionary2.gif)
+```{r echo=FALSE, fig.cap="Gif demonstrating search feature in data viewer utilized to find variables with the word `weapon` in the data dictionary.", fig.alt="5 variables containing the word weapon in the label appear, 2 of which are haven labelled class and 3 of which are numeric."}
+knitr::include_graphics("gif/demo_dictionary3.gif")
+```
 
 
 # Identifying labelled features
@@ -130,8 +137,7 @@ for three variables. The `value_labels` field combines the value codes and value
 ```{r}
 dictionary %>% 
   dplyr::filter(variable %in% c("q8", "q11", "q12")) %>% 
-  dplyr::select(variable, label, value_labels) %>% 
-  knitr::kable() 
+  dplyr::select(variable, label, value_labels) 
 ```
 
 
@@ -167,6 +173,10 @@ dat_raw %>%
 Sometimes the alignment throws me a bit when I am reading this as the value codes and labels are left aligned, which places the value codes associated with `q12` closer to `q11`.
 
 When viewing the data frame in RStudio, the data frame displays the variable label under the variable name; however, only value codes (and not value labels) are displayed.
+
+```{r echo=FALSE, fig.cap="Screenshot showing how haven labelled data appear in the viewer pane, with variable labels under the variable name, and value codes (not value labels) displayed.", fig.alt="Screenshot provided for variables q8, q11, and q12."}
+knitr::include_graphics("img/demo_data.PNG")
+```
 
 ![](img/demo_data.PNG){width=55%}
 
@@ -253,7 +263,7 @@ dat_2017 %>%
     values_to = "days"
   ) %>% 
   count(variable, days) %>% 
-  # unnecessary to include factor(days) here ----
+  # unnecessary to include factor(days) here as was already converted in change 1 ----
   ggplot(aes(x = n, y = days)) +
   facet_wrap(. ~ variable) +
   geom_col() 
@@ -275,10 +285,10 @@ For example, in using `ggplot` for Figure \@ref(fig:bar-plot-1) above, I include
 Treating the `days` variable as continuous resulted in an uninformative plot (not shown), which
 was corrected by converting the variable to `factor`.
 
-What about other packages I use? In [`skimr`](https://github.com/ropensci/skimr){target="_blank"} 2.1.2 `haven_labelled` inputs result in value codes  treated as character values, and in [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/){target="_blank"} 1.3.5 `haven_labelled` inputs are omitted from output as it is not an accepted class. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing  when using `haven_labelled` variables with other packages. These issues can be resolved by converting the `haven_labelled` variables to `numeric` or `factor`, depending on the context.
+What about other packages I use? In [`skimr`](https://github.com/ropensci/skimr){target="_blank"} 2.1.3 `haven_labelled` inputs result in value codes treated as numeric values. In [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/){target="_blank"} 1.4.0 `haven_labelled` variables are omitted from output as it is not an accepted input; however, a helpful message is printed in the console recommending to update your variable type. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing  when using `haven_labelled` variables with other packages. These issues can be resolved by converting the `haven_labelled` variables to `numeric` or `factor`, depending on the context.
 
 <aside>
-Note added Feb 20, 2021: Although `gtsummary` does not currently support value labels, it does support variable labels! See [this tweet](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} for a quick demo. 
+Note updated `r Sys.Date()`: Although `gtsummary` does not currently support value labels, it does support variable labels! See [this tweet](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} for a quick demo, and the [Polished summary tables in R with gtsummary](https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/){target="_blank"} blog post for more information. 
 </aside>
 
 
@@ -300,7 +310,7 @@ The `haven`, `labelled`, `sjlabelled` packages create new structures and work fl
 
 # Acknowledgments
 
-Thumbnail artwork was adapted from [`@allison_horst`](https://twitter.com/allison_horst?lang=en).
+Thanks to [Daniel Sjoberg](http://www.danieldsjoberg.com/){target="_blank"} for the gentle nudge to update this post. `r emo::ji("hug")`
 
 ```{r include=FALSE}
 knitr::knit_exit()
