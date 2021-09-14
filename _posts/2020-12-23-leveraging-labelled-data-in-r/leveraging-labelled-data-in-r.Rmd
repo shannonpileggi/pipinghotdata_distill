@@ -283,10 +283,14 @@ For example, in using `ggplot` for Figure \@ref(fig:bar-plot-1) above, I include
 Treating the `days` variable as continuous resulted in an uninformative plot (not shown), which
 was corrected by converting the variable to `factor`.
 
-What about other packages I use? In [`skimr`](https://github.com/ropensci/skimr){target="_blank"} 2.1.3 `haven_labelled` inputs result in value codes treated as numeric values. In [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/){target="_blank"} 1.4.0 `haven_labelled` variables are omitted from output as it is not an accepted input; however, a helpful message is printed in the console recommending to update your variable type. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing  when using `haven_labelled` variables with other packages. These issues can be resolved by converting the `haven_labelled` variables to `numeric` or `factor`, depending on the context.
+What about other packages I use? In [`skimr`](https://github.com/ropensci/skimr){target="_blank"} 2.1.3 `haven_labelled` inputs result in value codes treated as numeric values.
+In [`gtsummary`](http://www.danieldsjoberg.com/gtsummary/){target="_blank"} ≥1.4.0 the *value labels* of
+`haven_labelled` variables are ignored and the underlying values are shown; however, a helpful message is printed with instructions to convert or remove the value labels.
+In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing  when using `haven_labelled` variables with other packages.
+These issues can be resolved by converting the `haven_labelled` variables to `numeric` or `factor`, depending on the context.
 
 <aside>
-Note updated `r Sys.Date()`: Although `gtsummary` does not currently support value labels, it does support variable labels! See [this tweet](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} for a quick demo, and the [Polished summary tables in R with gtsummary](https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/){target="_blank"} blog post for more information. 
+Note: Although `gtsummary` does not currently support value labels, it does support variable labels! See [this tweet](https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20){target="_blank"} for a quick demo, and the [Polished summary tables in R with gtsummary](https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/){target="_blank"} blog post for more information. 
 </aside>
 
 
