@@ -85,7 +85,7 @@
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="last-updated"&gt;Last updated&lt;/h1&gt;
-&lt;p&gt;This post was last updated on 2021-09-13 to reflect package updates.&lt;/p&gt;
+&lt;p&gt;This post was last updated on 2021-09-14 to reflect package updates.&lt;/p&gt;
 &lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
 &lt;p&gt;The &lt;a href="https://haven.tidyverse.org/" target="_blank"&gt;&lt;code&gt;haven&lt;/code&gt;&lt;/a&gt;, &lt;a href="https://larmarange.github.io/labelled/" target="_blank"&gt;&lt;code&gt;labelled&lt;/code&gt;&lt;/a&gt;, and &lt;a href="https://strengejacke.github.io/sjlabelled/articles/labelleddata.html" target="_blank"&gt;&lt;code&gt;sjlabelled&lt;/code&gt;&lt;/a&gt; packages can be used to effectively work with SPSS, SAS, and Stata data sets in R through implementation of the &lt;code&gt;haven_labelled&lt;/code&gt; class, which stores variable and value labels. Here are my most used functions for getting started with labelled data:&lt;/p&gt;
 &lt;table&gt;
@@ -339,7 +339,7 @@ dat_2017 %&amp;gt;%
   facet_wrap(. ~ variable) +
   geom_col() &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="figure"&gt;
-&lt;img src="file4ee03928451c_files/figure-html/bar-plot-1-1.png" alt="Bar plot 1 displays variable names and value codes" width="672" /&gt;
+&lt;img src="file44ec5347f07_files/figure-html/bar-plot-1-1.png" alt="Bar plot 1 displays variable names and value codes" width="672" /&gt;
 &lt;p class="caption"&gt;
 (#fig:bar-plot-1)Bar plot 1 displays variable names and value codes
 &lt;/p&gt;
@@ -364,7 +364,7 @@ dat_2017 %&amp;gt;%
   facet_wrap(. ~ variable) +
   geom_col() &lt;/code&gt;&lt;/pre&gt;
 &lt;div class="figure"&gt;
-&lt;img src="file4ee03928451c_files/figure-html/bar-plot-2-1.png" alt="Bar plot 2 displays variable labels and value labels" width="672" /&gt;
+&lt;img src="file44ec5347f07_files/figure-html/bar-plot-2-1.png" alt="Bar plot 2 displays variable labels and value labels" width="672" /&gt;
 &lt;p class="caption"&gt;
 (#fig:bar-plot-2)Bar plot 2 displays variable labels and value labels
 &lt;/p&gt;
@@ -376,9 +376,9 @@ dat_2017 %&amp;gt;%
 &lt;p&gt;Don’t know how to automatically pick scale for object of type haven_labelled/vctrs_vctr/double. Defaulting to continuous.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Treating the &lt;code&gt;days&lt;/code&gt; variable as continuous resulted in an uninformative plot (not shown), which was corrected by converting the variable to &lt;code&gt;factor&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;What about other packages I use? In &lt;a href="https://github.com/ropensci/skimr" target="_blank"&gt;&lt;code&gt;skimr&lt;/code&gt;&lt;/a&gt; 2.1.3 &lt;code&gt;haven_labelled&lt;/code&gt; inputs result in value codes treated as numeric values. In &lt;a href="http://www.danieldsjoberg.com/gtsummary/" target="_blank"&gt;&lt;code&gt;gtsummary&lt;/code&gt;&lt;/a&gt; 1.4.0 &lt;code&gt;haven_labelled&lt;/code&gt; variables are omitted from output as it is not an accepted input; however, a helpful message is printed in the console recommending to update your variable type. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing when using &lt;code&gt;haven_labelled&lt;/code&gt; variables with other packages. These issues can be resolved by converting the &lt;code&gt;haven_labelled&lt;/code&gt; variables to &lt;code&gt;numeric&lt;/code&gt; or &lt;code&gt;factor&lt;/code&gt;, depending on the context.&lt;/p&gt;
+&lt;p&gt;What about other packages I use? In &lt;a href="https://github.com/ropensci/skimr" target="_blank"&gt;&lt;code&gt;skimr&lt;/code&gt;&lt;/a&gt; 2.1.3 &lt;code&gt;haven_labelled&lt;/code&gt; inputs result in value codes treated as numeric values. In &lt;a href="http://www.danieldsjoberg.com/gtsummary/" target="_blank"&gt;&lt;code&gt;gtsummary&lt;/code&gt;&lt;/a&gt; ≥1.4.0 the &lt;em&gt;value labels&lt;/em&gt; of &lt;code&gt;haven_labelled&lt;/code&gt; variables are ignored and the underlying values are shown; however, a helpful message is printed with instructions to convert or remove the value labels. In general, you will probably find a mix of messages, warnings, errors, omissions, or guessing when using &lt;code&gt;haven_labelled&lt;/code&gt; variables with other packages. These issues can be resolved by converting the &lt;code&gt;haven_labelled&lt;/code&gt; variables to &lt;code&gt;numeric&lt;/code&gt; or &lt;code&gt;factor&lt;/code&gt;, depending on the context.&lt;/p&gt;
 &lt;aside&gt;
-Note updated 2021-09-13: Although &lt;code&gt;gtsummary&lt;/code&gt; does not currently support value labels, it does support variable labels! See &lt;a href="https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20" target="_blank"&gt;this tweet&lt;/a&gt; for a quick demo, and the &lt;a href="https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/" target="_blank"&gt;Polished summary tables in R with gtsummary&lt;/a&gt; blog post for more information.
+Note: Although &lt;code&gt;gtsummary&lt;/code&gt; does not currently support value labels, it does support variable labels! See &lt;a href="https://twitter.com/WeAreRLadies/status/1363186751133667330?s=20" target="_blank"&gt;this tweet&lt;/a&gt; for a quick demo, and the &lt;a href="https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/" target="_blank"&gt;Polished summary tables in R with gtsummary&lt;/a&gt; blog post for more information.
 &lt;/aside&gt;
 &lt;h1 id="workflow-for-labelled-data-manipulation"&gt;Workflow for labelled data manipulation&lt;/h1&gt;
 &lt;p&gt;When converting &lt;code&gt;haven_labelled&lt;/code&gt; objects to &lt;code&gt;factor&lt;/code&gt; or &lt;code&gt;numeric&lt;/code&gt;, be intentional about where the conversion happens in your workflow. The &lt;a href="https://cran.r-project.org/web/packages/labelled/vignettes/intro_labelled.html" target="_blank"&gt;Introduction to labelled&lt;/a&gt; vignette by Joseph Larmarange outlines two different approaches:&lt;/p&gt;
