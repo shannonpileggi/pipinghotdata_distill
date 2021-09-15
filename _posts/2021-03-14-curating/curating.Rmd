@@ -229,7 +229,7 @@ p <- polls %>%
 ```
 
 
-```{r, fig.cap="Three polls and their follow-up discussion; hover over tiles to view tweets and click on tiles to go to links on Twitter.", fig.align="Visual presentation of polls with tiles; days of the week across x-axis, tweet number across y-axis."}
+```{r, fig.cap="Three polls and their follow-up discussion; hover over tiles to view tweets and click on tiles to go to links on Twitter.", fig.alt="Visual presentation of polls with tiles; days of the week across x-axis, tweet number across y-axis."}
 girafe(ggobj = p,
        #opts_tooltip(use_fill = TRUE)
        #opts_tooltip(css = tooltip_css, use_fill = TRUE)
