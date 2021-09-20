@@ -62,7 +62,26 @@ general R imposter syndrome check out Catlin Hudon's blog post on [imposter synd
 
 My personal strategy for combating imposter syndrome is to prepare. For my curating week, my preparation involved reflecting on past curators and creating some content in advance. I hope this post helps you to prepare and motivates you to sign up. `r emo::ji("wink")`
 
-# Date selection
+# Timeline
+
+Here is my personal timeline to leading up to curation.
+
+```{r}
+timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv")) %>% 
+  mutate(
+    even_odd = (id %% 2) == 0,
+    label = glue::glue("*{time_frame} before*<br>{str_wrap(action, 10)}")
+    )
+```
+
+
+```{r}
+timeline %>% 
+  dplyr::select(`Time before curation` = time_frame, `Action taken` = action) %>% 
+  knitr::kable()
+```
+
+# Selecting a date
 
 You can view the [schedule](https://docs.google.com/spreadsheets/d/1pmphnR9EinGuAKbVqGzMIt6cWYmHNbeFVzaKJB59JdY/edit#gid=1429703967){target="_blank"} of upcoming curators to identify available dates; records of previous curators are also maintained here.  
 
@@ -84,28 +103,29 @@ form includes filling out details that complete your [curating profile](https://
 There was a gap between when I filled out the form and when I was confirmed as a curator,
 which I suspect was due to timings and holidays. Be kind, be patient - all organizing R-Ladies are volunteers.
 
-
-# Timeline
-
-```{r}
-timeline <- read_csv(here::here("_posts", folder, "data", "rladies_timeline.csv")) %>% 
-  mutate(
-    even_odd = (id %% 2) == 0,
-    label = glue::glue("*{time_frame} before*<br>{str_wrap(action, 10)}")
-    )
-```
-
-
-```{r}
-timeline %>% 
-  dplyr::select(`Time before curation` = time_frame, `Action taken` = action) %>% 
-  knitr::kable()
-```
-
 # Notifying my manager
 
 About three weeks before my curation, I started planning my curating efforts a bit more
 seriously. I notified my manager that I was curating, and I discussed potential work-related content with her. One idea was approved and another was reasonably denied. This honest conversation facilitated new awareness about my passions - my manager was not aware of R-Ladies, and she was enthusiastic and supportive.
+
+# Styling content
+
+Additionally, I considered how to visually style content beyond text in a tweet. I asked on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"} about R-Ladies styles, and I was directed to the xaringan R-Ladies [css](https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources){target="_blank"} and the R-Ladies [branding](https://guide.rladies.org/organization/tech/brand/){target="_blank"} guides. You are not required to use R-Ladies style and branding, but it was convenient for me. 
+
+I developed two visual layouts using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} from R-Ladies branding (see tweets for [blogdown vs distill](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} and [asking for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"}).
+
+```{r echo=FALSE, fig.cap="Comparison of blogdown vs distill styled using R-Ladies Google slide template.", fig.alt="R-Ladies style includes purple accents and R logo; slide shows tabular layout comparing distill to blogdown on attributes of learning curve, dependencies, supporting tools, customization, and layout."}
+knitr::include_graphics("img/compare_blogdown_distill.svg")
+```
+
+
+I also created five R-Ladies styled code gifs with xaringan and flipbookr - methods and code are in this [blog post](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"}. Here is an example code gif:
+
+```{r echo=FALSE, fig.cap="Example R-Ladies styled code gif.", fig.alt="Code-gif uses R-Ladies purple for slide title and code highlighting; gif shows usage of walrus operator."}
+knitr::include_graphics("img/demo-walrus-flipbook-quality.gif")
+```
+
+
 
 
 # Drafting content
@@ -238,24 +258,6 @@ girafe(ggobj = p,
 
 
 
-# Styling content
-
-Additionally, I considered how to visually style content beyond text in a tweet. I asked on [R-Ladies slack](https://rladies-community-slack.herokuapp.com/){target="_blank"} about R-Ladies styles, and I was directed to the xaringan R-Ladies [css](https://github.com/yihui/xaringan/tree/master/inst/rmarkdown/templates/xaringan/resources){target="_blank"} and the R-Ladies [branding](https://guide.rladies.org/organization/tech/brand/){target="_blank"} guides. You are not required to use R-Ladies style and branding, but it was convenient for me. 
-
-I developed two visual layouts using the Google slide [template](https://docs.google.com/presentation/d/1sriC2biLPYza_TtGiZkrNDsv3AMg6dvhqw2yit4wNnA/edit){target="_blank"} from R-Ladies branding (see tweets for [blogdown vs distill](https://twitter.com/WeAreRLadies/status/1363144545677017089){target="_blank"} and [asking for help online](https://twitter.com/WeAreRLadies/status/1362370580708790274){target="_blank"}).
-
-```{r echo=FALSE, fig.cap="Comparison of blogdown vs distill styled using R-Ladies Google slide template.", fig.alt="R-Ladies style includes purple accents and R logo; slide shows tabular layout comparing distill to blogdown on attributes of learning curve, dependencies, supporting tools, customization, and layout."}
-knitr::include_graphics("img/compare_blogdown_distill.svg")
-```
-
-
-I also created five R-Ladies styled code gifs with xaringan and flipbookr - methods and code are in this [blog post](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"}. Here is an example code gif:
-
-```{r echo=FALSE, fig.cap="Example R-Ladies styled code gif.", fig.alt="Code-gif uses R-Ladies purple for slide title and code highlighting; gif shows usage of walrus operator."}
-knitr::include_graphics("img/demo-walrus-flipbook-quality.gif")
-```
-
-
 
 
 # First and last tweets
@@ -297,7 +299,7 @@ It was a whirlwind week! Here are three things I would have done differently.
 When curating, your tweets in the moment are highly visible. But what persists afterward is fairly anonymous as your tweets are not linked to your personal profile unless you tag yourself. In a weird way, it actually becomes a safe place to put yourself out there with 
 questions you might not have been comfortable asking from your own personal account. Take advantage of this fleeting fame not just to share your knowledge but also to ask your questions. 
 
-# Support your curators
+# Supporting your curators
 
 Just because a Twitter account has >20K followers, the likes, re-tweets, and comments don't come automatically. You still have to earn engagement with your content. Many of the tweets I sent had little engagement, and that is okay. Supporting your curators by engaging with their tweets or sending notes of encouragement is _much_ appreciated. I thank **everyone** who engaged with me during my curation, with a special shout out to Alison Hill who re-energized me mid-week with comments on the R-Ladies bloggers [thread](https://twitter.com/WeAreRLadies/status/1362021673239785473){target="_blank"}. I cannot emphasize this enough: every like, re-tweet, comment, and direct message helps! 
 
@@ -316,18 +318,18 @@ Serving as a curator was intimidating and time consuming, but I am very glad I d
 
 * [collaborating](https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/){target="_blank"} with Silvia Canelón to style code gifs.
 
-* engaging with new people on twitter that I want to continue to engage with.
+* engaging with new people on Twitter that I want to continue to engage with.
 
 * learning about valuable new-to-me packages, functions, and work flows.
 
-* being invited to [speak for R-Ladies Miami](https://github.com/shannonpileggi/growing-into-r){target="_blank"}.
+* being invited to [speak for R-Ladies Miami](https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/){target="_blank"}.
 
 * seeing my "Asking for help online" content re-used in Sharla Gelfand's ["make a reprex... please"](https://twitter.com/sharlagelfand/status/1365665149063987201){target="_blank"} presentation.
 
-* co-developing a unit testing workshop with [Gordon Shotwell](https://twitter.com/gshotwell/status/1362769538631221251){target="_blank"}.
+* co-developing a unit testing workshop with Gordon Shotwell for R-Ladies Philly.
 
 During my curating week I tried to embody the tweets that I value: honest questions, thoughtful discussion, generous sharing, supportive community, and humorous exchanges. To borrow from Vicki Boykis in the rstudio::global(2021) [keynote](https://rstudio.com/resources/rstudioglobal-2021/your-public-garden/){target="_blank"}, I created my own public garden that cultivated new connections and collaborations. And now, I am more confident in continuing these practices from my personal Twitter account.
 
 # Acknowledgements
 
-Thank you to [Maëlle Salmon](https://twitter.com/ma_salmon){target="_blank"} and [Alison Hill](https://twitter.com/apreshill){target="_blank"} for encouraging me to write this - it might not have happened without you! Thank you also to Maëlle Salmon, Alison Hill, and [Ale Segura](https://twitter.com/alehsegura13){target="_blank"} for your suggestions; I truly appreciate your sharp eyes and thoughtful feedback.  `r emo::ji("purple heart")`
+Thank you to [Maëlle Salmon](https://twitter.com/ma_salmon){target="_blank"} and [Alison Hill](https://twitter.com/apreshill){target="_blank"} for encouraging me to write this - it might not have happened without you! Thank you also to Maëlle Salmon, [Ale Segura](https://twitter.com/alehsegura13){target="_blank"}, and [Isabella Velásquez](https://twitter.com/ivelasq3){target="_blank"} for your suggestions; I truly appreciate your sharp eyes and thoughtful feedback.  `r emo::ji("purple heart")`
