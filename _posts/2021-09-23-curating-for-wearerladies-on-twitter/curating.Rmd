@@ -7,7 +7,7 @@ preview: img/arno-smit-iI72r3gSwWY-unsplash.jpg
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
-date: 03-14-2021
+date: 09-23-2021
 author:
   - name: Shannon Pileggi
 output:
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r}
-folder <- "2021-03-14-curating"
+folder <- "2021-09-23-curating-for-wearerladies-on-twitter"
 ```
 
 ```{r}
