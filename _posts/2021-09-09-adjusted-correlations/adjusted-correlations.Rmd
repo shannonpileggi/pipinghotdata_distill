@@ -38,6 +38,36 @@ dat <- olympics %>%
   drop_na()
 ```
 
+```{r}
+dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+```
+
+
+```{r}
+dat <- dat_raw %>% 
+  fi
+```
+
+
+```{r}
+dat %>% 
+  dplyr::select_if(is.numeric) %>% 
+  skimr::skim()
+```
+
+```{r}
+dat %>% 
+  dplyr::select_if(is.numeric) %>% 
+  names(.)
+```
+
+
+```{r}
+dat %>% count(playlist_genre)
+```
+
+
+
 # Correlations
 
 Correlations are a common technique used to assess the strength of the linear
@@ -62,22 +92,23 @@ in total ignoring sport, this yields an estimate of 0.81.
 
 ```{r}
 dat %>% 
-  bind_rows(dat %>% mutate(sport = "Total")) %>% 
-  group_by(sport) %>% 
+  bind_rows(dat %>% mutate(playlist_genre = "Total")) %>% 
+  group_by(playlist_genre) %>% 
   nest() %>% 
   mutate(
     base_n = map_int(data, nrow),
-    corr = map(data, ~ cor.test(x = .x$height, y = .x$weight) %>% broom::tidy())
+    corr = map(data, ~ cor.test(x = .x$loudness, y = .x$danceability) %>% broom::tidy())
     ) %>% 
   ungroup() %>% 
   unnest(c(data, corr)) %>% 
   mutate(
-    corr_label =  glue::glue("{sport}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
-    sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")) %>% 
-  ggplot(aes(x = height, y = weight)) +
+    corr_label =  glue::glue("{playlist_genre}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}")
+    #sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")
+    ) %>% 
+  ggplot(aes(x = loudness, y = danceability)) +
   geom_point(aes(color = corr_label), show.legend = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
-  scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
+  #scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
   theme_bw()
   
 ```
