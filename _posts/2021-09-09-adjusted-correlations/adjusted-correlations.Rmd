@@ -42,10 +42,15 @@ dat <- olympics %>%
 dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
 ```
 
+```{r}
+dat_raw %>% count(playlist_genre)
+```
 
 ```{r}
 dat <- dat_raw %>% 
-  fi
+  mutate(year = str_sub(track_album_release_date, start = 1, end = 4) %>% as.numeric) %>% 
+  filter(playlist_genre %in% c("pop", "rock", "rap")) %>%
+  filter(year == 2019)
 ```
 
 
@@ -62,9 +67,7 @@ dat %>%
 ```
 
 
-```{r}
-dat %>% count(playlist_genre)
-```
+
 
 
 
@@ -97,7 +100,7 @@ dat %>%
   nest() %>% 
   mutate(
     base_n = map_int(data, nrow),
-    corr = map(data, ~ cor.test(x = .x$loudness, y = .x$danceability) %>% broom::tidy())
+    corr = map(data, ~ cor.test(x = .x$speechiness, y = .x$danceability) %>% broom::tidy())
     ) %>% 
   ungroup() %>% 
   unnest(c(data, corr)) %>% 
@@ -105,7 +108,7 @@ dat %>%
     corr_label =  glue::glue("{playlist_genre}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}")
     #sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")
     ) %>% 
-  ggplot(aes(x = loudness, y = danceability)) +
+  ggplot(aes(x = speechiness, y = danceability)) +
   geom_point(aes(color = corr_label), show.legend = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
   #scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
@@ -120,11 +123,11 @@ estimate adjusting for sport is the sign of the height coefficient multiplied by
 marginal r-squared of the model, which is the variance of the fixed effects.
 
 ```{r}
-mixed_model <- lme4::lmer(weight ~ height + (1 | sport), dat)
+mixed_model <- lme4::lmer(danceability ~ speechiness + (1 | playlist_genre), dat)
 
 height_sign <- mixed_model %>% 
   broom.mixed::tidy() %>% 
-  filter(term == "height") %>% 
+  filter(term == "speechiness") %>% 
   pull(estimate) %>% 
   sign()
 
