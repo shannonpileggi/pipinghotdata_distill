@@ -115,6 +115,7 @@ dat %>%
   theme_bw()
   
 ```
+
 # Adjusted correlations
 
 To estimate a correlation that adjusts for sport, implement a linear mixed model
@@ -138,4 +139,34 @@ adj_corr
 ```
 
 This yields a more sensible result for the overall correlation between height and weight.
+
+# Many correlations
+
+So far we estimated correlations between `danceability` and `speechiness` in three genres of music. 
+Now let's examine the other numeric attributes.
+
+```{r}
+dat_stacked <- dat %>% 
+  bind_rows(dat %>% mutate(playlist_genre = "Total")) %>% 
+  dplyr::select(track_id, playlist_genre, danceability, energy, key, loudness, 
+                speechiness, acousticness, instrumentalness, liveness, valence, tempo) %>% 
+  pivot_longer(
+    -c(track_id, playlist_genre, danceability),
+    names_to = "attribute",
+    values_to = "value"
+  ) %>% 
+  mutate(genre = playlist_genre) %>% 
+  group_by(playlist_genre, attribute) %>% 
+  nest()
+```
+
+```{r}
+results_1 <- dat_stacked %>% 
+  mutate(
+    base_n = map_int(data, nrow),
+    corr = map(data, ~ cor.test(x = .x$value, y = .x$danceability) %>% broom::tidy())
+    ) %>% 
+  ungroup() %>% 
+  unnest(c(data, corr)) 
+```
 
