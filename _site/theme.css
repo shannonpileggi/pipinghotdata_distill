@@ -99,3 +99,62 @@ d-article a {
 ul > li::marker {
   color: rgb(249, 83, 85);
 }
+
+/*-- Change links on postcard --*/
+
+.btn-outline-dark {
+    background-color: transparent;
+    color: rgba(249, 83, 85, 1.0);
+    border: 1px solid;
+    border-color: rgba(249, 83, 85, 1.0);
+}
+
+.btn-outline-dark:hover {
+    background-color: rgba(249, 83, 85, 1.0);
+    border-color: rgba(249, 83, 85, 1.0);
+    color: white;
+}
+
+/*-- animated hand wave --*/
+/* credit here: https://jarv.is/notes/css-waving-hand-emoji/ */
+
+.wave {
+  animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+  animation-duration: 2.5s;        /* Change to speed up or slow down */
+  animation-iteration-count: infinite;  /* Never stop waving :) */
+  transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+   10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+   20% { transform: rotate(-8.0deg) }
+   30% { transform: rotate(14.0deg) }
+   40% { transform: rotate(-4.0deg) }
+   50% { transform: rotate(10.0deg) }
+   60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+  100% { transform: rotate( 0.0deg) }
+}
+
+
+/* styling for icon-link buttons (see distilltools::icon_link()) */
+/* adapted from Ella Kaye */
+.icon-link {
+    background-color: transparent;
+    color: rgba(249, 83, 85, 1.0);
+    border: 1px solid;
+    border-color: rgba(249, 83, 85, 1.0);
+    padding: 5px .4rem 5px .4rem;
+    /*margin: 4px;*/
+    margin-top: 4px;
+    margin-right: 8px;
+    margin-bottom: 4px;
+    border-radius: 5px; /* Rounded edges */
+}
+
+.icon-link:hover {
+    background-color: rgba(249, 83, 85, 1.0);
+    border-color: rgba(249, 83, 85, 1.0);
+    color: white;
+}
