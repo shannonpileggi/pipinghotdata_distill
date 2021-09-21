@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:distill="https://distill.pub/journal/" version="2.0">
+  <channel>
+    <title>PIPING HOT DATA</title>
+    <link>https://www.pipinghotdata.com</link>
+    <atom:link href="https://www.pipinghotdata.com/blog.xml" rel="self" type="application/rss+xml"/>
+    <description>The personsal website of Shannon Pileggi
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Curating for @WeAreRLadies on Twitter</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter</link>
+      <description>From creating content to cultivating connections.</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter</guid>
+      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter/img/arno-smit-iI72r3gSwWY-unsplash.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>A tidyverse pivot approach to data preparation in R</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r</link>
+      <description>Going from wide to long with #TidyTuesday beach volleyball</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r</guid>
+      <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r/gatherspread_modified.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Polished summary tables in R with gtsummary</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary</link>
+      <description>Also plays well with labelled data</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary</guid>
+      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/r-gtsummary.png" medium="image" type="image/png" width="2540" height="1932"/>
+    </item>
+    <item>
+      <title>Custom interactive sunbursts with ggplot in R</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r</link>
+      <description>geom_rect() + geom_coord() + {ggiraph}</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r</guid>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r/sunburst_preview.PNG" medium="image" type="image/png" width="528" height="475"/>
+    </item>
+    <item>
+      <title>Deploy previews with Netlifly</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</link>
+      <description>Collaborative {distill} website workflows</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</guid>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/img/netlifly-checks.png" medium="image" type="image/png" width="1358" height="704"/>
+    </item>
+    <item>
+      <title>R-Ladies styled code gifs with xaringan and flipbookr</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr</link>
+      <description>The code behind my @WeAreRLadies curating week</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr</guid>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/walrus-adjusted.png" medium="image" type="image/png" width="1536" height="861"/>
+    </item>
+    <item>
+      <title>GGanimating a geographic introduction</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction</link>
+      <description>A gif for social media</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction</guid>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction/homes_preview.png" medium="image" type="image/png" width="919" height="461"/>
+    </item>
+    <item>
+      <title>From gmailr to the Google Books API</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api</link>
+      <description>A parenting project to catalog my childrens' 2020 library history</description>
+      <guid>https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api</guid>
+      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api/preview_books.png" medium="image" type="image/png" width="705" height="459"/>
+    </item>
+    <item>
+      <title>Leveraging labelled data in R</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r</link>
+      <description>Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages</description>
+      <guid>https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r</guid>
+      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/labelled_preview.png" medium="image" type="image/png" width="671" height="617"/>
+    </item>
+    <item>
+      <title>Your first R package in 1 hour</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour</link>
+      <description>Tools that make R package development easy</description>
+      <guid>https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour</guid>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Exporting editable ggplot graphics to PowerPoint with officer and purrr</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr</link>
+      <description>What, why, how, when, and who</description>
+      <guid>https://www.pipinghotdata.com/posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr</guid>
+      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr/data_cowboy_officer.png" medium="image" type="image/png" width="678" height="382"/>
+    </item>
+    <item>
+      <title>Introducing RStudio and R Markdown</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown</link>
+      <description>Gettin' giffy wit it.</description>
+      <guid>https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown</guid>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/introducing_resize2.png" medium="image" type="image/png" width="473" height="371"/>
+    </item>
+    <item>
+      <title>A job interview presentation inspired by the R community</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community</link>
+      <description>How #tidytuesday and twitter helped me secure a job offer</description>
+      <guid>https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community</guid>
+      <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community/welcome_to_rstats_twitter.png" medium="image" type="image/png" width="2009" height="1942"/>
+    </item>
+    <item>
+      <title>Stringr 4 ways</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2018-12-11-stringr-4-ways</link>
+      <description>Four approaches to feature engineering with regular expressions in R</description>
+      <guid>https://www.pipinghotdata.com/posts/2018-12-11-stringr-4-ways</guid>
+      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2018-12-11-stringr-4-ways/table2.png" medium="image" type="image/png" width="1010" height="319"/>
+    </item>
+    <item>
+      <title>Welcome to Piping Hot Data</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data</link>
+      <description>What's in a name?</description>
+      <guid>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data</guid>
+      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data/tidyverse_celestial.png" medium="image" type="image/png" width="2048" height="2048"/>
+    </item>
+  </channel>
+</rss>

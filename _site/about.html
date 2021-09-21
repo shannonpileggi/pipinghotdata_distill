@@ -86,20 +86,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>PIPING HOT DATA: Shannon Pileggi</title>
+  <title>PIPING HOT DATA: Shannon Pileggi, PhD</title>
 
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="PIPING HOT DATA: Shannon Pileggi"/>
+  <meta property="og:title" content="PIPING HOT DATA: Shannon Pileggi, PhD"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="PIPING HOT DATA"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="PIPING HOT DATA: Shannon Pileggi"/>
+  <meta property="twitter:title" content="PIPING HOT DATA: Shannon Pileggi, PhD"/>
   <meta property="twitter:site" content="@PipingHotData"/>
   <meta property="twitter:creator" content="@PipingHotData"/>
 
@@ -107,7 +107,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi, PhD"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2209,6 +2209,65 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   ul > li::marker {
     color: rgb(249, 83, 85);
+  }
+
+  /*-- Change links on postcard --*/
+
+  .btn-outline-dark {
+      background-color: transparent;
+      color: rgba(249, 83, 85, 1.0);
+      border: 1px solid;
+      border-color: rgba(249, 83, 85, 1.0);
+  }
+
+  .btn-outline-dark:hover {
+      background-color: rgba(249, 83, 85, 1.0);
+      border-color: rgba(249, 83, 85, 1.0);
+      color: white;
+  }
+
+  /*-- animated hand wave --*/
+  /* credit here: https://jarv.is/notes/css-waving-hand-emoji/ */
+
+  .wave {
+    animation-name: wave-animation;  /* Refers to the name of your @keyframes element below */
+    animation-duration: 2.5s;        /* Change to speed up or slow down */
+    animation-iteration-count: infinite;  /* Never stop waving :) */
+    transform-origin: 70% 70%;       /* Pivot around the bottom-left palm */
+    display: inline-block;
+  }
+
+  @keyframes wave-animation {
+      0% { transform: rotate( 0.0deg) }
+     10% { transform: rotate(14.0deg) }  /* The following five values can be played with to make the waving more or less extreme */
+     20% { transform: rotate(-8.0deg) }
+     30% { transform: rotate(14.0deg) }
+     40% { transform: rotate(-4.0deg) }
+     50% { transform: rotate(10.0deg) }
+     60% { transform: rotate( 0.0deg) }  /* Reset for the last half to pause */
+    100% { transform: rotate( 0.0deg) }
+  }
+
+
+  /* styling for icon-link buttons (see distilltools::icon_link()) */
+  /* adapted from Ella Kaye */
+  .icon-link {
+      background-color: transparent;
+      color: rgba(249, 83, 85, 1.0);
+      border: 1px solid;
+      border-color: rgba(249, 83, 85, 1.0);
+      padding: 5px .4rem 5px .4rem;
+      /*margin: 4px;*/
+      margin-top: 4px;
+      margin-right: 8px;
+      margin-bottom: 4px;
+      border-radius: 5px; /* Rounded edges */
+  }
+
+  .icon-link:hover {
+      background-color: rgba(249, 83, 85, 1.0);
+      border-color: rgba(249, 83, 85, 1.0);
+      color: white;
   }</style>
   <style type="text/css">
   /* base style */
@@ -2392,7 +2451,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Shannon Pileggi","authors":[]}
+{"title":"Shannon Pileggi, PhD","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2405,7 +2464,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="nav-right">
 <a href="index.html">Home</a>
+<a href="blog.html">Blog</a>
+<a href="talks.html">Talks</a>
 <a href="about.html">About</a>
+<a href="shannon_pileggi_cv.html">CV</a>
 <a href="https://github.com/shannonpileggi">
 <i class="fa fa-github" aria-hidden="true"></i>
 </a>
@@ -2415,7 +2477,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="https://twitter.com/PipingHotData">
 <i class="fa fa-twitter" aria-hidden="true"></i>
 </a>
-<a href="index.xml">
+<a href="blog.xml">
 <i class="fa fa-rss" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2427,7 +2489,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Shannon Pileggi</h1>
+<h1>Shannon Pileggi, PhD</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2435,16 +2497,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p><img src="cirprofile.png" style="width:30.0%" /></p>
-<p>I’m an enthusiastic professional educator and statistical consultant with over ten years of experience collaborating on data analysis with diverse partners in industry, tech, public health, and clinical research. My previous work experiences include supporting research on parasitic diseases at the CDC, contributing to curriculum development at the Institute for Quantitative Theory and Methods at Emory University, and instructing advanced programming and modeling courses at California Polytechnic State University, San Luis Obispo. I am currently a Statistician at Adelphi Research in Doylestown, PA.</p>
+<p><img src="shannon-circle.png" style="width:25.0%" /></p>
+<h2 id="professional">Professional</h2>
+<p>I’m an enthusiastic professional educator and statistical consultant with over ten years of experience collaborating on data analysis with diverse partners in industry, tech, public health, and clinical research. My previous work experiences include supporting research on parasitic diseases at the CDC, contributing to curriculum development at the Institute for Quantitative Theory and Methods at Emory University, and instructing advanced programming and modeling courses at California Polytechnic State University, San Luis Obispo. I am currently a Senior Statistician at Adelphi Research in Doylestown, PA working in pharmaceutical market research.</p>
+<h2 id="r-ladies">R-Ladies</h2>
+<p><a href="https://rladies.org/" target="_blank">R-Ladies</a> promotes gender diversity in the R community, and I highly recommend joining the community <a href="https://rladies-community-slack.herokuapp.com/" target="_blank">slack</a>. My home chapter is <a href="https://www.rladiesphilly.org/" target="_blank">R-Ladies Philly</a>.</p>
 <h2 id="personal">Personal</h2>
-<p><img src="family.jpg" style="width:50.0%" /></p>
-<p>I now have two daughters, one of which is my alarm clock and the other is my midnight collaborator. My partner is incredibly supportive and inspirational, and he schools me daily on data and R programming. I’ve won many coveted recreational soccer league <em>Champion</em> t-shirts, and on the weekends we like to cruise around on our bikes. On the rare occasions when both children are asleep and we aren’t working or talking about data, you’ll find us relaxing with adult beverages and board games.</p>
-<p><a href="https://www.facebook.com/KristinSteerPhotography/">Photo Cred</a></p>
+<p>I have two daughters, one of which is my alarm clock and the other is my midnight collaborator. My <a href="https://www.stochastic-squirrel.com/" target="_blank">partner</a> is incredibly supportive and inspirational, and we exchange ideas on data and R programming. I’ve won many coveted recreational soccer league <em>Champion</em> t-shirts, and on the weekends we like to cruise around on our bikes. On the rare occasions when both children are asleep and we aren’t working or talking about data, you’ll find us relaxing with adult beverages and board games.</p>
 <h2 id="contact">Contact</h2>
-<p>Want to chat? Go ahead, pipe up! Feel free to contact me on <a href="mailto:shannon@pipinghotdata.com">email</a>, <a href="https://twitter.com/PipingHotData">Twitter</a>, or <a href="https://www.linkedin.com/in/shannon-m-pileggi/">LinkedIn</a>. I hope to hear from you!</p>
+<p>Want to chat? Go ahead, pipe up! Feel free to contact me on <a href="mailto:shannon@pipinghotdata.com" target="_blank">email</a>, <a href="https://twitter.com/PipingHotData" target="_blank">Twitter</a>, or <a href="https://www.linkedin.com/in/shannon-m-pileggi/" target="_blank">LinkedIn</a>. I hope to hear from you!</p>
 <h2 id="r-feeds">R feeds</h2>
-<p>This blog feeds into <a href="https://rweekly.org/"><code>R Weekly</code></a> and <a href="http://www.R-bloggers.com"><code>R-bloggers</code></a>. Consider adding your blog or subscribing to see all of R’s latest and greatest!</p>
+<p>This blog feeds into <a href="https://rweekly.org/" target="_blank"><code>R Weekly</code></a>. Consider adding your blog or subscribing to see all of R’s latest and greatest!</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

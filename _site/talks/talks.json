@@ -1,0 +1,38 @@
+[
+  {
+    "path": "talks/2021-04-22-growing-into-the-r-community/",
+    "title": "Growing into the R community",
+    "description": "An R-Ladies meet-up",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2021-04-22",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n slides\r\n\r\n based on the blog post A job interview presentation inspired by the R community: How #tidytuesday and twitter helped me secure a job offer.\r\n repo for slides\r\nAbstract\r\nStarting something new in R can be daunting, but there are many community resources that can help! In this presentation, I’ll discuss how I crafted a job interview presentation by making modifications on publicly available TidyTuesday code. This built the technical and confidence-boosting scaffolding I needed for more open-ended projects. The success of this experience inspired me to transition from my role as a consumer and creator to contributor to give back to the R community, which has been incredibly fulfilling. Despite social distancing, I feel more connected to the R community than ever before!\r\n⚡ abbreviated for an R-Ladies Philly lightning talk June 16, 2021 Leveraging the R community for a job interview\r\n\r\n\r\n\r\n",
+    "preview": "talks/2021-04-22-growing-into-the-r-community/cover.PNG",
+    "last_modified": "2021-09-21T12:47:37-04:00",
+    "input_file": {},
+    "preview_width": 700,
+    "preview_height": 364
+  },
+  {
+    "path": "talks/2020-10-25-your-first-r-package-in-1-hour/",
+    "title": "Your first R package in 1 hour",
+    "description": "Tools that make R package development easy",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-25",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n materials video\r\n\r\nOverview\r\nA zoom workshop on introductory R package development for R-Ladies Philly.\r\nAbstract\r\nThis workshop is for people looking to learn how to make their own R packages and learn how to use usethis and devtools for package development. The workshop will cover handy one time functions (i.e., usethis::create_package) as well as functions used continuously throughout package development (i.e., devtools::document). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.\r\nThis workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.\r\n\r\n\r\n\r\n",
+    "preview": "talks/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg",
+    "last_modified": "2021-09-21T12:47:37-04:00",
+    "input_file": {}
+  }
+]
