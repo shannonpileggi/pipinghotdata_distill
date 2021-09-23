@@ -25,18 +25,6 @@ library(lme4)        # linear mixed models ----
 
 # Data
 
-```{r}
-olympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv')
-```
-
-```{r}
-dat <- olympics %>% 
-  filter(year == 2016) %>% 
-  filter(sport %in% c("Swimming",  "Gymnastics", "Shooting")) %>% 
-  filter(sex == "F") %>% 
-  dplyr::select(id, sport, height, weight) %>% 
-  drop_na()
-```
 
 ```{r}
 dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
@@ -67,6 +55,35 @@ dat %>%
 ```
 
 
+# ggplot theme
+
+Some personal ggplot preferences for use later.
+
+```{r}
+theme_shannon <- function(){
+  # theme minimal creates white background and removes ticks on axes ----
+  theme_minimal() +
+  theme(
+    # removes grid lines from plot ----
+    panel.grid = element_blank(),
+    # moves legend to top instead of side ----
+    legend.position = "top",
+    # removes title from legend, often superfluous ----
+    legend.title = element_blank(),
+    # creates the light gray box around the plot ----
+    panel.background = element_rect(color = "#F2F2F2"),
+    # creates the gray background boxes for faceting labels ----
+    strip.background = element_rect(
+      color = "#F2F2F2",
+      fill = "#F2F2F2"
+    ),
+    # if using facet grid, this rotates the y text to be more readable ----
+    strip.text.y = element_text(angle = 0),
+    # this produces a fully left justified title ----
+    plot.title.position = "plot"
+  )
+}
+```
 
 
 
@@ -85,7 +102,9 @@ may not to take into account important sources of variation in the data, which c
 the independent observations assumption.
 
 
-# Unadjusted correlations
+# Single feature
+
+## Unadjusted correlations
 
 
 For example, consider the three sports individually, yielding correlations between 
@@ -112,11 +131,11 @@ dat %>%
   geom_point(aes(color = corr_label), show.legend = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
   #scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
-  theme_bw()
+  theme_shannon()
   
 ```
 
-# Adjusted correlations
+## Adjusted correlations
 
 To estimate a correlation that adjusts for sport, implement a linear mixed model
 with a fixed effect for height and a random effect for sport. The correlation
@@ -140,33 +159,72 @@ adj_corr
 
 This yields a more sensible result for the overall correlation between height and weight.
 
-# Many correlations
+# Many features
 
 So far we estimated correlations between `danceability` and `speechiness` in three genres of music. 
 Now let's examine the other numeric attributes.
 
 ```{r}
 dat_stacked <- dat %>% 
-  bind_rows(dat %>% mutate(playlist_genre = "Total")) %>% 
-  dplyr::select(track_id, playlist_genre, danceability, energy, key, loudness, 
-                speechiness, acousticness, instrumentalness, liveness, valence, tempo) %>% 
+  mutate(genre = playlist_genre, music_category = playlist_genre) %>% 
+  bind_rows(dat %>% mutate(music_category = "total", genre = playlist_genre)) %>% 
+  dplyr::select(track_id, music_category, genre, danceability, energy, 
+                speechiness, acousticness, instrumentalness, liveness, valence) %>% 
   pivot_longer(
-    -c(track_id, playlist_genre, danceability),
+    -c(track_id, music_category, genre, danceability),
     names_to = "attribute",
     values_to = "value"
-  ) %>% 
-  mutate(genre = playlist_genre) %>% 
-  group_by(playlist_genre, attribute) %>% 
-  nest()
+  ) 
 ```
 
+
 ```{r}
-results_1 <- dat_stacked %>% 
+dat_stacked %>% 
+  ggplot(aes(x = value, y = danceability)) +
+  geom_point(aes(color = genre), show.legend = FALSE) +
+  facet_grid(attribute ~ genre, scales = "free") +
+  #scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
+  theme_shannon()
+```
+
+
+```{r}
+results_1 <- dat_stacked %>%
+  group_by(music_category, attribute) %>% 
+  nest() %>% 
   mutate(
     base_n = map_int(data, nrow),
     corr = map(data, ~ cor.test(x = .x$value, y = .x$danceability) %>% broom::tidy())
     ) %>% 
   ungroup() %>% 
-  unnest(c(data, corr)) 
+  unnest(c(corr)) 
+```
+
+```{r}
+compute_adj_corr <- function(data){
+  
+  mixed_model <- lme4::lmer(danceability ~ value + (1 | genre), data)
+
+  height_sign <- mixed_model %>% 
+    broom.mixed::tidy() %>% 
+    filter(term == "value") %>% 
+    pull(estimate) %>% 
+    sign()
+
+  # marginal rsq is the variance of fixed effects ----
+  adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
+
+  return(adj_corr)
+}
+```
+
+```{r}
+results_2 <- dat_stacked %>%
+  filter(music_category == "total") %>% 
+  group_by(attribute) %>% 
+  nest() %>% 
+  mutate(
+    corr_adj = map_dbl(data, compute_adj_corr)
+  )
 ```
 
