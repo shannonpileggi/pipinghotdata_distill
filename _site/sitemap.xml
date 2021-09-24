@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.pipinghotdata.com/about.html</loc>
-    <lastmod>2021-07-12T22:14:43-04:00</lastmod>
+    <lastmod>2021-09-21T12:47:38-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/blog.html</loc>
-    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
+    <lastmod>2021-09-21T12:47:38-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/</loc>
-    <lastmod>2021-08-30T20:45:16-04:00</lastmod>
+    <lastmod>2021-09-21T12:47:38-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks.html</loc>
-    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
+    <lastmod>2021-09-21T12:47:38-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r/</loc>
@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/</loc>
-    <lastmod>2021-07-10T23:14:23-04:00</lastmod>
+    <lastmod>2021-09-24T19:34:04-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour/</loc>
