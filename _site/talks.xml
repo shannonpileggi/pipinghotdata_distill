@@ -12,24 +12,7 @@
       <title>Growing into the R community</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community</link>
-      <description>
-
-
-&lt;p&gt;&lt;img src="https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-communitycover.PNG" title="Title slide with image of purple and white crocus flowers growing." alt="Title slide with image of purple and white crocus flowers growing." width="350" /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://shannonpileggi.github.io/growing-into-r/#1" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-images"&gt;&lt;/i&gt; slides&lt;/a&gt;&lt;a href="https://www.youtube.com/watch?v=ozkJkiYxHGU" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-play-circle"&gt;&lt;/i&gt; full meet-up recording&lt;/a&gt;&lt;a href="https://www.youtube.com/watch?v=guzjt7xh2Cw" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-play-circle"&gt;&lt;/i&gt; lightning talk&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id="history"&gt;History&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;April 22, 2021 R-Ladies Miami meet-up&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;June 16, 2021 ⚡ abbreviated for an R-Ladies Philly lightning talk &lt;em&gt;Leveraging the R community for a job interview&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;September 15, 2021 R-Ladies Coventry &amp;amp; R-Ladies Utrecht joint meet-up&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="materials"&gt;Materials&lt;/h3&gt;
-&lt;p&gt;&lt;i class="fas fa-pencil-alt"&gt;&lt;/i&gt; based on the blog post &lt;a href="https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community/" target="_blank"&gt;A job interview presentation inspired by the R community: How &lt;code&gt;#tidytuesday&lt;/code&gt; and twitter helped me secure a job offer&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/shannonpileggi/growing-into-r" target="_blank"&gt;&lt;i class="fab fa-github"&gt;&lt;/i&gt; repo&lt;/a&gt; for slides&lt;/p&gt;
-&lt;h3 id="abstract"&gt;Abstract&lt;/h3&gt;
-&lt;p&gt;Starting something new in R can be daunting, but there are many community resources that can help! In this presentation, I’ll discuss how I crafted a job interview presentation by making modifications on publicly available TidyTuesday code. This built the technical and confidence-boosting scaffolding I needed for more open-ended projects. The success of this experience inspired me to transition from my role as a consumer and creator to contributor to give back to the R community, which has been incredibly fulfilling. Despite social distancing, I feel more connected to the R community than ever before!&lt;/p&gt;
-&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>8439c93393a38252fa43ebf0abeaffcc</distill:md5>
+      <description>An R-Ladies meet-up</description>
       <guid>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community</guid>
       <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/cover.PNG" medium="image" type="image/png" width="700" height="364"/>
