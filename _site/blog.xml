@@ -138,7 +138,66 @@
       <title>Welcome to Piping Hot Data</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data</link>
-      <description>What's in a name?</description>
+      <description>
+
+
+&lt;p&gt;So do I have &lt;strong&gt;piping hot&lt;/strong&gt; &lt;em&gt;data&lt;/em&gt; or am I &lt;strong&gt;piping&lt;/strong&gt; &lt;em&gt;hot data&lt;/em&gt;? Let’s break it down.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Piping Hot&lt;/strong&gt; &lt;em&gt;Data&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Wow, my &lt;em&gt;data&lt;/em&gt; is &lt;strong&gt;piping hot&lt;/strong&gt;! This connotes exciting, newly released data! I can’t promise that I’ll fulfill this expectation. Let’s just say that I’ll talk about data occasionally, and on special occassions it might even be piping hot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Piping&lt;/strong&gt; &lt;em&gt;Hot Data&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here, I am &lt;strong&gt;piping&lt;/strong&gt; my elusive &lt;em&gt;hot data&lt;/em&gt;. This is what I was really going for - an ode to the &lt;strong&gt;pipe&lt;/strong&gt; in R:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;%&amp;gt;%&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;a href="http://r4ds.had.co.nz/pipes.html"&gt;pipe operator&lt;/a&gt; simplifies long operations by linking multiple functions simultaneously. Although the coding construct of the pipe has been floating around since the 1970’s, the floodgates didn’t open for R until &lt;a href="http://adolfoalvarez.cl/blog/2021-09-16-plumbers-chains-and-famous-painters-the-history-of-the-pipe-operator-in-r/"&gt;2014&lt;/a&gt;. I don’t know the exact date, but I do remember the first time I saw those three characters and the sea of emotions that rained down. Confusion. Curiousity. Excitement.&lt;/p&gt;
+&lt;p&gt;In just 4 short years, the pipe and its friends in the &lt;a href="https://www.tidyverse.org/"&gt;tidyverse&lt;/a&gt; have revolutionized how we code in R, to the point that you may feel illiterate at conferences if you don’t have some baseline understanding - &lt;em&gt;at first&lt;/em&gt;. Because the beauty of the pipe is that it streamlines readability of R code, such that even if you have never done it, you can still get the gist of what is going on. So much so that believers are proselytizing &lt;a href="http://varianceexplained.org/r/teach-tidyverse/"&gt;“Teach the tidyverse to beginners”&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Let’s lay the pipelines with a quick example using the classic &lt;code&gt;iris&lt;/code&gt; data set. To get started, load the &lt;code&gt;tidyverse&lt;/code&gt; library and get an overview of the data.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;library(tidyverse)
+glimpse(iris)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Rows: 150
+Columns: 5
+$ Sepal.Length &amp;lt;dbl&amp;gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.~
+$ Sepal.Width  &amp;lt;dbl&amp;gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.~
+$ Petal.Length &amp;lt;dbl&amp;gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.~
+$ Petal.Width  &amp;lt;dbl&amp;gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.~
+$ Species      &amp;lt;fct&amp;gt; setosa, setosa, setosa, setosa, setosa, setosa,~&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our simple objective is to compute the mean &lt;code&gt;Sepal.Length&lt;/code&gt; for each &lt;code&gt;Species&lt;/code&gt; in the data set and then arrange the results in descending order. There are &lt;em&gt;many&lt;/em&gt; ways to accomplish this without the tidyverse, but for the sake of side-by-side comparisons I’ll demo this using tidyverse functions first without and then with piping.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;arrange(
+  summarise(
+    group_by(iris, Species), 
+    mean = mean(Sepal.Length)
+  ), 
+  desc(mean)
+)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 3 x 2
+  Species     mean
+  &amp;lt;fct&amp;gt;      &amp;lt;dbl&amp;gt;
+1 virginica   6.59
+2 versicolor  5.94
+3 setosa      5.01&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Without using pipes, we have to read our code &lt;em&gt;inside&lt;/em&gt; to &lt;em&gt;out&lt;/em&gt; to understand the operations executed. Our &lt;code&gt;iris&lt;/code&gt; data set is buried in the middle of the code, and then the operations performed of &lt;code&gt;group_by&lt;/code&gt;, &lt;code&gt;summarise&lt;/code&gt;, and &lt;code&gt;arrange&lt;/code&gt; spring outward from there (reading up from &lt;code&gt;iris&lt;/code&gt;). Now let’s try the same manipulations utilizing piping.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;iris %&amp;gt;% 
+  group_by(Species) %&amp;gt;% 
+  summarise(mean = mean(Sepal.Length)) %&amp;gt;%
+  arrange(desc(mean))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 3 x 2
+  Species     mean
+  &amp;lt;fct&amp;gt;      &amp;lt;dbl&amp;gt;
+1 virginica   6.59
+2 versicolor  5.94
+3 setosa      5.01&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Voilá! It’s clear from the left side of the pipe that all manipulations are done on the &lt;code&gt;iris&lt;/code&gt; data set, and it’s clear from the right side of the pipe that the series of operations performed are &lt;code&gt;group_by&lt;/code&gt;, &lt;code&gt;summarise&lt;/code&gt;, and &lt;code&gt;arrange&lt;/code&gt;. Wow, I like the way data flow through those pipes!&lt;/p&gt;
+&lt;p&gt;While the name of this blog gives an nod to the powerful pipe, the pipe isn’t going to permeate every solution to programming challenges. So here is what to expect from &lt;strong&gt;&lt;em&gt;Piping Hot Data&lt;/em&gt;&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Demo data science tools and methods.&lt;/li&gt;
+&lt;li&gt;Discover new data and R packages.&lt;/li&gt;
+&lt;li&gt;Deliberate data and technical topics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope you enjoy!&lt;/p&gt;
+&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
+&lt;p&gt;Thumbnail artwork by &lt;a href="https://twitter.com/allison_horst?lang=en"&gt;&lt;code&gt;@allison_horst&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>c65308954f49b5ca766e6f529a7af486</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data</guid>
       <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data/tidyverse_celestial.png" medium="image" type="image/png" width="2048" height="2048"/>
