@@ -9,7 +9,7 @@
     <generator>Distill</generator>
     <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Adjusted correlations</title>
+      <title>Estimating correlations adjusted for group membership</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations</link>
       <description>
@@ -19,14 +19,119 @@
 library(broom)       # tidying of stats results ----
 library(performance) # to obtain marginal r-squared ----
 library(lme4)        # linear mixed models ----   &lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
 &lt;h1 id="data"&gt;Data&lt;/h1&gt;
-&lt;pre class="r"&gt;&lt;code&gt;olympics &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="r"&gt;&lt;code&gt;dat &amp;lt;- olympics %&amp;gt;% 
-  filter(year == 2016) %&amp;gt;% 
-  filter(sport %in% c(&amp;quot;Swimming&amp;quot;,  &amp;quot;Gymnastics&amp;quot;, &amp;quot;Shooting&amp;quot;)) %&amp;gt;% 
-  filter(sex == &amp;quot;F&amp;quot;) %&amp;gt;% 
-  dplyr::select(id, sport, height, weight) %&amp;gt;% 
-  drop_na()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The data comes from the &lt;a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md" target="_blank"&gt;TidyTuesday Spotify songs&lt;/a&gt; data set.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat_raw &amp;lt;- readr::read_csv(&amp;#39;https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To reduce the scope and simplify, I am going to examine a reduced set of variables from &lt;code&gt;pop&lt;/code&gt;, &lt;code&gt;rock&lt;/code&gt;, or &lt;code&gt;rap&lt;/code&gt; songs in 2019.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat &amp;lt;- dat_raw %&amp;gt;% 
+  mutate(year = str_sub(track_album_release_date, start = 1, end = 4) %&amp;gt;% as.numeric) %&amp;gt;% 
+  filter(playlist_genre %in% c(&amp;quot;pop&amp;quot;, &amp;quot;rock&amp;quot;, &amp;quot;rap&amp;quot;)) %&amp;gt;%
+  filter(year == 2019) %&amp;gt;% 
+  dplyr::select(track_id, playlist_genre, danceability, energy, speechiness, acousticness, instrumentalness, liveness, valence)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 3,774 x 9
+   track_id             playlist_genre danceability energy speechiness
+   &amp;lt;chr&amp;gt;                &amp;lt;chr&amp;gt;                 &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;
+ 1 6f807x0ima9a1j3VPbc~ pop                   0.748  0.916      0.0583
+ 2 0r7CVbZTWZgbTCYdfa2~ pop                   0.726  0.815      0.0373
+ 3 1z1Hg7Vb0AhHDiEmnDE~ pop                   0.675  0.931      0.0742
+ 4 75FpbthrwQmzHlBJLuG~ pop                   0.718  0.93       0.102 
+ 5 1e8PAfcKUYoKkxPhrHq~ pop                   0.65   0.833      0.0359
+ 6 7fvUMiyapMsRRxr07cU~ pop                   0.675  0.919      0.127 
+ 7 2OAylPUDDfwRGfe0lYq~ pop                   0.449  0.856      0.0623
+ 8 6b1RNvAcJjQH73eZO4B~ pop                   0.542  0.903      0.0434
+ 9 7bF6tCO3gFb8INrEDcj~ pop                   0.594  0.935      0.0565
+10 1IXGILkPm0tOCNeq00k~ pop                   0.642  0.818      0.032 
+# ... with 3,764 more rows, and 4 more variables: acousticness &amp;lt;dbl&amp;gt;,
+#   instrumentalness &amp;lt;dbl&amp;gt;, liveness &amp;lt;dbl&amp;gt;, valence &amp;lt;dbl&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here are the definitions of the variables, straight from the TidyTuesday repo:&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width="20%" /&gt;
+&lt;col width="20%" /&gt;
+&lt;col width="60%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th align="left"&gt;variable&lt;/th&gt;
+&lt;th align="left"&gt;class&lt;/th&gt;
+&lt;th align="left"&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td align="left"&gt;track_id&lt;/td&gt;
+&lt;td align="left"&gt;character&lt;/td&gt;
+&lt;td align="left"&gt;Song unique ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td align="left"&gt;playlist_genre&lt;/td&gt;
+&lt;td align="left"&gt;character&lt;/td&gt;
+&lt;td align="left"&gt;Playlist genre&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td align="left"&gt;danceability&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td align="left"&gt;energy&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td align="left"&gt;speechiness&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td align="left"&gt;acousticness&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td align="left"&gt;instrumentalness&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td align="left"&gt;liveness&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td align="left"&gt;valence&lt;/td&gt;
+&lt;td align="left"&gt;double&lt;/td&gt;
+&lt;td align="left"&gt;A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id="ggplot-theme"&gt;ggplot theme&lt;/h1&gt;
+&lt;p&gt;Some personal ggplot preferences for use later.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;theme_shannon &amp;lt;- function(){
+  # theme minimal creates white background and removes ticks on axes ----
+  theme_minimal() +
+  theme(
+    # removes grid lines from plot ----
+    panel.grid = element_blank(),
+    # moves legend to top instead of side ----
+    legend.position = &amp;quot;top&amp;quot;,
+    # removes title from legend, often superfluous ----
+    legend.title = element_blank(),
+    # creates the light gray box around the plot ----
+    panel.background = element_rect(color = &amp;quot;#F2F2F2&amp;quot;),
+    # creates the gray background boxes for faceting labels ----
+    strip.background = element_rect(
+      color = &amp;quot;#F2F2F2&amp;quot;,
+      fill = &amp;quot;#F2F2F2&amp;quot;
+    ),
+    # if using facet grid, this rotates the y text to be more readable ----
+    strip.text.y = element_text(angle = 0),
+    # this produces a fully left justified title ----
+    plot.title.position = &amp;quot;plot&amp;quot;
+  )
+}&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="correlations"&gt;Correlations&lt;/h1&gt;
 &lt;p&gt;Correlations are a common technique used to assess the strength of the linear association between two numeric variables. The main assumptions that go into this are:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
@@ -34,33 +139,36 @@ library(lme4)        # linear mixed models ----   &lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;p&gt;The observations are independent.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;A common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption.&lt;/p&gt;
-&lt;h1 id="unadjusted-correlations"&gt;Unadjusted correlations&lt;/h1&gt;
+&lt;h1 id="single-feature"&gt;Single feature&lt;/h1&gt;
+&lt;h2 id="unadjusted-correlations"&gt;Unadjusted correlations&lt;/h2&gt;
 &lt;p&gt;For example, consider the three sports individually, yielding correlations between height and weight of 0.79, 0.46, and 0.73. One might expect an overall correlation between height and weight to be between 0.46 and 0.79; however, when estimated in total ignoring sport, this yields an estimate of 0.81.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;dat %&amp;gt;% 
-  bind_rows(dat %&amp;gt;% mutate(sport = &amp;quot;Total&amp;quot;)) %&amp;gt;% 
-  group_by(sport) %&amp;gt;% 
+  bind_rows(dat %&amp;gt;% mutate(playlist_genre = &amp;quot;Total&amp;quot;)) %&amp;gt;% 
+  group_by(playlist_genre) %&amp;gt;% 
   nest() %&amp;gt;% 
   mutate(
     base_n = map_int(data, nrow),
-    corr = map(data, ~ cor.test(x = .x$height, y = .x$weight) %&amp;gt;% broom::tidy())
+    corr = map(data, ~ cor.test(x = .x$speechiness, y = .x$danceability) %&amp;gt;% broom::tidy())
     ) %&amp;gt;% 
   ungroup() %&amp;gt;% 
   unnest(c(data, corr)) %&amp;gt;% 
   mutate(
-    corr_label =  glue::glue(&amp;quot;{sport}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}&amp;quot;),
-    sport = fct_relevel(sport, &amp;quot;Shooting&amp;quot;, &amp;quot;Gymnasitics&amp;quot;, &amp;quot;Swimming&amp;quot;, &amp;quot;Total&amp;quot;)) %&amp;gt;% 
-  ggplot(aes(x = height, y = weight)) +
+    corr_label =  glue::glue(&amp;quot;{playlist_genre}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}&amp;quot;)
+    #sport = fct_relevel(sport, &amp;quot;Shooting&amp;quot;, &amp;quot;Gymnasitics&amp;quot;, &amp;quot;Swimming&amp;quot;, &amp;quot;Total&amp;quot;)
+    ) %&amp;gt;% 
+  ggplot(aes(x = speechiness, y = danceability)) +
   geom_point(aes(color = corr_label), show.legend = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
-  scale_color_manual(values = c(&amp;quot;darkorange&amp;quot;,&amp;quot;purple&amp;quot;,&amp;quot;cyan4&amp;quot;, &amp;quot;gray&amp;quot;)) + 
-  theme_bw()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src="filef5087c7ea6_files/figure-html/unnamed-chunk-4-1.png" width="672" /&gt; # Adjusted correlations&lt;/p&gt;
+  #scale_color_manual(values = c(&amp;quot;darkorange&amp;quot;,&amp;quot;purple&amp;quot;,&amp;quot;cyan4&amp;quot;, &amp;quot;gray&amp;quot;)) + 
+  theme_shannon()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="file37c47ffd7b4f_files/figure-html/unnamed-chunk-6-1.png" width="672" /&gt;&lt;/p&gt;
+&lt;h2 id="adjusted-correlations"&gt;Adjusted correlations&lt;/h2&gt;
 &lt;p&gt;To estimate a correlation that adjusts for sport, implement a linear mixed model with a fixed effect for height and a random effect for sport. The correlation estimate adjusting for sport is the sign of the height coefficient multiplied by the marginal r-squared of the model, which is the variance of the fixed effects.&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;mixed_model &amp;lt;- lme4::lmer(weight ~ height + (1 | sport), dat)
+&lt;pre class="r"&gt;&lt;code&gt;mixed_model &amp;lt;- lme4::lmer(danceability ~ speechiness + (1 | playlist_genre), dat)
 
 height_sign &amp;lt;- mixed_model %&amp;gt;% 
   broom.mixed::tidy() %&amp;gt;% 
-  filter(term == &amp;quot;height&amp;quot;) %&amp;gt;% 
+  filter(term == &amp;quot;speechiness&amp;quot;) %&amp;gt;% 
   pull(estimate) %&amp;gt;% 
   sign()
 
@@ -69,13 +177,63 @@ adj_corr &amp;lt;- height_sign * sqrt(performance::r2(mixed_model)[[&amp;quot;R2
 
 adj_corr&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;Marginal R2 
-  0.7553849 &lt;/code&gt;&lt;/pre&gt;
+ 0.07537364 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This yields a more sensible result for the overall correlation between height and weight.&lt;/p&gt;
+&lt;h1 id="many-features"&gt;Many features&lt;/h1&gt;
+&lt;p&gt;So far we estimated correlations between &lt;code&gt;danceability&lt;/code&gt; and &lt;code&gt;speechiness&lt;/code&gt; in three genres of music. Now let’s examine the other numeric attributes.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat_stacked &amp;lt;- dat %&amp;gt;% 
+  mutate(genre = playlist_genre, music_category = playlist_genre) %&amp;gt;% 
+  bind_rows(dat %&amp;gt;% mutate(music_category = &amp;quot;total&amp;quot;, genre = playlist_genre)) %&amp;gt;% 
+  dplyr::select(track_id, music_category, genre, danceability, energy, 
+                speechiness, acousticness, instrumentalness, liveness, valence) %&amp;gt;% 
+  pivot_longer(
+    -c(track_id, music_category, genre, danceability),
+    names_to = &amp;quot;attribute&amp;quot;,
+    values_to = &amp;quot;value&amp;quot;
+  ) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;dat_stacked %&amp;gt;% 
+  ggplot(aes(x = value, y = danceability)) +
+  geom_point(aes(color = genre), show.legend = FALSE) +
+  facet_grid(attribute ~ genre, scales = &amp;quot;free&amp;quot;) +
+  #scale_color_manual(values = c(&amp;quot;darkorange&amp;quot;,&amp;quot;purple&amp;quot;,&amp;quot;cyan4&amp;quot;, &amp;quot;gray&amp;quot;)) + 
+  theme_shannon()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src="file37c47ffd7b4f_files/figure-html/unnamed-chunk-9-1.png" width="672" /&gt;&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;results_1 &amp;lt;- dat_stacked %&amp;gt;%
+  group_by(music_category, attribute) %&amp;gt;% 
+  nest() %&amp;gt;% 
+  mutate(
+    base_n = map_int(data, nrow),
+    corr = map(data, ~ cor.test(x = .x$value, y = .x$danceability) %&amp;gt;% broom::tidy())
+    ) %&amp;gt;% 
+  ungroup() %&amp;gt;% 
+  unnest(c(corr)) &lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_adj_corr &amp;lt;- function(data){
+  
+  mixed_model &amp;lt;- lme4::lmer(danceability ~ value + (1 | genre), data)
+
+  height_sign &amp;lt;- mixed_model %&amp;gt;% 
+    broom.mixed::tidy() %&amp;gt;% 
+    filter(term == &amp;quot;value&amp;quot;) %&amp;gt;% 
+    pull(estimate) %&amp;gt;% 
+    sign()
+
+  # marginal rsq is the variance of fixed effects ----
+  adj_corr &amp;lt;- height_sign * sqrt(performance::r2(mixed_model)[[&amp;quot;R2_marginal&amp;quot;]])
+
+  return(adj_corr)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;results_2 &amp;lt;- dat_stacked %&amp;gt;%
+  filter(music_category == &amp;quot;total&amp;quot;) %&amp;gt;% 
+  group_by(attribute) %&amp;gt;% 
+  nest() %&amp;gt;% 
+  mutate(
+    corr_adj = map_dbl(data, compute_adj_corr)
+  )&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>3ab13d49cea0341fdf813f37ee89917d</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations</guid>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations/adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations/adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>A tidyverse pivot approach to data preparation in R</title>
