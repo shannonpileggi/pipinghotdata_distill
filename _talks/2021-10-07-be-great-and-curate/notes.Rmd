@@ -1,0 +1,14 @@
+---
+title: "Untitled"
+author: "Shannon Pileggi"
+date: "10/4/2021"
+output: html_document
+---
+
+# Curator accounts
+
+A rotating curation is a twitter account that features a new curator for each week. Currently, there are two rotating curator accounts relevant to our field. First, the `@WeAreRLadies` account is specific to the those who program in R, and second, the `@WomeninStat` is specific to the statistics and data science community. I curated for the `@WeAreRLadies` account in February of this year, and it was a great experience! I hope I can convince you to consider it.
+
+# Purpose
+
+The purpose of these two curator accounts is to encourange and maintain Twitter engagement within R-Ladies or women in statistics and data science, and to spotlight female and minority genders in any location and any experience level. That is right - any experience level! Regardless of if have been in this field for 6 months or 20 years, you have a valuable perspective to share.
