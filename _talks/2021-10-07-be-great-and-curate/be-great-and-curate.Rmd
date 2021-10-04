@@ -1,0 +1,47 @@
+---
+title: "Be great and curate!"
+description: |
+  Tips and outcomes from an @WeAreRLadies Twitter curator
+base_url: https://www.pipinghotdata.com/
+preview: WDS-Curating.svg
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 10-07-2021
+output:
+  distill::distill_article:
+    toc: false
+    toc_depth: 3
+    self_contained: false
+draft: false
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r echo=FALSE, fig.alt='Image of poster. Title bar in light blue, tips and outcomes side bar in light purple, main content on dark blue background.', fig.cap='Women in Statistics and Data Science poster presentation.'}
+knitr::include_graphics("WDS-Curating.svg")
+```
+
+
+
+```{r icon-links}
+distilltools::icon_link(icon = "file-pdf",
+          text = "poster",
+          url = "https://shannonpileggi.github.io/growing-into-r/#1")
+
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://www.youtube.com/watch?v=ozkJkiYxHGU")
+```
+
+### Overview
+
+A poster presentation for the 2021 virtual Women in Statistics and Data Science conference.
+
+### Abstract
+
+The `@WomenInStat` (Women in Statistics and Data Science) and `@WeAreRLadies` (We are R-Ladies) rotating Twitter curator accounts promote visibility of women in our field and facilitates engagement with others. Serving as a rotating curator on a Twitter account with thousands of followers may seem daunting, but it is a great opportunity to share your knowledge, connect with others with similar interests, and learn something in return. In this talk, I’ll discuss how I planned ahead for my `@WeAreRLadies` curation week, what happened the week of, and the good things that followed.

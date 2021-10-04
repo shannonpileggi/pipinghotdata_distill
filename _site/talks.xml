@@ -7,7 +7,31 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 22 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Be great and curate!</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate</link>
+      <description>
+
+
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curateWDS-Curating.svg" alt="Image of poster. Title bar in light blue, tips and outcomes side bar in light purple, main content on dark blue background."  /&gt;
+&lt;p class="caption"&gt;
+(#fig:unnamed-chunk-1)Women in Statistics and Data Science poster presentation.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href="https://shannonpileggi.github.io/growing-into-r/#1" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt; poster&lt;/a&gt;&lt;a href="https://www.youtube.com/watch?v=ozkJkiYxHGU" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-play-circle"&gt;&lt;/i&gt; recording&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="overview"&gt;Overview&lt;/h3&gt;
+&lt;p&gt;A poster presentation for the 2021 virtual Women in Statistics and Data Science conference.&lt;/p&gt;
+&lt;h3 id="abstract"&gt;Abstract&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;@WomenInStat&lt;/code&gt; (Women in Statistics and Data Science) and &lt;code&gt;@WeAreRLadies&lt;/code&gt; (We are R-Ladies) rotating Twitter curator accounts promote visibility of women in our field and facilitates engagement with others. Serving as a rotating curator on a Twitter account with thousands of followers may seem daunting, but it is a great opportunity to share your knowledge, connect with others with similar interests, and learn something in return. In this talk, I’ll discuss how I planned ahead for my &lt;code&gt;@WeAreRLadies&lt;/code&gt; curation week, what happened the week of, and the good things that followed.&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>5f28cf5dbb15c0232731ecb64ea07552</distill:md5>
+      <guid>https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate</guid>
+      <pubDate>Thu, 07 Oct 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate/WDS-Curating.svg" medium="image" type="image/svg+xml"/>
+    </item>
     <item>
       <title>Growing into the R community</title>
       <dc:creator>Shannon Pileggi</dc:creator>

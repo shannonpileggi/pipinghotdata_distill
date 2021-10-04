@@ -1,5 +1,22 @@
 [
   {
+    "path": "talks/2021-10-07-be-great-and-curate/",
+    "title": "Be great and curate!",
+    "description": "Tips and outcomes from an @WeAreRLadies Twitter curator",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2021-10-07",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Women in Statistics and Data Science poster presentation.\r\n\r\n\r\n\r\n\r\n poster recording\r\n\r\nOverview\r\nA poster presentation for the 2021 virtual Women in Statistics and Data Science conference.\r\nAbstract\r\nThe @WomenInStat (Women in Statistics and Data Science) and @WeAreRLadies (We are R-Ladies) rotating Twitter curator accounts promote visibility of women in our field and facilitates engagement with others. Serving as a rotating curator on a Twitter account with thousands of followers may seem daunting, but it is a great opportunity to share your knowledge, connect with others with similar interests, and learn something in return. In this talk, I’ll discuss how I planned ahead for my @WeAreRLadies curation week, what happened the week of, and the good things that followed.\r\n\r\n\r\n\r\n",
+    "preview": "talks/2021-10-07-be-great-and-curate/WDS-Curating.svg",
+    "last_modified": "2021-10-04T06:22:55-04:00",
+    "input_file": "be-great-and-curate.utf8.md"
+  },
+  {
     "path": "talks/2021-04-22-growing-into-the-r-community/",
     "title": "Growing into the R community",
     "description": "An R-Ladies meet-up",
