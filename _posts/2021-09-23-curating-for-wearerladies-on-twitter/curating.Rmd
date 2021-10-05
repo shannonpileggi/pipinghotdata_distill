@@ -44,6 +44,10 @@ knitr::include_graphics("img/arno-smit-iI72r3gSwWY-unsplash.jpg")
 
 In February 2021 I tweeted to a daunting >20k followers by curating for [`@WeAreLadies`](https://twitter.com/WeAreRLadies){target="_blank"} on Twitter. This was great opportunity to share knowledge, interact with others, and learn something in return, ultimately cultivating new connections and collaborations. From preparation to fruition, I hope this post helps you confidently enroll as a curator!
 
+<aside>
+_Added 2021-10-05:_ For a broad overview, check out the poster presentation [Be great and curate!](https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate/){target="_blank"} for the 2021 Women in Statistics and Data Science conference.
+</aside>
+
 # About `@WeAreRLadies`
 
 The `@WeAreRLadies` rotating Twitter curator exists to "encourage and maintain Twitter engagement within the R-Ladies community", and to "spotlight female and minority genders" working with R. R-Ladies has a [comprehensive guide](https://guide.rladies.org/rocur/about/){target="_blank"} describing the program, procedures and protocols for the week, and tips for successful curation. 
