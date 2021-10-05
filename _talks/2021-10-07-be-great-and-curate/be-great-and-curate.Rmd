@@ -33,7 +33,9 @@ distilltools::icon_link(icon = "fas fa-play-circle",
           text = "recording",
           url = "https://www.youtube.com/watch?v=SvnSakGZykk")
 
-xfun::embed_file(here::here("_talks", "2021-10-07-be-great-and-curate", "WDS-Curating.pdf"), text = "Download the poster")
+distilltools::icon_link(icon = "fas fa-file-pdf",
+          text = "poster",
+          url = "https://github.com/shannonpileggi/pipinghotdata_distill/blob/master/_talks/2021-10-07-be-great-and-curate/WDS-Curating.pdf")
 ```
 
 ### Overview
