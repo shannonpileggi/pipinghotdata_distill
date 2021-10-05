@@ -16,7 +16,7 @@
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curateWDS-Curating.svg" alt="Image of poster. Title bar in light blue, tips and outcomes side bar in light purple, main content on dark blue background."  /&gt;
+&lt;img src="https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curateWDS-Curating.png" alt="Image of poster. Title bar in light blue, tips and outcomes side bar in light purple, main content on dark blue background." width="1250" /&gt;
 &lt;p class="caption"&gt;
 (#fig:unnamed-chunk-1)Women in Statistics and Data Science poster presentation.
 &lt;/p&gt;
@@ -32,7 +32,7 @@
       <distill:md5>5f28cf5dbb15c0232731ecb64ea07552</distill:md5>
       <guid>https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate</guid>
       <pubDate>Thu, 07 Oct 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate/WDS-Curating.svg" medium="image" type="image/svg+xml"/>
+      <media:content url="https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate/WDS-Curating.png" medium="image" type="image/png" width="2500" height="1750"/>
     </item>
     <item>
       <title>Growing into the R community</title>

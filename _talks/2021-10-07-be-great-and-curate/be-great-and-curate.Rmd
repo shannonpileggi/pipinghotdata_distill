@@ -3,7 +3,7 @@ title: "Be great and curate!"
 description: |
   Tips and outcomes from an @WeAreRLadies Twitter curator
 base_url: https://www.pipinghotdata.com/
-preview: WDS-Curating.svg
+preview: WDS-Curating.png
 author:
   - name: Shannon Pileggi
     url: {}
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r echo=FALSE, fig.alt='Image of poster. Title bar in light blue, tips and outcomes side bar in light purple, main content on dark blue background.', fig.cap='Women in Statistics and Data Science poster presentation.'}
-knitr::include_graphics("WDS-Curating.svg")
+knitr::include_graphics("WDS-Curating.png")
 ```
 
 
