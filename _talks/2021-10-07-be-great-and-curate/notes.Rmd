@@ -5,17 +5,20 @@ date: "10/4/2021"
 output: html_document
 ---
 
+BE GREAT AND CURATE! 
+TIPS AND OUTCOMES FROM AN @WEARERLADIES TWITTER CURATOR
+
 # Curator accounts
 
-A rotating curation is a twitter account that features a new curator for each week. Currently, there are two rotating curator accounts relevant to our field. First, the `@WeAreRLadies` account is specific to the those who program in R, and second, the `@WomeninStat` is specific to the statistics and data science community. I curated for the `@WeAreRLadies` account in February of this year, and it was a great experience! I hope I can convince you to consider it.
+A rotating curator is a twitter account that features a new curator for each week. Currently, there are two rotating curator accounts relevant to our field. First, the `@WeAreRLadies` account is specific to the those who program in R, and second, the `@WomeninStat` is specific to the statistics and data science community. The links on these curator accounts take you to the admin sites for these accounts to learn more. I curated for the `@WeAreRLadies` account in February of this year, and it was a great experience! I hope I can convince you to consider it.
 
 # Purpose
 
-The purpose of these two curator accounts is to encourange and maintain Twitter engagement within R-Ladies or women in statistics and data science, and to spotlight female and minority genders in any location and any experience level. That is right - any experience level! Regardless of if have been in this field for 6 months or 20 years, you have a valuable perspective to share.
+The purpose of these two curator accounts is to encourage and maintain Twitter engagement within R-Ladies or women in statistics and data science, and to spotlight female and minority genders in any location and any experience level. That is right - any experience level! Regardless of if have been in this field for 6 months or 20 years, you have a valuable perspective to share.
 
 # YOU CAN DO THIS
 
-I imagine two things holding you back from considering a rotatin curating position are imposter syndrom and discomfort with Twitter. This was certainly true for me as well. 
+I imagine two things holding you back from considering a rotatin curating position are imposter syndrome and discomfort with Twitter. This was certainly true for me as well. 
 
 Regarding imposter syndrome, this links to a great post by Caitlin Hudon about imposter syndrome in data science, including why it is prevalent and how to deal with it through accepting that you will never know everything in this field, but that you likely do know something that others do not.  
 
@@ -31,9 +34,9 @@ Of course, there are a wide variety of things you can tweet about, including, bu
 
 # STYLING CONTENT
 
-In its most basic form, a tweet is just plain text, and you probably know, with some emojis. But you can share a broad range of content, including gifs, images, memes, code, and flyers. 
+In its most basic form, a tweet is just plain text possibly with some emojis. But you can share a broad range of content, including gifs, images, memes, code, and flyers. 
 
-For my curating week, I wanted to share both code gifs and a couple of formatted slide layouts. I didn't have my own colors or fonts to use, nor did I feel like investing time in that, so I relied on the R-Ladies style guides that already had colors, fonts, and example layouts readily available.
+For my curating week, I wanted to share both code gifs and a couple of formatted slide layouts. I didn't have my own colors or fonts to use, nor did I feel like investing time in creating my own style, so I relied on the R-Ladies style guides that already had colors, fonts, and example layouts readily available.
 
 When you are creating content, please keep in mind accessibility for members of our community that use assistive technology to read digital content, for example by including descriptions on images or sharing code in accessible formats like GitHub gists.
 
