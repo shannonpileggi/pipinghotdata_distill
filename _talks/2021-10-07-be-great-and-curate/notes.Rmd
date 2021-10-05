@@ -1,0 +1,68 @@
+---
+title: "Untitled"
+author: "Shannon Pileggi"
+date: "10/4/2021"
+output: html_document
+---
+
+BE GREAT AND CURATE! 
+TIPS AND OUTCOMES FROM AN @WEARERLADIES TWITTER CURATOR
+
+# Curator accounts
+
+A rotating curator is a twitter account that features a new curator for each week. Currently, there are two rotating curator accounts relevant to our field. First, the `@WeAreRLadies` account is specific to the those who program in R, and second, the `@WomeninStat` is specific to the statistics and data science community. The links on these curator accounts take you to the admin sites for these accounts to learn more. I curated for the `@WeAreRLadies` account in February of this year, and it was a great experience! I hope I can convince you to consider it.
+
+# Purpose
+
+The purpose of these two curator accounts is to encourage and maintain Twitter engagement within R-Ladies or women in statistics and data science, and to spotlight female and minority genders in any location and any experience level. That is right - any experience level! Regardless of if have been in this field for 6 months or 20 years, you have a valuable perspective to share.
+
+# YOU CAN DO THIS
+
+I imagine two things holding you back from considering a rotatin curating position are imposter syndrome and discomfort with Twitter. This was certainly true for me as well. 
+
+Regarding imposter syndrome, this links to a great post by Caitlin Hudon about imposter syndrome in data science, including why it is prevalent and how to deal with it through accepting that you will never know everything in this field, but that you likely do know something that others do not.  
+
+Regarding Twitter, it took me a while to get comfortable with Twitter, and even longer to get comfortable enough to volunteer to be a curator. If you click on this link, you'll find a book that Oscar Baruffa and Veerle van Son released in Jan of this year called "Twitter for R programmers", which walks you through everything you need to know including basics like what are hashtags and what are threads. I really wish I had this book when I got started with Twitter! I think one way to get comfortable with Twitter is to force yourself to tweet, which being a rotating curator is great for.
+
+# INSPIRATION
+
+Once you decide to curate, you will have to find things to tweet about! One strategy you can use is just think about the tweets you like - what kind of content was it? How was it presented? Why did you like it? And once you figure that out, try to emulate it yourself. I thank other rotating curators and twitter users that put out amazing content that inspires me.
+
+# CONTENT IDEAS
+
+Of course, there are a wide variety of things you can tweet about, including, but not limited to projects, passions, polls, code,  tutorials, favorite or new methods/packages/resources, conference talks, things you had to overcome to be successful, questions that others ask you, your own questions.
+
+# STYLING CONTENT
+
+In its most basic form, a tweet is just plain text possibly with some emojis. But you can share a broad range of content, including gifs, images, memes, code, and flyers. 
+
+For my curating week, I wanted to share both code gifs and a couple of formatted slide layouts. I didn't have my own colors or fonts to use, nor did I feel like investing time in creating my own style, so I relied on the R-Ladies style guides that already had colors, fonts, and example layouts readily available.
+
+When you are creating content, please keep in mind accessibility for members of our community that use assistive technology to read digital content, for example by including descriptions on images or sharing code in accessible formats like GitHub gists.
+
+Finally, for the tips and outcomes!
+
+# TIPS
+
+When curating, be kind to yourself when you select a week. Be sure that it isn't your busiest time of year. I selected a date in February when I knew I would be calming down from a busy Q4 and when we had a holiday. You can additionally consider selecting a date during a time frame that is meaningful to you; for example, black history month in February or Universal Human Rights Month in December.
+
+Additionally, I recommend drafting tweets in advance. They don't have to be perfectly written out - but I do think having some content ideas ready to go will make the week go smoother and be more productive in terms of engaging the community.
+
+I also strongly recommend practicing with TweetDeck in advance. TweetDeck is a platform that you can use from your personal account, and it is the platform you will have to use as a rotating curator. It is a very different interface compared to the standard twitter interface, so familiarizing yourself with this platform before the day your curation starts will make your first day go so much smoother. I certainly wish I had opened TweetDeck before my first day.
+
+# OUTCOMES
+
+Lastly, what are you going to get out of this? Why should you invest this time in something that is possibly outside of your comfort zone? Here are the outcomes I experienced, and I hope they hold true for you too.
+
+First of all, knowledge. Whether I asked a direct question or someone volunteered something on one of my threads, I learned a lot of new things that were directly related to my interests.
+
+Next, connections! I engaged with many new people during my twitter curation that I still engage with today, whether that is publicly on Twitter or more privately in chats.
+
+I also created new collaborations. This was both in advance of my curation week to get feedback on prepared content, and after my curation week when I connected with others with share interest.
+
+Forcing myself to tweet multiple times a day increased my confidence as a Twitter user. I learned that it is ok if a tweet doesn't get many likes or retweets, and to just keep going and tweeting because eventually something will stick that might help me, help others, or just be fun.
+
+Finally, we have community. It is very gratifying to contribute the community by serving as a rotating curator, and after curating, I think you will find you will have a better sense of belonging in the community as well. 
+
+Thank you for making it to the end of this poster presentation! If you want more specific details on my curation week, you can check out my blog post linked here about curating for WeAreRLadies on Twitter, and for details about R-Ladies styled code gifs, I have a blog post for that as well called RLadies styled code gifs with xaringan and flipbookr.  I hope to see you as a rotating curator soon!
+
