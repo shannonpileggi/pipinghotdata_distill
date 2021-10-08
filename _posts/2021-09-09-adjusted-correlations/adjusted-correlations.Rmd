@@ -292,22 +292,28 @@ results_1 <- dat_stacked %>%
 ```
 
 ```{r}
-compute_adj_corr <- function(data){
+compute_adj_corr <- function(data, var_dep, var_ind, var_group){
   
-  mixed_model <- lme4::lmer(danceability ~ value + (1 | playlist_genre), data)
+  #mixed_formula <- "danceability ~ value + (1 | playlist_genre)"
+  mixed_formula <- glue::glue("{var_dep} ~ {var_ind} + (1 | {var_group})")
+  
+  mixed_model <- lme4::lmer(mixed_formula, data)
 
-  height_sign <- mixed_model %>% 
-    broom.mixed::tidy() %>% 
-    filter(term == "value") %>% 
-    pull(estimate) %>% 
-    sign()
-
-  # marginal rsq is the variance of fixed effects ----
-  adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
-
-  return(adj_corr)
+   return(mixed_model)
+  
+#  height_sign <- mixed_model %>% 
+#    broom.mixed::tidy() %>% 
+#    filter(term == "value") %>% 
+#    pull(estimate) %>% 
+#    sign()
+#
+#  # marginal rsq is the variance of fixed effects ----
+#  adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
+#
+#  return(adj_corr)
 }
 ```
+
 
 ```{r}
 results_2 <- dat_stacked %>%
@@ -315,7 +321,7 @@ results_2 <- dat_stacked %>%
   group_by(attribute) %>% 
   nest() %>% 
   mutate(
-    corr = map_dbl(data, compute_adj_corr)
+    corr = map(data, compute_adj_corr, var_dep = "danceability", var_ind = "value", var_group = "playlist_genre")
   ) %>% 
   mutate(music_category = "total adj") %>% 
   dplyr::select(music_category, attribute, corr)
