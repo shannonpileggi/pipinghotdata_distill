@@ -45,7 +45,9 @@ dat <- dat_raw %>%
   mutate(year = str_sub(track_album_release_date, start = 1, end = 4) %>% as.numeric) %>% 
   filter(playlist_genre %in% c("pop", "rock", "rap")) %>%
   filter(year == 2019) %>% 
-  dplyr::select(track_id, playlist_genre, danceability, energy, speechiness, acousticness, instrumentalness, liveness, valence)
+  dplyr::select(track_id, playlist_genre, danceability, energy, speechiness, acousticness, instrumentalness, liveness, valence) %>% 
+  # create an additional variable for genre to be used later ----
+  mutate(music_category = playlist_genre) 
 ```
 
 ```{r}
@@ -162,10 +164,15 @@ dat_all %>%
   theme_shannon()
 ```
 
+The two main assumptions that go into correlations are:
 
 1. The relationship is linear.
 
 2. The observations are independent.
+
+The linearity of the relationship can be evaluated by examining a scatter plot. Independence of observations is evaluated by thinking about the origin and nature of the data. A classic way of violating the independence assumption is when observations arise from repeated measures; a sneakier way the independence observation can be violated is from what Isabella  Ghement refers to as a [random grouping factor](https://twitter.com/IsabellaGhement/status/1443773295426359298){target="_blank"}. 
+
+Let's check this out by examining correlations on a single feature in the spotify data set. `r emo::ji("monocle")`
 
 
 # Single feature
@@ -179,9 +186,20 @@ between height and weight to be between 0.46 and 0.79; however, when estimated
 in total ignoring sport, this yields an estimate of 0.81.
 
 ```{r}
+# genre colors
+colors_genre <- c(
+  "pop" = "#E76F51", 
+  "rock" = "#264653", 
+  "rap" = "#E9C46A"
+)
+```
+
+
+
+```{r}
 dat %>% 
-  bind_rows(dat %>% mutate(playlist_genre = "Total")) %>% 
-  group_by(playlist_genre) %>% 
+  bind_rows(dat %>% mutate(music_category = "total")) %>% 
+  group_by(music_category) %>% 
   nest() %>% 
   mutate(
     base_n = map_int(data, nrow),
@@ -190,23 +208,29 @@ dat %>%
   ungroup() %>% 
   unnest(c(data, corr)) %>% 
   mutate(
-    corr_label =  glue::glue("{playlist_genre}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}")
+    corr_label =  glue::glue("{music_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}")
     #sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")
     ) %>% 
   ggplot(aes(x = speechiness, y = danceability)) +
-  geom_point(aes(color = corr_label), show.legend = FALSE) +
+  geom_point(aes(color = playlist_genre), alpha = 0.2, show.legend = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
-  #scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
+  scale_color_manual(values = colors_genre) + 
   theme_shannon()
   
 ```
 
+Here, we can see that the correlations between `speechiness` and `danceability` are 
+0.06 (`pop`), 0.13 (`rap`), and -0.11 (`rock`), and so it might be expected that
+the overall correlation between `speechiness` and `danceability` would be between `-0.11` 
+and `0.13`, yet it is estimated to be `0.25`, which is stronger than any individual
+correlation. `r emo::ji("thinking")`
+
 ## Adjusted correlations
 
-To estimate a correlation that adjusts for sport, implement a linear mixed model
-with a fixed effect for height and a random effect for sport. The correlation
-estimate adjusting for sport is the sign of the height coefficient multiplied by the
-marginal r-squared of the model, which is the variance of the fixed effects.
+To estimate a correlation that adjusts for genre, we can implement a linear mixed model
+with a fixed effect for `speechiness` and a random effect for `genre`. The correlation
+estimate adjusting for `genre` is the sign of the `speechiness` coefficient multiplied by the
+square root of the marginal r-squared of the model, which is the variance of the fixed effects.
 
 ```{r}
 mixed_model <- lme4::lmer(danceability ~ speechiness + (1 | playlist_genre), dat)
@@ -223,7 +247,9 @@ adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
 adj_corr
 ```
 
-This yields a more sensible result for the overall correlation between height and weight.
+This yields a more sensible result for the overall correlation between height and weight, and
+passes the sniff test that the correlation should reasonably be between `-0.11` 
+and `0.13`.
 
 # Many features
 
@@ -232,12 +258,11 @@ Now let's examine the other numeric attributes.
 
 ```{r}
 dat_stacked <- dat %>% 
-  mutate(genre = playlist_genre, music_category = playlist_genre) %>% 
-  bind_rows(dat %>% mutate(music_category = "total", genre = playlist_genre)) %>% 
-  dplyr::select(track_id, music_category, genre, danceability, energy, 
+  bind_rows(dat %>% mutate(music_category = "total")) %>% 
+  dplyr::select(track_id, music_category, playlist_genre, danceability, energy, 
                 speechiness, acousticness, instrumentalness, liveness, valence) %>% 
   pivot_longer(
-    -c(track_id, music_category, genre, danceability),
+    -c(track_id, music_category, playlist_genre, danceability),
     names_to = "attribute",
     values_to = "value"
   ) 
@@ -247,9 +272,9 @@ dat_stacked <- dat %>%
 ```{r}
 dat_stacked %>% 
   ggplot(aes(x = value, y = danceability)) +
-  geom_point(aes(color = genre), show.legend = FALSE) +
-  facet_grid(attribute ~ genre, scales = "free") +
-  #scale_color_manual(values = c("darkorange","purple","cyan4", "gray")) + 
+  geom_point(aes(color = playlist_genre), alpha = 0.2, show.legend = FALSE) +
+  facet_grid(attribute ~ music_category, scales = "free") +
+  scale_color_manual(values = colors_genre) +
   theme_shannon()
 ```
 
@@ -269,7 +294,7 @@ results_1 <- dat_stacked %>%
 ```{r}
 compute_adj_corr <- function(data){
   
-  mixed_model <- lme4::lmer(danceability ~ value + (1 | genre), data)
+  mixed_model <- lme4::lmer(danceability ~ value + (1 | playlist_genre), data)
 
   height_sign <- mixed_model %>% 
     broom.mixed::tidy() %>% 
