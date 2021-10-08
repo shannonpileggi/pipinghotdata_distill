@@ -284,11 +284,11 @@ results_1 <- dat_stacked %>%
   group_by(music_category, attribute) %>% 
   nest() %>% 
   mutate(
-    base_n = map_int(data, nrow),
     corr = map(data, ~ cor.test(x = .x$value, y = .x$danceability) %>% broom::tidy())
     ) %>% 
   ungroup() %>% 
-  unnest(c(corr)) 
+  unnest(c(corr)) %>% 
+  dplyr::select(music_category, attribute, corr = estimate)
 ```
 
 ```{r}
@@ -315,7 +315,25 @@ results_2 <- dat_stacked %>%
   group_by(attribute) %>% 
   nest() %>% 
   mutate(
-    corr_adj = map_dbl(data, compute_adj_corr)
-  )
+    corr = map_dbl(data, compute_adj_corr)
+  ) %>% 
+  mutate(music_category = "total adj") %>% 
+  dplyr::select(music_category, attribute, corr)
+```
+
+```{r}
+results_all <- results_1 %>% 
+  bind_rows(results_2) %>% 
+  pivot_wider(
+    names_from = "music_category",
+    values_from = "corr"
+    ) %>% 
+  mutate_if(is.numeric, scales::number, 0.01) %>% 
+  arrange(desc(`total adj`))
+```
+
+```{r}
+results_all %>% 
+  DT::datatable()
 ```
 
