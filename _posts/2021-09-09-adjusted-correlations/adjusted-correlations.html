@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["adjusted-correlations_files/anchor-4.2.2/anchor.min.js","adjusted-correlations_files/bowser-1.9.3/bowser.min.js","adjusted-correlations_files/distill-2.2.21/template.v2.js","adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png","adjusted-correlations_files/header-attrs-2.7/header-attrs.js","adjusted-correlations_files/jquery-1.11.3/jquery.min.js","adjusted-correlations_files/popper-2.6.0/popper.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-bundle.umd.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-light-border.css","adjusted-correlations_files/tippy-6.2.7/tippy.css","adjusted-correlations_files/tippy-6.2.7/tippy.umd.min.js","adjusted-correlations_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["adjusted-correlations_files/anchor-4.2.2/anchor.min.js","adjusted-correlations_files/bowser-1.9.3/bowser.min.js","adjusted-correlations_files/distill-2.2.21/template.v2.js","adjusted-correlations_files/figure-html5/unnamed-chunk-12-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-8-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png","adjusted-correlations_files/header-attrs-2.7/header-attrs.js","adjusted-correlations_files/jquery-1.11.3/jquery.min.js","adjusted-correlations_files/popper-2.6.0/popper.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-bundle.umd.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-light-border.css","adjusted-correlations_files/tippy-6.2.7/tippy.css","adjusted-correlations_files/tippy-6.2.7/tippy.umd.min.js","adjusted-correlations_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1434,8 +1434,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="adjusted-correlations_files/header-attrs-2.7/header-attrs.js"></script>
-  <script src="adjusted-correlations_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="adjusted-correlations_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.min.js"></script>
   <script src="adjusted-correlations_files/popper-2.6.0/popper.min.js"></script>
   <link href="adjusted-correlations_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="adjusted-correlations_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1488,7 +1488,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h1 id="tldr">TL;DR</h1>
-<h1 id="data">Data</h1>
+<p>A common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption. # Data</p>
 <p>The data comes from the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md" target="_blank">TidyTuesday Spotify songs</a> data set.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1621,12 +1621,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 </div>
 <h1 id="correlations">Correlations</h1>
-<p>Correlations are a common technique used to assess the strength of the linear association between two numeric variables. The main assumptions that go into this are:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Correlations (<em>r</em>) take on values between -1 and 1, and measure the strength of the linear association between two variables. Here are the three extreme forms of correlation:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
 <ol type="1">
 <li><p>The relationship is linear.</p></li>
 <li><p>The observations are independent.</p></li>
 </ol>
-<p>A common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption.</p>
 <h1 id="single-feature">Single feature</h1>
 <h2 id="unadjusted-correlations">Unadjusted correlations</h2>
 <p>For example, consider the three sports individually, yielding correlations between height and weight of 0.79, 0.46, and 0.73. One might expect an overall correlation between height and weight to be between 0.46 and 0.79; however, when estimated in total ignoring sport, this yields an estimate of 0.81.</p>
@@ -1653,7 +1661,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>theme_shannon</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <h2 id="adjusted-correlations">Adjusted correlations</h2>
 <p>To estimate a correlation that adjusts for sport, implement a linear mixed model with a fixed effect for height and a random effect for sport. The correlation estimate adjusting for sport is the sign of the height coefficient multiplied by the marginal r-squared of the model, which is the variance of the fixed effects.</p>
@@ -1704,7 +1712,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>theme_shannon</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">

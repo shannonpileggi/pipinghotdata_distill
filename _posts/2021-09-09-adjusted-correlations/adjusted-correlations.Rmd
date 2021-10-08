@@ -104,6 +104,18 @@ theme_shannon <- function(){
 
 ```{r, echo = F}
 set.seed(123)
+
+#cmat <- c(   1,   0.99, 0, -0.99,
+#          0.99,   1,    0,     0,
+#             0,   0,    1,     0,
+#         -0.99,   0,    0,     1)
+#
+#dat0 <- faux::rnorm_multi(n = 100, 
+#                  mu = 0.5,
+#                  r = cmat, 
+#                  varnames = c("y", "x1", "x2", "x3"),
+#                  empirical = FALSE)
+
 dat1 <- faux::rnorm_multi(n = 100, 
                   mu = c(0.5, 0.5),
                   sd = c(0.15, 0.15),
