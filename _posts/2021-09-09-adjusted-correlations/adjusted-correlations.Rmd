@@ -1,7 +1,7 @@
 ---
 title: "Estimating correlations adjusted for group membership"
 description: |
-  A short description of the post.
+  Applied examples with TidyTuesday Spotify songs and Palmer penguins
 author:
   - name: Shannon Pileggi
     url: {}
@@ -415,5 +415,6 @@ compute_adj_corr(
   var_group = "species"
   )
 ```
+# Discussion
 
 # Acknowledgements
