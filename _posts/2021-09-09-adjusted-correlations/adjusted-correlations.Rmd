@@ -202,7 +202,7 @@ colors_genre <- c(
 
 ```{r}
 dat %>% 
-  bind_rows(dat %>% mutate(music_category = "total")) %>% 
+  bind_rows(dat %>% mutate(music_category = "all")) %>% 
   group_by(music_category) %>% 
   nest() %>% 
   mutate(
@@ -212,9 +212,10 @@ dat %>%
   ungroup() %>% 
   unnest(c(data, corr)) %>% 
   mutate(
-    corr_label =  glue::glue("{music_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}")
-    #sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")
-    ) %>% 
+    music_category = fct_relevel(music_category, "pop","rap", "rock", "all"),
+    corr_label =  glue::glue("{music_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
+    corr_label = fct_reorder(as.character(corr_label), as.numeric(music_category))
+  ) %>% 
   ggplot(aes(x = speechiness, y = danceability)) +
   geom_point(aes(color = playlist_genre), alpha = 0.2, show.legend = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
@@ -236,6 +237,9 @@ with a fixed effect for `speechiness` and a random effect for `genre`. The corre
 estimate adjusting for `genre` is the sign of the `speechiness` coefficient multiplied by the
 square root of the marginal r-squared of the model, which is the variance of the fixed effects.
 
+
+https://easystats.github.io/performance/reference/r2_nakagawa.html
+
 ```{r}
 mixed_model <- lme4::lmer(danceability ~ speechiness + (1 | playlist_genre), dat)
 
@@ -245,8 +249,9 @@ height_sign <- mixed_model %>%
   pull(estimate) %>% 
   sign()
 
-# marginal rsq is the variance of fixed effects ----
-adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
+r2_by_group <- performance::r2_nakagawa(mixed_model, by_group = TRUE)$R2[1]
+
+adj_corr <- height_sign * sqrt(r2_by_group)
 
 adj_corr
 ```
@@ -262,7 +267,7 @@ Now let's examine the other numeric attributes.
 
 ```{r}
 dat_stacked <- dat %>% 
-  bind_rows(dat %>% mutate(music_category = "total")) %>% 
+  bind_rows(dat %>% mutate(music_category = "all")) %>% 
   dplyr::select(track_id, music_category, playlist_genre, danceability, energy, 
                 speechiness, acousticness, instrumentalness, liveness, valence) %>% 
   pivot_longer(
@@ -300,7 +305,6 @@ results_1 <- dat_stacked %>%
 ```{r}
 compute_adj_corr <- function(data, var_dep, var_ind, var_group){
   
-  #mixed_formula <- "danceability ~ value + (1 | playlist_genre)"
   mixed_formula <- glue::glue("{var_dep} ~ {var_ind} + (1 | {var_group})")
   
   mixed_model <- lme4::lmer(mixed_formula, data)
@@ -311,23 +315,24 @@ compute_adj_corr <- function(data, var_dep, var_ind, var_group){
     pull(estimate) %>% 
     sign()
 
-  # marginal rsq is the variance of fixed effects ----
-  adj_corr <- height_sign * sqrt(performance::r2(mixed_model)[["R2_marginal"]])
+ r2_by_group <- performance::r2_nakagawa(mixed_model, by_group = TRUE)$R2[1]
 
-  return(adj_corr)
+ adj_corr <- height_sign * sqrt(r2_by_group)
+
+ return(adj_corr)
 }
 ```
 
 
 ```{r}
 results_2 <- dat_stacked %>%
-  filter(music_category == "total") %>% 
+  filter(music_category == "all") %>% 
   group_by(feature) %>% 
   nest() %>% 
   mutate(
     corr = map_dbl(data, compute_adj_corr, var_dep = "danceability", var_ind = "value", var_group = "playlist_genre")
   ) %>% 
-  mutate(music_category = "total adj") %>% 
+  mutate(music_category = "all adj") %>% 
   dplyr::select(music_category, feature, corr)
 ```
 
@@ -339,13 +344,13 @@ results_all <- results_1 %>%
     values_from = "corr"
     ) %>% 
   mutate_if(is.numeric, round, 2) %>% 
-  arrange(desc(`total adj`))
+  arrange(desc(`all adj`))
 ```
 
 ```{r}
 results_all %>% 
   gt::gt() %>% 
-  gt_hulk_col_numeric(pop:`total adj`)
+  gt_hulk_col_numeric(pop:`all adj`)
 ```
 
 
@@ -400,4 +405,5 @@ compute_adj_corr(
   var_group = "species"
   )
 ```
+
 

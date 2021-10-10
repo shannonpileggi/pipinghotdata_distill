@@ -2542,7 +2542,8 @@ gtag('config', 'UA-128676462-1');
 </div>
 </div>
 <h1 id="tldr">TL;DR</h1>
-<p>A common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption. # Data</p>
+<p>A common mistake that I see is when the request is to estimate the overall correlation, some may not to take into account important sources of variation in the data, which can negate the independent observations assumption.</p>
+<h1 id="data">Data</h1>
 <p>The data comes from the <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md" target="_blank">TidyTuesday Spotify songs</a> data set.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2769,9 +2770,9 @@ gtag('config', 'UA-128676462-1');
     <span class='op'>-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>track_id</span>, <span class='va'>music_category</span>, <span class='va'>playlist_genre</span>, <span class='va'>danceability</span><span class='op'>)</span>,
     names_to <span class='op'>=</span> <span class='st'>"feature"</span>,
     values_to <span class='op'>=</span> <span class='st'>"value"</span>
-  <span class='op'>)</span><span class='co'># %&gt;% </span>
+  <span class='op'>)</span> <span class='co'>#%&gt;% </span>
   <span class='co'># reordered by a sneak peak at results below ----</span>
-  <span class='co'>#mutate(feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "energy"))</span>
+  <span class='co'># mutate(feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "energy"))</span>
 </code></pre>
 </div>
 </div>
