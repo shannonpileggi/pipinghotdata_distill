@@ -16,6 +16,21 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+# TL;DR
+
+A common mistake that I see is when the request is to estimate the overall correlation, some 
+may not to take into account important sources of variation in the data, which can negate
+the independent observations assumption.
+
+# Applications
+
+* In market research, when evaluating correlations between attribute ratings and sales across many products.
+
+* In biological research, when evaluating correlations between gene mRNA expressions across many cancer types.
+
+# Packages
+
 ```{r}
 library(tidyverse)      # general use ----
 library(broom)          # tidying of stats results ----
@@ -26,11 +41,6 @@ library(gtExtras)       # table formatting ----
 library(palmerpenguins) # simpsons paradox example ----
 ```
 
-# TL;DR
-
-A common mistake that I see is when the request is to estimate the overall correlation, some 
-may not to take into account important sources of variation in the data, which can negate
-the independent observations assumption.
 
 # Data
 
@@ -149,10 +159,10 @@ dat3 <- faux::rnorm_multi(n = 100,
 dat_all <- dat1 %>% mutate(feature = 1) %>% 
   bind_rows(dat2 %>% mutate(feature = 2)) %>% 
   bind_rows(dat3 %>% mutate(feature = 3)) %>% 
-  rename(danceability = y, value = x) %>% 
+  #rename(danceability = y, value = x) %>% 
   group_by(feature) %>% 
   nest() %>% 
-  mutate(results = purrr::map(.x = data,.f = ralph::compute_corr, var1 = danceability, var2 = value)) %>% 
+  mutate(results = purrr::map(.x = data,.f = ralph::compute_corr, var1 = x, var2 = y)) %>% 
 unnest(c(data, results)) %>% 
   ungroup() %>% 
   mutate(label = glue::glue("Feature {feature}\n r = {scales::number(correlation)}"))
@@ -162,7 +172,7 @@ Correlations (_r_) take on values between -1 and 1, and measure the strength of 
 
 ```{r, echo=FALSE}
 dat_all %>% 
-  ggplot(aes(x = danceability, y = value)) +
+  ggplot(aes(x = x, y = y)) +
   geom_point(color = "#E76F51", alpha = 0.7) +
   facet_wrap(. ~ label) +
   theme_shannon()
@@ -176,7 +186,7 @@ The two main assumptions that go into correlations are:
 
 The linearity of the relationship can be evaluated by examining a scatter plot. Independence of observations is evaluated by thinking about the origin and nature of the data. A classic way of violating the independence assumption is when observations arise from repeated measures; a sneakier way the independence observation can be violated is from what Isabella  Ghement refers to as a [random grouping factor](https://twitter.com/IsabellaGhement/status/1443773295426359298){target="_blank"}. 
 
-Let's check this out by examining correlations on a single feature in the spotify data set. `r emo::ji("monocle")`
+Let's check this out by examining correlations on a single feature in the Spotify data set. `r emo::ji("monocle")`
 
 
 # Single feature
@@ -390,7 +400,7 @@ dat_penguins %>%
     corr_label = fct_reorder(as.character(corr_label), as.numeric(species_category))
    ) %>% 
   ggplot(aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point(aes(color = species), alpha = 0.2, show.legend = FALSE) +
+  geom_point(aes(color = species), alpha = 0.5, show.legend = FALSE) +
   geom_smooth(method = "lm", color = "darkgray", se = FALSE) +
   facet_wrap(. ~ corr_label, ncol = 4) +
   scale_color_manual(values = colors_penguins) + 
@@ -406,4 +416,4 @@ compute_adj_corr(
   )
 ```
 
-
+# Acknowledgements

@@ -2713,7 +2713,7 @@ gtag('config', 'UA-128676462-1');
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>music_category <span class='op'>=</span> <span class='st'>"total"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>music_category <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>music_category</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>nest</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>mutate</span><span class='op'>(</span>
@@ -2723,9 +2723,10 @@ gtag('config', 'UA-128676462-1');
   <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>unnest</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>corr</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>mutate</span><span class='op'>(</span>
-    corr_label <span class='op'>=</span>  <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{music_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"</span><span class='op'>)</span>
-    <span class='co'>#sport = fct_relevel(sport, "Shooting", "Gymnasitics", "Swimming", "Total")</span>
-    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+    music_category <span class='op'>=</span> <span class='fu'>fct_relevel</span><span class='op'>(</span><span class='va'>music_category</span>, <span class='st'>"pop"</span>,<span class='st'>"rap"</span>, <span class='st'>"rock"</span>, <span class='st'>"all"</span><span class='op'>)</span>,
+    corr_label <span class='op'>=</span>  <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{music_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"</span><span class='op'>)</span>,
+    corr_label <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>corr_label</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>music_category</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>speechiness</span>, y <span class='op'>=</span> <span class='va'>danceability</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>playlist_genre</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='va'>.</span> <span class='op'>~</span> <span class='va'>corr_label</span>, ncol <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span>
@@ -2738,6 +2739,7 @@ gtag('config', 'UA-128676462-1');
 <p>Here, we can see that the correlations between <code>speechiness</code> and <code>danceability</code> are 0.06 (<code>pop</code>), 0.13 (<code>rap</code>), and -0.11 (<code>rock</code>), and so it might be expected that the overall correlation between <code>speechiness</code> and <code>danceability</code> would be between <code>-0.11</code> and <code>0.13</code>, yet it is estimated to be <code>0.25</code>, which is stronger than any individual correlation. 🤔</p>
 <h2 id="adjusted-correlations">Adjusted correlations</h2>
 <p>To estimate a correlation that adjusts for genre, we can implement a linear mixed model with a fixed effect for <code>speechiness</code> and a random effect for <code>genre</code>. The correlation estimate adjusting for <code>genre</code> is the sign of the <code>speechiness</code> coefficient multiplied by the square root of the marginal r-squared of the model, which is the variance of the fixed effects.</p>
+<p><a href="https://easystats.github.io/performance/reference/r2_nakagawa.html" class="uri">https://easystats.github.io/performance/reference/r2_nakagawa.html</a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mixed_model</span> <span class='op'>&lt;-</span> <span class='fu'>lme4</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span><span class='op'>(</span><span class='va'>danceability</span> <span class='op'>~</span> <span class='va'>speechiness</span> <span class='op'>+</span> <span class='op'>(</span><span class='fl'>1</span> <span class='op'>|</span> <span class='va'>playlist_genre</span><span class='op'>)</span>, <span class='va'>dat</span><span class='op'>)</span>
@@ -2748,14 +2750,14 @@ gtag('config', 'UA-128676462-1');
   <span class='fu'>pull</span><span class='op'>(</span><span class='va'>estimate</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'><a href='https://rdrr.io/r/base/sign.html'>sign</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='co'># marginal rsq is the variance of fixed effects ----</span>
-<span class='va'>adj_corr</span> <span class='op'>&lt;-</span> <span class='va'>height_sign</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'>performance</span><span class='fu'>::</span><span class='fu'><a href='https://easystats.github.io/performance/reference/r2.html'>r2</a></span><span class='op'>(</span><span class='va'>mixed_model</span><span class='op'>)</span><span class='op'>[[</span><span class='st'>"R2_marginal"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>r2_by_group</span> <span class='op'>&lt;-</span> <span class='fu'>performance</span><span class='fu'>::</span><span class='fu'><a href='https://easystats.github.io/performance/reference/r2_nakagawa.html'>r2_nakagawa</a></span><span class='op'>(</span><span class='va'>mixed_model</span>, by_group <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>$</span><span class='va'>R2</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+
+<span class='va'>adj_corr</span> <span class='op'>&lt;-</span> <span class='va'>height_sign</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>r2_by_group</span><span class='op'>)</span>
 
 <span class='va'>adj_corr</span>
 </code></pre>
 </div>
-<pre><code>Marginal R2 
- 0.07537364 </code></pre>
+<pre><code>[1] 0.08751253</code></pre>
 </div>
 <p>This yields a more sensible result for the overall correlation between height and weight, and passes the sniff test that the correlation should reasonably be between <code>-0.11</code> and <code>0.13</code>.</p>
 <h1 id="many-features">Many features</h1>
@@ -2763,7 +2765,7 @@ gtag('config', 'UA-128676462-1');
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dat_stacked</span> <span class='op'>&lt;-</span> <span class='va'>dat</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>music_category <span class='op'>=</span> <span class='st'>"total"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>mutate</span><span class='op'>(</span>music_category <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>track_id</span>, <span class='va'>music_category</span>, <span class='va'>playlist_genre</span>, <span class='va'>danceability</span>, <span class='va'>energy</span>, 
                 <span class='va'>speechiness</span>, <span class='va'>acousticness</span>, <span class='va'>instrumentalness</span>, <span class='va'>liveness</span>, <span class='va'>valence</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>pivot_longer</span><span class='op'>(</span>
@@ -2806,7 +2808,6 @@ gtag('config', 'UA-128676462-1');
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>compute_adj_corr</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>var_dep</span>, <span class='va'>var_ind</span>, <span class='va'>var_group</span><span class='op'>)</span><span class='op'>{</span>
   
-  <span class='co'>#mixed_formula &lt;- "danceability ~ value + (1 | playlist_genre)"</span>
   <span class='va'>mixed_formula</span> <span class='op'>&lt;-</span> <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{var_dep} ~ {var_ind} + (1 | {var_group})"</span><span class='op'>)</span>
   
   <span class='va'>mixed_model</span> <span class='op'>&lt;-</span> <span class='fu'>lme4</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lme4/man/lmer.html'>lmer</a></span><span class='op'>(</span><span class='va'>mixed_formula</span>, <span class='va'>data</span><span class='op'>)</span>
@@ -2817,10 +2818,11 @@ gtag('config', 'UA-128676462-1');
     <span class='fu'>pull</span><span class='op'>(</span><span class='va'>estimate</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
     <span class='fu'><a href='https://rdrr.io/r/base/sign.html'>sign</a></span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='co'># marginal rsq is the variance of fixed effects ----</span>
-  <span class='va'>adj_corr</span> <span class='op'>&lt;-</span> <span class='va'>height_sign</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'>performance</span><span class='fu'>::</span><span class='fu'><a href='https://easystats.github.io/performance/reference/r2.html'>r2</a></span><span class='op'>(</span><span class='va'>mixed_model</span><span class='op'>)</span><span class='op'>[[</span><span class='st'>"R2_marginal"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+ <span class='va'>r2_by_group</span> <span class='op'>&lt;-</span> <span class='fu'>performance</span><span class='fu'>::</span><span class='fu'><a href='https://easystats.github.io/performance/reference/r2_nakagawa.html'>r2_nakagawa</a></span><span class='op'>(</span><span class='va'>mixed_model</span>, by_group <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>$</span><span class='va'>R2</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
 
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>adj_corr</span><span class='op'>)</span>
+ <span class='va'>adj_corr</span> <span class='op'>&lt;-</span> <span class='va'>height_sign</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>r2_by_group</span><span class='op'>)</span>
+
+ <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>adj_corr</span><span class='op'>)</span>
 <span class='op'>}</span>
 </code></pre>
 </div>
@@ -2828,13 +2830,13 @@ gtag('config', 'UA-128676462-1');
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results_2</span> <span class='op'>&lt;-</span> <span class='va'>dat_stacked</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>music_category</span> <span class='op'>==</span> <span class='st'>"total"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>music_category</span> <span class='op'>==</span> <span class='st'>"all"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>feature</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>nest</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>mutate</span><span class='op'>(</span>
     corr <span class='op'>=</span> <span class='fu'>map_dbl</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>compute_adj_corr</span>, var_dep <span class='op'>=</span> <span class='st'>"danceability"</span>, var_ind <span class='op'>=</span> <span class='st'>"value"</span>, var_group <span class='op'>=</span> <span class='st'>"playlist_genre"</span><span class='op'>)</span>
   <span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>mutate</span><span class='op'>(</span>music_category <span class='op'>=</span> <span class='st'>"total adj"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>music_category <span class='op'>=</span> <span class='st'>"all adj"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>music_category</span>, <span class='va'>feature</span>, <span class='va'>corr</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2848,7 +2850,7 @@ gtag('config', 'UA-128676462-1');
     values_from <span class='op'>=</span> <span class='st'>"corr"</span>
     <span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>mutate_if</span><span class='op'>(</span><span class='va'>is.numeric</span>, <span class='va'>round</span>, <span class='fl'>2</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>`total adj`</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>arrange</span><span class='op'>(</span><span class='fu'>desc</span><span class='op'>(</span><span class='va'>`all adj`</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2856,7 +2858,7 @@ gtag('config', 'UA-128676462-1');
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results_all</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>gt</span><span class='fu'>::</span><span class='fu'><a href='https://gt.rstudio.com/reference/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/gtExtras/man/gt_hulk_col_numeric.html'>gt_hulk_col_numeric</a></span><span class='op'>(</span><span class='va'>pop</span><span class='op'>:</span><span class='va'>`total adj`</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/gtExtras/man/gt_hulk_col_numeric.html'>gt_hulk_col_numeric</a></span><span class='op'>(</span><span class='va'>pop</span><span class='op'>:</span><span class='va'>`all adj`</span><span class='op'>)</span>
 </code></pre>
 </div>
 <div id="mlvuytmmcw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -3205,8 +3207,8 @@ gtag('config', 'UA-128676462-1');
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">pop</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">rap</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">rock</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">total adj</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">all</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">all adj</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -3215,37 +3217,37 @@ gtag('config', 'UA-128676462-1');
 <td class="gt_row gt_right" style="background-color: #1B7837; color: #FFFFFF;">0.33</td>
 <td class="gt_row gt_right" style="background-color: #1B7837; color: #FFFFFF;">0.35</td>
 <td class="gt_row gt_right" style="background-color: #1B7837; color: #FFFFFF;">0.33</td>
-<td class="gt_row gt_right" style="background-color: #1B7837; color: #FFFFFF;">0.27</td></tr>
+<td class="gt_row gt_right" style="background-color: #1B7837; color: #FFFFFF;">0.36</td></tr>
     <tr><td class="gt_row gt_left">speechiness</td>
 <td class="gt_row gt_right" style="background-color: #D9C2DF; color: #000000;">0.06</td>
 <td class="gt_row gt_right" style="background-color: #D9F0D3; color: #000000;">0.13</td>
 <td class="gt_row gt_right" style="background-color: #D9C2DF; color: #000000;">-0.11</td>
 <td class="gt_row gt_right" style="background-color: #73B672; color: #000000;">0.25</td>
-<td class="gt_row gt_right" style="background-color: #F0F6EF; color: #000000;">0.08</td></tr>
+<td class="gt_row gt_right" style="background-color: #F5F7F5; color: #000000;">0.09</td></tr>
     <tr><td class="gt_row gt_left">energy</td>
 <td class="gt_row gt_right" style="background-color: #C4A7D1; color: #000000;">0.03</td>
 <td class="gt_row gt_right" style="background-color: #EDE2EE; color: #000000;">-0.03</td>
 <td class="gt_row gt_right" style="background-color: #762A83; color: #FFFFFF;">-0.30</td>
 <td class="gt_row gt_right" style="background-color: #762A83; color: #FFFFFF;">-0.22</td>
-<td class="gt_row gt_right" style="background-color: #C9ADD4; color: #000000;">-0.04</td></tr>
+<td class="gt_row gt_right" style="background-color: #CDB2D6; color: #000000;">-0.05</td></tr>
     <tr><td class="gt_row gt_left">acousticness</td>
 <td class="gt_row gt_right" style="background-color: #8C519B; color: #FFFFFF;">-0.05</td>
 <td class="gt_row gt_right" style="background-color: #BA9BCA; color: #000000;">-0.15</td>
 <td class="gt_row gt_right" style="background-color: #D4EDCD; color: #000000;">0.14</td>
 <td class="gt_row gt_right" style="background-color: #F2F6F1; color: #000000;">0.07</td>
-<td class="gt_row gt_right" style="background-color: #B999C9; color: #000000;">-0.06</td></tr>
+<td class="gt_row gt_right" style="background-color: #BA9BCA; color: #000000;">-0.08</td></tr>
     <tr><td class="gt_row gt_left">liveness</td>
 <td class="gt_row gt_right" style="background-color: #762A83; color: #FFFFFF;">-0.08</td>
 <td class="gt_row gt_right" style="background-color: #CBB0D5; color: #000000;">-0.12</td>
 <td class="gt_row gt_right" style="background-color: #D4BCDB; color: #000000;">-0.12</td>
 <td class="gt_row gt_right" style="background-color: #A881BB; color: #000000;">-0.14</td>
-<td class="gt_row gt_right" style="background-color: #A881BB; color: #000000;">-0.08</td></tr>
+<td class="gt_row gt_right" style="background-color: #A881BB; color: #000000;">-0.11</td></tr>
     <tr><td class="gt_row gt_left">instrumentalness</td>
 <td class="gt_row gt_right" style="background-color: #A175B3; color: #000000;">-0.02</td>
 <td class="gt_row gt_right" style="background-color: #762A83; color: #FFFFFF;">-0.27</td>
 <td class="gt_row gt_right" style="background-color: #BFA1CE; color: #000000;">-0.16</td>
 <td class="gt_row gt_right" style="background-color: #BA9BCA; color: #000000;">-0.11</td>
-<td class="gt_row gt_right" style="background-color: #762A83; color: #FFFFFF;">-0.14</td></tr>
+<td class="gt_row gt_right" style="background-color: #762A83; color: #FFFFFF;">-0.19</td></tr>
   </tbody>
   
   
@@ -3291,7 +3293,7 @@ gtag('config', 'UA-128676462-1');
     corr_label <span class='op'>=</span> <span class='fu'>fct_reorder</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>corr_label</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>species_category</span><span class='op'>)</span><span class='op'>)</span>
    <span class='op'>)</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>bill_depth_mm</span>, y <span class='op'>=</span> <span class='va'>body_mass_g</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>species</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='fl'>0.2</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>species</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span>, show.legend <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, color <span class='op'>=</span> <span class='st'>"darkgray"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='va'>.</span> <span class='op'>~</span> <span class='va'>corr_label</span>, ncol <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'>scale_color_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>colors_penguins</span><span class='op'>)</span> <span class='op'>+</span> 
@@ -3310,8 +3312,7 @@ gtag('config', 'UA-128676462-1');
   <span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>Marginal R2 
-  0.3533056 </code></pre>
+<pre><code>[1] 0.6207223</code></pre>
 </div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
