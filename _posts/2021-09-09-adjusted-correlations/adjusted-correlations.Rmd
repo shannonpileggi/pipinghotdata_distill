@@ -19,15 +19,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL;DR
 
-A common mistake that I see is when the request is to estimate the overall correlation, some 
-may not to take into account important sources of variation in the data, which can negate
-the independent observations assumption.
+Correlations are a common analytical technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through
+a linear mixed model.
 
-# Applications
+# Overview
 
-* In market research, when evaluating correlations between attribute ratings and sales across many products.
+In industry, correlations can be mass produced to identify signals as to which of 
+many possibly independent variables have the strongest assocation with a dependent 
+variable. Moreover, the correlations are commonly estimated in aggregate, or total,
+across may subgroups. Example applications include: 
 
-* In biological research, when evaluating correlations between gene mRNA expressions across many cancer types.
+* market research, when evaluating assocations between product ratings on a many attributes and product sales across many products, in order to identify attributes with the strongest
+relationship with sales across all products.
+
+* biological research, when evaluating assocations between gene mRNA expressions across many cancer types.
 
 # Packages
 
@@ -412,11 +417,23 @@ results_all %>%
 
 Here, we see that `valence` has the strongest association with `danceability`, 
 both within each of the genres and across the three genres. Regarding `valence`,
-both the unadjusted and adjusted correlation estimate are similar. However,
+both the unadjusted and adjusted correlation estimates are similar. However,
 for other attributes, such as `speechiness` the association varies by genre (weakly positive 
-for `rap`, weakly negative for `rock`), and the unadjusted and adjusted correlations 
-differ by quite a bit.
+for `rap`, weakly negative for `rock`). Furthermore, the unadjusted (`0.25`) and 
+adjusted (`0.09`) correlations differ by quite a bit, with the unadjusted correlation
+once again producing a nonsensical result that exceeds the correlations for any
+individual genre (`-0.11` rock, `0.06` pop, and `0.13` rap).
+
 
 # Discussion
+
+Correlations are used by researchers of all backgrounds and expertise due to their
+relatively straightforward computation and interpretation. However, when applied
+without sufficient thought and care, the results could be incorrect and misleading.
+A primary defense to guard against this is to plot your data - this can help you to identify
+grouping effects or when relationships are non-linear. In addition, it should be
+carefully considered if the relationships across groups are truly of more intrest
+than relationships within groups, as across group results can mask potentially
+interesting within group differences.
 
 # Acknowledgements
