@@ -42,45 +42,6 @@ library(palmerpenguins) # simpsons paradox example ----
 ```
 
 
-# Data
-
-The data comes from the [TidyTuesday Spotify songs](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md){target="_blank"} data set.
-
-```{r}
-dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
-```
-
-
-To reduce the scope and simplify, I am going to examine a reduced set of variables from `pop`, `rock`,
-or `rap` songs in 2019.
-
-```{r}
-dat <- dat_raw %>% 
-  mutate(year = str_sub(track_album_release_date, start = 1, end = 4) %>% as.numeric) %>% 
-  filter(playlist_genre %in% c("pop", "rock", "rap")) %>%
-  filter(year == 2019) %>% 
-  dplyr::select(track_id, playlist_genre, danceability, energy, speechiness, acousticness, instrumentalness, liveness, valence) %>% 
-  # create an additional variable for genre to be used later ----
-  mutate(music_category = playlist_genre) 
-```
-
-```{r}
-dat
-```
-
-Here are the definitions of the variables, straight from the TidyTuesday repo:
-
-|variable                 |class     |description |
-|:---|:---|:-----------|
-|track_id                 |character | Song unique ID|
-|playlist_genre           |character | Playlist genre |
-|danceability             |double    | Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable. |
-|energy                   |double    | Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. |
-|speechiness              |double    | Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks. |
-|acousticness             |double    | A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.|
-|instrumentalness         |double    | Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. |
-|liveness                 |double    | Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live. |
-|valence                  |double    | A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). |
 
 # ggplot theme
 
@@ -186,100 +147,167 @@ The two main assumptions that go into correlations are:
 
 The linearity of the relationship can be evaluated by examining a scatter plot. Independence of observations is evaluated by thinking about the origin and nature of the data. A classic way of violating the independence assumption is when observations arise from repeated measures; a sneakier way the independence observation can be violated is from what Isabella  Ghement refers to as a [random grouping factor](https://twitter.com/IsabellaGhement/status/1443773295426359298){target="_blank"}. 
 
-Let's check this out by examining correlations on a single feature in the Spotify data set. `r emo::ji("monocle")`
+Let's check this out by examining correlations from a Simpson's paradox example. `r emo::ji("monocle")`
 
 
-# Single feature
+# Simpson's paradox: a Palmer penguins example
 
-## Unadjusted correlations
+The Palmer penguins data set comes from the [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/){target="_blank"} package.
+Andrew Heiss recently [tweeted](https://twitter.com/andrewheiss/status/1443570972703936523?s=20){target="_blank"} a quick demonstration of a [Simpson's paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox){target="_blank"} for this
+data, where the relationship between `bill_depth_mm` and `body_mass_g` can appear 
+differently when analyzed across all species of penguins versus within species.
 
-
-For example, consider the three sports individually, yielding correlations between 
-height and weight of 0.79, 0.46, and 0.73. One might expect an overall correlation 
-between height and weight to be between 0.46 and 0.79; however, when estimated
-in total ignoring sport, this yields an estimate of 0.81.
+For initial data preparation, I am retaining the relevant variables, removing
+missing observations, and creating a duplicate of the species variable for point
+colors and faceting later.
 
 ```{r}
-# genre colors
-colors_genre <- c(
-  "pop" = "#E76F51", 
-  "rock" = "#264653", 
-  "rap" = "#E9C46A"
-)
+dat_penguins <- penguins %>% 
+  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
+  # duplicate species variable for coloring & grouping ---
+  mutate(species_category = species) %>% 
+  drop_na()
 ```
 
+```{r}
+# species colors used in the palmerpenguins readme ----
+colors_penguins <- c(
+  "Adelie" = "darkorange",
+  "Chinstrap" = "purple",
+  "Gentoo" = "cyan4"
+  )
+```
 
+Let's examine the correlations between `bill_depth_mm` and `body_mass_g` for the three penguins species individually, as well as across all species.
 
 ```{r}
-dat %>% 
-  bind_rows(dat %>% mutate(music_category = "all")) %>% 
-  group_by(music_category) %>% 
+dat_penguins %>% 
+  # add stack for all species to be analyzed together ----
+  bind_rows(dat_penguins %>% mutate(species_category = "All")) %>% 
+  # now examine by 3 species plus all ----
+  group_by(species_category) %>% 
   nest() %>% 
+  # within each group, compute base n and correlation ----
   mutate(
     base_n = map_int(data, nrow),
-    corr = map(data, ~ cor.test(x = .x$speechiness, y = .x$danceability) %>% broom::tidy())
+    corr = map(data, ~ cor.test(x = .x$bill_depth_mm, y = .x$body_mass_g) %>% broom::tidy())
     ) %>% 
   ungroup() %>% 
+  # bring results back to raw data ----
   unnest(c(data, corr)) %>% 
   mutate(
-    music_category = fct_relevel(music_category, "pop","rap", "rock", "all"),
-    corr_label =  glue::glue("{music_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
-    corr_label = fct_reorder(as.character(corr_label), as.numeric(music_category))
-  ) %>% 
-  ggplot(aes(x = speechiness, y = danceability)) +
-  geom_point(aes(color = playlist_genre), alpha = 0.2, show.legend = FALSE) +
-  facet_wrap(. ~ corr_label, ncol = 4) +
-  scale_color_manual(values = colors_genre) + 
-  theme_shannon()
-  
+    # create ordered facet label for plotting ----
+    species_category = fct_relevel(species_category, "Gentoo", "Chinstrap", "Adelie", "All"),
+    corr_label =  glue::glue("{species_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
+    corr_label = fct_reorder(as.character(corr_label), as.numeric(species_category))
+   ) %>% 
+  # create scatter plots ----
+  ggplot(aes(x = bill_depth_mm, y = body_mass_g)) +
+    geom_point(aes(color = species), alpha = 0.5, show.legend = FALSE) +
+    geom_smooth(method = "lm", color = "darkgray", se = FALSE) +
+    facet_wrap(. ~ corr_label, ncol = 4) +
+    scale_color_manual(values = colors_penguins) + 
+    theme_shannon()
 ```
 
-Here, we can see that the correlations between `speechiness` and `danceability` are 
-0.06 (`pop`), 0.13 (`rap`), and -0.11 (`rock`), and so it might be expected that
-the overall correlation between `speechiness` and `danceability` would be between `-0.11` 
-and `0.13`, yet it is estimated to be `0.25`, which is stronger than any individual
-correlation. `r emo::ji("thinking")`
+Here we see that within species the correlations between `bill_depth_mm` and `body_mass_g`
+are `0.72`, `0.60`, and `0.58`. Yet when we look at the correlation across all species,
+we have a nonsensical estimate of `-0.47`, which is a classical presentation of
+Simpson's paradox. 
 
-## Adjusted correlations
+Getting a reasonable estimate the correlation between `bill_depth_mm` and `body_mass_g` 
+across all three species requires a bit more work. To estimate a correlation that adjusts for species, we can implement a [linear mixed model](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html){target="_blank"} with a fixed effect for `bill_depth_mm` and a random effect for `species`. The correlation estimate adjusting for `species` group membership is the sign of the `bill_depth_mm` coefficient multiplied by the square root of the variance explained by `species` levels. Here, I use the [`r2_nakagawa`](https://easystats.github.io/performance/reference/r2_nakagawa.html){target="_blank"} function from the `performance` package.
 
-To estimate a correlation that adjusts for genre, we can implement a linear mixed model
-with a fixed effect for `speechiness` and a random effect for `genre`. The correlation
-estimate adjusting for `genre` is the sign of the `speechiness` coefficient multiplied by the
-square root of the marginal r-squared of the model, which is the variance of the fixed effects.
-
-
-https://easystats.github.io/performance/reference/r2_nakagawa.html
 
 ```{r}
-mixed_model <- lme4::lmer(danceability ~ speechiness + (1 | playlist_genre), dat)
+# estimate mixed model ----
+mixed_model <- lme4::lmer(body_mass_g ~ bill_depth_mm + (1 | species), dat_penguins)
 
+# retrieve sign of coefficient ----
 height_sign <- mixed_model %>% 
   broom.mixed::tidy() %>% 
-  filter(term == "speechiness") %>% 
+  filter(term == "bill_depth_mm") %>% 
   pull(estimate) %>% 
   sign()
 
+# retrieve r2 measure ----
 r2_by_group <- performance::r2_nakagawa(mixed_model, by_group = TRUE)$R2[1]
 
+# compute adjusted correlation ----
 adj_corr <- height_sign * sqrt(r2_by_group)
 
+# print result ----
 adj_corr
 ```
 
-This yields a more sensible result for the overall correlation between height and weight, and
-passes the sniff test that the correlation should reasonably be between `-0.11` 
-and `0.13`.
+Ah, much better! `emo::ji("star-struck")` A correlation estimate between `bill_depth_mm` and `body_mass_g` of `0.62` across all three penguins species is a much more sensical estimate.
 
-# Many features
+```{r, eval = FALSE}
+compute_adj_corr(
+  data = dat_penguins, 
+  var_dep = "body_mass_g", 
+  var_ind = "bill_depth_mm", 
+  var_group = "species"
+  )
+```
 
-So far we estimated correlations between `danceability` and `speechiness` in three genres of music. 
-Now let's examine the other numeric attributes.
+
+
+
+# Multiple features: spotify songs example
+
+## Data
+
+The data comes from the [TidyTuesday Spotify songs](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md){target="_blank"} data set.
 
 ```{r}
+# import data ----
+dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv')
+```
+
+
+To reduce the scope and simplify, I am going to examine a reduced set of variables from `pop`, `rock`,
+or `rap` songs in 2019.
+
+```{r}
+# initial data prep ----
+dat <- dat_raw %>% 
+  mutate(year = str_sub(track_album_release_date, start = 1, end = 4) %>% as.numeric) %>% 
+  filter(playlist_genre %in% c("pop", "rock", "rap")) %>%
+  filter(year == 2019) %>% 
+  dplyr::select(track_id, playlist_genre, danceability, energy, speechiness, acousticness, instrumentalness, liveness, valence) %>% 
+  # create an additional variable for genre to be used later ----
+  mutate(music_category = playlist_genre) 
+```
+
+```{r}
+dat
+```
+
+Here are the definitions of the variables, straight from the TidyTuesday repo:
+
+|variable                 |class     |description |
+|:---|:---|:-----------|
+|track_id                 |character | Song unique ID|
+|playlist_genre           |character | Playlist genre |
+|danceability             |double    | Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable. |
+|energy                   |double    | Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. |
+|speechiness              |double    | Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks. |
+|acousticness             |double    | A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.|
+|instrumentalness         |double    | Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. |
+|liveness                 |double    | Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live. |
+|valence                  |double    | A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). |
+
+Our goal is to understand which of `energy`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, and `valence` have the strongest association with `danceability`.
+
+```{r}
+# create stacked data for analysis ----
 dat_stacked <- dat %>% 
+  # add in all level for across all genres ----
   bind_rows(dat %>% mutate(music_category = "all")) %>% 
   dplyr::select(track_id, music_category, playlist_genre, danceability, energy, 
                 speechiness, acousticness, instrumentalness, liveness, valence) %>% 
+  # convert to long format for plotting and analysis ----
   pivot_longer(
     -c(track_id, music_category, playlist_genre, danceability),
     names_to = "feature",
@@ -289,6 +317,9 @@ dat_stacked <- dat %>%
   # mutate(feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "energy"))
 ```
 
+## Visual exploration
+
+First, let's start with a visual exploration of the data.
 
 ```{r}
 dat_stacked %>% 
@@ -298,7 +329,10 @@ dat_stacked %>%
   scale_color_manual(values = colors_genre) +
   theme_shannon()
 ```
+Now let's compute correlations for the three genres individually, as well as the
+unadjusted correlation across all genres together.
 
+## Correlation computations
 
 ```{r}
 results_1 <- dat_stacked %>%
@@ -311,6 +345,9 @@ results_1 <- dat_stacked %>%
   unnest(c(corr)) %>% 
   dplyr::select(music_category, feature, corr = estimate)
 ```
+
+For computation of the adjusted correlation estimate with the linear mixed model,
+here is a quick function.
 
 ```{r}
 compute_adj_corr <- function(data, var_dep, var_ind, var_group){
@@ -333,6 +370,7 @@ compute_adj_corr <- function(data, var_dep, var_ind, var_group){
 }
 ```
 
+Now we compute the adjusted correlations.
 
 ```{r}
 results_2 <- dat_stacked %>%
@@ -340,11 +378,18 @@ results_2 <- dat_stacked %>%
   group_by(feature) %>% 
   nest() %>% 
   mutate(
-    corr = map_dbl(data, compute_adj_corr, var_dep = "danceability", var_ind = "value", var_group = "playlist_genre")
+    corr = map_dbl(data, 
+                   compute_adj_corr, 
+                   var_dep = "danceability", 
+                   var_ind = "value", 
+                   var_group = "playlist_genre")
   ) %>% 
   mutate(music_category = "all adj") %>% 
   dplyr::select(music_category, feature, corr)
 ```
+
+And combine both unadjusted and adjusted correlations into a single data set for
+results presentation.
 
 ```{r}
 results_all <- results_1 %>% 
@@ -357,64 +402,21 @@ results_all <- results_1 %>%
   arrange(desc(`all adj`))
 ```
 
+## Results
+
 ```{r}
 results_all %>% 
   gt::gt() %>% 
   gt_hulk_col_numeric(pop:`all adj`)
 ```
 
+Here, we see that `valence` has the strongest association with `danceability`, 
+both within each of the genres and across the three genres. Regarding `valence`,
+both the unadjusted and adjusted correlation estimate are similar. However,
+for other attributes, such as `speechiness` the association varies by genre (weakly positive 
+for `rap`, weakly negative for `rock`), and the unadjusted and adjusted correlations 
+differ by quite a bit.
 
-# Simpson's paradox
-
-```{r}
-dat_penguins <- penguins %>% 
-  dplyr::select(species, bill_depth_mm, body_mass_g) %>% 
-  # duplicate species variable for coloring & grouping ---
-  mutate(species_category = species) %>% 
-  drop_na()
-```
-
-```{r}
-colors_penguins <- c(
-  "Adelie" = "darkorange",
-  "Chinstrap" = "purple",
-  "Gentoo" = "cyan4"
-  )
-```
-
-
-```{r}
-dat_penguins %>% 
-  bind_rows(dat_penguins %>% mutate(species_category = "All")) %>% 
-  group_by(species_category) %>% 
-  nest() %>% 
-  mutate(
-    base_n = map_int(data, nrow),
-    corr = map(data, ~ cor.test(x = .x$bill_depth_mm, y = .x$body_mass_g) %>% broom::tidy())
-    ) %>% 
-  ungroup() %>% 
-  unnest(c(data, corr)) %>% 
-  mutate(
-    species_category = fct_relevel(species_category, "Gentoo", "Chinstrap", "Adelie", "All"),
-    corr_label =  glue::glue("{species_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
-    corr_label = fct_reorder(as.character(corr_label), as.numeric(species_category))
-   ) %>% 
-  ggplot(aes(x = bill_depth_mm, y = body_mass_g)) +
-  geom_point(aes(color = species), alpha = 0.5, show.legend = FALSE) +
-  geom_smooth(method = "lm", color = "darkgray", se = FALSE) +
-  facet_wrap(. ~ corr_label, ncol = 4) +
-  scale_color_manual(values = colors_penguins) + 
-  theme_shannon()
-```
-
-```{r}
-compute_adj_corr(
-  data = dat_penguins, 
-  var_dep = "body_mass_g", 
-  var_ind = "bill_depth_mm", 
-  var_group = "species"
-  )
-```
 # Discussion
 
 # Acknowledgements
