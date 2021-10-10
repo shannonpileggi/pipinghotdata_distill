@@ -31,6 +31,7 @@ library(palmerpenguins) # simpsons paradox example ----
 A common mistake that I see is when the request is to estimate the overall correlation, some 
 may not to take into account important sources of variation in the data, which can negate
 the independent observations assumption.
+
 # Data
 
 The data comes from the [TidyTuesday Spotify songs](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-01-21/readme.md){target="_blank"} data set.
@@ -162,7 +163,7 @@ Correlations (_r_) take on values between -1 and 1, and measure the strength of 
 ```{r, echo=FALSE}
 dat_all %>% 
   ggplot(aes(x = danceability, y = value)) +
-  geom_point(color = AdelphiR::adelphi_colors("teal"), alpha = 0.7) +
+  geom_point(color = "#E76F51", alpha = 0.7) +
   facet_wrap(. ~ label) +
   theme_shannon()
 ```
@@ -268,9 +269,9 @@ dat_stacked <- dat %>%
     -c(track_id, music_category, playlist_genre, danceability),
     names_to = "feature",
     values_to = "value"
-  ) %>% 
+  ) #%>% 
   # reordered by a sneak peak at results below ----
-  mutate(feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "energy"))
+  # mutate(feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "energy"))
 ```
 
 
@@ -286,14 +287,14 @@ dat_stacked %>%
 
 ```{r}
 results_1 <- dat_stacked %>%
-  group_by(music_category, attribute) %>% 
+  group_by(music_category, feature) %>% 
   nest() %>% 
   mutate(
     corr = map(data, ~ cor.test(x = .x$value, y = .x$danceability) %>% broom::tidy())
     ) %>% 
   ungroup() %>% 
   unnest(c(corr)) %>% 
-  dplyr::select(music_category, attribute, corr = estimate)
+  dplyr::select(music_category, feature, corr = estimate)
 ```
 
 ```{r}
@@ -321,13 +322,13 @@ compute_adj_corr <- function(data, var_dep, var_ind, var_group){
 ```{r}
 results_2 <- dat_stacked %>%
   filter(music_category == "total") %>% 
-  group_by(attribute) %>% 
+  group_by(feature) %>% 
   nest() %>% 
   mutate(
     corr = map_dbl(data, compute_adj_corr, var_dep = "danceability", var_ind = "value", var_group = "playlist_genre")
   ) %>% 
   mutate(music_category = "total adj") %>% 
-  dplyr::select(music_category, attribute, corr)
+  dplyr::select(music_category, feature, corr)
 ```
 
 ```{r}
