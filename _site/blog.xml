@@ -9,13 +9,13 @@
     <generator>Distill</generator>
     <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Estimating correlations adjusted for group membership</title>
+      <title>Estimating correlations adjusted for group membership with linear mixed models</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations</link>
-      <description>Applied examples with TidyTuesday Spotify songs and Palmer penguins</description>
+      <description>Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs</description>
       <guid>https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations</guid>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations/adjusted-correlations_files/figure-html5/unnamed-chunk-8-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-09-09-adjusted-correlations/adjusted-correlations_files/figure-html5/unnamed-chunk-5-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>A tidyverse pivot approach to data preparation in R</title>

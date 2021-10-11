@@ -1,7 +1,7 @@
 ---
-title: "Estimating correlations adjusted for group membership"
+title: "Estimating correlations adjusted for group membership with linear mixed models"
 description: |
-  Applied examples with TidyTuesday Spotify songs and Palmer penguins
+  Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs 
 author:
   - name: Shannon Pileggi
     url: {}
@@ -19,17 +19,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL;DR
 
-Correlations are a common analytical technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through
+Correlations are a common analytic technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through
 a linear mixed model.
 
 # Overview
 
-In industry, correlations can be mass produced to identify signals as to which of 
-many possibly independent variables have the strongest assocation with a dependent 
+In industry, correlations can be mass estimated to identify signals as to which of 
+many independent variables have the strongest association with a dependent 
 variable. Moreover, the correlations are commonly estimated in aggregate, or total,
 across may subgroups. Example applications include: 
 
-* market research, when evaluating assocations between product ratings on a many attributes and product sales across many products, in order to identify attributes with the strongest
+* market research, when evaluating assocations between product ratings and product sales across many products, in order to identify attributes with the strongest
 relationship with sales across all products.
 
 * biological research, when evaluating assocations between gene mRNA expressions across many cancer types.
@@ -81,7 +81,7 @@ theme_shannon <- function(){
 
 
 
-# Correlations
+# Introduction to correlations
 
 
 ```{r, echo = F}
@@ -150,7 +150,7 @@ The two main assumptions that go into correlations are:
 
 2. The observations are independent.
 
-The linearity of the relationship can be evaluated by examining a scatter plot. Independence of observations is evaluated by thinking about the origin and nature of the data. A classic way of violating the independence assumption is when observations arise from repeated measures; a sneakier way the independence observation can be violated is from what Isabella  Ghement refers to as a [random grouping factor](https://twitter.com/IsabellaGhement/status/1443773295426359298){target="_blank"}. 
+The linearity of the relationship can be evaluated by examining a scatter plot. Independence of observations is evaluated by thinking about the origin and nature of the data. A classic way of violating the independence assumption is when observations arise from repeated measures; a less obvious way the independence observation can be violated is from what Isabella  Ghement refers to as a [random grouping factor](https://twitter.com/IsabellaGhement/status/1443773295426359298){target="_blank"}. 
 
 Let's check this out by examining correlations from a Simpson's paradox example. `r emo::ji("monocle")`
 
@@ -163,7 +163,7 @@ data, where the relationship between `bill_depth_mm` and `body_mass_g` can appea
 differently when analyzed across all species of penguins versus within species.
 
 For initial data preparation, I am retaining the relevant variables, removing
-missing observations, and creating a duplicate of the species variable for point
+missing observations, and creating a duplicate of the `species` variable for point
 colors and faceting later.
 
 ```{r}
@@ -183,7 +183,7 @@ colors_penguins <- c(
   )
 ```
 
-Let's examine the correlations between `bill_depth_mm` and `body_mass_g` for the three penguins species individually, as well as across all species.
+Let's examine the correlations between `bill_depth_mm` and `body_mass_g` for the three penguin species individually, as well as across all species.
 
 ```{r}
 dat_penguins %>% 
@@ -217,7 +217,7 @@ dat_penguins %>%
 
 Here we see that within species the correlations between `bill_depth_mm` and `body_mass_g`
 are `0.72`, `0.60`, and `0.58`. Yet when we look at the correlation across all species,
-we have a nonsensical estimate of `-0.47`, which is a classical presentation of
+we have a nonsensical estimate of `-0.47` `r emo::ji("scream")`, which is a classical presentation of
 Simpson's paradox. 
 
 Getting a reasonable estimate the correlation between `bill_depth_mm` and `body_mass_g` 
@@ -245,9 +245,9 @@ adj_corr <- height_sign * sqrt(r2_by_group)
 adj_corr
 ```
 
-Ah, much better! `emo::ji("star-struck")` A correlation estimate between `bill_depth_mm` and `body_mass_g` of `0.62` across all three penguins species is a much more sensical estimate.
+Ah, much better! `r emo::ji("star-struck")` A correlation estimate between `bill_depth_mm` and `body_mass_g` of `0.62` across all three penguins species is a much more sensible estimate.
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = FALSE}
 compute_adj_corr(
   data = dat_penguins, 
   var_dep = "body_mass_g", 
@@ -272,7 +272,7 @@ dat_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/ti
 
 
 To reduce the scope and simplify, I am going to examine a reduced set of variables from `pop`, `rock`,
-or `rap` songs in 2019.
+or `rap` songs in 2019. Our goal is to understand which of `energy`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, and `valence` have the strongest association with `danceability`.
 
 ```{r}
 # initial data prep ----
@@ -303,7 +303,6 @@ Here are the definitions of the variables, straight from the TidyTuesday repo:
 |liveness                 |double    | Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live. |
 |valence                  |double    | A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). |
 
-Our goal is to understand which of `energy`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, and `valence` have the strongest association with `danceability`.
 
 ```{r}
 # create stacked data for analysis ----
@@ -317,14 +316,28 @@ dat_stacked <- dat %>%
     -c(track_id, music_category, playlist_genre, danceability),
     names_to = "feature",
     values_to = "value"
-  ) #%>% 
-  # reordered by a sneak peak at results below ----
-  # mutate(feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "energy"))
+  ) %>% 
+  mutate(
+    music_category = fct_relevel(music_category, "pop", "rock", "rap", "all"),
+    # reordered by a sneak peak at results below ----
+    feature = fct_relevel(feature, "valence", "speechiness", "energy", "acousticness", "liveness", "instrumentalness")
+  )
 ```
 
 ## Visual exploration
 
 First, let's start with a visual exploration of the data.
+
+```{r}
+# colors for playlist genre ----
+colors_genre <- c(
+  "pop" = "#E76F51",
+  "rock" = "#264653",
+  "rap" = "#E9C46A"
+)
+
+```
+
 
 ```{r}
 dat_stacked %>% 
@@ -334,10 +347,13 @@ dat_stacked %>%
   scale_color_manual(values = colors_genre) +
   theme_shannon()
 ```
-Now let's compute correlations for the three genres individually, as well as the
-unadjusted correlation across all genres together.
+Visual inspection shows the possibility of some non-linear relationships, for example, with `energy`, and also some potential outliers that could influence the correlation estimate. However, for this analysis we will proceed with data as-is. In addition, note that `pop` and `rock` tend
+to have similar distributions, which differ from `rap`.
+
 
 ## Correlation computations
+
+First, we compute (1) correlations for the three genres individually, and (2) the unadjusted correlations across all genres together.
 
 ```{r}
 results_1 <- dat_stacked %>%
@@ -351,8 +367,7 @@ results_1 <- dat_stacked %>%
   dplyr::select(music_category, feature, corr = estimate)
 ```
 
-For computation of the adjusted correlation estimate with the linear mixed model,
-here is a quick function.
+Next, we compute (3) the adjusted correlations across all genres together through the linear mixed model. To facilitate this computation, here is a quick function.
 
 ```{r}
 compute_adj_corr <- function(data, var_dep, var_ind, var_group){
@@ -379,22 +394,23 @@ Now we compute the adjusted correlations.
 
 ```{r}
 results_2 <- dat_stacked %>%
-  filter(music_category == "all") %>% 
-  group_by(feature) %>% 
-  nest() %>% 
+  filter(music_category == "all") %>%
+  group_by(feature) %>%
+  nest() %>%
   mutate(
-    corr = map_dbl(data, 
-                   compute_adj_corr, 
-                   var_dep = "danceability", 
-                   var_ind = "value", 
-                   var_group = "playlist_genre")
-  ) %>% 
-  mutate(music_category = "all adj") %>% 
+    corr = map_dbl(
+      data,
+      compute_adj_corr,
+      var_dep = "danceability",
+      var_ind = "value",
+      var_group = "playlist_genre"
+    )
+  ) %>%
+  mutate(music_category = "adjusted") %>%
   dplyr::select(music_category, feature, corr)
 ```
 
-And combine both unadjusted and adjusted correlations into a single data set for
-results presentation.
+Finally, we combine both sets of results into a single data set for presentation.
 
 ```{r}
 results_all <- results_1 %>% 
@@ -404,7 +420,8 @@ results_all <- results_1 %>%
     values_from = "corr"
     ) %>% 
   mutate_if(is.numeric, round, 2) %>% 
-  arrange(desc(`all adj`))
+  arrange(desc(adjusted)) %>% 
+  rename(unadjusted = all)
 ```
 
 ## Results
@@ -412,13 +429,21 @@ results_all <- results_1 %>%
 ```{r}
 results_all %>% 
   gt::gt() %>% 
-  gt_hulk_col_numeric(pop:`all adj`)
+  gt::tab_spanner(
+    label = "Genres",
+    columns = c(pop, rap, rock)
+  ) %>%
+  gt::tab_spanner(
+    label = "All",
+    columns = c(unadjusted, adjusted)
+  ) %>%
+  gtExtras::gt_hulk_col_numeric(pop:adjusted)
 ```
 
 Here, we see that `valence` has the strongest association with `danceability`, 
 both within each of the genres and across the three genres. Regarding `valence`,
 both the unadjusted and adjusted correlation estimates are similar. However,
-for other attributes, such as `speechiness` the association varies by genre (weakly positive 
+for other attributes, such as `speechiness`, the association varies by genre (weakly positive 
 for `rap`, weakly negative for `rock`). Furthermore, the unadjusted (`0.25`) and 
 adjusted (`0.09`) correlations differ by quite a bit, with the unadjusted correlation
 once again producing a nonsensical result that exceeds the correlations for any
@@ -428,12 +453,18 @@ individual genre (`-0.11` rock, `0.06` pop, and `0.13` rap).
 # Discussion
 
 Correlations are used by researchers of all backgrounds and expertise due to their
-relatively straightforward computation and interpretation. However, when applied
-without sufficient thought and care, the results could be incorrect and misleading.
+relatively straightforward computation and interpretation. When the
+distributions of dependent and independent variables are similar across subgroups,
+the unadjusted simple correlation estimates are likely to be similar to the more
+complex adjusted correlation estimates; however, when distributions vary by subgroups, 
+simple correlation estimates across subgroups could be incorrect and misleading.
 A primary defense to guard against this is to plot your data - this can help you to identify
 grouping effects or when relationships are non-linear. In addition, it should be
-carefully considered if the relationships across groups are truly of more intrest
+carefully considered if the relationships across groups are truly of more interest
 than relationships within groups, as across group results can mask potentially
-interesting within group differences.
+interesting within group findings.
 
 # Acknowledgements
+
+Thank you to [Alex Fisher](https://twitter.com/aleksandrfisher){target="_blank"} for brainstorming with me the linear mixed model approach to adjusted correlation estimates. In addition,
+thank you to [Alice Walsh](https://twitter.com/sciencealice){target="_blank"} for your enthusiasm and feedback on this post.
