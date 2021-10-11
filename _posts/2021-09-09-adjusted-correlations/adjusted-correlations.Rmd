@@ -2,15 +2,22 @@
 title: "Estimating correlations adjusted for group membership with linear mixed models"
 description: |
   Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs 
+base_url: https://www.pipinghotdata.com/
+preview: thumbnail.PNG
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
 author:
   - name: Shannon Pileggi
-    url: {}
 date: 09-09-2021
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
+draft: false
+creative_commons: CC BY
 ---
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -35,6 +42,20 @@ relationship with sales across all products.
 * biological research, when evaluating assocations between gene mRNA expressions across many cancer types.
 
 # Packages
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.0.5                 | 
+| RStudio             | 1.4.1103              | 
+| `tidyverse`         | 1.3.0                 |
+| `broom`             | 0.7.9                 |
+| `performance`       | 0.7.2                 |
+| `lme4`              | 1.1-23                |
+| `gt`                | 0.3.1                 |
+| `gtExtras`          | 0.2.16                |
+| `palmerpenguins`    | 0.1.0                 |
 
 ```{r}
 library(tidyverse)      # general use ----

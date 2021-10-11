@@ -90,6 +90,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <meta property="description" itemprop="description" content="Applied examples with a Palmer penguins Simpson&#39;s paradox and TidyTuesday Spotify songs"/>
 
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
   <!--  https://schema.org/Article -->
   <meta property="article:published" itemprop="datePublished" content="2021-09-09"/>
@@ -100,23 +101,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="og:title" content="Estimating correlations adjusted for group membership with linear mixed models"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="Applied examples with a Palmer penguins Simpson&#39;s paradox and TidyTuesday Spotify songs"/>
+  <meta property="og:image" content="https://www.pipinghotdata.com/thumbnail.PNG"/>
+  <meta property="og:image:width" content="1464"/>
+  <meta property="og:image:height" content="645"/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
-  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:card" content="summary_large_image"/>
   <meta property="twitter:title" content="Estimating correlations adjusted for group membership with linear mixed models"/>
   <meta property="twitter:description" content="Applied examples with a Palmer penguins Simpson&#39;s paradox and TidyTuesday Spotify songs"/>
+  <meta property="twitter:image" content="https://www.pipinghotdata.com/thumbnail.PNG"/>
+  <meta property="twitter:image:width" content="1464"/>
+  <meta property="twitter:image:height" content="645"/>
+  <meta property="twitter:site" content="@PipingHotData"/>
+  <meta property="twitter:creator" content="@PipingHotData"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Estimating correlations adjusted for group membership with linear mixed models"]},{"type":"character","attributes":{},"value":["Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs \n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["09-09-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","base_url","preview","twitter","author","date","output","draft","creative_commons"]}},"value":[{"type":"character","attributes":{},"value":["Estimating correlations adjusted for group membership with linear mixed models"]},{"type":"character","attributes":{},"value":["Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs \n"]},{"type":"character","attributes":{},"value":["https://www.pipinghotdata.com/"]},{"type":"character","attributes":{},"value":["thumbnail.PNG"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["site","creator"]}},"value":[{"type":"character","attributes":{},"value":["@PipingHotData"]},{"type":"character","attributes":{},"value":["@PipingHotData"]}]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Shannon Pileggi"]}]}]},{"type":"character","attributes":{},"value":["09-09-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["CC BY"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["adjusted-correlations_files/anchor-4.2.2/anchor.min.js","adjusted-correlations_files/bowser-1.9.3/bowser.min.js","adjusted-correlations_files/distill-2.2.21/template.v2.js","adjusted-correlations_files/figure-html5/unnamed-chunk-10-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-12-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-13-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-16-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-21-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-5-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-8-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png","adjusted-correlations_files/header-attrs-2.11/header-attrs.js","adjusted-correlations_files/header-attrs-2.7/header-attrs.js","adjusted-correlations_files/jquery-1.11.3/jquery.min.js","adjusted-correlations_files/jquery-3.5.1/AUTHORS.txt","adjusted-correlations_files/jquery-3.5.1/jquery-1.12.4.js","adjusted-correlations_files/jquery-3.5.1/jquery-1.12.4.min.js","adjusted-correlations_files/jquery-3.5.1/jquery-1.12.4.min.map","adjusted-correlations_files/jquery-3.5.1/jquery-2.2.4.js","adjusted-correlations_files/jquery-3.5.1/jquery-2.2.4.min.js","adjusted-correlations_files/jquery-3.5.1/jquery-2.2.4.min.map","adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.js","adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.min.js","adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.min.map","adjusted-correlations_files/jquery-3.5.1/LICENSE.txt","adjusted-correlations_files/popper-2.6.0/popper.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-bundle.umd.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-light-border.css","adjusted-correlations_files/tippy-6.2.7/tippy.css","adjusted-correlations_files/tippy-6.2.7/tippy.umd.min.js","adjusted-correlations_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["adjusted-correlations_files/anchor-4.2.2/anchor.min.js","adjusted-correlations_files/bowser-1.9.3/bowser.min.js","adjusted-correlations_files/distill-2.2.21/template.v2.js","adjusted-correlations_files/figure-html5/unnamed-chunk-10-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-12-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-13-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-16-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-21-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-4-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-5-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-8-1.png","adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png","adjusted-correlations_files/header-attrs-2.11/header-attrs.js","adjusted-correlations_files/header-attrs-2.7/header-attrs.js","adjusted-correlations_files/jquery-1.11.3/jquery.min.js","adjusted-correlations_files/jquery-3.5.1/AUTHORS.txt","adjusted-correlations_files/jquery-3.5.1/jquery-1.12.4.js","adjusted-correlations_files/jquery-3.5.1/jquery-1.12.4.min.js","adjusted-correlations_files/jquery-3.5.1/jquery-1.12.4.min.map","adjusted-correlations_files/jquery-3.5.1/jquery-2.2.4.js","adjusted-correlations_files/jquery-3.5.1/jquery-2.2.4.min.js","adjusted-correlations_files/jquery-3.5.1/jquery-2.2.4.min.map","adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.js","adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.min.js","adjusted-correlations_files/jquery-3.5.1/jquery-3.5.1.min.map","adjusted-correlations_files/jquery-3.5.1/LICENSE.txt","adjusted-correlations_files/popper-2.6.0/popper.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-bundle.umd.min.js","adjusted-correlations_files/tippy-6.2.7/tippy-light-border.css","adjusted-correlations_files/tippy-6.2.7/tippy.css","adjusted-correlations_files/tippy-6.2.7/tippy.umd.min.js","adjusted-correlations_files/webcomponents-2.0.0/webcomponents.js","thumbnail.PNG"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1455,7 +1464,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Estimating correlations adjusted for group membership with linear mixed models","description":"Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs","authors":[{"author":"Shannon Pileggi","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-09T00:00:00.000-04:00","citationText":"Pileggi, 2021"}
+{"title":"Estimating correlations adjusted for group membership with linear mixed models","description":"Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs","authors":[{"author":"Shannon Pileggi","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-09-09T00:00:00.000-04:00","citationText":"Pileggi, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1472,12 +1481,34 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-byline">
-  Shannon Pileggi true 
+  Shannon Pileggi  
   
 <br/>09-09-2021
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#tldr">TL;DR</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#ggplot-theme">ggplot theme</a></li>
+<li><a href="#introduction-to-correlations">Introduction to correlations</a></li>
+<li><a href="#simpsons-paradox-a-palmer-penguins-example">Simpson’s paradox: a Palmer penguins example</a></li>
+<li><a href="#multiple-features-spotify-songs-example">Multiple features: spotify songs example</a>
+<ul>
+<li><a href="#data">Data</a></li>
+<li><a href="#visual-exploration">Visual exploration</a></li>
+<li><a href="#correlation-computations">Correlation computations</a></li>
+<li><a href="#results">Results</a></li>
+</ul></li>
+<li><a href="#discussion">Discussion</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</nav>
+</div>
 <h1 id="tldr">TL;DR</h1>
 <p>Correlations are a common analytic technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through a linear mixed model.</p>
 <h1 id="overview">Overview</h1>
@@ -1487,6 +1518,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>biological research, when evaluating assocations between gene mRNA expressions across many cancer types.</p></li>
 </ul>
 <h1 id="packages">Packages</h1>
+<p>This material was developed using:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Software / package</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>4.0.5</td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td>1.4.1103</td>
+</tr>
+<tr class="odd">
+<td><code>tidyverse</code></td>
+<td>1.3.0</td>
+</tr>
+<tr class="even">
+<td><code>broom</code></td>
+<td>0.7.9</td>
+</tr>
+<tr class="odd">
+<td><code>performance</code></td>
+<td>0.7.2</td>
+</tr>
+<tr class="even">
+<td><code>lme4</code></td>
+<td>1.1-23</td>
+</tr>
+<tr class="odd">
+<td><code>gt</code></td>
+<td>0.3.1</td>
+</tr>
+<tr class="even">
+<td><code>gtExtras</code></td>
+<td>0.2.16</td>
+</tr>
+<tr class="odd">
+<td><code>palmerpenguins</code></td>
+<td>0.1.0</td>
+</tr>
+</tbody>
+</table>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>      <span class='co'># general use ----</span>
@@ -2301,7 +2379,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
