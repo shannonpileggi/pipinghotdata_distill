@@ -250,7 +250,7 @@ across all three species requires a bit more work. To estimate a correlation tha
 mixed_model <- lme4::lmer(body_mass_g ~ bill_depth_mm + (1 | species), dat_penguins)
 
 # retrieve sign of coefficient ----
-height_sign <- mixed_model %>% 
+coef_sign <- mixed_model %>% 
   broom.mixed::tidy() %>% 
   filter(term == "bill_depth_mm") %>% 
   pull(estimate) %>% 
@@ -260,7 +260,7 @@ height_sign <- mixed_model %>%
 r2_by_group <- performance::r2_nakagawa(mixed_model, by_group = TRUE)$R2[1]
 
 # compute adjusted correlation ----
-adj_corr <- height_sign * sqrt(r2_by_group)
+adj_corr <- coef_sign * sqrt(r2_by_group)
 
 # print result ----
 adj_corr
@@ -397,7 +397,7 @@ compute_adj_corr <- function(data, var_dep, var_ind, var_group){
   
   mixed_model <- lme4::lmer(mixed_formula, data)
 
-  height_sign <- mixed_model %>% 
+  coef_sign <- mixed_model %>% 
     broom.mixed::tidy() %>% 
     filter(term == var_ind) %>% 
     pull(estimate) %>% 
@@ -405,7 +405,7 @@ compute_adj_corr <- function(data, var_dep, var_ind, var_group){
 
  r2_by_group <- performance::r2_nakagawa(mixed_model, by_group = TRUE)$R2[1]
 
- adj_corr <- height_sign * sqrt(r2_by_group)
+ adj_corr <- coef_sign * sqrt(r2_by_group)
 
  return(adj_corr)
 }
