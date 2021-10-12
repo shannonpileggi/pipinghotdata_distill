@@ -26,20 +26,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # TL;DR
 
-Correlations are a common analytic technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through
-a linear mixed model.
+Correlations are a common analytic technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through a linear mixed model that yield sensible estimates of overall correlations across subgroups.
 
 # Overview
 
-In industry, correlations can be mass estimated to identify signals as to which of 
+In various settings, correlations can be mass estimated to identify signals as to which of 
 many independent variables have the strongest association with a dependent 
 variable. Moreover, the correlations are commonly estimated in aggregate, or total,
 across may subgroups. Example applications include: 
 
-* market research, when evaluating assocations between product ratings and product sales across many products, in order to identify attributes with the strongest
+* market research, when evaluating associations between product ratings and product sales across many products, in order to identify attributes with the strongest
 relationship with sales across all products.
 
-* biological research, when evaluating assocations between gene mRNA expressions across many cancer types.
+* biological research, when evaluating associations between gene mRNA expressions across many cancer types.
 
 # Packages
 
@@ -242,7 +241,9 @@ we have a nonsensical estimate of `-0.47` `r emo::ji("scream")`, which is a clas
 Simpson's paradox. 
 
 Getting a reasonable estimate the correlation between `bill_depth_mm` and `body_mass_g` 
-across all three species requires a bit more work. To estimate a correlation that adjusts for species, we can implement a [linear mixed model](https://bbolker.github.io/mixedmodels-misc/glmmFAQ.html){target="_blank"} with a fixed effect for `bill_depth_mm` and a random effect for `species`. The correlation estimate adjusting for `species` group membership is the sign of the `bill_depth_mm` coefficient multiplied by the square root of the variance explained by `species` levels. Here, I use the [`r2_nakagawa`](https://easystats.github.io/performance/reference/r2_nakagawa.html){target="_blank"} function from the `performance` package.
+across all three species requires a bit more work. To estimate a correlation that adjusts for species, we can implement a [linear mixed model](https://en.wikipedia.org/wiki/Multilevel_model){target="_blank"}, also frequently referred to as a multilevel model, which "allow us to create models for situations where the observations are not independent of one another" as stated in [Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R](https://bookdown.org/roback/bookdown-BeyondMLR/ch-MLRreview.html#learning-objectives) by Paul Roback and Julie Leger. 
+
+In this approach, we model the dependent variable of `body_mass_g` with a fixed effect for `bill_depth_mm` (what we want to draw inferences about) and a random effect for `species` (which can be though of as a sample from a larger population of species, of which we are not interested in drawing specific inferences about). The correlation estimate adjusting for `species` group membership is the sign of the `bill_depth_mm` coefficient multiplied by the square root of the variance explained at the different `species` levels. Here, I use the [`r2_nakagawa`](https://easystats.github.io/performance/reference/r2_nakagawa.html){target="_blank"} function from the `performance` package.
 
 
 ```{r}
