@@ -451,6 +451,9 @@ results_all <- results_1 %>%
 ```{r}
 results_all %>% 
   gt::gt() %>% 
+  gt::tab_header(
+    title = "Correlations with danceability"
+  ) %>% 
   gt::tab_spanner(
     label = "Genres",
     columns = c(pop, rap, rock)
@@ -459,6 +462,10 @@ results_all %>%
     label = "All",
     columns = c(unadjusted, adjusted)
   ) %>%
+  gt::cols_align(
+    align = "left",
+    columns = feature
+  ) %>% 
   gtExtras::gt_hulk_col_numeric(pop:adjusted)
 ```
 
@@ -490,3 +497,8 @@ interesting within group findings.
 
 Thank you to [Alex Fisher](https://twitter.com/aleksandrfisher){target="_blank"} for brainstorming with me the linear mixed model approach to adjusted correlation estimates. In addition,
 thank you to [Alice Walsh](https://twitter.com/sciencealice){target="_blank"} for your enthusiasm and feedback on this post.
+
+```{r, echo = FALSE}
+knitr::knit_exit()
+```
+
