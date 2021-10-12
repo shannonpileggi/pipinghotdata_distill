@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r echo=FALSE, fig.cap="A Palmer penguins Simpson's paradox yields an unadjusted correlation estimate between body mass and bill depth of -0.47 across all three species; an adjusted estimate computed from a linear mixed model is 0.62.", fig.alt="Four scatterplot panel on left hand side shows relationship between body mass and bill depth for Gentoo, Chinstrap, Adelie, and all together, with base n and correlation estimate. Image on right hand side shows code screenshot to estimate a correlation adjusted for species, with an estimate of 0.62."}
+```{r echo=FALSE, out.width="100%", fig.cap="A Palmer penguins Simpson's paradox yields an unadjusted correlation estimate between body mass and bill depth of -0.47 across all three species; an adjusted estimate computed from a linear mixed model is 0.62.", fig.alt="Four scatterplot panel on left hand side shows relationship between body mass and bill depth for Gentoo, Chinstrap, Adelie, and all together, with base n and correlation estimate. Scream emoji on all together. Image on right hand side shows code screenshot to estimate a correlation adjusted for species, with an estimate of 0.62 and a star struck emoji."}
 knitr::include_graphics("img/thumbnail.PNG")
 ```
 
@@ -168,7 +168,7 @@ dat_all %>%
   theme_shannon()
 ```
 
-A value of `0` indicates no linear association, whereas values of `-1` or `1` indicate a perfect linear association. The two main conditions that need to be satisfied for good correlation estimates are:
+A value of `0` indicates no linear association, whereas values of `-1` or `1` indicate a perfect linear association. Two conditions that need to be satisfied for good correlation estimates are:
 
 1. The relationship is linear.
 

@@ -1509,6 +1509,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </ul>
 </nav>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="img/thumbnail.PNG" alt="Four scatterplot panel on left hand side shows relationship between body mass and bill depth for Gentoo, Chinstrap, Adelie, and all together, with base n and correlation estimate. Scream emoji on all together. Image on right hand side shows code screenshot to estimate a correlation adjusted for species, with an estimate of 0.62 and a star struck emoji." width="100%" />
+<p class="caption">
+Figure 1: A Palmer penguins Simpson’s paradox yields an unadjusted correlation estimate between body mass and bill depth of -0.47 across all three species; an adjusted estimate computed from a linear mixed model is 0.62.
+</p>
+</div>
+</div>
 <h1 id="tldr">TL;DR</h1>
 <p>Correlations are a common analytic technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through a linear mixed model that yield sensible estimates of overall correlations across subgroups.</p>
 <h1 id="overview">Overview</h1>
@@ -1616,9 +1624,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>Correlations (<em>r</em>) take on values between -1 and 1, and measure the strength of the linear association between two numeric variables. Here are the three extreme forms of correlation:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-<p>A value of <code>0</code> indicates no linear association, whereas values of <code>-1</code> or <code>1</code> indicate a perfect linear association. The two main conditions that need to be satisfied for good correlation estimates are:</p>
+<p>A value of <code>0</code> indicates no linear association, whereas values of <code>-1</code> or <code>1</code> indicate a perfect linear association. Two conditions that need to be satisfied for good correlation estimates are:</p>
 <ol type="1">
 <li><p>The relationship is linear.</p></li>
 <li><p>The observations are independent.</p></li>
@@ -1681,7 +1689,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     <span class='fu'>theme_shannon</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
 <p>Here we see that within species the correlations between <code>bill_depth_mm</code> and <code>body_mass_g</code> are <code>0.72</code>, <code>0.60</code>, and <code>0.58</code>. Yet when we look at the correlation across all species, we have a nonsensical estimate of <code>-0.47</code> 😱, which is a classical presentation of Simpson’s paradox.</p>
 <p>Getting a reasonable estimate of the correlation between <code>bill_depth_mm</code> and <code>body_mass_g</code> across all three species requires a bit more work. To estimate a correlation that adjusts for species, we can implement a <a href="https://en.wikipedia.org/wiki/Multilevel_model" target="_blank">linear mixed model</a>, also frequently referred to as a multilevel model, which “allow us to create models for situations where the observations are not independent of one another” as stated in <a href="https://bookdown.org/roback/bookdown-BeyondMLR/ch-MLRreview.html#learning-objectives">Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R</a> by Paul Roback and Julie Leger.</p>
@@ -1864,7 +1872,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>theme_shannon</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+<p><img src="adjusted-correlations_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
 </div>
 <p>Visual inspection shows the possibility of some non-linear relationships, for example, with <code>energy</code>, and also some potential outliers that could influence the correlation estimate. However, for this analysis we will proceed with data as-is. In addition, note that <code>pop</code> and <code>rock</code> tend to have similar distributions, which differ from <code>rap</code>.</p>
 <h2 id="correlation-computations">Correlation computations</h2>
