@@ -3,7 +3,7 @@ title: "Estimating correlations adjusted for group membership with linear mixed 
 description: |
   Applied examples with a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs 
 base_url: https://www.pipinghotdata.com/
-preview: thumbnail.PNG
+preview: img/thumbnail.PNG
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
@@ -23,6 +23,10 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+```{r echo=FALSE, fig.cap="A Palmer penguins Simpson's paradox yields an unadjusted correlation estimate between body mass and bill depth of -0.47 across all three species; an adjusted estimate computed from a linear mixed model is 0.62.", fig.alt="Four scatterplot panel on left hand side shows relationship between body mass and bill depth for Gentoo, Chinstrap, Adelie, and all together, with base n and correlation estimate. Image on right hand side shows code screenshot to estimate a correlation adjusted for species, with an estimate of 0.62."}
+knitr::include_graphics("img/thumbnail.PNG")
+```
 
 # TL;DR
 
@@ -154,7 +158,7 @@ unnest(c(data, results)) %>%
   mutate(label = glue::glue("Feature {feature}\n r = {scales::number(correlation)}"))
 ```
 
-Correlations (_r_) take on values between -1 and 1, and measure the strength of the linear association between two variables. Here are the three extreme forms of correlation:
+Correlations (_r_) take on values between -1 and 1, and measure the strength of the linear association between two numeric variables. Here are the three extreme forms of correlation:
 
 ```{r, echo=FALSE}
 dat_all %>% 
@@ -164,7 +168,7 @@ dat_all %>%
   theme_shannon()
 ```
 
-The two main assumptions that go into correlations are:
+A value of `0` indicates no linear association, whereas values of `-1` or `1` indicate a perfect linear association. The two main conditions that need to be satisfied for good correlation estimates are:
 
 1. The relationship is linear.
 
@@ -240,10 +244,10 @@ are `0.72`, `0.60`, and `0.58`. Yet when we look at the correlation across all s
 we have a nonsensical estimate of `-0.47` `r emo::ji("scream")`, which is a classical presentation of
 Simpson's paradox. 
 
-Getting a reasonable estimate the correlation between `bill_depth_mm` and `body_mass_g` 
+Getting a reasonable estimate of the correlation between `bill_depth_mm` and `body_mass_g` 
 across all three species requires a bit more work. To estimate a correlation that adjusts for species, we can implement a [linear mixed model](https://en.wikipedia.org/wiki/Multilevel_model){target="_blank"}, also frequently referred to as a multilevel model, which "allow us to create models for situations where the observations are not independent of one another" as stated in [Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R](https://bookdown.org/roback/bookdown-BeyondMLR/ch-MLRreview.html#learning-objectives) by Paul Roback and Julie Leger. 
 
-In this approach, we model the dependent variable of `body_mass_g` with a fixed effect for `bill_depth_mm` (what we want to draw inferences about) and a random effect for `species` (which can be though of as a sample from a larger population of species, of which we are not interested in drawing specific inferences about). The correlation estimate adjusting for `species` group membership is the sign of the `bill_depth_mm` coefficient multiplied by the square root of the variance explained at the different `species` levels. Here, I use the [`r2_nakagawa`](https://easystats.github.io/performance/reference/r2_nakagawa.html){target="_blank"} function from the `performance` package.
+In this approach, we model the dependent variable of `body_mass_g` with a fixed effect for `bill_depth_mm` (what we want to draw inferences about) and a random effect for `species` (which can be thought of as a sample from a larger population of species that we are not interested in drawing specific inferences about). The correlation estimate adjusting for `species` group membership is the sign of the `bill_depth_mm` coefficient multiplied by the square root of the variance explained at the different `species` levels. Here, I use the [`r2_nakagawa`](https://easystats.github.io/performance/reference/r2_nakagawa.html){target="_blank"} function from the `performance` package to extract the relevant $R^2$ value.
 
 
 ```{r}
@@ -268,18 +272,6 @@ adj_corr
 ```
 
 Ah, much better! `r emo::ji("star-struck")` A correlation estimate between `bill_depth_mm` and `body_mass_g` of `0.62` across all three penguins species is a much more sensible estimate.
-
-```{r, eval = FALSE, echo = FALSE}
-compute_adj_corr(
-  data = dat_penguins, 
-  var_dep = "body_mass_g", 
-  var_ind = "bill_depth_mm", 
-  var_group = "species"
-  )
-```
-
-
-
 
 # Multiple features: spotify songs example
 
@@ -348,7 +340,7 @@ dat_stacked <- dat %>%
 
 ## Visual exploration
 
-First, let's start with a visual exploration of the data.
+Let's start with a visual exploration of the data.
 
 ```{r}
 # colors for playlist genre ----
@@ -375,7 +367,7 @@ to have similar distributions, which differ from `rap`.
 
 ## Correlation computations
 
-First, we compute (1) correlations for the three genres individually, and (2) the unadjusted correlations across all genres together.
+First, we compute correlations for the three genres individually and  the unadjusted correlations across all genres together.
 
 ```{r}
 results_1 <- dat_stacked %>%
@@ -389,7 +381,7 @@ results_1 <- dat_stacked %>%
   dplyr::select(music_category, feature, corr = estimate)
 ```
 
-Next, we compute (3) the adjusted correlations across all genres together through the linear mixed model. To facilitate this computation, here is a quick function.
+Next, we compute the adjusted correlations across all genres together through the linear mixed model. To facilitate this computation, here is a quick function.
 
 ```{r}
 compute_adj_corr <- function(data, var_dep, var_ind, var_group){
@@ -490,7 +482,7 @@ simple correlation estimates across subgroups could be incorrect and misleading.
 A primary defense to guard against this is to plot your data - this can help you to identify
 grouping effects or when relationships are non-linear. In addition, it should be
 carefully considered if the relationships across groups are truly of more interest
-than relationships within groups, as across group results can mask potentially
+than relationships within groups, as across group results can obscure potentially
 interesting within group findings.
 
 # Acknowledgements
@@ -502,3 +494,49 @@ thank you to [Alice Walsh](https://twitter.com/sciencealice){target="_blank"} fo
 knitr::knit_exit()
 ```
 
+```{r}
+dat_penguins %>% 
+  # add stack for all species to be analyzed together ----
+  bind_rows(dat_penguins %>% mutate(species_category = "All")) %>% 
+  # now examine by 3 species plus all ----
+  group_by(species_category) %>% 
+  nest() %>% 
+  # within each group, compute base n and correlation ----
+  mutate(
+    base_n = map_int(data, nrow),
+    corr = map(data, ~ cor.test(x = .x$bill_depth_mm, y = .x$body_mass_g) %>% broom::tidy())
+    ) %>% 
+  ungroup() %>% 
+  # bring results back to raw data ----
+  unnest(c(data, corr)) %>% 
+  mutate(
+    # create ordered facet label for plotting ----
+    species_category = fct_relevel(species_category, "Gentoo", "Chinstrap", "Adelie", "All"),
+    corr_label =  glue::glue("{species_category}\nn = {base_n}\n r = {scales::number(estimate, 0.01)}"),
+    corr_label = fct_reorder(as.character(corr_label), as.numeric(species_category))
+   ) %>% 
+  # create scatter plots ----
+  ggplot(aes(x = bill_depth_mm, y = body_mass_g)) +
+    geom_point(aes(color = species), alpha = 0.5, show.legend = FALSE) +
+    geom_smooth(method = "lm", color = "darkgray", se = FALSE) +
+    facet_wrap(. ~ corr_label, ncol = 4) +
+    scale_color_manual(values = colors_penguins) + 
+    theme_shannon() +
+    theme(
+      strip.text = element_text(size = 15),
+      axis.text = element_text(size = 12),
+      axis.title = element_text(size = 12),
+    ) -> p
+
+ggsave("penguins.png")
+```
+
+
+```{r, eval = FALSE, echo = FALSE}
+compute_adj_corr(
+  data      = dat_penguins, 
+  var_dep   = "body_mass_g", 
+  var_ind   = "bill_depth_mm", 
+  var_group = "species"
+  )
+```
