@@ -30,7 +30,7 @@ knitr::include_graphics("img/thumbnail.PNG")
 
 # TL;DR
 
-Correlations are a common analytic technique to identify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through a linear mixed model that yield sensible estimates of overall correlations across subgroups.
+Correlations are a common analytic technique to quantify associations between numeric variables; however, estimates can be misleading when underlying groups or related observations are present. Adjusted correlation estimates can be obtained through a linear mixed model that yield sensible estimates of overall correlations across subgroups.
 
 # Overview
 
