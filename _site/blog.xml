@@ -111,7 +111,7 @@ library(palmerpenguins) # simpsons paradox example ----&lt;/code&gt;&lt;/pre&gt;
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="introduction-to-correlations"&gt;Introduction to correlations&lt;/h1&gt;
 &lt;p&gt;Correlations (&lt;em&gt;r&lt;/em&gt;) take on values between -1 and 1, and measure the strength of the linear association between two numeric variables. Here are the three extreme forms of correlation:&lt;/p&gt;
-&lt;p&gt;&lt;img src="file3d30133b4614_files/figure-html/unnamed-chunk-6-1.png" width="672" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="file2ab06255166e_files/figure-html/unnamed-chunk-6-1.png" width="672" /&gt;&lt;/p&gt;
 &lt;p&gt;A value of &lt;code&gt;0&lt;/code&gt; indicates no linear association, whereas values of &lt;code&gt;-1&lt;/code&gt; or &lt;code&gt;1&lt;/code&gt; indicate a perfect linear association. Two conditions that need to be satisfied for good correlation estimates are:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;The relationship is linear.&lt;/p&gt;&lt;/li&gt;
@@ -161,10 +161,13 @@ colors_penguins &amp;lt;- c(
     facet_wrap(. ~ corr_label, ncol = 4) +
     scale_color_manual(values = colors_penguins) + 
     theme_shannon()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src="file3d30133b4614_files/figure-html/unnamed-chunk-9-1.png" width="672" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="file2ab06255166e_files/figure-html/unnamed-chunk-9-1.png" width="672" /&gt;&lt;/p&gt;
 &lt;p&gt;Here we see that within species the correlations between &lt;code&gt;bill_depth_mm&lt;/code&gt; and &lt;code&gt;body_mass_g&lt;/code&gt; are &lt;code&gt;0.72&lt;/code&gt;, &lt;code&gt;0.60&lt;/code&gt;, and &lt;code&gt;0.58&lt;/code&gt;. Yet when we look at the correlation across all species, we have a nonsensical estimate of &lt;code&gt;-0.47&lt;/code&gt; 😱, which is a classical presentation of Simpson’s paradox.&lt;/p&gt;
 &lt;p&gt;Getting a reasonable estimate of the correlation between &lt;code&gt;bill_depth_mm&lt;/code&gt; and &lt;code&gt;body_mass_g&lt;/code&gt; across all three species requires a bit more work. To estimate a correlation that adjusts for species, we can implement a &lt;a href="https://en.wikipedia.org/wiki/Multilevel_model" target="_blank"&gt;linear mixed model&lt;/a&gt;, also frequently referred to as a multilevel model, which “allow us to create models for situations where the observations are not independent of one another” as stated in &lt;a href="https://bookdown.org/roback/bookdown-BeyondMLR/ch-MLRreview.html#learning-objectives"&gt;Beyond Multiple Linear Regression: Applied Generalized Linear Models and Multilevel Models in R&lt;/a&gt; by Paul Roback and Julie Leger.&lt;/p&gt;
 &lt;p&gt;In this approach, we model the dependent variable of &lt;code&gt;body_mass_g&lt;/code&gt; with a fixed effect for &lt;code&gt;bill_depth_mm&lt;/code&gt; (what we want to draw inferences about) and a random effect for &lt;code&gt;species&lt;/code&gt; (which can be thought of as a sample from a larger population of species that we are not interested in drawing specific inferences about). The correlation estimate adjusting for &lt;code&gt;species&lt;/code&gt; group membership is the sign of the &lt;code&gt;bill_depth_mm&lt;/code&gt; coefficient multiplied by the square root of the variance explained at the different &lt;code&gt;species&lt;/code&gt; levels. Here, I use the &lt;a href="https://easystats.github.io/performance/reference/r2_nakagawa.html" target="_blank"&gt;&lt;code&gt;r2_nakagawa&lt;/code&gt;&lt;/a&gt; function from the &lt;code&gt;performance&lt;/code&gt; package to extract the relevant &lt;span class="math inline"&gt;\(R^2\)&lt;/span&gt; value.&lt;/p&gt;
+&lt;aside&gt;
+&lt;em&gt;Added 2021-10-13:&lt;/em&gt; Mattan Ben-Schachar contributed &lt;a href="https://twitter.com/mattansb/status/1448150889747910661?s=20" target="_blank"&gt;two alternative solutions on Twitter&lt;/a&gt;, one by mean centering and another using the {correlation} package.
+&lt;/aside&gt;
 &lt;pre class="r"&gt;&lt;code&gt;# estimate mixed model ----
 mixed_model &amp;lt;- lme4::lmer(body_mass_g ~ bill_depth_mm + (1 | species), dat_penguins)
 
@@ -309,7 +312,7 @@ colors_genre &amp;lt;- c(
   facet_grid(feature ~ music_category, scales = &amp;quot;free&amp;quot;) +
   scale_color_manual(values = colors_genre) +
   theme_shannon()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src="file3d30133b4614_files/figure-html/unnamed-chunk-16-1.png" width="672" /&gt; Visual inspection shows the possibility of some non-linear relationships, for example, with &lt;code&gt;energy&lt;/code&gt;, and also some potential outliers that could influence the correlation estimate. However, for this analysis we will proceed with data as-is. In addition, note that &lt;code&gt;pop&lt;/code&gt; and &lt;code&gt;rock&lt;/code&gt; tend to have similar distributions, which differ from &lt;code&gt;rap&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src="file2ab06255166e_files/figure-html/unnamed-chunk-16-1.png" width="672" /&gt; Visual inspection shows the possibility of some non-linear relationships, for example, with &lt;code&gt;energy&lt;/code&gt;, and also some potential outliers that could influence the correlation estimate. However, for this analysis we will proceed with data as-is. In addition, note that &lt;code&gt;pop&lt;/code&gt; and &lt;code&gt;rock&lt;/code&gt; tend to have similar distributions, which differ from &lt;code&gt;rap&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="correlation-computations"&gt;Correlation computations&lt;/h2&gt;
 &lt;p&gt;First, we compute correlations for the three genres individually and the unadjusted correlations across all genres together.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;results_1 &amp;lt;- dat_stacked %&amp;gt;%
