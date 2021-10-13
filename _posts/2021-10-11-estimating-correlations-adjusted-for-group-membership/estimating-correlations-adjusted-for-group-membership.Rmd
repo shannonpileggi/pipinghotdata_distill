@@ -250,7 +250,7 @@ across all three species requires a bit more work. To estimate a correlation tha
 In this approach, we model the dependent variable of `body_mass_g` with a fixed effect for `bill_depth_mm` (what we want to draw inferences about) and a random effect for `species` (which can be thought of as a sample from a larger population of species that we are not interested in drawing specific inferences about). The correlation estimate adjusting for `species` group membership is the sign of the `bill_depth_mm` coefficient multiplied by the square root of the variance explained at the different `species` levels. Here, I use the [`r2_nakagawa`](https://easystats.github.io/performance/reference/r2_nakagawa.html){target="_blank"} function from the `performance` package to extract the relevant $R^2$ value.
 
 <aside>
-_Added 2021-10-13:_ Mattan Ben-Schachar contributed [two alternative solutions on Twitter](https://twitter.com/mattansb/status/1448150889747910661?s=20){target="_blank"}, one by mean centering and another using the {correlation} package.
+_Added 2021-10-13:_ Mattan Ben-Schachar contributed [two alternative solutions on Twitter](https://twitter.com/mattansb/status/1448150889747910661?s=20){target="_blank"}, one by mean centering and another using the {correlation} package. Another approach suggested by Bryan Shalloway is to compute a [weighted correlation](https://twitter.com/brshallo/status/1448165143288844288){target="_blank"}, which provides a reasonable estimate as well! `(123*0.72 + 68*0.60 + 151*0.58)/342 = 0.634`
 </aside>
 
 
