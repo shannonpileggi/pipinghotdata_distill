@@ -7,7 +7,7 @@ title: "Shannon Pileggi, PhD"
 ## Professional
 
 
-I’m an enthusiastic professional educator and statistical consultant with over ten years of experience collaborating on data analysis with diverse partners in industry, tech, public health, and clinical research.  My previous work experiences include supporting research on parasitic diseases at the CDC, contributing to curriculum development at the Institute for Quantitative Theory and Methods at Emory University, and instructing advanced programming and modeling courses at California Polytechnic State University, San Luis Obispo.  I am currently a Senior Statistician at Adelphi Research in Doylestown, PA working in pharmaceutical market research.    
+I’m an enthusiastic professional educator and statistical consultant with over ten years of experience collaborating on data analysis with diverse partners in industry, tech, public health, and clinical research.  My previous work experiences include supporting research on parasitic diseases at the CDC, contributing to curriculum development at the Institute for Quantitative Theory and Methods at Emory University, and instructing advanced programming and modeling courses at California Polytechnic State University, San Luis Obispo.  I am currently a Data Scientist at [The Prostate Cancer Clinical Trials Consortium](http://pcctc.org/){target="_blank"}, housed under [Memorial Sloan Kettering Cancer Center](https://www.mskcc.org/){target="_blank"}, working remotely from my home in Doylestown, PA.    
 
 ## R-Ladies
 
