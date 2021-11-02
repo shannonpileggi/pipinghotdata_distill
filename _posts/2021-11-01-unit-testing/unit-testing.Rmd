@@ -1,0 +1,106 @@
+---
+title: "Getting started with unit testing in R"
+description: |
+  tbd
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+author:
+  - name: Shannon Pileggi
+date: 11-01-2021
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# TL;DR
+
+# Abstract
+
+In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in `usethis` and `devtools`, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.
+
+This workshop picks up exactly where we left our little `ralph` (aka **R**-**L**adies **Ph**illy) package one year ago with [“Your first R package in 1 hour: Tools that make R package development easy”](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/){target="_blank"}. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with `devtools` and `usethis`.
+
+
+
+
+# Packages
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.1.1                 | 
+| RStudio             | 351 "Ghost Orchid"    |
+| `usethis`           | 2.1.2                 |
+| `devtools`          | 2.4.2                 |
+| `testthat`          | 3.1.0                 |
+| `broom`             | 0.7.9                 |
+
+
+# Notes
+
+* `usethis::use_testthat()` to create overall testing infrastructure
+
+* `usethis::use_test()` to create a new test file
+
+* tests define correctness for your code - what do i care that is right?
+
+* higher risk would do more tests
+
+* to run tests `devtools::test()`
+
+* run tests button runs test in fresh environment; devtools test in global environment
+
+* browser() in function for troubleshooting
+
+* re-name output ?? what does this note mean?
+
+* `devtools::test_coverage()` percent of code covered
+
+* put `browser()` in function for debugging
+
+* to test variables in input data set, create a message/warning & test for that message/warning
+
+# Testing code
+
+To enter one at a time.
+
+```{r, eval = FALSE}
+test_that("length", {
+  expected <- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, "data.frame")
+  expect_equal(dim(expected), c(1,2))
+  expect_named(expected, c("correlation", "pval"))
+  expect_equal(expected[["correlation"]], 0.901, tolerance = 0.001)
+})
+```
+
+Correction to add to `compute_corr` for `expect_equal` to pass:
+
+```{r, eval = FALSE}
+# remove attribute name from results
+attr(results$correlation, "names") <- NULL
+```
+
+
+Distinguishing message/warning/error:
+
+
+
+Error to add to `compute_corr` to evaluate inputs:
+
+
+
+# Challenge function
+
+Make function simpler for debugging.
