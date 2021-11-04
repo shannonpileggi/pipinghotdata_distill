@@ -46,6 +46,14 @@ This material was developed using:
 | `testthat`          | 3.1.0                 |
 | `broom`             | 0.7.9                 |
 
+# Getting started
+
+You can work either (1) locally or (2) with GitHub.
+
+1. To work locally, click the green `Code` button and download the zipped `ralphGetsTested` repository.
+
+2. To work through GitHub, fork and clone this repository with
+`usethis::create_from_github("shannonpileggi/ralphGetsTested")`.
 
 # Notes
 
@@ -53,6 +61,10 @@ This material was developed using:
 
 * `usethis::use_test()` to create a new test file
 
+   + WHAT TO NAME THIS FILE?
+   
+   + WHAT TO NAME TESTS IN THIS FILE?
+   
 * tests define correctness for your code - what do i care that is right?
 
 * higher risk would do more tests
@@ -63,13 +75,15 @@ This material was developed using:
 
 * browser() in function for troubleshooting
 
-* re-name output ?? what does this note mean?
-
 * `devtools::test_coverage()` percent of code covered
+
+   + THIS ISNT WORKING
 
 * put `browser()` in function for debugging
 
 * to test variables in input data set, create a message/warning & test for that message/warning
+
+* Restart R -> cntrl + shift + F10
 
 # Testing code
 
@@ -81,6 +95,7 @@ test_that("length", {
   expect_s3_class(expected, "data.frame")
   expect_equal(dim(expected), c(1,2))
   expect_named(expected, c("correlation", "pval"))
+  # can run without tolerance
   expect_equal(expected[["correlation"]], 0.901, tolerance = 0.001)
 })
 ```
@@ -93,14 +108,132 @@ attr(results$correlation, "names") <- NULL
 ```
 
 
-Distinguishing message/warning/error:
+# Distinguishing message/warning/error:
 
-
+https://adv-r.hadley.nz/conditions.html#signalling-conditions
 
 Error to add to `compute_corr` to evaluate inputs:
+
+Errors are the most severe; they indicate that there is no way for a function to continue and execution must stop.
+
+Warnings fall somewhat in between errors and message, and typically indicate that something has gone wrong but the function has been able to at least partially recover.
+
+Messages are the mildest; they are way of informing users that some action has been performed on their behalf.
+
+
+```{r}
+stop("This is what an error looks like")
+#> Error in eval(expr, envir, enclos): This is what an error looks like
+
+warning("This is what a warning looks like")
+#> Warning: This is what a warning looks like
+
+message("This is what a message looks like")
+#> This is what a message looks like
+```
+
+
+# checking variable names
+
+Add to function body:
+
+```{r, eval = FALSE}
+  # convert variable names to character strings
+  var1_chr <- rlang::as_label(rlang::ensym(var1))
+  var2_chr <- rlang::as_label(rlang::ensym(var2))
+
+  # alert user if variable not in data set ----
+  if (!(var1_chr %in% names(data))){
+    #stop(glue::glue("{var1_chr} not in data set."))
+    usethis::ui_stop("{var1_chr} is not in the data set.")
+  }
+
+  # alert user if variable not in data set ----
+  if (!(var2_chr %in% names(data))){
+    #stop(glue::glue("{var2_chr} not in data set."))
+    usethis::ui_stop("{var2_chr} is not in the data set.")
+  }
+```
+
+
+Add to test
+
+```{r, eval = FALSE}
+test_that("length", {
+  # evaluate correctness of output produced ----
+  expected <- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, "data.frame")
+  expect_equal(dim(expected), c(1,2))
+  expect_named(expected, c("correlation", "pval"))
+  expect_equal(expected[["correlation"]], 0.901, tolerance = 0.001)
+  # catching errors ----
+  expect_error(compute_corr(data = faithful, var1 = erruptions, var2 = waiting))
+})
+
+```
+
 
 
 
 # Challenge function
 
-Make function simpler for debugging.
+* Can we break this up to make it easier to test?
+
+* What type of object should the function output?
+
+* What type of object does this function expect, can we put up guardrails so the user doesn't send the wrong thing? How do we test those guardrails?
+
+## original
+
+```{r}
+awesome_rladies <- function(v) {
+  # Can we break this up to make it easier to test?
+  # What type of object should the function output?
+  # What type of object does this function expect, can we put up guardrails so the user
+  # doesn't send the wrong thing? How do we test those guardrails?
+  
+  
+  # original function
+  sapply(v, function(x) {
+    if (x == 1) {
+      verb <- "is"
+      noun <- "RLady"
+    }
+    
+    if (x > 1) {
+      verb <- "are"
+      noun <- "RLadies"
+    }
+    
+    glue::glue("There {verb} {x} awesome {noun}!")
+  })
+}
+```
+
+
+## broken up
+
+```{r}
+write_rladies <- function(x){
+  if (x == 1) {
+    verb <- "is"
+    noun <- "RLady"
+  } 
+  
+  if(x > 1) {
+    verb <- "are"
+    noun <- "RLadies"
+  }
+  
+  glue::glue("There {verb} {x} awesome {noun}!")
+}
+
+
+
+
+compose_rladies <- function(x){
+  #sapply(x, write_rladies)
+  purrr::map_chr(x, write_rladies)
+}
+```
+
