@@ -19,7 +19,7 @@ creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
 # TL;DR
@@ -187,13 +187,7 @@ test_that("length", {
 
 ```{r}
 awesome_rladies <- function(v) {
-  # Can we break this up to make it easier to test?
-  # What type of object should the function output?
-  # What type of object does this function expect, can we put up guardrails so the user
-  # doesn't send the wrong thing? How do we test those guardrails?
   
-  
-  # original function
   sapply(v, function(x) {
     if (x == 1) {
       verb <- "is"
@@ -213,7 +207,7 @@ awesome_rladies <- function(v) {
 
 ## broken up
 
-```{r}
+```{r, eval = FALSE}
 write_rladies <- function(x){
   if (x == 1) {
     verb <- "is"
@@ -235,5 +229,66 @@ compose_rladies <- function(x){
   #sapply(x, write_rladies)
   purrr::map_chr(x, write_rladies)
 }
+```
+
+
+ `usethis::use_test()` to create a second test file, right?
+ 
+## tests
+
+
+what to name test?
+
+```{r}
+test_that("length", {
+  # evaluate output produced ----
+  expected <- write_rladies(1)
+  expect_s3_class(expected, "character")
+})
+
+```
+
+
+add to function
+
+```{r, eval = FALSE}
+write_rladies <- function(x){
+  
+ if ( !(is.numeric(x) & (x > 0)) ){
+    usethis::ui_stop("Input must be numeric and greater than 0.")
+  }
+
+  
+  if (x == 1) {
+    verb <- "is"
+    noun <- "RLady"
+  } 
+  
+  if(x > 1) {
+    verb <- "are"
+    noun <- "RLadies"
+  }
+  
+  glue::glue("There {verb} {x} awesome {noun}!")
+}
+```
+
+add to test, need to work through this more
+
+
+```{r}
+usethis::use_test("rladies")
+
+
+test_that("correct", {
+  # evaluate output produced ----
+  expected_write <- write_rladies(1)
+  expect_s3_class(expected_write, "character")
+  # ----
+  expected_1 <- compose_rladies(1)
+  #expected_2 <- compose_rladies(1:2)
+  expect_s3_class(expected_1, "character")
+})
+
 ```
 

@@ -55,19 +55,32 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
+&lt;p&gt;You can work either (1) locally or (2) with GitHub.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;To work locally, click the green &lt;code&gt;Code&lt;/code&gt; button and download the zipped &lt;code&gt;ralphGetsTested&lt;/code&gt; repository.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;To work through GitHub, fork and clone this repository with &lt;code&gt;usethis::create_from_github("shannonpileggi/ralphGetsTested")&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt; to create overall testing infrastructure&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt; to create a new test file&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt; to create a new test file&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;WHAT TO NAME THIS FILE?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WHAT TO NAME TESTS IN THIS FILE?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;tests define correctness for your code - what do i care that is right?&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;higher risk would do more tests&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;to run tests &lt;code&gt;devtools::test()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;run tests button runs test in fresh environment; devtools test in global environment&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;browser() in function for troubleshooting&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;re-name output ?? what does this note mean?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::test_coverage()&lt;/code&gt; percent of code covered&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::test_coverage()&lt;/code&gt; percent of code covered&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;THIS ISNT WORKING&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;put &lt;code&gt;browser()&lt;/code&gt; in function for debugging&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;to test variables in input data set, create a message/warning &amp;amp; test for that message/warning&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Restart R -&amp;gt; cntrl + shift + F10&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="testing-code"&gt;Testing code&lt;/h1&gt;
 &lt;p&gt;To enter one at a time.&lt;/p&gt;
@@ -76,15 +89,140 @@
   expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
   expect_equal(dim(expected), c(1,2))
   expect_named(expected, c(&amp;quot;correlation&amp;quot;, &amp;quot;pval&amp;quot;))
+  # can run without tolerance
   expect_equal(expected[[&amp;quot;correlation&amp;quot;]], 0.901, tolerance = 0.001)
 })&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Correction to add to &lt;code&gt;compute_corr&lt;/code&gt; for &lt;code&gt;expect_equal&lt;/code&gt; to pass:&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;# remove attribute name from results
 attr(results$correlation, &amp;quot;names&amp;quot;) &amp;lt;- NULL&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Distinguishing message/warning/error:&lt;/p&gt;
+&lt;h1 id="distinguishing-messagewarningerror"&gt;Distinguishing message/warning/error:&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://adv-r.hadley.nz/conditions.html#signalling-conditions" class="uri"&gt;https://adv-r.hadley.nz/conditions.html#signalling-conditions&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Error to add to &lt;code&gt;compute_corr&lt;/code&gt; to evaluate inputs:&lt;/p&gt;
+&lt;p&gt;Errors are the most severe; they indicate that there is no way for a function to continue and execution must stop.&lt;/p&gt;
+&lt;p&gt;Warnings fall somewhat in between errors and message, and typically indicate that something has gone wrong but the function has been able to at least partially recover.&lt;/p&gt;
+&lt;p&gt;Messages are the mildest; they are way of informing users that some action has been performed on their behalf.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;stop(&amp;quot;This is what an error looks like&amp;quot;)
+#&amp;gt; Error in eval(expr, envir, enclos): This is what an error looks like
+
+warning(&amp;quot;This is what a warning looks like&amp;quot;)
+#&amp;gt; Warning: This is what a warning looks like
+
+message(&amp;quot;This is what a message looks like&amp;quot;)
+#&amp;gt; This is what a message looks like&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="checking-variable-names"&gt;checking variable names&lt;/h1&gt;
+&lt;p&gt;Add to function body:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;  # convert variable names to character strings
+  var1_chr &amp;lt;- rlang::as_label(rlang::ensym(var1))
+  var2_chr &amp;lt;- rlang::as_label(rlang::ensym(var2))
+
+  # alert user if variable not in data set ----
+  if (!(var1_chr %in% names(data))){
+    #stop(glue::glue(&amp;quot;{var1_chr} not in data set.&amp;quot;))
+    usethis::ui_stop(&amp;quot;{var1_chr} is not in the data set.&amp;quot;)
+  }
+
+  # alert user if variable not in data set ----
+  if (!(var2_chr %in% names(data))){
+    #stop(glue::glue(&amp;quot;{var2_chr} not in data set.&amp;quot;))
+    usethis::ui_stop(&amp;quot;{var2_chr} is not in the data set.&amp;quot;)
+  }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Add to test&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;length&amp;quot;, {
+  # evaluate correctness of output produced ----
+  expected &amp;lt;- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
+  expect_equal(dim(expected), c(1,2))
+  expect_named(expected, c(&amp;quot;correlation&amp;quot;, &amp;quot;pval&amp;quot;))
+  expect_equal(expected[[&amp;quot;correlation&amp;quot;]], 0.901, tolerance = 0.001)
+  # catching errors ----
+  expect_error(compute_corr(data = faithful, var1 = erruptions, var2 = waiting))
+})&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="challenge-function"&gt;Challenge function&lt;/h1&gt;
-&lt;p&gt;Make function simpler for debugging.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Can we break this up to make it easier to test?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What type of object should the function output?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What type of object does this function expect, can we put up guardrails so the user doesn’t send the wrong thing? How do we test those guardrails?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="original"&gt;original&lt;/h2&gt;
+&lt;pre class="r"&gt;&lt;code&gt;awesome_rladies &amp;lt;- function(v) {
+  
+  sapply(v, function(x) {
+    if (x == 1) {
+      verb &amp;lt;- &amp;quot;is&amp;quot;
+      noun &amp;lt;- &amp;quot;RLady&amp;quot;
+    }
+    
+    if (x &amp;gt; 1) {
+      verb &amp;lt;- &amp;quot;are&amp;quot;
+      noun &amp;lt;- &amp;quot;RLadies&amp;quot;
+    }
+    
+    glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;)
+  })
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="broken-up"&gt;broken up&lt;/h2&gt;
+&lt;pre class="r"&gt;&lt;code&gt;write_rladies &amp;lt;- function(x){
+  if (x == 1) {
+    verb &amp;lt;- &amp;quot;is&amp;quot;
+    noun &amp;lt;- &amp;quot;RLady&amp;quot;
+  } 
+  
+  if(x &amp;gt; 1) {
+    verb &amp;lt;- &amp;quot;are&amp;quot;
+    noun &amp;lt;- &amp;quot;RLadies&amp;quot;
+  }
+  
+  glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;)
+}
+
+
+
+
+compose_rladies &amp;lt;- function(x){
+  #sapply(x, write_rladies)
+  purrr::map_chr(x, write_rladies)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt; to create a second test file, right?&lt;/p&gt;
+&lt;h2 id="tests"&gt;tests&lt;/h2&gt;
+&lt;p&gt;what to name test?&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;length&amp;quot;, {
+  # evaluate output produced ----
+  expected &amp;lt;- write_rladies(1)
+  expect_s3_class(expected, &amp;quot;character&amp;quot;)
+})&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;add to function&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;write_rladies &amp;lt;- function(x){
+  
+ if ( !(is.numeric(x) &amp;amp; (x &amp;gt; 0)) ){
+    usethis::ui_stop(&amp;quot;Input must be numeric and greater than 0.&amp;quot;)
+  }
+
+  
+  if (x == 1) {
+    verb &amp;lt;- &amp;quot;is&amp;quot;
+    noun &amp;lt;- &amp;quot;RLady&amp;quot;
+  } 
+  
+  if(x &amp;gt; 1) {
+    verb &amp;lt;- &amp;quot;are&amp;quot;
+    noun &amp;lt;- &amp;quot;RLadies&amp;quot;
+  }
+  
+  glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;add to test, need to work through this more&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::use_test(&amp;quot;rladies&amp;quot;)
+
+
+test_that(&amp;quot;correct&amp;quot;, {
+  # evaluate output produced ----
+  expected_write &amp;lt;- write_rladies(1)
+  expect_s3_class(expected_write, &amp;quot;character&amp;quot;)
+  # ----
+  expected_1 &amp;lt;- compose_rladies(1)
+  #expected_2 &amp;lt;- compose_rladies(1:2)
+  expect_s3_class(expected_1, &amp;quot;character&amp;quot;)
+})&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-11-01-unit-testing</guid>
