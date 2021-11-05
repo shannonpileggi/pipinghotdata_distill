@@ -2598,10 +2598,11 @@ gtag('config', 'UA-128676462-1');
 </ol>
 <h1 id="notes">Notes</h1>
 <ul>
+<li><p><code>devtools::load_all()</code> command shift L</p></li>
 <li><p><code>usethis::use_testthat()</code> to create overall testing infrastructure</p></li>
 <li><p><code>usethis::use_test()</code> to create a new test file</p>
 <ul>
-<li><p>WHAT TO NAME THIS FILE?</p></li>
+<li><p>WHAT TO NAME THIS FILE? - same as function name</p></li>
 <li><p>WHAT TO NAME TESTS IN THIS FILE?</p></li>
 </ul></li>
 <li><p>tests define correctness for your code - what do i care that is right?</p></li>
@@ -2611,9 +2612,10 @@ gtag('config', 'UA-128676462-1');
 <li><p>browser() in function for troubleshooting</p></li>
 <li><p><code>devtools::test_coverage()</code> percent of code covered</p>
 <ul>
-<li>THIS ISNT WORKING</li>
+<li><p>THIS ISNT WORKING</p></li>
+<li><p><code>covr::report</code></p></li>
 </ul></li>
-<li><p>put <code>browser()</code> in function for debugging</p></li>
+<li><p>put <code>browser()</code> in function for debugging - NOT IN A PIPE</p></li>
 <li><p>to test variables in input data set, create a message/warning &amp; test for that message/warning</p></li>
 <li><p>Restart R -&gt; cntrl + shift + F10</p></li>
 </ul>
@@ -2719,7 +2721,7 @@ gtag('config', 'UA-128676462-1');
       <span class='va'>noun</span> <span class='op'>&lt;-</span> <span class='st'>"RLadies"</span>
     <span class='op'>}</span>
     
-    <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"There {verb} {x} awesome {noun}!"</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"There {verb} {x} awesome {noun}!"</span><span class='op'>)</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
 <span class='op'>}</span>
 </code></pre>
@@ -2739,7 +2741,7 @@ gtag('config', 'UA-128676462-1');
     <span class='va'>noun</span> <span class='op'>&lt;-</span> <span class='st'>"RLadies"</span>
   <span class='op'>}</span>
   
-  <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"There {verb} {x} awesome {noun}!"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"There {verb} {x} awesome {noun}!"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 
 
@@ -2798,12 +2800,13 @@ gtag('config', 'UA-128676462-1');
 
 <span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"correct"</span>, <span class='op'>{</span>
   <span class='co'># evaluate output produced ----</span>
-  <span class='va'>expected_write</span> <span class='op'>&lt;-</span> <span class='fu'>write_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-  <span class='fu'>expect_s3_class</span><span class='op'>(</span><span class='va'>expected_write</span>, <span class='st'>"character"</span><span class='op'>)</span>
+  <span class='va'>expected_1</span> <span class='op'>&lt;-</span> <span class='fu'>write_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+  <span class='va'>expected_2</span> <span class='op'>&lt;-</span> <span class='fu'>write_rladies</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+  <span class='fu'>expect_equal</span><span class='op'>(</span><span class='va'>expected_1</span>, <span class='st'>"There is 1 awesome RLady!"</span><span class='op'>)</span>
+  <span class='fu'>expect_equal</span><span class='op'>(</span><span class='va'>expected_2</span>, <span class='st'>"There are 2 awesome RLadies!"</span><span class='op'>)</span>
   <span class='co'># ----</span>
-  <span class='va'>expected_1</span> <span class='op'>&lt;-</span> <span class='fu'>compose_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-  <span class='co'>#expected_2 &lt;- compose_rladies(1:2)</span>
-  <span class='fu'>expect_s3_class</span><span class='op'>(</span><span class='va'>expected_1</span>, <span class='st'>"character"</span><span class='op'>)</span>
+  <span class='va'>expected_multiple</span> <span class='op'>&lt;-</span> <span class='fu'>compose_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span>
+  <span class='fu'>expect_length</span><span class='op'>(</span><span class='va'>expected_multiple</span>, <span class='fl'>2</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>

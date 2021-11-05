@@ -63,10 +63,11 @@
 &lt;/ol&gt;
 &lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt; command shift L&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt; to create overall testing infrastructure&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt; to create a new test file&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;WHAT TO NAME THIS FILE?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;WHAT TO NAME THIS FILE? - same as function name&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;WHAT TO NAME TESTS IN THIS FILE?&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;tests define correctness for your code - what do i care that is right?&lt;/p&gt;&lt;/li&gt;
@@ -76,9 +77,10 @@
 &lt;li&gt;&lt;p&gt;browser() in function for troubleshooting&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::test_coverage()&lt;/code&gt; percent of code covered&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;THIS ISNT WORKING&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;THIS ISNT WORKING&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;covr::report&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;put &lt;code&gt;browser()&lt;/code&gt; in function for debugging&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;put &lt;code&gt;browser()&lt;/code&gt; in function for debugging - NOT IN A PIPE&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;to test variables in input data set, create a message/warning &amp;amp; test for that message/warning&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Restart R -&amp;gt; cntrl + shift + F10&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -157,7 +159,7 @@ message(&amp;quot;This is what a message looks like&amp;quot;)
       noun &amp;lt;- &amp;quot;RLadies&amp;quot;
     }
     
-    glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;)
+    as.character(glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;))
   })
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="broken-up"&gt;broken up&lt;/h2&gt;
@@ -172,7 +174,7 @@ message(&amp;quot;This is what a message looks like&amp;quot;)
     noun &amp;lt;- &amp;quot;RLadies&amp;quot;
   }
   
-  glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;)
+  as.character(glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;))
 }
 
 
@@ -216,12 +218,13 @@ compose_rladies &amp;lt;- function(x){
 
 test_that(&amp;quot;correct&amp;quot;, {
   # evaluate output produced ----
-  expected_write &amp;lt;- write_rladies(1)
-  expect_s3_class(expected_write, &amp;quot;character&amp;quot;)
+  expected_1 &amp;lt;- write_rladies(1)
+  expected_2 &amp;lt;- write_rladies(2)
+  expect_equal(expected_1, &amp;quot;There is 1 awesome RLady!&amp;quot;)
+  expect_equal(expected_2, &amp;quot;There are 2 awesome RLadies!&amp;quot;)
   # ----
-  expected_1 &amp;lt;- compose_rladies(1)
-  #expected_2 &amp;lt;- compose_rladies(1:2)
-  expect_s3_class(expected_1, &amp;quot;character&amp;quot;)
+  expected_multiple &amp;lt;- compose_rladies(1:2)
+  expect_length(expected_multiple, 2)
 })&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>

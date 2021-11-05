@@ -57,11 +57,13 @@ You can work either (1) locally or (2) with GitHub.
 
 # Notes
 
+* `devtools::load_all()` command shift L
+
 * `usethis::use_testthat()` to create overall testing infrastructure
 
 * `usethis::use_test()` to create a new test file
 
-   + WHAT TO NAME THIS FILE?
+   + WHAT TO NAME THIS FILE? - same as function name
    
    + WHAT TO NAME TESTS IN THIS FILE?
    
@@ -78,8 +80,10 @@ You can work either (1) locally or (2) with GitHub.
 * `devtools::test_coverage()` percent of code covered
 
    + THIS ISNT WORKING
+   
+   + `covr::report`
 
-* put `browser()` in function for debugging
+* put `browser()` in function for debugging - NOT IN A PIPE
 
 * to test variables in input data set, create a message/warning & test for that message/warning
 
@@ -199,7 +203,7 @@ awesome_rladies <- function(v) {
       noun <- "RLadies"
     }
     
-    glue::glue("There {verb} {x} awesome {noun}!")
+    as.character(glue::glue("There {verb} {x} awesome {noun}!"))
   })
 }
 ```
@@ -219,7 +223,7 @@ write_rladies <- function(x){
     noun <- "RLadies"
   }
   
-  glue::glue("There {verb} {x} awesome {noun}!")
+  as.character(glue::glue("There {verb} {x} awesome {noun}!"))
 }
 
 
@@ -282,12 +286,13 @@ usethis::use_test("rladies")
 
 test_that("correct", {
   # evaluate output produced ----
-  expected_write <- write_rladies(1)
-  expect_s3_class(expected_write, "character")
+  expected_1 <- write_rladies(1)
+  expected_2 <- write_rladies(2)
+  expect_equal(expected_1, "There is 1 awesome RLady!")
+  expect_equal(expected_2, "There are 2 awesome RLadies!")
   # ----
-  expected_1 <- compose_rladies(1)
-  #expected_2 <- compose_rladies(1:2)
-  expect_s3_class(expected_1, "character")
+  expected_multiple <- compose_rladies(1:2)
+  expect_length(expected_multiple, 2)
 })
 
 ```
