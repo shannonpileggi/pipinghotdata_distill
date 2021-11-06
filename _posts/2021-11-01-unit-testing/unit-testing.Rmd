@@ -55,6 +55,18 @@ You can work either (1) locally or (2) with GitHub.
 2. To work through GitHub, fork and clone this repository with
 `usethis::create_from_github("shannonpileggi/ralphGetsTested")`.
 
+# Intros
+
+* Native language
+
+* Thank Gordon
+
+* What is unit testing / why do it?
+
+* Presenters experience with unit testing
+
+* Attendees experience with unit testing.
+
 # Notes
 
 * `devtools::load_all()` command shift L
