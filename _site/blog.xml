@@ -250,6 +250,19 @@ compose_rladies &amp;lt;- function(x){
   expect_error(compose_rladies(&amp;quot;a&amp;quot;))
   expect_error(compose_rladies(0))
 })&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="testthat-3e"&gt;testthat 3e&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://testthat.r-lib.org/articles/third-edition.html"&gt;https://testthat.r-lib.org/articles/third-edition.html&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the checking is a bit different from regular testthat (uses waldo package), and the tests run in parallel (so much faster)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;use first edition if nothing is specified; add this to your DESCRIPTION file&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Config/testthat/edition: 3
+Config/testthat/parallel: true&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;gtsummary check went from 40 min to 14 min&lt;/li&gt;
+&lt;/ul&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-11-01-unit-testing</guid>

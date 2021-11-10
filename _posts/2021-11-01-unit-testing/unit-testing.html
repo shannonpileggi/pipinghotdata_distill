@@ -1504,6 +1504,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#broken-up">broken up</a></li>
 <li><a href="#tests">tests</a></li>
 </ul></li>
+<li><a href="#testthat-3e">testthat 3e</a></li>
 </ul>
 </nav>
 </div>
@@ -1797,7 +1798,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="testthat-3e">testthat 3e</h1>
+<ul>
+<li><p><a href="https://testthat.r-lib.org/articles/third-edition.html">https://testthat.r-lib.org/articles/third-edition.html</a></p></li>
+<li><p>the checking is a bit different from regular testthat (uses waldo package), and the tests run in parallel (so much faster)</p></li>
+<li><p>use first edition if nothing is specified; add this to your DESCRIPTION file</p></li>
+</ul>
+<pre><code>Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Config/testthat/edition: 3
+Config/testthat/parallel: true</code></pre>
+<ul>
+<li>gtsummary check went from 40 min to 14 min</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -343,3 +343,19 @@ test_that("correct", {
 
 ```
 
+# testthat 3e
+
+* [https://testthat.r-lib.org/articles/third-edition.html](https://testthat.r-lib.org/articles/third-edition.html)
+
+* the checking is a bit different from regular testthat (uses waldo package), and the tests run in parallel (so much faster)
+
+* use first edition if nothing is specified; add this to your DESCRIPTION file
+
+```
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Config/testthat/edition: 3
+Config/testthat/parallel: true
+```
+
+* gtsummary check went from 40 min to 14 min
