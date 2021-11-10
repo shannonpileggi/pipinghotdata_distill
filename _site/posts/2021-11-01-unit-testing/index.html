@@ -2537,6 +2537,7 @@ gtag('config', 'UA-128676462-1');
 <li><a href="#abstract">Abstract</a></li>
 <li><a href="#packages">Packages</a></li>
 <li><a href="#getting-started">Getting started</a></li>
+<li><a href="#intros">Intros</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#testing-code">Testing code</a></li>
 <li><a href="#distinguishing-messagewarningerror">Distinguishing message/warning/error:</a></li>
@@ -2596,22 +2597,37 @@ gtag('config', 'UA-128676462-1');
 <li><p>To work locally, click the green <code>Code</code> button and download the zipped <code>ralphGetsTested</code> repository.</p></li>
 <li><p>To work through GitHub, fork and clone this repository with <code>usethis::create_from_github("shannonpileggi/ralphGetsTested")</code>.</p></li>
 </ol>
+<h1 id="intros">Intros</h1>
+<ul>
+<li><p>Native language</p></li>
+<li><p>Thank Gordon</p></li>
+<li><p>What is unit testing / why do it?</p></li>
+<li><p>Presenters experience with unit testing</p></li>
+<li><p>Attendees experience with unit testing.</p></li>
+</ul>
 <h1 id="notes">Notes</h1>
 <ul>
+<li><p><code>devtools::check()</code> confirm error free</p></li>
 <li><p><code>devtools::load_all()</code> command shift L</p></li>
-<li><p><code>usethis::use_testthat()</code> to create overall testing infrastructure</p></li>
-<li><p><code>usethis::use_test()</code> to create a new test file</p>
+<li><p>?compute_corr</p></li>
+<li><p><code>compute_corr(data = faithful, var1 = eruptions, var2 = waiting)</code></p></li>
+<li><p>review function</p></li>
+<li><p><code>usethis::use_testthat()</code> to create overall testing infrastructure - ONE TIME</p></li>
+<li><p><code>usethis::use_test("compute_corr")</code> to create a new test file</p>
 <ul>
 <li><p>WHAT TO NAME THIS FILE? - same as function name</p></li>
 <li><p>WHAT TO NAME TESTS IN THIS FILE?</p></li>
+<li><p>It can be whatever also the name can have spaces. It’s just something that tells you what failed when the test fails</p></li>
+<li><p>So there’s no right name, it’s just something that reminds future you where the failing test is</p></li>
 </ul></li>
 <li><p>tests define correctness for your code - what do i care that is right?</p></li>
 <li><p>higher risk would do more tests</p></li>
 <li><p>to run tests <code>devtools::test()</code></p></li>
 <li><p>run tests button runs test in fresh environment; devtools test in global environment</p></li>
 <li><p>browser() in function for troubleshooting</p></li>
-<li><p><code>devtools::test_coverage()</code> percent of code covered</p>
+<li><p><code>covr::report</code> percent of code covered</p>
 <ul>
+<li><p>restart R, then run</p></li>
 <li><p>THIS ISNT WORKING</p></li>
 <li><p><code>covr::report</code></p></li>
 </ul></li>
@@ -2699,6 +2715,12 @@ gtag('config', 'UA-128676462-1');
 </code></pre>
 </div>
 </div>
+<ul>
+<li><p><code>devtools::test()</code> passes</p></li>
+<li><p><code>devtools::check()</code> has a warning</p></li>
+<li><p><code>usethis::use_package("usethis")</code></p></li>
+<li><p><code>devtools::check()</code></p></li>
+</ul>
 <h1 id="challenge-function">Challenge function</h1>
 <ul>
 <li><p>Can we break this up to make it easier to test?</p></li>
@@ -2706,6 +2728,7 @@ gtag('config', 'UA-128676462-1');
 <li><p>What type of object does this function expect, can we put up guardrails so the user doesn’t send the wrong thing? How do we test those guardrails?</p></li>
 </ul>
 <h2 id="original">original</h2>
+<p><code>usethis::use_r("awesome_rladies")</code></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>awesome_rladies</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>v</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2756,13 +2779,19 @@ gtag('config', 'UA-128676462-1');
 </div>
 <p><code>usethis::use_test()</code> to create a second test file, right?</p>
 <h2 id="tests">tests</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_test</a></span><span class='op'>(</span><span class='st'>"awesome_rladies"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <p>what to name test?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"length"</span>, <span class='op'>{</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"assess-awesome_rladies"</span>, <span class='op'>{</span>
   <span class='co'># evaluate output produced ----</span>
   <span class='va'>expected</span> <span class='op'>&lt;-</span> <span class='fu'>write_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-  <span class='fu'>expect_s3_class</span><span class='op'>(</span><span class='va'>expected</span>, <span class='st'>"character"</span><span class='op'>)</span>
+  <span class='fu'>expect_type</span><span class='op'>(</span><span class='va'>expected</span>, <span class='st'>"character"</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2772,8 +2801,8 @@ gtag('config', 'UA-128676462-1');
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>write_rladies</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
   
- <span class='kw'>if</span> <span class='op'>(</span> <span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>(</span><span class='va'>x</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>)</span><span class='op'>{</span>
-    <span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/ui.html'>ui_stop</a></span><span class='op'>(</span><span class='st'>"Input must be numeric and greater than 0."</span><span class='op'>)</span>
+ <span class='kw'>if</span> <span class='op'>(</span> <span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>(</span><span class='va'>x</span> <span class='op'>&gt;=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>)</span><span class='op'>{</span>
+    <span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/ui.html'>ui_stop</a></span><span class='op'>(</span><span class='st'>"Input must be numeric and greater than or equal to 1."</span><span class='op'>)</span>
   <span class='op'>}</span>
 
   
@@ -2795,18 +2824,19 @@ gtag('config', 'UA-128676462-1');
 <p>add to test, need to work through this more</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_test</a></span><span class='op'>(</span><span class='st'>"rladies"</span><span class='op'>)</span>
-
-
-<span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"correct"</span>, <span class='op'>{</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"correct"</span>, <span class='op'>{</span>
   <span class='co'># evaluate output produced ----</span>
   <span class='va'>expected_1</span> <span class='op'>&lt;-</span> <span class='fu'>write_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
   <span class='va'>expected_2</span> <span class='op'>&lt;-</span> <span class='fu'>write_rladies</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+  <span class='fu'>expect_type</span><span class='op'>(</span><span class='va'>expected_1</span>, <span class='st'>"character"</span><span class='op'>)</span>
   <span class='fu'>expect_equal</span><span class='op'>(</span><span class='va'>expected_1</span>, <span class='st'>"There is 1 awesome RLady!"</span><span class='op'>)</span>
   <span class='fu'>expect_equal</span><span class='op'>(</span><span class='va'>expected_2</span>, <span class='st'>"There are 2 awesome RLadies!"</span><span class='op'>)</span>
   <span class='co'># ----</span>
   <span class='va'>expected_multiple</span> <span class='op'>&lt;-</span> <span class='fu'>compose_rladies</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>)</span>
   <span class='fu'>expect_length</span><span class='op'>(</span><span class='va'>expected_multiple</span>, <span class='fl'>2</span><span class='op'>)</span>
+  <span class='co'># catching errors ----</span>
+  <span class='fu'>expect_error</span><span class='op'>(</span><span class='fu'>compose_rladies</span><span class='op'>(</span><span class='st'>"a"</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'>expect_error</span><span class='op'>(</span><span class='fu'>compose_rladies</span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>

@@ -69,15 +69,28 @@ You can work either (1) locally or (2) with GitHub.
 
 # Notes
 
+* `devtools::check()` confirm error free
+
 * `devtools::load_all()` command shift L
 
-* `usethis::use_testthat()` to create overall testing infrastructure
+* ?compute_corr
 
-* `usethis::use_test()` to create a new test file
+* `compute_corr(data = faithful, var1 = eruptions, var2 = waiting)`
+
+* review function
+
+* `usethis::use_testthat()` to create overall testing infrastructure - ONE TIME
+
+* `usethis::use_test("compute_corr")` to create a new test file
 
    + WHAT TO NAME THIS FILE? - same as function name
    
    + WHAT TO NAME TESTS IN THIS FILE?
+   
+    + It can be whatever also the name can have spaces. It's just something that tells you what failed when the test fails
+    
+    + So there's no right name, it's just something that reminds future you where the failing test is
+  
    
 * tests define correctness for your code - what do i care that is right?
 
@@ -89,7 +102,9 @@ You can work either (1) locally or (2) with GitHub.
 
 * browser() in function for troubleshooting
 
-* `devtools::test_coverage()` percent of code covered
+* `covr::report` percent of code covered
+
+   + restart R, then run
 
    + THIS ISNT WORKING
    
@@ -172,6 +187,7 @@ Add to function body:
 ```
 
 
+
 Add to test
 
 ```{r, eval = FALSE}
@@ -189,6 +205,15 @@ test_that("length", {
 ```
 
 
+* `devtools::test()` passes
+
+* `devtools::check()` has a warning
+
+* `usethis::use_package("usethis")`
+
+* `devtools::check()`
+
+
 
 
 # Challenge function
@@ -200,6 +225,8 @@ test_that("length", {
 * What type of object does this function expect, can we put up guardrails so the user doesn't send the wrong thing? How do we test those guardrails?
 
 ## original
+
+`usethis::use_r("awesome_rladies")`
 
 ```{r}
 awesome_rladies <- function(v) {
@@ -252,17 +279,22 @@ compose_rladies <- function(x){
  
 ## tests
 
+```{r}
+usethis::use_test("awesome_rladies")
+```
+
 
 what to name test?
 
 ```{r}
-test_that("length", {
+test_that("assess-awesome_rladies", {
   # evaluate output produced ----
   expected <- write_rladies(1)
-  expect_s3_class(expected, "character")
+  expect_type(expected, "character")
 })
 
 ```
+
 
 
 add to function
@@ -270,8 +302,8 @@ add to function
 ```{r, eval = FALSE}
 write_rladies <- function(x){
   
- if ( !(is.numeric(x) & (x > 0)) ){
-    usethis::ui_stop("Input must be numeric and greater than 0.")
+ if ( !(is.numeric(x) & (x >= 1)) ){
+    usethis::ui_stop("Input must be numeric and greater than or equal to 1.")
   }
 
   
@@ -292,19 +324,21 @@ write_rladies <- function(x){
 add to test, need to work through this more
 
 
+
 ```{r}
-usethis::use_test("rladies")
-
-
 test_that("correct", {
   # evaluate output produced ----
   expected_1 <- write_rladies(1)
   expected_2 <- write_rladies(2)
+  expect_type(expected_1, "character")
   expect_equal(expected_1, "There is 1 awesome RLady!")
   expect_equal(expected_2, "There are 2 awesome RLadies!")
   # ----
   expected_multiple <- compose_rladies(1:2)
   expect_length(expected_multiple, 2)
+  # catching errors ----
+  expect_error(compose_rladies("a"))
+  expect_error(compose_rladies(0))
 })
 
 ```

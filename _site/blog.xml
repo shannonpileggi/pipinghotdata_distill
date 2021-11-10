@@ -61,22 +61,37 @@
 &lt;li&gt;&lt;p&gt;To work locally, click the green &lt;code&gt;Code&lt;/code&gt; button and download the zipped &lt;code&gt;ralphGetsTested&lt;/code&gt; repository.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;To work through GitHub, fork and clone this repository with &lt;code&gt;usethis::create_from_github("shannonpileggi/ralphGetsTested")&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;h1 id="intros"&gt;Intros&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Native language&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Thank Gordon&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What is unit testing / why do it?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Presenters experience with unit testing&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Attendees experience with unit testing.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::check()&lt;/code&gt; confirm error free&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt; command shift L&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt; to create overall testing infrastructure&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt; to create a new test file&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;?compute_corr&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;compute_corr(data = faithful, var1 = eruptions, var2 = waiting)&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;review function&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt; to create overall testing infrastructure - ONE TIME&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_test("compute_corr")&lt;/code&gt; to create a new test file&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;WHAT TO NAME THIS FILE? - same as function name&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;WHAT TO NAME TESTS IN THIS FILE?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It can be whatever also the name can have spaces. It’s just something that tells you what failed when the test fails&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;So there’s no right name, it’s just something that reminds future you where the failing test is&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;tests define correctness for your code - what do i care that is right?&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;higher risk would do more tests&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;to run tests &lt;code&gt;devtools::test()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;run tests button runs test in fresh environment; devtools test in global environment&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;browser() in function for troubleshooting&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::test_coverage()&lt;/code&gt; percent of code covered&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;covr::report&lt;/code&gt; percent of code covered&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;restart R, then run&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;THIS ISNT WORKING&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;covr::report&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -139,6 +154,12 @@ message(&amp;quot;This is what a message looks like&amp;quot;)
   # catching errors ----
   expect_error(compute_corr(data = faithful, var1 = erruptions, var2 = waiting))
 })&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::test()&lt;/code&gt; passes&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::check()&lt;/code&gt; has a warning&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::use_package("usethis")&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::check()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h1 id="challenge-function"&gt;Challenge function&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Can we break this up to make it easier to test?&lt;/p&gt;&lt;/li&gt;
@@ -146,6 +167,7 @@ message(&amp;quot;This is what a message looks like&amp;quot;)
 &lt;li&gt;&lt;p&gt;What type of object does this function expect, can we put up guardrails so the user doesn’t send the wrong thing? How do we test those guardrails?&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="original"&gt;original&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;usethis::use_r("awesome_rladies")&lt;/code&gt;&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;awesome_rladies &amp;lt;- function(v) {
   
   sapply(v, function(x) {
@@ -186,17 +208,18 @@ compose_rladies &amp;lt;- function(x){
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt; to create a second test file, right?&lt;/p&gt;
 &lt;h2 id="tests"&gt;tests&lt;/h2&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::use_test(&amp;quot;awesome_rladies&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;what to name test?&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;length&amp;quot;, {
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;assess-awesome_rladies&amp;quot;, {
   # evaluate output produced ----
   expected &amp;lt;- write_rladies(1)
-  expect_s3_class(expected, &amp;quot;character&amp;quot;)
+  expect_type(expected, &amp;quot;character&amp;quot;)
 })&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;add to function&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;write_rladies &amp;lt;- function(x){
   
- if ( !(is.numeric(x) &amp;amp; (x &amp;gt; 0)) ){
-    usethis::ui_stop(&amp;quot;Input must be numeric and greater than 0.&amp;quot;)
+ if ( !(is.numeric(x) &amp;amp; (x &amp;gt;= 1)) ){
+    usethis::ui_stop(&amp;quot;Input must be numeric and greater than or equal to 1.&amp;quot;)
   }
 
   
@@ -213,18 +236,19 @@ compose_rladies &amp;lt;- function(x){
   glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;add to test, need to work through this more&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;usethis::use_test(&amp;quot;rladies&amp;quot;)
-
-
-test_that(&amp;quot;correct&amp;quot;, {
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;correct&amp;quot;, {
   # evaluate output produced ----
   expected_1 &amp;lt;- write_rladies(1)
   expected_2 &amp;lt;- write_rladies(2)
+  expect_type(expected_1, &amp;quot;character&amp;quot;)
   expect_equal(expected_1, &amp;quot;There is 1 awesome RLady!&amp;quot;)
   expect_equal(expected_2, &amp;quot;There are 2 awesome RLadies!&amp;quot;)
   # ----
   expected_multiple &amp;lt;- compose_rladies(1:2)
   expect_length(expected_multiple, 2)
+  # catching errors ----
+  expect_error(compose_rladies(&amp;quot;a&amp;quot;))
+  expect_error(compose_rladies(0))
 })&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>
