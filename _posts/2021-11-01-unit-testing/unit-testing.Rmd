@@ -61,9 +61,9 @@ This material was developed using:
 
 # Tool kit
 
-Single usage functions only need to be used one time in the development process;
-multiple usage functions are executed as needed. This table contains the general
-process functions used in this workshop.
+This table contains the general process functions used in this workshop. Single usage f
+unctions only need to be used one time in the development process; multiple usage functions
+are executed as needed. 
 
 
 | Usage    | Function                                       | Purpose                           |
