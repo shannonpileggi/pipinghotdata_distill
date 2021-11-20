@@ -22,7 +22,7 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-```{r}
+```{r, echo = FALSE}
 folder <- "2021-11-01-unit-testing"
 ```
 
@@ -38,6 +38,7 @@ listing all actions.
 In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in `usethis` and `devtools`, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.
 
 This workshop picks up exactly where we left our little `ralph` (aka **R**-**L**adies **Ph**illy) package one year ago with [“Your first R package in 1 hour: Tools that make R package development easy”](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/){target="_blank"}. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with `devtools` and `usethis`.
+
 
 # Packages
 
@@ -58,6 +59,50 @@ This material was developed using:
 | `rlang`             | 0.4.12                |
 
 
+# Tool kit
+
+Single usage functions only need to be used one time in the development process;
+multiple usage functions are executed as needed. This table contains the general
+process functions used in this workshop.
+
+
+| Usage    | Function                                       | Purpose                           |
+|----------|------------------------------------------------|-----------------------------------|
+| Single   | `usethis::use_testthat()`                      | initialize testing infrastructure | 
+| Multiple | `usethis::use_test()`                          | create a new test file            |
+|          | `devtools::test()`                             | execute and evaluate all tests in package |
+|          | `covr::report()`                               | reports test coverage |
+|          | `browser()`                                    | debugging: interrupt and inspect function execution |
+|          | `devtools::check()`                            | build package locally and check   |
+|          | `devtools::load_all()`                         | load functions in `r emo::ji("folder")` `R/` into memory    |
+|          | `usethis::use_r("function")`                   | create R script for function      |
+|          | `usethis::use_package("package")     `         | add package dependency            |
+|          | `devtools::document()`                         | build and add documentation       |
+
+Other resources:
+
+* R package developement [cheat sheet](https://rklopotek.blog.uksw.edu.pl/files/2017/09/package-development.pdf){target="_blank"}
+
+* [Ch. 12 Testing](https://r-pkgs.org/tests.html){target="_blank"} in R packages by Hadley Wickham and Jenny Bryan
+
+* [Ch. 8.2 Signalling conditions](https://adv-r.hadley.nz/conditions.html#signalling-conditions){target="_blank"} in Advanced R by  Hadley Wickham
+
+* [testthat](https://testthat.r-lib.org/){target="_blank"} package documentation
+
+* {usethis} [user interface functions](https://usethis.r-lib.org/reference/ui.html){target="_blank"}
+
+* [covr](https://covr.r-lib.org/){target="_blank"} package documentation
+
+* [Building tidy tools workshop](https://github.com/hadley/tidy-tools){target="_blank"} at `rstudio::conf(2019)` by Hadley Wickham and Charlotte Wickham
+
+* Debugging
+   
+   + RStudio blog post by Jonathan McPherson [Debugging with the RStudio IDE](https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE){target="_blank"}
+   
+   + [Ch 22 Debugging](https://adv-r.hadley.nz/debugging.html){target="_blank"} in Advanced R by  Hadley Wickham
+
+* Indrajeet Patil's curated list of [awesome tools to assist R package development](https://indrajeetpatil.github.io/awesome-r-pkgtools/){target="_blank"}.
+
 # Why unit test
 
 If you write R functions, then you already test your code. You write a function, 
@@ -68,8 +113,7 @@ something like this:
 ```{r original-process, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
 #|   Workflow cycle of function development without automated testing, from
-#|   [2019 Building Tidy Tools](https://github.com/hadley/tidy-tools)
-#|    workshop with Hadley Wickham and Charlotte Wickham.
+#|   2019 Building Tidy Tools workshop.
 #| fig.alt: >
 #|   Circle with three blocks: Modify code, reload code (`load_all()`), and
 #|   explore in console.  
@@ -85,9 +129,7 @@ Instead, we can _automate_ tests with `testthat` in a new workflow.
 ```{r test-process-1, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
 #|   Workflow cycle of function development when getting started with
-#|   automated testing, from 
-#|   [2019 Building Tidy Tools](https://github.com/hadley/tidy-tools)
-#|    workshop with Hadley Wickham and Charlotte Wickham.
+#|   automated testing, from 2019 Building Tidy Tools workshop.
 #| fig.alt: >
 #|   Circle with three blocks: Modify code, reload code (`load_all()`), and
 #|   run automated tests (`test()`).  
@@ -100,9 +142,7 @@ speed up the development process even more by removing the loading code step.
 ```{r test-process-2, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
 #|   Workflow cycle of function development when comfortable with
-#|   automated testing, from 
-#|   [2019 Building Tidy Tools](https://github.com/hadley/tidy-tools)
-#|    workshop with Hadley Wickham and Charlotte Wickham.
+#|   automated testing, from 2019 Building Tidy Tools workshop.
 #| fig.alt: >
 #|   Circle with two blocks: Modify code and
 #|   run automated tests (`test()`).  
@@ -125,6 +165,16 @@ created a second repo called `ralphGetsTested` for this workshop, which was a co
 
 `usethis::create_from_github("shannonpileggi/ralphGetsTested")`
 
+# Keyboard shortcuts
+
+
+* `Ctrl + S` for save file
+
+* `Ctrl + Shift + L` for `devtools::load_all()`
+
+* `Ctrl + Shift + F10` to restart R
+
+* `Ctrl + Shift + T` for `devtools::test()`
 
 * Native language
 

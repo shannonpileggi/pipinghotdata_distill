@@ -2542,8 +2542,10 @@ gtag('config', 'UA-128676462-1');
 <li><a href="#tldr">TL;DR</a></li>
 <li><a href="#abstract">Abstract</a></li>
 <li><a href="#packages">Packages</a></li>
-<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#tool-kit">Tool kit</a></li>
 <li><a href="#why-unit-test">Why unit test</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#testing-code">Testing code</a></li>
 <li><a href="#distinguishing-messagewarningerror">Distinguishing message/warning/error:</a></li>
@@ -2559,10 +2561,7 @@ gtag('config', 'UA-128676462-1');
 </nav>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>folder</span> <span class='op'>&lt;-</span> <span class='st'>"2021-11-01-unit-testing"</span>
-</code></pre>
-</div>
+
 </div>
 <h1 id="tldr">TL;DR</h1>
 <p>This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 (<a href="https://youtu.be/4bPekjzIYiU" target="_blank_">recording on YouTube</a>), where we live coded use of the <code>usethis</code>, <code>devtools</code>, <code>testthat</code>, and <code>covr</code> packages to automate R package testing. This post complements the recording through highlighting key points, rather than listing all actions.</p>
@@ -2625,6 +2624,115 @@ gtag('config', 'UA-128676462-1');
 </tr>
 </tbody>
 </table>
+<h1 id="tool-kit">Tool kit</h1>
+<p>Single usage functions only need to be used one time in the development process; multiple usage functions are executed as needed. This table contains the general process functions used in this workshop.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Usage</th>
+<th>Function</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single</td>
+<td><code>usethis::use_testthat()</code></td>
+<td>initialize testing infrastructure</td>
+</tr>
+<tr class="even">
+<td>Multiple</td>
+<td><code>usethis::use_test()</code></td>
+<td>create a new test file</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>devtools::test()</code></td>
+<td>execute and evaluate all tests in package</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>covr::report()</code></td>
+<td>reports test coverage</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>browser()</code></td>
+<td>debugging: interrupt and inspect function execution</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>devtools::check()</code></td>
+<td>build package locally and check</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>devtools::load_all()</code></td>
+<td>load functions in 📂 <code>R/</code> into memory</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>usethis::use_r("function")</code></td>
+<td>create R script for function</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td><code>usethis::use_package("package")</code></td>
+<td>add package dependency</td>
+</tr>
+<tr class="even">
+<td></td>
+<td><code>devtools::document()</code></td>
+<td>build and add documentation</td>
+</tr>
+</tbody>
+</table>
+<p>Other resources:</p>
+<ul>
+<li><p>R package developement <a href="https://rklopotek.blog.uksw.edu.pl/files/2017/09/package-development.pdf" target="_blank">cheat sheet</a></p></li>
+<li><p><a href="https://r-pkgs.org/tests.html" target="_blank">Ch. 12 Testing</a> in R packages by Hadley Wickham and Jenny Bryan</p></li>
+<li><p><a href="https://adv-r.hadley.nz/conditions.html#signalling-conditions" target="_blank">Ch. 8.2 Signalling conditions</a> in Advanced R by Hadley Wickham</p></li>
+<li><p><a href="https://testthat.r-lib.org/" target="_blank">testthat</a> package documentation</p></li>
+<li><p>{usethis} <a href="https://usethis.r-lib.org/reference/ui.html" target="_blank">user interface functions</a></p></li>
+<li><p><a href="https://covr.r-lib.org/" target="_blank">covr</a> package documentation</p></li>
+<li><p><a href="https://github.com/hadley/tidy-tools" target="_blank">Building tidy tools workshop</a> at <code>rstudio::conf(2019)</code> by Hadley Wickham and Charlotte Wickham</p></li>
+<li><p>Debugging</p>
+<ul>
+<li><p>RStudio blog post by Jonathan McPherson <a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE" target="_blank">Debugging with the RStudio IDE</a></p></li>
+<li><p><a href="https://adv-r.hadley.nz/debugging.html" target="_blank">Ch 22 Debugging</a> in Advanced R by Hadley Wickham</p></li>
+</ul></li>
+<li><p>Indrajeet Patil’s curated list of <a href="https://indrajeetpatil.github.io/awesome-r-pkgtools/" target="_blank">awesome tools to assist R package development</a>.</p></li>
+</ul>
+<h1 id="why-unit-test">Why unit test</h1>
+<p>If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:original-process"></span>
+<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="454" />
+<p class="caption">
+Figure 1: Workflow cycle of function development without automated testing, from 2019 Building Tidy Tools workshop.
+</p>
+</div>
+</div>
+<p>This process is where most of us likely start, and possibly even stay for a while. But it can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.</p>
+<p>Instead, we can <em>automate</em> tests with <code>testthat</code> in a new workflow.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:test-process-1"></span>
+<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="451" />
+<p class="caption">
+Figure 2: Workflow cycle of function development when getting started with automated testing, from 2019 Building Tidy Tools workshop.
+</p>
+</div>
+</div>
+<p>And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the loading code step.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:test-process-2"></span>
+<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="454" />
+<p class="caption">
+Figure 3: Workflow cycle of function development when comfortable with automated testing, from 2019 Building Tidy Tools workshop.
+</p>
+</div>
+</div>
+<p>Like anything in programming, there is an up-front time investment in learning this framework and process, but with significant downstream time savings.</p>
 <h1 id="getting-started">Getting started</h1>
 <p>This post picks up exactly where we left the <code>ralph</code> package in <a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr" target="_blank_">Your first R package in 1 hour</a> in November 2020. In order to keep that as a stand-alone resource, I created a second repo called <code>ralphGetsTested</code> for this workshop, which was a copy of <code>ralph</code> as we left it.</p>
 <ol type="1">
@@ -2635,36 +2743,12 @@ gtag('config', 'UA-128676462-1');
 <li>If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone <a href="https://github.com/shannonpileggi/ralphGetsTested" target="_blank_"><code>ralphGetsTested</code></a> repo.</li>
 </ol>
 <p><code>usethis::create_from_github("shannonpileggi/ralphGetsTested")</code></p>
-<h1 id="why-unit-test">Why unit test</h1>
-<p>If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span style="display:block;" id="fig:original-process"></span>
-<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="454" />
-<p class="caption">
-Figure 1: Workflow cycle of function development without automated testing, from <a href="https://github.com/hadley/tidy-tools">2019 Building Tidy Tools</a> workshop with Hadley Wickham and Charlotte Wickham.
-</p>
-</div>
-</div>
-<p>This process is where most of us likely start, and possibly even stay for a while. But is can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.</p>
-<p>Instead, we can <em>automate</em> tests with <code>testthat</code> in a new workflow.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span style="display:block;" id="fig:test-process-1"></span>
-<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="451" />
-<p class="caption">
-Figure 2: Workflow cycle of function development when getting started with automated testing, from <a href="https://github.com/hadley/tidy-tools">2019 Building Tidy Tools</a> workshop with Hadley Wickham and Charlotte Wickham.
-</p>
-</div>
-</div>
-<p>And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the loading code step.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span style="display:block;" id="fig:test-process-2"></span>
-<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="454" />
-<p class="caption">
-Figure 3: Workflow cycle of function development when comfortable with automated testing, from <a href="https://github.com/hadley/tidy-tools">2019 Building Tidy Tools</a> workshop with Hadley Wickham and Charlotte Wickham.
-</p>
-</div>
-</div>
+<h1 id="keyboard-shortcuts">Keyboard shortcuts</h1>
 <ul>
+<li><p><code>Ctrl + S</code> for save file</p></li>
+<li><p><code>Ctrl + Shift + L</code> for <code>devtools::load_all()</code></p></li>
+<li><p><code>Ctrl + Shift + F10</code> to restart R</p></li>
+<li><p><code>Ctrl + Shift + T</code> for <code>devtools::test()</code></p></li>
 <li><p>Native language</p></li>
 <li><p>Thank Gordon</p></li>
 <li><p>What is unit testing / why do it?</p></li>
