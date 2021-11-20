@@ -22,16 +22,22 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+```{r}
+folder <- "2021-11-01-unit-testing"
+```
+
 # TL;DR
+
+This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 ([recording on YouTube](https://youtu.be/4bPekjzIYiU){target=_blank_}), where we live coded use of the
+`usethis`, `devtools`, `testthat`, and `covr` packages to automate R package testing.
+This post complements the recording through highlighting key points, rather than 
+listing all actions.
 
 # Abstract
 
 In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in `usethis` and `devtools`, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.
 
 This workshop picks up exactly where we left our little `ralph` (aka **R**-**L**adies **Ph**illy) package one year ago with [“Your first R package in 1 hour: Tools that make R package development easy”](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/){target="_blank"}. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with `devtools` and `usethis`.
-
-
-
 
 # Packages
 
@@ -44,18 +50,81 @@ This material was developed using:
 | `usethis`           | 2.1.2                 |
 | `devtools`          | 2.4.2                 |
 | `testthat`          | 3.1.0                 |
+| `covr`              | 3.5.1                 |
 | `broom`             | 0.7.9                 |
+| `glue`              | 1.4.2                 |
+| `magrittr`          | 2.0.1                 |
+| `purrr`             | 0.3.4                 |
+| `rlang`             | 0.4.12                |
+
+
+# Why unit test
+
+If you write R functions, then you already test your code. You write a function, 
+see if it works, and iterate on the function until you
+achieve your desired result. In the package development work flow, it looks 
+something like this:
+
+```{r original-process, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Workflow cycle of function development without automated testing, from
+#|   [2019 Building Tidy Tools](https://github.com/hadley/tidy-tools)
+#|    workshop with Hadley Wickham and Charlotte Wickham.
+#| fig.alt: >
+#|   Circle with three blocks: Modify code, reload code (`load_all()`), and
+#|   explore in console.  
+knitr::include_graphics("img/tidy-tools-workflow-no-unit-testing.PNG")
+```
+
+This process is where most of us likely start, and possibly even stay for a while.
+But it can be tedious, time consuming, and error-prone to manually check
+all possible combinations of function inputs and arguments.
+
+Instead, we can _automate_ tests with `testthat` in a new workflow.
+
+```{r test-process-1, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Workflow cycle of function development when getting started with
+#|   automated testing, from 
+#|   [2019 Building Tidy Tools](https://github.com/hadley/tidy-tools)
+#|    workshop with Hadley Wickham and Charlotte Wickham.
+#| fig.alt: >
+#|   Circle with three blocks: Modify code, reload code (`load_all()`), and
+#|   run automated tests (`test()`).  
+knitr::include_graphics("img/tidy-tools-workflow-testing-1.PNG")
+```
+
+And once you trust and get comfortable with the tests you have set up, you can
+speed up the development process even more by removing the loading code step.
+
+```{r test-process-2, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Workflow cycle of function development when comfortable with
+#|   automated testing, from 
+#|   [2019 Building Tidy Tools](https://github.com/hadley/tidy-tools)
+#|    workshop with Hadley Wickham and Charlotte Wickham.
+#| fig.alt: >
+#|   Circle with two blocks: Modify code and
+#|   run automated tests (`test()`).  
+knitr::include_graphics("img/tidy-tools-workflow-testing-2.PNG")
+```
+
+Like anything in programming, there is an up-front time investment in learning
+this framework and process, but with significant downstream time savings.
 
 # Getting started
 
-You can work either (1) locally or (2) with GitHub.
+This post picks up exactly where we left the `ralph` package in [Your first R package in 1 hour](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr){target=_blank_} in November 2020. In order to keep that as a stand-alone resource, I
+created a second repo called `ralphGetsTested` for this workshop, which was a copy of `ralph` as we left it.
 
-1. To work locally, click the green `Code` button and download the zipped `ralphGetsTested` repository.
+1. If you want to follow along with the unit testing steps and practice yourself, fork and clone the [`ralph`](https://github.com/shannonpileggi/ralph){target=_blank_} repo.
 
-2. To work through GitHub, fork and clone this repository with
-`usethis::create_from_github("shannonpileggi/ralphGetsTested")`.
+`usethis::create_from_github("shannonpileggi/ralph")`
 
-# Intros
+2. If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone [`ralphGetsTested`](https://github.com/shannonpileggi/ralphGetsTested){target=_blank_} repo.
+
+`usethis::create_from_github("shannonpileggi/ralphGetsTested")`
+
 
 * Native language
 

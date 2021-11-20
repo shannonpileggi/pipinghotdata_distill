@@ -104,14 +104,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="tbd"/>
 <meta property="og:url" content="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/"/>
+<meta property="og:image" content="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/img/tidy-tools-workflow-no-unit-testing.PNG"/>
+<meta property="og:image:width" content="908"/>
+<meta property="og:image:height" content="681"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="PIPING HOT DATA"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="PIPING HOT DATA: Getting started with unit testing in R"/>
 <meta property="twitter:description" content="tbd"/>
 <meta property="twitter:url" content="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/"/>
+<meta property="twitter:image" content="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/img/tidy-tools-workflow-no-unit-testing.PNG"/>
+<meta property="twitter:image:width" content="908"/>
+<meta property="twitter:image:height" content="681"/>
 <meta property="twitter:site" content="@PipingHotData"/>
 <meta property="twitter:creator" content="@PipingHotData"/>
 
@@ -131,7 +137,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2537,7 +2543,7 @@ gtag('config', 'UA-128676462-1');
 <li><a href="#abstract">Abstract</a></li>
 <li><a href="#packages">Packages</a></li>
 <li><a href="#getting-started">Getting started</a></li>
-<li><a href="#intros">Intros</a></li>
+<li><a href="#why-unit-test">Why unit test</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#testing-code">Testing code</a></li>
 <li><a href="#distinguishing-messagewarningerror">Distinguishing message/warning/error:</a></li>
@@ -2552,7 +2558,14 @@ gtag('config', 'UA-128676462-1');
 </ul>
 </nav>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>folder</span> <span class='op'>&lt;-</span> <span class='st'>"2021-11-01-unit-testing"</span>
+</code></pre>
+</div>
+</div>
 <h1 id="tldr">TL;DR</h1>
+<p>This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 (<a href="https://youtu.be/4bPekjzIYiU" target="_blank_">recording on YouTube</a>), where we live coded use of the <code>usethis</code>, <code>devtools</code>, <code>testthat</code>, and <code>covr</code> packages to automate R package testing. This post complements the recording through highlighting key points, rather than listing all actions.</p>
 <h1 id="abstract">Abstract</h1>
 <p>In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in <code>usethis</code> and <code>devtools</code>, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.</p>
 <p>This workshop picks up exactly where we left our little <code>ralph</code> (aka <strong>R</strong>-<strong>L</strong>adies <strong>Ph</strong>illy) package one year ago with <a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/" target="_blank">“Your first R package in 1 hour: Tools that make R package development easy”</a>. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with <code>devtools</code> and <code>usethis</code>.</p>
@@ -2587,18 +2600,70 @@ gtag('config', 'UA-128676462-1');
 <td>3.1.0</td>
 </tr>
 <tr class="even">
+<td><code>covr</code></td>
+<td>3.5.1</td>
+</tr>
+<tr class="odd">
 <td><code>broom</code></td>
 <td>0.7.9</td>
+</tr>
+<tr class="even">
+<td><code>glue</code></td>
+<td>1.4.2</td>
+</tr>
+<tr class="odd">
+<td><code>magrittr</code></td>
+<td>2.0.1</td>
+</tr>
+<tr class="even">
+<td><code>purrr</code></td>
+<td>0.3.4</td>
+</tr>
+<tr class="odd">
+<td><code>rlang</code></td>
+<td>0.4.12</td>
 </tr>
 </tbody>
 </table>
 <h1 id="getting-started">Getting started</h1>
-<p>You can work either (1) locally or (2) with GitHub.</p>
+<p>This post picks up exactly where we left the <code>ralph</code> package in <a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr" target="_blank_">Your first R package in 1 hour</a> in November 2020. In order to keep that as a stand-alone resource, I created a second repo called <code>ralphGetsTested</code> for this workshop, which was a copy of <code>ralph</code> as we left it.</p>
 <ol type="1">
-<li><p>To work locally, click the green <code>Code</code> button and download the zipped <code>ralphGetsTested</code> repository.</p></li>
-<li><p>To work through GitHub, fork and clone this repository with <code>usethis::create_from_github("shannonpileggi/ralphGetsTested")</code>.</p></li>
+<li>If you want to follow along with the unit testing steps and practice yourself, fork and clone the <a href="https://github.com/shannonpileggi/ralph" target="_blank_"><code>ralph</code></a> repo.</li>
 </ol>
-<h1 id="intros">Intros</h1>
+<p><code>usethis::create_from_github("shannonpileggi/ralph")</code></p>
+<ol start="2" type="1">
+<li>If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone <a href="https://github.com/shannonpileggi/ralphGetsTested" target="_blank_"><code>ralphGetsTested</code></a> repo.</li>
+</ol>
+<p><code>usethis::create_from_github("shannonpileggi/ralphGetsTested")</code></p>
+<h1 id="why-unit-test">Why unit test</h1>
+<p>If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:original-process"></span>
+<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="454" />
+<p class="caption">
+Figure 1: Workflow cycle of function development without automated testing, from <a href="https://github.com/hadley/tidy-tools">2019 Building Tidy Tools</a> workshop with Hadley Wickham and Charlotte Wickham.
+</p>
+</div>
+</div>
+<p>This process is where most of us likely start, and possibly even stay for a while. But is can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.</p>
+<p>Instead, we can <em>automate</em> tests with <code>testthat</code> in a new workflow.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:test-process-1"></span>
+<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="451" />
+<p class="caption">
+Figure 2: Workflow cycle of function development when getting started with automated testing, from <a href="https://github.com/hadley/tidy-tools">2019 Building Tidy Tools</a> workshop with Hadley Wickham and Charlotte Wickham.
+</p>
+</div>
+</div>
+<p>And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the loading code step.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:test-process-2"></span>
+<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="454" />
+<p class="caption">
+Figure 3: Workflow cycle of function development when comfortable with automated testing, from <a href="https://github.com/hadley/tidy-tools">2019 Building Tidy Tools</a> workshop with Hadley Wickham and Charlotte Wickham.
+</p>
+</div>
+</div>
 <ul>
 <li><p>Native language</p></li>
 <li><p>Thank Gordon</p></li>

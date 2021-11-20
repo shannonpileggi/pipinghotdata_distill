@@ -15,7 +15,9 @@
       <description>
 
 
+&lt;pre class="r"&gt;&lt;code&gt;folder &amp;lt;- &amp;quot;2021-11-01-unit-testing&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
+&lt;p&gt;This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 (&lt;a href="https://youtu.be/4bPekjzIYiU" target="_blank_"&gt;recording on YouTube&lt;/a&gt;), where we live coded use of the &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;testthat&lt;/code&gt;, and &lt;code&gt;covr&lt;/code&gt; packages to automate R package testing. This post complements the recording through highlighting key points, rather than listing all actions.&lt;/p&gt;
 &lt;h1 id="abstract"&gt;Abstract&lt;/h1&gt;
 &lt;p&gt;In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in &lt;code&gt;usethis&lt;/code&gt; and &lt;code&gt;devtools&lt;/code&gt;, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.&lt;/p&gt;
 &lt;p&gt;This workshop picks up exactly where we left our little &lt;code&gt;ralph&lt;/code&gt; (aka &lt;strong&gt;R&lt;/strong&gt;-&lt;strong&gt;L&lt;/strong&gt;adies &lt;strong&gt;Ph&lt;/strong&gt;illy) package one year ago with &lt;a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/" target="_blank"&gt;“Your first R package in 1 hour: Tools that make R package development easy”&lt;/a&gt;. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with &lt;code&gt;devtools&lt;/code&gt; and &lt;code&gt;usethis&lt;/code&gt;.&lt;/p&gt;
@@ -50,18 +52,64 @@
 &lt;td&gt;3.1.0&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;covr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;3.5.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
 &lt;td&gt;&lt;code&gt;broom&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;0.7.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;glue&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1.4.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;magrittr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2.0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;purrr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.3.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;rlang&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.4.12&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
-&lt;p&gt;You can work either (1) locally or (2) with GitHub.&lt;/p&gt;
+&lt;p&gt;This post picks up exactly where we left the &lt;code&gt;ralph&lt;/code&gt; package in &lt;a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr" target="_blank_"&gt;Your first R package in 1 hour&lt;/a&gt; in November 2020. In order to keep that as a stand-alone resource, I created a second repo called &lt;code&gt;ralphGetsTested&lt;/code&gt; for this workshop, which was a copy of &lt;code&gt;ralph&lt;/code&gt; as we left it.&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;To work locally, click the green &lt;code&gt;Code&lt;/code&gt; button and download the zipped &lt;code&gt;ralphGetsTested&lt;/code&gt; repository.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;To work through GitHub, fork and clone this repository with &lt;code&gt;usethis::create_from_github("shannonpileggi/ralphGetsTested")&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;If you want to follow along with the unit testing steps and practice yourself, fork and clone the &lt;a href="https://github.com/shannonpileggi/ralph" target="_blank_"&gt;&lt;code&gt;ralph&lt;/code&gt;&lt;/a&gt; repo.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id="intros"&gt;Intros&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;usethis::create_from_github("shannonpileggi/ralph")&lt;/code&gt;&lt;/p&gt;
+&lt;ol start="2" style="list-style-type: decimal"&gt;
+&lt;li&gt;If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone &lt;a href="https://github.com/shannonpileggi/ralphGetsTested" target="_blank_"&gt;&lt;code&gt;ralphGetsTested&lt;/code&gt;&lt;/a&gt; repo.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;usethis::create_from_github("shannonpileggi/ralphGetsTested")&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id="why-unit-test"&gt;Why unit test&lt;/h1&gt;
+&lt;p&gt;If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="454" /&gt;
+&lt;p class="caption"&gt;
+(#fig:original-process)Workflow cycle of function development without automated testing, from &lt;a href="https://github.com/hadley/tidy-tools"&gt;2019 Building Tidy Tools&lt;/a&gt; workshop with Hadley Wickham and Charlotte Wickham.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This process is where most of us likely start, and possibly even stay for a while. But is can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.&lt;/p&gt;
+&lt;p&gt;Instead, we can &lt;em&gt;automate&lt;/em&gt; tests with &lt;code&gt;testthat&lt;/code&gt; in a new workflow.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="451" /&gt;
+&lt;p class="caption"&gt;
+(#fig:test-process-1)Workflow cycle of function development when getting started with automated testing, from &lt;a href="https://github.com/hadley/tidy-tools"&gt;2019 Building Tidy Tools&lt;/a&gt; workshop with Hadley Wickham and Charlotte Wickham.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the loading code step.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="454" /&gt;
+&lt;p class="caption"&gt;
+(#fig:test-process-2)Workflow cycle of function development when comfortable with automated testing, from &lt;a href="https://github.com/hadley/tidy-tools"&gt;2019 Building Tidy Tools&lt;/a&gt; workshop with Hadley Wickham and Charlotte Wickham.
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Native language&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Thank Gordon&lt;/p&gt;&lt;/li&gt;
@@ -267,6 +315,7 @@ Config/testthat/parallel: true&lt;/code&gt;&lt;/pre&gt;
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-11-01-unit-testing</guid>
       <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/img/tidy-tools-workflow-no-unit-testing.PNG" medium="image" type="image/png" width="908" height="681"/>
     </item>
     <item>
       <title>Estimating correlations adjusted for group membership</title>
