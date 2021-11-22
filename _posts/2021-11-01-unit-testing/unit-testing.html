@@ -120,7 +120,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","img/use_testthat.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["img/run-test-gui.PNG","img/test-expect-class.png","img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","img/use_testthat.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1498,6 +1498,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
 <li><a href="#status-of-ralph">Status of <code>ralph</code></a></li>
 <li><a href="#test-set-up">Test set up</a></li>
+<li><a href="#first-test">(25:10) First test</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#testing-code">Testing code</a></li>
 <li><a href="#distinguishing-messagewarningerror">Distinguishing message/warning/error:</a></li>
@@ -1509,6 +1510,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#tests">tests</a></li>
 </ul></li>
 <li><a href="#testthat-3e">testthat 3e</a></li>
+<li><a href="#question-answer">Question &amp; Answer</a></li>
 <li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 </nav>
@@ -1621,7 +1623,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <tr class="odd">
 <td></td>
 <td><code>devtools::load_all()</code></td>
-<td>load functions in 📁 <code>R/</code> into memory</td>
+<td>load functions in 📂 <code>R/</code> into memory</td>
 </tr>
 <tr class="even">
 <td></td>
@@ -1660,7 +1662,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:original-process"></span>
-<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="1453" />
+<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="43584" />
 <p class="caption">
 Figure 1: Workflow cycle of function development without automated testing, from 2019 Building Tidy Tools workshop.
 </p>
@@ -1670,7 +1672,7 @@ Figure 1: Workflow cycle of function development without automated testing, from
 <p>Instead, we can <em>automate</em> tests with <code>testthat</code> in a new workflow.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:test-process-1"></span>
-<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="1443" />
+<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="43296" />
 <p class="caption">
 Figure 2: Workflow cycle of function development when getting started with automated testing, from 2019 Building Tidy Tools workshop.
 </p>
@@ -1679,7 +1681,7 @@ Figure 2: Workflow cycle of function development when getting started with autom
 <p>And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the reload code step.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:test-process-2"></span>
-<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="1453" />
+<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="43584" />
 <p class="caption">
 Figure 3: Workflow cycle of function development when comfortable with automated testing, from 2019 Building Tidy Tools workshop.
 </p>
@@ -1756,9 +1758,9 @@ Figure 3: Workflow cycle of function development when comfortable with automated
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:use-testthat"></span>
-<img src="img/use_testthat.PNG" alt="DESCRIPTION adds `testthat &gt;= 3.0.0 to `Suggests`, console states actions listed above." width="1366" />
+<img src="img/use_testthat.PNG" alt="DESCRIPTION adds `testthat &gt;= 3.0.0 to `Suggests`, console states actions listed above." width="40992" />
 <p class="caption">
-Figure 4: DESCRIPTION and console output after submitting <code>usethis::use_testthat()</code>.
+Figure 4: 17:54: <code>DESCRIPTION</code> and console output after submitting <code>usethis::use_testthat()</code>.
 </p>
 </div>
 </div>
@@ -1766,6 +1768,40 @@ Figure 4: DESCRIPTION and console output after submitting <code>usethis::use_tes
 <aside>
 Dan Sjoberg shared that when he updated <code>{gtsummary}</code> from <code>testthat</code> 2 to 3 with the help of a <a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank">friendly PR</a>, the <code>R CMD check</code> dropped from 40 to 14 minutes. 🙌
 </aside>
+<h1 id="first-test">(25:10) First test</h1>
+<p>To create our first test file, submit</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_r.html'>use_test</a></span><span class='op'>(</span><span class='st'>"compute_corr"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>. Here, we name this file the same as our function name. This creates a new file under <code>tests</code> -&gt; <code>testthat</code> named <code>test-compute_corr.R</code>, and the file pre-populates with an example test that we can replace.</p>
+<p>For our first test, we create an object that contains the expected results of an example function execution, and then we assess the correctness of the output using the <code>testthat::expect_</code> functions.</p>
+<p>We name the overall test chunk <code>assess_compute_corr</code> - you can name this whatever would be useful for you to read in a testing log. In this test, we evaluate if the function returns the correct <code>class</code> of object, in this case, a <code>data.frame</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"assess_compute_corr"</span>, <span class='op'>{</span>
+  <span class='va'>expected</span> <span class='op'>&lt;-</span> <span class='fu'>compute_corr</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>faithful</span>, var1 <span class='op'>=</span> <span class='va'>eruptions</span>, var2 <span class='op'>=</span> <span class='va'>waiting</span><span class='op'>)</span>
+  <span class='fu'>expect_s3_class</span><span class='op'>(</span><span class='va'>expected</span>, <span class='st'>"data.frame"</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now there are two ways to execute the test.</p>
+<ol type="1">
+<li><p>The <code>Run Tests</code> button ( <img src="img/run-test-gui.PNG" style="width:12.0%" alt="Run tests button in RStudio" /> )on the top right hand side of the testing script executes the tests in this script only (not all tests in the package), and excutes this in a fresh R environment.</p></li>
+<li><p>Submitting <code>devtools::test()</code> or <code>Ctrl + Shift + T</code> executes all tests in the package in your global environment.</p></li>
+</ol>
+<p>Here, we submit our first test with the <code>Run Tests</code> button, and it passes! 🎉</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:test-expect-class"></span>
+<img src="img/test-expect-class.png" alt="`test-compute_corr.R` shows `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" />
+<p class="caption">
+Figure 5: 29:23 Passing result after submitting the first test with the <code>Run Tests</code> button.
+</p>
+</div>
+</div>
 <h1 id="notes">Notes</h1>
 <ul>
 <li><p><code>devtools::check()</code> confirm error free</p></li>
@@ -2015,6 +2051,20 @@ Config/testthat/parallel: true</code></pre>
 <ul>
 <li>gtsummary check went from 40 min to 14 min</li>
 </ul>
+<h1 id="question-answer">Question &amp; Answer</h1>
+<p>This discussion is paraphrased from the workshop recording. It was commented that there is not a right answer to most of this.</p>
+<ol type="1">
+<li><code>19:50</code> When do you write tests?</li>
+</ol>
+<p>If the function writing is a process of discovery, and you are not sure what the function will do, write the test after the function is in a stable state. In other cases, when you know precisely how you want the function to behave, writing the test before you write the function could be a useful approach (test driven development).</p>
+<ol start="2" type="1">
+<li><code>22:19</code> When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?</li>
+</ol>
+<p>Have solid tests for things that you really care about as a developer. Most of the time, it is good to write more tests than less. Get a couple of tests down, and as you discover bugs, make sure there is a test for every bug that you fix.</p>
+<ol start="3" type="1">
+<li><code>23:53</code> Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?</li>
+</ol>
+<p>Yeah, for sure! If you make the mistake as you are writing the function, you are likely to make the mistake again in six months, so a test will keep you honest on those problems.</p>
 <h1 id="acknowledgements">Acknowledgements</h1>
 <ul>
 <li>Thank Gordon</li>

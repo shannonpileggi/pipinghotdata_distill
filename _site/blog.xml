@@ -120,7 +120,7 @@
 &lt;tr class="odd"&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;load functions in 📁 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
+&lt;td&gt;load functions in 📂 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -158,7 +158,7 @@
 &lt;h1 id="why-unit-test"&gt;Why unit test&lt;/h1&gt;
 &lt;p&gt;If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="1453" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="43584" /&gt;
 &lt;p class="caption"&gt;
 (#fig:original-process)Workflow cycle of function development without automated testing, from 2019 Building Tidy Tools workshop.
 &lt;/p&gt;
@@ -166,14 +166,14 @@
 &lt;p&gt;This process is where most of us likely start, and possibly even stay for a while. But it can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.&lt;/p&gt;
 &lt;p&gt;Instead, we can &lt;em&gt;automate&lt;/em&gt; tests with &lt;code&gt;testthat&lt;/code&gt; in a new workflow.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="1443" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="43296" /&gt;
 &lt;p class="caption"&gt;
 (#fig:test-process-1)Workflow cycle of function development when getting started with automated testing, from 2019 Building Tidy Tools workshop.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the reload code step.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="1453" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="43584" /&gt;
 &lt;p class="caption"&gt;
 (#fig:test-process-2)Workflow cycle of function development when comfortable with automated testing, from 2019 Building Tidy Tools workshop.
 &lt;/p&gt;
@@ -230,15 +230,37 @@
 &lt;li&gt;&lt;p&gt;Create a file &lt;code&gt;tests/testthat.R&lt;/code&gt; that runs all your tests when you execute &lt;code&gt;devtools::check()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/use_testthat.PNG" alt="DESCRIPTION adds `testthat &amp;gt;= 3.0.0 to `Suggests`, console states actions listed above." width="1366" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/use_testthat.PNG" alt="DESCRIPTION adds `testthat &amp;gt;= 3.0.0 to `Suggests`, console states actions listed above." width="40992" /&gt;
 &lt;p class="caption"&gt;
-(#fig:use-testthat)DESCRIPTION and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
+(#fig:use-testthat)17:54: &lt;code&gt;DESCRIPTION&lt;/code&gt; and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Note that the edition of &lt;code&gt;testthat&lt;/code&gt; is specified to 3. It is my understanding that this version/edition departs significantly from previous versions, both in function scopes and execution.&lt;/p&gt;
 &lt;aside&gt;
 Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; from &lt;code&gt;testthat&lt;/code&gt; 2 to 3 with the help of a &lt;a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank"&gt;friendly PR&lt;/a&gt;, the &lt;code&gt;R CMD check&lt;/code&gt; dropped from 40 to 14 minutes. 🙌
 &lt;/aside&gt;
+&lt;h1 id="first-test"&gt;(25:10) First test&lt;/h1&gt;
+&lt;p&gt;To create our first test file, submit&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::use_test(&amp;quot;compute_corr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;. Here, we name this file the same as our function name. This creates a new file under &lt;code&gt;tests&lt;/code&gt; -&amp;gt; &lt;code&gt;testthat&lt;/code&gt; named &lt;code&gt;test-compute_corr.R&lt;/code&gt;, and the file pre-populates with an example test that we can replace.&lt;/p&gt;
+&lt;p&gt;For our first test, we create an object that contains the expected results of an example function execution, and then we assess the correctness of the output using the &lt;code&gt;testthat::expect_&lt;/code&gt; functions.&lt;/p&gt;
+&lt;p&gt;We name the overall test chunk &lt;code&gt;assess_compute_corr&lt;/code&gt; - you can name this whatever would be useful for you to read in a testing log. In this test, we evaluate if the function returns the correct &lt;code&gt;class&lt;/code&gt; of object, in this case, a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;assess_compute_corr&amp;quot;, {
+  expected &amp;lt;- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
+})&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now there are two ways to execute the test.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;Run Tests&lt;/code&gt; button ( &lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/run-test-gui.PNG" style="width:12.0%" alt="Run tests button in RStudio" /&gt; )on the top right hand side of the testing script executes the tests in this script only (not all tests in the package), and excutes this in a fresh R environment.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Submitting &lt;code&gt;devtools::test()&lt;/code&gt; or &lt;code&gt;Ctrl + Shift + T&lt;/code&gt; executes all tests in the package in your global environment.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here, we submit our first test with the &lt;code&gt;Run Tests&lt;/code&gt; button, and it passes! 🎉&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/test-expect-class.png" alt="`test-compute_corr.R` shows `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:test-expect-class)29:23 Passing result after submitting the first test with the &lt;code&gt;Run Tests&lt;/code&gt; button.
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::check()&lt;/code&gt; confirm error free&lt;/p&gt;&lt;/li&gt;
@@ -433,6 +455,20 @@ Config/testthat/parallel: true&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;gtsummary check went from 40 min to 14 min&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1 id="question-answer"&gt;Question &amp;amp; Answer&lt;/h1&gt;
+&lt;p&gt;This discussion is paraphrased from the workshop recording. It was commented that there is not a right answer to most of this.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;19:50&lt;/code&gt; When do you write tests?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the function writing is a process of discovery, and you are not sure what the function will do, write the test after the function is in a stable state. In other cases, when you know precisely how you want the function to behave, writing the test before you write the function could be a useful approach (test driven development).&lt;/p&gt;
+&lt;ol start="2" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;22:19&lt;/code&gt; When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Have solid tests for things that you really care about as a developer. Most of the time, it is good to write more tests than less. Get a couple of tests down, and as you discover bugs, make sure there is a test for every bug that you fix.&lt;/p&gt;
+&lt;ol start="3" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;23:53&lt;/code&gt; Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Yeah, for sure! If you make the mistake as you are writing the function, you are likely to make the mistake again in six months, so a test will keep you honest on those problems.&lt;/p&gt;
 &lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Thank Gordon&lt;/li&gt;
@@ -441,7 +477,6 @@ Config/testthat/parallel: true&lt;/code&gt;&lt;/pre&gt;
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-11-01-unit-testing</guid>
       <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/img/tidy-tools-workflow-no-unit-testing.PNG" medium="image" type="image/png" width="908" height="681"/>
     </item>
     <item>
       <title>Estimating correlations adjusted for group membership</title>

@@ -239,7 +239,7 @@ From [R Packages Ch 12 Testing](https://r-pkgs.org/tests.html){target="_blank"},
 
 ```{r use-testthat, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
-#|   DESCRIPTION and console output after submitting `usethis::use_testthat()`.
+#|   17:54: `DESCRIPTION` and console output after submitting `usethis::use_testthat()`.
 #| fig.alt: >
 #|   DESCRIPTION adds `testthat >= 3.0.0 to `Suggests`, console states
 #|   actions listed above.
@@ -255,6 +255,54 @@ Dan Sjoberg shared that when he updated `{gtsummary}`
 from `testthat` 2 to 3 with the help of a [friendly PR](https://github.com/ddsjoberg/gtsummary/pull/756){target="_blank"}, 
 the `R CMD check` dropped from 40 to 14 minutes. 🙌
 </aside>
+
+# (25:10) First test
+
+To create our first test file, submit
+
+```{r}
+usethis::use_test("compute_corr")
+```
+
+. Here, we name this file the same as our function name. This creates a new 
+file under `tests` -> `testthat` named `test-compute_corr.R`, and the file 
+pre-populates with an example test that we can replace.
+
+For our first test, we create an object that contains the expected
+results of an example function execution, and then we assess the correctness
+of the output using the `testthat::expect_` functions.
+
+We name the overall test chunk `assess_compute_corr` - you can name this
+whatever would be useful for you to read in a testing log. In this test,
+we evaluate if the function returns the correct `class` of object, in this
+case, a `data.frame`.
+
+```{r}
+test_that("assess_compute_corr", {
+  expected <- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, "data.frame")
+})
+```
+
+Now there are two ways to execute the test.
+
+1. The `Run Tests` button ( ![Run tests button in RStudio](img/run-test-gui.PNG){width=12%} )on the top right hand side of the testing script executes
+the tests in this script only (not all tests in the package), and excutes this in
+a fresh R environment. 
+
+2. Submitting `devtools::test()` or `Ctrl + Shift + T` executes all tests in the 
+package in your global environment.
+
+Here, we submit our first test with the `Run Tests` button, and it passes! 🎉
+
+```{r test-expect-class, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   29:23 Passing result after submitting the first test with the `Run Tests` button.
+#| fig.alt: >
+#|   `test-compute_corr.R` shows `test_that(...)`; `Build` pane on top right hand
+#|   side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1].
+knitr::include_graphics("img/test-expect-class.PNG")
+```
 
 # Notes
 
@@ -548,6 +596,34 @@ Config/testthat/parallel: true
 ```
 
 * gtsummary check went from 40 min to 14 min
+
+# Question & Answer
+
+This discussion is paraphrased from the workshop recording. It was commented that
+there is not a right answer to most of this.
+
+1. `19:50` When do you write tests? 
+
+If the function writing is a process of discovery, and you are not sure what the
+function will do, write the test after the function is in a stable state. 
+In other cases, when you know precisely how you want the function to behave, writing 
+the test before you write the function could be a useful approach (test driven 
+development).
+
+2. `22:19` When I start writing tests, I get sucked into a rabbit hole of tests. 
+How can I have a better process for writing tests?
+
+Have solid tests for things that you really care about as a developer. 
+Most of the time, it is good to write more tests than less. Get a couple of tests 
+down, and as you discover bugs, make sure there is a test for every bug that you fix.
+
+3. `23:53` Is it fair to say that you should consider problems that tripped you 
+up when building the function as good test candidates?
+
+Yeah, for sure! If you make the mistake as you are writing the function, you
+are likely to make the mistake again in six months, so a test will keep you honest
+on those problems.
+
 
 
 # Acknowledgements 
