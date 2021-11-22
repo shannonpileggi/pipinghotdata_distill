@@ -1,7 +1,7 @@
 ---
 title: "Getting started with unit testing in R"
 description: |
-  tbd
+  Automating the dev work you are probably already doing
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
