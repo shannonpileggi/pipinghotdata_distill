@@ -77,7 +77,7 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h1 id="tool-kit"&gt;Tool kit&lt;/h1&gt;
-&lt;p&gt;Single usage functions only need to be used one time in the development process; multiple usage functions are executed as needed. This table contains the general process functions used in this workshop.&lt;/p&gt;
+&lt;p&gt;This table contains the general process functions used in this workshop. Single usage functions only need to be used one time in the development process; multiple usage functions are executed as needed.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr class="header"&gt;
@@ -120,7 +120,7 @@
 &lt;tr class="odd"&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;load functions in 📂 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
+&lt;td&gt;load functions in 📁 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -158,7 +158,7 @@
 &lt;h1 id="why-unit-test"&gt;Why unit test&lt;/h1&gt;
 &lt;p&gt;If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="454" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="1453" /&gt;
 &lt;p class="caption"&gt;
 (#fig:original-process)Workflow cycle of function development without automated testing, from 2019 Building Tidy Tools workshop.
 &lt;/p&gt;
@@ -166,19 +166,19 @@
 &lt;p&gt;This process is where most of us likely start, and possibly even stay for a while. But it can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.&lt;/p&gt;
 &lt;p&gt;Instead, we can &lt;em&gt;automate&lt;/em&gt; tests with &lt;code&gt;testthat&lt;/code&gt; in a new workflow.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="451" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="1443" /&gt;
 &lt;p class="caption"&gt;
 (#fig:test-process-1)Workflow cycle of function development when getting started with automated testing, from 2019 Building Tidy Tools workshop.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the loading code step.&lt;/p&gt;
+&lt;p&gt;And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the reload code step.&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="454" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="1453" /&gt;
 &lt;p class="caption"&gt;
 (#fig:test-process-2)Workflow cycle of function development when comfortable with automated testing, from 2019 Building Tidy Tools workshop.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Like anything in programming, there is an up-front time investment in learning this framework and process, but with significant downstream time savings.&lt;/p&gt;
+&lt;p&gt;Like anything in programming, there is an up-front time investment in learning this framework and process, but with potentially significant downstream time savings.&lt;/p&gt;
 &lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
 &lt;p&gt;This post picks up exactly where we left the &lt;code&gt;ralph&lt;/code&gt; package in &lt;a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr" target="_blank_"&gt;Your first R package in 1 hour&lt;/a&gt; in November 2020. In order to keep that as a stand-alone resource, I created a second repo called &lt;code&gt;ralphGetsTested&lt;/code&gt; for this workshop, which was a copy of &lt;code&gt;ralph&lt;/code&gt; as we left it.&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
@@ -195,12 +195,50 @@
 &lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + Shift + L&lt;/code&gt; for &lt;code&gt;devtools::load_all()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + Shift + F10&lt;/code&gt; to restart R&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + Shift + T&lt;/code&gt; for &lt;code&gt;devtools::test()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Native language&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Thank Gordon&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;What is unit testing / why do it?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Presenters experience with unit testing&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Attendees experience with unit testing.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h1 id="status-of-ralph"&gt;Status of &lt;code&gt;ralph&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;The little &lt;code&gt;ralph&lt;/code&gt; package has a single, untested function that computes a correlation and returns tidy results.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr &amp;lt;- function(data, var1, var2){
+
+  # compute correlation ----
+  stats::cor.test(
+    x = data %&amp;gt;% dplyr::pull({{var1}}),
+    y = data %&amp;gt;% dplyr::pull({{var2}})
+  ) %&amp;gt;%
+  # tidy up results ----
+  broom::tidy() %&amp;gt;%
+  # retain and rename relevant bits ----
+  dplyr::select(
+    correlation = .data$estimate,
+    pval = .data$p.value
+  )
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is an example execution:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr(data = faithful, var1 = eruptions, var2 = waiting)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 1 x 2
+  correlation      pval
+        &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+1       0.901 8.13e-100&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="test-set-up"&gt;Test set up&lt;/h1&gt;
+&lt;p&gt;To get your package ready for automated testing, submit&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From &lt;a href="https://r-pkgs.org/tests.html" target="_blank"&gt;R Packages Ch 12 Testing&lt;/a&gt;, this does three things:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Create a &lt;code&gt;tests/testthat&lt;/code&gt; directory.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Add &lt;code&gt;testthat&lt;/code&gt; to the &lt;code&gt;Suggests&lt;/code&gt; field in the &lt;code&gt;DESCRIPTION&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create a file &lt;code&gt;tests/testthat.R&lt;/code&gt; that runs all your tests when you execute &lt;code&gt;devtools::check()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/use_testthat.PNG" alt="DESCRIPTION adds `testthat &amp;gt;= 3.0.0 to `Suggests`, console states actions listed above." width="1366" /&gt;
+&lt;p class="caption"&gt;
+(#fig:use-testthat)DESCRIPTION and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Note that the edition of &lt;code&gt;testthat&lt;/code&gt; is specified to 3. It is my understanding that this version/edition departs significantly from previous versions, both in function scopes and execution.&lt;/p&gt;
+&lt;aside&gt;
+Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; from &lt;code&gt;testthat&lt;/code&gt; 2 to 3 with the help of a &lt;a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank"&gt;friendly PR&lt;/a&gt;, the &lt;code&gt;R CMD check&lt;/code&gt; dropped from 40 to 14 minutes. 🙌
+&lt;/aside&gt;
 &lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::check()&lt;/code&gt; confirm error free&lt;/p&gt;&lt;/li&gt;
@@ -394,6 +432,10 @@ Config/testthat/edition: 3
 Config/testthat/parallel: true&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;gtsummary check went from 40 min to 14 min&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Thank Gordon&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>

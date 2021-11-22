@@ -137,7 +137,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","img/use_testthat.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2546,6 +2546,8 @@ gtag('config', 'UA-128676462-1');
 <li><a href="#why-unit-test">Why unit test</a></li>
 <li><a href="#getting-started">Getting started</a></li>
 <li><a href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li><a href="#status-of-ralph">Status of <code>ralph</code></a></li>
+<li><a href="#test-set-up">Test set up</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#testing-code">Testing code</a></li>
 <li><a href="#distinguishing-messagewarningerror">Distinguishing message/warning/error:</a></li>
@@ -2557,6 +2559,7 @@ gtag('config', 'UA-128676462-1');
 <li><a href="#tests">tests</a></li>
 </ul></li>
 <li><a href="#testthat-3e">testthat 3e</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 </nav>
 </div>
@@ -2625,7 +2628,7 @@ gtag('config', 'UA-128676462-1');
 </tbody>
 </table>
 <h1 id="tool-kit">Tool kit</h1>
-<p>Single usage functions only need to be used one time in the development process; multiple usage functions are executed as needed. This table contains the general process functions used in this workshop.</p>
+<p>This table contains the general process functions used in this workshop. Single usage functions only need to be used one time in the development process; multiple usage functions are executed as needed.</p>
 <table>
 <thead>
 <tr class="header">
@@ -2668,7 +2671,7 @@ gtag('config', 'UA-128676462-1');
 <tr class="odd">
 <td></td>
 <td><code>devtools::load_all()</code></td>
-<td>load functions in 📂 <code>R/</code> into memory</td>
+<td>load functions in 📁 <code>R/</code> into memory</td>
 </tr>
 <tr class="even">
 <td></td>
@@ -2707,7 +2710,7 @@ gtag('config', 'UA-128676462-1');
 <p>If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:original-process"></span>
-<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="454" />
+<img src="img/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="1453" />
 <p class="caption">
 Figure 1: Workflow cycle of function development without automated testing, from 2019 Building Tidy Tools workshop.
 </p>
@@ -2717,22 +2720,22 @@ Figure 1: Workflow cycle of function development without automated testing, from
 <p>Instead, we can <em>automate</em> tests with <code>testthat</code> in a new workflow.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:test-process-1"></span>
-<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="451" />
+<img src="img/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="1443" />
 <p class="caption">
 Figure 2: Workflow cycle of function development when getting started with automated testing, from 2019 Building Tidy Tools workshop.
 </p>
 </div>
 </div>
-<p>And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the loading code step.</p>
+<p>And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the reload code step.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:test-process-2"></span>
-<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="454" />
+<img src="img/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="1453" />
 <p class="caption">
 Figure 3: Workflow cycle of function development when comfortable with automated testing, from 2019 Building Tidy Tools workshop.
 </p>
 </div>
 </div>
-<p>Like anything in programming, there is an up-front time investment in learning this framework and process, but with significant downstream time savings.</p>
+<p>Like anything in programming, there is an up-front time investment in learning this framework and process, but with potentially significant downstream time savings.</p>
 <h1 id="getting-started">Getting started</h1>
 <p>This post picks up exactly where we left the <code>ralph</code> package in <a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr" target="_blank_">Your first R package in 1 hour</a> in November 2020. In order to keep that as a stand-alone resource, I created a second repo called <code>ralphGetsTested</code> for this workshop, which was a copy of <code>ralph</code> as we left it.</p>
 <ol type="1">
@@ -2749,12 +2752,70 @@ Figure 3: Workflow cycle of function development when comfortable with automated
 <li><p><code>Ctrl + Shift + L</code> for <code>devtools::load_all()</code></p></li>
 <li><p><code>Ctrl + Shift + F10</code> to restart R</p></li>
 <li><p><code>Ctrl + Shift + T</code> for <code>devtools::test()</code></p></li>
-<li><p>Native language</p></li>
-<li><p>Thank Gordon</p></li>
-<li><p>What is unit testing / why do it?</p></li>
-<li><p>Presenters experience with unit testing</p></li>
-<li><p>Attendees experience with unit testing.</p></li>
 </ul>
+<h1 id="status-of-ralph">Status of <code>ralph</code></h1>
+<p>The little <code>ralph</code> package has a single, untested function that computes a correlation and returns tidy results.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>compute_corr</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>var1</span>, <span class='va'>var2</span><span class='op'>)</span><span class='op'>{</span>
+
+  <span class='co'># compute correlation ----</span>
+  <span class='fu'>stats</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/stats/cor.test.html'>cor.test</a></span><span class='op'>(</span>
+    x <span class='op'>=</span> <span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='op'>{</span><span class='op'>{</span><span class='va'>var1</span><span class='op'>}</span><span class='op'>}</span><span class='op'>)</span>,
+    y <span class='op'>=</span> <span class='va'>data</span> <span class='op'>%&gt;%</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='op'>{</span><span class='op'>{</span><span class='va'>var2</span><span class='op'>}</span><span class='op'>}</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># tidy up results ----</span>
+  <span class='fu'>broom</span><span class='fu'>::</span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='co'># retain and rename relevant bits ----</span>
+  <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span>
+    correlation <span class='op'>=</span> <span class='va'>.data</span><span class='op'>$</span><span class='va'>estimate</span>,
+    pval <span class='op'>=</span> <span class='va'>.data</span><span class='op'>$</span><span class='va'>p.value</span>
+  <span class='op'>)</span>
+
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Here is an example execution:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>compute_corr</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>faithful</span>, var1 <span class='op'>=</span> <span class='va'>eruptions</span>, var2 <span class='op'>=</span> <span class='va'>waiting</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 2
+  correlation      pval
+        &lt;dbl&gt;     &lt;dbl&gt;
+1       0.901 8.13e-100</code></pre>
+</div>
+<h1 id="test-set-up">Test set up</h1>
+<p>To get your package ready for automated testing, submit</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>usethis</span><span class='fu'>::</span><span class='fu'><a href='https://usethis.r-lib.org/reference/use_testthat.html'>use_testthat</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>From <a href="https://r-pkgs.org/tests.html" target="_blank">R Packages Ch 12 Testing</a>, this does three things:</p>
+<ol type="1">
+<li><p>Create a <code>tests/testthat</code> directory.</p></li>
+<li><p>Add <code>testthat</code> to the <code>Suggests</code> field in the <code>DESCRIPTION</code>.</p></li>
+<li><p>Create a file <code>tests/testthat.R</code> that runs all your tests when you execute <code>devtools::check()</code>.</p></li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:use-testthat"></span>
+<img src="img/use_testthat.PNG" alt="DESCRIPTION adds `testthat &gt;= 3.0.0 to `Suggests`, console states actions listed above." width="1366" />
+<p class="caption">
+Figure 4: DESCRIPTION and console output after submitting <code>usethis::use_testthat()</code>.
+</p>
+</div>
+</div>
+<p>Note that the edition of <code>testthat</code> is specified to 3. It is my understanding that this version/edition departs significantly from previous versions, both in function scopes and execution.</p>
+<aside>
+Dan Sjoberg shared that when he updated <code>{gtsummary}</code> from <code>testthat</code> 2 to 3 with the help of a <a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank">friendly PR</a>, the <code>R CMD check</code> dropped from 40 to 14 minutes. 🙌
+</aside>
 <h1 id="notes">Notes</h1>
 <ul>
 <li><p><code>devtools::check()</code> confirm error free</p></li>
@@ -3004,7 +3065,11 @@ Config/testthat/parallel: true</code></pre>
 <ul>
 <li>gtsummary check went from 40 min to 14 min</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="acknowledgements">Acknowledgements</h1>
+<ul>
+<li>Thank Gordon</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">

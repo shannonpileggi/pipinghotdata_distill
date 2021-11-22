@@ -19,7 +19,7 @@ creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE, dpi=1)
 ```
 
 ```{r, echo = FALSE}
@@ -28,16 +28,25 @@ folder <- "2021-11-01-unit-testing"
 
 # TL;DR
 
-This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 ([recording on YouTube](https://youtu.be/4bPekjzIYiU){target=_blank_}), where we live coded use of the
+This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 
+([recording on YouTube](https://youtu.be/4bPekjzIYiU){target=_blank_}), where we live coded use of the
 `usethis`, `devtools`, `testthat`, and `covr` packages to automate R package testing.
 This post complements the recording through highlighting key points, rather than 
 listing all actions.
 
 # Abstract
 
-In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in `usethis` and `devtools`, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.
+In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started 
+with unit testing in R, which is formal automated testing of functions within 
+packages. We demonstrate handy functions in `usethis` and `devtools`, strategies
+for writing tests, debugging techniques, and broad concepts in function writing 
+that facilitate a smoother testing process.
 
-This workshop picks up exactly where we left our little `ralph` (aka **R**-**L**adies **Ph**illy) package one year ago with [“Your first R package in 1 hour: Tools that make R package development easy”](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/){target="_blank"}. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with `devtools` and `usethis`.
+This workshop picks up exactly where we left our little `ralph` 
+(aka **R**-**L**adies **Ph**illy) package one year ago with 
+[“Your first R package in 1 hour: Tools that make R package development easy”](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/){target="_blank"}. Participants will get the most out of this workshop if they review those materials
+in advance, or if they are already familiar with building R packages with `devtools` 
+and `usethis`.
 
 
 # Packages
@@ -61,8 +70,8 @@ This material was developed using:
 
 # Tool kit
 
-This table contains the general process functions used in this workshop. Single usage f
-unctions only need to be used one time in the development process; multiple usage functions
+This table contains the general process functions used in this workshop. Single usage functions 
+only need to be used one time in the development process; multiple usage functions
 are executed as needed. 
 
 
@@ -137,7 +146,7 @@ knitr::include_graphics("img/tidy-tools-workflow-testing-1.PNG")
 ```
 
 And once you trust and get comfortable with the tests you have set up, you can
-speed up the development process even more by removing the loading code step.
+speed up the development process even more by removing the reload code step.
 
 ```{r test-process-2, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
@@ -150,7 +159,7 @@ knitr::include_graphics("img/tidy-tools-workflow-testing-2.PNG")
 ```
 
 Like anything in programming, there is an up-front time investment in learning
-this framework and process, but with significant downstream time savings.
+this framework and process, but with potentially significant downstream time savings.
 
 # Getting started
 
@@ -176,15 +185,76 @@ created a second repo called `ralphGetsTested` for this workshop, which was a co
 
 * `Ctrl + Shift + T` for `devtools::test()`
 
-* Native language
+# Status of `ralph`
 
-* Thank Gordon
+The little `ralph` package has a single, untested function
+that computes a correlation and returns tidy results.
 
-* What is unit testing / why do it?
+```{r, eval=TRUE, echo=FALSE}
+library(tidyverse)
+```
 
-* Presenters experience with unit testing
 
-* Attendees experience with unit testing.
+```{r, eval=TRUE}
+compute_corr <- function(data, var1, var2){
+
+  # compute correlation ----
+  stats::cor.test(
+    x = data %>% dplyr::pull({{var1}}),
+    y = data %>% dplyr::pull({{var2}})
+  ) %>%
+  # tidy up results ----
+  broom::tidy() %>%
+  # retain and rename relevant bits ----
+  dplyr::select(
+    correlation = .data$estimate,
+    pval = .data$p.value
+  )
+
+}
+```
+
+Here is an example execution:
+
+```{r, eval=TRUE}
+compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+```
+
+
+# Test set up
+
+To get your package ready for automated testing, submit
+
+```{r}
+usethis::use_testthat()
+```
+
+From [R Packages Ch 12 Testing](https://r-pkgs.org/tests.html){target="_blank"}, this does three things:
+
+1. Create a `tests/testthat` directory.
+
+2. Add `testthat` to the `Suggests` field in the `DESCRIPTION`.
+
+3. Create a file `tests/testthat.R` that runs all your tests when you execute `devtools::check()`.
+
+```{r use-testthat, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   DESCRIPTION and console output after submitting `usethis::use_testthat()`.
+#| fig.alt: >
+#|   DESCRIPTION adds `testthat >= 3.0.0 to `Suggests`, console states
+#|   actions listed above.
+knitr::include_graphics("img/use_testthat.PNG")
+```
+
+Note that the edition of `testthat` is specified to 3. It is my understanding that
+this version/edition departs significantly from previous versions, both in 
+function scopes and execution. 
+
+<aside>
+Dan Sjoberg shared that when he updated `{gtsummary}`
+from `testthat` 2 to 3 with the help of a [friendly PR](https://github.com/ddsjoberg/gtsummary/pull/756){target="_blank"}, 
+the `R CMD check` dropped from 40 to 14 minutes. 🙌
+</aside>
 
 # Notes
 
@@ -478,3 +548,9 @@ Config/testthat/parallel: true
 ```
 
 * gtsummary check went from 40 min to 14 min
+
+
+# Acknowledgements 
+
+
+* Thank Gordon
