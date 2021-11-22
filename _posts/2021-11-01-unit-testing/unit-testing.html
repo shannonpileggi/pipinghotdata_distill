@@ -120,7 +120,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["img/run-test-gui.PNG","img/test-expect-class.png","img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","img/use_testthat.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["img/covr-report-1x.png","img/covr-report.png","img/run-test-gui.PNG","img/test-expect-class.png","img/tidy-tools-workflow-no-unit-testing.PNG","img/tidy-tools-workflow-testing-1.PNG","img/tidy-tools-workflow-testing-2.PNG","img/use_testthat.PNG","unit-testing_files/anchor-4.2.2/anchor.min.js","unit-testing_files/bowser-1.9.3/bowser.min.js","unit-testing_files/distill-2.2.21/template.v2.js","unit-testing_files/header-attrs-2.11/header-attrs.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.js","unit-testing_files/jquery-3.6.0/jquery-3.6.0.min.map","unit-testing_files/popper-2.6.0/popper.min.js","unit-testing_files/tippy-6.2.7/tippy-bundle.umd.min.js","unit-testing_files/tippy-6.2.7/tippy-light-border.css","unit-testing_files/tippy-6.2.7/tippy.css","unit-testing_files/tippy-6.2.7/tippy.umd.min.js","unit-testing_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1497,8 +1497,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#getting-started">Getting started</a></li>
 <li><a href="#keyboard-shortcuts">Keyboard shortcuts</a></li>
 <li><a href="#status-of-ralph">Status of <code>ralph</code></a></li>
-<li><a href="#test-set-up">Test set up</a></li>
+<li><a href="#test-set-up">(16:30) Test set up</a></li>
 <li><a href="#first-test">(25:10) First test</a></li>
+<li><a href="#test-coverage">(36:08) Test coverage</a></li>
 <li><a href="#notes">Notes</a></li>
 <li><a href="#testing-code">Testing code</a></li>
 <li><a href="#distinguishing-messagewarningerror">Distinguishing message/warning/error:</a></li>
@@ -1623,7 +1624,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <tr class="odd">
 <td></td>
 <td><code>devtools::load_all()</code></td>
-<td>load functions in 📂 <code>R/</code> into memory</td>
+<td>load functions in 📁 <code>R/</code> into memory</td>
 </tr>
 <tr class="even">
 <td></td>
@@ -1742,7 +1743,7 @@ Figure 3: Workflow cycle of function development when comfortable with automated
         &lt;dbl&gt;     &lt;dbl&gt;
 1       0.901 8.13e-100</code></pre>
 </div>
-<h1 id="test-set-up">Test set up</h1>
+<h1 id="test-set-up">(16:30) Test set up</h1>
 <p>To get your package ready for automated testing, submit</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1760,7 +1761,7 @@ Figure 3: Workflow cycle of function development when comfortable with automated
 <div class="figure"><span style="display:block;" id="fig:use-testthat"></span>
 <img src="img/use_testthat.PNG" alt="DESCRIPTION adds `testthat &gt;= 3.0.0 to `Suggests`, console states actions listed above." width="40992" />
 <p class="caption">
-Figure 4: 17:54: <code>DESCRIPTION</code> and console output after submitting <code>usethis::use_testthat()</code>.
+Figure 4: (17:54): <code>DESCRIPTION</code> and console output after submitting <code>usethis::use_testthat()</code>.
 </p>
 </div>
 </div>
@@ -1791,14 +1792,41 @@ Dan Sjoberg shared that when he updated <code>{gtsummary}</code> from <code>test
 <p>Now there are two ways to execute the test.</p>
 <ol type="1">
 <li><p>The <code>Run Tests</code> button ( <img src="img/run-test-gui.PNG" style="width:12.0%" alt="Run tests button in RStudio" /> )on the top right hand side of the testing script executes the tests in this script only (not all tests in the package), and excutes this in a fresh R environment.</p></li>
-<li><p>Submitting <code>devtools::test()</code> or <code>Ctrl + Shift + T</code> executes all tests in the package in your global environment.</p></li>
+<li><p>Submitting <code>devtools::test()</code> (or <code>Ctrl + Shift + T</code>) executes all tests in the package in your global environment.</p></li>
 </ol>
 <p>Here, we submit our first test with the <code>Run Tests</code> button, and it passes! 🎉</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span style="display:block;" id="fig:test-expect-class"></span>
-<img src="img/test-expect-class.png" alt="`test-compute_corr.R` shows `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" />
+<img src="img/test-expect-class.png" alt="`test-compute_corr.R` shows 1 expectation in `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" />
 <p class="caption">
-Figure 5: 29:23 Passing result after submitting the first test with the <code>Run Tests</code> button.
+Figure 5: (29:23) Passing result after submitting the first test with the <code>Run Tests</code> button.
+</p>
+</div>
+</div>
+<p>Submitting <code>devtools::check()</code> will also execute all tests in the package, and you will see an error in the log if the test fails.</p>
+<h1 id="test-coverage">(36:08) Test coverage</h1>
+<p>Now we have added a total of three tests, and we examine our test coverage with</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>covr</span><span class='fu'>::</span><span class='fu'><a href='http://covr.r-lib.org/reference/report.html'>report</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>This function requires the package to not be loaded, so restart R (<code>Ctrl + Shift + F10</code>) prior to execution.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:covr-report"></span>
+<img src="img/covr-report.png" alt="`test-compute_corr.R` shows 3 expectations in `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 3]; `Viewer` panel on bottom right hand side shows 100% test coverage." width="92160" />
+<p class="caption">
+Figure 6: (37:05) <code>covr::report()</code> creates output in viewer showing the percent of code covered by the tests.
+</p>
+</div>
+</div>
+<p>The percent coverage evaluates the percent of code that was ever executed during through the <code>test_that()</code> functions. In the viewer panel, click on <code>Files</code> and then <code>R/compute_corr.R</code>. The <strong>1</strong>_x_ on the left hand side counts how many times that line of code has been executed when you ran your test suite.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:covr-report-1x"></span>
+<img src="img/covr-report-1x.png" alt="In Viewer panel, executed lines of code are highlighted in pale green and marked on left hand side with 1x." width="92160" />
+<p class="caption">
+Figure 7: (37:05) <code>covr::report()</code> shows which lines of code were executed, and how many times, as a result of your tests.
 </p>
 </div>
 </div>
@@ -2052,19 +2080,27 @@ Config/testthat/parallel: true</code></pre>
 <li>gtsummary check went from 40 min to 14 min</li>
 </ul>
 <h1 id="question-answer">Question &amp; Answer</h1>
-<p>This discussion is paraphrased from the workshop recording. It was commented that there is not a right answer to most of this.</p>
+<p>This discussion is paraphrased from the workshop recording. It was commented throughout that there is not a right answer to most of this.</p>
 <ol type="1">
-<li><code>19:50</code> When do you write tests?</li>
+<li><code>(19:50)</code> When do you write tests?</li>
 </ol>
 <p>If the function writing is a process of discovery, and you are not sure what the function will do, write the test after the function is in a stable state. In other cases, when you know precisely how you want the function to behave, writing the test before you write the function could be a useful approach (test driven development).</p>
 <ol start="2" type="1">
-<li><code>22:19</code> When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?</li>
+<li><code>(22:19)</code> When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?</li>
 </ol>
 <p>Have solid tests for things that you really care about as a developer. Most of the time, it is good to write more tests than less. Get a couple of tests down, and as you discover bugs, make sure there is a test for every bug that you fix.</p>
 <ol start="3" type="1">
-<li><code>23:53</code> Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?</li>
+<li><code>(23:53)</code> Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?</li>
 </ol>
 <p>Yeah, for sure! If you make the mistake as you are writing the function, you are likely to make the mistake again in six months, so a test will keep you honest on those problems.</p>
+<ol start="4" type="1">
+<li><code>(32:50)</code> Can we write test that statements with more descriptive errors?</li>
+</ol>
+<p>Think of <code>test_that()</code> as a paragraph break to keep related expectations together (Gordon), and give the test a brief but evocative name - you do you (from the <code>test_that()</code> help file). There are also <code>expect_error()</code> and <code>expect_warning()</code> functions.</p>
+<ol start="5" type="1">
+<li><code>(37:00)</code> How is the percent coverage from <code>covr::report()</code> calculated?</li>
+</ol>
+<p>This evaluates which lines of code have been executed for that test. It is not necessarily evaluating if the function is tested well, but rather has this line of code ever been run by your test suite.</p>
 <h1 id="acknowledgements">Acknowledgements</h1>
 <ul>
 <li>Thank Gordon</li>

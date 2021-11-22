@@ -120,7 +120,7 @@
 &lt;tr class="odd"&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;load functions in 📂 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
+&lt;td&gt;load functions in 📁 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -220,7 +220,7 @@
   correlation      pval
         &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
 1       0.901 8.13e-100&lt;/code&gt;&lt;/pre&gt;
-&lt;h1 id="test-set-up"&gt;Test set up&lt;/h1&gt;
+&lt;h1 id="test-set-up"&gt;(16:30) Test set up&lt;/h1&gt;
 &lt;p&gt;To get your package ready for automated testing, submit&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;From &lt;a href="https://r-pkgs.org/tests.html" target="_blank"&gt;R Packages Ch 12 Testing&lt;/a&gt;, this does three things:&lt;/p&gt;
@@ -232,7 +232,7 @@
 &lt;div class="figure"&gt;
 &lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/use_testthat.PNG" alt="DESCRIPTION adds `testthat &amp;gt;= 3.0.0 to `Suggests`, console states actions listed above." width="40992" /&gt;
 &lt;p class="caption"&gt;
-(#fig:use-testthat)17:54: &lt;code&gt;DESCRIPTION&lt;/code&gt; and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
+(#fig:use-testthat)(17:54): &lt;code&gt;DESCRIPTION&lt;/code&gt; and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Note that the edition of &lt;code&gt;testthat&lt;/code&gt; is specified to 3. It is my understanding that this version/edition departs significantly from previous versions, both in function scopes and execution.&lt;/p&gt;
@@ -252,13 +252,31 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 &lt;p&gt;Now there are two ways to execute the test.&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;The &lt;code&gt;Run Tests&lt;/code&gt; button ( &lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/run-test-gui.PNG" style="width:12.0%" alt="Run tests button in RStudio" /&gt; )on the top right hand side of the testing script executes the tests in this script only (not all tests in the package), and excutes this in a fresh R environment.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Submitting &lt;code&gt;devtools::test()&lt;/code&gt; or &lt;code&gt;Ctrl + Shift + T&lt;/code&gt; executes all tests in the package in your global environment.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Submitting &lt;code&gt;devtools::test()&lt;/code&gt; (or &lt;code&gt;Ctrl + Shift + T&lt;/code&gt;) executes all tests in the package in your global environment.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Here, we submit our first test with the &lt;code&gt;Run Tests&lt;/code&gt; button, and it passes! 🎉&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/test-expect-class.png" alt="`test-compute_corr.R` shows `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/test-expect-class.png" alt="`test-compute_corr.R` shows 1 expectation in `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" /&gt;
 &lt;p class="caption"&gt;
-(#fig:test-expect-class)29:23 Passing result after submitting the first test with the &lt;code&gt;Run Tests&lt;/code&gt; button.
+(#fig:test-expect-class)(29:23) Passing result after submitting the first test with the &lt;code&gt;Run Tests&lt;/code&gt; button.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Submitting &lt;code&gt;devtools::check()&lt;/code&gt; will also execute all tests in the package, and you will see an error in the log if the test fails.&lt;/p&gt;
+&lt;h1 id="test-coverage"&gt;(36:08) Test coverage&lt;/h1&gt;
+&lt;p&gt;Now we have added a total of three tests, and we examine our test coverage with&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;covr::report()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function requires the package to not be loaded, so restart R (&lt;code&gt;Ctrl + Shift + F10&lt;/code&gt;) prior to execution.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/covr-report.png" alt="`test-compute_corr.R` shows 3 expectations in `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 3]; `Viewer` panel on bottom right hand side shows 100% test coverage." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:covr-report)(37:05) &lt;code&gt;covr::report()&lt;/code&gt; creates output in viewer showing the percent of code covered by the tests.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The percent coverage evaluates the percent of code that was ever executed during through the &lt;code&gt;test_that()&lt;/code&gt; functions. In the viewer panel, click on &lt;code&gt;Files&lt;/code&gt; and then &lt;code&gt;R/compute_corr.R&lt;/code&gt;. The &lt;strong&gt;1&lt;/strong&gt;_x_ on the left hand side counts how many times that line of code has been executed when you ran your test suite.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/covr-report-1x.png" alt="In Viewer panel, executed lines of code are highlighted in pale green and marked on left hand side with 1x." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:covr-report-1x)(37:05) &lt;code&gt;covr::report()&lt;/code&gt; shows which lines of code were executed, and how many times, as a result of your tests.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
@@ -456,19 +474,27 @@ Config/testthat/parallel: true&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;gtsummary check went from 40 min to 14 min&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="question-answer"&gt;Question &amp;amp; Answer&lt;/h1&gt;
-&lt;p&gt;This discussion is paraphrased from the workshop recording. It was commented that there is not a right answer to most of this.&lt;/p&gt;
+&lt;p&gt;This discussion is paraphrased from the workshop recording. It was commented throughout that there is not a right answer to most of this.&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;code&gt;19:50&lt;/code&gt; When do you write tests?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(19:50)&lt;/code&gt; When do you write tests?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;If the function writing is a process of discovery, and you are not sure what the function will do, write the test after the function is in a stable state. In other cases, when you know precisely how you want the function to behave, writing the test before you write the function could be a useful approach (test driven development).&lt;/p&gt;
 &lt;ol start="2" style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;code&gt;22:19&lt;/code&gt; When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(22:19)&lt;/code&gt; When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Have solid tests for things that you really care about as a developer. Most of the time, it is good to write more tests than less. Get a couple of tests down, and as you discover bugs, make sure there is a test for every bug that you fix.&lt;/p&gt;
 &lt;ol start="3" style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;code&gt;23:53&lt;/code&gt; Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(23:53)&lt;/code&gt; Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Yeah, for sure! If you make the mistake as you are writing the function, you are likely to make the mistake again in six months, so a test will keep you honest on those problems.&lt;/p&gt;
+&lt;ol start="4" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(32:50)&lt;/code&gt; Can we write test that statements with more descriptive errors?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Think of &lt;code&gt;test_that()&lt;/code&gt; as a paragraph break to keep related expectations together (Gordon), and give the test a brief but evocative name - you do you (from the &lt;code&gt;test_that()&lt;/code&gt; help file). There are also &lt;code&gt;expect_error()&lt;/code&gt; and &lt;code&gt;expect_warning()&lt;/code&gt; functions.&lt;/p&gt;
+&lt;ol start="5" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(37:00)&lt;/code&gt; How is the percent coverage from &lt;code&gt;covr::report()&lt;/code&gt; calculated?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This evaluates which lines of code have been executed for that test. It is not necessarily evaluating if the function is tested well, but rather has this line of code ever been run by your test suite.&lt;/p&gt;
 &lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Thank Gordon&lt;/li&gt;
