@@ -221,7 +221,15 @@ compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
 ```
 
 
-# (16:30) Test set up
+# Part 1: testing `compute_corr()`
+
+* What can we test in `compute_corr()`?
+  
+* How much of the function code is covered by tests?
+
+* How can you test safe user inputs?
+
+## (16:30) Test set up
 
 To get your package ready for automated testing, submit
 
@@ -256,7 +264,7 @@ from `testthat` 2 to 3 with the help of a [friendly PR](https://github.com/ddsjo
 the `R CMD check` dropped from 40 to 14 minutes. 🙌
 </aside>
 
-# (25:10) First test
+## (25:10) First test
 
 To create our first test file, submit
 
@@ -307,7 +315,7 @@ knitr::include_graphics("img/test-expect-class.png")
 Submitting `devtools::check()` will also execute all tests in the package, and you
 will see an error in the log if the test fails.
 
-# (36:08) Test coverage
+## (36:08) Test coverage
 
 Now we have added a total of three tests, and we examine our test coverage with
 
@@ -340,6 +348,212 @@ The **1**_x_ on the left hand side counts how many times that line of code has b
 #|   In Viewer panel, executed lines of code are highlighted in pale green and marked 
 #|   on left hand side with 1x.
 knitr::include_graphics("img/covr-report-1x.png")
+```
+
+
+## (41:27) Debugging
+
+At this point, our tests consist of the following:
+
+```{r}
+test_that("assess_compute_corr", {
+  expected <- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, "data.frame")
+  expect_equal(dim(expected), c(1,2))
+  expect_named(expected, c("correlation", "pval"))
+  expect_equal(expected[["correlation"]], 0.901)
+})
+```
+
+and we executed our tests with `Ctrl + Shift + T`.
+
+
+```{r debugging-1, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   (42:18) Our first test failure.
+#| fig.alt: >
+#|   In Viewer panel, we see 
+#|   `names(actual)` is a character vector (`cor`)
+#|   `names(expected)` is absent.
+knitr::include_graphics("img/debugging-1.png")
+```
+
+We first demonstrate some debugging in the console, where we reveal that the
+`correlation` column of the `expected` tibble has a `"names"` attribute of 
+`"corr"`.
+
+```{r, eval=TRUE, echo=FALSE}
+expected <- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+```
+
+
+```{r, eval=TRUE, echo=TRUE}
+str(expected)
+```
+
+
+Next, we demonstrate an alternative way of arriving at this through use of the
+`browser()` function. To do so,
+
+1. Insert `browser()` into the source of your function.
+
+2. Load your functions with `devtools::load_all()` (Ctrl + Shift + L).
+
+3. Execute the function.
+
+```{r browser-1, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   (46:31) Now we have entered browser mode.
+#| fig.alt: >
+#|   In compute_corr.R source script, we see `browser()` is highlighted in yellow.
+#|   In console, instead of `>`, we see `Browse[1]>`.
+#|   We also see a new environment window.
+knitr::include_graphics("img/browser-1.png")
+```
+
+Here, this allows you to step into your function with arguments exactly as called. 
+The function is run in a fresh environment, and we can execute the 
+function line be line to see what is happening. In addition, we can see objects
+as they are evaluated in the environment.
+
+To resolve the issue:
+
+1. Stop browser mode with the red `Stop` square on the console,
+
+2. Modify the source of the function as shown.
+
+
+```{r}
+compute_corr <- function(data, var1, var2){
+
+  # compute correlation ----
+  results <- stats::cor.test(
+    x = data %>% dplyr::pull({{var1}}),
+    y = data %>% dplyr::pull({{var2}})
+  ) %>%
+  # tidy up results ----
+  broom::tidy() %>%
+  # retain and rename relevant bits ----
+  dplyr::select(
+    correlation = .data$estimate,
+    pval = .data$p.value
+  )
+
+  attr(results$correlation, "names") <- NULL
+
+  return(results)
+
+}
+```
+
+3. `devtools::load_all()` (`Ctrl + Shift + L`)
+
+4. If needed, step into `browser()` mode again to confirm or further 
+troubleshoot.
+
+Now, after updating the `compute_corr()` function remove the `names` attribute,
+we still have failed test! 😱
+
+```{r debugging-2, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   (58:02) Now we have a new failure message. Note the `debug at` lines in the 
+#|   `Build` pane indicate that I forgot to remove the `browser()` line from 
+#|   the source function after our workshop break.
+#| fig.alt: >
+#|   In the `Build` pane we see a failing test with the note `actual: 0.9008` 
+#|   and `expected: 0.9010`.
+knitr::include_graphics("img/debugging-2.png")
+```
+
+We can correct this by adding the `tolerance` argument to the `expect_equal()` function.
+
+```{r debugging-3, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   (1:00:14) 4 passing tests!
+#| fig.alt: >
+#|   In the `Build` pane we see [FAIL 0 | WARN 0 | SKIP 0 | Pass 4]
+knitr::include_graphics("img/debugging-3.png")
+```
+
+# Question & Answer
+
+This discussion is paraphrased from the workshop recording. It was commented throughout that
+there is not a right answer to most of this.
+
+1. `(19:50)` When do you write tests? 
+
+If the function writing is a process of discovery, and you are not sure what the
+function will do, write the test after the function is in a stable state. 
+In other cases, when you know precisely how you want the function to behave, writing 
+the test before you write the function could be a useful approach (test driven 
+development).
+
+2. `(22:19)` When I start writing tests, I get sucked into a rabbit hole of tests. 
+How can I have a better process for writing tests?
+
+Have solid tests for things that you really care about as a developer. 
+Most of the time, it is good to write more tests than less. Get a couple of tests 
+down, and as you discover bugs, make sure there is a test for every bug that you fix.
+
+3. `(23:53)` Is it fair to say that you should consider problems that tripped you 
+up when building the function as good test candidates?
+
+Yeah, for sure! If you make the mistake as you are writing the function, you
+are likely to make the mistake again in six months, so a test will keep you honest
+on those problems.
+
+4. `(32:50)` Can we write test that statements with more descriptive errors?
+
+Think of `test_that()` as a paragraph break to keep related expectations together (Gordon),
+and give the test a brief but evocative name - you do you (from the `test_that()` help file).
+There are also `expect_error()` and `expect_warning()` functions.
+
+5. `(37:00)` How is the percent coverage from `covr::report()` calculated?
+
+This evaluates which lines of code have been executed for that test. It is not necessarily
+evaluating if the function is tested well, but rather has this line of code
+ever been run by your test suite.
+
+6. `(38:10)` You mentioned earlier that when you fix a bug, that is a good time
+to write a test. Do you have an example of doing this?
+
+Yes! I develop and maintain packages for internal R users, and a common application 
+of this for me is when a user calls the function in a reasonable way and gets a 
+really unfriendly error message. I resolve this through writing a better
+error message for the function and then include that as a test with `expect_error()`.
+
+7. `(39:27)` How is running tests different than trying out different data 
+types and sets on your function and debugging?
+
+It is not different at all! What I have learned from being around other  
+talented programmers is that they don't have amazing brains that they can hold
+all these different variables in. They are able to write good software by 
+exporting the normal checks that everyone does when writing functions into a
+formal set of expectations that you can get a computer to run. Testing is about
+getting that stuff out of your brain so that a computer can execute it.
+
+8. `(53:50)` Do you have advice on how to choose the data to feed into the 
+expected object?
+
+You can choose data from base R to  minimize package dependencies, write small
+in-line data, or use your own specific data that that you add to your package.
+Also consider data that get to the extreme corners of your function (e.g., missing data,
+weird values). "Throw lizards at your function!"
+
+9. `(55:57)` Do you commonly see test that used against a script instead of a function?
+
+You can use `expect_equal()` in scripts, but there are packages like `{assertr}` 
+which might be more appropriate for R scripts.
+
+# Personal reflection
+
+# Acknowledgements 
+
+
+* Thank Gordon
+
+```{r, echo=FALSE}
+knitr::exit()
 ```
 
 
@@ -636,49 +850,3 @@ Config/testthat/parallel: true
 ```
 
 * gtsummary check went from 40 min to 14 min
-
-# Question & Answer
-
-This discussion is paraphrased from the workshop recording. It was commented throughout that
-there is not a right answer to most of this.
-
-1. `(19:50)` When do you write tests? 
-
-If the function writing is a process of discovery, and you are not sure what the
-function will do, write the test after the function is in a stable state. 
-In other cases, when you know precisely how you want the function to behave, writing 
-the test before you write the function could be a useful approach (test driven 
-development).
-
-2. `(22:19)` When I start writing tests, I get sucked into a rabbit hole of tests. 
-How can I have a better process for writing tests?
-
-Have solid tests for things that you really care about as a developer. 
-Most of the time, it is good to write more tests than less. Get a couple of tests 
-down, and as you discover bugs, make sure there is a test for every bug that you fix.
-
-3. `(23:53)` Is it fair to say that you should consider problems that tripped you 
-up when building the function as good test candidates?
-
-Yeah, for sure! If you make the mistake as you are writing the function, you
-are likely to make the mistake again in six months, so a test will keep you honest
-on those problems.
-
-4. `(32:50)` Can we write test that statements with more descriptive errors?
-
-Think of `test_that()` as a paragraph break to keep related expectations together (Gordon),
-and give the test a brief but evocative name - you do you (from the `test_that()` help file).
-There are also `expect_error()` and `expect_warning()` functions.
-
-5. `(37:00)` How is the percent coverage from `covr::report()` calculated?
-
-This evaluates which lines of code have been executed for that test. It is not necessarily
-evaluating if the function is tested well, but rather has this line of code
-ever been run by your test suite.
-
-
-
-# Acknowledgements 
-
-
-* Thank Gordon
