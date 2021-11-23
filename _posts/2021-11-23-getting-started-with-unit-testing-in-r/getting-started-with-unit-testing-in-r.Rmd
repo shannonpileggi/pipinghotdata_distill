@@ -8,7 +8,7 @@ twitter:
   creator: "@PipingHotData"
 author:
   - name: Shannon Pileggi
-date: 11-01-2021
+date: 11-23-2021
 preview: img/unit-testing-thumbnail.png
 output:
   distill::distill_article:
