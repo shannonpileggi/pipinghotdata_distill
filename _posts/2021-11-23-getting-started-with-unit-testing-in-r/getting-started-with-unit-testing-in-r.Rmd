@@ -253,13 +253,12 @@ From [R Packages Ch 12 Testing](https://r-pkgs.org/tests.html){target="_blank"},
 knitr::include_graphics("img/use_testthat.PNG")
 ```
 
-Note that the edition of `testthat` is specified to 3. It is my understanding that
-this version/edition departs significantly from previous versions, both in 
-function scopes and execution. 
+Note that the edition of `testthat` is specified to 3, which departs a bit from previous versions
+both in function scopes and execution. 
 
 <aside>
 Dan Sjoberg shared that when he updated `{gtsummary}`
-from `testthat` 2 to 3 with the help of a [friendly PR](https://github.com/ddsjoberg/gtsummary/pull/756){target="_blank"}, 
+to `testthat` 3 with the help of a [friendly PR](https://github.com/ddsjoberg/gtsummary/pull/756){target="_blank"}, 
 the `R CMD check` dropped from 40 to 14 minutes. 🙌
 </aside>
 

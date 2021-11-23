@@ -241,9 +241,9 @@
 (#fig:use-testthat)&lt;code&gt;(17:54)&lt;/code&gt;: &lt;code&gt;DESCRIPTION&lt;/code&gt; and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Note that the edition of &lt;code&gt;testthat&lt;/code&gt; is specified to 3. It is my understanding that this version/edition departs significantly from previous versions, both in function scopes and execution.&lt;/p&gt;
+&lt;p&gt;Note that the edition of &lt;code&gt;testthat&lt;/code&gt; is specified to 3, which departs a bit from previous versions both in function scopes and execution.&lt;/p&gt;
 &lt;aside&gt;
-Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; from &lt;code&gt;testthat&lt;/code&gt; 2 to 3 with the help of a &lt;a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank"&gt;friendly PR&lt;/a&gt;, the &lt;code&gt;R CMD check&lt;/code&gt; dropped from 40 to 14 minutes. 🙌
+Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; to &lt;code&gt;testthat&lt;/code&gt; 3 with the help of a &lt;a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank"&gt;friendly PR&lt;/a&gt;, the &lt;code&gt;R CMD check&lt;/code&gt; dropped from 40 to 14 minutes. 🙌
 &lt;/aside&gt;
 &lt;h1 id="first-test"&gt;&lt;code&gt;(25:10)&lt;/code&gt; First test&lt;/h1&gt;
 &lt;p&gt;To create our first test file, submit&lt;/p&gt;
