@@ -16,9 +16,9 @@
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/thumbnail.PNG" alt="Header: Testthat gives a new workflow. Body: Circle diagram with two blocks: 1. Modify code, 2. Run automated tests. On side: Images of Shannon and Gordon from the workshop." width="29328" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/unit-testing-thumbnail.png" alt="Question: (39:27) How is running tests different than trying out different data types and sets on your function and debugging? Answer: It is not different at all! What I have learned from being around other talented programmers is that they don’t have amazing brains that they can hold all these different variables in… testing is about getting that stuff out of your brain so that a computer can execute it." width="61440" /&gt;
 &lt;p class="caption"&gt;
-(#fig:thumbnail)Background slide adapted from the 2019 Building Tidy Tools workshop (2-testing.pdf, slides 17 &amp;amp; 18); presenter images added.
+(#fig:thumbnail)Question and answer, paraphrased, from the workshop.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
@@ -231,9 +231,9 @@
 &lt;pre class="r"&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;From &lt;a href="https://r-pkgs.org/tests.html" target="_blank"&gt;R Packages Ch 12 Testing&lt;/a&gt;, this does three things:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;Create a &lt;code&gt;tests/testthat&lt;/code&gt; directory.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Add &lt;code&gt;testthat&lt;/code&gt; to the &lt;code&gt;Suggests&lt;/code&gt; field in the &lt;code&gt;DESCRIPTION&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Create a file &lt;code&gt;tests/testthat.R&lt;/code&gt; that runs all your tests when you execute &lt;code&gt;devtools::check()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Creates a &lt;code&gt;tests/testthat&lt;/code&gt; directory.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Adds &lt;code&gt;testthat&lt;/code&gt; to the &lt;code&gt;Suggests&lt;/code&gt; field in the &lt;code&gt;DESCRIPTION&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Creates a file &lt;code&gt;tests/testthat.R&lt;/code&gt; that runs all your tests when you execute &lt;code&gt;devtools::check()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="figure"&gt;
 &lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/use_testthat.PNG" alt="DESCRIPTION adds `testthat &amp;gt;= 3.0.0 to `Suggests`, console states actions listed above." width="40992" /&gt;
@@ -301,7 +301,8 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 (#fig:debugging-1)&lt;code&gt;(42:18)&lt;/code&gt; Our first test failure.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;We first demonstrate some debugging in the console, where we reveal that the &lt;code&gt;correlation&lt;/code&gt; column of the &lt;code&gt;expected&lt;/code&gt; tibble has a &lt;code&gt;"names"&lt;/code&gt; attribute of &lt;code&gt;"corr"&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Now, we see our first failed test that we need to debug, which was triggered by &lt;code&gt;expect_equal()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We first demonstrate some debugging in the console, where we reveal that the &lt;code&gt;correlation&lt;/code&gt; column of the &lt;code&gt;expected&lt;/code&gt; tibble has a &lt;code&gt;"names"&lt;/code&gt; attribute of &lt;code&gt;"cor"&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;str(expected)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;tibble [1 x 2] (S3: tbl_df/tbl/data.frame)
  $ correlation: Named num 0.901
@@ -319,7 +320,7 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 (#fig:browser-1)&lt;code&gt;(46:31)&lt;/code&gt; Now we have entered browser mode.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;Here, this allows you to step into your function with arguments exactly as called. The function is run in a fresh environment, and we can execute the function line be line to see what is happening. In addition, we can see objects as they are evaluated in the environment.&lt;/p&gt;
+&lt;p&gt;Here, this allows you to step into your function with arguments exactly as called. The function is run in a fresh environment, and we can execute the function line by line to see what is happening. In addition, we can see objects as they are evaluated in the environment.&lt;/p&gt;
 &lt;p&gt;To resolve the issue:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Stop browser mode with the red &lt;code&gt;Stop&lt;/code&gt; square on the console,&lt;/p&gt;&lt;/li&gt;
@@ -349,11 +350,11 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 &lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt; (&lt;code&gt;Ctrl + Shift + L&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;If needed, step into &lt;code&gt;browser()&lt;/code&gt; mode again to confirm or further troubleshoot.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Now, after updating the &lt;code&gt;compute_corr()&lt;/code&gt; function remove the &lt;code&gt;names&lt;/code&gt; attribute, we still have failed test! 😱&lt;/p&gt;
+&lt;p&gt;Now, after updating the &lt;code&gt;compute_corr()&lt;/code&gt; function to remove the &lt;code&gt;names&lt;/code&gt; attribute, we still have failed test! 😱&lt;/p&gt;
 &lt;div class="figure"&gt;
 &lt;img src="https://www.pipinghotdata.com/posts/2021-11-01-unit-testingimg/debugging-2.png" alt="In the `Build` pane we see a failing test with the note `actual: 0.9008` and `expected: 0.9010`." width="92160" /&gt;
 &lt;p class="caption"&gt;
-(#fig:debugging-2)&lt;code&gt;(58:02)&lt;/code&gt; Now we have a new failure message. Note the &lt;code&gt;debug at&lt;/code&gt; lines in the &lt;code&gt;Build&lt;/code&gt; pane indicate that I forgot to remove the &lt;code&gt;browser()&lt;/code&gt; line from the source function after our workshop break.
+(#fig:debugging-2)&lt;code&gt;(58:02)&lt;/code&gt; Now we have a new failure message. Note the &lt;code&gt;debug at&lt;/code&gt; lines in the &lt;code&gt;Build&lt;/code&gt; pane indicates that I forgot to remove the &lt;code&gt;browser()&lt;/code&gt; line from the function source after our workshop break.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;We can correct this by adding the &lt;code&gt;tolerance&lt;/code&gt; argument to the &lt;code&gt;expect_equal()&lt;/code&gt; function.&lt;/p&gt;
@@ -370,7 +371,7 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 &lt;li&gt;&lt;p&gt;Return a signal, such as an error, if the input does not conform to expectations.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Formalize this catch in a test with functions such as &lt;code&gt;testthat::expect_error()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Read To check if the supplied variables actually exist in the data set, we add the following to &lt;code&gt;compute_corr.R&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;To check if the supplied variables actually exist in the data set, we add the following to &lt;code&gt;compute_corr.R&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;compute_corr &amp;lt;- function(data, var1, var2){
 
   var1_chr &amp;lt;- rlang::as_label(rlang::ensym(var1))
@@ -407,15 +408,15 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can enforce an error with&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;the &lt;code&gt;stop()&lt;/code&gt; function from base R&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;the &lt;code&gt;stopifnot()&lt;/code&gt; function in base R (discussed later at &lt;code&gt;(1:32:40)&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the &lt;code&gt;stop()&lt;/code&gt; function from base R,&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the &lt;code&gt;stopifnot()&lt;/code&gt; function in base R, discussed later at &lt;code&gt;(1:32:40)&lt;/code&gt;, or&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::ui_stop()&lt;/code&gt;, which provides some additional functionality to the user including show traceback and rerun with debug, but also adds another dependency to your package.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Read &lt;a href="https://adv-r.hadley.nz/conditions.html#signalling-conditions" target="_blank"&gt;Ch. 8.2 Signalling Conditions&lt;/a&gt; of Advanced R to learn more about messages, warnings, and errors.&lt;/p&gt;
 &lt;p&gt;When we execute the function with faulty inputs, we see our error with our handy note:&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;compute_corr(data = faithful, var1 = erruptions, var2 = waiting)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;Error in compute_corr(data = faithful, var1 = erruptions, var2 = waiting): erruptions is not in the data set.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now we add an additional test to catch the error.&lt;/p&gt;
+&lt;p&gt;Now we add an additional test to catch the error and resubmit &lt;code&gt;devtools::test()&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;assess_compute_corr&amp;quot;, {
   expected &amp;lt;- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
   expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
@@ -431,7 +432,7 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 (#fig:expect-error)&lt;code&gt;(1:09:05)&lt;/code&gt; &lt;code&gt;devtools::test()&lt;/code&gt; shows in the console that we have FIVE passing tests! 🥳
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: this does introduce an additional dependency to the package through &lt;code&gt;glue&lt;/code&gt; or &lt;code&gt;usethis&lt;/code&gt; if using &lt;code&gt;ui_stop&lt;/code&gt;. Don’t forget to declare these dependencies with &lt;code&gt;usethis::use_package("package-name")&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: This introduces an additional dependency to the package through including &lt;code&gt;glue&lt;/code&gt; or &lt;code&gt;usethis&lt;/code&gt; in &lt;code&gt;compute_corr()&lt;/code&gt;. Don’t forget to declare these dependencies with &lt;code&gt;usethis::use_package("package-name")&lt;/code&gt;.&lt;/p&gt;
 &lt;h1 id="more"&gt;&lt;code&gt;(1:14:04)&lt;/code&gt; More&lt;/h1&gt;
 &lt;p&gt;For the remainder of the time, we explore the &lt;code&gt;awesome_rladies()&lt;/code&gt; function:&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;awesome_rladies &amp;lt;- function(v) {
@@ -484,7 +485,7 @@ Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; fro
 &lt;/ol&gt;
 &lt;p&gt;Yeah, for sure! If you make the mistake as you are writing the function, you are likely to make the mistake again in six months, so a test will keep you honest on those problems.&lt;/p&gt;
 &lt;ol start="5" style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;code&gt;(32:50)&lt;/code&gt; Can we write test that statements with more descriptive errors?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(32:50)&lt;/code&gt; Can we write &lt;code&gt;test_that()&lt;/code&gt; statements with more descriptive errors?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Think of &lt;code&gt;test_that()&lt;/code&gt; as a paragraph break to keep related expectations together (Gordon), and give the test a brief but evocative name - you do you (from the &lt;code&gt;test_that()&lt;/code&gt; help file). There are also &lt;code&gt;expect_error()&lt;/code&gt; and &lt;code&gt;expect_warning()&lt;/code&gt; functions.&lt;/p&gt;
 &lt;ol start="6" style="list-style-type: decimal"&gt;
@@ -503,9 +504,9 @@ talented programmers is that they don’t have amazing brains that they can hold
 &lt;ol start="9" style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;code&gt;(53:50)&lt;/code&gt; Do you have advice on how to choose the data to feed into the expected object?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You can choose data from base R to minimize package dependencies, write small in-line data, or use your own specific data that that you add to your package. Also consider data that get to the extreme corners of your function (e.g., missing data, weird values). “Throw lizards at your function!”&lt;/p&gt;
+&lt;p&gt;You can choose data from base R to minimize package dependencies, write small in-line data, or use your own specific data that you add to your package. Also consider data that get to the extreme corners of your function (e.g., missing data, weird values). &lt;em&gt;“Throw lizards at your function!”&lt;/em&gt;&lt;/p&gt;
 &lt;ol start="10" style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;code&gt;(55:57)&lt;/code&gt; Do you commonly see &lt;code&gt;testthat&lt;/code&gt; used against a script instead of a function?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(55:57)&lt;/code&gt; Do you commonly see &lt;code&gt;test_that()&lt;/code&gt; used against a script instead of a function?&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;You can use &lt;code&gt;expect_equal()&lt;/code&gt; in scripts, but there are packages like &lt;code&gt;{assertr}&lt;/code&gt; which might be more appropriate for R scripts.&lt;/p&gt;
 &lt;ol start="11" style="list-style-type: decimal"&gt;
@@ -513,9 +514,9 @@ talented programmers is that they don’t have amazing brains that they can hold
 &lt;/ol&gt;
 &lt;p&gt;This depends on the developer and user. For internal things, feel free to add as many dependencies as you are comfortable with. Base R can cover a lot of the functionality introduced with your dependencies. It depends on how much work you want to do to support the dependencies versus what you are getting out of it. You can also consider pulling in a single function from a package rather than declaring an entire package as a dependency.&lt;/p&gt;
 &lt;ol start="12" style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;code&gt;(1:34:55)&lt;/code&gt; Does the &lt;code&gt;testthat()&lt;/code&gt; framework work for shiny apps?&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(1:34:55)&lt;/code&gt; Does the &lt;code&gt;{testthat}&lt;/code&gt; framework work for shiny apps?&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;I recommend to put much as logic as you can into functions that live outside of the app, and then you can use &lt;code&gt;testthat()&lt;/code&gt; on those functions. If you are doing tests that involve reactivity in shiny apps, then you need to use &lt;code&gt;{shinytest}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I recommend putting as much as logic as you can into functions that live outside of the app, and then you can use &lt;code&gt;test_that()&lt;/code&gt; on those functions. If you are doing tests that involve reactivity in shiny apps, then you need to use &lt;code&gt;{shinytest}&lt;/code&gt;.&lt;/p&gt;
 &lt;h1 id="personal-reflection"&gt;Personal reflection&lt;/h1&gt;
 &lt;p&gt;When curating for &lt;code&gt;@WeAreRLadies&lt;/code&gt; on Twitter in February 2021, I asked if there were &lt;a href="https://twitter.com/WeAreRLadies/status/1362739057789394957" target="_blank"&gt;any volunteers for workshops unit testing&lt;/a&gt;, and Gordon Shotwell replied affirmatively! 🙋 At that point, we were complete strangers who had never personally interacted.&lt;/p&gt;
 &lt;p&gt;Despite having no experience with unit testing, after a bit of conversation and much encouragement from both R-Ladies Philly and Gordon, I agreed to develop a workshop with Gordon’s support. (Why not? Teaching is the best way for me to learn. 😊)&lt;/p&gt;
@@ -527,7 +528,7 @@ talented programmers is that they don’t have amazing brains that they can hold
       <distill:md5>8edaa5480be9b16020103993bae8513d</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-11-01-unit-testing</guid>
       <pubDate>Mon, 01 Nov 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/img/thumbnail.PNG" medium="image" type="image/png" width="611" height="457"/>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-11-01-unit-testing/img/unit-testing-thumbnail.png" medium="image" type="image/png" width="1280" height="720"/>
     </item>
     <item>
       <title>Estimating correlations adjusted for group membership</title>
