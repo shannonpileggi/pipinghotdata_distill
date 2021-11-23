@@ -721,7 +721,7 @@ that involve reactivity in shiny apps, then you need to use `{shinytest}`.
 # Personal reflection
 
 When curating for `@WeAreRLadies` on Twitter in February 2021, I asked if there were
-[any volunteers for workshops unit testing](https://twitter.com/WeAreRLadies/status/1362739057789394957){target="_blank"},
+[any volunteers for a workshop on unit testing](https://twitter.com/WeAreRLadies/status/1362739057789394957){target="_blank"},
 and Gordon Shotwell replied affirmatively! 🙋 At that point, we were complete
 strangers who had never personally interacted. 
 
@@ -737,7 +737,9 @@ R-Ladies Philly.
 
 I also really liked the mentor-mentee relationship modeled in this workshop - I think
 it made the material approachable for beginners and elevated for those more 
-experienced. It is a workshop format I highly recommend trying.
+experienced. It also put me at ease during workshop preparation knowing that
+Gordon could respond to questions that I likely wouldn't have had experience with. 
+It is a workshop format I highly recommend trying.
 
 # Acknowledgements 
 

@@ -12,7 +12,520 @@
       <title>Getting started with unit testing in R</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r</link>
-      <description>Automating the dev work you are probably already doing</description>
+      <description>
+
+
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/unit-testing-thumbnail.png" alt="Question: (39:27) How is running tests different than trying out different data types and sets on your function and debugging? Answer: It is not different at all! What I have learned from being around other talented programmers is that they don’t have amazing brains that they can hold all these different variables in… testing is about getting that stuff out of your brain so that a computer can execute it." width="61440" /&gt;
+&lt;p class="caption"&gt;
+(#fig:thumbnail)Question and answer, paraphrased, from the workshop.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
+&lt;p&gt;This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 (&lt;a href="https://youtu.be/4bPekjzIYiU" target="_blank_"&gt;recording on YouTube&lt;/a&gt;), where we live coded use of the &lt;code&gt;usethis&lt;/code&gt;, &lt;code&gt;devtools&lt;/code&gt;, &lt;code&gt;testthat&lt;/code&gt;, and &lt;code&gt;covr&lt;/code&gt; packages to automate R package testing. This post complements the recording through highlighting key points, rather than listing all actions.&lt;/p&gt;
+&lt;h1 id="abstract"&gt;Abstract&lt;/h1&gt;
+&lt;p&gt;In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in &lt;code&gt;usethis&lt;/code&gt; and &lt;code&gt;devtools&lt;/code&gt;, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.&lt;/p&gt;
+&lt;p&gt;This workshop picks up exactly where we left our little &lt;code&gt;ralph&lt;/code&gt; (aka &lt;strong&gt;R&lt;/strong&gt;-&lt;strong&gt;L&lt;/strong&gt;adies &lt;strong&gt;Ph&lt;/strong&gt;illy) package one year ago with &lt;a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/" target="_blank"&gt;“Your first R package in 1 hour: Tools that make R package development easy”&lt;/a&gt;. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with &lt;code&gt;devtools&lt;/code&gt; and &lt;code&gt;usethis&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id="packages"&gt;Packages&lt;/h1&gt;
+&lt;p&gt;This material was developed using:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Software / package&lt;/th&gt;
+&lt;th&gt;Version&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;4.1.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;RStudio&lt;/td&gt;
+&lt;td&gt;351 “Ghost Orchid”&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;usethis&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2.1.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;devtools&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2.4.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;testthat&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;3.1.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;covr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;3.5.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;broom&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.7.9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;glue&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1.4.2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;magrittr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;2.0.1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;code&gt;purrr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.3.4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;code&gt;rlang&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;0.4.12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h1 id="tool-kit"&gt;Tool kit&lt;/h1&gt;
+&lt;p&gt;This table contains the general process functions used in this workshop. Single usage functions only need to be used one time in the development process; multiple usage functions are executed as needed.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Usage&lt;/th&gt;
+&lt;th&gt;Function&lt;/th&gt;
+&lt;th&gt;Purpose&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;Single&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;initialize testing infrastructure&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;Multiple&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;usethis::use_test()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;create a new test file&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;devtools::test()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;execute and evaluate all tests in package&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;covr::report()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;reports test coverage&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;browser()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;debugging: interrupt and inspect function execution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;devtools::check()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;build package locally and check&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;load functions in 📁 &lt;code&gt;R/&lt;/code&gt; into memory&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;usethis::use_r("function")&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;create R script for function&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;usethis::use_package("package")&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;add package dependency&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;devtools::document()&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;build and add documentation&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Other resources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;R package development &lt;a href="https://rklopotek.blog.uksw.edu.pl/files/2017/09/package-development.pdf" target="_blank"&gt;cheat sheet&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://r-pkgs.org/tests.html" target="_blank"&gt;Ch. 12 Testing&lt;/a&gt; in R packages by Hadley Wickham and Jenny Bryan&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://adv-r.hadley.nz/conditions.html#signalling-conditions" target="_blank"&gt;Ch. 8.2 Signalling conditions&lt;/a&gt; in Advanced R by Hadley Wickham&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://testthat.r-lib.org/" target="_blank"&gt;testthat&lt;/a&gt; package documentation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;{usethis} &lt;a href="https://usethis.r-lib.org/reference/ui.html" target="_blank"&gt;user interface functions&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://covr.r-lib.org/" target="_blank"&gt;covr&lt;/a&gt; package documentation&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/hadley/tidy-tools" target="_blank"&gt;Building tidy tools workshop&lt;/a&gt; at &lt;code&gt;rstudio::conf(2019)&lt;/code&gt; by Hadley Wickham and Charlotte Wickham&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Debugging&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;RStudio blog post by Jonathan McPherson &lt;a href="https://support.rstudio.com/hc/en-us/articles/205612627-Debugging-with-the-RStudio-IDE" target="_blank"&gt;Debugging with the RStudio IDE&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://adv-r.hadley.nz/debugging.html" target="_blank"&gt;Ch 22 Debugging&lt;/a&gt; in Advanced R by Hadley Wickham&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Indrajeet Patil’s curated list of &lt;a href="https://indrajeetpatil.github.io/awesome-r-pkgtools/" target="_blank"&gt;awesome tools to assist R package development&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="why-unit-test"&gt;Why unit test&lt;/h1&gt;
+&lt;p&gt;If you write R functions, then you already test your code. You write a function, see if it works, and iterate on the function until you achieve your desired result. In the package development work flow, it looks something like this:&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/tidy-tools-workflow-no-unit-testing.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and explore in console." width="43584" /&gt;
+&lt;p class="caption"&gt;
+(#fig:original-process)Workflow cycle of function development without automated testing, from 2019 Building Tidy Tools workshop.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This process is where most of us likely start, and possibly even stay for a while. But it can be tedious, time consuming, and error-prone to manually check all possible combinations of function inputs and arguments.&lt;/p&gt;
+&lt;p&gt;Instead, we can &lt;em&gt;automate&lt;/em&gt; tests with &lt;code&gt;testthat&lt;/code&gt; in a new workflow.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/tidy-tools-workflow-testing-1.PNG" alt="Circle with three blocks: Modify code, reload code (`load_all()`), and run automated tests (`test()`)." width="43296" /&gt;
+&lt;p class="caption"&gt;
+(#fig:test-process-1)Workflow cycle of function development when getting started with automated testing, from 2019 Building Tidy Tools workshop.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;And once you trust and get comfortable with the tests you have set up, you can speed up the development process even more by removing the reload code step.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/tidy-tools-workflow-testing-2.PNG" alt="Circle with two blocks: Modify code and run automated tests (`test()`)." width="43584" /&gt;
+&lt;p class="caption"&gt;
+(#fig:test-process-2)Workflow cycle of function development when comfortable with automated testing, from 2019 Building Tidy Tools workshop.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Like anything in programming, there is an up-front time investment in learning this framework and process, but with potentially significant downstream time savings.&lt;/p&gt;
+&lt;h1 id="getting-started"&gt;Getting started&lt;/h1&gt;
+&lt;p&gt;This post picks up exactly where we left the &lt;code&gt;ralph&lt;/code&gt; package in &lt;a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/#tl-dr" target="_blank_"&gt;Your first R package in 1 hour&lt;/a&gt; in November 2020. In order to keep that as a stand-alone resource, I created a second repo called &lt;code&gt;ralphGetsTested&lt;/code&gt; for this workshop, which was a copy of &lt;code&gt;ralph&lt;/code&gt; as we left it.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;If you want to follow along with the unit testing steps and practice yourself, fork and clone the &lt;a href="https://github.com/shannonpileggi/ralph" target="_blank_"&gt;&lt;code&gt;ralph&lt;/code&gt;&lt;/a&gt; repo.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;usethis::create_from_github("shannonpileggi/ralph")&lt;/code&gt;&lt;/p&gt;
+&lt;ol start="2" style="list-style-type: decimal"&gt;
+&lt;li&gt;If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone &lt;a href="https://github.com/shannonpileggi/ralphGetsTested" target="_blank_"&gt;&lt;code&gt;ralphGetsTested&lt;/code&gt;&lt;/a&gt; repo.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;usethis::create_from_github("shannonpileggi/ralphGetsTested")&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id="keyboard-shortcuts"&gt;Keyboard shortcuts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + S&lt;/code&gt; for save file&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + Shift + L&lt;/code&gt; for &lt;code&gt;devtools::load_all()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + Shift + F10&lt;/code&gt; to restart R&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Ctrl + Shift + T&lt;/code&gt; for &lt;code&gt;devtools::test()&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="status-of-ralph"&gt;&lt;code&gt;(9:00)&lt;/code&gt; Status of &lt;code&gt;ralph&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;The little &lt;code&gt;ralph&lt;/code&gt; package has a single, untested function that computes a correlation and returns tidy results.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr &amp;lt;- function(data, var1, var2){
+
+  # compute correlation ----
+  stats::cor.test(
+    x = data %&amp;gt;% dplyr::pull({{var1}}),
+    y = data %&amp;gt;% dplyr::pull({{var2}})
+  ) %&amp;gt;%
+  # tidy up results ----
+  broom::tidy() %&amp;gt;%
+  # retain and rename relevant bits ----
+  dplyr::select(
+    correlation = .data$estimate,
+    pval = .data$p.value
+  )
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here is an example execution:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr(data = faithful, var1 = eruptions, var2 = waiting)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;# A tibble: 1 x 2
+  correlation      pval
+        &amp;lt;dbl&amp;gt;     &amp;lt;dbl&amp;gt;
+1       0.901 8.13e-100&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="test-set-up"&gt;&lt;code&gt;(16:30)&lt;/code&gt; Test set up&lt;/h1&gt;
+&lt;p&gt;To get your package ready for automated testing, submit&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::use_testthat()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;From &lt;a href="https://r-pkgs.org/tests.html" target="_blank"&gt;R Packages Ch 12 Testing&lt;/a&gt;, this does three things:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Creates a &lt;code&gt;tests/testthat&lt;/code&gt; directory.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Adds &lt;code&gt;testthat&lt;/code&gt; to the &lt;code&gt;Suggests&lt;/code&gt; field in the &lt;code&gt;DESCRIPTION&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Creates a file &lt;code&gt;tests/testthat.R&lt;/code&gt; that runs all your tests when you execute &lt;code&gt;devtools::check()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/use_testthat.PNG" alt="DESCRIPTION adds `testthat &amp;gt;= 3.0.0 to `Suggests`, console states actions listed above." width="40992" /&gt;
+&lt;p class="caption"&gt;
+(#fig:use-testthat)&lt;code&gt;(17:54)&lt;/code&gt;: &lt;code&gt;DESCRIPTION&lt;/code&gt; and console output after submitting &lt;code&gt;usethis::use_testthat()&lt;/code&gt;.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Note that the edition of &lt;code&gt;testthat&lt;/code&gt; is specified to 3. It is my understanding that this version/edition departs significantly from previous versions, both in function scopes and execution.&lt;/p&gt;
+&lt;aside&gt;
+Dan Sjoberg shared that when he updated &lt;code&gt;{gtsummary}&lt;/code&gt; from &lt;code&gt;testthat&lt;/code&gt; 2 to 3 with the help of a &lt;a href="https://github.com/ddsjoberg/gtsummary/pull/756" target="_blank"&gt;friendly PR&lt;/a&gt;, the &lt;code&gt;R CMD check&lt;/code&gt; dropped from 40 to 14 minutes. 🙌
+&lt;/aside&gt;
+&lt;h1 id="first-test"&gt;&lt;code&gt;(25:10)&lt;/code&gt; First test&lt;/h1&gt;
+&lt;p&gt;To create our first test file, submit&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;usethis::use_test(&amp;quot;compute_corr&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;. Here, we name this file the same as our function name. This creates a new file under &lt;code&gt;tests&lt;/code&gt; -&amp;gt; &lt;code&gt;testthat&lt;/code&gt; named &lt;code&gt;test-compute_corr.R&lt;/code&gt;, and the file pre-populates with an example test that we can replace.&lt;/p&gt;
+&lt;p&gt;For our first test, we create an object that contains the expected results of an example function execution, and then we assess the correctness of the output using the &lt;code&gt;testthat::expect_&lt;/code&gt; functions.&lt;/p&gt;
+&lt;p&gt;We name the overall test chunk &lt;code&gt;assess_compute_corr&lt;/code&gt; - you can name this whatever would be useful for you to read in a testing log. In this test, we evaluate if the function returns the correct &lt;code&gt;class&lt;/code&gt; of object, in this case, a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;assess_compute_corr&amp;quot;, {
+  expected &amp;lt;- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
+})&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now there are two ways to execute the test.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;Run Tests&lt;/code&gt; button ( &lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/run-test-gui.PNG" style="width:12.0%" alt="Run tests button in RStudio" /&gt; )on the top right hand side of the testing script executes the tests in this script only (not all tests in the package), and excutes this in a fresh R environment.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Submitting &lt;code&gt;devtools::test()&lt;/code&gt; (or &lt;code&gt;Ctrl + Shift + T&lt;/code&gt;) executes all tests in the package in your global environment.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Here, we submit our first test with the &lt;code&gt;Run Tests&lt;/code&gt; button, and it passes! 🎉&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/test-expect-class.png" alt="`test-compute_corr.R` shows 1 expectation in `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 1]." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:test-expect-class)&lt;code&gt;(29:23)&lt;/code&gt; Passing result after submitting the first test with the &lt;code&gt;Run Tests&lt;/code&gt; button.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Submitting &lt;code&gt;devtools::check()&lt;/code&gt; will also execute all tests in the package, and you will see an error in the log if the test fails.&lt;/p&gt;
+&lt;h1 id="test-coverage"&gt;&lt;code&gt;(36:08)&lt;/code&gt; Test coverage&lt;/h1&gt;
+&lt;p&gt;Now we have added a total of three tests, and we examine our test coverage with&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;covr::report()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function requires the package to not be loaded, so restart R (&lt;code&gt;Ctrl + Shift + F10&lt;/code&gt;) prior to execution.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/covr-report.png" alt="`test-compute_corr.R` shows 3 expectations in `test_that(...)`; `Build` pane on top right hand side shows [FAIL 0 | WARN 0 | SKIP 0 | Pass 3]; `Viewer` panel on bottom right hand side shows 100% test coverage." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:covr-report)&lt;code&gt;(37:05)&lt;/code&gt; &lt;code&gt;covr::report()&lt;/code&gt; creates output in viewer showing the percent of code covered by the tests.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;The percent coverage evaluates the percent of code that was ever executed during through the &lt;code&gt;test_that()&lt;/code&gt; functions. In the viewer panel, click on &lt;code&gt;Files&lt;/code&gt; and then &lt;code&gt;R/compute_corr.R&lt;/code&gt;. The &lt;strong&gt;1&lt;/strong&gt;&lt;em&gt;x&lt;/em&gt; on the left hand side counts how many times that line of code has been executed when you ran your test suite; in our case, each line of code was executed one time.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/covr-report-1x.png" alt="In Viewer panel, executed lines of code are highlighted in pale green and marked on left hand side with 1x." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:covr-report-1x)&lt;code&gt;(37:19)&lt;/code&gt; &lt;code&gt;covr::report()&lt;/code&gt; shows which lines of code were executed, and how many times, as a result of your tests.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="debugging"&gt;&lt;code&gt;(41:27)&lt;/code&gt; Debugging&lt;/h1&gt;
+&lt;p&gt;At this point, our tests consist of the following:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;assess_compute_corr&amp;quot;, {
+  expected &amp;lt;- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
+  expect_equal(dim(expected), c(1,2))
+  expect_named(expected, c(&amp;quot;correlation&amp;quot;, &amp;quot;pval&amp;quot;))
+  expect_equal(expected[[&amp;quot;correlation&amp;quot;]], 0.901)
+})&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and we executed our tests with &lt;code&gt;Ctrl + Shift + T&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/debugging-1.png" alt="In Viewer panel, we see `names(actual)` is a character vector (`cor`) `names(expected)` is absent." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:debugging-1)&lt;code&gt;(42:18)&lt;/code&gt; Our first test failure.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Now, we see our first failed test that we need to debug, which was triggered by &lt;code&gt;expect_equal()&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;We first demonstrate some debugging in the console, where we reveal that the &lt;code&gt;correlation&lt;/code&gt; column of the &lt;code&gt;expected&lt;/code&gt; tibble has a &lt;code&gt;"names"&lt;/code&gt; attribute of &lt;code&gt;"cor"&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;str(expected)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;tibble [1 x 2] (S3: tbl_df/tbl/data.frame)
+ $ correlation: Named num 0.901
+  ..- attr(*, &amp;quot;names&amp;quot;)= chr &amp;quot;cor&amp;quot;
+ $ pval       : num 8.13e-100&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, we demonstrate an alternative way of arriving at this through use of the &lt;code&gt;browser()&lt;/code&gt; function. To do so,&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Insert &lt;code&gt;browser()&lt;/code&gt; into the source of your function.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Load your functions with &lt;code&gt;devtools::load_all()&lt;/code&gt; (Ctrl + Shift + L).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Execute the function.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/browser-1.png" alt="In compute_corr.R source script, we see `browser()` is highlighted in yellow. In console, instead of `&amp;gt;`, we see `Browse[1]&amp;gt;`. We also see a new environment window." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:browser-1)&lt;code&gt;(46:31)&lt;/code&gt; Now we have entered browser mode.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Here, this allows you to step into your function with arguments exactly as called. The function is run in a fresh environment, and we can execute the function line by line to see what is happening. In addition, we can see objects as they are evaluated in the environment.&lt;/p&gt;
+&lt;p&gt;To resolve the issue:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Stop browser mode with the red &lt;code&gt;Stop&lt;/code&gt; square on the console,&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Modify the source of the function as shown.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr &amp;lt;- function(data, var1, var2){
+
+  # compute correlation ----
+  results &amp;lt;- stats::cor.test(
+    x = data %&amp;gt;% dplyr::pull({{var1}}),
+    y = data %&amp;gt;% dplyr::pull({{var2}})
+  ) %&amp;gt;%
+  # tidy up results ----
+  broom::tidy() %&amp;gt;%
+  # retain and rename relevant bits ----
+  dplyr::select(
+    correlation = .data$estimate,
+    pval = .data$p.value
+  )
+
+  attr(results$correlation, &amp;quot;names&amp;quot;) &amp;lt;- NULL
+
+  return(results)
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start="3" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;devtools::load_all()&lt;/code&gt; (&lt;code&gt;Ctrl + Shift + L&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If needed, step into &lt;code&gt;browser()&lt;/code&gt; mode again to confirm or further troubleshoot.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now, after updating the &lt;code&gt;compute_corr()&lt;/code&gt; function to remove the &lt;code&gt;names&lt;/code&gt; attribute, we still have failed test! 😱&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/debugging-2.png" alt="In the `Build` pane we see a failing test with the note `actual: 0.9008` and `expected: 0.9010`." width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:debugging-2)&lt;code&gt;(58:02)&lt;/code&gt; Now we have a new failure message. Note the &lt;code&gt;debug at&lt;/code&gt; lines in the &lt;code&gt;Build&lt;/code&gt; pane indicates that I forgot to remove the &lt;code&gt;browser()&lt;/code&gt; line from the function source after our workshop break.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;We can correct this by adding the &lt;code&gt;tolerance&lt;/code&gt; argument to the &lt;code&gt;expect_equal()&lt;/code&gt; function.&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/debugging-3.png" alt="In the `Build` pane we see [FAIL 0 | WARN 0 | SKIP 0 | Pass 4]" width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:debugging-3)(1:00:14) Four passing tests!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="testing-function-inputs"&gt;&lt;code&gt;(1:00:20)&lt;/code&gt; Testing function inputs&lt;/h1&gt;
+&lt;p&gt;The &lt;code&gt;{testthat}&lt;/code&gt; package explicitly evaluates the &lt;em&gt;outputs&lt;/em&gt; of your function. To determine if a user correctly specifies &lt;em&gt;inputs&lt;/em&gt; to your function,&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Assess the function inputs programmatically in the source of your function.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Return a signal, such as an error, if the input does not conform to expectations.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Formalize this catch in a test with functions such as &lt;code&gt;testthat::expect_error()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To check if the supplied variables actually exist in the data set, we add the following to &lt;code&gt;compute_corr.R&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr &amp;lt;- function(data, var1, var2){
+
+  var1_chr &amp;lt;- rlang::as_label(rlang::ensym(var1))
+  var2_chr &amp;lt;- rlang::as_label(rlang::ensym(var2))
+
+  # alert user if variable is not in data set ----
+  if (!(var1_chr %in% names(data))){
+    #usethis::ui_stop(&amp;quot;{var1_chr} is not in the data set.&amp;quot;)
+    stop(glue::glue(&amp;quot;{var1_chr} is not in the data set.&amp;quot;))
+  }
+
+  # alert user if variable is not in data set ----
+  if (!(var2_chr %in% names(data))){
+    stop(glue::glue(&amp;quot;{var2_chr} is not in the data set.&amp;quot;))
+  }
+
+  # compute correlation ----
+  results &amp;lt;- stats::cor.test(
+    x = data %&amp;gt;% dplyr::pull({{var1}}),
+    y = data %&amp;gt;% dplyr::pull({{var2}})
+  ) %&amp;gt;%
+  # tidy up results ----
+  broom::tidy() %&amp;gt;%
+  # retain and rename relevant bits ----
+  dplyr::select(
+    correlation = .data$estimate,
+    pval = .data$p.value
+  )
+
+  attr(results$correlation, &amp;quot;names&amp;quot;) &amp;lt;- NULL
+
+  return(results)
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can enforce an error with&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;the &lt;code&gt;stop()&lt;/code&gt; function from base R,&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;the &lt;code&gt;stopifnot()&lt;/code&gt; function in base R, discussed later at &lt;code&gt;(1:32:40)&lt;/code&gt;, or&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;usethis::ui_stop()&lt;/code&gt;, which provides some additional functionality to the user including show traceback and rerun with debug, but also adds another dependency to your package.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Read &lt;a href="https://adv-r.hadley.nz/conditions.html#signalling-conditions" target="_blank"&gt;Ch. 8.2 Signalling Conditions&lt;/a&gt; of Advanced R to learn more about messages, warnings, and errors.&lt;/p&gt;
+&lt;p&gt;When we execute the function with faulty inputs, we see our error with our handy note:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;compute_corr(data = faithful, var1 = erruptions, var2 = waiting)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Error in compute_corr(data = faithful, var1 = erruptions, var2 = waiting): erruptions is not in the data set.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we add an additional test to catch the error and resubmit &lt;code&gt;devtools::test()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;test_that(&amp;quot;assess_compute_corr&amp;quot;, {
+  expected &amp;lt;- compute_corr(data = faithful, var1 = eruptions, var2 = waiting)
+  expect_s3_class(expected, &amp;quot;data.frame&amp;quot;)
+  expect_equal(dim(expected), c(1,2))
+  expect_named(expected, c(&amp;quot;correlation&amp;quot;, &amp;quot;pval&amp;quot;))
+  expect_equal(expected[[&amp;quot;correlation&amp;quot;]], 0.901, tolerance = 0.001)
+  # catching errors
+  expect_error(compute_corr(data = faithful, var1 = erruptions, var2 = waiting))
+})&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-rimg/expect-error.png" alt="In the console we see [FAIL 0 | WARN 0 | SKIP 0 | Pass 5]" width="92160" /&gt;
+&lt;p class="caption"&gt;
+(#fig:expect-error)&lt;code&gt;(1:09:05)&lt;/code&gt; &lt;code&gt;devtools::test()&lt;/code&gt; shows in the console that we have FIVE passing tests! 🥳
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: This introduces an additional dependency to the package through including &lt;code&gt;glue&lt;/code&gt; or &lt;code&gt;usethis&lt;/code&gt; in &lt;code&gt;compute_corr()&lt;/code&gt;. Don’t forget to declare these dependencies with &lt;code&gt;usethis::use_package("package-name")&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id="more"&gt;&lt;code&gt;(1:14:04)&lt;/code&gt; More&lt;/h1&gt;
+&lt;p&gt;For the remainder of the time, we explore the &lt;code&gt;awesome_rladies()&lt;/code&gt; function:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;awesome_rladies &amp;lt;- function(v) {
+  
+  sapply(v, function(x) {
+    if (x == 1) {
+      verb &amp;lt;- &amp;quot;is&amp;quot;
+      noun &amp;lt;- &amp;quot;RLady&amp;quot;
+    }
+    
+    if (x &amp;gt; 1) {
+      verb &amp;lt;- &amp;quot;are&amp;quot;
+      noun &amp;lt;- &amp;quot;RLadies&amp;quot;
+    }
+    
+    as.character(glue::glue(&amp;quot;There {verb} {x} awesome {noun}!&amp;quot;))
+  })
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here are example executions:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;awesome_rladies(1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1] &amp;quot;There is 1 awesome RLady!&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="r"&gt;&lt;code&gt;awesome_rladies(1:2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[1] &amp;quot;There is 1 awesome RLady!&amp;quot;    &amp;quot;There are 2 awesome RLadies!&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We discuss the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Can we break this up to make it easier to test?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; Eventually, testing will likely end up as an exercise in refactoring your code - breaking it down such that the simplest elements each belong to a function that can be individually and independently tested.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;What type of object should the function output?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What type of object does this function expect, can we put up guardrails so the user doesn’t send the wrong thing? How do we test those guardrails?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Rather than write out these details in this already long post, you may watch in the recording!&lt;/p&gt;
+&lt;h1 id="question-answer"&gt;Question &amp;amp; Answer&lt;/h1&gt;
+&lt;p&gt;This discussion is paraphrased from the workshop recording. It was commented throughout that there is not a right answer to most of this. 🤷&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(7:20)&lt;/code&gt; What is your take on getting started with unit testing?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There is something about unit testing that sounds really scary, like it is something that real programmers do and regular people don’t do, but often times it is the opposite. When you get familiar with testing your own code, it is an easy way to combat others criticizing your work because you can look at your code and see its test coverage. This is standard across different languages and types of programming. What it means for your code to be correct is that it passes tests, so this can be a fairly objective way to defend your work.&lt;/p&gt;
+&lt;ol start="2" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(19:50)&lt;/code&gt; When do you write tests?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If the function writing is a process of discovery, and you are not sure what the function will do, write the test after the function is in a stable state. In other cases, when you know precisely how you want the function to behave, writing the test before you write the function could be a useful approach (test driven development).&lt;/p&gt;
+&lt;ol start="3" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(22:19)&lt;/code&gt; When I start writing tests, I get sucked into a rabbit hole of tests. How can I have a better process for writing tests?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Have solid tests for things that you really care about as a developer. Most of the time, it is good to write more tests than less. Get a couple of tests down, and as you discover bugs, make sure there is a test for every bug that you fix.&lt;/p&gt;
+&lt;ol start="4" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(23:53)&lt;/code&gt; Is it fair to say that you should consider problems that tripped you up when building the function as good test candidates?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Yeah, for sure! If you make the mistake as you are writing the function, you are likely to make the mistake again in six months, so a test will keep you honest on those problems.&lt;/p&gt;
+&lt;ol start="5" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(32:50)&lt;/code&gt; Can we write &lt;code&gt;test_that()&lt;/code&gt; statements with more descriptive errors?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Think of &lt;code&gt;test_that()&lt;/code&gt; as a paragraph break to keep related expectations together (Gordon), and give the test a brief but evocative name - you do you (from the &lt;code&gt;test_that()&lt;/code&gt; help file). There are also &lt;code&gt;expect_error()&lt;/code&gt; and &lt;code&gt;expect_warning()&lt;/code&gt; functions.&lt;/p&gt;
+&lt;ol start="6" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(37:00)&lt;/code&gt; How is the percent coverage from &lt;code&gt;covr::report()&lt;/code&gt; calculated?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This evaluates which lines of code have been executed for that test. It is not necessarily evaluating if the function is tested well, but rather has this line of code ever been run by your test suite.&lt;/p&gt;
+&lt;ol start="7" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(38:10)&lt;/code&gt; You mentioned earlier that when you fix a bug, that is a good time to write a test. Do you have an example of doing this?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Yes! I develop and maintain packages for internal R users, and a common application of this for me is when a user calls the function in a reasonable way and gets a really unfriendly error message. I resolve this through writing a better error message for the function and then include that as a test with &lt;code&gt;expect_error()&lt;/code&gt;.&lt;/p&gt;
+&lt;ol start="8" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(39:27)&lt;/code&gt; How is running tests different than trying out different data types and sets on your function and debugging?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It is not different at all! What I have learned from being around other&lt;br /&gt;
+talented programmers is that they don’t have amazing brains that they can hold all these different variables in. They are able to write good software by exporting the normal checks that everyone does when writing functions into a formal set of expectations that you can get a computer to run. Testing is about getting that stuff out of your brain so that a computer can execute it.&lt;/p&gt;
+&lt;ol start="9" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(53:50)&lt;/code&gt; Do you have advice on how to choose the data to feed into the expected object?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can choose data from base R to minimize package dependencies, write small in-line data, or use your own specific data that you add to your package. Also consider data that get to the extreme corners of your function (e.g., missing data, weird values). &lt;em&gt;“Throw lizards at your function!”&lt;/em&gt;&lt;/p&gt;
+&lt;ol start="10" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(55:57)&lt;/code&gt; Do you commonly see &lt;code&gt;test_that()&lt;/code&gt; used against a script instead of a function?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can use &lt;code&gt;expect_equal()&lt;/code&gt; in scripts, but there are packages like &lt;code&gt;{assertr}&lt;/code&gt; which might be more appropriate for R scripts.&lt;/p&gt;
+&lt;ol start="11" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(1:09:38)&lt;/code&gt; Regarding dependencies, what do you consider when you are developing a package?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This depends on the developer and user. For internal things, feel free to add as many dependencies as you are comfortable with. Base R can cover a lot of the functionality introduced with your dependencies. It depends on how much work you want to do to support the dependencies versus what you are getting out of it. You can also consider pulling in a single function from a package rather than declaring an entire package as a dependency.&lt;/p&gt;
+&lt;ol start="12" style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;code&gt;(1:34:55)&lt;/code&gt; Does the &lt;code&gt;{testthat}&lt;/code&gt; framework work for shiny apps?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I recommend putting as much as logic as you can into functions that live outside of the app, and then you can use &lt;code&gt;test_that()&lt;/code&gt; on those functions. If you are doing tests that involve reactivity in shiny apps, then you need to use &lt;code&gt;{shinytest}&lt;/code&gt;.&lt;/p&gt;
+&lt;h1 id="personal-reflection"&gt;Personal reflection&lt;/h1&gt;
+&lt;p&gt;When curating for &lt;code&gt;@WeAreRLadies&lt;/code&gt; on Twitter in February 2021, I asked if there were &lt;a href="https://twitter.com/WeAreRLadies/status/1362739057789394957" target="_blank"&gt;any volunteers for a workshop on unit testing&lt;/a&gt;, and Gordon Shotwell replied affirmatively! 🙋 At that point, we were complete strangers who had never personally interacted.&lt;/p&gt;
+&lt;p&gt;Despite having no experience with unit testing, after a bit of conversation and much encouragement from both R-Ladies Philly and Gordon, I agreed to develop a workshop with Gordon’s support. (Why not? Teaching is the best way for me to learn. 😊)&lt;/p&gt;
+&lt;p&gt;In small and infrequent time chunks reading and tinkering, three 30 minute meetings with Gordon, and a few chat exchanges, I learned so much about unit testing between February and November! And I was so glad to be able to give back and share that knowledge (and confidence!💪) with R-Ladies Philly.&lt;/p&gt;
+&lt;p&gt;I also really liked the mentor-mentee relationship modeled in this workshop - I think it made the material approachable for beginners and elevated for those more experienced. It also put me at ease during workshop preparation knowing that Gordon could respond to questions that I likely wouldn’t have had experience with. It is a workshop format I highly recommend trying.&lt;/p&gt;
+&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
+&lt;p&gt;Thank you very much to R-Ladies Philly for hosting this workshop. In particular, &lt;a href="https://twitter.com/sciencealice" target="_blank"&gt;Alice Walsh&lt;/a&gt; provided feedback on workshop materials and this blog post. In addition, many thanks to &lt;a href="https://twitter.com/gshotwell" target="_blank"&gt;Gordon Shotwell&lt;/a&gt; for volunteering his time and expertise to our learning. 💜&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>c7194fd2f39ec61457f0ae3cfd66bbaa</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r</guid>
       <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r/img/unit-testing-thumbnail.png" medium="image" type="image/png" width="1280" height="720"/>
