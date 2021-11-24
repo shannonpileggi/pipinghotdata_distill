@@ -35,9 +35,9 @@ knitr::include_graphics("img/unit-testing-thumbnail.png")
 
 # TL;DR
 
-This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021, where we live
+This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 ([recording on YouTube](https://youtu.be/4bPekjzIYiU){target="_blank"}), where we live
 coded use of the `usethis`, `devtools`, `testthat`, and `covr` packages to automate R
-package testing.This post complements the recording through highlighting key points,
+package testing. This post complements the recording through highlighting key points,
 rather than listing all actions.
 
 # Workshop recording
@@ -180,7 +180,7 @@ created a second repo called `ralphGetsTested` for this workshop, which was a co
 
 `usethis::create_from_github("shannonpileggi/ralph")`
 
-2. If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone [`ralphGetsTested`](https://github.com/shannonpileggi/ralphGetsTested){target=_blank_} repo.
+2. If you want to see the repository as it stood at the conclusion of the unit testing workshop, fork and clone the [`ralphGetsTested`](https://github.com/shannonpileggi/ralphGetsTested){target=_blank_} repo.
 
 `usethis::create_from_github("shannonpileggi/ralphGetsTested")`
 
