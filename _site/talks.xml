@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 07 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Getting started with unit testing in R</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r</link>
+      <description>Automating the dev work you are probably already doing</description>
+      <guid>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r</guid>
+      <pubDate>Thu, 11 Nov 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r/unit-testing-thumbnail.png" medium="image" type="image/png" width="1280" height="720"/>
+    </item>
     <item>
       <title>Be great and curate!</title>
       <dc:creator>Shannon Pileggi</dc:creator>
