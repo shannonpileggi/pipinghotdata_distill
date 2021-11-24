@@ -1496,6 +1496,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#tldr">TL;DR</a></li>
+<li><a href="#workshop-recording">Workshop recording</a></li>
 <li><a href="#abstract">Abstract</a></li>
 <li><a href="#packages">Packages</a></li>
 <li><a href="#tool-kit">Tool kit</a></li>
@@ -1524,7 +1525,10 @@ Figure 1: Question and answer, paraphrased, from the workshop.
 </div>
 </div>
 <h1 id="tldr">TL;DR</h1>
-<p>This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 (<a href="https://youtu.be/4bPekjzIYiU" target="_blank_">recording on YouTube</a>), where we live coded use of the <code>usethis</code>, <code>devtools</code>, <code>testthat</code>, and <code>covr</code> packages to automate R package testing. This post complements the recording through highlighting key points, rather than listing all actions.</p>
+<p>This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021, where we live coded use of the <code>usethis</code>, <code>devtools</code>, <code>testthat</code>, and <code>covr</code> packages to automate R package testing.This post complements the recording through highlighting key points, rather than listing all actions.</p>
+<h1 id="workshop-recording">Workshop recording</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4bPekjzIYiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <h1 id="abstract">Abstract</h1>
 <p>In this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in <code>usethis</code> and <code>devtools</code>, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.</p>
 <p>This workshop picks up exactly where we left our little <code>ralph</code> (aka <strong>R</strong>-<strong>L</strong>adies <strong>Ph</strong>illy) package one year ago with <a href="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/" target="_blank">“Your first R package in 1 hour: Tools that make R package development easy”</a>. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with <code>devtools</code> and <code>usethis</code>.</p>
@@ -1628,7 +1632,7 @@ Figure 1: Question and answer, paraphrased, from the workshop.
 <tr class="odd">
 <td></td>
 <td><code>devtools::load_all()</code></td>
-<td>load functions in 📁 <code>R/</code> into memory</td>
+<td>load functions in 📂 <code>R/</code> into memory</td>
 </tr>
 <tr class="even">
 <td></td>

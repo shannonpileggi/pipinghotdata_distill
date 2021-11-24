@@ -35,11 +35,14 @@ knitr::include_graphics("img/unit-testing-thumbnail.png")
 
 # TL;DR
 
-This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021 
-([recording on YouTube](https://youtu.be/4bPekjzIYiU){target=_blank_}), where we live coded use of the
-`usethis`, `devtools`, `testthat`, and `covr` packages to automate R package testing.
-This post complements the recording through highlighting key points, rather than 
-listing all actions.
+This blog post accompanies the R-Ladies Philly workshop on Nov 11, 2021, where we live
+coded use of the `usethis`, `devtools`, `testthat`, and `covr` packages to automate R
+package testing.This post complements the recording through highlighting key points,
+rather than listing all actions.
+
+# Workshop recording
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4bPekjzIYiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # Abstract
 
