@@ -26,7 +26,9 @@ navbar:
     - icon: fa fa-rss
       href: blog.xml  
 output: 
-  distill::distill_article
+  distill::distill_article:
+    includes:
+      in_header: giscus.html
 google_analytics: "UA-128676462-1"
 twitter:
   site: "@PipingHotData"
@@ -39,4 +41,3 @@ collections:
       share: [twitter, linkedin]
       citations: true
       subscribe: _subscribe.html
-      disqus: piping-hot-data
