@@ -2402,6 +2402,38 @@ d-appendix d-footnote-list a.footnote-backlink {
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+     if (!/posts/.test(location.pathname)) {
+       return;
+     }
+
+     var script = document.createElement("script");
+     script.src = "https://giscus.app/client.js";
+     script.setAttribute("data-repo", "shannonpileggi/pipinghotdata_distill");
+     script.setAttribute("data-repo-id", "MDEwOlJlcG9zaXRvcnkyOTM2MzExNjg=");
+     script.setAttribute("data-category", "Comments");
+     script.setAttribute("data-category-id", "DIC_kwDOEYB0wM4CAGOs");
+     script.setAttribute("data-mapping", "pathname");
+     script.setAttribute("data-reactions-enabled", "1");
+     script.setAttribute("data-emit-metadata", "0");
+     script.setAttribute("data-theme", "light");
+     script.setAttribute("data-lang", "en");
+
+     /* wait for article to load, append script to article element */
+     var observer = new MutationObserver(function (mutations, observer) {
+       var article = document.querySelector("d-article");
+       if (article) {
+         observer.disconnect();
+         /* HACK: article scroll */
+         article.setAttribute("style", "overflow-y: hidden");
+         article.appendChild(script);
+       }
+     });
+
+     observer.observe(document.body, { childList: true });
+   });
+ </script>
 <script type="text/javascript" cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-128676462-1"></script>
 <script type="text/javascript" cookie-consent="tracking">
 window.dataLayer = window.dataLayer || [];
@@ -3166,11 +3198,6 @@ books_clean %&gt;%
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
-    <span class="disqus-comments">
-      <i class="fas fa-comments"></i>
-      &nbsp;
-      <span class="disqus-comment-count" data-disqus-identifier="posts/2021-01-11-from-gmailr-to-the-google-books-api/">Comment on this article</span>
-    </span>
     <span class="article-sharing">
       Share: &nbsp;
       <a href="https://twitter.com/share?text=From%20gmailr%20to%20the%20Google%20Books%20API&amp;url=https%3A%2F%2Fwww.pipinghotdata.com%2Fposts%2F2021-01-11-from-gmailr-to-the-google-books-api%2F">
@@ -3181,20 +3208,6 @@ books_clean %&gt;%
       </a>
     </span>
   </p>
-  <script id="dsq-count-scr" src="https://piping-hot-data.disqus.com/count.js" async></script>
-  <div id="disqus_thread" class="hidden"></div>
-  <script type="text/javascript" cookie-consent="functionality">
-var disqus_config = function () {
-  this.page.url = 'https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api/';
-  this.page.identifier = 'posts/2021-01-11-from-gmailr-to-the-google-books-api/';
-};
-(function() {
-  var d = document, s = d.createElement('script');
-  s.src = 'https://piping-hot-data.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', +new Date());
-  (d.head || d.body).appendChild(s);
-})();
-</script>
   <p>
     <div class="subscribe"><form method='post' action='https://blogtrottr.com'>
   <p>Enjoy this blog? Get notified of new posts via email:</p>
