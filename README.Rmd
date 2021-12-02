@@ -8,7 +8,9 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  echo = FALSE
+  echo = FALSE,
+  message=FALSE, 
+  warning=FALSE
 )
 ```
 
@@ -25,7 +27,7 @@ A personal website
 🚀 deployed through Netlify
 
 
-```{r, message=FALSE, warning=FALSE}
+```{r}
 library(tidyverse)
 library(xml2)
 library(lubridate)
