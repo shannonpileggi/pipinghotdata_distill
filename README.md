@@ -8,15 +8,15 @@ output: github_document
 
 # About
 
-A personal website 
+A personal website:
 
-⚒️ created with the [distill](https://rstudio.github.io/distill/) package in R
+⚒️ created with the [distill](https://rstudio.github.io/distill/) package in R,
 
-💡 continuously inspired by community contributed tips at the [distillery](https://jhelvy.github.io/distillery/) and all content creators out there
+💡 continuously inspired by community contributed tips at the [distillery](https://jhelvy.github.io/distillery/) and all content creators out there,
 
-🗨️ with commenting by [giscus](https://giscus.app/)
+🗨️ with commenting by [giscus](https://giscus.app/), and
 
-🚀 deployed through Netlify
+🚀 deployed through Netlify.
 
 
 
@@ -62,8 +62,9 @@ A personal website
 |2018-11-05 |[Welcome to Piping Hot Data](https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data)                                                                                           |
 </details>
 
-_This automatically rendered readme was inspired by [Matt Dray](https://www.rostrum.blog/2021/04/14/gha-readme/)._
+_The automatically rendered readme was inspired by [Matt Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus commenting
+was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/)._
 
 ---
 
-_Updated 2021-12-01 23:50:04_
+_Updated 2021-12-01 23:53:03_
