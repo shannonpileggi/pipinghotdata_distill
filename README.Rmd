@@ -1,0 +1,108 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = FALSE
+)
+```
+
+# About
+
+A personal website 
+
+⚒️ created with the [distill](https://rstudio.github.io/distill/) package in R
+
+💡 continuously inspired by community contributed tips at the [distillery](https://jhelvy.github.io/distillery/) and all content creators out there
+
+🗨️ with commenting by [giscus](https://giscus.app/)
+
+🚀 deployed through Netlify
+
+
+```{r}
+library(tidyverse)
+library(xml2)
+library(lubridate)
+```
+
+```{r}
+# inspired by Matt Dray's blog 
+# https://www.rostrum.blog/2021/04/14/gha-readme/
+xml <- read_xml("https://www.pipinghotdata.com/blog.xml")
+
+titles <- xml_find_all(xml, ".//title") %>% 
+  str_remove_all("<title>|</title>") %>% 
+  .[-1]
+
+links <- xml_find_all(xml, ".//link") %>% 
+    str_remove_all("<link>|</link>") %>% 
+  .[-1]
+
+dates <- links %>% 
+  str_remove(".*posts/") %>% 
+  str_sub(1, 10)
+
+                      # extract text
+
+# data frame of all posts
+posts <- tibble(dates, titles, links)
+
+# number of days since last post
+days_last_post <- Sys.Date() - max(lubridate::as_date(dates))
+
+```
+
+
+
+
+# Some stats
+
+🎉 Piping Hot Data has **`r nrow(posts)`** posts since **`r min(lubridate::as_date(dates))`**!
+
+
+
+✍️ The last post was published `r days_last_post` days ago ([`r titles[1]`](`r links[1]`)). Your feedback motivates me to keep writing. 😉
+
+```{r plot-obj, fig.height=1, fig.width=10}
+# Create plot object
+posts %>%
+  ggplot(aes(x = lubridate::as_date(dates), y = 1)) +
+  geom_point(shape = "|", size = 5,   color = "#f95355") + 
+  theme(
+    panel.grid = element_blank(),
+    # creates the light gray box around the plot ----
+    panel.background = element_rect(fill = "white", color = "white"),
+    axis.title = element_blank(),
+    axis.text.y = element_blank(),
+    axis.text.x = element_text(size = 14),
+    axis.ticks = element_blank(),
+    plot.margin = margin(0, 10, 0, 10)
+  ) +
+  ggtitle("Published posts")
+```
+
+
+
+<details><summary>`r emo::ji("open_file_folder")` Click to expand a full list of posts</summary>
+
+```{r posts-table}
+posts %>%
+  transmute(
+    Date = dates, 
+    Title = paste0("[", titles, "](", links, ")")
+  ) %>% 
+  knitr::kable()
+```
+</details>
+
+_This automatically rendered readme was inspired by [Matt Dray](https://www.rostrum.blog/2021/04/14/gha-readme/)._
+
+---
+
+_Updated `r Sys.time()`_
