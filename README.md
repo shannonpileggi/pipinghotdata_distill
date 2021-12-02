@@ -20,21 +20,14 @@ A personal website
 
 
 
-```
-#> 
-#> Attaching package: 'lubridate'
-#> The following objects are masked from 'package:base':
-#> 
-#>     date, intersect, setdiff, union
-```
 
 
 ```
-#> Warning in stri_replace_all_regex(string, pattern, fix_replacement(replacement), : argument is
-#> not an atomic vector; coercing
+#> Warning in stri_replace_all_regex(string, pattern,
+#> fix_replacement(replacement), : argument is not an atomic vector; coercing
 
-#> Warning in stri_replace_all_regex(string, pattern, fix_replacement(replacement), : argument is
-#> not an atomic vector; coercing
+#> Warning in stri_replace_all_regex(string, pattern,
+#> fix_replacement(replacement), : argument is not an atomic vector; coercing
 ```
 
 
@@ -80,4 +73,4 @@ _This automatically rendered readme was inspired by [Matt Dray](https://www.rost
 
 ---
 
-_Updated 2021-12-01 23:44:03_
+_Updated 2021-12-01 23:48:01_
