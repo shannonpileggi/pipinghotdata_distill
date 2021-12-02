@@ -58,18 +58,27 @@ posts <- tibble(dates, titles, links)
 # number of days since last post
 days_last_post <- Sys.Date() - max(lubridate::as_date(dates))
 
+posts_since_2020 <- posts %>% 
+  mutate(dates = lubridate::as_date(dates)) %>% 
+  filter(dates >= lubridate::as_date("2020-01-01"))
+
+posts_per_month <- scales::number((nrow(posts_since_2020) / (as.numeric(today() - min(posts_since_2020$dates)))) * 30, 0.1)
+
+days_bt_posts <- scales::number((as.numeric(today() - min(posts_since_2020$dates))) / nrow(posts), 1)
+
 ```
 
 
 
 
-# Some stats
+# Some stats ⚠️ WIP
 
 🎉 Piping Hot Data has **`r nrow(posts)`** posts since **`r min(lubridate::as_date(dates))`**!
 
+📅 That's a post roughly every **`r days_bt_posts`** days, or about `r posts_per_month` posts per month, since `r min(posts_since_2020$dates)`.
 
 
-✍️ The last post was published `r days_last_post` days ago ([`r titles[1]`](`r links[1]`)). Your feedback motivates me to keep writing. 😉
+✍️ The last post was published **`r days_last_post`** days ago ([`r titles[1]`](`r links[1]`)). Your feedback motivates me to keep writing. 😉
 
 ```{r plot-obj, fig.height=1, fig.width=10}
 # Create plot object
