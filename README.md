@@ -62,9 +62,10 @@ A personal website:
 |2018-11-05 |[Welcome to Piping Hot Data](https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data)                                                                                           |
 </details>
 
+---
+
 _The automatically rendered readme was inspired by [Matt Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus commenting
 was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/)._
 
----
 
-_Updated 2021-12-01 23:53:03_
+_Updated 2021-12-01 23:54:16_
