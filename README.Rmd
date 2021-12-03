@@ -104,7 +104,7 @@ posts %>%
 
 
 
-<details><summary>`r emo::ji("open_file_folder")` Click to expand a full list of posts</summary>
+<details><summary>📂 Click to expand a full list of posts</summary>
 
 ```{r posts-table}
 posts %>%
