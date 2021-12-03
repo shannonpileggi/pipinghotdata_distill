@@ -120,3 +120,11 @@ was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-g
 
 
 _Updated `r Sys.time()`_
+
+
+```{r, eval=FALSE}
+# https://tgerke.github.io/github-actions-with-r/#1
+# https://github.com/r-lib/actions/issues/186
+# https://github.com/r-lib/actions/tree/master/setup-r-dependencies
+```
+
