@@ -125,9 +125,52 @@ was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-g
 _Updated `r Sys.time()`_
 
 
+```{r}
+knitr::knit_exit()
+```
+
+
 ```{r, eval=FALSE}
 # https://tgerke.github.io/github-actions-with-r/#1
 # https://github.com/r-lib/actions/issues/186
 # https://github.com/r-lib/actions/tree/master/setup-r-dependencies
 ```
+
+```{r, eval = FALSE}
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+# copied from Matt Dray's blog https://www.rostrum.blog/2021/04/14/gha-readme/
+# #15  6 min 17 sec
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '09 05 * * *'
+
+name: render-rmarkdown
+
+jobs:
+  render-rmarkdown:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: r-lib/actions/setup-r@v1
+      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install CRAN packages
+        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "magrittr", "ggplot2", "stringr", "dplyr", "xml2", "lubridate"))'      
+      - name: Render README
+        run: Rscript -e 'knitr::knit("README.Rmd")'
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git commit README.md README_files/ -m 'Re-build README.Rmd' || echo "No changes to commit"
+           git push origin || echo "No changes to commit"
+
+      
+```
+
 
