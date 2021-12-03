@@ -20,7 +20,8 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install pak and query dependencies
-        run: install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
+        run: |
+          install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
       - name: Install CRAN packages
         run: Rscript -e 'pak::pkg_install(c("remotes", "rmarkdown", "knitr", "tidyverse", "xml2", "lubridate", "distill"))'
       - name: Render README
