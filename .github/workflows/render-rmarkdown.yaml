@@ -2,6 +2,9 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 # copied from Matt Dray's blog https://www.rostrum.blog/2021/04/14/gha-readme/
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: '09 05 * * *'
 
@@ -17,9 +20,11 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install CRAN packages
-        run: Rscript -e 'install.packages(c("remotes", "rmarkdown", "knitr", "tidyverse", "xml2", "lubridate", "distill"))'
+        run: Rscript -e 'install.packages(c("pak"))'
+      - name: Install CRAN packages
+        run: Rscript -e 'pak::pkg_install(c("remotes", "rmarkdown", "knitr", "tidyverse", "xml2", "lubridate", "distill"))'
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: Rscript -e 'knitr::knit("README.Rmd")'
         
       - name: Commit results
         run: |
