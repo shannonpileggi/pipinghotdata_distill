@@ -27,7 +27,7 @@ A personal website:
 
 
 
-# Some stats ⚠️ WIPROGRESSS
+# Some stats ⚠️ WIP
 
 🎉 Piping Hot Data has **17** posts since **2018-11-05**!
 
@@ -70,7 +70,7 @@ _The automatically rendered readme was inspired by [Matt Dray](https://www.rostr
 was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/)._
 
 
-_Updated 2021-12-03 11:49:52_
+_Updated 2021-12-03 13:43:19_
 
 
 
