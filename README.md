@@ -27,15 +27,14 @@ A personal website:
 
 
 
-# Some stats
+# Some stats ⚠️ WIP
 
 🎉 Piping Hot Data has **17** posts since **2018-11-05**!
 
 📅 That's a post roughly every **27** days, or about 1.0 posts per month, since 2020-08-30.
 
 
-✍️ The last post was published **10** days ago ([Getting started with unit testing in R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)). As advised by Yihui Xie, I try to write like nobody is reading; but your
-feedback does help motivate me to keep writing. 😉
+✍️ The last post was published **10** days ago ([Getting started with unit testing in R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)). Your feedback motivates me to keep writing. 😉
 
 ![plot of chunk plot-obj](figure/plot-obj-1.png)
 
@@ -71,11 +70,7 @@ _The automatically rendered readme was inspired by [Matt Dray](https://www.rostr
 was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/)._
 
 
-_Updated 2021-12-03 15:37:41_
-
-
-
-
+_Updated 2021-12-03 15:14:13_
 
 
 

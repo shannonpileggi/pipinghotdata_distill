@@ -75,15 +75,14 @@ days_bt_posts <- scales::number((as.numeric(today() - min(posts_since_2020$dates
 
 
 
-# Some stats
+# Some stats ⚠️ WIP
 
 🎉 Piping Hot Data has **`r nrow(posts)`** posts since **`r min(lubridate::as_date(dates))`**!
 
 📅 That's a post roughly every **`r days_bt_posts`** days, or about `r posts_per_month` posts per month, since `r min(posts_since_2020$dates)`.
 
 
-✍️ The last post was published **`r days_last_post`** days ago ([`r titles[1]`](`r links[1]`)). As advised by Yihui Xie, I try to write like nobody is reading; but your
-feedback does help motivate me to keep writing. 😉
+✍️ The last post was published **`r days_last_post`** days ago ([`r titles[1]`](`r links[1]`)). Your feedback motivates me to keep writing. 😉
 
 ```{r plot-obj, fig.height=1, fig.width=10}
 # Create plot object
@@ -174,12 +173,4 @@ jobs:
       
 ```
 
-```{r}
-usethis::use_description(check_name = FALSE)
-```
-
-```{r}
-pkgs <- c("rmarkdown", "knitr", "magrittr", "ggplot2", "stringr", "dplyr", "xml2", "lubridate")
-purrr::map(pkgs, usethis::use_package)
-```
 
