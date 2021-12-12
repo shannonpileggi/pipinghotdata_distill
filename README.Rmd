@@ -35,6 +35,7 @@ library(dplyr)
 library(xml2)
 library(lubridate)
 library(ggplot2)
+library(ggiraph)
 ```
 
 ```{r}
@@ -57,7 +58,12 @@ dates <- links %>%
                       # extract text
 
 # data frame of all posts
-posts <- tibble(dates, titles, links)
+posts <- tibble(dates, titles, links) %>% 
+  mutate(
+    content_click = sprintf("window.open(\"%s%s\")", links, ""),
+    label_post = glue::glue("{dates}: {titles}")
+    #label_post = str_c("<a href='", links, "' target='_blank'>", titles, "</a>")
+    )
 
 # number of days since last post
 days_last_post <- Sys.Date() - max(lubridate::as_date(dates))
@@ -86,9 +92,15 @@ days_bt_posts <- scales::number((as.numeric(today() - min(posts_since_2020$dates
 
 ```{r plot-obj, fig.height=1, fig.width=10}
 # Create plot object
-posts %>%
+gg_int <- posts %>%
   ggplot(aes(x = lubridate::as_date(dates), y = 1)) +
-  geom_point(shape = "|", size = 5,   color = "#f95355") + 
+  geom_point_interactive(
+    shape = "|", 
+    size = 5,   
+    color = "#f95355",
+    aes(tooltip = label_post,
+        onclick = content_click)
+    ) + 
   theme(
     panel.grid = element_blank(),
     # creates the light gray box around the plot ----
@@ -100,6 +112,16 @@ posts %>%
     plot.margin = margin(0, 10, 0, 10)
   ) +
   ggtitle("Published posts")
+```
+
+```{r}
+tooltip_css <- "color:white;border-color:#f95355;padding:10px;border-radius:5px;"
+girafe(
+  ggobj = gg_int,
+  options = list(
+    opts_tooltip(css = tooltip_css, use_fill = TRUE)
+    )
+  )    
 ```
 
 

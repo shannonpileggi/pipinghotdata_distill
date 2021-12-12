@@ -34,9 +34,14 @@ A personal website:
 📅 That's a post roughly every **28** days, or about 1.0 posts per month, since 2020-08-30.
 
 
-✍️ The last post was published **18** days ago ([Getting started with unit testing in R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)). Your feedback motivates me to keep writing. 😉
+✍️ The last post was published **19** days ago ([Getting started with unit testing in R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)). Your feedback motivates me to keep writing. 😉
 
-![plot of chunk plot-obj](figure/plot-obj-1.png)
+
+
+
+```
+#> Error in path.expand(path): invalid 'path' argument
+```
 
 
 
@@ -70,7 +75,7 @@ _The automatically rendered readme was inspired by [Matt Dray](https://www.rostr
 was motivated by [Joel Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/)._
 
 
-_Updated 2021-12-11 20:27:46_
+_Updated 2021-12-12 15:10:37_
 
 
 
