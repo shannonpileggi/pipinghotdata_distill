@@ -21,7 +21,7 @@ jobs:
       - name: Install CRAN packages
         run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "magrittr", "ggplot2", "stringr", "dplyr", "xml2", "lubridate"))'      
       - name: Render README
-        run: Rscript -e 'knitr::knit("README.Rmd")'
+        run: Rscript -e 'rmarkdown::render("README.Rmd", "github_document")'
       - name: Commit results
         run: |
           git config --local user.email "actions@github.com"
