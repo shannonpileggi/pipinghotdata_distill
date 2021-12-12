@@ -18,7 +18,7 @@ creators out there,
 
 # Some stats ⚠️ WIP
 
-🎉 Piping Hot Data has **17** posts since **2018-11-05**!
+🎉 Piping Hot Data has **17** posts since **2018-11-05**\!
 
 📅 That’s a post roughly every **28** days, or about 1.0 posts per month,
 since 2020-08-30.
@@ -31,12 +31,11 @@ Your feedback motivates me to keep writing. 😉
 ![](README_files/figure-gfm/plot-obj-1.png)<!-- -->
 
 <details>
-<summary>
-📂 Click to expand a full list of posts
-</summary>
+
+<summary>📂 Click to expand a full list of posts</summary>
 
 | Date       | Title                                                                                                                                                                                             |
-|:-----------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | 2021-11-23 | [Getting started with unit testing in R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)                                                                   |
 | 2021-10-11 | [Estimating correlations adjusted for group membership](https://www.pipinghotdata.com/posts/2021-10-11-estimating-correlations-adjusted-for-group-membership)                                     |
 | 2021-09-23 | \[Curating for @WeAreRLadies on Twitter\](<https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter>)                                                                  |
@@ -57,11 +56,11 @@ Your feedback motivates me to keep writing. 😉
 
 </details>
 
-------------------------------------------------------------------------
+-----
 
 *The automatically rendered readme was inspired by [Matt
 Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2021-12-12 15:48:09*
+*Updated 2021-12-12 20:52:43*
