@@ -1,18 +1,17 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/master/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
-# copied from Matt Dray's blog https://www.rostrum.blog/2021/04/14/gha-readme/
 on:
   push:
     branches:
       - master
-  schedule:
+    schedule:
     - cron: '09 05 * * *'
-
+    
 name: render-rmarkdown
 
 jobs:
   render-rmarkdown:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -20,7 +19,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install CRAN packages
-        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "magrittr", "ggplot2", "stringr", "dplyr", "xml2", "lubridate", "ggiraph"))'      
+        run: Rscript -e 'install.packages(c("rmarkdown", "knitr", "magrittr", "ggplot2", "stringr", "dplyr", "xml2", "lubridate"))'      
       - name: Render README
         run: Rscript -e 'knitr::knit("README.Rmd")'
       - name: Commit results
@@ -29,5 +28,3 @@ jobs:
           git config --local user.name "GitHub Actions"
           git commit README.md README_files/ -m 'Re-build README.Rmd' || echo "No changes to commit"
            git push origin || echo "No changes to commit"
-
-      
