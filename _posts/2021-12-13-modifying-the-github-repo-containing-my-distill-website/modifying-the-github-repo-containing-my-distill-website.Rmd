@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = FALSE, dpi=1)
 
 ```{r thumbnail, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
-#|   Artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en). Except in my case, I just needed 12 days.
+#|   Artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en). Except in my case, I just needed 12 days of intermittent attempts.
 #| fig.alt: > 
 #|    R logo has a worried face; little puffball monster is sitting,
 #|    looking grumpy, with hat in hand and caption that says "i just
