@@ -1,7 +1,7 @@
 ---
 title: "Modifying the GitHub repo containing my Distill website"
 description: |
-  Adventures with giscus (shorter) and GitHub Actions (longer)
+  Adventures with giscus (easier) and GitHub Actions (harder)
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
@@ -48,6 +48,8 @@ I made two modifications to my distill website and the corresponding GitHub repo
 
 Updating the commenting mechanism on my website from discus was something I had been meaning to do for a while, but held off on because you never know when a seemingly small change will take you down a rabbit hole.
 
+I went for it, and thanks to Joel's awesome post [Enable giscus in Distill](https://www.joelnitta.com/posts/2021-11-24_using-giscus/){target="_blank_"} it was a pretty quick and easy process. 🙌
+
 <blockquote class="twitter-tweet">
 
 <p lang="en" dir="ltr">
@@ -63,7 +65,7 @@ tonight i intended to update my <a href="https://twitter.com/hashtag/rstats?src=
 ```{=html}
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
-I went for it, and thanks to Joel's awesome post [Enable giscus in Distill](https://www.joelnitta.com/posts/2021-11-24_using-giscus/){target="_blank_"} it was a pretty quick and easy process. 🙌
+
 
 # GitHub Actions README
 
@@ -91,23 +93,23 @@ I mean, sometimes you can skip reading documentation fully, make a few tweaks to
 
 ### GitHub Actions
 
--   [`Error #1`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4391092220?check_suite_focus=true){target="_blank_"} I needed to add `{distill}` as an installed package in my workflow. 🤷
+-   [`Workflow #1 (error)`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4391092220?check_suite_focus=true){target="_blank_"} I needed to add `{distill}` as an installed package in my workflow. 🤷
 
--   [`Error #2`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4404442737?check_suite_focus=true){target="_blank_"} I was lazy with my README and workflow and loaded `tidvyerse` instead of the specific packages I needed, which didn't go well. I tried to resolve this via the `pak` route (see next error), which also didn't go well, and ended up trimming back the dependencies to the essential ones.
+-   [`Workflow #2 (error)`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4404442737?check_suite_focus=true){target="_blank_"} I was lazy with my README and workflow and loaded `tidvyerse` instead of the specific packages I needed, which didn't go well. I tried to resolve this via the `pak` route (see next error), which also didn't go well, and ended up trimming back the dependencies to the essential ones.
 
--   [`Error #10`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4410903654?check_suite_focus=true){target="_blank_"} I tried a few different things to install packages in the workflow with `pak` instead of `install.packages`. I attempted to use [`r-lib/actions/setup-r-dependencies`](https://github.com/r-lib/actions/tree/master/setup-r-dependencies){target="_blank_"}, and I really should have read the documentation thoroughly. My blog repo is not a package and does not have `DESCRIPTION` file. I tried to add a `DESCRIPTION` file to coerce this, but really, this workflow setup is made for packages. I also attempted to review the source of the workflow and make some tweaks to achieve something similar outside of the package framework, but to no avail. My workflow currently uses `install.packages()`. I could have tried [`r-lib/actions/setup-renv`](https://github.com/r-lib/actions/tree/master/setup-renv){target="_blank_"} instead, but I was tired. There are many errors in my workflow history that correspond to this experimentation.
+-   [`Workflow #10 (error)`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4410903654?check_suite_focus=true){target="_blank_"} I tried a few different things to install packages in the workflow with `pak` instead of `install.packages`. I attempted to use [`r-lib/actions/setup-r-dependencies`](https://github.com/r-lib/actions/tree/master/setup-r-dependencies){target="_blank_"}, and I really should have read the documentation thoroughly. My blog repo is not a package and does not have `DESCRIPTION` file. I tried to add a `DESCRIPTION` file to coerce this, but really, this workflow setup is made for packages. I also attempted to review the source of the workflow and make some tweaks to achieve something similar outside of the package framework, but to no avail. My workflow currently uses `install.packages()`. I could have tried [`r-lib/actions/setup-renv`](https://github.com/r-lib/actions/tree/master/setup-renv){target="_blank_"} instead, but I was tired. There are many errors in my workflow history that correspond to this experimentation.
 
 ### README
 
--   [`Workflow #30`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4499533757?check_suite_focus=true){target="_blank_"} I thought I would get fancy and make the ggplot graphic interactive through `{ggiraph}` with hover over and click effects. This didn't error out, but it also didn't work, which I should have anticipated, as the rendered file is a `.md` and not a `.Rmd`.
+-   [`Workflow #30 (no error)`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4499533757?check_suite_focus=true){target="_blank_"} I thought I would get fancy and make the ggplot graphic interactive through `{ggiraph}` with hover over and click effects. This didn't error out, but it also didn't work, which I should have anticipated, as the rendered file is a `.md` and not a `.Rmd`.
 
--   [`Workflow #26`](https://github.com/shannonpileggi/pipinghotdata_distill/actions/runs/1562057755){target="_blank_"} I had many workflows that didn't error out, but also did not result in an updated `README`. I actually had a lot of trouble getting the `README` to work. Some things I learned include:
+-   [`Workflow #26 (no error)`](https://github.com/shannonpileggi/pipinghotdata_distill/actions/runs/1562057755){target="_blank_"} I had many workflows that didn't error out, but also did not result in an updated `README`. I actually had a lot of trouble getting the `README` to work. Some things I learned include:
 
     -   [`usethis::use_readme_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html){target="*blank*"} is designed for use with R packages, and again, didn't work well on my blog repo.
 
     -   [`devtools::build_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html){target="*blank*"} is designed for use with R packages, and again, didn't work well on my blog repo.
 
-    -   After I ditched these and my README still wasn't rendering correctly, I really, truly thought I was going crazy. I finally found a [solution on RStudio Community](https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7?u=shannon.pileggi){target="_blank_"} by updating `rmarkdown::render("README.Rmd")` to `rmarkdown::render("README.Rmd", "github_document")` in the `YAML` of the GitHub Action workflow. I wonder if {distill} has some `YAML` stuff going on that required the `"github_document"` argument.
+    -   After I ditched these and my `README` still wasn't rendering correctly, I really, truly thought I was going crazy. I finally found a [solution on RStudio Community](https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7){target="_blank_"} by updating `rmarkdown::render("README.Rmd")` to `rmarkdown::render("README.Rmd", "github_document")` in the `YAML` of the GitHub Action workflow. I wonder if {distill} has some `YAML` stuff going on that required the `"github_document"` argument.
 
 
 After much perseverance and persistence, I prevailed with my first GitHub Action. 💪 
@@ -125,7 +127,9 @@ knitr::include_graphics("readme.PNG")
 
 Perhaps reading the documentation more closely or slowing down to think through things might have worked better for this situation. If you want to have a laugh or or want to feel better about your own struggling efforts, browse through my 34 [commits](https://github.com/shannonpileggi/pipinghotdata_distill/commits/master){target="_blank"} or check out the corresponding [GitHub Action history](https://github.com/shannonpileggi/pipinghotdata_distill/actions){target="_blank"} Dec 1 - 12, 2021. Despite the frustration, I remain grateful for these experiences as I learned a lot.
 
-# Consequences
+# Afterwards
+
+So what happened after these changes?
 
 ### Giscus
 
@@ -147,6 +151,19 @@ The last one was a bit surprising to me, but I like it for now!
 Now that I am using GitHub Actions on the `README` of my repository, I am no longer the only contributor to my repository! 😯  This means
 that when I open up my R project, I now need to remember to pull before I start working on my website.
 
+In addition, despite my GitHub Actions working, I ran out of free time as shown in the [`workflow #39 error`](https://github.com/shannonpileggi/pipinghotdata_distill/actions/runs/1572539486){target="_blank"}. 🤦 I guess I either need to figure out `{pak}` out with GitHub Actions to hopefully speed things up, or experiment less to get my actions right.😆
+
 # Acknowledgements
 
-A big thank you to Travis Gerke for talking me through some GitHub Action concepts!
+Thanks to:
+
+ * Dan Sjoberg and Travis Gerke for talking me through some GitHub Action concepts!
+ 
+ * Allison Horst for the amazing [illustrations](https://github.com/allisonhorst/stats-illustrations){target="_blank"}.
+ 
+ * Joel Nitta for the [giscus post](https://www.joelnitta.com/posts/2021-11-24_using-giscus/){target="_blank"}.
+ 
+ * Matt Dray for the  [readme github action post](https://www.rostrum.blog/2021/04/14/gha-readme/){target="_blank"}.
+ 
+ * Christophe Dervieux for being a hero on [RStudio Community](https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7){target="_blank"}.
+ 
