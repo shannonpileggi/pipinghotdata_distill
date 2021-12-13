@@ -7,7 +7,94 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 23 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Modifying the GitHub repo containing my Distill website</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website</link>
+      <description>
+
+
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-websitewoof_today.PNG" alt="R logo has a worried face; little puffball monster is sitting, looking grumpy, with hat in hand and caption that says &amp;quot;i just need a minute.&amp;quot;" width="814" /&gt;
+&lt;p class="caption"&gt;
+(#fig:thumbnail)Artwork by &lt;a href="https://twitter.com/allison_horst?lang=en"&gt;&lt;code&gt;@allison_horst&lt;/code&gt;&lt;/a&gt;. Except in my case, I just needed 12 days.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
+&lt;p&gt;I made two modifications to my distill website and the corresponding GitHub repository:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;Added &lt;a href="https://giscus.app/"&gt;giscus&lt;/a&gt; commenting to my blog - this was fairly straightforward and completed within 1 to 2 hours.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Added GitHub actions to automatically update the repository’s &lt;code&gt;README&lt;/code&gt; with blog stats - this took several attempts over the course of a few days.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="giscus-commenting"&gt;Giscus commenting&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Straightforward and completed within 1 to 2 hours.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Updating the commenting mechanism on my website from discus was something I had been meaning to do for a while, but held off on because you never know when a seemingly small change will take you down a rabbit hole.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;
+&lt;p lang="en" dir="ltr"&gt;
+&lt;p&gt;tonight i intended to update my &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt; blog from disqus to utterances, but then i found this great post by &lt;a href="https://twitter.com/joel_nitta?ref_src=twsrc%5Etfw"&gt;&lt;span class="citation"&gt;@joel_nitta&lt;/span&gt;&lt;/a&gt; about ✨giscus✨! thanks, Joel! 👏&lt;br&gt;&lt;br&gt;i hope the new giscus gets used - go ahead, pipe up!😉&lt;a href="https://t.co/Wx1j80TKVD"&gt;https://t.co/Wx1j80TKVD&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;— Shannon Pileggi (&lt;span class="citation"&gt;@PipingHotData&lt;/span&gt;) &lt;a href="https://twitter.com/PipingHotData/status/1465878389852676107?ref_src=twsrc%5Etfw"&gt;December 1, 2021&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;I went for it, and thanks to Joel’s awesome post &lt;a href="https://www.joelnitta.com/posts/2021-11-24_using-giscus/" target="_blank_"&gt;Enable giscus in Distill&lt;/a&gt; it was a pretty quick and easy process. 🙌&lt;/p&gt;
+&lt;h1 id="github-actions-readme"&gt;GitHub Actions README&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;Several attempts over the course of a few days.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;After the amazingly quick success of the giscus implementation, I was ready to tackle more! I thought a mini-project on my blog would be a nice entry point to learn GitHub Actions, and I decided to replicate Matt Dray’s post &lt;a href="https://www.rostrum.blog/2021/04/14/gha-readme/" target="_blank_"&gt;Up-to-date blog stats in your README&lt;/a&gt;. Between intricacies with both the &lt;code&gt;README&lt;/code&gt; and the GitHub Action workflow &lt;code&gt;yaml&lt;/code&gt;, this happened:&lt;/p&gt;
+&lt;blockquote class="twitter-tweet"&gt;
+&lt;p lang="en" dir="ltr"&gt;
+&lt;p&gt;how is figuring out &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt; github actions going, you ask? preeetttty well 👍 &lt;a href="https://t.co/Boj7KvXCAi"&gt;pic.twitter.com/Boj7KvXCAi&lt;/a&gt;&lt;/p&gt;
+&lt;/p&gt;
+&lt;p&gt;— Shannon Pileggi (&lt;span class="citation"&gt;@PipingHotData&lt;/span&gt;) &lt;a href="https://twitter.com/PipingHotData/status/1466822863286063115?ref_src=twsrc%5Etfw"&gt;December 3, 2021&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;I mean, sometimes you can skip reading documentation fully, make a few tweaks to your code, cross your fingers, and hope that everything works. GitHub Actions is probably not one of those things. 😬 Below are a few of the errors I suffered through to get this working; hopefully I can save you some of the pain!&lt;/p&gt;
+&lt;h3 id="github-actions"&gt;GitHub Actions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/runs/4391092220?check_suite_focus=true" target="_blank_"&gt;&lt;code&gt;Error #1&lt;/code&gt;&lt;/a&gt; I needed to add &lt;code&gt;{distill}&lt;/code&gt; as an installed package in my workflow. 🤷&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/runs/4404442737?check_suite_focus=true" target="_blank_"&gt;&lt;code&gt;Error #2&lt;/code&gt;&lt;/a&gt; I was lazy with my README and workflow and loaded &lt;code&gt;tidvyerse&lt;/code&gt; instead of the specific packages I needed, which didn’t go well. I tried to resolve this via the &lt;code&gt;pak&lt;/code&gt; route (see next error), which also didn’t go well, and ended up trimming back the dependencies to the essential ones.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/runs/4410903654?check_suite_focus=true" target="_blank_"&gt;&lt;code&gt;Error #10&lt;/code&gt;&lt;/a&gt; I tried a few different things to install packages in the workflow with &lt;code&gt;pak&lt;/code&gt; instead of &lt;code&gt;install.packages&lt;/code&gt;. I attempted to use &lt;a href="https://github.com/r-lib/actions/tree/master/setup-r-dependencies" target="_blank_"&gt;&lt;code&gt;r-lib/actions/setup-r-dependencies&lt;/code&gt;&lt;/a&gt;, and I really should have read the documentation thoroughly. My blog repo is not a package and does not have &lt;code&gt;DESCRIPTION&lt;/code&gt; file. I tried to add a &lt;code&gt;DESCRIPTION&lt;/code&gt; file to coerce this, but really, this workflow setup is made for packages. I also attempted to review the source of the workflow and make some tweaks to achieve something similar outside of the package framework, but to no avail. My workflow currently uses &lt;code&gt;install.packages()&lt;/code&gt;. I could have tried &lt;a href="https://github.com/r-lib/actions/tree/master/setup-renv" target="_blank_"&gt;&lt;code&gt;r-lib/actions/setup-renv&lt;/code&gt;&lt;/a&gt; instead, but I was tired. There are many errors in my workflow history that correspond to this experimentation.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="readme"&gt;README&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/runs/4499533757?check_suite_focus=true" target="_blank_"&gt;&lt;code&gt;Workflow #30&lt;/code&gt;&lt;/a&gt; I thought I would get fancy and make the ggplot graphic interactive through &lt;code&gt;{ggiraph}&lt;/code&gt; with hover over and click effects. This didn’t error out, but it also didn’t work, which I should have anticipated, as the rendered file is a &lt;code&gt;.md&lt;/code&gt; and not a &lt;code&gt;.Rmd&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/actions/runs/1562057755" target="_blank_"&gt;&lt;code&gt;Workflow #26&lt;/code&gt;&lt;/a&gt; I had many workflows that didn’t error out, but also did not result in an updated &lt;code&gt;README&lt;/code&gt;. I actually had a lot of trouble getting the &lt;code&gt;README&lt;/code&gt; to work. Some things I learned include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" target="*blank*"&gt;&lt;code&gt;usethis::use_readme_rmd()&lt;/code&gt;&lt;/a&gt; is designed for use with R packages, and again, didn’t work well on my blog repo.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://usethis.r-lib.org/reference/use_readme_rmd.html" target="*blank*"&gt;&lt;code&gt;devtools::build_rmd()&lt;/code&gt;&lt;/a&gt; is designed for use with R packages, and again, didn’t work well on my blog repo.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;After I ditched these and my README still wasn’t rendering correctly, I really, truly thought I was going crazy. I finally found a &lt;a href="https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7?u=shannon.pileggi" target="_blank_"&gt;solution on RStudio Community&lt;/a&gt; by updating &lt;code&gt;rmarkdown::render("README.Rmd")&lt;/code&gt; to &lt;code&gt;rmarkdown::render("README.Rmd", "github_document")&lt;/code&gt; in the &lt;code&gt;YAML&lt;/code&gt; of the GitHub Action workflow. I wonder if {distill} has some &lt;code&gt;YAML&lt;/code&gt; stuff going on that required the &lt;code&gt;"github_document"&lt;/code&gt; argument.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After much perseverance and persistence, I prevailed with my first GitHub Action. 💪&lt;/p&gt;
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-websitereadme.PNG" alt="The &amp;quot;some stats&amp;quot; section is automatically updated, including a rugline type graphic with a single vertical line on the date of a each post." width="406" /&gt;
+&lt;p class="caption"&gt;
+(#fig:gha)Updated README file for the &lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill"&gt;&lt;code&gt;pipinghotdata_distill&lt;/code&gt;&lt;/a&gt; GitHub repository, with the stats section automatically updated daily with GitHub Actions.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Perhaps reading the documentation more closely or slowing down to think through things might have worked better for this situation. If you want to have a laugh or or want to feel better about your own struggling efforts, browse through my 34 &lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/commits/master" target="_blank"&gt;commits&lt;/a&gt; or check out the corresponding &lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill/actions" target="_blank"&gt;GitHub Action history&lt;/a&gt; Dec 1 - 12, 2021. Despite the frustration, I remain grateful for these experiences as I learned a lot.&lt;/p&gt;
+&lt;h1 id="consequences"&gt;Consequences&lt;/h1&gt;
+&lt;h3 id="giscus"&gt;Giscus&lt;/h3&gt;
+&lt;p&gt;One unexpected side effect of using giscus is all of the automatic notifications I receive about the discussion. I get notifications for:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;on my blog: all comments&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;on blogs by others:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;replies to my comments&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;all comments subsequent to mine, by anyone, as we are now all engaged in the same GitHub discussion.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The last one was a bit surprising to me, but I like it for now!&lt;/p&gt;
+&lt;h3 id="github-actions-1"&gt;GitHub Actions&lt;/h3&gt;
+&lt;p&gt;Now that I am using GitHub Actions on the &lt;code&gt;README&lt;/code&gt; of my repository, I am no longer the only contributor to my repository! 😯 This means that when I open up my R project, I now need to remember to pull before I start working on my website.&lt;/p&gt;
+&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
+&lt;p&gt;A big thank you to Travis Gerke for talking me through some GitHub Action concepts!&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>3badbd025971778defb82ce193548c0f</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website</guid>
+      <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website/woof_today.png" medium="image" type="image/png" width="1627" height="927"/>
+    </item>
     <item>
       <title>Getting started with unit testing in R</title>
       <dc:creator>Shannon Pileggi</dc:creator>
