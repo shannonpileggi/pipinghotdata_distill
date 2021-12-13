@@ -21,7 +21,7 @@ creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, dpi=1)
 ```
 
 ```{r thumbnail, eval=TRUE, echo=FALSE}

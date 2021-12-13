@@ -16,7 +16,7 @@
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-websitewoof_today.PNG" alt="R logo has a worried face; little puffball monster is sitting, looking grumpy, with hat in hand and caption that says &amp;quot;i just need a minute.&amp;quot;" width="814" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-websitewoof_today.PNG" alt="R logo has a worried face; little puffball monster is sitting, looking grumpy, with hat in hand and caption that says &amp;quot;i just need a minute.&amp;quot;" width="78096" /&gt;
 &lt;p class="caption"&gt;
 (#fig:thumbnail)Artwork by &lt;a href="https://twitter.com/allison_horst?lang=en"&gt;&lt;code&gt;@allison_horst&lt;/code&gt;&lt;/a&gt;. Except in my case, I just needed 12 days.
 &lt;/p&gt;
@@ -67,7 +67,7 @@
 &lt;/ul&gt;
 &lt;p&gt;After much perseverance and persistence, I prevailed with my first GitHub Action. 💪&lt;/p&gt;
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-websitereadme.PNG" alt="The &amp;quot;some stats&amp;quot; section is automatically updated, including a rugline type graphic with a single vertical line on the date of a each post." width="406" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-websitereadme.PNG" alt="The &amp;quot;some stats&amp;quot; section is automatically updated, including a rugline type graphic with a single vertical line on the date of a each post." width="39024" /&gt;
 &lt;p class="caption"&gt;
 (#fig:gha)Updated README file for the &lt;a href="https://github.com/shannonpileggi/pipinghotdata_distill"&gt;&lt;code&gt;pipinghotdata_distill&lt;/code&gt;&lt;/a&gt; GitHub repository, with the stats section automatically updated daily with GitHub Actions.
 &lt;/p&gt;
