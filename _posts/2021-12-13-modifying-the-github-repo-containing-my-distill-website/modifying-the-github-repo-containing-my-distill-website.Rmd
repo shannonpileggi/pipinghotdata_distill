@@ -1,7 +1,7 @@
 ---
-title: "Modifying the GitHub repo containing my distill website"
+title: "Modifying the GitHub repo containing my Distill website"
 description: |
-  A short description of the post.
+  Adventures with giscus (shorter) and GitHub Actions (longer)
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
@@ -10,6 +10,7 @@ author:
   - name: Shannon Pileggi
     url: {}
 date: 2021-12-13
+preview: woof_today.png
 output:
   distill::distill_article:
     toc: true
@@ -21,6 +22,16 @@ creative_commons: CC BY
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en). Except in my case, I just needed 12 days.
+#| fig.alt: > 
+#|    R logo has a worried face; little puffball monster is sitting,
+#|    looking grumpy, with hat in hand and caption that says "i just
+#|    need a minute."
+knitr::include_graphics("woof_today.png")
 ```
 
 # TL; DR
@@ -54,7 +65,7 @@ tonight i intended to update my <a href="https://twitter.com/hashtag/rstats?src=
 ```
 I went for it, and thanks to Joel's awesome post [Enable giscus in Distill](https://www.joelnitta.com/posts/2021-11-24_using-giscus/){target="_blank_"} it was a pretty quick and easy process. 🙌
 
-# Updating the README with GitHub Actions
+# GitHub Actions README
 
 *Several attempts over the course of a few days.*
 
@@ -75,6 +86,7 @@ how is figuring out <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref
 ```{=html}
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 ```
+
 I mean, sometimes you can skip reading documentation fully, make a few tweaks to your code, cross your fingers, and hope that everything works. GitHub Actions is probably not one of those things. 😬 Below are a few of the errors I suffered through to get this working; hopefully I can save you some of the pain!
 
 ### GitHub Actions
@@ -95,12 +107,49 @@ I mean, sometimes you can skip reading documentation fully, make a few tweaks to
 
     -   [`devtools::build_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html){target="*blank*"} is designed for use with R packages, and again, didn't work well on my blog repo.
 
-    -   After I ditched these and my README still wasn't rendering correctly, I really, truly thought I was going crazy. I finally found the `rmarkdown::render("README.Rmd", "github_document")` [solution on RStudio Community](https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7?u=shannon.pileggi){target="_blank_"} contributed by Chris Dervieux. I wonder if {distill} has some `YAML` stuff going on that required the `"github_document"` argument.
+    -   After I ditched these and my README still wasn't rendering correctly, I really, truly thought I was going crazy. I finally found a [solution on RStudio Community](https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7?u=shannon.pileggi){target="_blank_"} by updating `rmarkdown::render("README.Rmd")` to `rmarkdown::render("README.Rmd", "github_document")` in the `YAML` of the GitHub Action workflow. I wonder if {distill} has some `YAML` stuff going on that required the `"github_document"` argument.
 
 
-After much perseverance and persistence, I prevailed with my first GitHub Action. 💪 Perhaps reading the documentation more closely or slowing down to think through things might have worked better for this situation. If you want to have a laugh or or want to feel better about your own struggling efforts, browse through my 34 [commits](https://github.com/shannonpileggi/pipinghotdata_distill/commits/master){target="_blank"} Dec 1 - 12, 2021. Despite the frustration, I remain grateful for these experiences as I learned a lot.
+After much perseverance and persistence, I prevailed with my first GitHub Action. 💪 
 
-Also, side note moving forward, now that I have a GitHub Action workflow set up on my blog, when I open up my R project I now need to remember to pull before I start writing! 😯
+```{r gha, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Updated README file for the [`pipinghotdata_distill`](https://github.com/shannonpileggi/pipinghotdata_distill) 
+#|   GitHub repository, with the stats section automatically 
+#|   updated daily with GitHub Actions. 
+#| fig.alt: > 
+#|    The "some stats" section is automatically updated, including a rugline type
+#|    graphic with a single vertical line on the date of a each post.
+knitr::include_graphics("readme.PNG")
+```
+
+Perhaps reading the documentation more closely or slowing down to think through things might have worked better for this situation. If you want to have a laugh or or want to feel better about your own struggling efforts, browse through my 34 [commits](https://github.com/shannonpileggi/pipinghotdata_distill/commits/master){target="_blank"} or check out the corresponding [GitHub Action history](https://github.com/shannonpileggi/pipinghotdata_distill/actions){target="_blank"} Dec 1 - 12, 2021. Despite the frustration, I remain grateful for these experiences as I learned a lot.
+
+# Consequences
+
+### Giscus
+
+One unexpected side effect of using giscus is all of the automatic notifications I receive about the discussion. I get notifications for:
+
+1. on my blog: all comments
+
+2. on blogs by others:
+
+   + replies to my comments
+   
+   + all comments subsequent to mine, by anyone, as we are now all engaged in the same GitHub discussion.
+   
+The last one was a bit surprising to me, but I like it for now!
+
+
+### GitHub Actions
+
+Now that I am using GitHub Actions on the `README` of my repository, I am no longer the only contributor to my repository! 😯  This means
+that:
+
+1. When I open up my R project, I now need to remember to pull before I start working on my website.
+
+2. I like using a [branch approach](https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/){target="_blank"} to writing blog posts, and now I will have self-induced merge conflicts between my older `README` and the automatically updated `README`.
 
 # Acknowledgements
 
