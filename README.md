@@ -26,7 +26,8 @@ since 2020-08-30.
 ✍️ The last post was published **19** days ago ([Getting started with
 unit testing in
 R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)).
-Your feedback motivates me to keep writing. 😉
+As Yihui Xie advises, I try to write like no one is reading. But your
+feedback does help motivate me to keep writing. 😉
 
 ![](README_files/figure-gfm/plot-obj-1.png)<!-- -->
 
@@ -64,4 +65,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2021-12-12 15:48:09*
+*Updated 2021-12-12 20:14:53*
