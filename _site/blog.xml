@@ -86,11 +86,7 @@
 &lt;/ol&gt;
 &lt;p&gt;The last one was a bit surprising to me, but I like it for now!&lt;/p&gt;
 &lt;h3 id="github-actions-1"&gt;GitHub Actions&lt;/h3&gt;
-&lt;p&gt;Now that I am using GitHub Actions on the &lt;code&gt;README&lt;/code&gt; of my repository, I am no longer the only contributor to my repository! 😯 This means that:&lt;/p&gt;
-&lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;When I open up my R project, I now need to remember to pull before I start working on my website.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;I like using a &lt;a href="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/" target="_blank"&gt;branch approach&lt;/a&gt; to writing blog posts, and now I will have self-induced merge conflicts between my older &lt;code&gt;README&lt;/code&gt; and the automatically updated &lt;code&gt;README&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;Now that I am using GitHub Actions on the &lt;code&gt;README&lt;/code&gt; of my repository, I am no longer the only contributor to my repository! 😯 This means that when I open up my R project, I now need to remember to pull before I start working on my website.&lt;/p&gt;
 &lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
 &lt;p&gt;A big thank you to Travis Gerke for talking me through some GitHub Action concepts!&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>

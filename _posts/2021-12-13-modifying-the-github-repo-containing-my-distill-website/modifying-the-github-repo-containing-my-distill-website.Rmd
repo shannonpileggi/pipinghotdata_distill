@@ -145,11 +145,7 @@ The last one was a bit surprising to me, but I like it for now!
 ### GitHub Actions
 
 Now that I am using GitHub Actions on the `README` of my repository, I am no longer the only contributor to my repository! 😯  This means
-that:
-
-1. When I open up my R project, I now need to remember to pull before I start working on my website.
-
-2. I like using a [branch approach](https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/){target="_blank"} to writing blog posts, and now I will have self-induced merge conflicts between my older `README` and the automatically updated `README`.
+that when I open up my R project, I now need to remember to pull before I start working on my website.
 
 # Acknowledgements
 
