@@ -97,6 +97,11 @@ I mean, sometimes you can skip reading documentation fully, make a few tweaks to
 
 -   [`Workflow #2 (error)`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4404442737?check_suite_focus=true){target="_blank_"} I was lazy with my README and workflow and loaded `tidvyerse` instead of the specific packages I needed, which didn't go well. I tried to resolve this via the `pak` route (see next error), which also didn't go well, and ended up trimming back the dependencies to the essential ones.
 
+<aside>
+Check out Alison Hill working through some [unexpected GitHub Actions problems](https://www.youtube.com/watch?v=_ptrgqx2zUs&t=2754s){target="_blank"} with bookdown & Netlify!
+</aside>
+
+
 -   [`Workflow #10 (error)`](https://github.com/shannonpileggi/pipinghotdata_distill/runs/4410903654?check_suite_focus=true){target="_blank_"} I tried a few different things to install packages in the workflow with `pak` instead of `install.packages`. I attempted to use [`r-lib/actions/setup-r-dependencies`](https://github.com/r-lib/actions/tree/master/setup-r-dependencies){target="_blank_"}, and I really should have read the documentation thoroughly. My blog repo is not a package and does not have `DESCRIPTION` file. I tried to add a `DESCRIPTION` file to coerce this, but really, this workflow setup is made for packages. I also attempted to review the source of the workflow and make some tweaks to achieve something similar outside of the package framework, but to no avail. My workflow currently uses `install.packages()`. I could have tried [`r-lib/actions/setup-renv`](https://github.com/r-lib/actions/tree/master/setup-renv){target="_blank_"} instead, but I was tired. There are many errors in my workflow history that correspond to this experimentation.
 
 ### README
@@ -110,6 +115,7 @@ I mean, sometimes you can skip reading documentation fully, make a few tweaks to
     -   [`devtools::build_rmd()`](https://usethis.r-lib.org/reference/use_readme_rmd.html){target="*blank*"} is designed for use with R packages, and again, didn't work well on my blog repo.
 
     -   After I ditched these and my `README` still wasn't rendering correctly, I really, truly thought I was going crazy. I finally found a [solution on RStudio Community](https://community.rstudio.com/t/readme-rmd-in-a-bookdown-repo/93191/7){target="_blank_"} by updating `rmarkdown::render("README.Rmd")` to `rmarkdown::render("README.Rmd", "github_document")` in the `YAML` of the GitHub Action workflow. I wonder if {distill} has some `YAML` stuff going on that required the `"github_document"` argument.
+
 
 
 After much perseverance and persistence, I prevailed with my first GitHub Action. 💪 
