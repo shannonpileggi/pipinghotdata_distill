@@ -20,10 +20,10 @@ creators out there,
 
 🎉 Piping Hot Data has **18** posts since **2018-11-05**\!
 
-📅 That’s a post roughly every **26** days, or about 1.0 posts per month,
+📅 That’s a post roughly every **27** days, or about 1.0 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **0** days ago ([Modifying the GitHub
+✍️ The last post was published **22** days ago ([Modifying the GitHub
 repo containing my Distill
 website](https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website)).
 As Yihui Xie advises, I try to write like no one is reading. But your
@@ -65,4 +65,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2021-12-13 10:47:14*
+*Updated 2022-01-04 02:23:24*
