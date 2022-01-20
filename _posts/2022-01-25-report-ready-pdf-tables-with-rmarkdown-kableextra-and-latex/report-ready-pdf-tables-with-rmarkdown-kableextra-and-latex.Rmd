@@ -1,0 +1,44 @@
+---
+title: "Report Ready PDF tables with RMarkdown, kableExtra, and LaTex"
+description: |
+  A short description of the post.
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+author:
+  - name: Shannon Pileggi
+    url: {}
+preview: rmarkdown_wizards.png
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# TL; DR
+
+Customizing tables in PDF output is possible with `knitr`, `kableExtra` and a bit of LaTeX.
+
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.1.1                 |
+| RStudio             | 351 "Ghost Orchid"    |
+| `rmarkdown`         | 2.11                  |   
+| `knitr`             | 1.37                  |
+| `kableExtra`        | 1.3.4                 |
+| `tinytex`           | 0.34                  |
+| `gtsummary`         | ---                   |
+| `pandoc`            | 2.14.0.3              |
+
