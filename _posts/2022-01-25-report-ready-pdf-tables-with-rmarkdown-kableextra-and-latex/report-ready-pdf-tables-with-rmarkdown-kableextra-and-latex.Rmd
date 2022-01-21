@@ -37,7 +37,9 @@ knitr::include_graphics(here::here("_posts", "2022-01-25-report-ready-pdf-tables
 
 # TL; DR
 
-Customizing tables in PDF output is possible with `knitr`, `kableExtra` and a bit of LaTeX.
+Customizing tables in PDF output is possible with [`{knitr}`](https://yihui.org/knitr/){target="_blank"} , [`{kableExtra}`](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf){target="_blank"} and a
+bit of LaTeX. Recent updates available in [`{gtsummary}`](https://www.danieldsjoberg.com/gtsummary/){target="_blank"} 
+1.5.1 also allow users to more easily take advantage of these features in summary tables.
 
 # Packages
 
@@ -51,6 +53,23 @@ This material was developed using:
 | `knitr`             | 1.37                  |
 | `kableExtra`        | 1.3.4                 |
 | `tinytex`           | 0.34                  |
-| `gtsummary`         | ---                   |
+| `gtsummary`         | 1.5.1                 |
 | `pandoc`            | 2.14.0.3              |
 
+
+# Background
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Can anyone point me to a good R package that can create tables that are easily outputted in PDF. So far every package I have found seems to require numerous external packages and plug-ins in order to output the table as a PDF document. Any advice welcome.</p>&mdash; Charlie Harper (@charlieharperuk) <a href="https://twitter.com/charlieharperuk/status/1484149123372793859?ref_src=twsrc%5Etfw">January 20, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+You and me both, Charlie.  This is tricky. I tried to avoid the LaTeX route through
+[`{pagedown}`](https://pagedown.rbind.io/){target="_blank"} , but ultimately because I had many tables that varied in size and length, 
+this was not a quick approach.
+
+Here is a solution have landed upon; I hope it helps you and others as well. 
+If anyone has additional tips or approaches, please share in the comments!
+
+# YAML
+
+# Raw Data Tables
+
+# Summary Data Tables

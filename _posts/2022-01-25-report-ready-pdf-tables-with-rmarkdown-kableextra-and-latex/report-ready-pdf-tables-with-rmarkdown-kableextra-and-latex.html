@@ -1497,6 +1497,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#tl-dr">TL; DR</a></li>
 <li><a href="#packages">Packages</a></li>
+<li><a href="#background">Background</a></li>
+<li><a href="#yaml">YAML</a></li>
+<li><a href="#raw-data-tables">Raw Data Tables</a></li>
+<li><a href="#summary-data-tables">Summary Data Tables</a></li>
 </ul>
 </nav>
 </div>
@@ -1509,7 +1513,7 @@ Figure 1: Artwork by <a href="https://twitter.com/allison_horst?lang=en"><code>@
 </div>
 </div>
 <h1 id="tl-dr">TL; DR</h1>
-<p>Customizing tables in PDF output is possible with <code>knitr</code>, <code>kableExtra</code> and a bit of LaTeX.</p>
+<p>Customizing tables in PDF output is possible with <a href="https://yihui.org/knitr/" target="_blank"><code>{knitr}</code></a> , <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf" target="_blank"><code>{kableExtra}</code></a> and a bit of LaTeX. Recent updates available in <a href="https://www.danieldsjoberg.com/gtsummary/" target="_blank"><code>{gtsummary}</code></a> 1.5.1 also allow users to more easily take advantage of these features in summary tables.</p>
 <h1 id="packages">Packages</h1>
 <p>This material was developed using:</p>
 <table>
@@ -1546,7 +1550,7 @@ Figure 1: Artwork by <a href="https://twitter.com/allison_horst?lang=en"><code>@
 </tr>
 <tr class="odd">
 <td><code>gtsummary</code></td>
-<td>—</td>
+<td>1.5.1</td>
 </tr>
 <tr class="even">
 <td><code>pandoc</code></td>
@@ -1554,6 +1558,19 @@ Figure 1: Artwork by <a href="https://twitter.com/allison_horst?lang=en"><code>@
 </tr>
 </tbody>
 </table>
+<h1 id="background">Background</h1>
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">
+Can anyone point me to a good R package that can create tables that are easily outputted in PDF. So far every package I have found seems to require numerous external packages and plug-ins in order to output the table as a PDF document. Any advice welcome.
+</p>
+— Charlie Harper (<span class="citation" data-cites="charlieharperuk">@charlieharperuk</span>) <a href="https://twitter.com/charlieharperuk/status/1484149123372793859?ref_src=twsrc%5Etfw">January 20, 2022</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>You and me both, Charlie. This is tricky. I tried to avoid the LaTeX route through <a href="https://pagedown.rbind.io/" target="_blank"><code>{pagedown}</code></a> , but ultimately because I had many tables that varied in size and length, this was not a quick approach.</p>
+<p>Here is a solution have landed upon; I hope it helps you and others as well. If anyone has additional tips or approaches, please share in the comments!</p>
+<h1 id="yaml">YAML</h1>
+<h1 id="raw-data-tables">Raw Data Tables</h1>
+<h1 id="summary-data-tables">Summary Data Tables</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

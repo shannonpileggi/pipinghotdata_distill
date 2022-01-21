@@ -11,9 +11,9 @@
     ],
     "date": "2022-01-25",
     "categories": [],
-    "contents": "\r\n\r\nContents\r\nTL; DR\r\nPackages\r\n\r\n\r\n\r\n\r\nFigure 1: Artwork by @allison_horst.\r\n\r\n\r\n\r\nTL; DR\r\nCustomizing tables in PDF output is possible with knitr, kableExtra and a bit of LaTeX.\r\nPackages\r\nThis material was developed using:\r\nSoftware / package\r\nVersion\r\nR\r\n4.1.1\r\nRStudio\r\n351 “Ghost Orchid”\r\nrmarkdown\r\n2.11\r\nknitr\r\n1.37\r\nkableExtra\r\n1.3.4\r\ntinytex\r\n0.34\r\ngtsummary\r\n—\r\npandoc\r\n2.14.0.3\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\nContents\r\nTL; DR\r\nPackages\r\nBackground\r\nYAML\r\nRaw Data Tables\r\nSummary Data Tables\r\n\r\n\r\n\r\n\r\nFigure 1: Artwork by @allison_horst.\r\n\r\n\r\n\r\nTL; DR\r\nCustomizing tables in PDF output is possible with {knitr} , {kableExtra} and a bit of LaTeX. Recent updates available in {gtsummary} 1.5.1 also allow users to more easily take advantage of these features in summary tables.\r\nPackages\r\nThis material was developed using:\r\nSoftware / package\r\nVersion\r\nR\r\n4.1.1\r\nRStudio\r\n351 “Ghost Orchid”\r\nrmarkdown\r\n2.11\r\nknitr\r\n1.37\r\nkableExtra\r\n1.3.4\r\ntinytex\r\n0.34\r\ngtsummary\r\n1.5.1\r\npandoc\r\n2.14.0.3\r\nBackground\r\n\r\n\r\nCan anyone point me to a good R package that can create tables that are easily outputted in PDF. So far every package I have found seems to require numerous external packages and plug-ins in order to output the table as a PDF document. Any advice welcome.\r\n\r\n— Charlie Harper (@charlieharperuk) January 20, 2022\r\n\r\nYou and me both, Charlie. This is tricky. I tried to avoid the LaTeX route through {pagedown} , but ultimately because I had many tables that varied in size and length, this was not a quick approach.\r\nHere is a solution have landed upon; I hope it helps you and others as well. If anyone has additional tips or approaches, please share in the comments!\r\nYAML\r\nRaw Data Tables\r\nSummary Data Tables\r\n\r\n\r\n\r\n",
     "preview": "posts/2022-01-25-report-ready-pdf-tables-with-rmarkdown-kableextra-and-latex/rmarkdown_wizards.png",
-    "last_modified": "2022-01-20T20:46:10-05:00",
+    "last_modified": "2022-01-21T10:23:59-05:00",
     "input_file": "report-ready-pdf-tables-with-rmarkdown-kableextra-and-latex.knit.md",
     "preview_width": 3977,
     "preview_height": 2597

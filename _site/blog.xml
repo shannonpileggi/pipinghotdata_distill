@@ -22,7 +22,7 @@
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
-&lt;p&gt;Customizing tables in PDF output is possible with &lt;code&gt;knitr&lt;/code&gt;, &lt;code&gt;kableExtra&lt;/code&gt; and a bit of LaTeX.&lt;/p&gt;
+&lt;p&gt;Customizing tables in PDF output is possible with &lt;a href="https://yihui.org/knitr/" target="_blank"&gt;&lt;code&gt;{knitr}&lt;/code&gt;&lt;/a&gt; , &lt;a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf" target="_blank"&gt;&lt;code&gt;{kableExtra}&lt;/code&gt;&lt;/a&gt; and a bit of LaTeX. Recent updates available in &lt;a href="https://www.danieldsjoberg.com/gtsummary/" target="_blank"&gt;&lt;code&gt;{gtsummary}&lt;/code&gt;&lt;/a&gt; 1.5.1 also allow users to more easily take advantage of these features in summary tables.&lt;/p&gt;
 &lt;h1 id="packages"&gt;Packages&lt;/h1&gt;
 &lt;p&gt;This material was developed using:&lt;/p&gt;
 &lt;table&gt;
@@ -59,7 +59,7 @@
 &lt;/tr&gt;
 &lt;tr class="odd"&gt;
 &lt;td&gt;&lt;code&gt;gtsummary&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;—&lt;/td&gt;
+&lt;td&gt;1.5.1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr class="even"&gt;
 &lt;td&gt;&lt;code&gt;pandoc&lt;/code&gt;&lt;/td&gt;
@@ -67,6 +67,19 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h1 id="background"&gt;Background&lt;/h1&gt;
+&lt;blockquote class="twitter-tweet"&gt;
+&lt;p lang="en" dir="ltr"&gt;
+Can anyone point me to a good R package that can create tables that are easily outputted in PDF. So far every package I have found seems to require numerous external packages and plug-ins in order to output the table as a PDF document. Any advice welcome.
+&lt;/p&gt;
+— Charlie Harper (&lt;span class="citation"&gt;@charlieharperuk&lt;/span&gt;) &lt;a href="https://twitter.com/charlieharperuk/status/1484149123372793859?ref_src=twsrc%5Etfw"&gt;January 20, 2022&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;p&gt;You and me both, Charlie. This is tricky. I tried to avoid the LaTeX route through &lt;a href="https://pagedown.rbind.io/" target="_blank"&gt;&lt;code&gt;{pagedown}&lt;/code&gt;&lt;/a&gt; , but ultimately because I had many tables that varied in size and length, this was not a quick approach.&lt;/p&gt;
+&lt;p&gt;Here is a solution have landed upon; I hope it helps you and others as well. If anyone has additional tips or approaches, please share in the comments!&lt;/p&gt;
+&lt;h1 id="yaml"&gt;YAML&lt;/h1&gt;
+&lt;h1 id="raw-data-tables"&gt;Raw Data Tables&lt;/h1&gt;
+&lt;h1 id="summary-data-tables"&gt;Summary Data Tables&lt;/h1&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>135cafb37613f8d44e6a3df626f9d3ed</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-01-25-report-ready-pdf-tables-with-rmarkdown-kableextra-and-latex</guid>
