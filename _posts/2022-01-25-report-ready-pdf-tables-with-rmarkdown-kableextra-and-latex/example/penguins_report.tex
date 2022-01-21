@@ -1,0 +1,333 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  landscape]{article}
+\title{Penguins Report}
+\author{Shannon Pileggi}
+\date{2022-01-21}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Penguins Report},
+  pdfauthor={Shannon Pileggi},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{helvet} \renewcommand\familydefault{\sfdefault}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\newpage{}
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+\hypertarget{set-up}{%
+\section{Set Up}\label{set-up}}
+
+\hypertarget{chunk-settings}{%
+\subsection{Chunk Settings}\label{chunk-settings}}
+
+\hypertarget{packages}{%
+\subsection{Packages}\label{packages}}
+
+\hypertarget{knitr-settings}{%
+\subsection{knitr settings}\label{knitr-settings}}
+
+\hypertarget{raw-data}{%
+\section{Raw Data}\label{raw-data}}
+
+\hypertarget{default-column-names}{%
+\subsection{Default Column Names}\label{default-column-names}}
+
+\begin{longtable}[l]{llllllll}
+\toprule
+species & island & bill\_length\_mm & bill\_depth\_mm & flipper\_length\_mm & body\_mass\_g & sex & year\\
+\midrule
+\endfirsthead
+\multicolumn{8}{@{}l}{\textit{(continued)}}\\
+\toprule
+species & island & bill\_length\_mm & bill\_depth\_mm & flipper\_length\_mm & body\_mass\_g & sex & year\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{39.1} & \cellcolor{gray!15}{18.7} & \cellcolor{gray!15}{181} & \cellcolor{gray!15}{3750} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 39.5 & 17.4 & 186 & 3800 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{40.3} & \cellcolor{gray!15}{18.0} & \cellcolor{gray!15}{195} & \cellcolor{gray!15}{3250} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen &  &  &  &  &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{36.7} & \cellcolor{gray!15}{19.3} & \cellcolor{gray!15}{193} & \cellcolor{gray!15}{3450} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 39.3 & 20.6 & 190 & 3650 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{38.9} & \cellcolor{gray!15}{17.8} & \cellcolor{gray!15}{181} & \cellcolor{gray!15}{3625} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 39.2 & 19.6 & 195 & 4675 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{34.1} & \cellcolor{gray!15}{18.1} & \cellcolor{gray!15}{193} & \cellcolor{gray!15}{3475} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 42.0 & 20.2 & 190 & 4250 &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{37.8} & \cellcolor{gray!15}{17.1} & \cellcolor{gray!15}{186} & \cellcolor{gray!15}{3300} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 37.8 & 17.3 & 180 & 3700 &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{41.1} & \cellcolor{gray!15}{17.6} & \cellcolor{gray!15}{182} & \cellcolor{gray!15}{3200} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 38.6 & 21.2 & 191 & 3800 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{34.6} & \cellcolor{gray!15}{21.1} & \cellcolor{gray!15}{198} & \cellcolor{gray!15}{4400} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 36.6 & 17.8 & 185 & 3700 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{38.7} & \cellcolor{gray!15}{19.0} & \cellcolor{gray!15}{195} & \cellcolor{gray!15}{3450} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 42.5 & 20.7 & 197 & 4500 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{34.4} & \cellcolor{gray!15}{18.4} & \cellcolor{gray!15}{184} & \cellcolor{gray!15}{3325} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 46.0 & 21.5 & 194 & 4200 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{37.8} & \cellcolor{gray!15}{18.3} & \cellcolor{gray!15}{174} & \cellcolor{gray!15}{3400} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 37.7 & 18.7 & 180 & 3600 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{35.9} & \cellcolor{gray!15}{19.2} & \cellcolor{gray!15}{189} & \cellcolor{gray!15}{3800} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 38.2 & 18.1 & 185 & 3950 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{38.8} & \cellcolor{gray!15}{17.2} & \cellcolor{gray!15}{180} & \cellcolor{gray!15}{3800} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 35.3 & 18.9 & 187 & 3800 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{40.6} & \cellcolor{gray!15}{18.6} & \cellcolor{gray!15}{183} & \cellcolor{gray!15}{3550} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 40.5 & 17.9 & 187 & 3200 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{37.9} & \cellcolor{gray!15}{18.6} & \cellcolor{gray!15}{172} & \cellcolor{gray!15}{3150} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 40.5 & 18.9 & 180 & 3950 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{39.5} & \cellcolor{gray!15}{16.7} & \cellcolor{gray!15}{178} & \cellcolor{gray!15}{3250} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 37.2 & 18.1 & 178 & 3900 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{39.5} & \cellcolor{gray!15}{17.8} & \cellcolor{gray!15}{188} & \cellcolor{gray!15}{3300} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 40.9 & 18.9 & 184 & 3900 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.4} & \cellcolor{gray!15}{17.0} & \cellcolor{gray!15}{195} & \cellcolor{gray!15}{3325} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 39.2 & 21.1 & 196 & 4150 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{38.8} & \cellcolor{gray!15}{20.0} & \cellcolor{gray!15}{190} & \cellcolor{gray!15}{3950} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 42.2 & 18.5 & 180 & 3550 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{37.6} & \cellcolor{gray!15}{19.3} & \cellcolor{gray!15}{181} & \cellcolor{gray!15}{3300} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 39.8 & 19.1 & 184 & 4650 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.5} & \cellcolor{gray!15}{18.0} & \cellcolor{gray!15}{182} & \cellcolor{gray!15}{3150} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 40.8 & 18.4 & 195 & 3900 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.0} & \cellcolor{gray!15}{18.5} & \cellcolor{gray!15}{186} & \cellcolor{gray!15}{3100} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 44.1 & 19.7 & 196 & 4400 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{37.0} & \cellcolor{gray!15}{16.9} & \cellcolor{gray!15}{185} & \cellcolor{gray!15}{3000} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 39.6 & 18.8 & 190 & 4600 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{41.1} & \cellcolor{gray!15}{19.0} & \cellcolor{gray!15}{182} & \cellcolor{gray!15}{3425} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 37.5 & 18.9 & 179 & 2975 &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.0} & \cellcolor{gray!15}{17.9} & \cellcolor{gray!15}{190} & \cellcolor{gray!15}{3450} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 42.3 & 21.2 & 191 & 4150 & male & 2007\\*
+\end{longtable}
+
+\hypertarget{custom-column-names}{%
+\subsection{Custom Column Names}\label{custom-column-names}}
+
+\begin{longtable}[l]{llllllll}
+\toprule
+species & island & \makecell[l]{bill\\length\\mm} & \makecell[l]{bill\\depth\\mm} & \makecell[l]{flipper\\length\\mm} & \makecell[l]{body\\mass\\g} & sex & year\\
+\midrule
+\endfirsthead
+\multicolumn{8}{@{}l}{\textit{(continued)}}\\
+\toprule
+species & island & \makecell[l]{bill\\length\\mm} & \makecell[l]{bill\\depth\\mm} & \makecell[l]{flipper\\length\\mm} & \makecell[l]{body\\mass\\g} & sex & year\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{39.1} & \cellcolor{gray!15}{18.7} & \cellcolor{gray!15}{181} & \cellcolor{gray!15}{3750} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 39.5 & 17.4 & 186 & 3800 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{40.3} & \cellcolor{gray!15}{18.0} & \cellcolor{gray!15}{195} & \cellcolor{gray!15}{3250} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen &  &  &  &  &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{36.7} & \cellcolor{gray!15}{19.3} & \cellcolor{gray!15}{193} & \cellcolor{gray!15}{3450} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 39.3 & 20.6 & 190 & 3650 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{38.9} & \cellcolor{gray!15}{17.8} & \cellcolor{gray!15}{181} & \cellcolor{gray!15}{3625} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 39.2 & 19.6 & 195 & 4675 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{34.1} & \cellcolor{gray!15}{18.1} & \cellcolor{gray!15}{193} & \cellcolor{gray!15}{3475} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 42.0 & 20.2 & 190 & 4250 &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{37.8} & \cellcolor{gray!15}{17.1} & \cellcolor{gray!15}{186} & \cellcolor{gray!15}{3300} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 37.8 & 17.3 & 180 & 3700 &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{41.1} & \cellcolor{gray!15}{17.6} & \cellcolor{gray!15}{182} & \cellcolor{gray!15}{3200} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 38.6 & 21.2 & 191 & 3800 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{34.6} & \cellcolor{gray!15}{21.1} & \cellcolor{gray!15}{198} & \cellcolor{gray!15}{4400} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 36.6 & 17.8 & 185 & 3700 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{38.7} & \cellcolor{gray!15}{19.0} & \cellcolor{gray!15}{195} & \cellcolor{gray!15}{3450} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 42.5 & 20.7 & 197 & 4500 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Torgersen} & \cellcolor{gray!15}{34.4} & \cellcolor{gray!15}{18.4} & \cellcolor{gray!15}{184} & \cellcolor{gray!15}{3325} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Torgersen & 46.0 & 21.5 & 194 & 4200 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{37.8} & \cellcolor{gray!15}{18.3} & \cellcolor{gray!15}{174} & \cellcolor{gray!15}{3400} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 37.7 & 18.7 & 180 & 3600 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{35.9} & \cellcolor{gray!15}{19.2} & \cellcolor{gray!15}{189} & \cellcolor{gray!15}{3800} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 38.2 & 18.1 & 185 & 3950 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{38.8} & \cellcolor{gray!15}{17.2} & \cellcolor{gray!15}{180} & \cellcolor{gray!15}{3800} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 35.3 & 18.9 & 187 & 3800 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{40.6} & \cellcolor{gray!15}{18.6} & \cellcolor{gray!15}{183} & \cellcolor{gray!15}{3550} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 40.5 & 17.9 & 187 & 3200 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Biscoe} & \cellcolor{gray!15}{37.9} & \cellcolor{gray!15}{18.6} & \cellcolor{gray!15}{172} & \cellcolor{gray!15}{3150} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Biscoe & 40.5 & 18.9 & 180 & 3950 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{39.5} & \cellcolor{gray!15}{16.7} & \cellcolor{gray!15}{178} & \cellcolor{gray!15}{3250} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 37.2 & 18.1 & 178 & 3900 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{39.5} & \cellcolor{gray!15}{17.8} & \cellcolor{gray!15}{188} & \cellcolor{gray!15}{3300} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 40.9 & 18.9 & 184 & 3900 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.4} & \cellcolor{gray!15}{17.0} & \cellcolor{gray!15}{195} & \cellcolor{gray!15}{3325} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 39.2 & 21.1 & 196 & 4150 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{38.8} & \cellcolor{gray!15}{20.0} & \cellcolor{gray!15}{190} & \cellcolor{gray!15}{3950} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 42.2 & 18.5 & 180 & 3550 & female & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{37.6} & \cellcolor{gray!15}{19.3} & \cellcolor{gray!15}{181} & \cellcolor{gray!15}{3300} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 39.8 & 19.1 & 184 & 4650 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.5} & \cellcolor{gray!15}{18.0} & \cellcolor{gray!15}{182} & \cellcolor{gray!15}{3150} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 40.8 & 18.4 & 195 & 3900 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.0} & \cellcolor{gray!15}{18.5} & \cellcolor{gray!15}{186} & \cellcolor{gray!15}{3100} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 44.1 & 19.7 & 196 & 4400 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{37.0} & \cellcolor{gray!15}{16.9} & \cellcolor{gray!15}{185} & \cellcolor{gray!15}{3000} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 39.6 & 18.8 & 190 & 4600 & male & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{41.1} & \cellcolor{gray!15}{19.0} & \cellcolor{gray!15}{182} & \cellcolor{gray!15}{3425} & \cellcolor{gray!15}{male} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 37.5 & 18.9 & 179 & 2975 &  & 2007\\
+\cellcolor{gray!15}{Adelie} & \cellcolor{gray!15}{Dream} & \cellcolor{gray!15}{36.0} & \cellcolor{gray!15}{17.9} & \cellcolor{gray!15}{190} & \cellcolor{gray!15}{3450} & \cellcolor{gray!15}{female} & \cellcolor{gray!15}{2007}\\
+Adelie & Dream & 42.3 & 21.2 & 191 & 4150 & male & 2007\\*
+\end{longtable}
+
+\hypertarget{summary-data}{%
+\section{Summary Data}\label{summary-data}}
+
+\hypertarget{default-column-names-1}{%
+\subsection{Default column names}\label{default-column-names-1}}
+
+\begin{longtable}[l]{>{}lccc}
+\toprule
+Characteristic & Adelie, N = 152 & Chinstrap, N = 68 & Gentoo, N = 124\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\textit{(continued)}}\\
+\toprule
+Characteristic & Adelie, N = 152 & Chinstrap, N = 68 & Gentoo, N = 124\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+\cellcolor{gray!15}{\textbf{island}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
+\hspace{1em}Biscoe & 44 (29\%) & 0 (0\%) & 124 (100\%)\\
+\cellcolor{gray!15}{\hspace{1em}Dream} & \cellcolor{gray!15}{56 (37\%)} & \cellcolor{gray!15}{68 (100\%)} & \cellcolor{gray!15}{0 (0\%)}\\
+\hspace{1em}Torgersen & 52 (34\%) & 0 (0\%) & 0 (0\%)\\
+\cellcolor{gray!15}{\textbf{bill\_length\_mm}} & \cellcolor{gray!15}{38.8 (36.8, 40.8)} & \cellcolor{gray!15}{49.5 (46.3, 51.1)} & \cellcolor{gray!15}{47.3 (45.3, 49.5)}\\
+\hspace{1em}Unknown & 1 & 0 & \vphantom{3} 1\\
+\cellcolor{gray!15}{\textbf{bill\_depth\_mm}} & \cellcolor{gray!15}{18.40 (17.50, 19.00)} & \cellcolor{gray!15}{18.45 (17.50, 19.40)} & \cellcolor{gray!15}{15.00 (14.20, 15.70)}\\
+\hspace{1em}Unknown & 1 & 0 & \vphantom{2} 1\\
+\cellcolor{gray!15}{\textbf{flipper\_length\_mm}} & \cellcolor{gray!15}{190 (186, 195)} & \cellcolor{gray!15}{196 (191, 201)} & \cellcolor{gray!15}{216 (212, 221)}\\
+\hspace{1em}Unknown & 1 & 0 & \vphantom{1} 1\\
+\cellcolor{gray!15}{\textbf{body\_mass\_g}} & \cellcolor{gray!15}{3,700 (3,350, 4,000)} & \cellcolor{gray!15}{3,700 (3,488, 3,950)} & \cellcolor{gray!15}{5,000 (4,700, 5,500)}\\
+\hspace{1em}Unknown & 1 & 0 & 1\\
+\cellcolor{gray!15}{\textbf{sex}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
+\hspace{1em}female & 73 (50\%) & 34 (50\%) & 58 (49\%)\\
+\cellcolor{gray!15}{\hspace{1em}male} & \cellcolor{gray!15}{73 (50\%)} & \cellcolor{gray!15}{34 (50\%)} & \cellcolor{gray!15}{61 (51\%)}\\
+\hspace{1em}Unknown & 6 & 0 & 5\\
+\cellcolor{gray!15}{\textbf{year}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
+\hspace{1em}2007 & 50 (33\%) & 26 (38\%) & 34 (27\%)\\
+\cellcolor{gray!15}{\hspace{1em}2008} & \cellcolor{gray!15}{50 (33\%)} & \cellcolor{gray!15}{18 (26\%)} & \cellcolor{gray!15}{46 (37\%)}\\
+\hspace{1em}2009 & 52 (34\%) & 24 (35\%) & 44 (35\%)\\*
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{1} n (\%); Median (IQR)}\\
+\end{longtable}
+
+\hypertarget{custom-column-names-1}{%
+\subsection{Custom column names}\label{custom-column-names-1}}
+
+\begin{longtable}[l]{lccc}
+\toprule
+\makecell[l]{\textbf{Characteristic}\\} & \makecell[l]{\textbf{Adelie}\\N = 152} & \makecell[l]{\textbf{Chinstrap}\\N = 68} & \makecell[l]{\textbf{Gentoo}\\N = 124}\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\textit{(continued)}}\\
+\toprule
+\makecell[l]{\textbf{Characteristic}\\} & \makecell[l]{\textbf{Adelie}\\N = 152} & \makecell[l]{\textbf{Chinstrap}\\N = 68} & \makecell[l]{\textbf{Gentoo}\\N = 124}\\
+\midrule
+\endhead
+
+\endfoot
+\bottomrule
+\endlastfoot
+\cellcolor{gray!15}{\textbf{island}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
+\hspace{1em}Biscoe & 44 (29\%) & 0 (0\%) & 124 (100\%)\\
+\cellcolor{gray!15}{\hspace{1em}Dream} & \cellcolor{gray!15}{56 (37\%)} & \cellcolor{gray!15}{68 (100\%)} & \cellcolor{gray!15}{0 (0\%)}\\
+\hspace{1em}Torgersen & 52 (34\%) & 0 (0\%) & 0 (0\%)\\
+\cellcolor{gray!15}{\textbf{bill\_length\_mm}} & \cellcolor{gray!15}{38.8 (36.8, 40.8)} & \cellcolor{gray!15}{49.5 (46.3, 51.1)} & \cellcolor{gray!15}{47.3 (45.3, 49.5)}\\
+\hspace{1em}Unknown & 1 & 0 & \vphantom{3} 1\\
+\cellcolor{gray!15}{\textbf{bill\_depth\_mm}} & \cellcolor{gray!15}{18.40 (17.50, 19.00)} & \cellcolor{gray!15}{18.45 (17.50, 19.40)} & \cellcolor{gray!15}{15.00 (14.20, 15.70)}\\
+\hspace{1em}Unknown & 1 & 0 & \vphantom{2} 1\\
+\cellcolor{gray!15}{\textbf{flipper\_length\_mm}} & \cellcolor{gray!15}{190 (186, 195)} & \cellcolor{gray!15}{196 (191, 201)} & \cellcolor{gray!15}{216 (212, 221)}\\
+\hspace{1em}Unknown & 1 & 0 & \vphantom{1} 1\\
+\cellcolor{gray!15}{\textbf{body\_mass\_g}} & \cellcolor{gray!15}{3,700 (3,350, 4,000)} & \cellcolor{gray!15}{3,700 (3,488, 3,950)} & \cellcolor{gray!15}{5,000 (4,700, 5,500)}\\
+\hspace{1em}Unknown & 1 & 0 & 1\\
+\cellcolor{gray!15}{\textbf{sex}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
+\hspace{1em}female & 73 (50\%) & 34 (50\%) & 58 (49\%)\\
+\cellcolor{gray!15}{\hspace{1em}male} & \cellcolor{gray!15}{73 (50\%)} & \cellcolor{gray!15}{34 (50\%)} & \cellcolor{gray!15}{61 (51\%)}\\
+\hspace{1em}Unknown & 6 & 0 & 5\\
+\cellcolor{gray!15}{\textbf{year}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
+\hspace{1em}2007 & 50 (33\%) & 26 (38\%) & 34 (27\%)\\
+\cellcolor{gray!15}{\hspace{1em}2008} & \cellcolor{gray!15}{50 (33\%)} & \cellcolor{gray!15}{18 (26\%)} & \cellcolor{gray!15}{46 (37\%)}\\
+\hspace{1em}2009 & 52 (34\%) & 24 (35\%) & 44 (35\%)\\*
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{1} Median (IQR); n (\%)}\\
+\end{longtable}
+
+\end{document}
