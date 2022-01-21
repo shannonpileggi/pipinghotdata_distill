@@ -1,5 +1,5 @@
 ---
-title: "Report Ready PDF tables with RMarkdown, kableExtra, and LaTex"
+title: "Report Ready PDF tables with rmarkdown, knitr, kableExtra, and LaTex"
 description: |
   A short description of the post.
 base_url: https://www.pipinghotdata.com/
@@ -9,6 +9,7 @@ twitter:
 author:
   - name: Shannon Pileggi
     url: {}
+date: 2022-01-25
 preview: rmarkdown_wizards.png
 output:
   distill::distill_article:
@@ -24,10 +25,21 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Artwork by [`@allison_horst`](https://twitter.com/allison_horst?lang=en). 
+#| fig.alt: > 
+#|    Rmarkdown. Text. Code. Output. (Get it together people.)
+#|    Two wizard creatures reading a recipe and mixing potions in black cauldrons 
+#|    to produce a report.
+knitr::include_graphics(here::here("_posts", "2022-01-25-report-ready-pdf-tables-with-rmarkdown-kableextra-and-latex", "rmarkdown_wizards.png"))
+```
+
 # TL; DR
 
 Customizing tables in PDF output is possible with `knitr`, `kableExtra` and a bit of LaTeX.
 
+# Packages
 
 This material was developed using:
 
