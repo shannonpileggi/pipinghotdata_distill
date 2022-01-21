@@ -45,7 +45,7 @@ library(palmerpenguins)
 ## knitr settings
 
 ```{r knitr-options}
-# Displays blank instead of NA for missign values
+# Displays blank instead of NA for missing values
 options(knitr.kable.NA = '') 
 ```
 
