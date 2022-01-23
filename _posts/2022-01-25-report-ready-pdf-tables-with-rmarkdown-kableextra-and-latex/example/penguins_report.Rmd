@@ -144,27 +144,21 @@ tbl <- penguins %>%
     statistic = list(all_categorical() ~ "{n} ({p}\\%)")
   ) %>%
   bold_labels() %>%
+  modify_header(
+    label = "\\textbf{{Characteristic}}", 
+    all_stat_cols() ~ "\\textbf{{{level}}}\nN = {n}"
+  ) %>% 
   modify_footnote(
      update = all_stat_cols() ~ "Median (IQR); n (%)"
   ) 
 ```
 
-
 ```{r}
 tbl_names <- tbl$table_styling$header %>% 
-  filter(str_detect(column, "stat|^label")) %>% 
-  select(label) %>% 
-  mutate(
-    row_1 = str_extract(label, "\\*\\*.*\\*\\*") %>% 
-      str_remove_all(pattern = fixed("**")) %>% 
-      sprintf("\\textbf{%s}", .),
-    row_2 = str_remove_all(label, ".*\\*\\*") %>% 
-      str_remove(", "),
-    styled_names = glue::glue("{row_1}\n{row_2}")
-  ) %>% 
-  pull(styled_names) %>% 
-  as.character()
+  filter(hide == FALSE) %>% 
+  pull(label)
 ```
+
 
 ```{r}
 tbl %>% 
@@ -173,7 +167,7 @@ tbl %>%
     booktabs = TRUE,
     longtable = TRUE,
     linesep = "",
-    col.names = linebreak(tbl_names, align = "l"),
+    col.names = linebreak(tbl_names, align = c("l", "c", "c", "c")),
     escape = FALSE
     ) %>%
   kableExtra::kable_styling(
