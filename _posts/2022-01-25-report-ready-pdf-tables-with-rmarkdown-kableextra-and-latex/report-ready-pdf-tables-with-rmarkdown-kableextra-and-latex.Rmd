@@ -9,7 +9,7 @@ twitter:
 author:
   - name: Shannon Pileggi
     url: {}
-date: 2022-01-25
+date: 2022-01-24
 preview: rmarkdown_wizards.png
 output:
   distill::distill_article:
