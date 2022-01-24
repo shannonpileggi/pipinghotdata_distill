@@ -433,4 +433,5 @@ possible. 🥂
 Thank you [Daniel
 Sjoberg](https://twitter.com/statistishdan){target="_blank"} for
 updating {gtsummary} to make printing to pdf more streamlined for summary tables! 🎉 And
-for kindly providing feedback on this post.
+for kindly providing feedback on this post. Also, thanks to [Travis Gerke](https://twitter.com/travisgerke){target="_blank"} for tips on 
+leveraging LaTeX via rmarkdown.
