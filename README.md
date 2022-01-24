@@ -18,14 +18,14 @@ creators out there,
 
 # Some stats ⚠️ WIP
 
-🎉 Piping Hot Data has **18** posts since **2018-11-05**\!
+🎉 Piping Hot Data has **19** posts since **2018-11-05**\!
 
-📅 That’s a post roughly every **28** days, or about 0.9 posts per month,
+📅 That’s a post roughly every **27** days, or about 1.0 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **38** days ago ([Modifying the GitHub
-repo containing my Distill
-website](https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website)).
+✍️ The last post was published **0** days ago ([Report Ready PDF tables
+with rmarkdown, knitr, kableExtra, and
+LaTeX](https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex)).
 As Yihui Xie advises, I try to write like no one is reading. But your
 feedback does help motivate me to keep writing. 😉
 
@@ -37,6 +37,7 @@ feedback does help motivate me to keep writing. 😉
 
 | Date       | Title                                                                                                                                                                                             |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2022-01-24 | [Report Ready PDF tables with rmarkdown, knitr, kableExtra, and LaTeX](https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex)          |
 | 2021-12-13 | [Modifying the GitHub repo containing my Distill website](https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website)                                 |
 | 2021-11-23 | [Getting started with unit testing in R](https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r)                                                                   |
 | 2021-10-11 | [Estimating correlations adjusted for group membership](https://www.pipinghotdata.com/posts/2021-10-11-estimating-correlations-adjusted-for-group-membership)                                     |
@@ -65,4 +66,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-01-20 21:07:51*
+*Updated 2022-01-24 14:32:37*
