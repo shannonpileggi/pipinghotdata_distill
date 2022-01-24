@@ -10,7 +10,7 @@ author:
   - name: Shannon Pileggi
     url: {}
 date: 2022-01-24
-preview: rmarkdown_wizards.png
+preview: img/pdf_scroll.gif
 output:
   distill::distill_article:
     toc: true
@@ -25,7 +25,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-folder <- "2022-01-25-report-ready-pdf-tables-with-rmarkdown-kableextra-and-latex"
+folder <- "2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex"
 ```
 
 ```{r thumbnail, eval=TRUE, echo=FALSE}
