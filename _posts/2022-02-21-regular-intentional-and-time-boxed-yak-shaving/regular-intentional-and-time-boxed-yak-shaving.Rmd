@@ -1,0 +1,103 @@
+---
+title: "Regular, intentional, and time-boxed yak shaving."
+description: | 
+  Incremental deeper learning.
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 2022-02-21
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 1
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(tweetrmd)
+```
+
+# TL; DR
+
+# Background
+
+When Jenny Bryan tweeted this a year ago, I thought about it. For a long time.
+
+```{r}
+tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/1366107942487949312")
+```
+
+Jenny made the process of yak shaving sound so logical, structured, and easy. My 
+efforts to become a better programmer usually make me want to throw my computer out the
+window with bouts of documentation deep dives and mad Google searches. Until I 
+achieve the bliss of incremental learning. 🧘
+
+I had the wonderful opportunity to discuss this with Jenny; here is a summary
+of our discussion.
+
+# Yak shaving
+
+
+From [Jessie Kerr](https://jessitron.com/2017/07/03/a-taxonomy-of-yak-shaving/){target="_blank"}
+
+> Yak Shaving is: doing seemingly-unrelated tasks to get some real task done.
+
+
+I had never heard of a yak shave before, so I read a lot of people's takes on it.
+For some, the yak shave can have negative connotations as a time suck that prevents 
+a goal from realization. Others, like Jenny and Jessica, frame it as a growth opportunity, 
+if well-positioned.
+
+For this this article, we are discussing a fundamentally reactive (not proactive 
+or creative) processes. Learning how complicated tasks mostly out of our control
+interact with each other. Adopting a more productive debugging mindset than, 
+"Gosh, R is weird." Iterating on workflows that can be improved. 
+
+
+# Regular
+
+Take opportunities to yak shave productively on a regular basis. Not all yaks are 
+equal in size - think about a mini yak on most days, a medium yak most weeks, and
+a large yak once a month. Of course, this depends 
+
+When you are against a deadline or have a complicated problem loaded into your brain,
+this is not the best time to do this. Consider approaching this after you have 
+completed a big chunk of work and you are settling into the next thing. Often it 
+is something you found a workaround for in a recent project, but  now now you’re 
+circling back for a more proper exploration and, if you’re lucky, solution.
+
+# Intentional
+
+What items make for a good yak shave? Jenny documents "notes to self" with little
+hangnails or things you don't understand. That can provide evidence of tasks that
+repeatedly cause friction in workflows. Consider tackling items of high frequency
+and those that have painful workarounds. Solving workflow problems that affect 
+every single project your work on has great impact.
+
+
+From Jenny: Then eventually I’ll take the time to get to the bottom of it.
+
+<aside>
+This sounds similar in spirit to [friction logs](https://www.trychameleon.com/blog/friction-logs){target="_blank"} that Alison Hill advocates for good product management, though perhaps not as in depth.
+</aside>
+
+# Time-boxed 
+
+# My practices
+
+strike the balance between incremental elevations / solutions with reality and time constraints. It is ok to not to not have perfect solutions, the key is that you keep moving forward. And some days moving forward is actually maintaining the status quo, and other days moving forward means development and change.
+
+As Jessica Kerr [shared](https://jessitron.com/2021/02/27/one-key-trick-to-becoming-a-wizard-developer/), 
+broadening your knowledge through yak-shaving can come in handy at unpredictable times. 
+When you can, go forward and dig in a bit.
