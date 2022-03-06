@@ -32,8 +32,10 @@ library(tweetrmd)
 
 # Background
 
-A year ago, Jenny Bryan tweeted advice that made the process of yak shaving sound
-so logical, structured, and easy. 
+Jenny Bryan, a Software Engineer at RStudio, is known for developing R packages
+and educational materials, especially as they relate to reducing friction in workflows. 
+A year ago, Jenny tweeted advice regarding the concept of "yak shaving" that made
+self-improvement sound so logical, structured, and easy. 
 
 ```{r}
 tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/1366107942487949312")
