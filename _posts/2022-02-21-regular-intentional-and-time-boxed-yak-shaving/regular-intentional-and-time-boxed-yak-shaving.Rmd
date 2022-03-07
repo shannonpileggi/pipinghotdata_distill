@@ -43,7 +43,7 @@ knitr::include_graphics("img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg")
 # TL; DR
 
 This post summarizes a conversation with Jenny Bryan about the process of self-improvement
-via yak shaves with the following topics: 
+via yak shaves with: 
 
 1. Background.
 
@@ -51,7 +51,7 @@ via yak shaves with the following topics:
 
 3. A productive yak shaving framework: regular, intentional, and time-boxed.
 
-4. My personal reflection on how I have adopted and leveraged this framework.
+4. My personal reflection on this mentality.
 
 In this post, I share our summarized conversation. Throughout, text
 in quote blocks with "JB" are direct quotes from Jenny.
@@ -59,7 +59,7 @@ in quote blocks with "JB" are direct quotes from Jenny.
 # 1. Background
 
 [Jenny Bryan](https://jennybryan.org/{target="_blank"}), a Software Engineer at RStudio, is known for developing R packages
-and educational materials, especially as they relate to reducing friction in workflows. 
+and educational materials, especially as they relate to creating efficient workflows. 
 A year ago, Jenny tweeted advice regarding the concept of "yak shaving" that made
 the process of self-improvement sound logical, structured, and easy. 
 
@@ -69,7 +69,7 @@ tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/13661079424879493
 
 But learning new methods in or related to R can be a daunting and overwhelming process.
 It is easy to feel like everyone else knows _X_, and you are behind. The learning
-is not necessarily linear, and there often is not a set syllabus or milestones to follow.
+is not necessarily linear, and there often is not a well-defined set of milestones to aspire to.
 I thought about it for a long time, and...
 
 ```{r}
@@ -83,7 +83,7 @@ that I chase with out a resolution - is it OK for me to move on even if I suspec
 it will come back to me?
 
 Discussing these kinds of questions with Jenny helped me normalize the learning process
-and approach it with a focused, rather than overwhelmed, attitude.
+and approach it with a focused and positive mindset.
 
 # 2. What is yak shaving?
 
@@ -155,14 +155,15 @@ But now you’re circling back for a more proper exploration and, if you’re lu
 ## Time-boxed
 
 Time boxing can be flexible, as tasks differ in size and scope. Time boxing also
-does not necessarily mean that you hold yourself to complete a task
+does not necessarily mean that you hold yourself to completing a task
 in a single setting. 
 
 > JB: I liked how Jessie mentioned in the blog post that she actually did take
 the easy way out, to get unstuck and get her thing committed and pushed. But then
 she circled back later to get to the bottom of it. I think this is a good idea, 
-i.e. don’t let the perfect be the enemy of the good and embrace MVPs (minimal viable
-products). 
+i.e. don’t let the perfect be the enemy of the good and embrace MVPs^[An MVP is 
+a minimal viable product, which is an early version that can provide the foundation 
+for future development.]. 
 
 It can help to return to the problem at hand over time, perhaps even outside of prime work hours.
 
@@ -173,22 +174,29 @@ else or see something new when you return with fresh eyes.
 # 4. Personal relection
 
 > JB: I don’t think of this as me sharing some great wisdom, just that I’ve had
-a chance to give myself permission to really think about these things.
+a chance to give myself permission to really think about these things, given my life at RStudio.
+As a professor, things felt much more complicated. It felt harder to decide what was legitimate, 
+“real” work. And it probably made skill development harder than it needed to be.
 
 Prior to this conversation, I didn't recognize my learning efforts as yak shaves.
 I felt like I was scrambling to keep up and questioning if I was spending my hours
 wisely and on worthwhile efforts. 
 
 Struggling to figure out new systems or write better code does not always feel 
-productive in the moment, but I now firmly believe all learning is good learning, 
-even if you are learning what doesn't work. And when I feel like my wheels are 
-churning in quicksand, I often repeat this mantra to myself: 
+productive in the moment, but I believe all learning is good learning, 
+even if you are learning what does not work. And when I feel like my wheels are 
+churning in quicksand, I often breathe deeply and repeat the mantra to myself: 
 _All learning is good learning. All learning is good learning. All learning is good learning._
 
-There is a balance to strike between yak shaves and reality / time constraints. 
-On occasions that I do challenge myself to dig deeper, it is worth it for both for my own
+There is a balance to strike between yak shaves and reality. 
+On occasions that I do challenge myself to dig deeper, it is worth it for both my own
 personal satisfaction, and as Jenny said, to become a better developer and team member.
 I am also at peace with the times where I coast on the status quo for my own sanity.
+
+Creating this positive mindset towards incremental learning has been especially
+important to me this year as I transitioned from my formal domain expertise as a Statistician
+into a new role as a Data Scientist, where I suspect that I will be happily learning
+about computer science and software engineering concepts for many years to come.
 
 After this chat with Jenny, I felt better about myself: where I am in my 
 current state of knowledge, what I am spending my time on learning, and 
