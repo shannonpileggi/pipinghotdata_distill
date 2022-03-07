@@ -1,19 +1,20 @@
 ---
 title: "Regular, intentional, and time-boxed yak shaving."
 description: | 
-  Productive incremental learning.
+  A conversation with Jenny Bryan about productive incremental learning.
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
 date: 2022-02-21
+preview: img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg
 author:
   - name: Shannon Pileggi
 output:
   distill::distill_article:
     toc: true
     toc_float: true
-    toc_depth: 1
+    toc_depth: 2
     self_contained: false
 draft: false
 creative_commons: CC BY
@@ -28,51 +29,96 @@ library(tidyverse)
 library(tweetrmd)
 ```
 
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|  Photo by <a href="https://unsplash.com/@lievemax?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lieve Ransijn</a> on <a href="https://unsplash.com/s/photos/yak?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>, which reflects how I often
+#|  feel, facing multiple yaks on challenging terrain.
+#| fig.alt: > 
+#|    Four black yaks on a dirt path in a snow-covered mountain landscape. One yak
+#|    is in the lead, staring into the camera; three yaks are behind.
+knitr::include_graphics("img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg")
+```
+
+
 # TL; DR
 
-# Background
+This post summarizes a conversation with Jenny Bryan about the process of self-improvement
+via yak shaves with the following topics: 
 
-Jenny Bryan, a Software Engineer at RStudio, is known for developing R packages
+1. Background.
+
+2. What is yak shaving?
+
+3. A productive yak shaving framework: regular, intentional, and time-boxed.
+
+4. My personal reflection on how I have adopted and leveraged this framework.
+
+In this post, I share our summarized conversation. Throughout, text
+in quote blocks with "JB" are direct quotes from Jenny.
+
+# 1. Background
+
+[Jenny Bryan](https://jennybryan.org/{target="_blank"}), a Software Engineer at RStudio, is known for developing R packages
 and educational materials, especially as they relate to reducing friction in workflows. 
 A year ago, Jenny tweeted advice regarding the concept of "yak shaving" that made
-self-improvement sound so logical, structured, and easy. 
+the process of self-improvement sound logical, structured, and easy. 
 
 ```{r}
 tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/1366107942487949312")
 ```
 
-I thought about it for a long time, and I had questions. I had the wonderful 
-opportunity to discuss this with Jenny; here is a summary.
+But learning new methods in or related to R can be a daunting and overwhelming process.
+It is easy to feel like everyone else knows _X_, and you are behind. The learning
+is not necessarily linear, and there often is not a set syllabus or milestones to follow.
+I thought about it for a long time, and...
 
-# Yak shaving
+```{r}
+tweetrmd::include_tweet("https://twitter.com/PipingHotData/status/1368037504499265540")
+```
 
+To slightly paraphrase my thread: How do you identify problems worthy of intentional yak shaving? 
+How do you time box? Does your time end when your problem is "solved", or do you settle
+with some problems that have a less than satisfying solution? There are many things
+that I chase with out a resolution - is it OK for me to move on even if I suspect
+it will come back to me?
+
+Discussing these kinds of questions with Jenny helped me normalize the learning process
+and approach it with a focused, rather than overwhelmed, attitude.
+
+# 2. What is yak shaving?
 
 I had never heard of a yak shave before, so I read a bit about it.
-Yak shaving is a term used frequently in software engineering; a [definition from Jessie Kerr](https://jessitron.com/2017/07/03/a-taxonomy-of-yak-shaving/){target="_blank"} is
-
-> Doing seemingly-unrelated tasks to get some real task done.
-
-Read Jessica's post [One key trick to becoming a wizard developer](https://jessitron.com/2021/02/27/one-key-trick-to-becoming-a-wizard-developer/){target="_blank"}
+Yak shaving is a term used frequently in software engineering; a [definition from Jessica Kerr](https://jessitron.com/2017/07/03/a-taxonomy-of-yak-shaving/){target="_blank"} is, "Doing seemingly-unrelated tasks to get some real task done." Read Jessica's post [One key trick to becoming a wizard developer](https://jessitron.com/2021/02/27/one-key-trick-to-becoming-a-wizard-developer/){target="_blank"}
 for an example of a yak shave.
 
 For some, the yak shave can have negative connotations as a time suck that prevents 
-a goal from realization. Others, like Jenny and Jessica, frame it as a growth opportunity, 
-if well-positioned.
+a goal from realization (see [Don't Shave That Yak](https://seths.blog/2005/03/dont_shave_that/){target="_blank"} by Seth Godin).
+Others, like Jenny and Jessica, frame it as a growth opportunity, if well-positioned.
 
 Individuals also classify the yak shave in various ways (like
 Jessica Kerr's [taxonomy of yak shaving](https://jessitron.com/2017/07/03/a-taxonomy-of-yak-shaving/){target="_blank"} 
 with five types of yaks) and for various purposes (like Elliot Williams's [hacker vs maker mode](https://hackaday.com/2016/08/09/yak-shaving-hacker-mode-vs-maker-mode/){target="_blank"}). 
 
-To narrow down the scope of the yak shave for this this post, we are discussing
-a fundamentally reactive processes (not proactive or creative). Consider:
+To narrow down the scope of the yak shave for this this post, consider topics like:
 
 * Learning how complicated tasks mostly out of our control interact with each other. 
 
 * Iterating on workflows that can be improved. 
 
-* Adopting a more productive debugging mindset than, "Gosh, R is weird." 
+* Adopting a productive debugging mindset that creates a deeper understanding.
 
-# Intentional
+> JB: The kind of thing I’m thinking of is fundamentally _reactive_ and not _proactive_ or _creative_.
+
+
+# 3. A productive yak shaking framework
+
+Here, we break down Jenny's three yak shaving adjectives: regular, intentional, and time-boxed.
+
+## Intentional 
+
+> JB: I record little hangnails or things I don’t understand in a running “notes to self” document.
+And often that will provide evidence that the same “little thing” keeps coming up, over and over again. 
+Then eventually I’ll take the time to get to the bottom of it.
 
 Good candidates for a yak shave include tasks
 
@@ -82,82 +128,89 @@ Good candidates for a yak shave include tasks
 
 * where deeper understanding could alleviate pain points.
 
-If you want to be process oriented about it, document notes about items and workflows
-that cause friction, which can provide evidence of priority items. Solving pain points 
-that permeate all of your projects can have great impact. 
+> JB: Solving workflow problems that affect every single project you work on has great impact.
 
-<aside>
-This sounds similar in spirit to [friction logs](https://www.trychameleon.com/blog/friction-logs){target="_blank"} that Alison Hill advocates for good product management, though perhaps not as in depth.
-</aside>
+## Regular
 
-# Regular
+> JB: I don’t schedule it intentionally. But I mean more that I take some (but not all!)
+opportunities to yak shave productively on a regular basis. It’s a regular part of my life.
 
-Yaks differ in size and scope. For the cadence of regular, consider
-a mini yak on most days, a medium yak most weeks, and a large yak once a month. 
+Yaks differ in size and scope: some may be completed in an hour, a day, or span multiple days.
 
-Of course, this depends on the competing demands of your brain resources. Be kind
-to  yourself. When you are against a deadline or are mulling over a complex problem, 
-you are unlikely to have the mental capacity to successfully and efficiently tackle
-the yak shave at hand. 
+> JB: I’d say I shave a mini yak on most days, a medium yak, most weeks and large yak once a month? 
 
-Instead, consider approaching a yak shave after you have completed a big chunk of
-work and you are settling into the next thing. Often it is something you found a
-workaround for in a recent project, but now you are circling back for a more 
-proper exploration and, if you are lucky, solution.
+Of course, this depends on the competing demands of your brain resources. 
 
+> JB: There are some times where you’re really working to deadline or have a complicated
+problem loaded into your brain and that is NOT when I do this.
 
-# Time-boxed 
+Be kind to  yourself. 
 
-Time boxing depends on the situation and task. For mini yaks, you might be able 
-to make great progress and find a satisfactory solution within an hour. For larger
-yaks, this might be something you return to several times. 
-
-Jenny and I both tackle these kinds of things at night or on the weekend. 
-Puttering on the computer outside of prime work hours helps us not be too
-fussed about whether experiments pan out, and forces us to think about it a little,
-drop it, sleep, do other stuff, and pick up again. Sometimes you get ideas
-while you are doing something else or you see something new when you return
-with fresh eyes.
-
-Don't let perfection defeat your time box. If you find a solution that lets
-you move forward, even if it is not satisfactory, it is OK to take the
-"easy" way out until you have the mental space to circle back.
-
-# Relection
+> JB: Usually right after you’ve completed a big chunk of work and you’re settling into the next thing?
+That’s a good time shave a well-chosen yak.
+Often it’s a shavable yak that came by during that last project and you found a workaround and stayed focused.
+But now you’re circling back for a more proper exploration and, if you’re lucky, solution.
 
 
-My efforts at yak shaving usually consist of documentation deep dives, 
-Google searches, and seemingly endless combinations of code that
-mostly get tossed out. Sometimes the stars align and this works. 
-Sometimes it does not. 
+## Time-boxed
 
-More recently, after I do my initial due diligence with documentation, searching, 
-and coding, I weigh the time it takes to post a question online (~30 minutes,
-depending on the complexity) versus the time I think it might take me to solve the 
-problem alone. If I have the luxury to wait a few days for an answer, posting a 
-question online often saves me _hours_ of trial and error with input from those 
-more experienced in the domain, helping me shave that yak faster.
+Time boxing can be flexible, as tasks differ in size and scope. Time boxing also
+does not necessarily mean that you hold yourself to complete a task
+in a single setting. 
 
-Take some (but not all!) opportunities to yak shave productively on a regular basis.
+> JB: I liked how Jessie mentioned in the blog post that she actually did take
+the easy way out, to get unstuck and get her thing committed and pushed. But then
+she circled back later to get to the bottom of it. I think this is a good idea, 
+i.e. don’t let the perfect be the enemy of the good and embrace MVPs (minimal viable
+products). 
+
+It can help to return to the problem at hand over time, perhaps even outside of prime work hours.
+
+> JB: That also often forces you to think about it a little, drop it, sleep, do other 
+stuff, then pick it up again. So you often get an idea while you’re doing something
+else or see something new when you return with fresh eyes.
+
+# 4. Personal relection
+
+> JB: I don’t think of this as me sharing some great wisdom, just that I’ve had
+a chance to give myself permission to really think about these things.
+
+Prior to this conversation, I didn't recognize my learning efforts as yak shaves.
+I felt like I was scrambling to keep up and questioning if I was spending my hours
+wisely and on worthwhile efforts. 
+
 Struggling to figure out new systems or write better code does not always feel 
-productive in the moment, but all learning is good learning, even if you are learning
-what doesn't work. 
-
-<aside>
-Repeat after me: All learning is good learning. All learning is good learning. All learning is good learning.
-</aside>
-
+productive in the moment, but I now firmly believe all learning is good learning, 
+even if you are learning what doesn't work. And when I feel like my wheels are 
+churning in quicksand, I often repeat this mantra to myself: 
+_All learning is good learning. All learning is good learning. All learning is good learning._
 
 There is a balance to strike between yak shaves and reality / time constraints. 
-Some days I simply maintain the status quo, and some days I move forward 
-towards that productive incremental learning. And when I do, it is worth it.
+On occasions that I do challenge myself to dig deeper, it is worth it for both for my own
+personal satisfaction, and as Jenny said, to become a better developer and team member.
+I am also at peace with the times where I coast on the status quo for my own sanity.
 
--> As Jessica Kerr [shared](https://jessitron.com/2021/02/27/one-key-trick-to-becoming-a-wizard-developer/), 
-broadening your knowledge through yak shaving can come in handy at unpredictable times. 
+After this chat with Jenny, I felt better about myself: where I am in my 
+current state of knowledge, what I am spending my time on learning, and 
+where I am going in the future. By sharing this conversation, I hope you feel the same.
 
--> Self improvement
 
--> Personal satisfaction
 
--> More efficient future you
+```{r}
+knitr::knit_exit()
+```
 
+yak
+https://pngtree.com/freepng/cute-and-cute-consuming-cow-clipart_6030475.html
+<a href='https://pngtree.com/so/Cute'>Cute png from pngtree.com/</a>
+
+box
+https://pngtree.com/freepng/open-courier-box_929631.html
+
+https://unsplash.com/photos/FsJ_vzp_NI4
+
+Photo by <a href="https://unsplash.com/@lievemax?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lieve Ransijn</a> on <a href="https://unsplash.com/s/photos/yak?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+  
+  Photo by <a href="https://unsplash.com/@blunkorama?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Daniel Lloyd Blunk-Fernández</a> on <a href="https://unsplash.com/s/photos/yak?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
