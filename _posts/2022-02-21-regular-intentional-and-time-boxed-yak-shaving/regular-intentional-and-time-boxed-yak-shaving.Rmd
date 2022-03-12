@@ -42,8 +42,8 @@ knitr::include_graphics("img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg")
 
 # TL; DR
 
-This post summarizes a conversation with Jenny Bryan about the process of self-improvement
-via yak shaves with: 
+This post summarizes a conversation with Jenny Bryan about yak shaves,
+which helped approach the learning process with a focused and positive mindset.
 
 1. Background.
 
@@ -53,8 +53,8 @@ via yak shaves with:
 
 4. My personal reflection on this mentality.
 
-In this post, I share our summarized conversation. Throughout, text
-in quote blocks with "JB" are direct quotes from Jenny.
+Throughout, text in quote blocks with "JB" are direct quotes from Jenny.
+
 
 # 1. Background
 
@@ -82,8 +82,19 @@ with some problems that have a less than satisfying solution? There are many thi
 that I chase with out a resolution - is it OK for me to move on even if I suspect
 it will come back to me?
 
-Discussing these kinds of questions with Jenny helped me normalize the learning process
-and approach it with a focused and positive mindset.
+Apparently I wasn't the only one.
+
+```{r}
+tweetrmd::include_tweet("https://twitter.com/KellyBodwin/status/1368099045894320136")
+```
+
+And very kindly, Jenny offered to chat with me further.
+
+```{r}
+tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/1368052293183021057")
+```
+
+Now, on to a summary of our conversation. 😊
 
 # 2. What is yak shaving?
 

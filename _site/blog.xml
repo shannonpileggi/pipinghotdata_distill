@@ -22,14 +22,14 @@
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
-&lt;p&gt;This post summarizes a conversation with Jenny Bryan about the process of self-improvement via yak shaves with:&lt;/p&gt;
+&lt;p&gt;This post summarizes a conversation with Jenny Bryan about yak shaves, which helped approach the learning process with a focused and positive mindset.&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Background.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;What is yak shaving?&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;A productive yak shaving framework: regular, intentional, and time-boxed.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;My personal reflection on this mentality.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;In this post, I share our summarized conversation. Throughout, text in quote blocks with “JB” are direct quotes from Jenny.&lt;/p&gt;
+&lt;p&gt;Throughout, text in quote blocks with “JB” are direct quotes from Jenny.&lt;/p&gt;
 &lt;h1 id="background"&gt;1. Background&lt;/h1&gt;
 &lt;p&gt;&lt;a href="https://jennybryan.org/%7Btarget=%22_blank%22%7D"&gt;Jenny Bryan&lt;/a&gt;, a Software Engineer at RStudio, is known for developing R packages and educational materials, especially as they relate to creating efficient workflows. A year ago, Jenny tweeted advice regarding the concept of “yak shaving” that made the process of self-improvement sound logical, structured, and easy.&lt;/p&gt;
 &lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;To become a better developer and team member, it helps to engage in regular, intentional, and time-boxed yak shaving.&lt;br&gt;&lt;br&gt;This &lt;a href="https://twitter.com/jessitron?ref_src=twsrc%5Etfw"&gt;@jessitron&lt;/a&gt; post contains great concrete advice about how to do this productively and why. h/t &lt;a href="https://twitter.com/chriskrycho?ref_src=twsrc%5Etfw"&gt;@chriskrycho&lt;/a&gt; &lt;a href="https://t.co/nieaNaNlvT"&gt;https://t.co/nieaNaNlvT&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jenny Bryan (@JennyBryan) &lt;a href="https://twitter.com/JennyBryan/status/1366107942487949312?ref_src=twsrc%5Etfw"&gt;February 28, 2021&lt;/a&gt;&lt;/blockquote&gt;
@@ -38,7 +38,13 @@
 &lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;i&amp;#39;m still ruminating on this &lt;a href="https://twitter.com/JennyBryan?ref_src=twsrc%5Etfw"&gt;@JennyBryan&lt;/a&gt;.  the words are precise: regular, intentional, time-boxed.  but this framework poses more questions for me! &lt;a href="https://t.co/l8YnksuIdm"&gt;https://t.co/l8YnksuIdm&lt;/a&gt;&lt;/p&gt;&amp;mdash; Shannon Pileggi (@PipingHotData) &lt;a href="https://twitter.com/PipingHotData/status/1368037504499265540?ref_src=twsrc%5Etfw"&gt;March 6, 2021&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;p&gt;To slightly paraphrase my thread: How do you identify problems worthy of intentional yak shaving? How do you time box? Does your time end when your problem is “solved”, or do you settle with some problems that have a less than satisfying solution? There are many things that I chase with out a resolution - is it OK for me to move on even if I suspect it will come back to me?&lt;/p&gt;
-&lt;p&gt;Discussing these kinds of questions with Jenny helped me normalize the learning process and approach it with a focused and positive mindset.&lt;/p&gt;
+&lt;p&gt;Apparently I wasn’t the only one.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;This whole thread is so relatable.&lt;/p&gt;&amp;mdash; Kelly Bodwin (@KellyBodwin) &lt;a href="https://twitter.com/KellyBodwin/status/1368099045894320136?ref_src=twsrc%5Etfw"&gt;March 6, 2021&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;And very kindly, Jenny offered to chat with me further.&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;I identify so strongly with these dilemmas! Hard to do via twitter, so maybe we should find a better venue to converse, then write it down?&lt;/p&gt;&amp;mdash; Jenny Bryan (@JennyBryan) &lt;a href="https://twitter.com/JennyBryan/status/1368052293183021057?ref_src=twsrc%5Etfw"&gt;March 6, 2021&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Now, on to a summary of our conversation. 😊&lt;/p&gt;
 &lt;h1 id="what-is-yak-shaving"&gt;2. What is yak shaving?&lt;/h1&gt;
 &lt;p&gt;I had never heard of a yak shave before, so I read a bit about it. Yak shaving is a term used frequently in software engineering; a &lt;a href="https://jessitron.com/2017/07/03/a-taxonomy-of-yak-shaving/" target="_blank"&gt;definition from Jessica Kerr&lt;/a&gt; is, “Doing seemingly-unrelated tasks to get some real task done.” Read Jessica’s post &lt;a href="https://jessitron.com/2021/02/27/one-key-trick-to-becoming-a-wizard-developer/" target="_blank"&gt;One key trick to becoming a wizard developer&lt;/a&gt; for an example of a yak shave.&lt;/p&gt;
 &lt;p&gt;For some, the yak shave can have negative connotations as a time suck that prevents a goal from realization (see &lt;a href="https://seths.blog/2005/03/dont_shave_that/" target="_blank"&gt;Don’t Shave That Yak&lt;/a&gt; by Seth Godin). Others, like Jenny and Jessica, frame it as a growth opportunity, if well-positioned.&lt;/p&gt;
