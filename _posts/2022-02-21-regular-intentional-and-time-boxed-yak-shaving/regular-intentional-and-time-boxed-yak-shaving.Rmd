@@ -85,13 +85,13 @@ it will come back to me?
 Apparently I wasn't the only one.
 
 ```{r}
-tweetrmd::include_tweet("https://twitter.com/KellyBodwin/status/1368099045894320136")
+tweetrmd::include_tweet("https://twitter.com/KellyBodwin/status/1368099045894320136?s=20&t=J5vJrmgkGaUDpeMTqM68hw")
 ```
 
 And very kindly, Jenny offered to chat with me further.
 
 ```{r}
-tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/1368052293183021057")
+tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/1368052293183021057?s=20&t=UeP93VlZzXpxnXdo95MoUQ")
 ```
 
 Now, on to a summary of our conversation. 😊
