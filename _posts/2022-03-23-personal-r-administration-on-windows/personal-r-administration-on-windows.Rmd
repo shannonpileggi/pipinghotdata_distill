@@ -1,0 +1,163 @@
+---
+title: "Personal R Administration on Windows"
+description: |
+  A short description of the post.
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2022-03-23
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+# TL;DR
+
+# Background
+
+```{r}
+Error: Could not find addins.json in the usual places. You may need to manually create a new keyboard shortcut (use RStudio's Tools menu) first.
+```
+
+```{r}
+[shrtcts] Could not find .shrtcts.R or .shrtcts.yaml in C:\Users\pileggis\AppData\Roaming/shrtcts/shrtcts, C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.config or C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents
+```
+
+
+
+# Windows basics
+
+## Do I have administrator rights?
+
+When I received my new work laptop, I did not have administrator rights. This
+made it challenging to install things where ever and whenever I needed to configure 
+R and git in a developer environment. 
+
+I submitted many IT tickets, cajoled, and pleaded. Eventually, I was granted
+certain permissions that allow me to work independently.
+
+I explored the methods listed in [How to Check If I Have Administrator Rights in Windows 10](https://www.isumsoft.com/windows-10/how-to-check-if-i-have-administrator-rights-windows-10.html){target="_blank"} and I can confirm that I still do not have full "administrator rights" on my computer, 
+but rather I was granted with some sort of partial rights that let me get by.
+
+## Recommended Windows settings
+
+When getting started with a Windows computer, I recommend changing default settings
+such that:
+
+1. Display the full path in the title bar
+2. Show hidden files, folders, and drives
+3. <Uncheck/Do not> Hide extension for known file types
+
+```{r, eval = TRUE}
+tweetrmd::include_tweet("https://twitter.com/PipingHotData/status/1450494168900509697")
+```
+
+
+# Intial home paths
+
+I explored how R defines my home directories.
+
+## R installation
+
+From the `R.home()` help file: 
+
+> The R home directory is the top-level directory of the R installation being run.
+
+
+```{r}
+R.home()
+```
+
+`"C:/PROGRA~1/R/R-41~1.2"`
+
+> The R home directory is often referred to as R_HOME, and is the value of an environment variable of that name in an R session.
+
+```{r}
+Sys.getenv("R_HOME")
+```
+
+`"C:/PROGRA~1/R/R-41~1.2"`
+
+## Thing 2
+
+```{r}
+Sys.getenv("HOME")
+```
+
+`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
+
+```{r}
+Sys.getenv("R_User")
+```
+
+`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
+
+## Thing 3
+
+```{r}
+fs::path_home()
+```
+
+`C:/Users/pileggis`
+
+```{r}
+fs::path_home_r()
+```
+
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
+
+# .Rprofile
+
+The `usethis` package can open your R profile for editing with `usethis::edit_r_profile()`, and
+you don't need to necessarily know where it lives.
+
+But I still want to know. The RStudio article [Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf](https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf){target="_blank"} by Alex Gold says that the 
+"User-level .Rprofile files live in the base of the user's home directory."
+
+For me, that means  
+
+`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile`
+
+# R package installation 
+
+[How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"}
+
+```{r}
+.libPaths()
+```
+
+`"C:/Program Files/R/R-4.1.1/library" "C:/Program Files/R/R-4.1.2/library"`
+
+
+# Rtools 
+
+Rtools is...
+
+`"C:\rtools40"`
+
+# Git installation
+
+## Program files 
+
+As recommended in [Happy Git with R](https://happygitwithr.com/){target="_blank"}, git is installed at
+
+`C:\Program Files\Git`
+
+## .gitconfig 
+
+You can quickly open your `.gitconfig` file for editing with `usethis::edit_git_config()`. My
+`.gitconfig()` file lives at:
+
+`"C:\Users\pileggis\.gitconfig"`
+
+
+# Other modifications
+
+in .Rprofile
+
+`options(usethis.destdir = "C:/Users/pileggis/Documents/gh-personal")`
