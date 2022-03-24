@@ -16,7 +16,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+
+```{r, echo = FALSE, eval = TRUE}
+paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotdata_distill/_posts/2022-03-23-personal-r-administration-on-windows/locations.xlsx")
+```
+
 # TL;DR
+
+```{r, echo = FALSE, eval = TRUE}
+knitr::kable(paths)
+```
+
 
 # Background
 
@@ -43,6 +53,14 @@ certain permissions that allow me to work independently.
 
 I explored the methods listed in [How to Check If I Have Administrator Rights in Windows 10](https://www.isumsoft.com/windows-10/how-to-check-if-i-have-administrator-rights-windows-10.html){target="_blank"} and I can confirm that I still do not have full "administrator rights" on my computer, 
 but rather I was granted with some sort of partial rights that let me get by.
+
+From Omar Chua.
+provisioning is different on Flex laptops vs Domain accounts
+Flex laptops are Azure AD based
+So it looks like Admin Rights are enable or disable using a cloud group for the azure devices (flex laptops)
+you will not see indication from your actual account
+as the provisioning is done through the flex device
+
 
 ## Recommended Windows settings
 
@@ -123,6 +141,13 @@ For me, that means
 
 `C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile`
 
+# .Renviron
+
+`usethis::edit_r_environ()`
+
+R_LIBS_USER = "C:/Program Files/R/R-4.1.1/library"
+
+
 # R package installation 
 
 [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"}
@@ -151,7 +176,7 @@ As recommended in [Happy Git with R](https://happygitwithr.com/){target="_blank"
 ## .gitconfig 
 
 You can quickly open your `.gitconfig` file for editing with `usethis::edit_git_config()`. My
-`.gitconfig()` file lives at:
+`.gitconfig` file lives at:
 
 `"C:\Users\pileggis\.gitconfig"`
 

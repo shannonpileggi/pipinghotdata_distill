@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["personal-r-administration-on-windows_files/anchor-4.2.2/anchor.min.js","personal-r-administration-on-windows_files/bowser-1.9.3/bowser.min.js","personal-r-administration-on-windows_files/distill-2.2.21/template.v2.js","personal-r-administration-on-windows_files/header-attrs-2.11/header-attrs.js","personal-r-administration-on-windows_files/jquery-3.6.0/jquery-3.6.0.js","personal-r-administration-on-windows_files/jquery-3.6.0/jquery-3.6.0.min.js","personal-r-administration-on-windows_files/jquery-3.6.0/jquery-3.6.0.min.map","personal-r-administration-on-windows_files/popper-2.6.0/popper.min.js","personal-r-administration-on-windows_files/tippy-6.2.7/tippy-bundle.umd.min.js","personal-r-administration-on-windows_files/tippy-6.2.7/tippy-light-border.css","personal-r-administration-on-windows_files/tippy-6.2.7/tippy.css","personal-r-administration-on-windows_files/tippy-6.2.7/tippy.umd.min.js","personal-r-administration-on-windows_files/twitter-widget-0.0.1/widgets.js","personal-r-administration-on-windows_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["locations.xlsx","personal-r-administration-on-windows_files/anchor-4.2.2/anchor.min.js","personal-r-administration-on-windows_files/bowser-1.9.3/bowser.min.js","personal-r-administration-on-windows_files/distill-2.2.21/template.v2.js","personal-r-administration-on-windows_files/header-attrs-2.11/header-attrs.js","personal-r-administration-on-windows_files/jquery-3.6.0/jquery-3.6.0.js","personal-r-administration-on-windows_files/jquery-3.6.0/jquery-3.6.0.min.js","personal-r-administration-on-windows_files/jquery-3.6.0/jquery-3.6.0.min.map","personal-r-administration-on-windows_files/popper-2.6.0/popper.min.js","personal-r-administration-on-windows_files/tippy-6.2.7/tippy-bundle.umd.min.js","personal-r-administration-on-windows_files/tippy-6.2.7/tippy-light-border.css","personal-r-administration-on-windows_files/tippy-6.2.7/tippy.css","personal-r-administration-on-windows_files/tippy-6.2.7/tippy.umd.min.js","personal-r-administration-on-windows_files/twitter-widget-0.0.1/widgets.js","personal-r-administration-on-windows_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1483,7 +1483,108 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h1 id="tldr">TL;DR</h1>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 28%" />
+<col style="width: 51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Item</th>
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Home</td>
+<td style="text-align: left;">??</td>
+<td style="text-align: left;"><code>Sys.getenv("HOME")</code>, <code>Sys.getenv("R_User")</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Home</td>
+<td style="text-align: left;">??</td>
+<td style="text-align: left;"><code>fs::path_home_r()</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Home</td>
+<td style="text-align: left;">??</td>
+<td style="text-align: left;"><code>fs::path_home()</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Software</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;"><code>R.home()</code>, <code>Sys.getenv("R_HOME")</code></td>
+<td style="text-align: left;"><code>C:\PROGRA~1\R\R-41~1.2</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Software</td>
+<td style="text-align: left;">RStudio</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"><code>C:\Program Files\RStudio</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Software</td>
+<td style="text-align: left;">R packages</td>
+<td style="text-align: left;"><code>.libPaths()</code></td>
+<td style="text-align: left;"><code>"C:\Program Files\R\R-4.1.1\library" "C:\Program Files\R\R-4.1.2\library"</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Software</td>
+<td style="text-align: left;">Rtools</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"><code>C:\rtools40</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Software</td>
+<td style="text-align: left;">Git</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"><code>C:\Program Files\Git</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Configuration</td>
+<td style="text-align: left;"><code>.gitconfig</code></td>
+<td style="text-align: left;"><code>usethis::edit_git_config()</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis\.gitconfig</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Configuration</td>
+<td style="text-align: left;"><code>.Renviron</code></td>
+<td style="text-align: left;"><code>usethis::edit_r_environ()</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Configuration</td>
+<td style="text-align: left;"><code>.Rprofile</code></td>
+<td style="text-align: left;"><code>usethis::edit_r_profile()</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Configuration</td>
+<td style="text-align: left;">destination directory</td>
+<td style="text-align: left;">in .Rprofile: <code>options(usethis.destdir = "X/X")</code></td>
+<td style="text-align: left;"><code>C:\Users\pileggis\Documents\gh-personal"</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Configuration</td>
+<td style="text-align: left;">shrtcts</td>
+<td style="text-align: left;"><code>shrtcts::locate_shortcuts_source()</code></td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h1 id="background">Background</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> Could not find addins.json <span class="cf">in</span> the usual places. You may need to manually create a new keyboard <span class="fu">shortcut</span> (use RStudio<span class="st">&#39;s Tools menu) first.</span></span></code></pre></div>
@@ -1496,6 +1597,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>When I received my new work laptop, I did not have administrator rights. This made it challenging to install things where ever and whenever I needed to configure R and git in a developer environment.</p>
 <p>I submitted many IT tickets, cajoled, and pleaded. Eventually, I was granted certain permissions that allow me to work independently.</p>
 <p>I explored the methods listed in <a href="https://www.isumsoft.com/windows-10/how-to-check-if-i-have-administrator-rights-windows-10.html" target="_blank">How to Check If I Have Administrator Rights in Windows 10</a> and I can confirm that I still do not have full “administrator rights” on my computer, but rather I was granted with some sort of partial rights that let me get by.</p>
+<p>From Omar Chua. provisioning is different on Flex laptops vs Domain accounts Flex laptops are Azure AD based So it looks like Admin Rights are enable or disable using a cloud group for the azure devices (flex laptops) you will not see indication from your actual account as the provisioning is done through the flex device</p>
 <h2 id="recommended-windows-settings">Recommended Windows settings</h2>
 <p>When getting started with a Windows computer, I recommend changing default settings such that:</p>
 <ol type="1">
@@ -1570,6 +1672,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>But I still want to know. The RStudio article <a href="https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf" target="_blank">Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf</a> by Alex Gold says that the “User-level .Rprofile files live in the base of the user’s home directory.”</p>
 <p>For me, that means</p>
 <p><code>C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile</code></p>
+<h1 id="renviron">.Renviron</h1>
+<p><code>usethis::edit_r_environ()</code></p>
+<p>R_LIBS_USER = “C:/Program Files/R/R-4.1.1/library”</p>
 <h1 id="r-package-installation">R package installation</h1>
 <p><a href="https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/" target="_blank">How to Set Your Default Package Install Location in R</a></p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1587,7 +1692,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>As recommended in <a href="https://happygitwithr.com/" target="_blank">Happy Git with R</a>, git is installed at</p>
 <p><code>C:\Program Files\Git</code></p>
 <h2 id="gitconfig">.gitconfig</h2>
-<p>You can quickly open your <code>.gitconfig</code> file for editing with <code>usethis::edit_git_config()</code>. My <code>.gitconfig()</code> file lives at:</p>
+<p>You can quickly open your <code>.gitconfig</code> file for editing with <code>usethis::edit_git_config()</code>. My <code>.gitconfig</code> file lives at:</p>
 <p><code>"C:\Users\pileggis\.gitconfig"</code></p>
 <h1 id="other-modifications">Other modifications</h1>
 <p>in .Rprofile</p>
