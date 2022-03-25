@@ -42,6 +42,20 @@ Error: Could not find addins.json in the usual places. You may need to manually 
 
 # Windows basics
 
+## Recommended Windows settings
+
+When getting started with a Windows computer, I recommend changing default settings
+such that:
+
+1. Display the full path in the title bar
+2. Show hidden files, folders, and drives
+3. <Uncheck/Do not> Hide extension for known file types
+
+```{r, eval = TRUE}
+tweetrmd::include_tweet("https://twitter.com/PipingHotData/status/1450494168900509697")
+```
+
+
 ## Do I have administrator rights?
 
 When I received my new work laptop, I did not have administrator rights. This
@@ -62,21 +76,7 @@ you will not see indication from your actual account
 as the provisioning is done through the flex device
 
 
-## Recommended Windows settings
-
-When getting started with a Windows computer, I recommend changing default settings
-such that:
-
-1. Display the full path in the title bar
-2. Show hidden files, folders, and drives
-3. <Uncheck/Do not> Hide extension for known file types
-
-```{r, eval = TRUE}
-tweetrmd::include_tweet("https://twitter.com/PipingHotData/status/1450494168900509697")
-```
-
-
-# Intial home paths
+# Home paths
 
 I explored how R defines my home directories.
 
@@ -129,6 +129,12 @@ fs::path_home_r()
 
 `C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
 
+
+# Software
+
+# Configuration
+
+
 # .Rprofile
 
 The `usethis` package can open your R profile for editing with `usethis::edit_r_profile()`, and
@@ -157,6 +163,8 @@ R_LIBS_USER = "C:/Program Files/R/R-4.1.1/library"
 ```
 
 `"C:/Program Files/R/R-4.1.1/library" "C:/Program Files/R/R-4.1.2/library"`
+
+https://support.rstudio.com/hc/en-us/articles/115014830827-Why-is-libPaths-different-in-the-RStudio-IDE-vs-R-
 
 
 # Rtools 
