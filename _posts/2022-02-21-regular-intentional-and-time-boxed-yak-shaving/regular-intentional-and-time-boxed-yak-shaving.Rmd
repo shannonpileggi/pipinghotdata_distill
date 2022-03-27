@@ -43,20 +43,20 @@ knitr::include_graphics("img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg")
 # TL; DR
 
 This post summarizes a conversation with Jenny Bryan about yak shaves,
-which helped me approach the learning process with a focused and positive mindset.
+which helped me approach technical learning processes with a focused and positive mindset.
 
-1. Background.
+[1. Background.](#background)
 
-2. What is yak shaving?
+[2. What is yak shaving?](#yakshave)
 
-3. A productive yak shaving framework: regular, intentional, and time-boxed.
+[3. A productive yak shaving framework:](#framework) regular, intentional, and time-boxed.
 
-4. My personal reflection on this mentality.
+[4. My personal reflection on this mentality.](#reflection)
 
 Throughout, text in quote blocks with "JB" are direct quotes from Jenny.
 
 
-# 1. Background
+# 1. Background {#background}
 
 [Jenny Bryan](https://jennybryan.org/{target="_blank"}), a Software Engineer at RStudio, is known for developing R packages
 and educational materials, especially as they relate to creating efficient workflows. 
@@ -96,7 +96,7 @@ tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/13680522931830210
 
 Now, on to a summary of our conversation. 😊
 
-# 2. What is yak shaving?
+# 2. What is yak shaving? {#yakshave}
 
 I had never heard of a yak shave before, so I read a bit about it.
 Yak shaving is a term used frequently in software engineering; a [definition from Jessica Kerr](https://jessitron.com/2017/07/03/a-taxonomy-of-yak-shaving/){target="_blank"} is, "Doing seemingly-unrelated tasks to get some real task done." Read Jessica's post [One key trick to becoming a wizard developer](https://jessitron.com/2021/02/27/one-key-trick-to-becoming-a-wizard-developer/){target="_blank"}
@@ -121,7 +121,7 @@ To narrow down the scope of the yak shave for this this post, consider topics li
 > JB: The kind of thing I’m thinking of is fundamentally _reactive_ and not _proactive_ or _creative_.
 
 
-# 3. A productive yak shaking framework
+# 3. A productive yak shaking framework {#framework}
 
 Here, we break down Jenny's three yak shaving adjectives: regular, intentional, and time-boxed.
 
@@ -182,7 +182,7 @@ It can help to return to the problem at hand over time, perhaps even outside of 
 stuff, then pick it up again. So you often get an idea while you’re doing something
 else or see something new when you return with fresh eyes.
 
-# 4. Personal relection
+# 4. Personal relection {#reflection}
 
 > JB: I don’t think of this as me sharing some great wisdom, just that I’ve had
 a chance to give myself permission to really think about these things, given my life at RStudio.
