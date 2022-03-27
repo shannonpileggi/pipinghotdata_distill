@@ -14,35 +14,29 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(tidyverse)
 ```
 
 
 ```{r, echo = FALSE, eval = TRUE}
-paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotdata_distill/_posts/2022-03-23-personal-r-administration-on-windows/locations.xlsx")
+paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotdata_distill/_posts/2022-03-23-personal-r-administration-on-windows/locations.xlsx") %>% 
+  mutate(Code = replace_na(Code, ""))
 ```
 
 # TL;DR
 
+
+
 ```{r, echo = FALSE, eval = TRUE}
-knitr::kable(paths)
+paths %>% 
+  gt::gt(
+    groupname_col = "Type"
+  ) 
 ```
 
+# Windows
 
-# Background
-
-```{r}
-Error: Could not find addins.json in the usual places. You may need to manually create a new keyboard shortcut (use RStudio's Tools menu) first.
-```
-
-```{r}
-[shrtcts] Could not find .shrtcts.R or .shrtcts.yaml in C:\Users\pileggis\AppData\Roaming/shrtcts/shrtcts, C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.config or C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents
-```
-
-
-
-# Windows basics
-
-## Recommended Windows settings
+## Recommended settings
 
 When getting started with a Windows computer, I recommend changing default settings
 such that:
@@ -51,36 +45,53 @@ such that:
 2. Show hidden files, folders, and drives
 3. <Uncheck/Do not> Hide extension for known file types
 
-```{r, eval = TRUE}
+```{r, eval = TRUE, echo = FALSE}
 tweetrmd::include_tweet("https://twitter.com/PipingHotData/status/1450494168900509697")
 ```
 
 
-## Do I have administrator rights?
+## Administrator rights
 
-When I received my new work laptop, I did not have administrator rights. This
-made it challenging to install things where ever and whenever I needed to configure 
-R and git in a developer environment. 
-
-I submitted many IT tickets, cajoled, and pleaded. Eventually, I was granted
-certain permissions that allow me to work independently.
-
-I explored the methods listed in [How to Check If I Have Administrator Rights in Windows 10](https://www.isumsoft.com/windows-10/how-to-check-if-i-have-administrator-rights-windows-10.html){target="_blank"} and I can confirm that I still do not have full "administrator rights" on my computer, 
-but rather I was granted with some sort of partial rights that let me get by.
-
-From Omar Chua.
-provisioning is different on Flex laptops vs Domain accounts
-Flex laptops are Azure AD based
-So it looks like Admin Rights are enable or disable using a cloud group for the azure devices (flex laptops)
-you will not see indication from your actual account
-as the provisioning is done through the flex device
+Much of how you work in Windows depends on your level of rights. Fortunately,
+I was granted administrator privileges on my work laptop, which
+allows me to install software and save configuration files where I need to.
 
 
-# Home paths
+# Homes 
 
-I explored how R defines my home directories.
+I explored how R defines my home directories. On Mac OS, the "home" and the 
+"R home" are the same thing, but on Windows OS they differ.
 
-## R installation
+
+```{r}
+Sys.getenv("HOME")
+```
+
+`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
+
+```{r}
+Sys.getenv("R_User")
+```
+
+`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
+
+```{r}
+fs::path_home_r()
+```
+
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
+
+
+```{r}
+fs::path_home()
+```
+
+`C:/Users/pileggis`
+
+
+# Software
+
+## R
 
 From the `R.home()` help file: 
 
@@ -101,62 +112,11 @@ Sys.getenv("R_HOME")
 
 `"C:/PROGRA~1/R/R-41~1.2"`
 
-## Thing 2
+## R packages
 
-```{r}
-Sys.getenv("HOME")
-```
+My R packages were initially being installed to the default location at `fs::path_home_r()`; I modified this location to my `C` drive.
 
-`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
-
-```{r}
-Sys.getenv("R_User")
-```
-
-`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
-
-## Thing 3
-
-```{r}
-fs::path_home()
-```
-
-`C:/Users/pileggis`
-
-```{r}
-fs::path_home_r()
-```
-
-`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
-
-
-# Software
-
-# Configuration
-
-
-# .Rprofile
-
-The `usethis` package can open your R profile for editing with `usethis::edit_r_profile()`, and
-you don't need to necessarily know where it lives.
-
-But I still want to know. The RStudio article [Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf](https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf){target="_blank"} by Alex Gold says that the 
-"User-level .Rprofile files live in the base of the user's home directory."
-
-For me, that means  
-
-`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile`
-
-# .Renviron
-
-`usethis::edit_r_environ()`
-
-R_LIBS_USER = "C:/Program Files/R/R-4.1.1/library"
-
-
-# R package installation 
-
-[How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"}
+R for the Rest of Us has a nice video tutorial on [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"}
 
 ```{r}
 .libPaths()
@@ -164,33 +124,132 @@ R_LIBS_USER = "C:/Program Files/R/R-4.1.1/library"
 
 `"C:/Program Files/R/R-4.1.1/library" "C:/Program Files/R/R-4.1.2/library"`
 
-https://support.rstudio.com/hc/en-us/articles/115014830827-Why-is-libPaths-different-in-the-RStudio-IDE-vs-R-
-
 
 # Rtools 
 
-Rtools is...
+Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. My installation is located at:
 
 `"C:\rtools40"`
 
-# Git installation
+You can confirm if your installation worked properly if
 
-## Program files 
+```{r}
+devtools::find_rtools()
+```
+
+returns `TRUE`. You can further confirm readiness with 
+
+```{r}
+devtools::has_devel()
+```
+
+which returns `Your system is ready to build packages!`
+
+
+# Git
 
 As recommended in [Happy Git with R](https://happygitwithr.com/){target="_blank"}, git is installed at
 
 `C:\Program Files\Git`
 
+
+
+# Configurations
+
+## `.Renviron`
+
+The `.Renviron` file contains environment variables, and is not R code. 
+
+To edit this file, submit:
+
+```{r}
+usethis::edit_r_environ()
+```
+
+The RStudio article [Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf](https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf){target="_blank"} by Alex Gold says that the "User-level .Rprofile files live in the base of the user's home directory."
+
+For me, that means  
+
+`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron`
+
+
+My file has has been modified to establish default library locations for 
+R package installations.
+
+`R_LIBS_USER = "C:/Program Files/R/R-4.1.1/library"`
+
+
+# .Rprofile
+
+As stated in [What They Forgot to Teach You about R](https://rstats.wtf/r-startup.html#rprofile){target="_blank"}
+
+> The `.Rprofile` file contains R code to be run when R starts up. It is run after the `.Renviron` file is sourced.
+
+Again, you can edit this file with 
+
+```{r}
+usethis::edit_r_profile()
+```
+ 
+and mine lives at
+ 
+`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile`.
+
+My `.Rprofile` has been modified two ways:
+
+1. Establish a default location for R projects created via `usethis::create_from_github()`
+or `usethis::use_course()`.
+
+2. To enable create RStudio shortcuts with the [shrtcts](https://pkg.garrickadenbuie.com/shrtcts/index.html){target="_blank"} package.
+
+```{r}
+# ------------------------------------------------------------------------------
+#  1/ Establish a default location for R projects created via 
+# `usethis::create_from_github()` or `usethis::use_course()`
+options(usethis.destdir = "C:/Users/pileggis/Documents/gh-personal")
+
+# ------------------------------------------------------------------------------
+# 2/ enable create RStudio shortcuts with the shrtcts package
+if (interactive() && requireNamespace("shrtcts", quietly = TRUE)) {
+  shrtcts::add_rstudio_shortcuts()
+}
+
+if (interactive() && requireNamespace("shrtcts", quietly = TRUE)) {
+  shrtcts::add_rstudio_shortcuts(set_keyboard_shortcuts = TRUE)
+}
+```
+
+
+
 ## .gitconfig 
 
-You can quickly open your `.gitconfig` file for editing with `usethis::edit_git_config()`. My
-`.gitconfig` file lives at:
+You can quickly open your `.gitconfig` file for editing with 
+
+
+```{r}
+usethis::edit_git_config()
+```
+
+My `.gitconfig` file lives at:
 
 `"C:\Users\pileggis\.gitconfig"`
 
+and has been modified to allow me to switch between work and personal github
+identities when working on R projects, which is described in more detail in 
+[GitHub ssh and config with multiple accounts](https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/){target="_blank"}
+by Travis Gerke.
 
-# Other modifications
 
-in .Rprofile
+```{r, echo = FALSE, eval = TRUE}
+knitr::knit_exit()
+```
 
-`options(usethis.destdir = "C:/Users/pileggis/Documents/gh-personal")`
+
+
+From Omar Chua.
+provisioning is different on Flex laptops vs Domain accounts
+Flex laptops are Azure AD based
+So it looks like Admin Rights are enable or disable using a cloud group for the azure devices (flex laptops)
+you will not see indication from your actual account
+as the provisioning is done through the flex device
+
