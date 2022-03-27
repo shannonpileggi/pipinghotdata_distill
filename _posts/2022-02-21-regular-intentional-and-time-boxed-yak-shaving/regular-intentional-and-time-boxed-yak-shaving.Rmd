@@ -43,7 +43,7 @@ knitr::include_graphics("img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg")
 # TL; DR
 
 This post summarizes a conversation with Jenny Bryan about yak shaves,
-which helped approach the learning process with a focused and positive mindset.
+which helped me approach the learning process with a focused and positive mindset.
 
 1. Background.
 
@@ -69,7 +69,7 @@ tweetrmd::include_tweet("https://twitter.com/JennyBryan/status/13661079424879493
 
 But learning new methods in or related to R can be a daunting and overwhelming process.
 It is easy to feel like everyone else knows _X_, and you are behind. The learning
-is not necessarily linear, and there often is not a well-defined set of milestones to aspire to.
+is not necessarily linear, and often there is not a well-defined set of milestones to aspire to.
 I thought about it for a long time, and...
 
 ```{r}
@@ -207,7 +207,7 @@ I am also at peace with the times where I coast on the status quo for my own san
 Creating this positive mindset towards incremental learning has been especially
 important to me this year as I transitioned from my formal domain expertise as a Statistician
 into a new role as a Data Scientist, where I suspect that I will be happily learning
-about computer science and software engineering concepts for many years to come.
+new-to-me programming concepts for many years to come.
 
 After this chat with Jenny, I felt better about myself: where I am in my 
 current state of knowledge, what I am spending my time on learning, and 
