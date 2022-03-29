@@ -15,13 +15,19 @@
       <description>
 
 
+&lt;h1 id="questions"&gt;Questions&lt;/h1&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;In the table, what descriptions would you assign to the &lt;code&gt;Home&lt;/code&gt; rows?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;On Windows OS, is &lt;code&gt;fs::path_home()&lt;/code&gt; relevant at all to R administration?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Do ppl ever manually change/redirect &lt;code&gt;fs::path_home()&lt;/code&gt; or &lt;code&gt;fs::path_home_r()&lt;/code&gt;? Or are those just always left as default?&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
-&lt;div id="pqjbmtprrf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
+&lt;div id="yvzxnpryoe" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
 &lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#pqjbmtprrf .gt_table {
+#yvzxnpryoe .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -46,7 +52,7 @@
   border-left-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_heading {
+#yvzxnpryoe .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -58,33 +64,37 @@
   border-right-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_title {
+#yvzxnpryoe .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
-#pqjbmtprrf .gt_subtitle {
+#yvzxnpryoe .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
   padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#pqjbmtprrf .gt_bottom_border {
+#yvzxnpryoe .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_col_headings {
+#yvzxnpryoe .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -99,7 +109,7 @@
   border-right-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_col_heading {
+#yvzxnpryoe .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -119,7 +129,7 @@
   overflow-x: hidden;
 }
 
-#pqjbmtprrf .gt_column_spanner_outer {
+#yvzxnpryoe .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -131,15 +141,15 @@
   padding-right: 4px;
 }
 
-#pqjbmtprrf .gt_column_spanner_outer:first-child {
+#yvzxnpryoe .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pqjbmtprrf .gt_column_spanner_outer:last-child {
+#yvzxnpryoe .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pqjbmtprrf .gt_column_spanner {
+#yvzxnpryoe .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -151,8 +161,11 @@
   width: 100%;
 }
 
-#pqjbmtprrf .gt_group_heading {
-  padding: 8px;
+#yvzxnpryoe .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -173,7 +186,7 @@
   vertical-align: middle;
 }
 
-#pqjbmtprrf .gt_empty_group_heading {
+#yvzxnpryoe .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -188,15 +201,15 @@
   vertical-align: middle;
 }
 
-#pqjbmtprrf .gt_from_md &gt; :first-child {
+#yvzxnpryoe .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#pqjbmtprrf .gt_from_md &gt; :last-child {
+#yvzxnpryoe .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#pqjbmtprrf .gt_row {
+#yvzxnpryoe .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -215,7 +228,7 @@
   overflow-x: hidden;
 }
 
-#pqjbmtprrf .gt_stub {
+#yvzxnpryoe .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -224,10 +237,29 @@
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#pqjbmtprrf .gt_summary_row {
+#yvzxnpryoe .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yvzxnpryoe .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yvzxnpryoe .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -237,17 +269,26 @@
   padding-right: 5px;
 }
 
-#pqjbmtprrf .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
+#yvzxnpryoe .gt_first_summary_row {
   border-top-style: solid;
-  border-top-width: 2px;
   border-top-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_grand_summary_row {
+#yvzxnpryoe .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yvzxnpryoe .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yvzxnpryoe .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -257,7 +298,7 @@
   padding-right: 5px;
 }
 
-#pqjbmtprrf .gt_first_grand_summary_row {
+#yvzxnpryoe .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -267,11 +308,11 @@
   border-top-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_striped {
+#yvzxnpryoe .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pqjbmtprrf .gt_table_body {
+#yvzxnpryoe .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -280,7 +321,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_footnotes {
+#yvzxnpryoe .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -294,13 +335,16 @@
   border-right-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_footnote {
+#yvzxnpryoe .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#pqjbmtprrf .gt_sourcenotes {
+#yvzxnpryoe .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -314,44 +358,71 @@
   border-right-color: #D3D3D3;
 }
 
-#pqjbmtprrf .gt_sourcenote {
+#yvzxnpryoe .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#pqjbmtprrf .gt_left {
+#yvzxnpryoe .gt_left {
   text-align: left;
 }
 
-#pqjbmtprrf .gt_center {
+#yvzxnpryoe .gt_center {
   text-align: center;
 }
 
-#pqjbmtprrf .gt_right {
+#yvzxnpryoe .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pqjbmtprrf .gt_font_normal {
+#yvzxnpryoe .gt_font_normal {
   font-weight: normal;
 }
 
-#pqjbmtprrf .gt_font_bold {
+#yvzxnpryoe .gt_font_bold {
   font-weight: bold;
 }
 
-#pqjbmtprrf .gt_font_italic {
+#yvzxnpryoe .gt_font_italic {
   font-style: italic;
 }
 
-#pqjbmtprrf .gt_super {
+#yvzxnpryoe .gt_super {
   font-size: 65%;
 }
 
-#pqjbmtprrf .gt_footnote_marks {
+#yvzxnpryoe .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
-  font-size: 65%;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#yvzxnpryoe .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yvzxnpryoe .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#yvzxnpryoe .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#yvzxnpryoe .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
 }
 &lt;/style&gt;
 &lt;table class="gt_table"&gt;
@@ -367,7 +438,7 @@
     &lt;tr class="gt_group_heading_row"&gt;
       &lt;td colspan="3" class="gt_group_heading"&gt;Home&lt;/td&gt;
     &lt;/tr&gt;
-    &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;??&lt;/td&gt;
+    &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_left"&gt;??&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`Sys.getenv("HOME")`, `Sys.getenv("R_User")`, `fs::path_home_r()`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;??&lt;/td&gt;
@@ -376,7 +447,7 @@
     &lt;tr class="gt_group_heading_row"&gt;
       &lt;td colspan="3" class="gt_group_heading"&gt;Software&lt;/td&gt;
     &lt;/tr&gt;
-    &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;R&lt;/td&gt;
+    &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_left"&gt;R&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`R.home()`, `Sys.getenv("R_HOME")`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`C:\PROGRA~1\R\R-41~1.2`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;R packages&lt;/td&gt;
@@ -386,7 +457,7 @@
 &lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`C:\Program Files\RStudio`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;Rtools&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
+&lt;td class="gt_row gt_left"&gt;`devtools::find_rtools()`, `devtools::has_devel()`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`C:\rtools40`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;Git&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
@@ -394,7 +465,7 @@
     &lt;tr class="gt_group_heading_row"&gt;
       &lt;td colspan="3" class="gt_group_heading"&gt;Configuration&lt;/td&gt;
     &lt;/tr&gt;
-    &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.Renviron`&lt;/td&gt;
+    &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_left"&gt;`.Renviron`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`usethis::edit_r_environ()`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.Rprofile`&lt;/td&gt;
@@ -403,12 +474,6 @@
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.gitconfig`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`usethis::edit_git_config()`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\.gitconfig`&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.shrtcts.R`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`shrtcts::locate_shortcuts_source()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.shrtcts.R`&lt;/td&gt;&lt;/tr&gt;
-    &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`addins.json`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;NA&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
   
   
@@ -418,22 +483,25 @@
 &lt;h2 id="recommended-settings"&gt;Recommended settings&lt;/h2&gt;
 &lt;p&gt;When getting started with a Windows computer, I recommend changing default settings such that:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;Display the full path in the title bar&lt;/li&gt;
-&lt;li&gt;Show hidden files, folders, and drives&lt;/li&gt;
-&lt;li&gt;&lt;Uncheck/Do not&gt; Hide extension for known file types&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Display the full path in the title bar&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Show hidden files, folders, and drives&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;Uncheck/Do not&gt; Hide extension for known file types&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;Some Windows 🪟 defaults I always change on a new computer💻🧐&lt;br&gt;&lt;br&gt;Do you have other defaults you change on Windows?&lt;br&gt;&lt;br&gt;gotta love the switcheroos between hide/display &amp;amp; check/uncheck &lt;a href="https://t.co/X1XZ24ltz1"&gt;pic.twitter.com/X1XZ24ltz1&lt;/a&gt;&lt;/p&gt;&amp;mdash; Shannon Pileggi (@PipingHotData) &lt;a href="https://twitter.com/PipingHotData/status/1450494168900509697?ref_src=twsrc%5Etfw"&gt;October 19, 2021&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;h2 id="administrator-rights"&gt;Administrator rights&lt;/h2&gt;
-&lt;p&gt;Much of how you work in Windows depends on your level of rights. Fortunately, I was granted administrator privileges on my work laptop, which allows me to install software and save configuration files where I need to.&lt;/p&gt;
+&lt;p&gt;Much of how you work in Windows depends on your level of rights. Fortunately, I was granted administrator privileges on my work laptop, which allows me to install software and save configuration files where I want to.&lt;/p&gt;
+&lt;p&gt;If you do not have administrator privileges, knowing this can still help you work with IT to complete your set upor find alternate viable locations.&lt;/p&gt;
 &lt;h1 id="homes"&gt;Homes&lt;/h1&gt;
 &lt;p&gt;I explored how R defines my home directories. On Mac OS, the “home” and the “R home” are the same thing, but on Windows OS they differ.&lt;/p&gt;
+&lt;h2 id="r-home"&gt;R Home&lt;/h2&gt;
 &lt;pre class="r"&gt;&lt;code&gt;Sys.getenv(&amp;quot;HOME&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"&lt;/code&gt;&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;Sys.getenv(&amp;quot;R_User&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"&lt;/code&gt;&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;fs::path_home_r()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="home"&gt;Home&lt;/h2&gt;
 &lt;pre class="r"&gt;&lt;code&gt;fs::path_home()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;C:/Users/pileggis&lt;/code&gt;&lt;/p&gt;
 &lt;h1 id="software"&gt;Software&lt;/h1&gt;
@@ -450,10 +518,10 @@
 &lt;pre class="r"&gt;&lt;code&gt;Sys.getenv(&amp;quot;R_HOME&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;"C:/PROGRA~1/R/R-41~1.2"&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="r-packages"&gt;R packages&lt;/h2&gt;
-&lt;p&gt;My R packages were initially being installed to the default location at &lt;code&gt;fs::path_home_r()&lt;/code&gt;; I modified this location to my &lt;code&gt;C&lt;/code&gt; drive.&lt;/p&gt;
-&lt;p&gt;R for the Rest of Us has a nice video tutorial on &lt;a href="https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/" target="_blank"&gt;How to Set Your Default Package Install Location in R&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.libPaths()&lt;/code&gt; shows you were your R packages are being installed.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;.libPaths()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;"C:/Program Files/R/R-4.1.1/library" "C:/Program Files/R/R-4.1.2/library"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;"C:/Program Files/R/R-4.1.2/library"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;My R packages were initially being installed to the default location at &lt;code&gt;fs::path_home_r()&lt;/code&gt;; I modified this location to my &lt;code&gt;C&lt;/code&gt; drive. R for the Rest of Us has a nice video tutorial on &lt;a href="https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/" target="_blank"&gt;How to Set Your Default Package Install Location in R&lt;/a&gt; using the &lt;a href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt; configuration file.&lt;/p&gt;
 &lt;h1 id="rtools"&gt;Rtools&lt;/h1&gt;
 &lt;p&gt;Rtools is a collection of tools required to &lt;a href="https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment" target="_blank"&gt;build source packages&lt;/a&gt; on Windows. My installation is located at:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;"C:\rtools40"&lt;/code&gt;&lt;/p&gt;
@@ -470,13 +538,13 @@
 &lt;p&gt;The &lt;code&gt;.Renviron&lt;/code&gt; file contains environment variables, and is not R code.&lt;/p&gt;
 &lt;p&gt;To edit this file, submit:&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;usethis::edit_r_environ()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The RStudio article &lt;a href="https://support.rstudio.com/hc/en-us/articles/360047157094-Managing-R-with-Rprofile-Renviron-Rprofile-site-Renviron-site-rsession-conf-and-repos-conf" target="_blank"&gt;Managing R with .Rprofile, .Renviron, Rprofile.site, Renviron.site, rsession.conf, and repos.conf&lt;/a&gt; by Alex Gold says that the “User-level .Rprofile files live in the base of the user’s home directory.”&lt;/p&gt;
-&lt;p&gt;For me, that means&lt;/p&gt;
+&lt;p&gt;The user-level &lt;code&gt;.Renviron&lt;/code&gt; file lives in the base of the user’s home directory. For me, that means&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;My file has has been modified to establish default library locations for R package installations.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;R_LIBS_USER = "C:/Program Files/R/R-4.1.1/library"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;R_LIBS_USER = "R_LIBS_USER = "C:/Program Files/R/library/%v"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;As explained in What They Forgot To Teach You About R &lt;a href="https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r"&gt;Ch 8.4 How to transfer your library when updating R&lt;/a&gt;, the &lt;code&gt;%v&lt;/code&gt; wildcard automatically adjusts the installation folder when you update to a new R version.&lt;/p&gt;
 &lt;h1 id="rprofile"&gt;.Rprofile&lt;/h1&gt;
-&lt;p&gt;As stated in &lt;a href="https://rstats.wtf/r-startup.html#rprofile" target="_blank"&gt;What They Forgot to Teach You about R&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As stated in What They Forgot to Teach You about R &lt;a href="https://rstats.wtf/r-startup.html#rprofile" target="_blank"&gt;Ch 7.2 .Rprofile&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The &lt;code&gt;.Rprofile&lt;/code&gt; file contains R code to be run when R starts up. It is run after the &lt;code&gt;.Renviron&lt;/code&gt; file is sourced.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -497,10 +565,6 @@ options(usethis.destdir = &amp;quot;C:/Users/pileggis/Documents/gh-personal&amp;
 # ------------------------------------------------------------------------------
 # 2/ enable create RStudio shortcuts with the shrtcts package
 if (interactive() &amp;amp;&amp;amp; requireNamespace(&amp;quot;shrtcts&amp;quot;, quietly = TRUE)) {
-  shrtcts::add_rstudio_shortcuts()
-}
-
-if (interactive() &amp;amp;&amp;amp; requireNamespace(&amp;quot;shrtcts&amp;quot;, quietly = TRUE)) {
   shrtcts::add_rstudio_shortcuts(set_keyboard_shortcuts = TRUE)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="gitconfig"&gt;.gitconfig&lt;/h2&gt;
@@ -509,6 +573,7 @@ if (interactive() &amp;amp;&amp;amp; requireNamespace(&amp;quot;shrtcts&amp;quot
 &lt;p&gt;My &lt;code&gt;.gitconfig&lt;/code&gt; file lives at:&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;"C:\Users\pileggis\.gitconfig"&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;and has been modified to allow me to switch between work and personal github identities when working on R projects, which is described in more detail in &lt;a href="https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/" target="_blank"&gt;GitHub ssh and config with multiple accounts&lt;/a&gt; by Travis Gerke.&lt;/p&gt;
+&lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>b66eb43e8b8e4a30462169f0a429a40c</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-03-23-personal-r-administration-on-windows</guid>
