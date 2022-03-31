@@ -231,7 +231,7 @@ The user-level `.Renviron` file lives in the base of the user's home directory. 
 My file has has been modified to establish default library locations for 
 R package installations.
 
-`R_LIBS_USER = "R_LIBS_USER = "C:\Program Files\R\library\%v"`
+`R_LIBS_USER = "C:\Program Files\R\library\%v"`
 
 As explained in [WTF Ch 8.4 How to transfer your library when updating R](https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r), the `%v` wildcard automatically adjusts the installation folder when you update to a new R version.
 
