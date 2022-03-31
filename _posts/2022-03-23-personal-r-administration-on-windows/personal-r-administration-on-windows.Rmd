@@ -1,7 +1,7 @@
 ---
 title: "Personal R Administration on Windows"
 description: |
-  A short description of the post.
+  Where R and R adjacent software and configuration files live, and how to find them.
 author:
   - name: Shannon Pileggi
     url: {}
@@ -33,9 +33,19 @@ paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotda
 3. Do ppl ever manually change/redirect `fs::path_home()` or `fs::path_home_r()`? 
 Or are those just always left as default?
 
+4. Should the paths have forward or backward slashes?
+
+5. Should I leave the paths as-is with username and work specific info, or 
+modify to make more generic?
+
+6. Why do sometimes file paths get abbreviated with tildes? Like `C:\PROGRA~1\R\R-41~1.2`
+
+7. Any other feedback!
 
 # TL;DR
 
+Managing an R development set up on Windows requires a lot of files in a lot of
+places. Here's what mine looks like.
 
 
 ```{r, echo = FALSE, eval = TRUE}
@@ -45,7 +55,44 @@ paths %>%
   ) 
 ```
 
+# Background
+
+When Travis Gerke tweeted about the breaker of chains keyboard shortcut, I was
+eager to try it out! 
+
+```{r, eval = TRUE, echo = FALSE}
+tweetrmd::tweet_embed("https://twitter.com/travisgerke/status/1503385645280026626")
+```
+
+
+However, it was not immediately clear to me where to save the 
+the `shrtcts.R` configuration file. This took a bit of trial and 
+error to figure out, and led me down a rabbit hole of documenting where everything R
+and R adjacent was located. 
+
+# Resources
+
+In this post I refer to two packages and two books.
+
+## Packages
+
+1. [`usethis`](https://usethis.r-lib.org/){target="_blank"} for helpers that
+automate repetitive tasks during project set up and development.
+
+2. [`fs`](https://fs.r-lib.org/){target="_blank"} for cross-platform file system
+operations.
+
+## Books
+
+1. [Happy Git with R](https://happygitwithr.com/){target="_blank"}, a manual for integrating Git with R; abbreviated to `Happy Git` for the remainder of this post.
+
+2. [What they Forgot to Teach You About R](https://rstats.wtf/){target="_blank"}, in
+in progress but still extremely helpful documentation on best practices when working
+in R; abbreviated to `WTF` for the remainder of this post.
+
 # Windows
+
+I am working on a computer supplied by employer running Windows 10.
 
 ## Recommended settings
 
@@ -70,7 +117,7 @@ I was granted administrator privileges on my work laptop, which
 allows me to install software and save configuration files where I want to. 
 
 If you do not have administrator privileges, knowing this can still help you
-work with IT to complete your set upor find alternate viable locations.
+work with IT to complete your set up or find alternate viable locations.
 
 # Homes 
 
@@ -79,23 +126,16 @@ I explored how R defines my home directories. On Mac OS, the "home" and the
 
 ## R Home
 
+These three commands all point to your "R home".
+
 ```{r}
 Sys.getenv("HOME")
-```
-
-`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
-
-```{r}
 Sys.getenv("R_User")
-```
-
-`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents"`
-
-```{r}
 fs::path_home_r()
 ```
 
-`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
+
+`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents`
 
 ## Home
 
@@ -104,7 +144,7 @@ fs::path_home_r()
 fs::path_home()
 ```
 
-`C:/Users/pileggis`
+`C:\Users\pileggis`
 
 
 # Software
@@ -113,22 +153,15 @@ fs::path_home()
 
 From the `R.home()` help file: 
 
-> The R home directory is the top-level directory of the R installation being run.
+> The R home directory is the top-level directory of the R installation being run. The R home directory is often referred to as R_HOME, and is the value of an environment variable of that name in an R session.
 
 
 ```{r}
 R.home()
-```
-
-`"C:/PROGRA~1/R/R-41~1.2"`
-
-> The R home directory is often referred to as R_HOME, and is the value of an environment variable of that name in an R session.
-
-```{r}
 Sys.getenv("R_HOME")
 ```
 
-`"C:/PROGRA~1/R/R-41~1.2"`
+`C:\Program Files\R\R-4.1.2`
 
 ## R packages
 
@@ -138,16 +171,22 @@ Sys.getenv("R_HOME")
 .libPaths()
 ```
 
-`"C:/Program Files/R/R-4.1.2/library"`
+`"C:\Program Files\R\R-4.1.2\library"`
 
 
-My R packages were initially being installed to the default location at `fs::path_home_r()`; I modified this location to my `C` drive. R for the Rest of Us has a nice video tutorial on [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"} using the [`.Renviron`](#renviron) configuration file.
+My R packages were initially being installed to a default location at `fs::path_home_r()`; I modified this location to my `C` drive. R for the Rest of Us has a nice video tutorial on [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"} using the [`.Renviron`](#renviron) configuration file.
 
 # Rtools 
 
-Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. My installation is located at:
+Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. Basically, if you want to do anything
+with packages beyond CRAN (install from github, build locally), you need
+R tools. 
+
+In order to work, R tools _must be_ installed at 
 
 `"C:\rtools40"`
+
+which is where mine is, too.
 
 You can confirm if your installation worked properly if
 
@@ -166,7 +205,7 @@ which returns `Your system is ready to build packages!`
 
 # Git
 
-As recommended in [Happy Git with R](https://happygitwithr.com/){target="_blank"}, git is installed at
+As recommended in [Happy Git Ch 6.2 Install Git on Windows](https://happygitwithr.com/){target="_blank"}, git is installed at
 
 `C:\Program Files\Git`
 
@@ -192,13 +231,13 @@ The user-level `.Renviron` file lives in the base of the user's home directory. 
 My file has has been modified to establish default library locations for 
 R package installations.
 
-`R_LIBS_USER = "R_LIBS_USER = "C:/Program Files/R/library/%v"`
+`R_LIBS_USER = "R_LIBS_USER = "C:\Program Files\R\library\%v"`
 
-As explained in What They Forgot To Teach You About R [Ch 8.4 How to transfer your library when updating R](https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r), the `%v` wildcard automatically adjusts the installation folder when you update to a new R version.
+As explained in [WTF Ch 8.4 How to transfer your library when updating R](https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r), the `%v` wildcard automatically adjusts the installation folder when you update to a new R version.
 
 # .Rprofile
 
-As stated in What They Forgot to Teach You about R [Ch 7.2 .Rprofile](https://rstats.wtf/r-startup.html#rprofile){target="_blank"}
+As stated in [WTF Ch 7.2 .Rprofile](https://rstats.wtf/r-startup.html#rprofile){target="_blank"}
 
 > The `.Rprofile` file contains R code to be run when R starts up. It is run after the `.Renviron` file is sourced.
 
@@ -248,10 +287,17 @@ My `.gitconfig` file lives at:
 
 and has been modified to allow me to switch between work and personal github
 identities when working on R projects, which is described in more detail in 
-[GitHub ssh and config with multiple accounts](https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/){target="_blank"}
-by Travis Gerke.
+[GitHub ssh and config with multiple accounts](https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/){target="_blank"} by Travis Gerke.
+
+# Summary
+
+This topic probably isn't exciting for many, but having this understanding can
+save you time troubleshooting. And maybe next I get set up on a new Windows OS 
+it will go quicker. 😊
 
 # Acknowledgements
+
+Thanks to [Travis Gerke](https://travisgerke.com/){target="_blank"} for inspiring me to try new R things! Thanks to Omar Chua, who provided IT support with many installations as I was waiting for administrative privileges.
 
 
 ```{r, echo = FALSE, eval = TRUE}
