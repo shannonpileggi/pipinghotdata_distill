@@ -20,10 +20,10 @@ creators out there,
 
 🎉 Piping Hot Data has **19** posts since **2018-11-05**\!
 
-📅 That’s a post roughly every **27** days, or about 1.0 posts per month,
+📅 That’s a post roughly every **31** days, or about 0.9 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **0** days ago ([Report Ready PDF tables
+✍️ The last post was published **71** days ago ([Report Ready PDF tables
 with rmarkdown, knitr, kableExtra, and
 LaTeX](https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex)).
 As Yihui Xie advises, I try to write like no one is reading. But your
@@ -66,4 +66,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-01-24 20:16:30*
+*Updated 2022-04-05 15:43:50*
