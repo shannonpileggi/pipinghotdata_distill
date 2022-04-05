@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-    schedule:
-      - cron: '09 05 * * *'
+  schedule:
+    - cron: '09 05 * * *'
     
 name: render-rmarkdown
 
