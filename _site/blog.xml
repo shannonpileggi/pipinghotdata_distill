@@ -27,12 +27,12 @@
 &lt;/ol&gt;
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
 &lt;p&gt;Managing an R development set up on Windows requires a lot of files in a lot of places. Here’s what mine looks like.&lt;/p&gt;
-&lt;div id="ulvnwsdapo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
+&lt;div id="tvpeqxrlww" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
 &lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ulvnwsdapo .gt_table {
+#tvpeqxrlww .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -57,7 +57,7 @@
   border-left-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_heading {
+#tvpeqxrlww .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -69,7 +69,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_title {
+#tvpeqxrlww .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -81,7 +81,7 @@
   border-bottom-width: 0;
 }
 
-#ulvnwsdapo .gt_subtitle {
+#tvpeqxrlww .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -93,13 +93,13 @@
   border-top-width: 0;
 }
 
-#ulvnwsdapo .gt_bottom_border {
+#tvpeqxrlww .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_col_headings {
+#tvpeqxrlww .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -114,7 +114,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_col_heading {
+#tvpeqxrlww .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -134,7 +134,7 @@
   overflow-x: hidden;
 }
 
-#ulvnwsdapo .gt_column_spanner_outer {
+#tvpeqxrlww .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -146,15 +146,15 @@
   padding-right: 4px;
 }
 
-#ulvnwsdapo .gt_column_spanner_outer:first-child {
+#tvpeqxrlww .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ulvnwsdapo .gt_column_spanner_outer:last-child {
+#tvpeqxrlww .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ulvnwsdapo .gt_column_spanner {
+#tvpeqxrlww .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -166,7 +166,7 @@
   width: 100%;
 }
 
-#ulvnwsdapo .gt_group_heading {
+#tvpeqxrlww .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -191,7 +191,7 @@
   vertical-align: middle;
 }
 
-#ulvnwsdapo .gt_empty_group_heading {
+#tvpeqxrlww .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -206,15 +206,15 @@
   vertical-align: middle;
 }
 
-#ulvnwsdapo .gt_from_md &gt; :first-child {
+#tvpeqxrlww .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#ulvnwsdapo .gt_from_md &gt; :last-child {
+#tvpeqxrlww .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#ulvnwsdapo .gt_row {
+#tvpeqxrlww .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -233,7 +233,7 @@
   overflow-x: hidden;
 }
 
-#ulvnwsdapo .gt_stub {
+#tvpeqxrlww .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -246,7 +246,7 @@
   padding-right: 5px;
 }
 
-#ulvnwsdapo .gt_stub_row_group {
+#tvpeqxrlww .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -260,11 +260,11 @@
   vertical-align: top;
 }
 
-#ulvnwsdapo .gt_row_group_first td {
+#tvpeqxrlww .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ulvnwsdapo .gt_summary_row {
+#tvpeqxrlww .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -274,16 +274,16 @@
   padding-right: 5px;
 }
 
-#ulvnwsdapo .gt_first_summary_row {
+#tvpeqxrlww .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_first_summary_row.thick {
+#tvpeqxrlww .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ulvnwsdapo .gt_last_summary_row {
+#tvpeqxrlww .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -293,7 +293,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_grand_summary_row {
+#tvpeqxrlww .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -303,7 +303,7 @@
   padding-right: 5px;
 }
 
-#ulvnwsdapo .gt_first_grand_summary_row {
+#tvpeqxrlww .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -313,11 +313,11 @@
   border-top-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_striped {
+#tvpeqxrlww .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ulvnwsdapo .gt_table_body {
+#tvpeqxrlww .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -326,7 +326,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_footnotes {
+#tvpeqxrlww .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -340,7 +340,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_footnote {
+#tvpeqxrlww .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -349,7 +349,7 @@
   padding-right: 5px;
 }
 
-#ulvnwsdapo .gt_sourcenotes {
+#tvpeqxrlww .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -363,7 +363,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ulvnwsdapo .gt_sourcenote {
+#tvpeqxrlww .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -371,60 +371,60 @@
   padding-right: 5px;
 }
 
-#ulvnwsdapo .gt_left {
+#tvpeqxrlww .gt_left {
   text-align: left;
 }
 
-#ulvnwsdapo .gt_center {
+#tvpeqxrlww .gt_center {
   text-align: center;
 }
 
-#ulvnwsdapo .gt_right {
+#tvpeqxrlww .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ulvnwsdapo .gt_font_normal {
+#tvpeqxrlww .gt_font_normal {
   font-weight: normal;
 }
 
-#ulvnwsdapo .gt_font_bold {
+#tvpeqxrlww .gt_font_bold {
   font-weight: bold;
 }
 
-#ulvnwsdapo .gt_font_italic {
+#tvpeqxrlww .gt_font_italic {
   font-style: italic;
 }
 
-#ulvnwsdapo .gt_super {
+#tvpeqxrlww .gt_super {
   font-size: 65%;
 }
 
-#ulvnwsdapo .gt_footnote_marks {
+#tvpeqxrlww .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#ulvnwsdapo .gt_asterisk {
+#tvpeqxrlww .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ulvnwsdapo .gt_slash_mark {
+#tvpeqxrlww .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#ulvnwsdapo .gt_fraction_numerator {
+#tvpeqxrlww .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#ulvnwsdapo .gt_fraction_denominator {
+#tvpeqxrlww .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -543,6 +543,14 @@ Sys.getenv(&amp;quot;R_HOME&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="r"&gt;&lt;code&gt;.libPaths()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;"C:\Program Files\R\R-4.1.2\library"&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;My R packages were initially being installed to a default location at &lt;code&gt;fs::path_home_r()&lt;/code&gt;; I modified this location to my &lt;code&gt;C&lt;/code&gt; drive. R for the Rest of Us has a nice video tutorial on &lt;a href="https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/" target="_blank"&gt;How to Set Your Default Package Install Location in R&lt;/a&gt; using the &lt;a href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt; configuration file.&lt;/p&gt;
+&lt;p&gt;Furthermore, depending on where you fall on the &lt;code&gt;user &amp;lt;---&amp;gt; developer&lt;/code&gt; continuum, you may have additional considerations for package installation.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;R 4.2.0 is scheduled for release on 2022-04-22. As described in Jumping Rivers &lt;a href="https://www.jumpingrivers.com/blog/new-features-r420/" target="_blank"&gt;New features in R 4.2.0&lt;/a&gt; post, with this release, the default personal library for Windows is “now a subdirectory of local application data directory (usually a hidden directory &lt;code&gt;C:\Users\username\AppData\Local&lt;/code&gt;).” For some users this may work well and others may want to change the default location through methods mentioned above.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are using the &lt;code&gt;renv&lt;/code&gt; package for reproducible environments, all utilized packages are installed in &lt;a href="https://www.jumpingrivers.com/blog/new-features-r420/" target="&amp;quot;_blank"&gt;global package cache&lt;/a&gt; which is shared across all projects. My cache is located at &lt;code&gt;C:\Users\pileggis\AppData\Local\R\cache\R\renv&lt;/code&gt; (confirm this!).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are actively developing packages, you may want to separate the location of stable packages from development versions. You can do so by utilizing &lt;code&gt;devtools::dev_mode(on = TRUE)&lt;/code&gt;, which allows you to install development packages to a new directory. When I work in dev mode, the development, not-yet-released packages get installed to &lt;code&gt;C:\Users\pileggis\R-dev&lt;/code&gt;. This was a directory I created myself. You can create this directory with&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;fs::dir_create(fs::path(getOption("devtools.path")))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;(confirm this!)&lt;/p&gt;
 &lt;h1 id="rtools"&gt;Rtools&lt;/h1&gt;
 &lt;p&gt;Rtools is a collection of tools required to &lt;a href="https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment" target="_blank"&gt;build source packages&lt;/a&gt; on Windows. Basically, if you want to do anything with packages beyond CRAN (install from github, build locally), you need R tools.&lt;/p&gt;
 &lt;p&gt;In order to work, R tools &lt;em&gt;must be&lt;/em&gt; installed at&lt;/p&gt;
@@ -564,7 +572,7 @@ Sys.getenv(&amp;quot;R_HOME&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The user-level &lt;code&gt;.Renviron&lt;/code&gt; file lives in the base of the user’s home directory. For me, that means&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;My file has has been modified to establish default library locations for R package installations.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;R_LIBS_USER = "R_LIBS_USER = "C:\Program Files\R\library\%v"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;R_LIBS_USER = "C:\Program Files\R\library\%v"&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;As explained in &lt;a href="https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r"&gt;WTF Ch 8.4 How to transfer your library when updating R&lt;/a&gt;, the &lt;code&gt;%v&lt;/code&gt; wildcard automatically adjusts the installation folder when you update to a new R version.&lt;/p&gt;
 &lt;h1 id="rprofile"&gt;.Rprofile&lt;/h1&gt;
 &lt;p&gt;As stated in &lt;a href="https://rstats.wtf/r-startup.html#rprofile" target="_blank"&gt;WTF Ch 7.2 .Rprofile&lt;/a&gt;&lt;/p&gt;

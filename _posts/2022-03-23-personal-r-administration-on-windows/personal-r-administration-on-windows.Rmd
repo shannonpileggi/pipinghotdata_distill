@@ -176,6 +176,30 @@ Sys.getenv("R_HOME")
 
 My R packages were initially being installed to a default location at `fs::path_home_r()`; I modified this location to my `C` drive. R for the Rest of Us has a nice video tutorial on [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"} using the [`.Renviron`](#renviron) configuration file.
 
+Furthermore, depending on where you fall on the `user <---> developer` continuum, 
+you may have additional considerations for package installation.
+
+1. R 4.2.0 is scheduled for release on 2022-04-22. As described in Jumping Rivers
+[New features in R 4.2.0](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank"} post, 
+with this release, the default personal library for Windows is "now a subdirectory 
+of local application data directory (usually a hidden directory `C:\Users\username\AppData\Local`)."
+For some users this may work well and others may want to change the default location
+through methods mentioned above.
+
+2. If you are using the `renv` package for reproducible environments, all utilized 
+packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:\Users\pileggis\AppData\Local\R\cache\R\renv` (confirm this!).
+
+3. If you are actively developing packages, you may want to separate the location of
+stable packages from development versions. You can do so by utilizing 
+`devtools::dev_mode(on = TRUE)`, which allows you to install development packages to a new 
+directory. When I work in dev mode, the development, not-yet-released packages get
+installed to `C:\Users\pileggis\R-dev`. This was a directory I created myself. You
+can create this directory with 
+
+`fs::dir_create(fs::path(getOption("devtools.path")))`
+
+(confirm this!)
+
 # Rtools 
 
 Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. Basically, if you want to do anything
