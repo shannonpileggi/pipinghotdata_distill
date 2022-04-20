@@ -187,7 +187,7 @@ For some users this may work well and others may want to change the default loca
 through methods mentioned above.
 
 2. If you are using the `renv` package for reproducible environments, all utilized 
-packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:\Users\pileggis\AppData\Local\R\cache\R\renv` (confirm this!).
+packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:\Users\pileggis\AppData\Local\renv`.
 
 3. If you are actively developing packages, you may want to separate the location of
 stable packages from development versions. You can do so by utilizing 
