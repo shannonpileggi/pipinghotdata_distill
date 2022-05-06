@@ -38,7 +38,7 @@ Or are those just always left as default?
 5. Should I leave the paths as-is with username and work specific info, or 
 modify to make more generic?
 
-6. Why do sometimes file paths get abbreviated with tildes? Like `C:\PROGRA~1\R\R-41~1.2`
+6. Why do sometimes file paths get abbreviated with tildes? Like `C:/PROGRA~1/R/R-41~1.2`
 
 7. Any other feedback!
 
@@ -135,7 +135,7 @@ fs::path_home_r()
 ```
 
 
-`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents`
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
 
 ## Home
 
@@ -144,7 +144,7 @@ fs::path_home_r()
 fs::path_home()
 ```
 
-`C:\Users\pileggis`
+`C:/Users/pileggis`
 
 
 # Software
@@ -155,60 +155,64 @@ From the `R.home()` help file:
 
 > The R home directory is the top-level directory of the R installation being run. The R home directory is often referred to as R_HOME, and is the value of an environment variable of that name in an R session.
 
+Wrapping the function in `fs::path_real()` allows you to see the full path, 
+rather than the [short file path](https://en.wikipedia.org/wiki/8.3_filename){target="_blank"}.
 
 ```{r}
-R.home()
-Sys.getenv("R_HOME")
+fs::path_real(R.home())
+fs::path_real(Sys.getenv("R_HOME"))
 ```
 
-`C:\Program Files\R\R-4.1.2`
+`C:/Program Files/R/R-4.2.0`
 
 ## R packages
 
-`.libPaths()` shows you were your R packages are being installed.
+`.libPaths()` shows you were your R packages are being installed. You may have
+more than one path present, in which case R attaches packages from the libraries
+in the order shown (searches first library first).
 
 ```{r}
 .libPaths()
 ```
 
-`"C:\Program Files\R\R-4.1.2\library"`
+`"C:/Program Files/R/R-4.2.0/library"`
 
 
-My R packages were initially being installed to a default location at `fs::path_home_r()`; I modified this location to my `C` drive. R for the Rest of Us has a nice video tutorial on [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"} using the [`.Renviron`](#renviron) configuration file.
+My R packages were initially being installed to a default location at `fs::path_home_r()`; 
+I modified this location to my `C` drive. R for the Rest of Us has a nice video tutorial on [How to Set Your Default Package Install Location in R](https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/){target="_blank"} using the [`.Renviron`](#renviron) configuration file.
 
 Furthermore, depending on where you fall on the `user <---> developer` continuum, 
 you may have additional considerations for package installation.
 
-1. R 4.2.0 is scheduled for release on 2022-04-22. As described in Jumping Rivers
+1. R 4.2.0 was released on 2022-04-22. As described in Jumping Rivers
 [New features in R 4.2.0](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank"} post, 
 with this release, the default personal library for Windows is "now a subdirectory 
-of local application data directory (usually a hidden directory `C:\Users\username\AppData\Local`)."
+of local application data directory (usually a hidden directory `C:/Users/username/AppData/Local`)."
 For some users this may work well and others may want to change the default location
 through methods mentioned above.
 
 2. If you are using the `renv` package for reproducible environments, all utilized 
-packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:\Users\pileggis\AppData\Local\renv`.
+packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:/Users/pileggis/AppData/Local/renv`.
 
 3. If you are actively developing packages, you may want to separate the location of
 stable packages from development versions. You can do so by utilizing 
 `devtools::dev_mode(on = TRUE)`, which allows you to install development packages to a new 
 directory. When I work in dev mode, the development, not-yet-released packages get
-installed to `C:\Users\pileggis\R-dev`. This was a directory I created myself. You
+installed to `C:/Users/pileggis/R-dev`. This was a directory I created myself. You
 can create this directory with 
 
 `fs::dir_create(fs::path(getOption("devtools.path")))`
 
-(confirm this!)
 
 # Rtools 
 
-Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. Basically, if you want to do anything
-with packages beyond CRAN (install from github, build locally), you need
+Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. 
+Basically, if you want to do anything with packages beyond CRAN (install from github, build locally), you need
 R tools. 
 
 In order to work, R tools _must be_ installed at 
 
-`"C:\rtools40"`
+`"C:/rtools42"`
 
 which is where mine is, too.
 
@@ -231,7 +235,7 @@ which returns `Your system is ready to build packages!`
 
 As recommended in [Happy Git Ch 6.2 Install Git on Windows](https://happygitwithr.com/){target="_blank"}, git is installed at
 
-`C:\Program Files\Git`
+`C:/Program Files/Git`
 
 
 
@@ -249,13 +253,13 @@ usethis::edit_r_environ()
 
 The user-level `.Renviron` file lives in the base of the user's home directory. For me, that means  
 
-`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron`
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Renviron`
 
 
 My file has has been modified to establish default library locations for 
 R package installations.
 
-`R_LIBS_USER = "C:\Program Files\R\library\%v"`
+`R_LIBS_USER = "C:/Program Files/R/library/%v"`
 
 As explained in [WTF Ch 8.4 How to transfer your library when updating R](https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r), the `%v` wildcard automatically adjusts the installation folder when you update to a new R version.
 
@@ -273,7 +277,7 @@ usethis::edit_r_profile()
  
 and mine lives at
  
-`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile`.
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Rprofile`.
 
 My `.Rprofile` has been modified two ways:
 
@@ -307,7 +311,7 @@ usethis::edit_git_config()
 
 My `.gitconfig` file lives at:
 
-`"C:\Users\pileggis\.gitconfig"`
+`"C:/Users/pileggis/.gitconfig"`
 
 and has been modified to allow me to switch between work and personal github
 identities when working on R projects, which is described in more detail in 
