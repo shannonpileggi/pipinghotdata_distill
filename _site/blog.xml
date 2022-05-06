@@ -17,22 +17,29 @@
 
 &lt;h1 id="questions"&gt;Questions&lt;/h1&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;In the table, what descriptions would you assign to the &lt;code&gt;Home&lt;/code&gt; rows?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;On Windows OS, is &lt;code&gt;fs::path_home()&lt;/code&gt; relevant at all to R administration?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Do ppl ever manually change/redirect &lt;code&gt;fs::path_home()&lt;/code&gt; or &lt;code&gt;fs::path_home_r()&lt;/code&gt;? Or are those just always left as default?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In the table, what descriptions would you assign to the
+&lt;code&gt;Home&lt;/code&gt; rows?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;On Windows OS, is &lt;code&gt;fs::path_home()&lt;/code&gt; relevant at all to
+R administration?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Do ppl ever manually change/redirect &lt;code&gt;fs::path_home()&lt;/code&gt;
+or &lt;code&gt;fs::path_home_r()&lt;/code&gt;? Or are those just always left as
+default?&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Should the paths have forward or backward slashes?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Should I leave the paths as-is with username and work specific info, or modify to make more generic?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Why do sometimes file paths get abbreviated with tildes? Like &lt;code&gt;C:\PROGRA~1\R\R-41~1.2&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Should I leave the paths as-is with username and work specific
+info, or modify to make more generic?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Why do sometimes file paths get abbreviated with tildes? Like
+&lt;code&gt;C:/PROGRA~1/R/R-41~1.2&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Any other feedback!&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
-&lt;p&gt;Managing an R development set up on Windows requires a lot of files in a lot of places. Here’s what mine looks like.&lt;/p&gt;
-&lt;div id="tvpeqxrlww" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
+&lt;p&gt;Managing an R development set up on Windows requires a lot of files
+in a lot of places. Here’s what mine looks like.&lt;/p&gt;
+&lt;div id="lkvsgvxbfm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
 &lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tvpeqxrlww .gt_table {
+#lkvsgvxbfm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -57,7 +64,7 @@
   border-left-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_heading {
+#lkvsgvxbfm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -69,7 +76,7 @@
   border-right-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_title {
+#lkvsgvxbfm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -81,7 +88,7 @@
   border-bottom-width: 0;
 }
 
-#tvpeqxrlww .gt_subtitle {
+#lkvsgvxbfm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -93,13 +100,13 @@
   border-top-width: 0;
 }
 
-#tvpeqxrlww .gt_bottom_border {
+#lkvsgvxbfm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_col_headings {
+#lkvsgvxbfm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -114,7 +121,7 @@
   border-right-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_col_heading {
+#lkvsgvxbfm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -134,7 +141,7 @@
   overflow-x: hidden;
 }
 
-#tvpeqxrlww .gt_column_spanner_outer {
+#lkvsgvxbfm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -146,15 +153,15 @@
   padding-right: 4px;
 }
 
-#tvpeqxrlww .gt_column_spanner_outer:first-child {
+#lkvsgvxbfm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tvpeqxrlww .gt_column_spanner_outer:last-child {
+#lkvsgvxbfm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tvpeqxrlww .gt_column_spanner {
+#lkvsgvxbfm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -166,7 +173,7 @@
   width: 100%;
 }
 
-#tvpeqxrlww .gt_group_heading {
+#lkvsgvxbfm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -191,7 +198,7 @@
   vertical-align: middle;
 }
 
-#tvpeqxrlww .gt_empty_group_heading {
+#lkvsgvxbfm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -206,15 +213,15 @@
   vertical-align: middle;
 }
 
-#tvpeqxrlww .gt_from_md &gt; :first-child {
+#lkvsgvxbfm .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#tvpeqxrlww .gt_from_md &gt; :last-child {
+#lkvsgvxbfm .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#tvpeqxrlww .gt_row {
+#lkvsgvxbfm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -233,7 +240,7 @@
   overflow-x: hidden;
 }
 
-#tvpeqxrlww .gt_stub {
+#lkvsgvxbfm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -246,7 +253,7 @@
   padding-right: 5px;
 }
 
-#tvpeqxrlww .gt_stub_row_group {
+#lkvsgvxbfm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -260,11 +267,11 @@
   vertical-align: top;
 }
 
-#tvpeqxrlww .gt_row_group_first td {
+#lkvsgvxbfm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tvpeqxrlww .gt_summary_row {
+#lkvsgvxbfm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -274,16 +281,16 @@
   padding-right: 5px;
 }
 
-#tvpeqxrlww .gt_first_summary_row {
+#lkvsgvxbfm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_first_summary_row.thick {
+#lkvsgvxbfm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tvpeqxrlww .gt_last_summary_row {
+#lkvsgvxbfm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -293,7 +300,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_grand_summary_row {
+#lkvsgvxbfm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -303,7 +310,7 @@
   padding-right: 5px;
 }
 
-#tvpeqxrlww .gt_first_grand_summary_row {
+#lkvsgvxbfm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -313,11 +320,11 @@
   border-top-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_striped {
+#lkvsgvxbfm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tvpeqxrlww .gt_table_body {
+#lkvsgvxbfm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -326,7 +333,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_footnotes {
+#lkvsgvxbfm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -340,7 +347,7 @@
   border-right-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_footnote {
+#lkvsgvxbfm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -349,7 +356,7 @@
   padding-right: 5px;
 }
 
-#tvpeqxrlww .gt_sourcenotes {
+#lkvsgvxbfm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -363,7 +370,7 @@
   border-right-color: #D3D3D3;
 }
 
-#tvpeqxrlww .gt_sourcenote {
+#lkvsgvxbfm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -371,60 +378,69 @@
   padding-right: 5px;
 }
 
-#tvpeqxrlww .gt_left {
+#lkvsgvxbfm .gt_left {
   text-align: left;
 }
 
-#tvpeqxrlww .gt_center {
+#lkvsgvxbfm .gt_center {
   text-align: center;
 }
 
-#tvpeqxrlww .gt_right {
+#lkvsgvxbfm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tvpeqxrlww .gt_font_normal {
+#lkvsgvxbfm .gt_font_normal {
   font-weight: normal;
 }
 
-#tvpeqxrlww .gt_font_bold {
+#lkvsgvxbfm .gt_font_bold {
   font-weight: bold;
 }
 
-#tvpeqxrlww .gt_font_italic {
+#lkvsgvxbfm .gt_font_italic {
   font-style: italic;
 }
 
-#tvpeqxrlww .gt_super {
+#lkvsgvxbfm .gt_super {
   font-size: 65%;
 }
 
-#tvpeqxrlww .gt_footnote_marks {
+#lkvsgvxbfm .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#lkvsgvxbfm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#tvpeqxrlww .gt_asterisk {
+#lkvsgvxbfm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tvpeqxrlww .gt_slash_mark {
+#lkvsgvxbfm .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#tvpeqxrlww .gt_fraction_numerator {
+#lkvsgvxbfm .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#tvpeqxrlww .gt_fraction_denominator {
+#lkvsgvxbfm .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -445,69 +461,87 @@
     &lt;/tr&gt;
     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_left"&gt;??&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`Sys.getenv("HOME")`, `Sys.getenv("R_User")`, `fs::path_home_r()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;??&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`fs::path_home()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Users/pileggis`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr class="gt_group_heading_row"&gt;
       &lt;td colspan="3" class="gt_group_heading"&gt;Software&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_left"&gt;R&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`R.home()`, `Sys.getenv("R_HOME")`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Program Files\R\R-4.1.2`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Program Files/R/R-4.2.0`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;R packages&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`.libPaths()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Program Files\R\R-4.1.2\library`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Program Files/R/R-4.2.0/library`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;RStudio&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Program Files\RStudio`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Program Files/RStudio`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;Rtools&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`devtools::find_rtools()`, `devtools::has_devel()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\rtools40`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/rtools42`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;Git&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Program Files\Git`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Program Files/Git`&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;Quarto&lt;/td&gt;
+&lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Program Files/Quarto`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr class="gt_group_heading_row"&gt;
       &lt;td colspan="3" class="gt_group_heading"&gt;Configuration&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr class="gt_row_group_first"&gt;&lt;td class="gt_row gt_left"&gt;`.Renviron`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`usethis::edit_r_environ()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Renviron`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.Rprofile`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`usethis::edit_r_profile()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Rprofile`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.gitconfig`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`usethis::edit_git_config()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\.gitconfig`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Users/pileggis/.gitconfig`&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left"&gt;`.shrtcts.R`&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;`shrtcts::locate_shortcuts_source()`&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;`C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.shrtcts.R`&lt;/td&gt;&lt;/tr&gt;
+&lt;td class="gt_row gt_left"&gt;`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.shrtcts.R`&lt;/td&gt;&lt;/tr&gt;
   &lt;/tbody&gt;
   
   
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;h1 id="background"&gt;Background&lt;/h1&gt;
-&lt;p&gt;When Travis Gerke tweeted about the breaker of chains keyboard shortcut, I was eager to try it out!&lt;/p&gt;
+&lt;p&gt;When Travis Gerke tweeted about the breaker of chains keyboard
+shortcut, I was eager to try it out!&lt;/p&gt;
 &lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;Cheat code for quickly viewing data frames as you build them in &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt;: assign a keyboard shortcut to &lt;a href="https://twitter.com/MilesMcBain?ref_src=twsrc%5Etfw"&gt;@MilesMcBain&lt;/a&gt;&amp;#39;s {breakerofchains} (quick how-to in thread) &lt;a href="https://t.co/P9P6hLa7Xx"&gt;pic.twitter.com/P9P6hLa7Xx&lt;/a&gt;&lt;/p&gt;&amp;mdash; King Ranch (@travisgerke) &lt;a href="https://twitter.com/travisgerke/status/1503385645280026626?ref_src=twsrc%5Etfw"&gt;March 14, 2022&lt;/a&gt;&lt;/blockquote&gt;
 
-&lt;p&gt;However, it was not immediately clear to me where to save the the &lt;code&gt;shrtcts.R&lt;/code&gt; configuration file. This took a bit of trial and error to figure out, and led me down a rabbit hole of documenting where everything R and R adjacent was located.&lt;/p&gt;
+&lt;p&gt;However, it was not immediately clear to me where to save the the
+&lt;code&gt;shrtcts.R&lt;/code&gt; configuration file. This took a bit of trial and
+error to figure out, and led me down a rabbit hole of documenting where
+everything R and R adjacent was located.&lt;/p&gt;
 &lt;h1 id="resources"&gt;Resources&lt;/h1&gt;
 &lt;p&gt;In this post I refer to two packages and two books.&lt;/p&gt;
 &lt;h2 id="packages"&gt;Packages&lt;/h2&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://usethis.r-lib.org/" target="_blank"&gt;&lt;code&gt;usethis&lt;/code&gt;&lt;/a&gt; for helpers that automate repetitive tasks during project set up and development.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://fs.r-lib.org/" target="_blank"&gt;&lt;code&gt;fs&lt;/code&gt;&lt;/a&gt; for cross-platform file system operations.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://usethis.r-lib.org/"
+target="_blank"&gt;&lt;code&gt;usethis&lt;/code&gt;&lt;/a&gt; for helpers that automate
+repetitive tasks during project set up and development.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://fs.r-lib.org/"
+target="_blank"&gt;&lt;code&gt;fs&lt;/code&gt;&lt;/a&gt; for cross-platform file system
+operations.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="books"&gt;Books&lt;/h2&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://happygitwithr.com/" target="_blank"&gt;Happy Git with R&lt;/a&gt;, a manual for integrating Git with R; abbreviated to &lt;code&gt;Happy Git&lt;/code&gt; for the remainder of this post.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href="https://rstats.wtf/" target="_blank"&gt;What they Forgot to Teach You About R&lt;/a&gt;, in in progress but still extremely helpful documentation on best practices when working in R; abbreviated to &lt;code&gt;WTF&lt;/code&gt; for the remainder of this post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://happygitwithr.com/" target="_blank"&gt;Happy Git
+with R&lt;/a&gt;, a manual for integrating Git with R; abbreviated to
+&lt;code&gt;Happy Git&lt;/code&gt; for the remainder of this post.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href="https://rstats.wtf/" target="_blank"&gt;What they Forgot to
+Teach You About R&lt;/a&gt;, in in progress but still extremely helpful
+documentation on best practices when working in R; abbreviated to
+&lt;code&gt;WTF&lt;/code&gt; for the remainder of this post.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id="windows"&gt;Windows&lt;/h1&gt;
-&lt;p&gt;I am working on a computer supplied by employer running Windows 10.&lt;/p&gt;
+&lt;p&gt;I am working on a computer supplied by employer running Windows
+10.&lt;/p&gt;
 &lt;h2 id="recommended-settings"&gt;Recommended settings&lt;/h2&gt;
-&lt;p&gt;When getting started with a Windows computer, I recommend changing default settings such that:&lt;/p&gt;
+&lt;p&gt;When getting started with a Windows computer, I recommend changing
+default settings such that:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
 &lt;li&gt;&lt;p&gt;Display the full path in the title bar&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Show hidden files, folders, and drives&lt;/p&gt;&lt;/li&gt;
@@ -516,77 +550,149 @@
 &lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;Some Windows 🪟 defaults I always change on a new computer💻🧐&lt;br&gt;&lt;br&gt;Do you have other defaults you change on Windows?&lt;br&gt;&lt;br&gt;gotta love the switcheroos between hide/display &amp;amp; check/uncheck &lt;a href="https://t.co/X1XZ24ltz1"&gt;pic.twitter.com/X1XZ24ltz1&lt;/a&gt;&lt;/p&gt;&amp;mdash; Shannon Pileggi (@PipingHotData) &lt;a href="https://twitter.com/PipingHotData/status/1450494168900509697?ref_src=twsrc%5Etfw"&gt;October 19, 2021&lt;/a&gt;&lt;/blockquote&gt;
 
 &lt;h2 id="administrator-rights"&gt;Administrator rights&lt;/h2&gt;
-&lt;p&gt;Much of how you work in Windows depends on your level of rights. Fortunately, I was granted administrator privileges on my work laptop, which allows me to install software and save configuration files where I want to.&lt;/p&gt;
-&lt;p&gt;If you do not have administrator privileges, knowing this can still help you work with IT to complete your set up or find alternate viable locations.&lt;/p&gt;
+&lt;p&gt;Much of how you work in Windows depends on your level of rights.
+Fortunately, I was granted administrator privileges on my work laptop,
+which allows me to install software and save configuration files where I
+want to.&lt;/p&gt;
+&lt;p&gt;If you do not have administrator privileges, knowing this can still
+help you work with IT to complete your set up or find alternate viable
+locations.&lt;/p&gt;
 &lt;h1 id="homes"&gt;Homes&lt;/h1&gt;
-&lt;p&gt;I explored how R defines my home directories. On Mac OS, the “home” and the “R home” are the same thing, but on Windows OS they differ.&lt;/p&gt;
+&lt;p&gt;I explored how R defines my home directories. On Mac OS, the “home”
+and the “R home” are the same thing, but on Windows OS they differ.&lt;/p&gt;
 &lt;h2 id="r-home"&gt;R Home&lt;/h2&gt;
 &lt;p&gt;These three commands all point to your “R home”.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;Sys.getenv(&amp;quot;HOME&amp;quot;)
 Sys.getenv(&amp;quot;R_User&amp;quot;)
 fs::path_home_r()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="home"&gt;Home&lt;/h2&gt;
 &lt;pre class="r"&gt;&lt;code&gt;fs::path_home()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;C:\Users\pileggis&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Users/pileggis&lt;/code&gt;&lt;/p&gt;
 &lt;h1 id="software"&gt;Software&lt;/h1&gt;
 &lt;h2 id="r"&gt;R&lt;/h2&gt;
 &lt;p&gt;From the &lt;code&gt;R.home()&lt;/code&gt; help file:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The R home directory is the top-level directory of the R installation being run. The R home directory is often referred to as R_HOME, and is the value of an environment variable of that name in an R session.&lt;/p&gt;
+&lt;p&gt;The R home directory is the top-level directory of the R installation
+being run. The R home directory is often referred to as R_HOME, and is
+the value of an environment variable of that name in an R session.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;pre class="r"&gt;&lt;code&gt;R.home()
-Sys.getenv(&amp;quot;R_HOME&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;C:\Program Files\R\R-4.1.2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Wrapping the function in &lt;code&gt;fs::path_real()&lt;/code&gt; allows you to
+see the full path, rather than the &lt;a
+href="https://en.wikipedia.org/wiki/8.3_filename" target="_blank"&gt;short
+file path&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;fs::path_real(R.home())
+fs::path_real(Sys.getenv(&amp;quot;R_HOME&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;C:/Program Files/R/R-4.2.0&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="r-packages"&gt;R packages&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;.libPaths()&lt;/code&gt; shows you were your R packages are being installed.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.libPaths()&lt;/code&gt; shows you were your R packages are being
+installed. You may have more than one path present, in which case R
+attaches packages from the libraries in the order shown (searches first
+library first).&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;.libPaths()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;"C:\Program Files\R\R-4.1.2\library"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;My R packages were initially being installed to a default location at &lt;code&gt;fs::path_home_r()&lt;/code&gt;; I modified this location to my &lt;code&gt;C&lt;/code&gt; drive. R for the Rest of Us has a nice video tutorial on &lt;a href="https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/" target="_blank"&gt;How to Set Your Default Package Install Location in R&lt;/a&gt; using the &lt;a href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt; configuration file.&lt;/p&gt;
-&lt;p&gt;Furthermore, depending on where you fall on the &lt;code&gt;user &amp;lt;---&amp;gt; developer&lt;/code&gt; continuum, you may have additional considerations for package installation.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;"C:/Program Files/R/R-4.2.0/library"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;My R packages were initially being installed to a default location at
+&lt;code&gt;fs::path_home_r()&lt;/code&gt;; I modified this location to my
+&lt;code&gt;C&lt;/code&gt; drive. R for the Rest of Us has a nice video tutorial on
+&lt;a
+href="https://rfortherestofus.com/2021/09/how-to-set-your-default-package-install-location-in-r/"
+target="_blank"&gt;How to Set Your Default Package Install Location in
+R&lt;/a&gt; using the &lt;a href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt;
+configuration file.&lt;/p&gt;
+&lt;p&gt;Furthermore, depending on where you fall on the
+&lt;code&gt;user &amp;lt;---&amp;gt; developer&lt;/code&gt; continuum, you may have
+additional considerations for package installation.&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;R 4.2.0 is scheduled for release on 2022-04-22. As described in Jumping Rivers &lt;a href="https://www.jumpingrivers.com/blog/new-features-r420/" target="_blank"&gt;New features in R 4.2.0&lt;/a&gt; post, with this release, the default personal library for Windows is “now a subdirectory of local application data directory (usually a hidden directory &lt;code&gt;C:\Users\username\AppData\Local&lt;/code&gt;).” For some users this may work well and others may want to change the default location through methods mentioned above.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you are using the &lt;code&gt;renv&lt;/code&gt; package for reproducible environments, all utilized packages are installed in &lt;a href="https://www.jumpingrivers.com/blog/new-features-r420/" target="&amp;quot;_blank"&gt;global package cache&lt;/a&gt; which is shared across all projects. My cache is located at &lt;code&gt;C:\Users\pileggis\AppData\Local\R\cache\R\renv&lt;/code&gt; (confirm this!).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you are actively developing packages, you may want to separate the location of stable packages from development versions. You can do so by utilizing &lt;code&gt;devtools::dev_mode(on = TRUE)&lt;/code&gt;, which allows you to install development packages to a new directory. When I work in dev mode, the development, not-yet-released packages get installed to &lt;code&gt;C:\Users\pileggis\R-dev&lt;/code&gt;. This was a directory I created myself. You can create this directory with&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;R 4.2.0 was released on 2022-04-22. As described in Jumping
+Rivers &lt;a href="https://www.jumpingrivers.com/blog/new-features-r420/"
+target="_blank"&gt;New features in R 4.2.0&lt;/a&gt; post, with this release, the
+default personal library for Windows is “now a subdirectory of local
+application data directory (usually a hidden directory
+&lt;code&gt;C:/Users/username/AppData/Local&lt;/code&gt;).” For some users this may
+work well and others may want to change the default location through
+methods mentioned above.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are using the &lt;code&gt;renv&lt;/code&gt; package for reproducible
+environments, all utilized packages are installed in &lt;a
+href="https://www.jumpingrivers.com/blog/new-features-r420/"
+target="&amp;quot;_blank"&gt;global package cache&lt;/a&gt; which is shared across
+all projects. My cache is located at
+&lt;code&gt;C:/Users/pileggis/AppData/Local/renv&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are actively developing packages, you may want to separate
+the location of stable packages from development versions. You can do so
+by utilizing &lt;code&gt;devtools::dev_mode(on = TRUE)&lt;/code&gt;, which allows
+you to install development packages to a new directory. When I work in
+dev mode, the development, not-yet-released packages get installed to
+&lt;code&gt;C:/Users/pileggis/R-dev&lt;/code&gt;. This was a directory I created
+myself. You can create this directory with&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;code&gt;fs::dir_create(fs::path(getOption("devtools.path")))&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;(confirm this!)&lt;/p&gt;
-&lt;h1 id="rtools"&gt;Rtools&lt;/h1&gt;
-&lt;p&gt;Rtools is a collection of tools required to &lt;a href="https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment" target="_blank"&gt;build source packages&lt;/a&gt; on Windows. Basically, if you want to do anything with packages beyond CRAN (install from github, build locally), you need R tools.&lt;/p&gt;
+&lt;h2 id="rtools"&gt;Rtools&lt;/h2&gt;
+&lt;p&gt;Rtools is a collection of tools required to &lt;a
+href="https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment"
+target="_blank"&gt;build source packages&lt;/a&gt; on Windows. Basically, if you
+want to do anything with packages beyond CRAN (install from github,
+build locally), you need R tools.&lt;/p&gt;
 &lt;p&gt;In order to work, R tools &lt;em&gt;must be&lt;/em&gt; installed at&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;"C:\rtools40"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;"C:/rtools42"&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;which is where mine is, too.&lt;/p&gt;
 &lt;p&gt;You can confirm if your installation worked properly if&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;devtools::find_rtools()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;returns &lt;code&gt;TRUE&lt;/code&gt;. You can further confirm readiness with&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;devtools::has_devel()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;which returns &lt;code&gt;Your system is ready to build packages!&lt;/code&gt;&lt;/p&gt;
-&lt;h1 id="git"&gt;Git&lt;/h1&gt;
-&lt;p&gt;As recommended in &lt;a href="https://happygitwithr.com/" target="_blank"&gt;Happy Git Ch 6.2 Install Git on Windows&lt;/a&gt;, git is installed at&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C:\Program Files\Git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;which returns
+&lt;code&gt;Your system is ready to build packages!&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="git"&gt;Git&lt;/h2&gt;
+&lt;p&gt;As recommended in &lt;a href="https://happygitwithr.com/"
+target="_blank"&gt;Happy Git Ch 6.2 Install Git on Windows&lt;/a&gt;, git is
+installed at&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Program Files/Git&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="quarto"&gt;Quarto&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://quarto.org/" target="_blank"&gt;Quarto&lt;/a&gt; is an open
+source publishing system backed by RStudio that began to receive &lt;a
+href="https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/"
+target="&amp;quot;_blank"&gt;public endorsement&lt;/a&gt; in April 2022.&lt;/p&gt;
+&lt;p&gt;The Quarto installation allowed me to choose between a user specific
+versus an all-user installation, which can be very helpful depending on
+your administrative privileges. I chose the latter, and for me Quarto is
+installed at&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Program Files/Quarto&lt;/code&gt;&lt;/p&gt;
 &lt;h1 id="configurations"&gt;Configurations&lt;/h1&gt;
 &lt;h2 id="renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;.Renviron&lt;/code&gt; file contains environment variables, and is not R code.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;.Renviron&lt;/code&gt; file contains environment variables, and
+is not R code.&lt;/p&gt;
 &lt;p&gt;To edit this file, submit:&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;usethis::edit_r_environ()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The user-level &lt;code&gt;.Renviron&lt;/code&gt; file lives in the base of the user’s home directory. For me, that means&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Renviron&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;My file has has been modified to establish default library locations for R package installations.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;R_LIBS_USER = "C:\Program Files\R\library\%v"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;As explained in &lt;a href="https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r"&gt;WTF Ch 8.4 How to transfer your library when updating R&lt;/a&gt;, the &lt;code&gt;%v&lt;/code&gt; wildcard automatically adjusts the installation folder when you update to a new R version.&lt;/p&gt;
-&lt;h1 id="rprofile"&gt;.Rprofile&lt;/h1&gt;
-&lt;p&gt;As stated in &lt;a href="https://rstats.wtf/r-startup.html#rprofile" target="_blank"&gt;WTF Ch 7.2 .Rprofile&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The user-level &lt;code&gt;.Renviron&lt;/code&gt; file lives in the base of the
+user’s home directory. For me, that means&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Renviron&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;My file has has been modified to establish default library locations
+for R package installations.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;R_LIBS_USER = "C:/Program Files/R/library/%v"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;As explained in &lt;a
+href="https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r"&gt;WTF
+Ch 8.4 How to transfer your library when updating R&lt;/a&gt;, the
+&lt;code&gt;%v&lt;/code&gt; wildcard automatically adjusts the installation folder
+when you update to a new R version.&lt;/p&gt;
+&lt;h2 id="rprofile"&gt;.Rprofile&lt;/h2&gt;
+&lt;p&gt;As stated in &lt;a href="https://rstats.wtf/r-startup.html#rprofile"
+target="_blank"&gt;WTF Ch 7.2 .Rprofile&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The &lt;code&gt;.Rprofile&lt;/code&gt; file contains R code to be run when R starts up. It is run after the &lt;code&gt;.Renviron&lt;/code&gt; file is sourced.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;.Rprofile&lt;/code&gt; file contains R code to be run when R
+starts up. It is run after the &lt;code&gt;.Renviron&lt;/code&gt; file is
+sourced.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Again, you can edit this file with&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;usethis::edit_r_profile()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;and mine lives at&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C:\Users\pileggis\OneDrive - Memorial Sloan Kettering Cancer Center\Documents\.Rprofile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Rprofile&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;My &lt;code&gt;.Rprofile&lt;/code&gt; has been modified two ways:&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;Establish a default location for R projects created via &lt;code&gt;usethis::create_from_github()&lt;/code&gt; or &lt;code&gt;usethis::use_course()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;To enable create RStudio shortcuts with the &lt;a href="https://pkg.garrickadenbuie.com/shrtcts/index.html" target="_blank"&gt;shrtcts&lt;/a&gt; package.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Establish a default location for R projects created via
+&lt;code&gt;usethis::create_from_github()&lt;/code&gt; or
+&lt;code&gt;usethis::use_course()&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;To enable create RStudio shortcuts with the &lt;a
+href="https://pkg.garrickadenbuie.com/shrtcts/index.html"
+target="_blank"&gt;shrtcts&lt;/a&gt; package.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre class="r"&gt;&lt;code&gt;# ------------------------------------------------------------------------------
 #  1/ Establish a default location for R projects created via 
@@ -599,15 +705,27 @@ if (interactive() &amp;amp;&amp;amp; requireNamespace(&amp;quot;shrtcts&amp;quot
   shrtcts::add_rstudio_shortcuts(set_keyboard_shortcuts = TRUE)
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="gitconfig"&gt;.gitconfig&lt;/h2&gt;
-&lt;p&gt;You can quickly open your &lt;code&gt;.gitconfig&lt;/code&gt; file for editing with&lt;/p&gt;
+&lt;p&gt;You can quickly open your &lt;code&gt;.gitconfig&lt;/code&gt; file for editing
+with&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;usethis::edit_git_config()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;My &lt;code&gt;.gitconfig&lt;/code&gt; file lives at:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;"C:\Users\pileggis\.gitconfig"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;and has been modified to allow me to switch between work and personal github identities when working on R projects, which is described in more detail in &lt;a href="https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/" target="_blank"&gt;GitHub ssh and config with multiple accounts&lt;/a&gt; by Travis Gerke.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;"C:/Users/pileggis/.gitconfig"&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;and has been modified to allow me to switch between work and personal
+github identities when working on R projects, which is described in more
+detail in &lt;a
+href="https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/"
+target="_blank"&gt;GitHub ssh and config with multiple accounts&lt;/a&gt; by
+Travis Gerke.&lt;/p&gt;
 &lt;h1 id="summary"&gt;Summary&lt;/h1&gt;
-&lt;p&gt;This topic probably isn’t exciting for many, but having this understanding can save you time troubleshooting. And maybe next I get set up on a new Windows OS it will go quicker. 😊&lt;/p&gt;
+&lt;p&gt;This topic probably isn’t exciting for many, but having this
+understanding can save you time troubleshooting. And maybe next I get
+set up on a new Windows OS it will go quicker. 😊&lt;/p&gt;
 &lt;h1 id="acknowledgements"&gt;Acknowledgements&lt;/h1&gt;
-&lt;p&gt;Thanks to &lt;a href="https://travisgerke.com/" target="_blank"&gt;Travis Gerke&lt;/a&gt; for inspiring me to try new R things! Thanks to Omar Chua, who provided IT support with many installations as I was waiting for administrative privileges.&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href="https://travisgerke.com/" target="_blank"&gt;Travis
+Gerke&lt;/a&gt; for inspiring me to try new things in R! Thanks to Omar Chua,
+who provided IT support with many installations as I was waiting for
+administrative privileges. And thank you to Jenny Bryan and David Aja
+for their feedback on this post.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>b66eb43e8b8e4a30462169f0a429a40c</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-03-23-personal-r-administration-on-windows</guid>

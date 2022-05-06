@@ -126,7 +126,10 @@ I explored how R defines my home directories. On Mac OS, the "home" and the
 
 ## R Home
 
-These three commands all point to your "R home".
+These three commands all point to your "R home". From R for Data Science 
+[Ch 8.3 Paths and directories](https://r4ds.had.co.nz/workflow-projects.html?q=home#paths-and-directories){target="_blank"}:
+
+> Windows doesn’t really have the notion of a home directory, so it instead points to your documents directory.
 
 ```{r}
 Sys.getenv("HOME")
@@ -145,6 +148,7 @@ fs::path_home()
 ```
 
 `C:/Users/pileggis`
+
 
 
 # Software
@@ -204,7 +208,7 @@ can create this directory with
 `fs::dir_create(fs::path(getOption("devtools.path")))`
 
 
-# Rtools 
+## Rtools 
 
 Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. 
 Basically, if you want to do anything with packages beyond CRAN (install from github, build locally), you need
@@ -231,12 +235,23 @@ devtools::has_devel()
 which returns `Your system is ready to build packages!`
 
 
-# Git
+## Git
 
 As recommended in [Happy Git Ch 6.2 Install Git on Windows](https://happygitwithr.com/){target="_blank"}, git is installed at
 
 `C:/Program Files/Git`
 
+## Quarto   
+
+[Quarto](https://quarto.org/){target="_blank"} is an open source publishing system backed by RStudio that 
+began to receive [public endorsement](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/){target="_blank}
+in April 2022.
+
+The Quarto installation allowed me to choose between a user specific versus an all-user installation,
+which can be very helpful depending on your administrative privileges. I chose the latter, and for me
+Quarto is installed at
+
+`C:/Program Files/Quarto`
 
 
 # Configurations
@@ -263,7 +278,7 @@ R package installations.
 
 As explained in [WTF Ch 8.4 How to transfer your library when updating R](https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r), the `%v` wildcard automatically adjusts the installation folder when you update to a new R version.
 
-# .Rprofile
+## .Rprofile
 
 As stated in [WTF Ch 7.2 .Rprofile](https://rstats.wtf/r-startup.html#rprofile){target="_blank"}
 
@@ -317,6 +332,7 @@ and has been modified to allow me to switch between work and personal github
 identities when working on R projects, which is described in more detail in 
 [GitHub ssh and config with multiple accounts](https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/){target="_blank"} by Travis Gerke.
 
+
 # Summary
 
 This topic probably isn't exciting for many, but having this understanding can
@@ -325,7 +341,9 @@ it will go quicker. 😊
 
 # Acknowledgements
 
-Thanks to [Travis Gerke](https://travisgerke.com/){target="_blank"} for inspiring me to try new R things! Thanks to Omar Chua, who provided IT support with many installations as I was waiting for administrative privileges.
+Thanks to [Travis Gerke](https://travisgerke.com/){target="_blank"} for inspiring me to try new things in R! 
+Thanks to Omar Chua, who provided IT support with many installations as I was waiting for administrative privileges.
+And thank you to Jenny Bryan and David Aja for their feedback on this post.
 
 
 ```{r, echo = FALSE, eval = TRUE}
