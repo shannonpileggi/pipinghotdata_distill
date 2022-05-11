@@ -2,22 +2,109 @@
 title: "Code highlighting in Quarto revealjs presentations"
 description: |
   A short description of the post.
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
 author:
   - name: Shannon Pileggi
     url: {}
 date: 2022-05-10
+preview: quarto-code-hl-layout.PNG
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
+draft: false
+creative_commons: CC BY
 ---
 
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, dpi=1)
 ```
 
-Distill is a publication format for scientific and technical writing, native to the web.
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Left hand side shows `.qmd` source code; right hand side shows rendered slides
+#|   with line highlighting.
+#| fig.alt: > 
+#|    `.qmd` source code shows three different methods for code highlighting;
+#|    on right hand side, image of slide 1 shows line 1 highlighted, 
+#|    image of slide 2 shows line 2 highlighted, and image of slide 3 shows
+#|    line 3 highlighted.
+knitr::include_graphics("quarto-code-hl-layout.PNG")
+```
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+````{verbatim}
+We can output arbitrary content verbatim.
+
+```{r}
+1 + 1
+```
+
+The content can contain inline code like
+`r pi * 5^2`, too.
+````
+
+
+# TL; DR
+
+I started playing with Quarto revealjs presentations, it is fun! Here are some methods
+I learned to highlight code lines.
+
+# Overview
+
+In general, `code-line-numbers` is a Quarto specific code cell option for presentation 
+formats of `revealjs`. This means that `code-line-numbers` will not render code
+highlighting when used in Quarto documents (`.qmd`) of format `html`, nor within
+an R markdown document (`.Rmd`). Note that Quarto chunk options have a dash their name.
+
+For a complete overview of all code cell options supported in Quarto, see
+`Quarto -> Reference -> Code Cells -> Knitr`
+<https://quarto.org/docs/reference/cells/cells-knitr.html#code-output>
+
+
+```{embed, file="demo/quarto-code-hl.qmd"}
+```
+
+# Method 1: 
+
+````{verbatim}
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1"
+x <- 1:10
+x
+LETTERS[x]
+```
+
+````
+
+Here, we are executing code cell options via special comments indicated by `#|`. 
+Comment-based syntax is recommended for Quarto to make documents more portable and 
+consistent across execution engines. See 
+`Quarto -> Guide -> Computations -> Using R -> Chunk Options`
+
+<https://quarto.org/docs/computations/r.html#chunk-options>
+
+# Method 2:
+
+Quarto cell options have dash in their name; R only supports dashes in variable 
+names when wrapped in the back tick.
+
+
+# Method 3: 
+
+`.r` signals a non-compute code cell (which is what we used above with `eval=FALSE`). 
+These are verbatim code chunks with a class set on them for language highlighting. 
+In this case, the language is R.
+(Is there a reference for this?)
+
+```{r}
+devtools::session_info()
+```
 
 
