@@ -31,38 +31,3 @@ LETTERS[x]
 ```
 
 
-
-
-## Explanation
-
-In general, `code-line-numbers` is a Quarto specific code cell option for presentation 
-formats of `revealjs`. This means that `code-line-numbers` will not render code
-highlighting when used in Quarto documents (`.qmd`) of format `html`, nor within
-an R markdown document (`.Rmd`). Note that Quarto chunk options have a dash their name.
-
-For a complete overview of all code cell options supported in Quarto, see
-`Quarto -> Reference -> Code Cells -> Knitr`
-<https://quarto.org/docs/reference/cells/cells-knitr.html#code-output>
-
-Method 1: 
-
-Here, we are executing code cell options via special comments indicated by `#|`. 
-Comment-based syntax is recommended for Quarto to make documents more portable and 
-consistent across execution engines. See 
-`Quarto -> Guide -> Computations -> Using R -> Chunk Options`
-
-<https://quarto.org/docs/computations/r.html#chunk-options>
-
-Method 2:
-
-Quarto cell options have dash in their name; R only supports dashes in variable 
-names when wrapped in the back tick.
-
-
-Method 3: 
-
-`.r` signals a non-compute code cell (which is what we are using here with `eval=FALSE`). 
-These are verbatim code chunks with a class set on them for language highlighting. 
-In this case, the language is R.
-(Is there a reference for this?)
-

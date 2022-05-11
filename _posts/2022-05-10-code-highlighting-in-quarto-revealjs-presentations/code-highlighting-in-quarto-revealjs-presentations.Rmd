@@ -21,7 +21,7 @@ creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, dpi=1)
+knitr::opts_chunk$set(echo = TRUE, dpi=1)
 ```
 
 ```{r thumbnail, eval=TRUE, echo=FALSE}
@@ -36,16 +36,6 @@ knitr::opts_chunk$set(echo = FALSE, dpi=1)
 knitr::include_graphics("quarto-code-hl-layout.PNG")
 ```
 
-````{verbatim}
-We can output arbitrary content verbatim.
-
-```{r}
-1 + 1
-```
-
-The content can contain inline code like
-`r pi * 5^2`, too.
-````
 
 
 # TL; DR
@@ -55,23 +45,20 @@ I learned to highlight code lines.
 
 # Overview
 
-In general, `code-line-numbers` is a Quarto specific code cell option for presentation 
+In general, `code-line-numbers` is a Quarto specific code block option for presentation 
 formats of `revealjs`. This means that `code-line-numbers` will not render code
 highlighting when used in Quarto documents (`.qmd`) of format `html`, nor within
-an R markdown document (`.Rmd`). Note that Quarto chunk options have a dash their name.
+an R markdown document (`.Rmd`). Note that Quarto code block options have a dash their name.
 
-For a complete overview of all code cell options supported in Quarto, see
-`Quarto -> Reference -> Code Cells -> Knitr`
+For a complete overview of all code block options supported in Quarto, see
+`Quarto -> Reference -> Code Cells -> Knitr`.
+
 <https://quarto.org/docs/reference/cells/cells-knitr.html#code-output>
 
-
-```{embed, file="demo/quarto-code-hl.qmd"}
-```
 
 # Method 1: 
 
 ````{verbatim}
-
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
@@ -80,31 +67,55 @@ x <- 1:10
 x
 LETTERS[x]
 ```
-
 ````
 
-Here, we are executing code cell options via special comments indicated by `#|`. 
+Here, we are executing code block options via special comments indicated by `#|`. 
 Comment-based syntax is recommended for Quarto to make documents more portable and 
 consistent across execution engines. See 
-`Quarto -> Guide -> Computations -> Using R -> Chunk Options`
+
+`Quarto -> Guide -> Computations -> Using R -> Chunk Options`.
 
 <https://quarto.org/docs/computations/r.html#chunk-options>
 
 # Method 2:
 
-Quarto cell options have dash in their name; R only supports dashes in variable 
+````{verbatim}
+```{r, echo=TRUE, eval=FALSE, `code-line-numbers`="2"}
+x <- 1:10
+x
+LETTERS[x]
+```
+````
+
+Quarto code block options have dash in their name; R only supports dashes in variable 
 names when wrapped in the back tick.
 
 
 # Method 3: 
 
-`.r` signals a non-compute code cell (which is what we used above with `eval=FALSE`). 
-These are verbatim code chunks with a class set on them for language highlighting. 
+````{verbatim}
+```{.r code-line-numbers="3"}
+x <- 1:10
+x
+LETTERS[x]
+```
+````
+
+`.r` signals a non-compute code block (which is what we used above with `eval=FALSE`). 
+These are verbatim code blocks with a class set on them for language highlighting. 
 In this case, the language is R.
 (Is there a reference for this?)
 
-```{r}
-devtools::session_info()
+# Summary
+
+There is a lot of wonderful Quarto documentation, but navigating it all takes time.
+
+For a quick starter on this topic, you can download the full Quarto revealjs presentation demonstration `r xfun::embed_file(here::here("_posts", "2022-05-10-code-highlighting-in-quarto-revealjs-presentations", "demo", "quarto-code-hl.qmd"), text = "quarto-code-hl.qmd")`. 
+
+And here are the rendered presentation slides, which you can use Pg Up / Pg Dn to click through.
+
+```{r embed-xaringan, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "demo/quarto-code-hl.html", ratio = "4:3")
 ```
 
 # Acknowledgments

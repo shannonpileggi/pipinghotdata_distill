@@ -406,18 +406,6 @@
 <div class="sourceCode" id="cb3" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>x</span>
 <span id="cb3-3"><a href="#cb3-3"></a>LETTERS[x]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="explanation" class="slide level2">
-<h2>Explanation</h2>
-<p>In general, <code>code-line-numbers</code> is a Quarto specific code cell option for presentation formats of <code>revealjs</code>. This means that <code>code-line-numbers</code> will not render code highlighting when used in Quarto documents (<code>.qmd</code>) of format <code>html</code>, nor within an R markdown document (<code>.Rmd</code>). Note that Quarto chunk options have a dash their name.</p>
-<p>For a complete overview of all code cell options supported in Quarto, see <code>Quarto -&gt; Reference -&gt; Code Cells -&gt; Knitr</code> <a href="https://quarto.org/docs/reference/cells/cells-knitr.html#code-output" class="uri">https://quarto.org/docs/reference/cells/cells-knitr.html#code-output</a></p>
-<p>Method 1:</p>
-<p>Here, we are executing code cell options via special comments indicated by <code>#|</code>. Comment-based syntax is recommended for Quarto to make documents more portable and consistent across execution engines. See <code>Quarto -&gt; Guide -&gt; Computations -&gt; Using R -&gt; Chunk Options</code></p>
-<p><a href="https://quarto.org/docs/computations/r.html#chunk-options" class="uri">https://quarto.org/docs/computations/r.html#chunk-options</a></p>
-<p>Method 2:</p>
-<p>Quarto cell options have dash in their name; R only supports dashes in variable names when wrapped in the back tick.</p>
-<p>Method 3:</p>
-<p><code>.r</code> signals a non-compute code cell (which is what we are using here with <code>eval=FALSE</code>). These are verbatim code chunks with a class set on them for language highlighting. In this case, the language is R. (Is there a reference for this?)</p>
 <div class="footer footer-default">
 
 </div>
