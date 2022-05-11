@@ -107,4 +107,7 @@ In this case, the language is R.
 devtools::session_info()
 ```
 
+# Acknowledgments
 
+Thank you very much to Chris Dervieux for kindly explaining all of this to me
+on [RStudio Community](https://community.rstudio.com/t/quarto-presentation-code-line-numbers/136559/2){target="_blank"}.

@@ -123,6 +123,11 @@ language is R. (Is there a reference for this?)&lt;/p&gt;
  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.1.1)
 
 [1] C:/Program Files/R/R-4.1.2/library&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="acknowledgments"&gt;Acknowledgments&lt;/h1&gt;
+&lt;p&gt;Thank you very much to Chris Dervieux for kindly explaining all of
+this to me on &lt;a
+href="https://community.rstudio.com/t/quarto-presentation-code-line-numbers/136559/2"
+target="_blank"&gt;RStudio Community&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>11ccc8e5608132a8cc3e930110eabeec</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-05-10-code-highlighting-in-quarto-revealjs-presentations</guid>
