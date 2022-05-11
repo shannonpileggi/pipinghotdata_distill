@@ -1,0 +1,23 @@
+---
+title: "Code highlighting in Quarto revealjs presentations"
+description: |
+  A short description of the post.
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2022-05-10
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+

@@ -20,6 +20,8 @@ include-before:
 \let\oldsection\section
 \renewcommand\section{\clearpage\oldsection}
 
+# Code used with gtsummary 1.5.1
+
 # Set Up
 
 ## Chunk Settings
@@ -137,21 +139,19 @@ penguins %>%
 
 
 ```{r}
-penguins %>% 
+tbl <- penguins %>% 
   gtsummary::tbl_summary(
     by = species,
-    statistic = list(all_categorical() ~ "{n} ({p}%)")
+    statistic = list(all_categorical() ~ "{n} ({p}\\%)")
   ) %>%
   bold_labels() %>%
   modify_header(
-    label = "**Characteristic**", 
-    all_stat_cols() ~ "**{level}**\nN = {n}"
+    label = "\\textbf{{Characteristic}}", 
+    all_stat_cols() ~ "\\textbf{{{level}}}\nN = {n}"
+  ) %>% 
+  modify_footnote(
+     update = all_stat_cols() ~ "Median (IQR); n (%)"
   ) 
-```
-
-
-```{r}
-knitr::knit_exit()
 ```
 
 ```{r}
