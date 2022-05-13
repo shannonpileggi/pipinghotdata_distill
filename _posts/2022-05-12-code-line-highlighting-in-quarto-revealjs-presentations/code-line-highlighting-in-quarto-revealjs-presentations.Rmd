@@ -1,0 +1,163 @@
+---
+title: "Code line highlighting in Quarto revealjs presentations"
+description: |
+  Three methods make your code lines stand out
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2022-05-12
+preview: quarto-code-hl-layout.PNG
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, dpi=1)
+```
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Left hand side shows `.qmd` source code; right hand side shows rendered slides
+#|   with line highlighting.
+#| fig.alt: > 
+#|    `.qmd` source code shows three different methods for code highlighting;
+#|    on right hand side, image of slide 1 shows line 1 highlighted, 
+#|    image of slide 2 shows line 2 highlighted, and image of slide 3 shows
+#|    line 3 highlighted.
+knitr::include_graphics("quarto-code-hl-layout.PNG")
+```
+
+
+
+# TL; DR
+
+I started playing with Quarto revealjs presentations, it is fun! Here are three methods
+I learned to highlight code lines.
+
+# Terminology
+
+Some terminology introduced in the Quarto documentation includes:
+
+* executable / compute vs non-executable / non-compute
+
+  + This differentiates code that computes or executes versus code that does not (display only code).
+
+* code chunk vs code block
+
+  + Generally, it seems code chunk is more consistent with executable / compute code, whereas as
+  code block more typically refers to display only code.
+
+* code cells / cell option
+
+  + I think this Quarto specific lingo for code chunks and options within code chunks. In 
+  Quarto, you can use some of the existing chunk options from RMarkdown, as well
+  as new Quarto specific options.
+  
+  + From the documentation,  "Cell options affect the execution and output of executable code blocks."
+  
+For more information on displaying code, see:
+
+`Quarto -> Guide -> Tools -> Visual Editor -> Technical Writing -> Displaying code`
+
+<https://quarto.org/docs/visual-editor/technical.html#displaying-code>
+
+For a complete overview of all code block options supported in Quarto, see
+
+`Quarto -> Reference -> Code Cells -> Knitr`.
+
+<https://quarto.org/docs/reference/cells/cells-knitr.html#code-output>
+
+
+
+# `code-line-numbers`
+
+To highlight code lines in Quarto revealjs presentations, use the option `code-line-numbers`.
+This is a Quarto specific cell option for Quarto presentation formats of `revealjs`. 
+This means that `code-line-numbers` will not render code
+highlighting when used in Quarto documents (`.qmd`) of format `html`, nor within
+an R markdown document (`.Rmd`). Note that Quarto cell options have a dash their name. 
+
+I first found this option in presentation revealjs documentation:
+
+`Quarto -> Guide -> Formats -> Presentations -> Revealjs -> Code Blocks`.
+
+<https://quarto.org/docs/presentations/revealjs/#code-blocks>
+
+# Method 1: 
+
+````{verbatim}
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1"
+x <- 1:10
+x
+LETTERS[x]
+```
+````
+
+Here, we are executing code cell options via special comments indicated by `#|`. 
+Comment-based syntax is recommended for Quarto to make documents more portable and 
+consistent across execution engines. See 
+
+`Quarto -> Guide -> Computations -> Using R -> Chunk Options`.
+
+<https://quarto.org/docs/computations/r.html#chunk-options>
+
+# Method 2:
+
+````{verbatim}
+```{r, echo=TRUE, eval=FALSE, `code-line-numbers`="2"}
+x <- 1:10
+x
+LETTERS[x]
+```
+````
+
+Quarto code cell options have dash in their name; R only supports dashes in variable 
+names when wrapped in the back tick.
+
+
+# Method 3: 
+
+````{verbatim}
+```{.r code-line-numbers="3"}
+x <- 1:10
+x
+LETTERS[x]
+```
+````
+
+`.r` signals a non-compute code block (which is what we used above with `eval=FALSE`). 
+These are verbatim code blocks with a class set on them for language highlighting. 
+In this case, the language is R.
+
+# Summary
+
+There is a lot of wonderful Quarto documentation, but navigating it all takes practice and time.
+I am new to Quarto, so suggestions and corrections to this post are most welcome.
+
+
+For a quick starter on this topic, you can download the full Quarto revealjs presentation demonstration 
+`r xfun::embed_file(here::here("_posts", "2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations", "demo", "quarto-code-hl.qmd"), text = "quarto-code-hl.qmd")`.
+
+And here are the rendered presentation slides, which you can click through.
+
+
+```{r embed-xaringan, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "demo/quarto-code-hl.html", ratio = "4:3")
+```
+
+# Acknowledgments
+
+Thank you very much to Chris Dervieux for kindly explaining all of this to me
+on [RStudio Community](https://community.rstudio.com/t/quarto-presentation-code-line-numbers/136559/2){target="_blank"}.

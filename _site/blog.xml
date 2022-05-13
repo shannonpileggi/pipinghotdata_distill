@@ -7,16 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 10 May 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 May 2022 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Code highlighting in Quarto revealjs presentations</title>
+      <title>Code line highlighting in Quarto revealjs presentations</title>
       <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/posts/2022-05-10-code-highlighting-in-quarto-revealjs-presentations</link>
+      <link>https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations</link>
       <description>
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2022-05-10-code-highlighting-in-quarto-revealjs-presentationsquarto-code-hl-layout.PNG" alt="`.qmd` source code shows three different methods for code highlighting; on right hand side, image of slide 1 shows line 1 highlighted, image of slide 2 shows line 2 highlighted, and image of slide 3 shows line 3 highlighted." width="61440" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentationsquarto-code-hl-layout.PNG" alt="`.qmd` source code shows three different methods for code highlighting; on right hand side, image of slide 1 shows line 1 highlighted, image of slide 2 shows line 2 highlighted, and image of slide 3 shows line 3 highlighted." width="61440" /&gt;
 &lt;p class="caption"&gt;
 (#fig:thumbnail)Left hand side shows &lt;code&gt;.qmd&lt;/code&gt; source code;
 right hand side shows rendered slides with line highlighting.
@@ -24,21 +24,54 @@ right hand side shows rendered slides with line highlighting.
 &lt;/div&gt;
 &lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
 &lt;p&gt;I started playing with Quarto revealjs presentations, it is fun! Here
-are some methods I learned to highlight code lines.&lt;/p&gt;
-&lt;h1 id="overview"&gt;Overview&lt;/h1&gt;
-&lt;p&gt;In general, &lt;code&gt;code-line-numbers&lt;/code&gt; is a Quarto specific code
-block option for presentation formats of &lt;code&gt;revealjs&lt;/code&gt;. This
-means that &lt;code&gt;code-line-numbers&lt;/code&gt; will not render code
-highlighting when used in Quarto documents (&lt;code&gt;.qmd&lt;/code&gt;) of format
-&lt;code&gt;html&lt;/code&gt;, nor within an R markdown document
-(&lt;code&gt;.Rmd&lt;/code&gt;). Note that Quarto code block options have a dash
-their name.&lt;/p&gt;
+are three methods I learned to highlight code lines.&lt;/p&gt;
+&lt;h1 id="terminology"&gt;Terminology&lt;/h1&gt;
+&lt;p&gt;Some terminology introduced in the Quarto documentation includes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;executable / compute vs non-executable / non-compute&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This differentiates code that computes or executes versus code that
+does not (display only code).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;code chunk vs code block&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Generally, it seems code chunk is more consistent with executable /
+compute code, whereas as code block more typically refers to display
+only code.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;code cells / cell option&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I think this Quarto specific lingo for code chunks and options
+within code chunks. In Quarto, you can use some of the existing chunk
+options from RMarkdown, as well as new Quarto specific options.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;From the documentation, “Cell options affect the execution and
+output of executable code blocks.”&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For more information on displaying code, see:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Quarto -&amp;gt; Guide -&amp;gt; Tools -&amp;gt; Visual Editor -&amp;gt; Technical Writing -&amp;gt; Displaying code&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a
+href="https://quarto.org/docs/visual-editor/technical.html#displaying-code"
+class="uri"&gt;https://quarto.org/docs/visual-editor/technical.html#displaying-code&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For a complete overview of all code block options supported in
-Quarto, see
-&lt;code&gt;Quarto -&amp;gt; Reference -&amp;gt; Code Cells -&amp;gt; Knitr&lt;/code&gt;.&lt;/p&gt;
+Quarto, see&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Quarto -&amp;gt; Reference -&amp;gt; Code Cells -&amp;gt; Knitr&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a
 href="https://quarto.org/docs/reference/cells/cells-knitr.html#code-output"
 class="uri"&gt;https://quarto.org/docs/reference/cells/cells-knitr.html#code-output&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id="code-line-numbers"&gt;&lt;code&gt;code-line-numbers&lt;/code&gt;&lt;/h1&gt;
+&lt;p&gt;To highlight code lines in Quarto revealjs presentations, use the
+option &lt;code&gt;code-line-numbers&lt;/code&gt;. This is a Quarto specific cell
+option for Quarto presentation formats of &lt;code&gt;revealjs&lt;/code&gt;. This
+means that &lt;code&gt;code-line-numbers&lt;/code&gt; will not render code
+highlighting when used in Quarto documents (&lt;code&gt;.qmd&lt;/code&gt;) of format
+&lt;code&gt;html&lt;/code&gt;, nor within an R markdown document
+(&lt;code&gt;.Rmd&lt;/code&gt;). Note that Quarto cell options have a dash their
+name.&lt;/p&gt;
+&lt;p&gt;I first found this option in presentation revealjs documentation:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Quarto -&amp;gt; Guide -&amp;gt; Formats -&amp;gt; Presentations -&amp;gt; Revealjs -&amp;gt; Code Blocks&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://quarto.org/docs/presentations/revealjs/#code-blocks"
+class="uri"&gt;https://quarto.org/docs/presentations/revealjs/#code-blocks&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id="method-1"&gt;Method 1:&lt;/h1&gt;
 &lt;pre class="default"&gt;&lt;code&gt;```{r}
 #| echo: TRUE
@@ -48,7 +81,7 @@ x &amp;lt;- 1:10
 x
 LETTERS[x]
 ```&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Here, we are executing code block options via special comments
+&lt;p&gt;Here, we are executing code cell options via special comments
 indicated by &lt;code&gt;#|&lt;/code&gt;. Comment-based syntax is recommended for
 Quarto to make documents more portable and consistent across execution
 engines. See&lt;/p&gt;
@@ -61,7 +94,7 @@ x &amp;lt;- 1:10
 x
 LETTERS[x]
 ```&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Quarto code block options have dash in their name; R only supports
+&lt;p&gt;Quarto code cell options have dash in their name; R only supports
 dashes in variable names when wrapped in the back tick.&lt;/p&gt;
 &lt;h1 id="method-3"&gt;Method 3:&lt;/h1&gt;
 &lt;pre class="default"&gt;&lt;code&gt;```{.r code-line-numbers=&amp;quot;3&amp;quot;}
@@ -72,15 +105,16 @@ LETTERS[x]
 &lt;p&gt;&lt;code&gt;.r&lt;/code&gt; signals a non-compute code block (which is what we
 used above with &lt;code&gt;eval=FALSE&lt;/code&gt;). These are verbatim code blocks
 with a class set on them for language highlighting. In this case, the
-language is R. (Is there a reference for this?)&lt;/p&gt;
+language is R.&lt;/p&gt;
 &lt;h1 id="summary"&gt;Summary&lt;/h1&gt;
 &lt;p&gt;There is a lot of wonderful Quarto documentation, but navigating it
-all takes time.&lt;/p&gt;
+all takes practice and time. I am new to Quarto, so suggestions and
+corrections to this post are most welcome.&lt;/p&gt;
 &lt;p&gt;For a quick starter on this topic, you can download the full Quarto
 revealjs presentation demonstration
 &lt;a href="data:application/octet-stream;base64,LS0tDQp0aXRsZTogIkNvZGUgbGluZSBoaWdobGlnaHRpbmciDQpmb3JtYXQ6IHJldmVhbGpzDQotLS0NCg0KIyMgSGlnaGxpZ2h0IGxpbmUgMQ0KDQpgYGB7cn0NCiN8IGVjaG86IFRSVUUNCiN8IGV2YWw6IEZBTFNFDQojfCBjb2RlLWxpbmUtbnVtYmVyczogIjEiDQp4IDwtIDE6MTANCngNCkxFVFRFUlNbeF0NCmBgYA0KDQojIyBIaWdobGlnaHQgbGluZSAyDQoNCmBgYHtyLCBlY2hvPVRSVUUsIGV2YWw9RkFMU0UsIGBjb2RlLWxpbmUtbnVtYmVyc2A9IjIifQ0KeCA8LSAxOjEwDQp4DQpMRVRURVJTW3hdDQpgYGANCg0KIyMgSGlnaGxpZ2h0IGxpbmUgMw0KDQpgYGB7LnIgY29kZS1saW5lLW51bWJlcnM9IjMifQ0KeCA8LSAxOjEwDQp4DQpMRVRURVJTW3hdDQpgYGANCg0KDQo=" download="quarto-code-hl.qmd"&gt;quarto-code-hl.qmd&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;And here are the rendered presentation slides, which you can use Pg
-Up / Pg Dn to click through.&lt;/p&gt;
+&lt;p&gt;And here are the rendered presentation slides, which you can click
+through.&lt;/p&gt;
 &lt;div class="shareagain" style="min-width:300px;margin:1em auto;"&gt;
 &lt;iframe src="demo/quarto-code-hl.html" width="400" height="300" style="border:2px solid currentColor;" loading="lazy" allowfullscreen&gt;&lt;/iframe&gt;
 &lt;script&gt;fitvids('.shareagain', {players: 'iframe'});&lt;/script&gt;
@@ -91,10 +125,10 @@ this to me on &lt;a
 href="https://community.rstudio.com/t/quarto-presentation-code-line-numbers/136559/2"
 target="_blank"&gt;RStudio Community&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>11ccc8e5608132a8cc3e930110eabeec</distill:md5>
-      <guid>https://www.pipinghotdata.com/posts/2022-05-10-code-highlighting-in-quarto-revealjs-presentations</guid>
-      <pubDate>Tue, 10 May 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2022-05-10-code-highlighting-in-quarto-revealjs-presentations/quarto-code-hl-layout.PNG" medium="image" type="image/png" width="1280" height="720"/>
+      <distill:md5>2b97d5cf58a8190340c1ae20fd3b4dbe</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations</guid>
+      <pubDate>Thu, 12 May 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations/quarto-code-hl-layout.PNG" medium="image" type="image/png" width="1280" height="720"/>
     </item>
     <item>
       <title>Report Ready PDF tables with rmarkdown, knitr, kableExtra, and LaTeX</title>
