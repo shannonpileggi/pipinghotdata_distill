@@ -6,7 +6,7 @@
   landscape]{article}
 \title{Penguins Report}
 \author{Shannon Pileggi}
-\date{2022-01-23}
+\date{2022-04-29}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -253,14 +253,14 @@ Adelie & Dream & 42.3 & 21.2 & 191 & 4150 & male & 2007\\*
 \hypertarget{default-column-names-1}{%
 \subsection{Default column names}\label{default-column-names-1}}
 
-\begin{longtable}[l]{>{}lccc}
+\begin{longtable}[l]{lccc}
 \toprule
-Characteristic & Adelie, N = 152 & Chinstrap, N = 68 & Gentoo, N = 124\\
+\textbf{Characteristic} & \textbf{Adelie}, N = 152 & \textbf{Chinstrap}, N = 68 & \textbf{Gentoo}, N = 124\\
 \midrule
 \endfirsthead
 \multicolumn{4}{@{}l}{\textit{(continued)}}\\
 \toprule
-Characteristic & Adelie, N = 152 & Chinstrap, N = 68 & Gentoo, N = 124\\
+\textbf{Characteristic} & \textbf{Adelie}, N = 152 & \textbf{Chinstrap}, N = 68 & \textbf{Gentoo}, N = 124\\
 \midrule
 \endhead
 
@@ -271,13 +271,13 @@ Characteristic & Adelie, N = 152 & Chinstrap, N = 68 & Gentoo, N = 124\\
 \hspace{1em}Biscoe & 44 (29\%) & 0 (0\%) & 124 (100\%)\\
 \cellcolor{gray!15}{\hspace{1em}Dream} & \cellcolor{gray!15}{56 (37\%)} & \cellcolor{gray!15}{68 (100\%)} & \cellcolor{gray!15}{0 (0\%)}\\
 \hspace{1em}Torgersen & 52 (34\%) & 0 (0\%) & 0 (0\%)\\
-\cellcolor{gray!15}{\textbf{bill\_length\_mm}} & \cellcolor{gray!15}{38.8 (36.8, 40.8)} & \cellcolor{gray!15}{49.5 (46.3, 51.1)} & \cellcolor{gray!15}{47.3 (45.3, 49.5)}\\
+\cellcolor{gray!15}{\textbf{bill\textbackslash{}\_length\textbackslash{}\_mm}} & \cellcolor{gray!15}{38.8 (36.8, 40.8)} & \cellcolor{gray!15}{49.5 (46.3, 51.1)} & \cellcolor{gray!15}{47.3 (45.3, 49.5)}\\
 \hspace{1em}Unknown & 1 & 0 & \vphantom{3} 1\\
-\cellcolor{gray!15}{\textbf{bill\_depth\_mm}} & \cellcolor{gray!15}{18.40 (17.50, 19.00)} & \cellcolor{gray!15}{18.45 (17.50, 19.40)} & \cellcolor{gray!15}{15.00 (14.20, 15.70)}\\
+\cellcolor{gray!15}{\textbf{bill\textbackslash{}\_depth\textbackslash{}\_mm}} & \cellcolor{gray!15}{18.40 (17.50, 19.00)} & \cellcolor{gray!15}{18.45 (17.50, 19.40)} & \cellcolor{gray!15}{15.00 (14.20, 15.70)}\\
 \hspace{1em}Unknown & 1 & 0 & \vphantom{2} 1\\
-\cellcolor{gray!15}{\textbf{flipper\_length\_mm}} & \cellcolor{gray!15}{190 (186, 195)} & \cellcolor{gray!15}{196 (191, 201)} & \cellcolor{gray!15}{216 (212, 221)}\\
+\cellcolor{gray!15}{\textbf{flipper\textbackslash{}\_length\textbackslash{}\_mm}} & \cellcolor{gray!15}{190 (186, 195)} & \cellcolor{gray!15}{196 (191, 201)} & \cellcolor{gray!15}{216 (212, 221)}\\
 \hspace{1em}Unknown & 1 & 0 & \vphantom{1} 1\\
-\cellcolor{gray!15}{\textbf{body\_mass\_g}} & \cellcolor{gray!15}{3,700 (3,350, 4,000)} & \cellcolor{gray!15}{3,700 (3,488, 3,950)} & \cellcolor{gray!15}{5,000 (4,700, 5,500)}\\
+\cellcolor{gray!15}{\textbf{body\textbackslash{}\_mass\textbackslash{}\_g}} & \cellcolor{gray!15}{3,700 (3,350, 4,000)} & \cellcolor{gray!15}{3,700 (3,488, 3,950)} & \cellcolor{gray!15}{5,000 (4,700, 5,500)}\\
 \hspace{1em}Unknown & 1 & 0 & 1\\
 \cellcolor{gray!15}{\textbf{sex}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
 \hspace{1em}female & 73 (50\%) & 34 (50\%) & 58 (49\%)\\
@@ -293,41 +293,53 @@ Characteristic & Adelie, N = 152 & Chinstrap, N = 68 & Gentoo, N = 124\\
 \hypertarget{custom-column-names-1}{%
 \subsection{Custom column names}\label{custom-column-names-1}}
 
-\begin{longtable}[l]{lccc}
-\toprule
-\textbf{Characteristic} & \makecell[c]{\textbf{Adelie}\\N = 152} & \makecell[c]{\textbf{Chinstrap}\\N = 68} & \makecell[c]{\textbf{Gentoo}\\N = 124}\\
-\midrule
-\endfirsthead
-\multicolumn{4}{@{}l}{\textit{(continued)}}\\
-\toprule
-\textbf{Characteristic} & \makecell[c]{\textbf{Adelie}\\N = 152} & \makecell[c]{\textbf{Chinstrap}\\N = 68} & \makecell[c]{\textbf{Gentoo}\\N = 124}\\
-\midrule
-\endhead
-
-\endfoot
-\bottomrule
-\endlastfoot
-\cellcolor{gray!15}{\textbf{island}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
-\hspace{1em}Biscoe & 44 (29\%) & 0 (0\%) & 124 (100\%)\\
-\cellcolor{gray!15}{\hspace{1em}Dream} & \cellcolor{gray!15}{56 (37\%)} & \cellcolor{gray!15}{68 (100\%)} & \cellcolor{gray!15}{0 (0\%)}\\
-\hspace{1em}Torgersen & 52 (34\%) & 0 (0\%) & 0 (0\%)\\
-\cellcolor{gray!15}{\textbf{bill\_length\_mm}} & \cellcolor{gray!15}{38.8 (36.8, 40.8)} & \cellcolor{gray!15}{49.5 (46.3, 51.1)} & \cellcolor{gray!15}{47.3 (45.3, 49.5)}\\
-\hspace{1em}Unknown & 1 & 0 & \vphantom{3} 1\\
-\cellcolor{gray!15}{\textbf{bill\_depth\_mm}} & \cellcolor{gray!15}{18.40 (17.50, 19.00)} & \cellcolor{gray!15}{18.45 (17.50, 19.40)} & \cellcolor{gray!15}{15.00 (14.20, 15.70)}\\
-\hspace{1em}Unknown & 1 & 0 & \vphantom{2} 1\\
-\cellcolor{gray!15}{\textbf{flipper\_length\_mm}} & \cellcolor{gray!15}{190 (186, 195)} & \cellcolor{gray!15}{196 (191, 201)} & \cellcolor{gray!15}{216 (212, 221)}\\
-\hspace{1em}Unknown & 1 & 0 & \vphantom{1} 1\\
-\cellcolor{gray!15}{\textbf{body\_mass\_g}} & \cellcolor{gray!15}{3,700 (3,350, 4,000)} & \cellcolor{gray!15}{3,700 (3,488, 3,950)} & \cellcolor{gray!15}{5,000 (4,700, 5,500)}\\
-\hspace{1em}Unknown & 1 & 0 & 1\\
-\cellcolor{gray!15}{\textbf{sex}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
-\hspace{1em}female & 73 (50\%) & 34 (50\%) & 58 (49\%)\\
-\cellcolor{gray!15}{\hspace{1em}male} & \cellcolor{gray!15}{73 (50\%)} & \cellcolor{gray!15}{34 (50\%)} & \cellcolor{gray!15}{61 (51\%)}\\
-\hspace{1em}Unknown & 6 & 0 & 5\\
-\cellcolor{gray!15}{\textbf{year}} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{} & \cellcolor{gray!15}{}\\
-\hspace{1em}2007 & 50 (33\%) & 26 (38\%) & 34 (27\%)\\
-\cellcolor{gray!15}{\hspace{1em}2008} & \cellcolor{gray!15}{50 (33\%)} & \cellcolor{gray!15}{18 (26\%)} & \cellcolor{gray!15}{46 (37\%)}\\
-\hspace{1em}2009 & 52 (34\%) & 24 (35\%) & 44 (35\%)\\*
-\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{1} Median (IQR); n (\%)}\\
-\end{longtable}
+\begin{tabular}{l|c|c|c}
+\hline
+**Characteristic** & **Adelie**
+N = 152 & **Chinstrap**
+N = 68 & **Gentoo**
+N = 124\\
+\hline
+\_\_island\_\_ &  &  & \\
+\hline
+Biscoe & 44 (29\%) & 0 (0\%) & 124 (100\%)\\
+\hline
+Dream & 56 (37\%) & 68 (100\%) & 0 (0\%)\\
+\hline
+Torgersen & 52 (34\%) & 0 (0\%) & 0 (0\%)\\
+\hline
+\_\_bill\_length\_mm\_\_ & 38.8 (36.8, 40.8) & 49.5 (46.3, 51.1) & 47.3 (45.3, 49.5)\\
+\hline
+Unknown & 1 & 0 & 1\\
+\hline
+\_\_bill\_depth\_mm\_\_ & 18.40 (17.50, 19.00) & 18.45 (17.50, 19.40) & 15.00 (14.20, 15.70)\\
+\hline
+Unknown & 1 & 0 & 1\\
+\hline
+\_\_flipper\_length\_mm\_\_ & 190 (186, 195) & 196 (191, 201) & 216 (212, 221)\\
+\hline
+Unknown & 1 & 0 & 1\\
+\hline
+\_\_body\_mass\_g\_\_ & 3,700 (3,350, 4,000) & 3,700 (3,488, 3,950) & 5,000 (4,700, 5,500)\\
+\hline
+Unknown & 1 & 0 & 1\\
+\hline
+\_\_sex\_\_ &  &  & \\
+\hline
+female & 73 (50\%) & 34 (50\%) & 58 (49\%)\\
+\hline
+male & 73 (50\%) & 34 (50\%) & 61 (51\%)\\
+\hline
+Unknown & 6 & 0 & 5\\
+\hline
+\_\_year\_\_ &  &  & \\
+\hline
+2007 & 50 (33\%) & 26 (38\%) & 34 (27\%)\\
+\hline
+2008 & 50 (33\%) & 18 (26\%) & 46 (37\%)\\
+\hline
+2009 & 52 (34\%) & 24 (35\%) & 44 (35\%)\\
+\hline
+\end{tabular}
 
 \end{document}

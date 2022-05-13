@@ -1,0 +1,179 @@
+---
+title: "Penguins Report"
+author: "Shannon Pileggi"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: 
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    keep_tex: yes
+latex_engine: pdflatex
+classoption: landscape
+header-includes:
+  \usepackage{helvet}
+  \renewcommand\familydefault{\sfdefault}
+include-before:
+- '`\newpage{}`{=latex}'
+---
+
+\let\oldsection\section
+\renewcommand\section{\clearpage\oldsection}
+
+# Code used with gtsummary 1.5.1
+
+# Set Up
+
+## Chunk Settings
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+  )
+```
+
+## Packages
+
+```{r load-packages}
+library(tidyverse)
+library(kableExtra)
+library(gtsummary)
+library(palmerpenguins)
+```
+
+## knitr settings
+
+```{r knitr-options}
+# Displays blank instead of NA for missing values
+options(knitr.kable.NA = '') 
+```
+
+
+# Raw Data
+
+## Default Column Names
+
+```{r, raw-data-print-default}
+penguins %>% 
+  # first few rows as an example
+  slice(1:50) %>% 
+  knitr::kable(
+    format = "latex",
+    booktabs = TRUE,
+    longtable = TRUE,
+    linesep = "",
+    align = "l"
+    ) %>%
+  kableExtra::kable_styling(
+      position = "left",
+      latex_options = c("striped", "repeat_header"),
+      stripe_color = "gray!15"
+    )
+```
+
+
+## Custom Column Names
+
+
+
+```{r original-names, include=FALSE}
+# original column names
+names(penguins)
+```
+
+
+```{r column-names}
+#Create column names with line breaks for demonstration.
+column_names <- penguins %>% 
+  names() %>% 
+  str_replace_all( "_", "\n")
+```
+
+
+```{r, raw-data-print-custom}
+penguins %>% 
+  # first few rows as an example
+  slice(1:50) %>% 
+  knitr::kable(
+    format = "latex",
+    booktabs = TRUE,
+    longtable = TRUE,
+    linesep = "",
+    align = "l",
+    col.names = linebreak(column_names, align = "l"),
+    escape = FALSE
+    ) %>%
+  kableExtra::kable_styling(
+      position = "left",
+      latex_options = c("striped", "repeat_header"),
+      stripe_color = "gray!15"
+    )
+```
+
+# Summary Data 
+
+## Default column names
+
+```{r}
+penguins %>% 
+  gtsummary::tbl_summary(
+    by = species
+  ) %>% 
+  gtsummary::bold_labels() %>% 
+  gtsummary::as_kable_extra(
+    format = "latex",
+    booktabs = TRUE,
+    longtable = TRUE,
+    linesep = ""
+    ) %>%
+  kableExtra::kable_styling(
+      position = "left",
+      latex_options = c("striped", "repeat_header"),
+      stripe_color = "gray!15"
+    )
+```
+
+## Custom column names
+
+
+```{r}
+tbl <- penguins %>% 
+  gtsummary::tbl_summary(
+    by = species,
+    statistic = list(all_categorical() ~ "{n} ({p}\\%)")
+  ) %>%
+  bold_labels() %>%
+  modify_header(
+    label = "\\textbf{{Characteristic}}", 
+    all_stat_cols() ~ "\\textbf{{{level}}}\nN = {n}"
+  ) %>% 
+  modify_footnote(
+     update = all_stat_cols() ~ "Median (IQR); n (%)"
+  ) 
+```
+
+```{r}
+tbl_names <- tbl$table_styling$header %>% 
+  filter(hide == FALSE) %>% 
+  pull(label)
+```
+
+
+```{r}
+tbl %>% 
+  gtsummary::as_kable_extra(
+    format = "latex",
+    booktabs = TRUE,
+    longtable = TRUE,
+    linesep = "",
+    col.names = linebreak(tbl_names, align = c("l", "c", "c", "c")),
+    escape = FALSE
+    ) %>%
+  kableExtra::kable_styling(
+      position = "left",
+      latex_options = c("striped", "repeat_header"),
+      stripe_color = "gray!15"
+    )
+```

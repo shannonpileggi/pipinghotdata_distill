@@ -1,0 +1,33 @@
+---
+title: "Code line highlighting"
+format: revealjs
+---
+
+## Highlight line 1
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "1"
+x <- 1:10
+x
+LETTERS[x]
+```
+
+## Highlight line 2
+
+```{r, echo=TRUE, eval=FALSE, `code-line-numbers`="2"}
+x <- 1:10
+x
+LETTERS[x]
+```
+
+## Highlight line 3
+
+```{.r code-line-numbers="3"}
+x <- 1:10
+x
+LETTERS[x]
+```
+
+
