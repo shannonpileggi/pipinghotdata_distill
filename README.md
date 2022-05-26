@@ -23,7 +23,7 @@ creators out there,
 📅 That’s a post roughly every **32** days, or about 0.9 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **13** days ago ([Code line highlighting
+✍️ The last post was published **14** days ago ([Code line highlighting
 in Quarto revealjs
 presentations](https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations)).
 As Yihui Xie advises, I try to write like no one is reading. But your
@@ -67,4 +67,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-05-25 05:29:40*
+*Updated 2022-05-26 05:30:05*
