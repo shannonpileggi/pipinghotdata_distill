@@ -1,0 +1,388 @@
+---
+title: "Locating R Software and Configuration Files on Windows 10"
+description: |
+  My personal R administration
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2022-05-31
+preview: R-file-tree.png
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(tidyverse)
+```
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   File tree visualizing the hierarchy of R and R adjacent software and configuration files on my Windows 10 OS.
+#| fig.alt: > 
+#|    Two home folders are colored bright purple, the software folders are colored bright green,
+#|    and the configuration files are colored a mustard yellow.
+knitr::include_graphics("R-file-tree.png")
+```
+
+
+```{r, echo = FALSE, eval = TRUE}
+paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotdata_distill/_posts/2022-05-31-personal-r-configuration-on-windows/locations.xlsx") %>% 
+  mutate(
+    Code = replace_na(Code, ""),
+    Type = fct_inorder(Type)
+#    root = case_when(
+#      str_detect(Location, "C:/Program Files/") ~ "C:/Program Files/",
+#      str_detect(Location, "C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/") ~ "C:/Users/pileggis/OneDrive - #Memorial Sloan Kettering Cancer Center/Documents)",
+#      str_detect(Location, "C:/Users/pileggis") ~ "C:/Users/pileggis/",
+#      TRUE ~ "C:/"
+#    )
+)
+  
+```
+
+
+# TL;DR
+
+There is a lot to keep track of to install and maintain R and R adjacent software and configuration files.
+Here is what my Windows 10 set up looks like, with associated code if available.
+
+```{r, echo = FALSE, eval = TRUE}
+paths %>% 
+  gtreg::tbl_listing(
+    group_by = "Type"
+  )  %>% 
+  gtsummary::bold_labels()
+```
+
+
+# Background {#background}
+
+When Travis Gerke tweeted about the breaker of chains keyboard shortcut, I was
+eager to try it out! 
+
+```{r, eval = TRUE, echo = FALSE}
+tweetrmd::tweet_embed("https://twitter.com/travisgerke/status/1503385645280026626")
+```
+
+
+However, it was not immediately clear to me where to save the 
+the `shrtcts.R` configuration file. This took a bit of trial and 
+error to figure out, and led me to document where everything R
+and R adjacent is located. 
+
+# Resources
+
+In this post I refer to two packages and two books.
+
+## Packages
+
+1. [`usethis`](https://usethis.r-lib.org/){target="_blank"} for helpers that
+automate repetitive tasks during project set up and development.
+
+2. [`fs`](https://fs.r-lib.org/){target="_blank"} for cross-platform file system
+operations.
+
+## Books
+
+1. [Happy Git with R](https://happygitwithr.com/){target="_blank"}, a manual for integrating Git with R; abbreviated to `Happy Git` for the remainder of this post.
+
+2. [What they Forgot to Teach You About R](https://rstats.wtf/){target="_blank"}, is
+in progress but still extremely helpful documentation on best practices when working
+in R; abbreviated to `WTF` for the remainder of this post.
+
+# Windows
+
+I am working on a computer supplied by employer with a Windows 10 operating system.
+
+## Recommended settings
+
+When getting started with a Windows computer, I recommend changing default settings
+such that:
+
+1. Display the full path in the title bar
+
+2. Show hidden files, folders, and drives
+
+3. <Uncheck/Do not> Hide extension for known file types
+
+```{r, eval = TRUE, echo = FALSE}
+tweetrmd::include_tweet("https://twitter.com/PipingHotData/status/1450494168900509697")
+```
+
+
+## Administrator rights
+
+Much of how you work in Windows depends on your level of rights. Fortunately,
+I was granted administrator privileges on my work laptop, which
+allows me to install software and save configuration files where I want to. 
+
+If you do not have administrator privileges, knowing this can still help you
+work with IT to complete your set up or find alternate viable locations.
+
+# Homes 
+
+On Mac OS, the "user home directory" and the "R home directory" are the same,
+but on Windows OS they differ. On Windows, the R home directory tends to be associated with the user's 
+documents directory, whereas the user home directory is a system level directory.
+
+## R Home
+
+These three commands all point to the "R home directory". 
+
+```{r}
+Sys.getenv("HOME")
+Sys.getenv("R_User")
+fs::path_home_r()
+```
+
+
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents`
+
+## Home
+
+
+Here, we find the "user home directory".
+
+```{r}
+fs::path_home()
+```
+
+`C:/Users/pileggis`
+
+
+
+# Software
+
+## R
+
+From the `R.home()` help file: 
+
+> The R home directory is the top-level directory of the R installation being run. 
+The R home directory is often referred to as R_HOME, and is the value of an environment 
+variable of that name in an R session.
+
+Wrapping the function in `fs::path_real()` allows you to see the full path, 
+rather than the [short file path](https://en.wikipedia.org/wiki/8.3_filename){target="_blank"}.
+
+```{r}
+fs::path_real(R.home())
+fs::path_real(Sys.getenv("R_HOME"))
+```
+
+`C:/Program Files/R/R-4.2.0`
+
+## R packages
+
+`.libPaths()` shows where R is looking for packages in the current session. 
+
+On Windows, with the default configuration in R versions prior to 4.2.0, you may have more than one path present, which
+correspond to a directory specific to the user and a directory available to all users.
+If more than one `.libPaths()` is present, R attaches packages from the libraries
+in the order shown (searches first library first).
+
+```{r}
+.libPaths()
+```
+
+`"C:/Program Files/R/R-4.2.0/library"`
+
+My R packages were initially being installed to a default location at `fs::path_home_r()`; 
+I modified this location to my `C` drive. You can modify the default location using 
+the [`.Renviron`](#renviron) configuration file.
+
+Furthermore, depending on where you fall on the `user <---> developer` continuum, 
+you may have additional considerations for package installation.
+
+1. R 4.2.0 was released on 2022-04-22. As described in Jumping Rivers
+[New features in R 4.2.0](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank"} post, 
+with this release, the default personal library for Windows is "now a subdirectory 
+of local application data directory (usually a hidden directory `C:/Users/username/AppData/Local`)."
+For some users this may work well and others may want to change the default location
+through methods mentioned above.
+
+2. If you are using the `renv` package for reproducible environments, all utilized 
+packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:/Users/pileggis/AppData/Local/renv`.
+
+3. If you are actively developing packages, you may want to separate the location of
+stable packages from development versions. You can do so by utilizing 
+`devtools::dev_mode(on = TRUE)`, which allows you to install development packages to a new 
+directory. When I work in dev mode, the development packages get
+installed to `C:/Users/pileggis/R-dev`. This was a directory I created myself. You
+can create this directory with 
+
+`fs::dir_create(fs::path(getOption("devtools.path")))`
+
+
+## Rtools 
+
+Rtools is a collection of tools required to [build source packages](https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment){target="_blank"} on Windows. 
+Basically, if you want to do anything with packages beyond CRAN (install from github, build locally) on Windows, you need
+R tools. 
+
+In order to work, R tools _must be_ installed at 
+
+`"C:/rtools42"`
+
+which is where mine is, too. (`rtools 42` is required for R 4.2.0.)
+
+You can confirm if your installation worked properly if
+
+```{r}
+devtools::find_rtools()
+```
+
+returns `TRUE`. You can further confirm readiness with 
+
+```{r}
+devtools::has_devel()
+```
+
+which returns `Your system is ready to build packages!`
+
+
+## Git
+
+As recommended in [Happy Git Ch 6.2 Install Git on Windows](https://happygitwithr.com/){target="_blank"}, git is installed at
+
+`C:/Program Files/Git`
+
+## Quarto   
+
+[Quarto](https://quarto.org/){target="_blank"} is an open source publishing system backed by RStudio that 
+began to receive [public endorsement](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/){target="_blank}
+in April 2022.
+
+The Quarto installation allowed me to choose between a user specific versus an all-user installation,
+which can be very helpful depending on your administrative privileges. I chose the latter, and for me
+Quarto is installed at
+
+`C:/Program Files/Quarto`
+
+
+# Configurations
+
+## `.Renviron` {#renviron}
+
+The `.Renviron` file contains environment variables that are set in R Sessions 
+(this does not contain R code). 
+
+To edit this file, submit:
+
+```{r}
+usethis::edit_r_environ()
+```
+
+The user-level `.Renviron` file lives in the base of the user's home directory. For me, that means  
+
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Renviron`
+
+
+My `.Renviron` file has has been modified to establish default library locations for 
+R package installations.
+
+`R_LIBS_USER = "C:/Program Files/R/library/%v"`
+
+As explained in [WTF Ch 8.4 How to transfer your library when updating R](https://rstats.wtf/maintaining-r.html#how-to-transfer-your-library-when-updating-r), the `%v` wildcard automatically adjusts the installation folder when you update to a new R version.
+
+## .Rprofile
+
+As stated in [WTF Ch 7.2 .Rprofile](https://rstats.wtf/r-startup.html#rprofile){target="_blank"}
+
+> The `.Rprofile` file contains R code to be run when R starts up. It is run after the `.Renviron` file is sourced.
+
+Again, you can edit this file with 
+
+```{r}
+usethis::edit_r_profile()
+```
+ 
+and mine lives at
+ 
+`C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.Rprofile`.
+
+My `.Rprofile` has been modified two ways:
+
+1. Establish a default location for R projects created via `usethis::create_from_github()` or `usethis::use_course()`.
+
+2. To enable RStudio shortcuts with the [shrtcts](https://pkg.garrickadenbuie.com/shrtcts/index.html){target="_blank"} package.
+
+```{r}
+# ------------------------------------------------------------------------------
+#  1/ Establish a default location for R projects created via 
+# `usethis::create_from_github()` or `usethis::use_course()`
+options(usethis.destdir = "C:/Users/pileggis/Documents/gh-personal")
+
+# ------------------------------------------------------------------------------
+# 2/ enable create RStudio shortcuts with the shrtcts package
+if (interactive() && requireNamespace("shrtcts", quietly = TRUE)) {
+  shrtcts::add_rstudio_shortcuts(set_keyboard_shortcuts = TRUE)
+}
+```
+
+
+
+## .gitconfig 
+
+You can open your `.gitconfig` file for editing with 
+
+
+```{r}
+usethis::edit_git_config()
+```
+
+My `.gitconfig` file lives at:
+
+`"C:/Users/pileggis/.gitconfig"`
+
+and has been modified to allow me to switch between work and personal github
+identities when working on R projects, which is described in more detail in 
+[GitHub ssh and config with multiple accounts](https://www.gerkelab.com/blog/2021/04/multiple-github-accounts/){target="_blank"} by Travis Gerke.
+
+## .shrtcts.R
+
+The `.shrtcts.R` file contains R code that defines the enabled shortcuts. Mine 
+is located in my R home directory at
+
+```{r}
+shrtcts::locate_shortcuts_source()
+```
+
+`"C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents/.shrtcts.R"`
+
+I currently have two shortcuts enabled:
+
+1. breaker of chains (mentioned in [Background](#background)), and
+
+2. automatically end comments with dashes to 80 characters - see this [tweet](https://twitter.com/PipingHotData/status/1514310949880188939){target="_blank"}
+for details.
+
+
+# Summary
+
+This topic probably isn't exciting for many, but having this understanding can
+save you time during installation and troubleshooting. And maybe next I get set up on a new 
+OS it will go quicker. 😊
+
+# Acknowledgements
+
+Thanks to [Travis Gerke](https://travisgerke.com/){target="_blank"} for inspiring me to try new things in R! 
+Thanks to Omar Chua, who provided hours of IT support as I was waiting for administrative privileges.
+And thank you to [Jenny Bryan](https://twitter.com/JennyBryan){target="_blank"} and [David Aja](https://twitter.com/PeeltothePithy){target="_blank"} for their feedback on this post.
+
+
+```{r, echo = FALSE, eval = TRUE}
+knitr::knit_exit()
+```
+
+
+
+From Omar Chua.
+provisioning is different on Flex laptops vs Domain accounts
+Flex laptops are Azure AD based
+So it looks like Admin Rights are enable or disable using a cloud group for the azure devices (flex laptops)
+you will not see indication from your actual account
+as the provisioning is done through the flex device
+
