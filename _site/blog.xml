@@ -7,16 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 31 May 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jun 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Locating R and R Adjacent Software and Configuration Files</title>
       <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windows</link>
+      <link>https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files</link>
       <description>
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windowsR-file-tree.png" alt="Two home directories are colored bright purple, the software is colored lime green, and the configuration files are colored a mustard yellow. C/ |--rtools42/ |--Program Files/
+&lt;img src="https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-filesR-file-tree.png" alt="Two home directories are colored bright purple, the software is colored lime green, and the configuration files are colored a mustard yellow. C/ |--rtools42/ |--Program Files/
    |--Git/
    |--Quarto/
    |--RStudio/
@@ -40,13 +40,15 @@ software and configuration files on my Windows 10 operating system.
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
 &lt;p&gt;There is a lot to keep track of to install and maintain R and R
 adjacent software and configuration files. Here is what my Windows 10
-set up looks like, with associated code if available.&lt;/p&gt;
-&lt;div id="bbcewwdngz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
+set up looks like, with associated code if available. Your set up might
+differ from mine, but you can use the associated code to figure it out.
+🤗&lt;/p&gt;
+&lt;div id="wucjltxqux" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
 &lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bbcewwdngz .gt_table {
+#wucjltxqux .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -71,7 +73,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-left-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_heading {
+#wucjltxqux .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -83,7 +85,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_title {
+#wucjltxqux .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -95,7 +97,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-width: 0;
 }
 
-#bbcewwdngz .gt_subtitle {
+#wucjltxqux .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -107,13 +109,13 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-top-width: 0;
 }
 
-#bbcewwdngz .gt_bottom_border {
+#wucjltxqux .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_col_headings {
+#wucjltxqux .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -128,7 +130,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_col_heading {
+#wucjltxqux .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -148,7 +150,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   overflow-x: hidden;
 }
 
-#bbcewwdngz .gt_column_spanner_outer {
+#wucjltxqux .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -160,15 +162,15 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 4px;
 }
 
-#bbcewwdngz .gt_column_spanner_outer:first-child {
+#wucjltxqux .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bbcewwdngz .gt_column_spanner_outer:last-child {
+#wucjltxqux .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bbcewwdngz .gt_column_spanner {
+#wucjltxqux .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -180,7 +182,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   width: 100%;
 }
 
-#bbcewwdngz .gt_group_heading {
+#wucjltxqux .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -205,7 +207,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: middle;
 }
 
-#bbcewwdngz .gt_empty_group_heading {
+#wucjltxqux .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -220,15 +222,15 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: middle;
 }
 
-#bbcewwdngz .gt_from_md &gt; :first-child {
+#wucjltxqux .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#bbcewwdngz .gt_from_md &gt; :last-child {
+#wucjltxqux .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#bbcewwdngz .gt_row {
+#wucjltxqux .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -247,7 +249,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   overflow-x: hidden;
 }
 
-#bbcewwdngz .gt_stub {
+#wucjltxqux .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -260,7 +262,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#bbcewwdngz .gt_stub_row_group {
+#wucjltxqux .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -274,11 +276,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: top;
 }
 
-#bbcewwdngz .gt_row_group_first td {
+#wucjltxqux .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bbcewwdngz .gt_summary_row {
+#wucjltxqux .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -288,16 +290,16 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#bbcewwdngz .gt_first_summary_row {
+#wucjltxqux .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_first_summary_row.thick {
+#wucjltxqux .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bbcewwdngz .gt_last_summary_row {
+#wucjltxqux .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -307,7 +309,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_grand_summary_row {
+#wucjltxqux .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -317,7 +319,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#bbcewwdngz .gt_first_grand_summary_row {
+#wucjltxqux .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -327,11 +329,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-top-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_striped {
+#wucjltxqux .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bbcewwdngz .gt_table_body {
+#wucjltxqux .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -340,7 +342,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_footnotes {
+#wucjltxqux .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -354,7 +356,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_footnote {
+#wucjltxqux .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -363,7 +365,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#bbcewwdngz .gt_sourcenotes {
+#wucjltxqux .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -377,7 +379,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#bbcewwdngz .gt_sourcenote {
+#wucjltxqux .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -385,36 +387,36 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#bbcewwdngz .gt_left {
+#wucjltxqux .gt_left {
   text-align: left;
 }
 
-#bbcewwdngz .gt_center {
+#wucjltxqux .gt_center {
   text-align: center;
 }
 
-#bbcewwdngz .gt_right {
+#wucjltxqux .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bbcewwdngz .gt_font_normal {
+#wucjltxqux .gt_font_normal {
   font-weight: normal;
 }
 
-#bbcewwdngz .gt_font_bold {
+#wucjltxqux .gt_font_bold {
   font-weight: bold;
 }
 
-#bbcewwdngz .gt_font_italic {
+#wucjltxqux .gt_font_italic {
   font-style: italic;
 }
 
-#bbcewwdngz .gt_super {
+#wucjltxqux .gt_super {
   font-size: 65%;
 }
 
-#bbcewwdngz .gt_two_val_uncert {
+#wucjltxqux .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -423,31 +425,31 @@ set up looks like, with associated code if available.&lt;/p&gt;
   margin-left: 0.1em;
 }
 
-#bbcewwdngz .gt_footnote_marks {
+#wucjltxqux .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#bbcewwdngz .gt_asterisk {
+#wucjltxqux .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bbcewwdngz .gt_slash_mark {
+#wucjltxqux .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#bbcewwdngz .gt_fraction_numerator {
+#wucjltxqux .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#bbcewwdngz .gt_fraction_denominator {
+#wucjltxqux .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -763,10 +765,10 @@ target="_blank"&gt;Jenny Bryan&lt;/a&gt; and &lt;a
 href="https://twitter.com/PeeltothePithy" target="_blank"&gt;David Aja&lt;/a&gt;
 for their feedback on this post.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>d27d1f08a4c84a9d5060832f616c5299</distill:md5>
-      <guid>https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windows</guid>
-      <pubDate>Tue, 31 May 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windows/R-file-tree.png" medium="image" type="image/png" width="1280" height="768"/>
+      <distill:md5>bc15dd77c9aed50341b413ee8b8aaa7a</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files</guid>
+      <pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files/R-file-tree.png" medium="image" type="image/png" width="1280" height="768"/>
     </item>
     <item>
       <title>Code line highlighting in Quarto revealjs presentations</title>

@@ -9,7 +9,7 @@ base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
-date: 2022-05-31
+date: 2022-06-02
 preview: R-file-tree.png
 output:
   distill::distill_article:
@@ -54,7 +54,7 @@ knitr::include_graphics("R-file-tree.png")
 
 
 ```{r, echo = FALSE, eval = TRUE}
-paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotdata_distill/_posts/2022-05-31-personal-r-configuration-on-windows/locations.xlsx") %>% 
+paths <- readxl::read_excel(here::here("_posts","2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files", "locations.xlsx")) %>% 
   mutate(
     Code = replace_na(Code, ""),
     Type = fct_inorder(Type)
@@ -72,7 +72,8 @@ paths <- readxl::read_excel("C:/Users/pileggis/Documents/gh-personal/pipinghotda
 # TL;DR
 
 There is a lot to keep track of to install and maintain R and R adjacent software and configuration files.
-Here is what my Windows 10 set up looks like, with associated code if available.
+Here is what my Windows 10 set up looks like, with associated code if available. Your set up
+might differ from mine, but you can use the associated code to figure it out. 🤗
 
 ```{r, echo = FALSE, eval = TRUE}
 paths %>% 
