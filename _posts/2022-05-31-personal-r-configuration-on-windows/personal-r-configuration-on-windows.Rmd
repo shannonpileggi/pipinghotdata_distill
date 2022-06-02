@@ -27,10 +27,28 @@ library(tidyverse)
 
 ```{r thumbnail, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
-#|   File tree visualizing the hierarchy of R and R adjacent software and configuration files on my Windows 10 OS.
+#|   File tree visualizing the hierarchy of R and R adjacent software and configuration files on my Windows 10 operating system.
 #| fig.alt: > 
-#|    Two home folders are colored bright purple, the software folders are colored bright green,
+#|    Two home directories are colored bright purple, the software is colored lime green,
 #|    and the configuration files are colored a mustard yellow.
+#|    C/
+#|    |--rtools42/
+#|    |--Program Files/
+#|       |--Git/
+#|       |--Quarto/
+#|       |--RStudio/
+#|       |--R/
+#|          |--R-4.2.0/
+#|             |--library/
+#|    |--Users/
+#|       |--pileggis/
+#|          |--.gitconfig
+#|          |--OneDrive - Memorial Sloan Kettering Cancer Center/
+#|             |--Documents/
+#|                |--.Renviron
+#|                |--.Rprofile
+#|                |--shrtcts.R
+#|    
 knitr::include_graphics("R-file-tree.png")
 ```
 
@@ -210,7 +228,7 @@ For Windows users:
 
 * With R >= 4.2.0 (released 2022-04-22), the default personal library for Windows is "now a subdirectory of local application data directory (usually a hidden directory `C:/Users/username/AppData/Local`)"  as discussed in the Jumping Rivers [New features in R 4.2.0](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank"} post.
 
-These locations may work well for some users, and others may want to change the default location. I modified my default location to be the same as my R installation using the [`.Renviron`](#renviron) configuration file (demonstrated below).
+These locations may work well for some users, and others may want to change the default location. I modified my default location to be under my R installation using the [`.Renviron`](#renviron) configuration file (demonstrated below).
 
 ```{r}
 .libPaths()

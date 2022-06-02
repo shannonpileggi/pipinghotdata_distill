@@ -16,22 +16,37 @@
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windowsR-file-tree.png" alt="Two home folders are colored bright purple, the software folders are colored bright green, and the configuration files are colored a mustard yellow." width="640" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windowsR-file-tree.png" alt="Two home directories are colored bright purple, the software is colored lime green, and the configuration files are colored a mustard yellow. C/ |--rtools42/ |--Program Files/
+   |--Git/
+   |--Quarto/
+   |--RStudio/
+   |--R/
+      |--R-4.2.0/
+         |--library/
+|--Users/
+   |--pileggis/
+      |--.gitconfig
+      |--OneDrive - Memorial Sloan Kettering Cancer Center/
+         |--Documents/
+            |--.Renviron
+            |--.Rprofile
+            |--shrtcts.R
+" width="640" /&gt;
 &lt;p class="caption"&gt;
 (#fig:thumbnail)File tree visualizing the hierarchy of R and R adjacent
-software and configuration files on my Windows 10 OS.
+software and configuration files on my Windows 10 operating system.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="tldr"&gt;TL;DR&lt;/h1&gt;
 &lt;p&gt;There is a lot to keep track of to install and maintain R and R
 adjacent software and configuration files. Here is what my Windows 10
 set up looks like, with associated code if available.&lt;/p&gt;
-&lt;div id="lkfypxifqm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
+&lt;div id="bbcewwdngz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
 &lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lkfypxifqm .gt_table {
+#bbcewwdngz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -56,7 +71,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-left-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_heading {
+#bbcewwdngz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -68,7 +83,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_title {
+#bbcewwdngz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -80,7 +95,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-width: 0;
 }
 
-#lkfypxifqm .gt_subtitle {
+#bbcewwdngz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -92,13 +107,13 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-top-width: 0;
 }
 
-#lkfypxifqm .gt_bottom_border {
+#bbcewwdngz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_col_headings {
+#bbcewwdngz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -113,7 +128,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_col_heading {
+#bbcewwdngz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -133,7 +148,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   overflow-x: hidden;
 }
 
-#lkfypxifqm .gt_column_spanner_outer {
+#bbcewwdngz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -145,15 +160,15 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 4px;
 }
 
-#lkfypxifqm .gt_column_spanner_outer:first-child {
+#bbcewwdngz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lkfypxifqm .gt_column_spanner_outer:last-child {
+#bbcewwdngz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lkfypxifqm .gt_column_spanner {
+#bbcewwdngz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -165,7 +180,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   width: 100%;
 }
 
-#lkfypxifqm .gt_group_heading {
+#bbcewwdngz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -190,7 +205,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: middle;
 }
 
-#lkfypxifqm .gt_empty_group_heading {
+#bbcewwdngz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -205,15 +220,15 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: middle;
 }
 
-#lkfypxifqm .gt_from_md &gt; :first-child {
+#bbcewwdngz .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#lkfypxifqm .gt_from_md &gt; :last-child {
+#bbcewwdngz .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#lkfypxifqm .gt_row {
+#bbcewwdngz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -232,7 +247,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   overflow-x: hidden;
 }
 
-#lkfypxifqm .gt_stub {
+#bbcewwdngz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -245,7 +260,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#lkfypxifqm .gt_stub_row_group {
+#bbcewwdngz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -259,11 +274,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: top;
 }
 
-#lkfypxifqm .gt_row_group_first td {
+#bbcewwdngz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lkfypxifqm .gt_summary_row {
+#bbcewwdngz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -273,16 +288,16 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#lkfypxifqm .gt_first_summary_row {
+#bbcewwdngz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_first_summary_row.thick {
+#bbcewwdngz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lkfypxifqm .gt_last_summary_row {
+#bbcewwdngz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -292,7 +307,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_grand_summary_row {
+#bbcewwdngz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -302,7 +317,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#lkfypxifqm .gt_first_grand_summary_row {
+#bbcewwdngz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -312,11 +327,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-top-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_striped {
+#bbcewwdngz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lkfypxifqm .gt_table_body {
+#bbcewwdngz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -325,7 +340,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_footnotes {
+#bbcewwdngz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -339,7 +354,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_footnote {
+#bbcewwdngz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -348,7 +363,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#lkfypxifqm .gt_sourcenotes {
+#bbcewwdngz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -362,7 +377,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#lkfypxifqm .gt_sourcenote {
+#bbcewwdngz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -370,36 +385,36 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#lkfypxifqm .gt_left {
+#bbcewwdngz .gt_left {
   text-align: left;
 }
 
-#lkfypxifqm .gt_center {
+#bbcewwdngz .gt_center {
   text-align: center;
 }
 
-#lkfypxifqm .gt_right {
+#bbcewwdngz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lkfypxifqm .gt_font_normal {
+#bbcewwdngz .gt_font_normal {
   font-weight: normal;
 }
 
-#lkfypxifqm .gt_font_bold {
+#bbcewwdngz .gt_font_bold {
   font-weight: bold;
 }
 
-#lkfypxifqm .gt_font_italic {
+#bbcewwdngz .gt_font_italic {
   font-style: italic;
 }
 
-#lkfypxifqm .gt_super {
+#bbcewwdngz .gt_super {
   font-size: 65%;
 }
 
-#lkfypxifqm .gt_two_val_uncert {
+#bbcewwdngz .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -408,31 +423,31 @@ set up looks like, with associated code if available.&lt;/p&gt;
   margin-left: 0.1em;
 }
 
-#lkfypxifqm .gt_footnote_marks {
+#bbcewwdngz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#lkfypxifqm .gt_asterisk {
+#bbcewwdngz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lkfypxifqm .gt_slash_mark {
+#bbcewwdngz .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#lkfypxifqm .gt_fraction_numerator {
+#bbcewwdngz .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#lkfypxifqm .gt_fraction_denominator {
+#bbcewwdngz .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -619,8 +634,8 @@ href="https://www.jumpingrivers.com/blog/new-features-r420/"
 target="_blank"&gt;New features in R 4.2.0&lt;/a&gt; post.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;These locations may work well for some users, and others may want to
-change the default location. I modified my default location to be the
-same as my R installation using the &lt;a
+change the default location. I modified my default location to be under
+my R installation using the &lt;a
 href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt; configuration file
 (demonstrated below).&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;.libPaths()&lt;/code&gt;&lt;/pre&gt;
