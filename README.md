@@ -18,14 +18,14 @@ creators out there,
 
 # Some stats ⚠️ WIP
 
-🎉 Piping Hot Data has **20** posts since **2018-11-05**\!
+🎉 Piping Hot Data has **21** posts since **2018-11-05**\!
 
-📅 That’s a post roughly every **32** days, or about 0.8 posts per month,
+📅 That’s a post roughly every **31** days, or about 0.9 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **21** days ago ([Code line highlighting
-in Quarto revealjs
-presentations](https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations)).
+✍️ The last post was published **0** days ago ([Locating R and R
+Adjacent Software and Configuration
+Files](https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files)).
 As Yihui Xie advises, I try to write like no one is reading. But your
 feedback does help motivate me to keep writing. 😉
 
@@ -37,6 +37,7 @@ feedback does help motivate me to keep writing. 😉
 
 | Date       | Title                                                                                                                                                                                             |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2022-06-02 | [Locating R and R Adjacent Software and Configuration Files](https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files)                           |
 | 2022-05-12 | [Code line highlighting in Quarto revealjs presentations](https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations)                                 |
 | 2022-01-24 | [Report Ready PDF tables with rmarkdown, knitr, kableExtra, and LaTeX](https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex)          |
 | 2021-12-13 | [Modifying the GitHub repo containing my Distill website](https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website)                                 |
@@ -67,4 +68,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-06-02 05:38:56*
+*Updated 2022-06-02 20:01:28*
