@@ -9,7 +9,7 @@
     <generator>Distill</generator>
     <lastBuildDate>Tue, 31 May 2022 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Locating R Software and Configuration Files on Windows 10</title>
+      <title>Locating R and R Adjacent Software and Configuration Files</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2022-05-31-personal-r-configuration-on-windows</link>
       <description>
@@ -26,12 +26,12 @@ software and configuration files on my Windows 10 OS.
 &lt;p&gt;There is a lot to keep track of to install and maintain R and R
 adjacent software and configuration files. Here is what my Windows 10
 set up looks like, with associated code if available.&lt;/p&gt;
-&lt;div id="fyptxfjaho" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
+&lt;div id="lkfypxifqm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"&gt;
 &lt;style&gt;html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#fyptxfjaho .gt_table {
+#lkfypxifqm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -56,7 +56,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-left-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_heading {
+#lkfypxifqm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -68,7 +68,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_title {
+#lkfypxifqm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -80,7 +80,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-width: 0;
 }
 
-#fyptxfjaho .gt_subtitle {
+#lkfypxifqm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -92,13 +92,13 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-top-width: 0;
 }
 
-#fyptxfjaho .gt_bottom_border {
+#lkfypxifqm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_col_headings {
+#lkfypxifqm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -113,7 +113,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_col_heading {
+#lkfypxifqm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -133,7 +133,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   overflow-x: hidden;
 }
 
-#fyptxfjaho .gt_column_spanner_outer {
+#lkfypxifqm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -145,15 +145,15 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 4px;
 }
 
-#fyptxfjaho .gt_column_spanner_outer:first-child {
+#lkfypxifqm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fyptxfjaho .gt_column_spanner_outer:last-child {
+#lkfypxifqm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fyptxfjaho .gt_column_spanner {
+#lkfypxifqm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -165,7 +165,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   width: 100%;
 }
 
-#fyptxfjaho .gt_group_heading {
+#lkfypxifqm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -190,7 +190,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: middle;
 }
 
-#fyptxfjaho .gt_empty_group_heading {
+#lkfypxifqm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -205,15 +205,15 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: middle;
 }
 
-#fyptxfjaho .gt_from_md &gt; :first-child {
+#lkfypxifqm .gt_from_md &gt; :first-child {
   margin-top: 0;
 }
 
-#fyptxfjaho .gt_from_md &gt; :last-child {
+#lkfypxifqm .gt_from_md &gt; :last-child {
   margin-bottom: 0;
 }
 
-#fyptxfjaho .gt_row {
+#lkfypxifqm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -232,7 +232,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   overflow-x: hidden;
 }
 
-#fyptxfjaho .gt_stub {
+#lkfypxifqm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -245,7 +245,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#fyptxfjaho .gt_stub_row_group {
+#lkfypxifqm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -259,11 +259,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
   vertical-align: top;
 }
 
-#fyptxfjaho .gt_row_group_first td {
+#lkfypxifqm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fyptxfjaho .gt_summary_row {
+#lkfypxifqm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -273,16 +273,16 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#fyptxfjaho .gt_first_summary_row {
+#lkfypxifqm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_first_summary_row.thick {
+#lkfypxifqm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fyptxfjaho .gt_last_summary_row {
+#lkfypxifqm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -292,7 +292,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_grand_summary_row {
+#lkfypxifqm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -302,7 +302,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#fyptxfjaho .gt_first_grand_summary_row {
+#lkfypxifqm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -312,11 +312,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-top-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_striped {
+#lkfypxifqm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fyptxfjaho .gt_table_body {
+#lkfypxifqm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -325,7 +325,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-bottom-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_footnotes {
+#lkfypxifqm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -339,7 +339,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_footnote {
+#lkfypxifqm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -348,7 +348,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#fyptxfjaho .gt_sourcenotes {
+#lkfypxifqm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -362,7 +362,7 @@ set up looks like, with associated code if available.&lt;/p&gt;
   border-right-color: #D3D3D3;
 }
 
-#fyptxfjaho .gt_sourcenote {
+#lkfypxifqm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -370,36 +370,36 @@ set up looks like, with associated code if available.&lt;/p&gt;
   padding-right: 5px;
 }
 
-#fyptxfjaho .gt_left {
+#lkfypxifqm .gt_left {
   text-align: left;
 }
 
-#fyptxfjaho .gt_center {
+#lkfypxifqm .gt_center {
   text-align: center;
 }
 
-#fyptxfjaho .gt_right {
+#lkfypxifqm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fyptxfjaho .gt_font_normal {
+#lkfypxifqm .gt_font_normal {
   font-weight: normal;
 }
 
-#fyptxfjaho .gt_font_bold {
+#lkfypxifqm .gt_font_bold {
   font-weight: bold;
 }
 
-#fyptxfjaho .gt_font_italic {
+#lkfypxifqm .gt_font_italic {
   font-style: italic;
 }
 
-#fyptxfjaho .gt_super {
+#lkfypxifqm .gt_super {
   font-size: 65%;
 }
 
-#fyptxfjaho .gt_two_val_uncert {
+#lkfypxifqm .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -408,31 +408,31 @@ set up looks like, with associated code if available.&lt;/p&gt;
   margin-left: 0.1em;
 }
 
-#fyptxfjaho .gt_footnote_marks {
+#lkfypxifqm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#fyptxfjaho .gt_asterisk {
+#lkfypxifqm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fyptxfjaho .gt_slash_mark {
+#lkfypxifqm .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#fyptxfjaho .gt_fraction_numerator {
+#lkfypxifqm .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#fyptxfjaho .gt_fraction_denominator {
+#lkfypxifqm .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -451,8 +451,11 @@ set up looks like, with associated code if available.&lt;/p&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left" style="font-weight: bold;"&gt;Home&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td class="gt_row gt_left" style="text-align: left; text-indent: 10px;"&gt;Home drive&lt;/td&gt;
+&lt;td class="gt_row gt_left"&gt;Sys.getenv("HOMEDRIVE")&lt;/td&gt;
+&lt;td class="gt_row gt_left"&gt;C:/&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left" style="text-align: left; text-indent: 10px;"&gt;User home directory&lt;/td&gt;
-&lt;td class="gt_row gt_left"&gt;fs::path_home()&lt;/td&gt;
+&lt;td class="gt_row gt_left"&gt;Sys.getenv("USERPROFILE"), Sys.getenv("HOMEPATH"), fs::path_home()&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;C:/Users/pileggis&lt;/td&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td class="gt_row gt_left" style="text-align: left; text-indent: 10px;"&gt;R home directory&lt;/td&gt;
 &lt;td class="gt_row gt_left"&gt;Sys.getenv("HOME"), Sys.getenv("R_User"), fs::path_home_r()&lt;/td&gt;
@@ -554,6 +557,15 @@ locations.&lt;/p&gt;
 the same, but on Windows OS they differ. On Windows, the R home
 directory tends to be associated with the user’s documents directory,
 whereas the user home directory is a system level directory.&lt;/p&gt;
+&lt;h2 id="home-drive"&gt;Home drive&lt;/h2&gt;
+&lt;p&gt;You can locate your home drive through environment variables. See the
+help file for &lt;a
+href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Sys.getenv.html"
+target="_blank"&gt;&lt;code&gt;Sys.getenv&lt;/code&gt;&lt;/a&gt; and &lt;a
+href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/EnvVar.html"
+target="_blank"&gt;environment variables&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;Sys.getenv(&amp;quot;HOMEDRIVE&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;C:/&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="r-home"&gt;R Home&lt;/h2&gt;
 &lt;p&gt;These three commands all point to the “R home directory”.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;Sys.getenv(&amp;quot;HOME&amp;quot;)
@@ -562,7 +574,14 @@ fs::path_home_r()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;C:/Users/pileggis/OneDrive - Memorial Sloan Kettering Cancer Center/Documents&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="home"&gt;Home&lt;/h2&gt;
 &lt;p&gt;Here, we find the “user home directory”.&lt;/p&gt;
-&lt;pre class="r"&gt;&lt;code&gt;fs::path_home()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Wrapping the function in &lt;code&gt;fs::path_real()&lt;/code&gt; allows you to
+see a consistent full path, rather than the &lt;a
+href="https://en.wikipedia.org/wiki/8.3_filename" target="_blank"&gt;short
+file path&lt;/a&gt; or any other path specification returned by the
+environment variables.&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;fs::path_real(Sys.getenv(&amp;quot;USERPROFILE&amp;quot;))
+fs::path_real(Sys.getenv(&amp;quot;HOMEPATH&amp;quot;))
+fs::path_home()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;C:/Users/pileggis&lt;/code&gt;&lt;/p&gt;
 &lt;h1 id="software"&gt;Software&lt;/h1&gt;
 &lt;h2 id="r"&gt;R&lt;/h2&gt;
@@ -572,55 +591,46 @@ fs::path_home_r()&lt;/code&gt;&lt;/pre&gt;
 being run. The R home directory is often referred to as R_HOME, and is
 the value of an environment variable of that name in an R session.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Wrapping the function in &lt;code&gt;fs::path_real()&lt;/code&gt; allows you to
-see the full path, rather than the &lt;a
-href="https://en.wikipedia.org/wiki/8.3_filename" target="_blank"&gt;short
-file path&lt;/a&gt;.&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;fs::path_real(R.home())
 fs::path_real(Sys.getenv(&amp;quot;R_HOME&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;C:/Program Files/R/R-4.2.0&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="r-packages"&gt;R packages&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;.libPaths()&lt;/code&gt; shows where R is looking for packages in the
-current session.&lt;/p&gt;
-&lt;p&gt;On Windows, with the default configuration in R versions prior to
-4.2.0, you may have more than one path present, which correspond to a
-directory specific to the user and a directory available to all users.
-If more than one &lt;code&gt;.libPaths()&lt;/code&gt; is present, R attaches
-packages from the libraries in the order shown (searches first library
-first).&lt;/p&gt;
+current session. If more than one &lt;code&gt;.libPaths()&lt;/code&gt; is present, R
+attaches packages from the libraries in the order shown (searches first
+library first).&lt;/p&gt;
+&lt;p&gt;For Windows users:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Under R &amp;lt; 4.2.0&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;My packages were initially being installed to a default location
+in my R home directory (given by &lt;code&gt;fs::path_home_r()&lt;/code&gt;, the
+“Documents” directory).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You may have more than one path present, which likely correspond
+to a directory specific to the user and a directory available to all
+users.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;With R &amp;gt;= 4.2.0 (released 2022-04-22), the default personal
+library for Windows is “now a subdirectory of local application data
+directory (usually a hidden directory
+&lt;code&gt;C:/Users/username/AppData/Local&lt;/code&gt;)” as discussed in the
+Jumping Rivers &lt;a
+href="https://www.jumpingrivers.com/blog/new-features-r420/"
+target="_blank"&gt;New features in R 4.2.0&lt;/a&gt; post.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These locations may work well for some users, and others may want to
+change the default location. I modified my default location to be the
+same as my R installation using the &lt;a
+href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt; configuration file
+(demonstrated below).&lt;/p&gt;
 &lt;pre class="r"&gt;&lt;code&gt;.libPaths()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;code&gt;"C:/Program Files/R/R-4.2.0/library"&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;My R packages were initially being installed to a default location at
-&lt;code&gt;fs::path_home_r()&lt;/code&gt;; I modified this location to my
-&lt;code&gt;C&lt;/code&gt; drive. You can modify the default location using the &lt;a
-href="#renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/a&gt; configuration file.&lt;/p&gt;
-&lt;p&gt;Furthermore, depending on where you fall on the
-&lt;code&gt;user &amp;lt;---&amp;gt; developer&lt;/code&gt; continuum, you may have
-additional considerations for package installation.&lt;/p&gt;
-&lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;R 4.2.0 was released on 2022-04-22. As described in Jumping
-Rivers &lt;a href="https://www.jumpingrivers.com/blog/new-features-r420/"
-target="_blank"&gt;New features in R 4.2.0&lt;/a&gt; post, with this release, the
-default personal library for Windows is “now a subdirectory of local
-application data directory (usually a hidden directory
-&lt;code&gt;C:/Users/username/AppData/Local&lt;/code&gt;).” For some users this may
-work well and others may want to change the default location through
-methods mentioned above.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you are using the &lt;code&gt;renv&lt;/code&gt; package for reproducible
-environments, all utilized packages are installed in &lt;a
-href="https://www.jumpingrivers.com/blog/new-features-r420/"
+&lt;p&gt;Lastly, if you are using the &lt;code&gt;renv&lt;/code&gt; package for
+reproducible environments, all utilized packages are installed in &lt;a
+href="https://rstudio.github.io/renv/articles/renv.html#cache"
 target="&amp;quot;_blank"&gt;global package cache&lt;/a&gt; which is shared across
 all projects. My cache is located at
-&lt;code&gt;C:/Users/pileggis/AppData/Local/renv&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you are actively developing packages, you may want to separate
-the location of stable packages from development versions. You can do so
-by utilizing &lt;code&gt;devtools::dev_mode(on = TRUE)&lt;/code&gt;, which allows
-you to install development packages to a new directory. When I work in
-dev mode, the development packages get installed to
-&lt;code&gt;C:/Users/pileggis/R-dev&lt;/code&gt;. This was a directory I created
-myself. You can create this directory with&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;fs::dir_create(fs::path(getOption("devtools.path")))&lt;/code&gt;&lt;/p&gt;
+&lt;code&gt;C:/Users/pileggis/AppData/Local/renv&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="rtools"&gt;Rtools&lt;/h2&gt;
 &lt;p&gt;Rtools is a collection of tools required to &lt;a
 href="https://rstats.wtf/set-up-an-r-dev-environment.html#set-up-an-r-dev-environment"
@@ -641,7 +651,7 @@ R 4.2.0.)&lt;/p&gt;
 &lt;p&gt;As recommended in &lt;a href="https://happygitwithr.com/"
 target="_blank"&gt;Happy Git Ch 6.2 Install Git on Windows&lt;/a&gt;, git is
 installed at&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C:/Program Files/Git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Program Files/Git&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id="quarto"&gt;Quarto&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://quarto.org/" target="_blank"&gt;Quarto&lt;/a&gt; is an open
 source publishing system backed by RStudio that began to receive &lt;a
@@ -651,7 +661,7 @@ target="&amp;quot;_blank"&gt;public endorsement&lt;/a&gt; in April 2022.&lt;/p&g
 versus an all-user installation, which can be very helpful depending on
 your administrative privileges. I chose the latter, and for me Quarto is
 installed at&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;C:/Program Files/Quarto&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:/Program Files/Quarto&lt;/code&gt;.&lt;/p&gt;
 &lt;h1 id="configurations"&gt;Configurations&lt;/h1&gt;
 &lt;h2 id="renviron"&gt;&lt;code&gt;.Renviron&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;The &lt;code&gt;.Renviron&lt;/code&gt; file contains environment variables that

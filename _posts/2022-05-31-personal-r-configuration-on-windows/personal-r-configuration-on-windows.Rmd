@@ -1,15 +1,22 @@
 ---
-title: "Locating R Software and Configuration Files on Windows 10"
+title: "Locating R and R Adjacent Software and Configuration Files"
 description: |
-  My personal R administration
+  My personal R administration on Windows 10
 author:
   - name: Shannon Pileggi
     url: {}
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
 date: 2022-05-31
 preview: R-file-tree.png
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
+creative_commons: CC BY
 ---
 
 
@@ -128,6 +135,17 @@ On Mac OS, the "user home directory" and the "R home directory" are the same,
 but on Windows OS they differ. On Windows, the R home directory tends to be associated with the user's 
 documents directory, whereas the user home directory is a system level directory.
 
+## Home drive
+
+You can locate your home drive through environment variables. See the help file for [`Sys.getenv`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Sys.getenv.html){target="_blank"} and [environment
+variables](https://stat.ethz.ch/R-manual/R-devel/library/base/html/EnvVar.html){target="_blank"} for more information.
+
+```{r}
+Sys.getenv("HOMEDRIVE")
+```
+
+`C:/`
+
 ## R Home
 
 These three commands all point to the "R home directory". 
@@ -146,12 +164,17 @@ fs::path_home_r()
 
 Here, we find the "user home directory".
 
+Wrapping the function in `fs::path_real()` allows you to see a consistent full path, 
+rather than the [short file path](https://en.wikipedia.org/wiki/8.3_filename){target="_blank"} or 
+any other path specification returned by the environment variables.
+
 ```{r}
+fs::path_real(Sys.getenv("USERPROFILE"))
+fs::path_real(Sys.getenv("HOMEPATH"))
 fs::path_home()
 ```
 
 `C:/Users/pileggis`
-
 
 
 # Software
@@ -164,8 +187,6 @@ From the `R.home()` help file:
 The R home directory is often referred to as R_HOME, and is the value of an environment 
 variable of that name in an R session.
 
-Wrapping the function in `fs::path_real()` allows you to see the full path, 
-rather than the [short file path](https://en.wikipedia.org/wiki/8.3_filename){target="_blank"}.
 
 ```{r}
 fs::path_real(R.home())
@@ -176,12 +197,20 @@ fs::path_real(Sys.getenv("R_HOME"))
 
 ## R packages
 
-`.libPaths()` shows where R is looking for packages in the current session. 
-
-On Windows, with the default configuration in R versions prior to 4.2.0, you may have more than one path present, which
-correspond to a directory specific to the user and a directory available to all users.
-If more than one `.libPaths()` is present, R attaches packages from the libraries
+`.libPaths()` shows where R is looking for packages in the current session. If more than one `.libPaths()` is present, R attaches packages from the libraries
 in the order shown (searches first library first).
+
+For Windows users: 
+
+* Under R < 4.2.0
+
+  + My packages were initially being installed to a default location in my R home directory (given by `fs::path_home_r()`, the "Documents" directory).
+  
+  + You may have more than one path present, which likely correspond to a directory specific to the user and a directory available to all users.
+
+* With R >= 4.2.0 (released 2022-04-22), the default personal library for Windows is "now a subdirectory of local application data directory (usually a hidden directory `C:/Users/username/AppData/Local`)"  as discussed in the Jumping Rivers [New features in R 4.2.0](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank"} post.
+
+These locations may work well for some users, and others may want to change the default location. I modified my default location to be the same as my R installation using the [`.Renviron`](#renviron) configuration file (demonstrated below).
 
 ```{r}
 .libPaths()
@@ -189,31 +218,9 @@ in the order shown (searches first library first).
 
 `"C:/Program Files/R/R-4.2.0/library"`
 
-My R packages were initially being installed to a default location at `fs::path_home_r()`; 
-I modified this location to my `C` drive. You can modify the default location using 
-the [`.Renviron`](#renviron) configuration file.
 
-Furthermore, depending on where you fall on the `user <---> developer` continuum, 
-you may have additional considerations for package installation.
-
-1. R 4.2.0 was released on 2022-04-22. As described in Jumping Rivers
-[New features in R 4.2.0](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank"} post, 
-with this release, the default personal library for Windows is "now a subdirectory 
-of local application data directory (usually a hidden directory `C:/Users/username/AppData/Local`)."
-For some users this may work well and others may want to change the default location
-through methods mentioned above.
-
-2. If you are using the `renv` package for reproducible environments, all utilized 
-packages are installed in [global package cache](https://www.jumpingrivers.com/blog/new-features-r420/){target="_blank} which is shared across all projects. My cache is located at `C:/Users/pileggis/AppData/Local/renv`.
-
-3. If you are actively developing packages, you may want to separate the location of
-stable packages from development versions. You can do so by utilizing 
-`devtools::dev_mode(on = TRUE)`, which allows you to install development packages to a new 
-directory. When I work in dev mode, the development packages get
-installed to `C:/Users/pileggis/R-dev`. This was a directory I created myself. You
-can create this directory with 
-
-`fs::dir_create(fs::path(getOption("devtools.path")))`
+Lastly, if you are using the `renv` package for reproducible environments, all utilized 
+packages are installed in [global package cache](https://rstudio.github.io/renv/articles/renv.html#cache){target="_blank} which is shared across all projects. My cache is located at `C:/Users/pileggis/AppData/Local/renv`.
 
 
 ## Rtools 
@@ -247,7 +254,7 @@ which returns `Your system is ready to build packages!`
 
 As recommended in [Happy Git Ch 6.2 Install Git on Windows](https://happygitwithr.com/){target="_blank"}, git is installed at
 
-`C:/Program Files/Git`
+`C:/Program Files/Git`.
 
 ## Quarto   
 
@@ -259,7 +266,7 @@ The Quarto installation allowed me to choose between a user specific versus an a
 which can be very helpful depending on your administrative privileges. I chose the latter, and for me
 Quarto is installed at
 
-`C:/Program Files/Quarto`
+`C:/Program Files/Quarto`.
 
 
 # Configurations
