@@ -20,10 +20,10 @@ creators out there,
 
 🎉 Piping Hot Data has **21** posts since **2018-11-05**\!
 
-📅 That’s a post roughly every **31** days, or about 0.9 posts per month,
+📅 That’s a post roughly every **32** days, or about 0.9 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **20** days ago ([Locating R and R
+✍️ The last post was published **21** days ago ([Locating R and R
 Adjacent Software and Configuration
 Files](https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files)).
 As Yihui Xie advises, I try to write like no one is reading. But your
@@ -68,4 +68,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-06-22 05:28:51*
+*Updated 2022-06-23 05:31:56*
