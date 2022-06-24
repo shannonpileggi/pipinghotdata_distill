@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
-    <lastmod>2022-05-26T12:59:29-04:00</lastmod>
+    <lastmod>2022-06-24T17:08:13-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files/</loc>
-    <lastmod>2022-06-02T15:54:11-04:00</lastmod>
+    <lastmod>2022-06-20T10:41:38-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations/</loc>
@@ -107,6 +107,10 @@
   <url>
     <loc>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data/</loc>
     <lastmod>2021-11-01T22:24:26-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr/</loc>
+    <lastmod>2022-06-24T17:27:36-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r/</loc>
