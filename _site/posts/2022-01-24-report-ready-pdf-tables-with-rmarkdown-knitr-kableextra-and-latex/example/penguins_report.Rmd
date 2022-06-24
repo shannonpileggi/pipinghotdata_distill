@@ -142,11 +142,22 @@ penguins %>%
     by = species,
     statistic = list(all_categorical() ~ "{n} ({p}%)")
   ) %>%
-  bold_labels() %>%
-  modify_header(
+  gtsummary::bold_labels() %>%   
+  gtsummary::modify_header(
     label = "**Characteristic**", 
     all_stat_cols() ~ "**{level}**\nN = {n}"
-  ) 
+  ) %>%
+  gtsummary::as_kable_extra(
+    format = "latex",
+    booktabs = TRUE,
+    longtable = TRUE,
+    linesep = ""
+    ) %>%
+  kableExtra::kable_styling(
+      position = "left",
+      latex_options = c("striped", "repeat_header"),
+      stripe_color = "gray!15"
+    )
 ```
 
 

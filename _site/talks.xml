@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 11 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Iterating well with purrr</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr</link>
+      <description>An R-Ladies workshop</description>
+      <guid>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr</guid>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr/purrr.PNG" medium="image" type="image/png" width="1805" height="757"/>
+    </item>
     <item>
       <title>Getting started with unit testing in R</title>
       <dc:creator>Shannon Pileggi</dc:creator>
