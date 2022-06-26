@@ -133,6 +133,8 @@ penguins %>%
     )
 ```
 
+\newpage
+
 ## Custom column names
 
 
@@ -152,35 +154,6 @@ penguins %>%
     booktabs = TRUE,
     longtable = TRUE,
     linesep = ""
-    ) %>%
-  kableExtra::kable_styling(
-      position = "left",
-      latex_options = c("striped", "repeat_header"),
-      stripe_color = "gray!15"
-    )
-```
-
-
-```{r}
-knitr::knit_exit()
-```
-
-```{r}
-tbl_names <- tbl$table_styling$header %>% 
-  filter(hide == FALSE) %>% 
-  pull(label)
-```
-
-
-```{r}
-tbl %>% 
-  gtsummary::as_kable_extra(
-    format = "latex",
-    booktabs = TRUE,
-    longtable = TRUE,
-    linesep = "",
-    col.names = linebreak(tbl_names, align = c("l", "c", "c", "c")),
-    escape = FALSE
     ) %>%
   kableExtra::kable_styling(
       position = "left",

@@ -40,6 +40,9 @@ knitr::include_graphics(here::here("_posts", folder, "rmarkdown_wizards.png"))
 
 # TL; DR
 
+_This post was updated on `r Sys.Date()` as updates in from `gtsummary` 1.5.1 to
+1.6.1 greatly streamlined exporting summary tables to pdf._
+
 Customizing tables in PDF output is possible with
 [`{knitr}`](https://yihui.org/knitr/){target="_blank"} ,
 [`{kableExtra}`](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_pdf.pdf){target="_blank"}
@@ -70,13 +73,13 @@ This material was developed using:
 
 | Software / package | Version            |
 |--------------------|--------------------|
-| R                  | 4.1.1              |
+| R                  | 4.2.0              |
 | RStudio            | 351 "Ghost Orchid" |
 | `rmarkdown`        | 2.11               |
 | `knitr`            | 1.37               |
 | `kableExtra`       | 1.3.4              |
 | `tinytex`          | 0.34               |
-| `gtsummary`        | 1.5.1              |
+| `gtsummary`        | 1.6.1              |
 | `pandoc`           | 2.14.0.3           |
 | `palmerpenguins`   | 0.1.0              |
 
@@ -352,58 +355,26 @@ knitr::include_graphics(here::here("_posts", folder, "img", "summary_data_defaul
 
 ## Custom column names
 
-Just as before, custom column names requires a bit more work.
-
-First, create a `gtsummary` table object in which:
-
-1. Default statistics are printed with extra escaping characters to enable  
-use of `escape = FALSE` for custom line breaks.
-
-2. Column names are modified via `modify_header()` with line breaks and
-LaTeX bolding syntax. 
-
-3. The footnote is also updated - I haven't quite wrapped my head around why this 
-one works, but it prevents extra characters from being printed with `%` in the
-footnote.
+When this post was originally published on 2022-01-24, this was harder. Thanks to
+updates in `gtsummary` 1.6.1, custom column names can now be implemented
+directly in `modify_header()` and seamlessly rendered to pdf via `kableExtra`.
     
 ```{r}
-tbl <- penguins %>% 
+penguins %>% 
   gtsummary::tbl_summary(
     by = species,
-    statistic = list(all_categorical() ~ "{n} ({p}\\%)")
+    statistic = list(all_categorical() ~ "{n} ({p}%)")
   ) %>%
-  bold_labels() %>%
-  modify_header(
-    label = "\\textbf{{Characteristic}}", 
-    all_stat_cols() ~ "\\textbf{{{level}}}\nN = {n}"
-  ) %>% 
-  modify_footnote(
-     update = all_stat_cols() ~ "Median (IQR); n (%)"
-  ) 
-```
-
-
-Next, retrieve the styled names from the `gtsummary` table.
-
-```{r}
-tbl_names <- tbl$table_styling$header %>% 
-  filter(hide == FALSE) %>% 
-  pull(label)
-
-tbl_names
-```
-
-Finally, print the table using the same options used previously.
-
-```{r}
-tbl %>% 
+  gtsummary::bold_labels() %>%   
+  gtsummary::modify_header(
+    label = "**Characteristic**", 
+    all_stat_cols() ~ "**{level}**\nN = {n}"
+  ) %>%
   gtsummary::as_kable_extra(
     format = "latex",
     booktabs = TRUE,
     longtable = TRUE,
-    linesep = "",
-    col.names = linebreak(tbl_names, align = c("l", "c", "c", "c")),
-    escape = FALSE
+    linesep = ""
     ) %>%
   kableExtra::kable_styling(
       position = "left",
@@ -411,6 +382,7 @@ tbl %>%
       stripe_color = "gray!15"
     )
 ```
+
 
 
 ```{r summary-data-custom-img, eval=TRUE, echo=FALSE}
