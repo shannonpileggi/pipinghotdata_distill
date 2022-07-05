@@ -41,7 +41,7 @@ href="https://twitter.com/allison_horst?lang=en"&gt;&lt;code&gt;@allison_horst&l
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;This post was updated on 2022-06-26 as updates in from
+&lt;p&gt;&lt;em&gt;This post was updated on 2022-07-05 as updates in from
 &lt;code&gt;gtsummary&lt;/code&gt; 1.5.1 to 1.6.1 greatly streamlined exporting
 summary tables to pdf.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Customizing tables in PDF output is possible with &lt;a
@@ -331,7 +331,7 @@ specifications.&lt;/p&gt;&lt;/li&gt;
       stripe_color = &amp;quot;gray!15&amp;quot;
     )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="figure"&gt;
-&lt;img src="../../../../../Documents/gh-personal/pipinghotdata_distill/_posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex/img/summary_data_default.png" alt="Printed summary data table with row striping and bold variable labels." width="629" /&gt;
+&lt;img src="../../../../../Documents/gh-personal/pipinghotdata_distill/_posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex/img/summary_data_default.png" alt="Printed summary data table with row striping and bold variable labels." width="606" /&gt;
 &lt;p class="caption"&gt;
 (#fig:summary-data-default-img)Summary tables PDF output with default
 column names.
