@@ -1,7 +1,7 @@
 ---
 title: "Shannon Pileggi, PhD"
 site: distill::distill_website
-image: "shannon-circle.png"
+image: "Shannon_circle.png"
 links:
   - label: '<i class="fab fa-twitter"></i> Twitter'
     url: "https://twitter.com/PipingHotData"
@@ -12,7 +12,7 @@ links:
   - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:shannon@pipinghotdata.com"
 base_url: https://www.pipinghotdata.com
-preview: shannon-circle.png
+preview: Shannon-circle.png
 twitter:
   creator: "@PipingHotData"
   site: "@PipingHotData"

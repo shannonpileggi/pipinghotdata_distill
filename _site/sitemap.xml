@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.pipinghotdata.com/about.html</loc>
-    <lastmod>2021-11-01T22:24:28-04:00</lastmod>
+    <lastmod>2022-08-01T13:20:32-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/blog.html</loc>
@@ -10,11 +10,11 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/</loc>
-    <lastmod>2021-11-01T22:24:28-04:00</lastmod>
+    <lastmod>2022-08-01T13:23:02-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
-    <lastmod>2022-07-05T09:37:15-04:00</lastmod>
+    <lastmod>2022-08-01T13:15:34-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex/</loc>
-    <lastmod>2022-07-05T09:39:03-04:00</lastmod>
+    <lastmod>2022-07-05T09:39:07-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website/</loc>
@@ -70,7 +70,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/</loc>
-    <lastmod>2021-11-01T22:24:27-04:00</lastmod>
+    <lastmod>2022-08-01T13:21:47-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction/</loc>
@@ -110,7 +110,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr/</loc>
-    <lastmod>2022-06-24T17:27:36-04:00</lastmod>
+    <lastmod>2022-06-24T17:31:40-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r/</loc>
