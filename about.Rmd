@@ -2,7 +2,7 @@
 title: "Shannon Pileggi, PhD"
 ---
 
-![](shannon-circle.png){width=25%} 
+![](Shannon_circle.png){width=25%} 
 
 ## Professional
 
@@ -11,7 +11,7 @@ I’m an enthusiastic professional educator and statistical consultant with over
 
 ## R-Ladies
 
-[R-Ladies](https://rladies.org/){target="_blank"} promotes gender diversity in the R community, and I highly recommend joining the community [slack](https://rladies-community-slack.herokuapp.com/){target="_blank"}. My home chapter is [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"}.
+I am a member of the R-Ladies global team. [R-Ladies](https://rladies.org/){target="_blank"} promotes gender diversity in the R community, and I highly recommend joining the community [slack](https://rladies-community-slack.herokuapp.com/){target="_blank"}. My home chapter is [R-Ladies Philly](https://www.rladiesphilly.org/){target="_blank"}.
 
 
 ## Personal

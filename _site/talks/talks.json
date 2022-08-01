@@ -13,7 +13,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Slide from the workshop.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nOverview\r\nA zoom workshop on iterating well with purrr for R-Ladies Rabat.\r\nUnder the Creative Commons\r\nShare Alike 4.0 International license, workshop materials have been\r\nadapted from the 2020 RStudio What They\r\nForgot To Teach You About R Workshop.\r\nAbstract\r\nIn this workshop we discuss approaches to iteration in R. We briefly\r\ndiscuss iterative techniques that do not require loops or\r\npurrr::map_ (for example, group_by, vectorized functions,\r\netc.). Then we explore lists as an object to store information of\r\nvarying types and sizes and explain how to extract elements from a list\r\nvia the purrr::map_ family.\r\n\r\n\r\n\r\n",
     "preview": "talks/2022-06-08-iterating-well-with-purrr/purrr.PNG",
-    "last_modified": "2022-06-24T17:27:36-04:00",
+    "last_modified": "2022-06-24T17:31:40-04:00",
     "input_file": {},
     "preview_width": 1805,
     "preview_height": 757

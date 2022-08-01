@@ -80,6 +80,8 @@ dat %>%
 ```
 ````
 
+
+
 # Styling slides
 
 I first styled the content used Alison Hill's [R-Ladies xaringan theme](https://alison.rbind.io/project/rladies-xaringan/){target="_blank"} by declaring
