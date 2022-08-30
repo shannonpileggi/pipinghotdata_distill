@@ -7,7 +7,163 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 02 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>My 4 Biggest Internship Takeaways</title>
+      <dc:creator>Kirina Sirohi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways</link>
+      <description>
+
+
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeawaysimages/team_photo.png" alt="Screenshot from Microsoft Teams meeting showing 5 people." width="960" /&gt;
+&lt;p class="caption"&gt;
+(#fig:thumbnail)My last Data Science team meeting at the PCCTC with
+Victoria Catherine, Meghan Harris, Shannon Pileggi, and Travis Gerke.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="about-me"&gt;About Me&lt;/h1&gt;
+&lt;p&gt;Hi everyone! My name is Kirina Sirohi and I am going to be a third
+year Statistics major/Data Science minor at Cal Poly, SLO. I had the
+wonderful opportunity to work at the Prostate Cancer Clinical Trials
+Consortium (PCCTC) as a data science intern this summer for about 8
+weeks. It was a fully remote internship so I got to work out of the
+comfort of my home in Massachusetts, though I did get to meet some of my
+co-workers after the RStudio Conference in Washington D.C. halfway
+through the internship. &lt;br&gt; &lt;br&gt; Throughout the summer I got experience
+with medical monitoring on clinical trials, automating processes for
+manual review that reduced the number of checks data management had to
+examine, and provided figures for a regulatory committee to review
+clinical data for ongoing trials. I also picked up some technical skills
+involving R such as data analysis, data cleaning, wrangling with the
+tidyverse, unit testing in a new R package, and customizing ggplots.
+Additionally, I learned more about using GitHub regarding pull requests,
+code review processes, and deploying quarto slides via GitHub Pages.&lt;/p&gt;
+&lt;h1 id="introduction"&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Prior to starting at the PCCTC, I was doubting if I had the skills to
+do well and pondered for hours on end why I was chosen for this role out
+of all possible candidates. Throughout the internship, I started to get
+more confident in my abilities through the help and mentorship of my
+fellow colleagues. I was slightly nudged to write a blog post about
+anything related to this internship so I decided to inscribe my biggest
+takeaways as an intern so that I can refer back to this whenever work
+gets difficult to remind myself that if I got through this once, I can
+do it a heck of a lot more times.&lt;/p&gt;
+&lt;h1 id="what-ive-learned"&gt;What I’ve Learned&lt;/h1&gt;
+&lt;h3 id="dont-be-afraid-to-reach-out-and-ask-for-help"&gt;1. Don’t be afraid
+to reach out and ask for help&lt;/h3&gt;
+&lt;p&gt;When I was in high school, I used to be uncomfortable asking other
+people questions because I feared it would make people think less of me.
+However, when I was really struggling in one of my classes, my parents
+forced me to ask for help and after weeks of going at least once a week,
+I drastically improved. I then took that mindset with me to college and
+my internship this summer. The number of questions I asked everyone was
+absurd, but I came to realize that if I hadn’t asked any of them, I
+would have completed close to nothing. &lt;br&gt; &lt;br&gt; There’s no worse
+feeling than spending hours on a problem and getting a simple solution
+after asking for help. As a simple solution to that problem, I decided
+to deploy the “1 hour rule” where I would spend no longer than an hour
+on a single problem before asking for help. The one hour was not a
+strict deadline because some tasks would need shorter and longer time,
+but on average, one hour was long enough for me to spend time testing,
+thinking, and fixing. If I wasn’t able to figure it out in that time,
+I’d go and ask for help which was great because it showed I wanted to
+learn and also was very relieving when it was fixed. After all, an
+internship is a learning experience and the best way to learn is by
+asking questions!&lt;/p&gt;
+&lt;h3 id="it-is-okay-to-make-mistakes"&gt;2. It is okay to make mistakes&lt;/h3&gt;
+&lt;p&gt;Mistakes suck, but they are inevitable. You can calculate everything
+down to the last number, go through every line of code, reread every
+sentence, but you will still make a mistake at least once in the
+process. I’ve always heard about these companies having a large disaster
+and saying the intern did it – I did &lt;strong&gt;&lt;em&gt;not&lt;/em&gt;&lt;/strong&gt; want
+to be the intern. For example, an unknown amount of HBO Max subscribers
+received an empty test email and the company later came out to say that
+it was, in fact, an intern who sent it out by mistake. &lt;br&gt; &lt;br&gt;&lt;/p&gt;
+&lt;blockquote class="twitter-tweet" data-width="550" data-lang="en" data-dnt="true" data-theme="light"&gt;&lt;p lang="en" dir="ltr"&gt;We mistakenly sent out an empty test email to a portion of our HBO Max mailing list this evening. We apologize for the inconvenience, and as the jokes pile in, yes, it was the intern. No, really. And we’re helping them through it. ❤️&lt;/p&gt;&amp;mdash; HBOMaxHelp (@HBOMaxHelp) &lt;a href="https://twitter.com/HBOMaxHelp/status/1405712235108917249?ref_src=twsrc%5Etfw"&gt;June 18, 2021&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;After reading that, I made sure to double and triple check everything
+I did so that my work would not result in a catastrophe such as that.
+Through the guidance of my co-workers, I was able to not only fix my
+mistakes, but also learn from them and use that knowledge for future
+assignments. Everyone makes mistakes and that is okay, but what is not
+okay is not learning from those mistakes and continuing to make them.
+Getting caught up and upset about a mistake is not going to make you a
+better person/worker if you don’t do anything about it afterwards. The
+purpose of an internship is to grow and learn so that you can make fewer
+mistakes when you have a full-time job. So really, mistakes are crucial
+to the learning process and are the reason successful people are
+successful.&lt;/p&gt;
+&lt;h3 id="how-to-work-in-a-professional-environment"&gt;3. How to work in a
+professional environment&lt;/h3&gt;
+&lt;p&gt;What I have learned about working in a professional environment is
+that being a working professional does not mean you have to be
+professional all the time. What really put me at ease were the amount of
+“lol”s and “haha”s I received in Teams messages and emails. It reminded
+me that people aren’t just their jobs and that they have personalities.
+This could just be the PCCTC, but I never felt pressured to write or act
+a certain way, which was really nice to see because I had always thought
+using slang was considered unprofessional. I feel like as the younger
+generations start getting into the professional world, rules that used
+to be strongly upheld will start to relax. For example, in my opinion,
+dressing up very nicely for meetings should not be so strongly supported
+as long as you are getting your work done. If I get 500 lines of code
+done in 4 hours wearing sweatpants, I’m still going to get those 500
+lines of code done in 4 hours wearing a pantsuit - I’ll just be more
+uncomfortable. But again, these are my opinions and people can freely
+disagree. &lt;br&gt; &lt;br&gt; Back to the topic at hand: working in a professional
+environment. For the rest of your life, most of what you get and don’t
+get is a direct result of connections so establishing these connections
+whenever you can is super important when you’re working with
+professionals. In sum, working in a professional environment is a lot
+less scary than I was anticipating once I realized that working
+professionals still have personalities and aren’t these corporate robots
+that criticize my every move.&lt;/p&gt;
+&lt;h3 id="any-amount-of-work-you-do-is-appreciated"&gt;4. Any amount of work
+you do is appreciated&lt;/h3&gt;
+&lt;p&gt;Going into my internship, I was concerned that I wouldn’t be able to
+do anything right or that I would spend all summer getting close to
+nothing done. My first week was a bit intimidating because I was the
+only intern and I did not have as much experience as the rest of my
+team. However, as the summer went on, I picked up more small tips that
+were very valuable and helped me excel. It wasn’t until my second to
+last week that I realized that even if I had only completed one task, I
+still contributed more than I would have had I not been there. &lt;br&gt; &lt;br&gt;
+One thing I realized about working at this company (as with most) is
+that the tasks are never ending. Even if you finish one challenging,
+long task, there are still so many to be done so it’s very helpful
+having another body to help out. Once I came to learn that there was so
+much work that had to be done, I realized that my work was actually
+beneficial and not unimportant busy work that can often be assigned to
+interns. Even when I wasn’t physically working and just shadowing
+others, I got so much insight into how other people work and picked up
+little skills that I got to incorporate that either made tasks more
+efficient.&lt;/p&gt;
+&lt;h1 id="final-thoughts"&gt;Final Thoughts&lt;/h1&gt;
+&lt;p&gt;Overall, I’m so grateful I got to work alongside a great group of
+people this summer and I have definitely grown both as a data scientist
+and a person, and that is all thanks to them. I have learned so much
+through their mentorship and kindness and honestly had such a blast this
+summer. Work is work but if you’re surrounded by the right people, there
+will never be a dull moment. The knowledge I am taking away and the
+skills I have gained are immeasurable. I could not have asked for a
+better internship experience.&lt;/p&gt;
+&lt;h3 id="acknowledgements"&gt;Acknowledgements&lt;/h3&gt;
+&lt;p&gt;I’d like to thank everyone at the PCCTC for giving me this wonderful
+internship opportunity, but especially everyone on the data science
+dream team: Travis Gerke, Shannon Pileggi, Victoria Catherine, and
+Meghan Harris. I’d also like to specifically thank Shannon for being my
+biggest mentor and teaching me more than I could ever imagine, both
+professionally and socially.&lt;/p&gt;
+&lt;p&gt;If you want to keep in touch with me, check out my new {postcards}
+personal website with my contact information. &lt;a
+href="https://ksirohi7.github.io/Postcard"&gt;https://ksirohi7.github.io/Postcard&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>de189d21f89db766b3b3f9d3a1c4bbe8</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways</guid>
+      <pubDate>Tue, 30 Aug 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways/images/team_photo.png" medium="image" type="image/png" width="1920" height="1017"/>
+    </item>
     <item>
       <title>Locating R and R Adjacent Software and Configuration Files</title>
       <dc:creator>Shannon Pileggi</dc:creator>
