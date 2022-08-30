@@ -15,17 +15,33 @@
       <description>
 
 
+&lt;h1 id="about-me"&gt;About Me&lt;/h1&gt;
+&lt;p&gt;Hi everyone! My name is Kirina Sirohi and I am going to be a third
+year Statistics major/Data Science minor at Cal Poly, SLO. I had the
+wonderful opportunity to work at the Prostate Cancer Clinical Trials
+Consortium (PCCTC) as a data science intern this summer for about 8
+weeks. It was a fully remote internship so I got to work out of the
+comfort of my home in Massachusetts, though I did get to meet some of my
+coworkers after the RStudio Conference in Washington D.C. halfway
+through the internship. &lt;br&gt; &lt;br&gt; Throughout the summer I got experience
+with medical monitoring on clinical trials, automating processes for
+manual review that reduced the number of checks data management had to
+examine, and provided figures for a regulatory committee to review
+clinical data for ongoing trials. I also picked up some technical skills
+involving R such as data analysis, data cleaning, wrangling with the
+tidyverse, unit testing in a new R package, and customizing ggplots.
+Additionally, I learned more about using GitHub regarding pull requests,
+code review processes, and deploying quarto slides via GitHub Pages.&lt;/p&gt;
 &lt;h1 id="introduction"&gt;Introduction&lt;/h1&gt;
-&lt;p&gt;This summer I had the great opportunity to work at the PCCTC as a
-data science intern. Prior to starting, I was doubting if I had the
-skills to do well and pondered for hours on end why I was chosen for
-this role out of all possible candidates. Throughout the internship, I
-started to get more confident in my abilities through the help and
-mentor ship of my fellow colleagues. I was slightly nudged to write a
-blog post about anything related to this internship so I decided to
-inscribe my biggest takeaways as an intern so that I can refer back to
-this whenever work gets difficult to remind myself that if I got through
-this once, I can do it a heck of a lot more times.&lt;/p&gt;
+&lt;p&gt;Prior to starting at the PCCTC, I was doubting if I had the skills to
+do well and pondered for hours on end why I was chosen for this role out
+of all possible candidates. Throughout the internship, I started to get
+more confident in my abilities through the help and mentorship of my
+fellow colleagues. I was slightly nudged to write a blog post about
+anything related to this internship so I decided to inscribe my biggest
+takeaways as an intern so that I can refer back to this whenever work
+gets difficult to remind myself that if I got through this once, I can
+do it a heck of a lot more times.&lt;/p&gt;
 &lt;h1 id="what-ive-learned"&gt;What I’ve Learned&lt;/h1&gt;
 &lt;h3 id="dont-be-afraid-to-reach-out-and-ask-for-help"&gt;1. Don’t be afraid
 to reach out and ask for help&lt;/h3&gt;
@@ -70,8 +86,7 @@ better person/worker if you don’t do anything about it afterwards. The
 purpose of an internship is to grow and learn so that you can make fewer
 mistakes when you have a full-time job. So really, mistakes are crucial
 to the learning process and are the reason successful people are
-successful.&lt;br /&gt;
-&lt;/p&gt;
+successful.&lt;/p&gt;
 &lt;h3 id="how-to-work-in-a-professional-environment"&gt;3. How to work in a
 professional environment&lt;/h3&gt;
 &lt;p&gt;What I have learned about working in a professional environment is
@@ -79,26 +94,24 @@ that being a working professional does not mean you have to be
 professional all the time. What really put me at ease were the amount of
 “lol”s and “haha”s I received in Teams messages and emails. It reminded
 me that people aren’t just their jobs and that they have personalities.
-This could just be the PCCTC, but I never felt pressured to dress or
-write or act a certain way, which was really nice to see because using
-slang has largely been considered unprofessional. I feel like as the
-younger generations start getting into the professional world, rules
-that used to be strongly upheld will start to relax because those don’t
-really matter. For example, in my opinion, dressing up very nicely for
-meetings should not be so strongly supported as long as you are getting
-your work done. If I get 500 lines of code done in 4 hours wearing
-sweatpants, I’m still going to get those 500 lines of code done in 4
-hours wearing a pantsuit - I’ll just be more uncomfortable. But again,
-these are my opinions and people can freely disagree. &lt;br&gt; &lt;br&gt; Back to
-the topic at hand: working in a professional environment. For the rest
-of your life, most of what you get and don’t get is a direct result of
-connections so establishing these connections whenever you can is super
-important when you’re working with professionals. You also learn how to
-speak with others in a professional setting which is key for job
-interviews. In sum, working in a professional environment is a lot less
-scary than I was anticipating once I realized that working professionals
-still have personalities and aren’t these corporate robots that
-criticize my every move.&lt;/p&gt;
+This could just be the PCCTC, but I never felt pressured to write or act
+a certain way, which was really nice to see because I had always thought
+using slang was considered unprofessional. I feel like as the younger
+generations start getting into the professional world, rules that used
+to be strongly upheld will start to relax. For example, in my opinion,
+dressing up very nicely for meetings should not be so strongly supported
+as long as you are getting your work done. If I get 500 lines of code
+done in 4 hours wearing sweatpants, I’m still going to get those 500
+lines of code done in 4 hours wearing a pantsuit - I’ll just be more
+uncomfortable. But again, these are my opinions and people can freely
+disagree. &lt;br&gt; &lt;br&gt; Back to the topic at hand: working in a professional
+environment. For the rest of your life, most of what you get and don’t
+get is a direct result of connections so establishing these connections
+whenever you can is super important when you’re working with
+professionals. In sum, working in a professional environment is a lot
+less scary than I was anticipating once I realized that working
+professionals still have personalities and aren’t these corporate robots
+that criticize my every move.&lt;/p&gt;
 &lt;h3 id="any-amount-of-work-you-do-is-appreciated"&gt;4. Any amount of work
 you do is appreciated&lt;/h3&gt;
 &lt;p&gt;Going into my internship, I was concerned that I wouldn’t be able to
@@ -123,16 +136,22 @@ efficient.&lt;/p&gt;
 &lt;p&gt;Overall, I’m so grateful I got to work alongside a great group of
 people this summer and I have definitely grown both as a data scientist
 and a person, and that is all thanks to them. I have learned so much
-through their mentor ship and kindness and honestly had such a blast
-this summer. Work is work but if you’re surrounded by the right people,
-there will never be a dull moment. The knowledge I am taking away and
-the skills I have gained are immeasurable. I could not have asked for a
+through their mentorship and kindness and honestly had such a blast this
+summer. Work is work but if you’re surrounded by the right people, there
+will never be a dull moment. The knowledge I am taking away and the
+skills I have gained are immeasurable. I could not have asked for a
 better internship experience.&lt;/p&gt;
+&lt;h3 id="acknowledgements"&gt;Acknowledgements&lt;/h3&gt;
+&lt;p&gt;I’d like to thank everyone at the PCCTC for giving me this wonderful
+internship opportunity, but especially everyone on the data science
+dream team: Travis Gerke, Shannon Pileggi, Victoria Catherine, and
+Meghan Harris. I’d like to specifically thank Shannon for being my
+biggest mentor and teaching me more than I could ever imagine, both
+professionally and socially.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>c58d50e65cc0c97c571fac65e8aad98e</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-08-11-temp-title</guid>
       <pubDate>Fri, 19 Aug 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2022-08-11-temp-title/cover_image.png" medium="image" type="image/png" width="1282" height="844"/>
     </item>
     <item>
       <title>Locating R and R Adjacent Software and Configuration Files</title>

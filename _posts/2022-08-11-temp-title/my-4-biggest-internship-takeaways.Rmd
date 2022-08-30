@@ -7,7 +7,7 @@ author:
     url: {}
 base_url: https://www.pipinghotdata.com/
 date: 2022-08-19
-preview: cover_image.png
+preview: team_photo.png
 output:
   distill::distill_article:
     self_contained: false
@@ -17,9 +17,27 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# About Me
+
+Hi everyone! My name is Kirina Sirohi and I am going to be a third year Statistics
+major/Data Science minor at Cal Poly, SLO. I had the wonderful opportunity to work
+at the Prostate Cancer Clinical Trials Consortium (PCCTC) as a data science intern this
+summer for about 8 weeks. It was a fully remote internship so I got to work out of the 
+comfort of my home in Massachusetts, though I did get to meet some of my co-workers 
+after the RStudio Conference in Washington D.C. halfway through the internship.
+<br> <br>
+Throughout the summer I got experience with medical monitoring on clinical trials, 
+automating processes for manual review that reduced the number of checks data 
+management had to examine, and provided figures for a regulatory committee to 
+review clinical data for ongoing trials. I also picked up some technical skills
+involving R such as data analysis, data cleaning, wrangling with the tidyverse, 
+unit testing in a new R package, and customizing ggplots. Additionally, I learned more 
+about using GitHub regarding pull requests, code review processes, and deploying 
+quarto slides via GitHub Pages. 
+
 # Introduction
 
-This summer I had the great opportunity to work at the PCCTC as a data science intern. Prior to starting, I was doubting if I had the skills to do well and pondered for hours on end why I was chosen for this role out of all possible candidates. Throughout the internship, I started to get more confident in my abilities through the help and mentor ship of my fellow colleagues. I was slightly nudged to write a blog post about anything related to this internship so I decided to inscribe my biggest takeaways as an intern so that I can refer back to this whenever work gets difficult to remind myself that if I got through this once, I can do it a heck of a lot more times.
+Prior to starting at the PCCTC, I was doubting if I had the skills to do well and pondered for hours on end why I was chosen for this role out of all possible candidates. Throughout the internship, I started to get more confident in my abilities through the help and mentorship of my fellow colleagues. I was slightly nudged to write a blog post about anything related to this internship so I decided to inscribe my biggest takeaways as an intern so that I can refer back to this whenever work gets difficult to remind myself that if I got through this once, I can do it a heck of a lot more times.
 
 # What I've Learned
 
@@ -35,11 +53,11 @@ Mistakes suck, but they are inevitable. You can calculate everything down to the
 tweetrmd::include_tweet("https://twitter.com/hbomaxhelp/status/1405712235108917249?lang=en")
 ```
 
-After reading that, I made sure to double and triple check everything I did so that my work would not result in a catastrophe such as that. Through the guidance of my co-workers, I was able to not only fix my mistakes, but also learn from them and use that knowledge for future assignments. Everyone makes mistakes and that is okay, but what is not okay is not learning from those mistakes and continuing to make them. Getting caught up and upset about a mistake is not going to make you a better person/worker if you don't do anything about it afterwards. The purpose of an internship is to grow and learn so that you can make fewer mistakes when you have a full-time job. So really, mistakes are crucial to the learning process and are the reason successful people are successful.\
+After reading that, I made sure to double and triple check everything I did so that my work would not result in a catastrophe such as that. Through the guidance of my co-workers, I was able to not only fix my mistakes, but also learn from them and use that knowledge for future assignments. Everyone makes mistakes and that is okay, but what is not okay is not learning from those mistakes and continuing to make them. Getting caught up and upset about a mistake is not going to make you a better person/worker if you don't do anything about it afterwards. The purpose of an internship is to grow and learn so that you can make fewer mistakes when you have a full-time job. So really, mistakes are crucial to the learning process and are the reason successful people are successful.
 
 ### 3. How to work in a professional environment
 
-What I have learned about working in a professional environment is that being a working professional does not mean you have to be professional all the time. What really put me at ease were the amount of "lol"s and "haha"s I received in Teams messages and emails. It reminded me that people aren't just their jobs and that they have personalities. This could just be the PCCTC, but I never felt pressured to dress or write or act a certain way, which was really nice to see because using slang has largely been considered unprofessional. I feel like as the younger generations start getting into the professional world, rules that used to be strongly upheld will start to relax because those don't really matter. For example, in my opinion, dressing up very nicely for meetings should not be so strongly supported as long as you are getting your work done. If I get 500 lines of code done in 4 hours wearing sweatpants, I'm still going to get those 500 lines of code done in 4 hours wearing a pantsuit - I'll just be more uncomfortable. But again, these are my opinions and people can freely disagree. <br> <br> Back to the topic at hand: working in a professional environment. For the rest of your life, most of what you get and don't get is a direct result of connections so establishing these connections whenever you can is super important when you're working with professionals. You also learn how to speak with others in a professional setting which is key for job interviews. In sum, working in a professional environment is a lot less scary than I was anticipating once I realized that working professionals still have personalities and aren't these corporate robots that criticize my every move.
+What I have learned about working in a professional environment is that being a working professional does not mean you have to be professional all the time. What really put me at ease were the amount of "lol"s and "haha"s I received in Teams messages and emails. It reminded me that people aren't just their jobs and that they have personalities. This could just be the PCCTC, but I never felt pressured to write or act a certain way, which was really nice to see because I had always thought using slang was considered unprofessional. I feel like as the younger generations start getting into the professional world, rules that used to be strongly upheld will start to relax. For example, in my opinion, dressing up very nicely for meetings should not be so strongly supported as long as you are getting your work done. If I get 500 lines of code done in 4 hours wearing sweatpants, I'm still going to get those 500 lines of code done in 4 hours wearing a pantsuit - I'll just be more uncomfortable. But again, these are my opinions and people can freely disagree. <br> <br> Back to the topic at hand: working in a professional environment. For the rest of your life, most of what you get and don't get is a direct result of connections so establishing these connections whenever you can is super important when you're working with professionals. In sum, working in a professional environment is a lot less scary than I was anticipating once I realized that working professionals still have personalities and aren't these corporate robots that criticize my every move.
 
 ### 4. Any amount of work you do is appreciated
 
@@ -47,4 +65,11 @@ Going into my internship, I was concerned that I wouldn't be able to do anything
 
 # Final Thoughts
 
-Overall, I'm so grateful I got to work alongside a great group of people this summer and I have definitely grown both as a data scientist and a person, and that is all thanks to them. I have learned so much through their mentor ship and kindness and honestly had such a blast this summer. Work is work but if you're surrounded by the right people, there will never be a dull moment. The knowledge I am taking away and the skills I have gained are immeasurable. I could not have asked for a better internship experience.
+Overall, I'm so grateful I got to work alongside a great group of people this summer and I have definitely grown both as a data scientist and a person, and that is all thanks to them. I have learned so much through their mentorship and kindness and honestly had such a blast this summer. Work is work but if you're surrounded by the right people, there will never be a dull moment. The knowledge I am taking away and the skills I have gained are immeasurable. I could not have asked for a better internship experience.
+
+
+### Acknowledgements
+
+I'd like to thank everyone at the PCCTC for giving me this wonderful internship
+opportunity, but especially everyone on the data science dream team: Travis Gerke,
+Shannon Pileggi, Victoria Catherine, and Meghan Harris. I'd also like to specifically thank Shannon for being my biggest mentor and teaching me more than I could ever imagine, both professionally and socially.
