@@ -6,6 +6,9 @@ author:
   - name: Kirina Sirohi
     url: {}
 base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
 date: 2022-08-30
 preview: images/team_photo.png
 output:
