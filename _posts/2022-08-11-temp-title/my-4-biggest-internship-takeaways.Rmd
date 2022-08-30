@@ -17,7 +17,6 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
 ```{r thumbnail, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
 #|   My last Data Science team meeting at the PCCTC with Victoria Catherine, Meghan
@@ -29,21 +28,7 @@ knitr::include_graphics("images/team_photo.png")
 
 # About Me
 
-Hi everyone! My name is Kirina Sirohi and I am going to be a third year Statistics
-major/Data Science minor at Cal Poly, SLO. I had the wonderful opportunity to work
-at the Prostate Cancer Clinical Trials Consortium (PCCTC) as a data science intern this
-summer for about 8 weeks. It was a fully remote internship so I got to work out of the 
-comfort of my home in Massachusetts, though I did get to meet some of my co-workers 
-after the RStudio Conference in Washington D.C. halfway through the internship.
-<br> <br>
-Throughout the summer I got experience with medical monitoring on clinical trials, 
-automating processes for manual review that reduced the number of checks data 
-management had to examine, and provided figures for a regulatory committee to 
-review clinical data for ongoing trials. I also picked up some technical skills
-involving R such as data analysis, data cleaning, wrangling with the tidyverse, 
-unit testing in a new R package, and customizing ggplots. Additionally, I learned more 
-about using GitHub regarding pull requests, code review processes, and deploying 
-quarto slides via GitHub Pages. 
+Hi everyone! My name is Kirina Sirohi and I am going to be a third year Statistics major/Data Science minor at Cal Poly, SLO. I had the wonderful opportunity to work at the Prostate Cancer Clinical Trials Consortium (PCCTC) as a data science intern this summer for about 8 weeks. It was a fully remote internship so I got to work out of the comfort of my home in Massachusetts, though I did get to meet some of my co-workers after the RStudio Conference in Washington D.C. halfway through the internship. <br> <br> Throughout the summer I got experience with medical monitoring on clinical trials, automating processes for manual review that reduced the number of checks data management had to examine, and provided figures for a regulatory committee to review clinical data for ongoing trials. I also picked up some technical skills involving R such as data analysis, data cleaning, wrangling with the tidyverse, unit testing in a new R package, and customizing ggplots. Additionally, I learned more about using GitHub regarding pull requests, code review processes, and deploying quarto slides via GitHub Pages.
 
 # Introduction
 
@@ -77,9 +62,9 @@ Going into my internship, I was concerned that I wouldn't be able to do anything
 
 Overall, I'm so grateful I got to work alongside a great group of people this summer and I have definitely grown both as a data scientist and a person, and that is all thanks to them. I have learned so much through their mentorship and kindness and honestly had such a blast this summer. Work is work but if you're surrounded by the right people, there will never be a dull moment. The knowledge I am taking away and the skills I have gained are immeasurable. I could not have asked for a better internship experience.
 
-
 ### Acknowledgements
 
-I'd like to thank everyone at the PCCTC for giving me this wonderful internship
-opportunity, but especially everyone on the data science dream team: Travis Gerke,
-Shannon Pileggi, Victoria Catherine, and Meghan Harris. I'd also like to specifically thank Shannon for being my biggest mentor and teaching me more than I could ever imagine, both professionally and socially.
+I'd like to thank everyone at the PCCTC for giving me this wonderful internship opportunity, but especially everyone on the data science dream team: Travis Gerke, Shannon Pileggi, Victoria Catherine, and Meghan Harris. I'd also like to specifically thank Shannon for being my biggest mentor and teaching me more than I could ever imagine, both professionally and socially.
+
+If you want to keep in touch with me, check out my new {postcards} personal website
+with my contact information. [https://ksirohi7.github.io/Postcard)](https://ksirohi7.github.io/Postcard)

@@ -16,7 +16,7 @@
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2022-08-11-temp-titleimages/team_photo.png" alt="Screenshot from Microsoft Teams meeting showing 5 people." width="960" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2022-08-11-temp-title/images/team_photo.png" alt="Screenshot from Microsoft Teams meeting showing 5 people." width="960" /&gt;
 &lt;p class="caption"&gt;
 (#fig:thumbnail)My last Data Science team meeting at the PCCTC with
 Victoria Catherine, Meghan Harris, Shannon Pileggi, and Travis Gerke.
@@ -155,6 +155,9 @@ dream team: Travis Gerke, Shannon Pileggi, Victoria Catherine, and
 Meghan Harris. I’d also like to specifically thank Shannon for being my
 biggest mentor and teaching me more than I could ever imagine, both
 professionally and socially.&lt;/p&gt;
+&lt;p&gt;If you want to keep in touch with me, check out my new {postcards}
+personal website with my contact information. &lt;a
+href="https://ksirohi7.github.io/Postcard/"&gt;https://ksirohi7.github.io/Postcard/)&lt;/a&gt;&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>c58d50e65cc0c97c571fac65e8aad98e</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-08-11-temp-title</guid>
