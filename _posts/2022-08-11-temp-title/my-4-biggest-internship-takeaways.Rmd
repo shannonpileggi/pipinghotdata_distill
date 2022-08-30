@@ -7,7 +7,7 @@ author:
     url: {}
 base_url: https://www.pipinghotdata.com/
 date: 2022-08-19
-preview: team_photo.png
+preview: images/team_photo.png
 output:
   distill::distill_article:
     self_contained: false
@@ -15,6 +15,16 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   My last Data Science team meeting at the PCCTC with Victoria Catherine, Meghan
+#|   Harris, Shannon Pileggi, and Travis Gerke.
+#| fig.alt: > 
+#|    Screenshot from Microsoft Teams meeting showing 5 people.
+knitr::include_graphics("images/team_photo.png")
 ```
 
 # About Me

@@ -15,6 +15,13 @@
       <description>
 
 
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2022-08-11-temp-titleimages/team_photo.png" alt="Screenshot from Microsoft Teams meeting showing 5 people." width="960" /&gt;
+&lt;p class="caption"&gt;
+(#fig:thumbnail)My last Data Science team meeting at the PCCTC with
+Victoria Catherine, Meghan Harris, Shannon Pileggi, and Travis Gerke.
+&lt;/p&gt;
+&lt;/div&gt;
 &lt;h1 id="about-me"&gt;About Me&lt;/h1&gt;
 &lt;p&gt;Hi everyone! My name is Kirina Sirohi and I am going to be a third
 year Statistics major/Data Science minor at Cal Poly, SLO. I had the
@@ -22,7 +29,7 @@ wonderful opportunity to work at the Prostate Cancer Clinical Trials
 Consortium (PCCTC) as a data science intern this summer for about 8
 weeks. It was a fully remote internship so I got to work out of the
 comfort of my home in Massachusetts, though I did get to meet some of my
-coworkers after the RStudio Conference in Washington D.C. halfway
+co-workers after the RStudio Conference in Washington D.C. halfway
 through the internship. &lt;br&gt; &lt;br&gt; Throughout the summer I got experience
 with medical monitoring on clinical trials, automating processes for
 manual review that reduced the number of checks data management had to
@@ -145,13 +152,14 @@ better internship experience.&lt;/p&gt;
 &lt;p&gt;I’d like to thank everyone at the PCCTC for giving me this wonderful
 internship opportunity, but especially everyone on the data science
 dream team: Travis Gerke, Shannon Pileggi, Victoria Catherine, and
-Meghan Harris. I’d like to specifically thank Shannon for being my
+Meghan Harris. I’d also like to specifically thank Shannon for being my
 biggest mentor and teaching me more than I could ever imagine, both
 professionally and socially.&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
       <distill:md5>c58d50e65cc0c97c571fac65e8aad98e</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2022-08-11-temp-title</guid>
       <pubDate>Fri, 19 Aug 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2022-08-11-temp-title/images/team_photo.png" medium="image" type="image/png" width="1920" height="1017"/>
     </item>
     <item>
       <title>Locating R and R Adjacent Software and Configuration Files</title>
