@@ -7,16 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 19 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Aug 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>My 4 Biggest Internship Takeaways</title>
       <dc:creator>Kirina Sirohi</dc:creator>
-      <link>https://www.pipinghotdata.com/posts/2022-08-11-temp-title</link>
+      <link>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways</link>
       <description>
 
 
 &lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/posts/2022-08-11-temp-titleimages/team_photo.png" alt="Screenshot from Microsoft Teams meeting showing 5 people." width="960" /&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeawaysimages/team_photo.png" alt="Screenshot from Microsoft Teams meeting showing 5 people." width="960" /&gt;
 &lt;p class="caption"&gt;
 (#fig:thumbnail)My last Data Science team meeting at the PCCTC with
 Victoria Catherine, Meghan Harris, Shannon Pileggi, and Travis Gerke.
@@ -159,10 +159,10 @@ professionally and socially.&lt;/p&gt;
 personal website with my contact information. &lt;a
 href="https://ksirohi7.github.io/Postcard"&gt;https://ksirohi7.github.io/Postcard&lt;/a&gt;&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>c58d50e65cc0c97c571fac65e8aad98e</distill:md5>
-      <guid>https://www.pipinghotdata.com/posts/2022-08-11-temp-title</guid>
-      <pubDate>Fri, 19 Aug 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/posts/2022-08-11-temp-title/images/team_photo.png" medium="image" type="image/png" width="1920" height="1017"/>
+      <distill:md5>de189d21f89db766b3b3f9d3a1c4bbe8</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways</guid>
+      <pubDate>Tue, 30 Aug 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways/images/team_photo.png" medium="image" type="image/png" width="1920" height="1017"/>
     </item>
     <item>
       <title>Locating R and R Adjacent Software and Configuration Files</title>

@@ -6,11 +6,14 @@ author:
   - name: Kirina Sirohi
     url: {}
 base_url: https://www.pipinghotdata.com/
-date: 2022-08-19
+date: 2022-08-30
 preview: images/team_photo.png
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
+creative_commons: CC BY
 ---
 
 ```{r setup, include=FALSE}
