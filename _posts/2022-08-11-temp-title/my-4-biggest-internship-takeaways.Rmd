@@ -67,4 +67,4 @@ Overall, I'm so grateful I got to work alongside a great group of people this su
 I'd like to thank everyone at the PCCTC for giving me this wonderful internship opportunity, but especially everyone on the data science dream team: Travis Gerke, Shannon Pileggi, Victoria Catherine, and Meghan Harris. I'd also like to specifically thank Shannon for being my biggest mentor and teaching me more than I could ever imagine, both professionally and socially.
 
 If you want to keep in touch with me, check out my new {postcards} personal website
-with my contact information. [https://ksirohi7.github.io/Postcard)](https://ksirohi7.github.io/Postcard)
+with my contact information. [https://ksirohi7.github.io/Postcard](https://ksirohi7.github.io/Postcard)
