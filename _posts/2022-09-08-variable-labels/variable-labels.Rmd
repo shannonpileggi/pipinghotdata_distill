@@ -1,16 +1,15 @@
 ---
-title: "Locating R and R Adjacent Software and Configuration Files"
+title: "The case for variable labels in R"
 description: |
-  My personal R administration on Windows 10
+  A short description of the post.
 author:
   - name: Shannon Pileggi
     url: {}
+date: 2022-09-08
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
-date: 2022-06-02
-preview: R-file-tree.png
 output:
   distill::distill_article:
     toc: true
@@ -20,11 +19,11 @@ creative_commons: CC BY
 ---
 
 
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
 
 # TL;DR
 
@@ -33,24 +32,24 @@ Variable labels in R can improve data documentation and workflows.
 # Getting started
 
 ```{r}
-library(tidyverse)
-library(labelled)
-library(sjlabelled) # for example efc data set
+library(tidyverse)      # general wrangling
+library(labelled)       # for general functions to work with labelled data
+library(sjlabelled)     # for example efc data set with variable labels
+library(palmerpenguins) # to demonstrate assigning labels to a data set
+library(gtsummary)
 ```
 
-# Overview
 
-Metadata such as variable labels may be typically associated with SAS, Stata,
-or SPSS data sets; however, they can be assigned in R as well!
+# Introduction
+
+I have previously written about [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) - this is from the perspective of importing SAS, SPSS, or Stata data into R that come with variable labels.
+
+Metadata such as variable labels may be typically associated with SAS, Stata, or SPSS data sets; however, they can be assigned in R as well!
 
 # Data with variable labels
 
-I have previously written about [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) - this 
-is from the perspective of importing SAS, SPSS, or Stata data into R that 
-come with variable labels.
 
-As an example of what this might look like in R, check out the `efc` data
-set in the `sjlabelled` package.
+As an example of what data with variable labels might look like in R, check out the `efc` data set in the `sjlabelled` package.
 
 ```{r}
 #| eval: FALSE
@@ -59,38 +58,163 @@ efc |>
   View()
 ```
 
+Here, you an see the variable labels printed underneath variable names. 
+`c12hour`?? Who knows what that is. But `average number of hours of care per week`
+provides a lot of additional context without having to leave your data.
+
+
 ```{r thumbnail, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
 #|   Screenshot of view of efc data from the {sjlabelled} package in RStudio. Variable labels
 #|   are printed underneath variable names.
 #| fig.alt: > 
-#|    Screenshot of view of efc data from the {sjlabelled} package in RStudio. Variable labels
+#|   Screenshot of view of efc data from the {sjlabelled} package in RStudio. Variable labels
 #|   are printed underneath variable names.
 knitr::include_graphics("img/efc_view.PNG")
 ```
 
+You can also see variable labels by examining the structure of the data set.
+Labels are stored as attributes of the variables; note that `label` refers the 
+variable labels, whereas `labels` refers to the value labels (not further 
+discussed in this post).
+
 ```{r}
+data(efc)
+
 efc |> 
   select(1:5) |> 
   str()
 ```
 
 
-
 # Assign variable labels
+
+What if your data do not come with variable labels? I imagine this would be the 
+case for the majority of users. If this applies to you, you can assign variable 
+labels via both manual and more automatic methods. For demonstration, I'll
+use the `penguins` data set from {palmerpenguins}.
 
 ## Manual
 
+You can manually assign variable labels with the `labelled::set_variable_labels()`
+function. The variable name is on the left hand side and the variable
+label is on the right hand side.
+
+```{r}
+penguins_labelled <- penguins |> 
+  set_variable_labels(
+    species           = "Penguin species",
+    island            = "Island in Palmer Archipelago, Antarctica",
+    bill_length_mm    = "Bill length (mm)",
+    bill_depth_mm     = "Bill depth (mm)",
+    flipper_length_mm = "Flipper length (mm)",
+    body_mass_g       = "Body mass (g)",
+    sex               = "Penguin sex",
+    year              = "Study year"
+  )
+```
+
+Confirm that the variable labels were correctly assigned via `View()` or
+`str()`.
+
+```{r}
+# View(penguins_labelled)
+str(penguins_labelled)
+```
+
 ## Automatic
 
-# Create a data dictionary
+If you have a lot of variables, the manual assignment could get tedious. However,
+if you are lucky, data arrive with tables of metadata. Suppose you could quickly
+import a data frame, with one column for the variable names and another 
+for variable labels.
 
-# Variable labels and {gtsummary} ... gt?
+```{r}
+penguins_metadata <- tribble(
+    ~variable,           ~variable_label, 
+    "species",           "Penguin species",
+    "island",            "Island in Palmer Archipelago, Antarctica",
+    "bill_length_mm",    "Bill length (mm)",
+    "bill_depth_mm",     "Bill depth (mm)",
+    "flipper_length_mm", "Flipper length (mm)",
+    "body_mass_g",       "Body mass (g)",
+    "sex",               "Penguin sex",
+    "year",              "Study year"
+)
+```
 
-# Variable labels and {ggplot}
+To quickly assign the variable labels, first create a named vector via `deframe()` 
+with values of the variable labels and names of the variable labels.
 
-# Exporting data with variable labels
+```{r}
+penguins_labels <- penguins_metadata |> 
+  deframe()
 
-# Details
+penguins_labels
+```
+
+Now assign the labels using the splice operator. Using the splice operator, 
+labels are assigned via matching against the variable name. This means that 
+variable order does not matter.
+
+```{r}
+penguins_labelled <- penguins |> 
+  set_variable_labels(!!!penguins_labels)
+```
+
+Voilà! The variable labels have been assigned again.
+
+```{r}
+# View(penguins_labelled)
+str(penguins_labelled)
+```
+
+# Uses
+
+## 1. Self-explaining
+
+Having your data accompanied by variable labels in your working environment,
+rather than having to switch to external documents to glean meaning,
+is incredibly powerful!
+
+## 2. Create a data dictionary
+
+If your data has many variables, create a quick and searchable data dictionary to 
+quickly find variables of interest. The `labelled::generate_dictionary()` function
+is my go-to for a quick dictionary.
+
+```{r}
+penguins_dictionary <- penguins_labelled |> 
+  generate_dictionary()
+```
+
+
+```{r}
+penguins_dictionary
+```
+
+For more fully fledged options, check out
+Crystal Lewis's [codebook comparisons](https://github.com/Cghlewis/codebook-pkg-comparison).
+
+## 3. Variable labels in summary tables
+
+If you want to create summary tables of your data, {gtsummary}
+handily uses the variable labels (if available), rather than variable names,
+in the summary table to provide human readable and interpretable output.
+
+```{r}
+penguins_labelled |> 
+  select(island, species, bill_length_mm) |> 
+  tbl_summary(
+    by = species
+  ) |> 
+  bold_labels()
+```
+
+
+## 4. Variable labels and {ggplot}
+
+## 5. Exporting data with variable labels
+
 
 # Acknowledgments
