@@ -23,6 +23,9 @@ creative_commons: CC BY
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r, echo=FALSE}
+this_post <- here::here("_posts", "2022-09-08-variable-labels")
+```
 
 
 # TL;DR
@@ -58,8 +61,9 @@ efc |>
   View()
 ```
 
-Here, you an see the variable labels printed underneath variable names. 
-`c12hour`?? Who knows what that is. But `average number of hours of care per week`
+Here, you an see the variable labels printed underneath variable names. The first
+variable shown is `c12hour` - what is that? Underneath the variable name, the
+variable label of `average number of hours of care per week`
 provides a lot of additional context without having to leave your data.
 
 
@@ -92,7 +96,7 @@ efc |>
 What if your data do not come with variable labels? I imagine this would be the 
 case for the majority of users. If this applies to you, you can assign variable 
 labels via both manual and more automatic methods. For demonstration, I'll
-use the `penguins` data set from {palmerpenguins}.
+use the `penguins` data set from the {palmerpenguins} package.
 
 ## Manual
 
@@ -125,9 +129,10 @@ str(penguins_labelled)
 ## Automatic
 
 If you have a lot of variables, the manual assignment could get tedious. However,
-if you are lucky, data arrive with tables of metadata. Suppose you could quickly
+if you are lucky, your data may arrive with tables of metadata. Suppose you could quickly
 import a data frame, with one column for the variable names and another 
-for variable labels.
+for variable labels. As we don't have an external metadata available for the
+`penguins` data, here is an example data frame.
 
 ```{r}
 penguins_metadata <- tribble(
@@ -141,10 +146,11 @@ penguins_metadata <- tribble(
     "sex",               "Penguin sex",
     "year",              "Study year"
 )
+penguins_metadata
 ```
 
 To quickly assign the variable labels, first create a named vector via `deframe()` 
-with values of the variable labels and names of the variable labels.
+with values as the variable labels and names as the variable names.
 
 ```{r}
 penguins_labels <- penguins_metadata |> 
@@ -153,8 +159,8 @@ penguins_labels <- penguins_metadata |>
 penguins_labels
 ```
 
-Now assign the labels using the splice operator. Using the splice operator, 
-labels are assigned via matching against the variable name. This means that 
+Now assign the labels using the splice operator. Using the [splice operator](https://rlang.r-lib.org/reference/splice-operator.html){target="_blank"}, 
+labels are assigned via matching against the variable name, which means that 
 variable order does not matter.
 
 ```{r}
@@ -179,9 +185,9 @@ is incredibly powerful!
 
 ## 2. Create a data dictionary
 
-If your data has many variables, create a quick and searchable data dictionary to 
-quickly find variables of interest. The `labelled::generate_dictionary()` function
-is my go-to for a quick dictionary.
+You can quickly create a data dictionary 
+with `labelled::generate_dictionary()` to get an overview of your metadata. 
+It is very convenient to search this within the RStudio data viewer to find variables of interest.
 
 ```{r}
 penguins_dictionary <- penguins_labelled |> 
@@ -190,17 +196,18 @@ penguins_dictionary <- penguins_labelled |>
 
 
 ```{r}
-penguins_dictionary
+penguins_dictionary |> 
+  knitr::kable()
 ```
 
-For more fully fledged options, check out
+For more fully fledged codebook options, check out
 Crystal Lewis's [codebook comparisons](https://github.com/Cghlewis/codebook-pkg-comparison).
 
 ## 3. Variable labels in summary tables
 
 If you want to create summary tables of your data, {gtsummary}
 handily uses the variable labels (if available), rather than variable names,
-in the summary table to provide human readable and interpretable output.
+to provide human readable and readily interpretable output.
 
 ```{r}
 penguins_labelled |> 
@@ -214,7 +221,60 @@ penguins_labelled |>
 
 ## 4. Variable labels and {ggplot}
 
+This is the best I could come up with.
+
+```{r}
+penguins_labelled |> 
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  labs(
+    x = penguins_labels[["bill_length_mm"]],
+    y = penguins_labels[["bill_depth_mm"]],
+    color = penguins_labels[["species"]]
+    )
+```
+
+I wish there was a simpler solution here where you could supply the `penguins_labels`
+vector to `labs()` and have everything automatically line up.
+
+
+
 ## 5. Exporting data with variable labels
+
+I have an underdeveloped public facing work package [{croquet}](https://github.com/pcctc/croquet){target="_blank"}
+which contains a single function we use all the time: `add_labelled_sheet()`. This function
+exports data to excel with row 1 as variable names, and row 2 as the descriptive
+variable labels with filters automatically applied.
+
+```{r, eval= FALSE}
+# devtools::install_github("pcctc/croquet")
+library(croquet)
+library(openxlsx)
+
+wb <- createWorkbook()
+add_labelled_sheet(penguins_labelled)
+saveWorkbook(wb, "penguins_labelled.xlsx")
+```
+
+
+```{r, eval= TRUE, echo=FALSE}
+# devtools::install_github("pcctc/croquet")
+library(croquet)
+library(openxlsx)
+
+wb <- createWorkbook()
+add_labelled_sheet(penguins_labelled)
+saveWorkbook(wb, here::here(this_post, "penguins_labelled.xlsx"))
+```
+
+
+Exporting data with labels does feel unnatural to me as the data is 
+no longer tidy, but it helps to quickly communicate variable meaning to 
+collaborators comfortable with excel.
 
 
 # Acknowledgments
+
+I found the ggplot labelling strategy in Lefkios Paikousis's blog post ["A workflow with labelled data"](https://lefkiospaikousis.netlify.app/posts/2020-12-23-a-workflow-with-labelled-data/){target="blank"},
+which has other labelling tips for value labels as well!
+
