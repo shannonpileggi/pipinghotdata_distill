@@ -1,7 +1,8 @@
 ---
-title: "The case for variable labels in R"
+title: "The case for variable labels in R."
 description: |
-  A short description of the post.
+  Labeled data workflows with applications in data dictionaries, summary tables,
+  ggplot, and exporting.
 author:
   - name: Shannon Pileggi
     url: {}
@@ -10,6 +11,7 @@ base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
+preview: img/efc_view.PNG
 output:
   distill::distill_article:
     toc: true
@@ -30,7 +32,9 @@ this_post <- here::here("_posts", "2022-09-08-variable-labels")
 
 # TL;DR
 
-Variable labels in R can improve data documentation and workflows.
+Variable labels can be quickly assigned in R, and can improve workflows
+via self-explaining, data dictionaries, and applications in summary tables,
+ggplot, and exporting.
 
 # Getting started
 
@@ -38,21 +42,40 @@ Variable labels in R can improve data documentation and workflows.
 library(tidyverse)      # general wrangling
 library(labelled)       # for general functions to work with labelled data
 library(sjlabelled)     # for example efc data set with variable labels
-library(palmerpenguins) # to demonstrate assigning labels to a data set
-library(gtsummary)
+library(palmerpenguins) # example data set
+library(gtsummary)      # to demonstrate automatic use of variable labels in summary tables
 ```
 
 
 # Introduction
 
+I do believe in the idea of ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/){target="_blank"} 
+as described by Emily Riederer. However, there exist situations in which one
+does not have control of column names, or in which column names are restricted
+to certain conventions incompatible with detailed column names. 
+
+A labeled data workflow is one in which readable variable _labels_ are assigned to variables.
+Two reasons to adopt a labeled workflow are:
+
+1. If you have obscure variable names that you do not wish to or cannot change, but from
+which programming would be easier if you could quickly glean meaning.
+
+2. If you have good variable names, but want something more descriptive or
+human readable for sharing data products like tables or figures.
+
 I have previously written about [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) - this is from the perspective of importing SAS, SPSS, or Stata data into R that come with variable labels.
 
-Metadata such as variable labels may be typically associated with SAS, Stata, or SPSS data sets; however, they can be assigned in R as well!
+What about if you have data that do not arrive with variable labels? You can still
+assign variable labels in R, and it is a workflow I am adopting with increasing
+frequency.
+
+
 
 # Data with variable labels
 
 
-As an example of what data with variable labels might look like in R, check out the `efc` data set in the `sjlabelled` package.
+As an example of what data with variable labels might look like in R, check out 
+the `efc` data set in the [`sjlabelled`](https://strengejacke.github.io/sjlabelled/index.html){target="_blank"} package.
 
 ```{r}
 #| eval: FALSE
@@ -61,10 +84,6 @@ efc |>
   View()
 ```
 
-Here, you an see the variable labels printed underneath variable names. The first
-variable shown is `c12hour` - what is that? Underneath the variable name, the
-variable label of `average number of hours of care per week`
-provides a lot of additional context without having to leave your data.
 
 
 ```{r thumbnail, eval=TRUE, echo=FALSE}
@@ -76,6 +95,12 @@ provides a lot of additional context without having to leave your data.
 #|   are printed underneath variable names.
 knitr::include_graphics("img/efc_view.PNG")
 ```
+
+
+Here, you an see the variable labels printed underneath variable names. The first
+variable shown is `c12hour` - what is that? Underneath the variable name, the
+variable label of `average number of hours of care per week`
+provides additional context without having to leave your data.
 
 You can also see variable labels by examining the structure of the data set.
 Labels are stored as attributes of the variables; note that `label` refers the 
@@ -96,12 +121,13 @@ efc |>
 What if your data do not come with variable labels? I imagine this would be the 
 case for the majority of users. If this applies to you, you can assign variable 
 labels via both manual and more automatic methods. For demonstration, I'll
-use the `penguins` data set from the {palmerpenguins} package.
+use the `penguins` data set from the [{palmerpenguins}](https://allisonhorst.github.io/palmerpenguins/){target="_blank"} package.
 
 ## Manual
 
-You can manually assign variable labels with the `labelled::set_variable_labels()`
-function. The variable name is on the left hand side and the variable
+You can manually assign variable labels with `set_variable_labels()` 
+from the [{labelled}](https://larmarange.github.io/labelled/){target="_blank"} package. 
+The variable name is on the left hand side and the variable
 label is on the right hand side.
 
 ```{r}
@@ -149,7 +175,7 @@ penguins_metadata <- tribble(
 penguins_metadata
 ```
 
-To quickly assign the variable labels, first create a named vector via `deframe()` 
+To quickly assign the variable labels, first create a named vector via [`deframe()`](https://tibble.tidyverse.org/reference/enframe.html){target="_blank"} 
 with values as the variable labels and names as the variable names.
 
 ```{r}
@@ -159,8 +185,8 @@ penguins_labels <- penguins_metadata |>
 penguins_labels
 ```
 
-Now assign the labels using the splice operator. Using the [splice operator](https://rlang.r-lib.org/reference/splice-operator.html){target="_blank"}, 
-labels are assigned via matching against the variable name, which means that 
+Now assign the labels using the  [splice operator](https://rlang.r-lib.org/reference/splice-operator.html){target="_blank"}. 
+Using the splice operator, labels are assigned via matching against the variable name, which means that 
 variable order does not matter.
 
 ```{r}
@@ -205,7 +231,7 @@ Crystal Lewis's [codebook comparisons](https://github.com/Cghlewis/codebook-pkg-
 
 ## 3. Variable labels in summary tables
 
-If you want to create summary tables of your data, {gtsummary}
+If you want to create summary tables of your data, [{gtsummary}](https://www.danieldsjoberg.com/gtsummary/index.html){target="_blank"}
 handily uses the variable labels (if available), rather than variable names,
 to provide human readable and readily interpretable output.
 
@@ -221,7 +247,10 @@ penguins_labelled |>
 
 ## 4. Variable labels and {ggplot}
 
-This is the best I could come up with.
+This is the best I could come up with to apply variable labels in ggplot, and it
+falls a bit short. If there is a slicker solution to automatically
+display variable labels, rather than variable names, please let me know!
+
 
 ```{r}
 penguins_labelled |> 
@@ -234,16 +263,13 @@ penguins_labelled |>
     )
 ```
 
-I wish there was a simpler solution here where you could supply the `penguins_labels`
-vector to `labs()` and have everything automatically line up.
-
 
 
 ## 5. Exporting data with variable labels
 
-I have an underdeveloped public facing work package [{croquet}](https://github.com/pcctc/croquet){target="_blank"}
-which contains a single function we use all the time: `add_labelled_sheet()`. This function
-exports data to excel with row 1 as variable names, and row 2 as the descriptive
+For work, we have an in-development public facing package [{croquet}](https://github.com/pcctc/croquet){target="_blank"},
+which contains a single frequently used function: `add_labelled_sheet()`. This function
+exports data to excel with row one as variable names, and row two as the descriptive
 variable labels with filters automatically applied.
 
 ```{r, eval= FALSE}
@@ -257,7 +283,7 @@ saveWorkbook(wb, "penguins_labelled.xlsx")
 ```
 
 
-```{r, eval= TRUE, echo=FALSE}
+```{r, eval= FALSE, echo=FALSE}
 # devtools::install_github("pcctc/croquet")
 library(croquet)
 library(openxlsx)
@@ -268,13 +294,27 @@ saveWorkbook(wb, here::here(this_post, "penguins_labelled.xlsx"))
 ```
 
 
-Exporting data with labels does feel unnatural to me as the data is 
+```{r, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Screenshot of excel output from `croquet::add_labelled_sheet()`
+#| fig.alt: > 
+#|   First row has light gray backround with variable names in black; second
+#|   row has black backgrounding with variable labels in gray, and excel
+#|   drop down filters on each column.
+knitr::include_graphics("img/penguins_labelled_excel.PNG")
+```
+
+Exporting data with labels on row two feels unnatural as the data is 
 no longer tidy, but it helps to quickly communicate variable meaning to 
 collaborators comfortable with excel.
 
+# Final thoughts
+
+I enjoy a labelled data workflow. It both enhances my productivity and streamlines
+my data products. I am curious if the set up is worthwhile for others as well!
 
 # Acknowledgments
 
-I found the ggplot labelling strategy in Lefkios Paikousis's blog post ["A workflow with labelled data"](https://lefkiospaikousis.netlify.app/posts/2020-12-23-a-workflow-with-labelled-data/){target="blank"},
-which has other labelling tips for value labels as well!
+I found the ggplot labeling strategy in Lefkios Paikousis's blog post ["A workflow with labelled data"](https://lefkiospaikousis.netlify.app/posts/2020-12-23-a-workflow-with-labelled-data/){target="blank"},
+which also presents other ggplot labeling tips for value labels.
 
