@@ -326,9 +326,9 @@ please let me know if you have other labelled data applications or workflows not
 
 # Acknowledgments
 
-I found the ggplot labeling strategy in Lefkios Paikousis's blog post ["A workflow with labelled data"](https://lefkiospaikousis.netlify.app/posts/2020-12-23-a-workflow-with-labelled-data/){target="blank"},
-which also presents other ggplot labeling tips for value labels.
-
 Thanks to Scott Stewart for sharing the [`{ggeasy}` solution for ggplots on Twitter](https://twitter.com/ScottStew552/status/1569746285556793345?s=20&t=2tYHoI_Mmit45qs5x34WEA){target="_blank},
 which is much better than what I had originally written!
+
+Lefkios Paikousis's blog post ["A workflow with labelled data"](https://lefkiospaikousis.netlify.app/posts/2020-12-23-a-workflow-with-labelled-data/){target="blank"} 
+presents other ggplot labeling tips for value labels.
 
