@@ -1,12 +1,12 @@
 ---
 title: "The case for variable labels in R."
 description: |
-  Labeled data workflows with applications in data dictionaries, summary tables,
+  Labelled data workflows with applications in data dictionaries, summary tables,
   ggplot, and exporting.
 author:
   - name: Shannon Pileggi
     url: {}
-date: 2022-09-08
+date: 2022-09-13
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
@@ -36,7 +36,19 @@ Variable labels can be quickly assigned in R, and can improve workflows
 via self-explaining, data dictionaries, and applications in summary tables,
 ggplot, and exporting.
 
-# Getting started
+# Packages
+
+This material was developed using:
+
+| Software / package  | Version               |
+|---------------------|-----------------------|
+| R                   | 4.2.0                 | 
+| RStudio             | 2022.07.1+554         | 
+| `tidyverse`         | 1.3.1                 |
+| `labelled`          | 2.9.1                 |
+| `sjlabelled`        | 1.2.0                 |
+| `gtsummary`         | 1.6.1                 |
+| `palmerpenguins`    | 0.1.0                 |
 
 ```{r}
 library(tidyverse)      # general wrangling
@@ -52,15 +64,16 @@ library(gtsummary)      # to demonstrate automatic use of variable labels in sum
 I do believe in the idea of ["Column Names as Contracts"](https://emilyriederer.netlify.app/post/column-name-contracts/){target="_blank"} 
 as described by Emily Riederer. However, there exist situations in which one
 does not have control of column names, or in which column names are restricted
-to certain conventions incompatible with detailed column names. 
+to certain conventions incompatible with detailed column names. If this applies, a 
+labelled data workflow may be useful.
 
-A labeled data workflow is one in which readable variable _labels_ are assigned to variables.
-Two reasons to adopt a labeled workflow are:
+A labelled data workflow is one in which readable variable _labels_ are assigned to variables.
+Two reasons to adopt a labelled workflow are:
 
 1. If you have obscure variable names that you do not wish to or cannot change, but from
 which programming would be easier if you could quickly glean meaning.
 
-2. If you have good variable names, but want something more descriptive or
+2. If you have readily understood variable names, but want something more descriptive or
 human readable for sharing data products like tables or figures.
 
 I have previously written about [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) - this is from the perspective of importing SAS, SPSS, or Stata data into R that come with variable labels.
@@ -207,13 +220,13 @@ str(penguins_labelled)
 
 Having your data accompanied by variable labels in your working environment,
 rather than having to switch to external documents to glean meaning,
-is incredibly powerful!
+is empowering and speeds up workflows.
 
 ## 2. Create a data dictionary
 
 You can quickly create a data dictionary 
 with `labelled::generate_dictionary()` to get an overview of your metadata. 
-It is very convenient to search this within the RStudio data viewer to find variables of interest.
+It is convenient to search this within the RStudio data viewer to find variables of interest.
 
 ```{r}
 penguins_dictionary <- penguins_labelled |> 
@@ -248,7 +261,7 @@ penguins_labelled |>
 ## 4. Variable labels and {ggplot}
 
 This is the best I could come up with to apply variable labels in ggplot, and it
-falls a bit short. If there is a slicker solution to automatically
+isn't fully satisfying. If there is a slicker solution to automatically
 display variable labels, rather than variable names, please let me know!
 
 
@@ -311,7 +324,8 @@ collaborators comfortable with excel.
 # Final thoughts
 
 I enjoy a labelled data workflow. It both enhances my productivity and streamlines
-my data products. I am curious if the set up is worthwhile for others as well!
+my data products. I am curious if the set up is worthwhile for others as well! And
+please let me know if you have other labelled data applications or workflows not included here.
 
 # Acknowledgments
 
