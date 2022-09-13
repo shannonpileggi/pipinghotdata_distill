@@ -1,5 +1,5 @@
 ---
-title: "The case for variable labels in R."
+title: "The case for variable labels in R"
 description: |
   Labelled data workflows with applications in data dictionaries, summary tables,
   ggplot, and exporting.
