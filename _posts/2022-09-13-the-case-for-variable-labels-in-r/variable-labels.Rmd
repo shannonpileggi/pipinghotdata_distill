@@ -260,7 +260,7 @@ penguins_labelled |>
 ```
 
 
-## 4. Variable labels and {ggplot}
+## 4. Variable labels and ggplot
 
 To substitute variable labels for variable names on your input variables, add
 [`ggeasy::easy_labs()`](https://jonocarroll.github.io/ggeasy/reference/easy_labs.html){target="_blank"}
@@ -270,7 +270,7 @@ to your ggplot.
 penguins_labelled |> 
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point() +
-  ggeasy::easy_labs()
+  easy_labs()
 ```
 
 
