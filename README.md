@@ -23,7 +23,7 @@ creators out there,
 📅 That’s a post roughly every **33** days, or about 0.8 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **13** days ago ([The case for variable
+✍️ The last post was published **14** days ago ([The case for variable
 labels in
 R](https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r)).
 As Yihui Xie advises, I try to write like no one is reading. But your
@@ -70,4 +70,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-09-26 06:16:20*
+*Updated 2022-09-27 06:10:17*
