@@ -176,7 +176,7 @@ It can help to return to the problem at hand over time, perhaps even outside of 
 stuff, then pick it up again. So you often get an idea while you’re doing something
 else or see something new when you return with fresh eyes.
 
-# 4. Personal relection {#reflection}
+# 4. Personal reflection {#reflection}
 
 > JB: I don’t think of this as me sharing some great wisdom, just that I’ve had
 a chance to give myself permission to really think about these things, given my life at RStudio.
