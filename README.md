@@ -18,14 +18,14 @@ creators out there,
 
 # Some stats ⚠️ WIP
 
-🎉 Piping Hot Data has **23** posts since **2018-11-05**\!
+🎉 Piping Hot Data has **24** posts since **2018-11-05**\!
 
-📅 That’s a post roughly every **35** days, or about 0.8 posts per month,
+📅 That’s a post roughly every **33** days, or about 0.8 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **50** days ago ([The case for variable
-labels in
-R](https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r)).
+✍️ The last post was published **1** days ago ([Regular, intentional,
+and time-boxed yak
+shaving.](https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving)).
 As Yihui Xie advises, I try to write like no one is reading. But your
 feedback does help motivate me to keep writing. 😉
 
@@ -37,6 +37,7 @@ feedback does help motivate me to keep writing. 😉
 
 | Date       | Title                                                                                                                                                                                             |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 2022-11-02 | [Regular, intentional, and time-boxed yak shaving.](https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving)                                                |
 | 2022-09-13 | [The case for variable labels in R](https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r)                                                                             |
 | 2022-08-30 | [My 4 Biggest Internship Takeaways](https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways)                                                                             |
 | 2022-06-02 | [Locating R and R Adjacent Software and Configuration Files](https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files)                           |
@@ -70,4 +71,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-11-02 05:50:14*
+*Updated 2022-11-03 00:16:46*
