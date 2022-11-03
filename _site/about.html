@@ -787,6 +787,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1859,15 +1860,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2458,7 +2465,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2565,48 +2572,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <p><img src="Shannon_circle.png" style="width:25.0%" /></p>
 <h2 id="professional">Professional</h2>
-<p>I’m an enthusiastic professional educator and statistical consultant
-with over ten years of experience collaborating on data analysis with
-diverse partners in industry, tech, public health, and clinical
-research. My previous work experiences include supporting research on
-parasitic diseases at the CDC, contributing to curriculum development at
-the Institute for Quantitative Theory and Methods at Emory University,
-and instructing advanced programming and modeling courses at California
-Polytechnic State University, San Luis Obispo. I am currently a Data
-Scientist at <a href="http://pcctc.org/" target="_blank">The Prostate
-Cancer Clinical Trials Consortium</a>, housed under <a
-href="https://www.mskcc.org/" target="_blank">Memorial Sloan Kettering
-Cancer Center</a>, working remotely from my home in Doylestown, PA.</p>
+<p>I’m an enthusiastic professional educator and statistical consultant with over ten years of experience collaborating on data analysis with diverse partners in industry, tech, public health, and clinical research. My previous work experiences include supporting research on parasitic diseases at the CDC, contributing to curriculum development at the Institute for Quantitative Theory and Methods at Emory University, and instructing advanced programming and modeling courses at California Polytechnic State University, San Luis Obispo. I am currently a Data Scientist at <a href="http://pcctc.org/" target="_blank">The Prostate Cancer Clinical Trials Consortium</a>, housed under <a href="https://www.mskcc.org/" target="_blank">Memorial Sloan Kettering Cancer Center</a>, working remotely from my home in Doylestown, PA.</p>
 <h2 id="r-ladies">R-Ladies</h2>
-<p>I am a member of the R-Ladies global team. <a
-href="https://rladies.org/" target="_blank">R-Ladies</a> promotes gender
-diversity in the R community, and I highly recommend joining the
-community <a href="https://rladies-community-slack.herokuapp.com/"
-target="_blank">slack</a>. My home chapter is <a
-href="https://www.rladiesphilly.org/" target="_blank">R-Ladies
-Philly</a>.</p>
+<p>I am a member of the R-Ladies global team. <a href="https://rladies.org/" target="_blank">R-Ladies</a> promotes gender diversity in the R community, and I highly recommend joining the community <a href="https://rladies-community-slack.herokuapp.com/" target="_blank">slack</a>. My home chapter is <a href="https://www.rladiesphilly.org/" target="_blank">R-Ladies Philly</a>.</p>
 <h2 id="personal">Personal</h2>
-<p>I have two daughters, one of which is my alarm clock and the other is
-my midnight collaborator. My <a
-href="https://www.stochastic-squirrel.com/" target="_blank">partner</a>
-is incredibly supportive and inspirational, and we exchange ideas on
-data and R programming. I’ve won many coveted recreational soccer league
-<em>Champion</em> t-shirts, and on the weekends we like to cruise around
-on our bikes. On the rare occasions when both children are asleep and we
-aren’t working or talking about data, you’ll find us relaxing with adult
-beverages and board games.</p>
+<p>I have two daughters, one of which is my alarm clock and the other is my midnight collaborator. My <a href="https://www.stochastic-squirrel.com/" target="_blank">partner</a> is incredibly supportive and inspirational, and we exchange ideas on data and R programming. I’ve won many coveted recreational soccer league <em>Champion</em> t-shirts, and on the weekends we like to cruise around on our bikes. On the rare occasions when both children are asleep and we aren’t working or talking about data, you’ll find us relaxing with adult beverages and board games.</p>
 <h2 id="contact">Contact</h2>
-<p>Want to chat? Go ahead, pipe up! Feel free to contact me on <a
-href="mailto:shannon@pipinghotdata.com" target="_blank">email</a>, <a
-href="https://twitter.com/PipingHotData" target="_blank">Twitter</a>, or
-<a href="https://www.linkedin.com/in/shannon-m-pileggi/"
-target="_blank">LinkedIn</a>. I hope to hear from you!</p>
+<p>Want to chat? Go ahead, pipe up! Feel free to contact me on <a href="mailto:shannon@pipinghotdata.com" target="_blank">email</a>, <a href="https://twitter.com/PipingHotData" target="_blank">Twitter</a>, or <a href="https://www.linkedin.com/in/shannon-m-pileggi/" target="_blank">LinkedIn</a>. I hope to hear from you!</p>
 <h2 id="r-feeds">R feeds</h2>
-<p>This blog feeds into <a href="https://rweekly.org/"
-target="_blank"><code>R Weekly</code></a>. Consider adding your blog or
-subscribing to see all of R’s latest and greatest!</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>This blog feeds into <a href="https://rweekly.org/" target="_blank"><code>R Weekly</code></a>. Consider adding your blog or subscribing to see all of R’s latest and greatest!</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

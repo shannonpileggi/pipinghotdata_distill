@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.pipinghotdata.com/about.html</loc>
-    <lastmod>2022-08-01T13:20:32-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/blog.html</loc>
@@ -10,11 +10,11 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/</loc>
-    <lastmod>2022-08-01T13:23:02-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
-    <lastmod>2022-09-13T17:24:53-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
@@ -25,24 +25,28 @@
     <lastmod>2021-11-01T22:24:28-04:00</lastmod>
   </url>
   <url>
+    <loc>https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving/</loc>
+    <lastmod>2022-11-02T20:08:34-04:00</lastmod>
+  </url>
+  <url>
     <loc>https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/</loc>
-    <lastmod>2022-09-14T09:17:26-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways/</loc>
-    <lastmod>2022-08-30T16:36:39-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files/</loc>
-    <lastmod>2022-06-20T10:41:38-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations/</loc>
-    <lastmod>2022-05-26T12:59:29-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex/</loc>
-    <lastmod>2022-07-05T09:39:07-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website/</loc>
@@ -78,7 +82,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/</loc>
-    <lastmod>2022-08-01T13:21:47-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction/</loc>
@@ -118,7 +122,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr/</loc>
-    <lastmod>2022-06-24T17:31:40-04:00</lastmod>
+    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r/</loc>
