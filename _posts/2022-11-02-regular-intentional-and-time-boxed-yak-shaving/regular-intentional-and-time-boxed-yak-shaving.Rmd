@@ -58,9 +58,7 @@ Throughout, text in quote blocks with "JB" are direct quotes from Jenny.
 
 # 1. Background {#background}
 
-[Jenny Bryan](https://jennybryan.org/){target="_blank"}, a Software Engineer at RStudio, is known for developing R packages
-and educational materials, especially as they relate to creating efficient workflows. 
-A year ago, Jenny tweeted advice regarding the concept of "yak shaving" that made
+[Jenny Bryan](https://jennybryan.org/){target="_blank"}, a Software Engineer at Posit (formerly RStudio), is known for developing R packages and educational materials, especially as they relate to creating efficient workflows. A year ago, Jenny tweeted advice regarding the concept of "yak shaving" that made
 the process of self-improvement sound logical, structured, and easy. 
 
 ```{r}
