@@ -23,7 +23,7 @@ creators out there,
 📅 That’s a post roughly every **33** days, or about 0.8 posts per month,
 since 2020-08-30.
 
-✍️ The last post was published **4** days ago ([Regular, intentional,
+✍️ The last post was published **5** days ago ([Regular, intentional,
 and time-boxed yak
 shaving.](https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving)).
 As Yihui Xie advises, I try to write like no one is reading. But your
@@ -71,4 +71,4 @@ Dray](https://www.rostrum.blog/2021/04/14/gha-readme/); giscus
 commenting was motivated by [Joel
 Nitta](https://www.joelnitta.com/posts/2021-11-24_using-giscus/).*
 
-*Updated 2022-11-06 05:25:43*
+*Updated 2022-11-07 05:35:55*
