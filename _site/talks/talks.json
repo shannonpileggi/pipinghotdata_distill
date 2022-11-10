@@ -1,5 +1,39 @@
 [
   {
+    "path": "talks/2022-11-10-various-gtreg/",
+    "title": "Various {gtreg} presentations",
+    "description": "Confererence talks and workshops",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2022-11-10",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of the {gtreg} package.\r\n\r\n\r\n\r\nSee the package documentation at https://shannonpileggi.github.io/gtreg/.\r\nR in Pharma (2022) - 3 hour workshop\r\n\r\n website\r\n\r\n\r\nR in Pharma (2022) - 10 min talk\r\n\r\n slides\r\n\r\n\r\nNHS-R (2022) - 15 min talk\r\n\r\n slides\r\n\r\n\r\nR in Medicine (2022) - 20 min talk\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\n\r\n\r\n\r\n",
+    "preview": "talks/2022-11-10-various-gtreg/gtreg_overview.svg",
+    "last_modified": "2022-11-10T14:07:56-05:00",
+    "input_file": {}
+  },
+  {
+    "path": "talks/2022-11-11-debugging/",
+    "title": "Debugging",
+    "description": "A 3-hour NHS-R workshop",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2022-11-10",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of debugging tools in R.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nOverview\r\nA 3-hour zoom workshop on debugging for the NHS-R conference.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2022 RStudio What They Forgot To Teach You About R Workshop.\r\nPre-requisites\r\nKnowledge of how to write a function in R.\r\nLearning objectives:\r\nReview code troubleshooting tips.\r\nDiscuss debugging functions (traceback(), browser(), debug(), trace(), and recover()) and the additional benefits of employing some of these strategies within RStudio.\r\nDistinguish between strategies for debugging your own code versus someone else’s code.\r\n\r\n\r\n\r\n",
+    "preview": "talks/2022-11-11-debugging/debugging_tools.svg",
+    "last_modified": "2022-11-10T14:16:25-05:00",
+    "input_file": {}
+  },
+  {
     "path": "talks/2022-06-08-iterating-well-with-purrr/",
     "title": "Iterating well with purrr",
     "description": "An R-Ladies workshop",
@@ -11,9 +45,9 @@
     ],
     "date": "2022-06-08",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Slide from the workshop.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nOverview\r\nA zoom workshop on iterating well with purrr for R-Ladies Rabat.\r\nUnder the Creative Commons\r\nShare Alike 4.0 International license, workshop materials have been\r\nadapted from the 2020 RStudio What They\r\nForgot To Teach You About R Workshop.\r\nAbstract\r\nIn this workshop we discuss approaches to iteration in R. We briefly\r\ndiscuss iterative techniques that do not require loops or\r\npurrr::map_ (for example, group_by, vectorized functions,\r\netc.). Then we explore lists as an object to store information of\r\nvarying types and sizes and explain how to extract elements from a list\r\nvia the purrr::map_ family.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Slide from the workshop.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\nOverview\r\nA zoom workshop on iterating well with purrr for R-Ladies Rabat.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2020 RStudio What They Forgot To Teach You About R Workshop.\r\nAbstract\r\nIn this workshop we discuss approaches to iteration in R. We briefly discuss iterative techniques that do not require loops or purrr::map_ (for example, group_by, vectorized functions, etc.). Then we explore lists as an object to store information of varying types and sizes and explain how to extract elements from a list via the purrr::map_ family.\r\n\r\n\r\n\r\n",
     "preview": "talks/2022-06-08-iterating-well-with-purrr/purrr.PNG",
-    "last_modified": "2022-11-02T17:51:46-04:00",
+    "last_modified": "2022-11-10T13:51:37-05:00",
     "input_file": {},
     "preview_width": 1805,
     "preview_height": 757

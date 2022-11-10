@@ -124,7 +124,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["iterating-well-with-purrr_files/anchor-4.2.2/anchor.min.js","iterating-well-with-purrr_files/bowser-1.9.3/bowser.min.js","iterating-well-with-purrr_files/distill-2.2.21/template.v2.js","iterating-well-with-purrr_files/header-attrs-2.14/header-attrs.js","iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.js","iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.min.js","iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.min.map","iterating-well-with-purrr_files/popper-2.6.0/popper.min.js","iterating-well-with-purrr_files/tippy-6.2.7/tippy-bundle.umd.min.js","iterating-well-with-purrr_files/tippy-6.2.7/tippy-light-border.css","iterating-well-with-purrr_files/tippy-6.2.7/tippy.css","iterating-well-with-purrr_files/tippy-6.2.7/tippy.umd.min.js","iterating-well-with-purrr_files/webcomponents-2.0.0/webcomponents.js","purrr.PNG"]}
+  {"type":"character","attributes":{},"value":["custom-summary-before.PNG","iterating-well-with-purrr_files/anchor-4.2.2/anchor.min.js","iterating-well-with-purrr_files/bowser-1.9.3/bowser.min.js","iterating-well-with-purrr_files/distill-2.2.21/template.v2.js","iterating-well-with-purrr_files/header-attrs-2.14/header-attrs.js","iterating-well-with-purrr_files/header-attrs-2.17/header-attrs.js","iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.js","iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.min.js","iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.min.map","iterating-well-with-purrr_files/popper-2.6.0/popper.min.js","iterating-well-with-purrr_files/tippy-6.2.7/tippy-bundle.umd.min.js","iterating-well-with-purrr_files/tippy-6.2.7/tippy-light-border.css","iterating-well-with-purrr_files/tippy-6.2.7/tippy.css","iterating-well-with-purrr_files/tippy-6.2.7/tippy.umd.min.js","iterating-well-with-purrr_files/webcomponents-2.0.0/webcomponents.js","purrr.PNG"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -195,6 +195,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1267,15 +1268,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1474,7 +1481,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="iterating-well-with-purrr_files/header-attrs-2.14/header-attrs.js"></script>
+  <script src="iterating-well-with-purrr_files/header-attrs-2.17/header-attrs.js"></script>
   <script src="iterating-well-with-purrr_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="iterating-well-with-purrr_files/popper-2.6.0/popper.min.js"></script>
   <link href="iterating-well-with-purrr_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1527,25 +1534,17 @@ Figure 1: Slide from the workshop.
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><a href="https://shannonpileggi.github.io/iterating-well-with-purrr/#/title-slide" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> slides</a></p>
+<a href="https://shannonpileggi.github.io/iterating-well-with-purrr/#/title-slide" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-images"></i> slides</a>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<a href="https://youtu.be/Uul_Hpih9dM" class="icon-link" target="_blank" rel="noopener"><i class="fas fa-play-circle"></i> recording</a>
 </div>
 <h1 id="overview">Overview</h1>
 <p>A zoom workshop on iterating well with purrr for R-Ladies Rabat.</p>
-<p>Under the <a
-href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
-Share Alike 4.0 International license</a>, workshop materials have been
-adapted from the <a
-href="https://rstats-wtf.github.io/wtf-2020-rsc/">2020 RStudio What They
-Forgot To Teach You About R</a> Workshop.</p>
+<p>Under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Share Alike 4.0 International license</a>, workshop materials have been adapted from the <a href="https://rstats-wtf.github.io/wtf-2020-rsc/">2020 RStudio What They Forgot To Teach You About R</a> Workshop.</p>
 <h1 id="abstract">Abstract</h1>
-<p>In this workshop we discuss approaches to iteration in R. We briefly
-discuss iterative techniques that do not require loops or
-<code>purrr::map_</code> (for example, group_by, vectorized functions,
-etc.). Then we explore lists as an object to store information of
-varying types and sizes and explain how to extract elements from a list
-via the <code>purrr::map_</code> family.</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>In this workshop we discuss approaches to iteration in R. We briefly discuss iterative techniques that do not require loops or <code>purrr::map_</code> (for example, group_by, vectorized functions, etc.). Then we explore lists as an object to store information of varying types and sizes and explain how to extract elements from a list via the <code>purrr::map_</code> family.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
