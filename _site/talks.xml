@@ -7,7 +7,25 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Various {gtreg} presentations</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</link>
+      <description>Confererence talks and workshops</description>
+      <guid>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</guid>
+      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg/gtreg_overview.svg" medium="image" type="image/svg+xml"/>
+    </item>
+    <item>
+      <title>Debugging</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2022-11-11-debugging</link>
+      <description>A 3-hour NHS-R workshop</description>
+      <guid>https://www.pipinghotdata.com/talks/2022-11-11-debugging</guid>
+      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2022-11-11-debugging/debugging_tools.svg" medium="image" type="image/svg+xml"/>
+    </item>
     <item>
       <title>Iterating well with purrr</title>
       <dc:creator>Shannon Pileggi</dc:creator>

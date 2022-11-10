@@ -36,16 +36,14 @@ knitr::include_graphics("purrr.PNG")
 distilltools::icon_link(icon = "images",
           text = "slides",
           url = "https://shannonpileggi.github.io/iterating-well-with-purrr/#/title-slide")
+```
 
-#distilltools::icon_link(icon = "fas fa-pencil-alt",
-#          text = "blog post",
-#          url = "https://www.pipinghotdata.com/posts/2022-06-08-iterating-well-with-purrr/")
-#          
-          
-#distilltools::icon_link(icon = "fas fa-play-circle",
-#          text = "recording",
-#          url = "https://youtu.be/4bPekjzIYiU")
-#
+
+```{r icon-links-2, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://youtu.be/Uul_Hpih9dM")
+
 ```
 
 # Overview
