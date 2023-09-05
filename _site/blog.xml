@@ -7,14 +7,228 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 02 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>2023-09-07</lastBuildDate>
+    <item>
+      <title>R Project Sprint.</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2023-09-07-r-project-sprint</link>
+      <description>
+
+
+&lt;div class="figure"&gt;
+&lt;img src="https://www.pipinghotdata.com/posts/2023-09-07-r-project-sprintRprojectsprint3.jpeg" alt="38 participants in-person in a classroom space: 1st row sitting on floor, 2nd row kneeling or sitting in chairs, 3rd row standing. Two remote participants shown on video conference in screen to the left of the group." width="840" /&gt;
+&lt;p class="caption"&gt;
+(#fig:thumbnail)R Project Sprint participants, with remote participants
+shown on video conference. Not all &lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/participants/"
+target="_blank"&gt;particpants&lt;/a&gt; photographed.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
+&lt;p&gt;In August of 2023 I traveled to the University of Warwick in
+Coventry, England to participate in the &lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/"
+target="_blank"&gt;R Project Sprint&lt;/a&gt;, where I worked collaboratively on
+contributions to base R alongside novice and experienced contributors,
+as well as the R Core Team.&lt;/p&gt;
+&lt;h1 id="about"&gt;About&lt;/h1&gt;
+&lt;p&gt;The source code for base R is a mixture of R and C code. The bug
+fixes, maintenance, and enhancement of this code base is upheld by
+volunteers. Those who make the executive decisions are the &lt;a
+href="https://www.r-project.org/contributors.html" target="_blank"&gt;R
+Core Team&lt;/a&gt;; however, community members are still encouraged to
+contribute.&lt;/p&gt;
+&lt;p&gt;The aim of the R Project Sprint as I perceive it was to foster
+mentorship, collaborations, and personal relationships between the
+novice and experienced contributors, reducing the barrier to one’s first
+contribution.&lt;/p&gt;
+&lt;p&gt;The purpose of this post is describe my personal experience at this
+event; a comprehensive guide for how contribute to base R is documented
+in the &lt;a href="https://contributor.r-project.org/" target="_blank"&gt;R
+Contribution Working Group website&lt;/a&gt;.&lt;/p&gt;
+&lt;h1 id="applying-to-participate"&gt;Applying to participate&lt;/h1&gt;
+&lt;p&gt;&lt;a href="https://contributor.r-project.org/r-project-sprint-2023/"
+target="_blank"&gt;Applications to participate&lt;/a&gt; in the event were due in
+March 2023, and later that month I was notified of my acceptance. The
+expectations for participants’ knowledge base coming into the event was
+nicely outlined in the application.&lt;/p&gt;
+&lt;h1 id="prior-to-the-event"&gt;Prior to the event&lt;/h1&gt;
+&lt;p&gt;Leading up to the event there was communication about optional things
+we could do to prepare, most of which is available at the &lt;a
+href="https://contributor.r-project.org/" target="_blank"&gt;R Contribution
+Working Group website&lt;/a&gt;. This included:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Joining the &lt;a href="https://contributor.r-project.org/slack"
+target="_blank"&gt;R Contributors slack group&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Participating in &lt;a
+href="https://contributor.r-project.org/events/" target="_blank"&gt;online
+events&lt;/a&gt; such as a C book club for R Contributors and R Contributor
+office hours.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Watching recorded &lt;a
+href="https://contributor.r-project.org/tutorials/"
+target="_blank"&gt;tutorials and demonstrations&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Submitting &lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/projects/ideas-and-proposals.html"
+target="_blank"&gt;proposals&lt;/a&gt; for topics to tackle during the
+Sprint.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="participants"&gt;Participants&lt;/h1&gt;
+&lt;p&gt;The &lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/participants/"
+target="_blank"&gt;R Project Sprint participants&lt;/a&gt; were impressively
+diverse both in terms of professional experience and geographic
+residence. A non-exhaustive list of countries represented at the
+in-person event includes Argentina, Brazil, Canada, England, India,
+Hungary, Nepal, Netherlands, New Zealand, Nigeria, Oman, and Senegal,
+Switzerland, and United States.&lt;/p&gt;
+&lt;p&gt;Some individuals participated remotely via video conference, either
+by choice or circumstance. The combination of &lt;a
+href="https://www.bbc.com/news/uk-66637156" target="_blank"&gt;the United
+Kingdom’s air traffic control issues&lt;/a&gt; and &lt;a
+href="https://www.bbc.com/news/business-66479059" target="_blank"&gt;train
+strikes&lt;/a&gt; caused delayed arrival for some.&lt;/p&gt;
+&lt;h1 id="during-the-event"&gt;During the event&lt;/h1&gt;
+&lt;p&gt;The issues addressed at the event fell into four broad
+categories:&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;&lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/projects/translation/"
+target="_blank"&gt;Translation&lt;/a&gt; of messages, errors, and
+warnings.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Improving &lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/projects/documentation/"
+target="_blank"&gt;documentation&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Addressing bug reports, such as those related to the &lt;a
+href="https://github.com/r-devel/r-project-sprint-2023/issues/33"
+target="_blank"&gt;&lt;code&gt;stats&lt;/code&gt; package&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enhancements, such as &lt;a
+href="https://github.com/r-devel/r-project-sprint-2023/issues/75"
+target="_blank"&gt;logging visual outcomes from base graphics
+calls&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="knowledge-requirements-for-contributions"&gt;Knowledge requirements
+for contributions&lt;/h1&gt;
+&lt;p&gt;Depending on the task at hand, the technical requirements for
+contributions included:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Read R source code and understand function implementation
+(documentation and translation).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Read, modify, or write R source code (bugs and
+enhancements).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Read, modify, or write C source code (bugs and
+enhancements).&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id="workflows-for-contributions"&gt;Workflows for contributions&lt;/h1&gt;
+&lt;p&gt;During the sprint, the progress on these items was tracked &lt;a
+href="https://github.com/r-devel/r-project-sprint-2023/issues"
+target="_blank"&gt;https://github.com/r-devel/r-project-sprint-2023/issues&lt;/a&gt;.
+Either the initial report or the final resolution of these items may be
+seen in the R Bug Tracking System, known as &lt;a
+href="https://bugs.r-project.org/" target="_blank"&gt;Bugzilla&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Depending on the nature of the proposed change, the contributor may
+need to build R from source. The instructions regarding how to do so on
+your personal computing enviroment are outlined in the &lt;a
+href="https://contributor.r-project.org/rdevguide/GetStart.html"
+target="_blank"&gt;R Patched and Development Versions Chapter&lt;/a&gt; of the &lt;a
+href="https://contributor.r-project.org/rdevguide/index.html"
+target="_blank"&gt;R Development Guide&lt;/a&gt;. Alternatively, one could also
+build R from source without touching their local computing environment
+using the &lt;a href="https://github.com/r-devel/r-dev-env"
+target="_blank"&gt;GitHub Code Space R Dev Containter&lt;/a&gt; (which I heard
+facilitated collaboration nicely as well).&lt;/p&gt;
+&lt;p&gt;Regardless of whether you needed to build R from source, proposed
+changes could then be tested on multiple computing platforms via a pull
+request to &lt;a href="https://github.com/r-devel/r-svn"
+target="_blank"&gt;https://github.com/r-devel/r-svn&lt;/a&gt;, which mirrors the
+official base R server. After tests have passed, the contributor could
+extract the diff from the pull request to submit a proposed solution via
+Bugzilla.&lt;/p&gt;
+&lt;p&gt;Once a proposal is submitted, member(s) of the R core team review. If
+the proposed change modifies the code base, additional checks are run
+against all packages on CRAN (which there are currently ~20,000) to
+determine if any breaking changes are enacted, which takes &amp;gt;14 hours
+to complete. If breaking changes are found, a possible resolution could
+include re-writing the code to avoid breaking changes. If that is not
+possible, the R Core Team would then assess if the breaking changes are
+good breaking changes for packages (i.e., code could have been returning
+possibly incorrect results and should indeed break and be addressed) or
+if the breaking changes have too wide of a reach and minimal impact to
+be considered worth it. If it is decided that breaking changes should be
+enacted, the R Core Team notifies all authors of affected packages.&lt;/p&gt;
+&lt;h1 id="bugs-personally-addressed"&gt;Bugs personally addressed&lt;/h1&gt;
+&lt;p&gt;I spent most of my time at the Sprint on two bugs that genuinely
+intrigued me as there were related to functions I had used often over
+the years.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;base::paste&lt;/code&gt; documentation, discussed in &lt;a
+href="https://bugs.r-project.org/show_bug.cgi?id=17933"
+target="_blank"&gt;bug 17933&lt;/a&gt; and tested in &lt;a
+href="https://github.com/r-devel/r-svn/pull/138"&gt;r-devel PR138&lt;/a&gt;.
+Opened in 2020, there was already substantial nuanced discussion on this
+issue related to the clarity and correctness of the documentation
+regarding the &lt;code&gt;collapse&lt;/code&gt; and &lt;code&gt;recycle0&lt;/code&gt; behaviors.
+It took me a substantial amount of time to understand and evaluate the
+scenarios discussed and propose changes. After my initial proposal, I
+received several rounds of feedback both from fellow R contributors and
+the R core team that provided additional suggestions and context for the
+documentation.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;stats::t.test&lt;/code&gt; bug, discussed in &lt;a
+href="https://bugs.r-project.org/show_bug.cgi?id=14359"
+target="_blank"&gt;bug 14359&lt;/a&gt; and tested in &lt;a
+href="https://github.com/r-devel/r-svn/pull/142" target="_blank"&gt;r-devel
+PR142&lt;/a&gt;. Opened in 2010, there was again already substantial
+discussion on the both the implementation of the paired t-test and the
+examples shown in the documentation. This was again a collaboration
+among several individuals to both modify the source code and improve
+documentation that had several rounds of iteration.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id="outcomes"&gt;Outcomes&lt;/h1&gt;
+&lt;p&gt;For both me personally and for the wider R community, I view the
+event as a huge success. Many friendships were made, many collaborations
+were born, and many bug fixes and enhancements were implemented
+throughout the week.&lt;/p&gt;
+&lt;p&gt;Time zone differences and personal availability among the R Core Team
+and contributors can lead to time lags in communications, losing
+momentum for initiated issues. Having contributors in person together
+facilitated live and immediate feedback, allowing for faster iteration
+and completion.&lt;/p&gt;
+&lt;p&gt;I can now confidently either submit a new bug report or address an
+existing bug report. Moreover, I understand workflows for contributions,
+resources for help, and how to interact with the community to for help
+should I get stuck.&lt;/p&gt;
+&lt;p&gt;I will also begin attending the R Contribution Working Group (RCWG)
+as a representative of R-Ladies to communicate RCWG highlights to the
+broader R-Ladies community and engage in RCWG initiatives as able.&lt;/p&gt;
+&lt;p&gt;I learned from R Core Team members that have been contributing to
+base R since 1997, and who knows, maybe I just shared a dinner, chatted
+over coffee, or walked around campus with a future R Core Team member.
+💙&lt;/p&gt;
+&lt;h1 id="acknowledgments"&gt;Acknowledgments&lt;/h1&gt;
+&lt;p&gt;Infinite thanks to &lt;a
+href="https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/turner/"
+target="_blank"&gt;Heather Turner&lt;/a&gt; for organizing the Sprint, as well as
+the &lt;a
+href="https://contributor.r-project.org/r-project-sprint-2023/#sponsors"
+target="_blank"&gt;sponsors&lt;/a&gt; who provided the funding to make this event
+possible. Thank you to R Core Team members and fellow R contributors who
+traveled across the world to attend, and who kindly and generously
+shared their knowledge, expertise, anecdotes, and experiences. It was
+truly a pleasure. Lastly, thanks to &lt;a href="https://www.frick.ws/"
+target="_blank"&gt;Hannah Frick&lt;/a&gt; (a fellow Sprint attendee) for
+providing feedback on this post.&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>15f919b0873e568f9896e39a058ff24d</distill:md5>
+      <guid>https://www.pipinghotdata.com/posts/2023-09-07-r-project-sprint</guid>
+      <pubDate>2023-09-07</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2023-09-07-r-project-sprint/Rprojectsprint3.jpeg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Regular, intentional, and time-boxed yak shaving.</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving</link>
       <description>A conversation with Jenny Bryan about productive incremental learning.</description>
       <guid>https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving</guid>
-      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-11-02</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2022-11-02-regular-intentional-and-time-boxed-yak-shaving/img/lieve-ransijn-FsJ_vzp_NI4-unsplash.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -24,7 +238,7 @@
       <description>Labelled data workflows with applications in data dictionaries, summary tables,
 ggplot, and exporting.</description>
       <guid>https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r</guid>
-      <pubDate>Tue, 13 Sep 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-09-13</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/img/efc_view.PNG" medium="image" type="image/png" width="1442" height="731"/>
     </item>
     <item>
@@ -33,7 +247,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways</link>
       <description>What I've learned after interning at the PCCTC.</description>
       <guid>https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways</guid>
-      <pubDate>Tue, 30 Aug 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-08-30</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2022-08-30-my-4-biggest-internship-takeaways/images/team_photo.png" medium="image" type="image/png" width="1920" height="1017"/>
     </item>
     <item>
@@ -42,7 +256,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files</link>
       <description>My personal R administration on Windows 10</description>
       <guid>https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files</guid>
-      <pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-06-02</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2022-06-02-locating-r-and-r-adjacent-software-and-configuration-files/R-file-tree.png" medium="image" type="image/png" width="1280" height="768"/>
     </item>
     <item>
@@ -51,7 +265,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations</link>
       <description>Three methods make your code lines stand out</description>
       <guid>https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations</guid>
-      <pubDate>Thu, 12 May 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-05-12</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2022-05-12-code-line-highlighting-in-quarto-revealjs-presentations/quarto-code-hl-layout.PNG" medium="image" type="image/png" width="1280" height="720"/>
     </item>
     <item>
@@ -60,7 +274,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex</link>
       <description>Customized raw data tables and gtsummary tables in PDF output</description>
       <guid>https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex</guid>
-      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-01-24</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2022-01-24-report-ready-pdf-tables-with-rmarkdown-knitr-kableextra-and-latex/img/pdf_scroll.gif" medium="image" type="image/gif"/>
     </item>
     <item>
@@ -69,7 +283,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website</link>
       <description>Adventures with giscus (easier) and GitHub Actions (harder)</description>
       <guid>https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website</guid>
-      <pubDate>Mon, 13 Dec 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-12-13</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-12-13-modifying-the-github-repo-containing-my-distill-website/woof_today.png" medium="image" type="image/png" width="1627" height="927"/>
     </item>
     <item>
@@ -78,7 +292,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r</link>
       <description>Automating the dev work you are probably already doing</description>
       <guid>https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r</guid>
-      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-11-23</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-11-23-getting-started-with-unit-testing-in-r/img/unit-testing-thumbnail.png" medium="image" type="image/png" width="1280" height="720"/>
     </item>
     <item>
@@ -87,7 +301,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-10-11-estimating-correlations-adjusted-for-group-membership</link>
       <description>A linear mixed model approach with applied examples in a Palmer penguins Simpson's paradox and TidyTuesday Spotify songs</description>
       <guid>https://www.pipinghotdata.com/posts/2021-10-11-estimating-correlations-adjusted-for-group-membership</guid>
-      <pubDate>Mon, 11 Oct 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-10-11</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-10-11-estimating-correlations-adjusted-for-group-membership/img/thumbnail.PNG" medium="image" type="image/png" width="960" height="540"/>
     </item>
     <item>
@@ -96,7 +310,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter</link>
       <description>From creating content to cultivating connections.</description>
       <guid>https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter</guid>
-      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-09-23</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-09-23-curating-for-wearerladies-on-twitter/img/arno-smit-iI72r3gSwWY-unsplash.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -105,7 +319,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r</link>
       <description>Going from wide to long with #TidyTuesday beach volleyball</description>
       <guid>https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r</guid>
-      <pubDate>Fri, 27 Aug 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-08-27</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-08-27-a-tidyverse-pivot-approach-to-data-preparation-in-r/gatherspread_modified.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -114,7 +328,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary</link>
       <description>Also plays well with labelled data</description>
       <guid>https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary</guid>
-      <pubDate>Wed, 14 Jul 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-07-14</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/r-gtsummary.png" medium="image" type="image/png" width="2540" height="1932"/>
     </item>
     <item>
@@ -123,7 +337,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r</link>
       <description>geom_rect() + geom_coord() + {ggiraph}</description>
       <guid>https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r</guid>
-      <pubDate>Tue, 01 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-06-01</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-06-01-custom-interactive-sunbursts-with-ggplot-in-r/sunburst_preview.PNG" medium="image" type="image/png" width="528" height="475"/>
     </item>
     <item>
@@ -132,7 +346,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</link>
       <description>Collaborative {distill} website workflows</description>
       <guid>https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly</guid>
-      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-04-01</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-04-01-deploy-previews-with-netlifly/img/netlifly-checks.png" medium="image" type="image/png" width="1358" height="704"/>
     </item>
     <item>
@@ -141,7 +355,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr</link>
       <description>The code behind my @WeAreRLadies curating week</description>
       <guid>https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr</guid>
-      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-03-08</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-03-08-r-ladies-styled-code-gifs-with-xaringan-and-flipbookr/walrus-adjusted.png" medium="image" type="image/png" width="1536" height="861"/>
     </item>
     <item>
@@ -150,7 +364,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction</link>
       <description>A gif for social media</description>
       <guid>https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction</guid>
-      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-02-15</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-02-15-gganimating-a-geographic-introduction/homes_preview.png" medium="image" type="image/png" width="919" height="461"/>
     </item>
     <item>
@@ -159,7 +373,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api</link>
       <description>A parenting project to catalog my childrens' 2020 library history</description>
       <guid>https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api</guid>
-      <pubDate>Mon, 11 Jan 2021 00:00:00 +0000</pubDate>
+      <pubDate>2021-01-11</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2021-01-11-from-gmailr-to-the-google-books-api/preview_books.png" medium="image" type="image/png" width="705" height="459"/>
     </item>
     <item>
@@ -168,7 +382,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r</link>
       <description>Embracing SPSS, SAS, and Stata data sets with the haven, labelled, and sjlabelled packages</description>
       <guid>https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r</guid>
-      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-12-23</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/labelled_preview.png" medium="image" type="image/png" width="671" height="617"/>
     </item>
     <item>
@@ -177,7 +391,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour</link>
       <description>Tools that make R package development easy</description>
       <guid>https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour</guid>
-      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-10-25</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -186,7 +400,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr</link>
       <description>What, why, how, when, and who</description>
       <guid>https://www.pipinghotdata.com/posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr</guid>
-      <pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-09-22</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2020-09-22-exporting-editable-ggplot-graphics-to-powerpoint-with-officer-and-purrr/data_cowboy_officer.png" medium="image" type="image/png" width="678" height="382"/>
     </item>
     <item>
@@ -195,7 +409,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown</link>
       <description>Gettin' giffy wit it.</description>
       <guid>https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown</guid>
-      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-09-07</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/introducing_resize2.png" medium="image" type="image/png" width="473" height="371"/>
     </item>
     <item>
@@ -204,7 +418,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community</link>
       <description>How #tidytuesday and twitter helped me secure a job offer</description>
       <guid>https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community</guid>
-      <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-08-30</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2020-08-30-a-job-interview-presentation-inspired-by-the-r-community/welcome_to_rstats_twitter.png" medium="image" type="image/png" width="2009" height="1942"/>
     </item>
     <item>
@@ -213,7 +427,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2018-12-11-stringr-4-ways</link>
       <description>Four approaches to feature engineering with regular expressions in R</description>
       <guid>https://www.pipinghotdata.com/posts/2018-12-11-stringr-4-ways</guid>
-      <pubDate>Tue, 11 Dec 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-12-11</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2018-12-11-stringr-4-ways/table2.png" medium="image" type="image/png" width="1010" height="319"/>
     </item>
     <item>
@@ -222,7 +436,7 @@ ggplot, and exporting.</description>
       <link>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data</link>
       <description>What's in a name?</description>
       <guid>https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data</guid>
-      <pubDate>Mon, 05 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>2018-11-05</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2018-11-05-welcome-to-piping-hot-data/tidyverse_celestial.png" medium="image" type="image/png" width="2048" height="2048"/>
     </item>
   </channel>
