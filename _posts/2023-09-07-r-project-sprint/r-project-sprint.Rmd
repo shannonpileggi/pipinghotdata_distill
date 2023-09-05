@@ -56,7 +56,7 @@ and personal relationships between the novice and experienced contributors, redu
 the barrier to one's first contribution.
 
 The purpose of this post is describe my personal experience at this event; a comprehensive 
-guide for how contribute to base R is documented in the [R Contribution Working Group website](https://contributor.r-project.org/){target="_blank"}.
+guide for how contribute to base R is documented on the [R Contribution Working Group website](https://contributor.r-project.org/){target="_blank"}.
 
 # Applying to participate
 
