@@ -44,7 +44,7 @@ novice and experienced contributors, reducing the barrier to one’s first
 contribution.&lt;/p&gt;
 &lt;p&gt;The purpose of this post is describe my personal experience at this
 event; a comprehensive guide for how contribute to base R is documented
-in the &lt;a href="https://contributor.r-project.org/" target="_blank"&gt;R
+on the &lt;a href="https://contributor.r-project.org/" target="_blank"&gt;R
 Contribution Working Group website&lt;/a&gt;.&lt;/p&gt;
 &lt;h1 id="applying-to-participate"&gt;Applying to participate&lt;/h1&gt;
 &lt;p&gt;&lt;a href="https://contributor.r-project.org/r-project-sprint-2023/"
@@ -79,7 +79,7 @@ target="_blank"&gt;R Project Sprint participants&lt;/a&gt; were impressively
 diverse both in terms of professional experience and geographic
 residence. A non-exhaustive list of countries represented at the
 in-person event includes Argentina, Brazil, Canada, England, India,
-Hungary, Nepal, Netherlands, New Zealand, Nigeria, Oman, and Senegal,
+Hungary, Nepal, Netherlands, New Zealand, Nigeria, Oman, Senegal,
 Switzerland, and United States.&lt;/p&gt;
 &lt;p&gt;Some individuals participated remotely via video conference, either
 by choice or circumstance. The combination of &lt;a
@@ -119,7 +119,7 @@ enhancements).&lt;/p&gt;&lt;/li&gt;
 enhancements).&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id="workflows-for-contributions"&gt;Workflows for contributions&lt;/h1&gt;
-&lt;p&gt;During the sprint, the progress on these items was tracked &lt;a
+&lt;p&gt;During the sprint, the progress on these items was tracked at &lt;a
 href="https://github.com/r-devel/r-project-sprint-2023/issues"
 target="_blank"&gt;https://github.com/r-devel/r-project-sprint-2023/issues&lt;/a&gt;.
 Either the initial report or the final resolution of these items may be
@@ -134,7 +134,7 @@ href="https://contributor.r-project.org/rdevguide/index.html"
 target="_blank"&gt;R Development Guide&lt;/a&gt;. Alternatively, one could also
 build R from source without touching their local computing environment
 using the &lt;a href="https://github.com/r-devel/r-dev-env"
-target="_blank"&gt;GitHub Code Space R Dev Containter&lt;/a&gt; (which I heard
+target="_blank"&gt;GitHub Code Space R Dev Container&lt;/a&gt; (which I heard
 facilitated collaboration nicely as well).&lt;/p&gt;
 &lt;p&gt;Regardless of whether you needed to build R from source, proposed
 changes could then be tested on multiple computing platforms via a pull
@@ -142,7 +142,11 @@ request to &lt;a href="https://github.com/r-devel/r-svn"
 target="_blank"&gt;https://github.com/r-devel/r-svn&lt;/a&gt;, which mirrors the
 official base R server. After tests have passed, the contributor could
 extract the diff from the pull request to submit a proposed solution via
-Bugzilla.&lt;/p&gt;
+Bugzilla; this process is more thoroughly documented in the &lt;a
+href="https://contributor.r-project.org/rdevguide/FixBug.html#using-a-git-mirror"
+target="_blank"&gt;Using a git mirror section&lt;/a&gt; of the &lt;a
+href="https://contributor.r-project.org/rdevguide/index.html"
+target="_blank"&gt;R Development Guide&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Once a proposal is submitted, member(s) of the R core team review. If
 the proposed change modifies the code base, additional checks are run
 against all packages on CRAN (which there are currently ~20,000) to
@@ -194,7 +198,7 @@ facilitated live and immediate feedback, allowing for faster iteration
 and completion.&lt;/p&gt;
 &lt;p&gt;I can now confidently either submit a new bug report or address an
 existing bug report. Moreover, I understand workflows for contributions,
-resources for help, and how to interact with the community to for help
+resources for help, and how to interact with the community for help
 should I get stuck.&lt;/p&gt;
 &lt;p&gt;I will also begin attending the R Contribution Working Group (RCWG)
 as a representative of R-Ladies to communicate RCWG highlights to the

@@ -82,7 +82,7 @@ we could do to prepare, most of which is available at the [R Contribution Workin
 
 The [R Project Sprint participants](https://contributor.r-project.org/r-project-sprint-2023/participants/){target="_blank"} were impressively diverse both in terms
 of professional experience and geographic residence. A non-exhaustive list of countries
-represented at the in-person event includes Argentina, Brazil, Canada, England, India, Hungary, Nepal, Netherlands, New Zealand, Nigeria, Oman, and Senegal, Switzerland, and United States.
+represented at the in-person event includes Argentina, Brazil, Canada, England, India, Hungary, Nepal, Netherlands, New Zealand, Nigeria, Oman, Senegal, Switzerland, and United States.
 
 Some individuals participated remotely via video conference, either by choice
 or circumstance. The combination of [the United Kingdom's air traffic
@@ -118,7 +118,7 @@ translation).
 # Workflows for contributions
 
 
-During the sprint, the progress on these items was tracked [https://github.com/r-devel/r-project-sprint-2023/issues](https://github.com/r-devel/r-project-sprint-2023/issues){target="_blank"}. Either the initial report or the final resolution of these items may be seen in the R Bug Tracking System, known as [Bugzilla](https://bugs.r-project.org/){target="_blank"}.
+During the sprint, the progress on these items was tracked at  [https://github.com/r-devel/r-project-sprint-2023/issues](https://github.com/r-devel/r-project-sprint-2023/issues){target="_blank"}. Either the initial report or the final resolution of these items may be seen in the R Bug Tracking System, known as [Bugzilla](https://bugs.r-project.org/){target="_blank"}.
 
 Depending on the nature of the proposed change, the contributor may need
 to build R from source. The instructions regarding how to do so on your personal computing
@@ -129,7 +129,8 @@ heard facilitated collaboration nicely as well).
 
 Regardless of whether you needed to build R from source, proposed changes could then be tested on multiple computing platforms via a pull request to [https://github.com/r-devel/r-svn](https://github.com/r-devel/r-svn){target="_blank"},
 which mirrors the official base R server. After tests have passed, the contributor could 
-extract the diff from the pull request to submit a proposed solution via Bugzilla.
+extract the diff from the pull request to submit a proposed solution via Bugzilla; this
+process is more thoroughly documented in the [Using a git mirror section](https://contributor.r-project.org/rdevguide/FixBug.html#using-a-git-mirror){target="_blank"} of the [R Development Guide](https://contributor.r-project.org/rdevguide/index.html){target="_blank"}.
 
 Once a proposal is submitted,  member(s) of the R core team review. If the 
 proposed change modifies the code base, additional checks are run against
@@ -191,4 +192,5 @@ Infinite thanks to [Heather Turner](https://warwick.ac.uk/fac/sci/statistics/sta
 and fellow R contributors who traveled across the world to attend, and who kindly and 
 generously shared their knowledge, expertise, anecdotes, and experiences. It was truly
 a pleasure. Lastly, thanks to [Hannah Frick](https://www.frick.ws/){target="_blank"} (a fellow Sprint attendee) for providing feedback on this post.
+
 
