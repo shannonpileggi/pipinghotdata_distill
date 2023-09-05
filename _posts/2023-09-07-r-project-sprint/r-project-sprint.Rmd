@@ -124,7 +124,7 @@ Depending on the nature of the proposed change, the contributor may need
 to build R from source. The instructions regarding how to do so on your personal computing
 enviroment are outlined in the [R Patched and Development Versions Chapter](https://contributor.r-project.org/rdevguide/GetStart.html){target="_blank"} of the [R Development Guide](https://contributor.r-project.org/rdevguide/index.html){target="_blank"}. Alternatively, one could also build R from source without touching 
 their local computing environment using the [GitHub Code Space
-R Dev Containter](https://github.com/r-devel/r-dev-env){target="_blank"} (which I
+R Dev Container](https://github.com/r-devel/r-dev-env){target="_blank"} (which I
 heard facilitated collaboration nicely as well).
 
 Regardless of whether you needed to build R from source, proposed changes could then be tested on multiple computing platforms via a pull request to [https://github.com/r-devel/r-svn](https://github.com/r-devel/r-svn){target="_blank"},
