@@ -176,7 +176,7 @@ for faster iteration and completion.
 
 I can now confidently either submit a new bug report or address an 
 existing bug report. Moreover, I understand workflows for contributions, resources for help,
-and how to interact with the community to for help should I get stuck. 
+and how to interact with the community for help should I get stuck. 
 
 I will also begin attending the R Contribution Working Group (RCWG) as a representative 
 of R-Ladies to communicate RCWG highlights to the broader R-Ladies community and engage
