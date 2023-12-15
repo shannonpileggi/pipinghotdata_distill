@@ -59,6 +59,16 @@ I learned how to contribute to base R at the R Project Sprint in
 Coventry, England. This was an amazing experience to meet in person with diverse
 programmers from around the world - you can read more in my [R Project Sprint](https://www.pipinghotdata.com/posts/2023-09-07-r-project-sprint/) blog post.
 
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|  R Project Sprint participants, with remote participants shown on video conference. Not
+#|  all [particpants](https://contributor.r-project.org/r-project-sprint-2023/participants/){target="_blank"} photographed. 
+#| fig.alt: > 
+#|    38 participants in-person in a classroom space: 1st row sitting on floor, 
+#|    2nd row kneeling or sitting in chairs, 3rd row standing. Two remote participants
+#|    shown on video conference in screen to the left of the group.
+#knitr::include_graphics("Rprojectsprint3.jpeg")
+```
 
 ## Teaching
 
@@ -85,17 +95,40 @@ variables, and ensuring polished deliverables.
 
 This is only my 2nd blog post this year, which is an intentional drop
 from previous years. I do still enjoy writing, but it is time consuming
-and I did accept other responsibilities. Also, see the (personal) section. 
+and I did accept other responsibilities. Also, see the \@ref(personal) section. 
 
 ## Other
 
 I attended PHUSE Connect US 2023 in person in Orlando, Florida in February (a 
-Clinical Data Science Conference). This was my first conference 
+Clinical Data Science Conference). This was my first conference in the industry
+and it was wonderful to connect with and learn from others. At the conference I presented [Introducing {gtreg}: an R package to produce regulatory tables for clinical research](https://shannonpileggi.github.io/gtreg-talk-phuse-2023/#/title-slide), a
+package I collaborated on with Daniel Sjoberg to easily make beautiful adverse 
+event tables^[Yes, I think great tables are beautiful.]. 
 
+# Personal {#personal}
 
-# Personal
+This year I have also focused on my health and well-being. This included efforts
+in consuming a balanced diet^[Yes, I count my macros on the MacroFactor app.], 
+getting sufficient sleep at night^[Yes, I track my sleep on Whoop.], and exercising^[Yes, I join a gym.].
 
-## Reading
+Part of getting sufficient sleep meant cutting back on tinkering at my computer
+late a night (hence less writing) and instead reading to relax at bedtime. I
+read over 25 fiction novels this year; highlights included _Demon Copperhead_, _A 
+Thousand Splendid Suns_, _Remarkably Bright Creatures_, and the Scholomance trilogy.
 
-## Fitness
+The gym I joined focuses on both metabolic training and weight training, and has
+a wonderful community culture. The new routine resulted in a significant amount
+of weight loss and muscle gain^[Yes, I'd be happy to chat about how much
+I can deadlift, bench press, etc., any time.]
+I am proud to say I can do body weight chin-ups and pull-ups for the first time
+in my life! And I earned an awesome award at our holiday party.
+
+Lastly, as a family we also focused on planning time away. We had a great mix
+of both individual and family vacations, that we look forward to continuing in the 
+future.
+
+# Acknowledgements
+
+Thanks to [Yanina Bellini Saibene](https://yabellini.netlify.app/blog/), whose 
+amazing year in reviews inspired me to write my own.
 
