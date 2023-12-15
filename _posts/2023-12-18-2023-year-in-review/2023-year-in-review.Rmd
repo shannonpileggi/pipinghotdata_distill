@@ -1,0 +1,101 @@
+---
+title: "2023 Year in Review"
+description: | 
+  Personal and profressional accomplishments
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 2023-12-18
+# preview: Rprojectsprint3.jpeg
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|  R Project Sprint participants, with remote participants shown on video conference. Not
+#|  all [particpants](https://contributor.r-project.org/r-project-sprint-2023/participants/){target="_blank"} photographed. 
+#| fig.alt: > 
+#|    38 participants in-person in a classroom space: 1st row sitting on floor, 
+#|    2nd row kneeling or sitting in chairs, 3rd row standing. Two remote participants
+#|    shown on video conference in screen to the left of the group.
+#knitr::include_graphics("Rprojectsprint3.jpeg")
+```
+
+# TL; DR
+
+Highlights from this year include focusing on personal health and wellness,
+joining the R-Ladies Leadership Team, participating in the R Project Sprint,
+and teaching various workshops.
+
+# Professional
+
+## R-Ladies
+
+It has been such an honor to join the Leadership Team of [R-Ladies Global](https://rladies.org/)! I am 
+grateful to volunteer alongside and serve such talented, dedicated, and 
+thoughtful individuals on the Leadership Team, the wider Global Team, 
+and the broader R-Ladies community. To learn more about what we have been up to watch the beautiful presentation [Sustainable Growth of Global Communities: R-Ladies' Next Ten Years](https://www.youtube.com/watch?v=awTzbYXTlSc&list=PL9HYL-VRX0oRFZslRGHwHuwea7SvAATHp&index=10)
+by Riva Quiroga at posit::conf(2023) and read the website [News](https://rladies.org/news/).
+
+## R Project Sprint
+
+I learned how to contribute to base R at the R Project Sprint in
+Coventry, England. This was an amazing experience to meet in person with diverse
+programmers from around the world - you can read more in my [R Project Sprint](https://www.pipinghotdata.com/posts/2023-09-07-r-project-sprint/) blog post.
+
+
+## Teaching
+
+I still really enjoy teaching, and I am grateful for the opportunities I have teach
+on the side! This year I taught:
+* 6 2-hour workshops for R-Ladies Meet-ups.
+* A 1-day [What They Forgot To Teach You About R](https://github.com/posit-conf-2023/wtf)
+workshop at posit::conf(2023), co-instructed with David Aja.
+* A 3-hour [Cleaning Medical Data with R](https://shannonpileggi.github.io/rmedicine-data-cleaning-2023/) workshop at R/Medicine 2023, co-instructed
+with Crystal Lewis and Peter Higgins.
+
+## Work
+
+I have been working at the Prostate Cancer Clinical Trials Consortium since October, 2021,
+and I still really enjoy it! I generally spend my days thinking deeply about data, 
+coding, and how to count things. A big shift for me this year was moving to more of
+a managerial role as our team grew, and I now have three direct reports. This resulted 
+in a lot of code review, which includes checking for code efficiency, reproducibility, 
+documentation of reasoning, understanding of the input data, confirming correct derivation of new
+variables, and ensuring polished deliverables.
+
+
+## Writing
+
+This is only my 2nd blog post this year, which is an intentional drop
+from previous years. I do still enjoy writing, but it is time consuming
+and I did accept other responsibilities. Also, see the (personal) section. 
+
+## Other
+
+I attended PHUSE Connect US 2023 in person in Orlando, Florida in February (a 
+Clinical Data Science Conference). This was my first conference 
+
+
+# Personal
+
+## Reading
+
+## Fitness
+
