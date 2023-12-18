@@ -20,7 +20,7 @@ draft: false
 creative_commons: CC BY
 ---
 
-# TL DR
+# TL; DR
 
 Highlights from this year included focusing on personal health and wellness,
 joining the R-Ladies Leadership Team, participating in the R Project Sprint,
