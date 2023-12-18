@@ -13,7 +13,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of debugging tools in R.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nOverview\r\nA 2-hour zoom workshop on Project Oriented Workflows for R-Ladies St. Louis.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2022 RStudio What They Forgot To Teach You About R Workshop.\r\nLearning objectives:\r\nEstablish the concept of the project as the basic organizational unit of work. RStudio offers rich support for this way of working via Projects.\r\nDescribe benefits of project oriented workflows.\r\nApply best practices for working in RStudio projects, including\r\nCreating robust file paths that travel well in time and space (someone else’s computer, your computer a year from now) with base R and with the {here} and {fs} packages.\r\nConstructing human and machine readable file names that sort nicely.\r\nDifferentiating workflow elements, analysis inputs, and analysis outputs in project structure to create navigable programming interfaces.\r\nRestarting R frequently, with a blank slate.\r\n\r\n",
     "preview": "talks/2023-09-11-project-oriented-workflows/project-screenshot.png",
-    "last_modified": "2023-09-25T13:03:39-04:00",
+    "last_modified": "2023-12-15T15:02:03-05:00",
     "input_file": {},
     "preview_width": 1920,
     "preview_height": 1080

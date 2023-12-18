@@ -3,12 +3,14 @@ title: "Shannon Pileggi, PhD"
 site: distill::distill_website
 image: "Shannon_circle.png"
 links:
-  - label: '<i class="fab fa-twitter"></i> Twitter'
-    url: "https://twitter.com/PipingHotData"
   - label: '<i class="fab fa-github"></i> GitHub'
     url: "https://github.com/shannonpileggi"
   - label: '<i class="fab fa-linkedin"></i> LinkedIn'
     url: "https://www.linkedin.com/in/shannon-m-pileggi/"
+  - label: '<i class="fab fa-mastodon"></i> Mastodon'
+    url: "https://fosstodon.org/\\@PipingHotData"
+  - label: '<i class="fab fa-twitter"></i> Twitter'
+    url: "https://twitter.com/PipingHotData"
   - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:shannon@pipinghotdata.com"
 base_url: https://www.pipinghotdata.com
