@@ -21,6 +21,8 @@ navbar:
       href: https://github.com/shannonpileggi
     - icon: fa fa-linkedin
       href: https://www.linkedin.com/in/shannon-m-pileggi/
+    - icon: fa fab-mastodon
+      href: https://fosstodon.org/@PipingHotData
     - icon: fa fa-twitter
       href: https://twitter.com/PipingHotData
     - icon: fa fa-rss
