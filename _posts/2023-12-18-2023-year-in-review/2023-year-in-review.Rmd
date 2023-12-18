@@ -163,12 +163,13 @@ future.
 
 ```{r, eval=TRUE, echo=FALSE}
 #| fig.cap: > 
-#|    My family on our beach vacation, triumphantly bringing home a massive
+#|    Returning home from our family beach vacation, with the massive
 #|    stuffed snake that we won at the arcade.
 #| fig.alt: > 
-#|    Photo taken at night in front of a porch light and is blurry; Dad, Mom, and 
-#|    two girls huddled in front of a large pink snake head with bright yellow eyes.
-knitr::include_graphics("img/family.jpg")
+#|    Photo taken from the front seat of a car looking back; two girls are wearing head 
+#|    phones and looking down at ipads. In between is a giant pink stuffed snake 
+#|    with bright yellow eyes.
+knitr::include_graphics("img/snakey.jpg")
 ```
 
 # Acknowledgements
