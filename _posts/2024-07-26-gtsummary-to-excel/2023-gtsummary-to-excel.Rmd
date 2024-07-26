@@ -1,0 +1,132 @@
+---
+title: "Exporting {gtsummary} tables to Excel."
+description: | 
+  Workflows with {huxtable} and {openxlsx}.
+base_url: https://www.pipinghotdata.com/
+twitter:
+  site: "@PipingHotData"
+  creator: "@PipingHotData"
+date: 2024-07-26
+preview: hexes.png
+author:
+  - name: Shannon Pileggi
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|    Logos/hex stickers from {gtsummary}, {huxtable}, and {openxlsx} pacakges.
+knitr::include_graphics("hexes.png")
+```
+
+# TL; DR
+
+This brief posts showcases workflows for exporting {gtsummary} tables to Excel 
+(that mostly retain table formatting) via {huxtable} and {openxlsx}, optionally
+with raw data.
+
+# Introduction
+
+In 2021, I wrote about [Polished summary tables in R with gtsummary](https://www.pipinghotdata.com/posts/2021-07-14-polished-summary-tables-in-r-with-gtsummary/), and 
+[{gtsummary}](https://www.danieldsjoberg.com/gtsummary/) remains my package of choice 
+for tables. I do love the default beautiful html output, but for a variety of reasons 
+many of my table outputs are best delivered in Excel format. Here are newer workflows
+I use to achieve this.
+
+# Packages
+
+```{r, eval = FALSE}
+library(gtsummary)
+library(huxtable)
+library(openxlsx)
+```
+
+# Excel options
+
+Use `openxlsx` date / time options to control formatting of output date/time fields.
+
+```{r, eval = FALSE}
+# format all date and date time variables in the excel output 
+options("openxlsx.dateFormat" = "yyyy-mm-dd")
+options("openxlsx.datetimeFormat" = "yyyy-mm-dd")
+```
+
+# Single summary table 
+
+To render a single summary table to excel, use `as_hux_xlsx()`.
+
+```{r, eval = FALSE}
+t1 <- mtcars |> 
+  select(mpg:disp) |> 
+  gtsummary::tbl_summary() |> 
+  gtsummary::bold_labels()
+
+gtsummary::as_hux_xlsx(t1, file = "path_including_file_name.xlsx")
+```
+
+# Single summary table plus raw data
+
+To create an excel file with a single sheet for a summary table and a sheet(s) for 
+raw data listings, first use `as_hux_xlsx()`, load the workbook, and then add 
+additional sheets.
+
+
+```{r, eval = FALSE}
+t1 <- mtcars |> 
+  select(mpg:disp) |> 
+  gtsummary::tbl_summary() |> 
+  gtsummary::bold_labels()
+
+gtsummary::as_hux_xlsx(t1, file = "path_including_file_name.xlsx")
+
+wb <- openxlsx::loadWorkbook("path_including_file_name.xlsx")
+openxlsx::addWorksheet(wb, sheetName = "mtcars_data")
+openxlsx::writeData(wb, sheet = "mtcars_data", x = mtcars)
+
+openxlsx::saveWorkbook(wb, "path_including_file_name.xlsx", overwrite = TRUE)
+```
+
+
+# Multiple summary tables plus raw data
+
+To create an excel file with more than one sheet for summary tables and/or a sheet(s)
+for raw data listings:
+
+```{r, eval = FALSE}
+t1 <- mtcars |> 
+  select(mpg:disp) |> 
+  gtsummary::tbl_summary() |> 
+  gtsummary::bold_labels()
+
+t2 <- mtcars |> 
+  select(hp:wt) |> 
+  gtsummary::tbl_summary() |> 
+  gtsummary::bold_labels()
+
+t1_hux <- gtsummary::as_hux_table(t1) 
+t2_hux <- gtsummary::as_hux_table(t2)
+
+wb <- openxlsx::createWorkbook()
+huxtable::as_Workbook(t1_hux, wb, sheet = "Table 1")
+huxtable::as_Workbook(t2_hux, wb, sheet = "Table 2")
+
+openxlsx::addWorksheet(wb, sheetName = "mtcars_data")
+openxlsx::writeData(wb, sheet = "mtcars_data", x = mtcars)
+
+openxlsx::saveWorkbook(wb, "path_including_file_name.xlsx", overwrite = TRUE)
+```
+
+
+# Acknowledgements
+
+Thanks to [Reiko Okamoto](https://reikookamoto.github.io/) and [Melissa Van Bussel](https://www.melissavanbussel.com/)
+for the nudge and inspiration to share these workflows. If you have alternatives that work well for you,
+please share! 🤗 You may also want to check out [{openxlsx2}](https://janmarvin.github.io/openxlsx2/) as an alternative.
+
