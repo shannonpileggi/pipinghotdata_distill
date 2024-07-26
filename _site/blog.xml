@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 18 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Exporting {gtsummary} tables to Excel.</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2024-07-26-gtsummary-to-excel</link>
+      <description>Workflows with {huxtable} and {openxlsx}.</description>
+      <guid>https://www.pipinghotdata.com/posts/2024-07-26-gtsummary-to-excel</guid>
+      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2024-07-26-gtsummary-to-excel/hexes.png" medium="image" type="image/png" width="1280" height="720"/>
+    </item>
     <item>
       <title>2023 Year in Review.</title>
       <dc:creator>Shannon Pileggi</dc:creator>
