@@ -27,7 +27,7 @@ to more quickly install previous versions of R packages.
 # Background
 
 The `{renv}` package is wonderful for documenting and controlling package versions within 
-an R project. See [You should be using renv](https://youtu.be/GwVx_pf2uz4?si=agbC-r-us57GF-7f) by E. David Aja at rstudio::conf(2022) for motivation and [Introduction to renv]{https://rstudio.github.io/renv/articles/renv.html} for how to get started.
+an R project. See [You should use renv](https://youtu.be/GwVx_pf2uz4?si=agbC-r-us57GF-7f) by E. David Aja at rstudio::conf(2022) for motivation and [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html) for how to get started.
 
 # Package restoration
 
