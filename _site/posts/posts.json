@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2024-09-15-labels-talk/",
+    "title": "labels talk",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2024-09-15",
+    "categories": [],
+    "contents": "\r\nTL;DR\r\nOverview\r\nYear\r\nLocation\r\nAttended\r\nInstructed workshop\r\nSubmitted talk\r\nTalk Accepted\r\n2017\r\n1Orlando\r\n\r\n\r\n\r\n\r\n2018\r\n2San Diego\r\n✔️\r\n\r\n\r\n\r\n2019\r\n3Austin\r\n\r\n\r\n\r\n\r\n2020\r\n4San Francisco\r\n✔️\r\n\r\n\r\n\r\n2021\r\n5Global\r\n✔️\r\n\r\n✔️\r\n\r\n2022\r\n6Washington, D.C.\r\n✔️\r\n✔️\r\n\r\n\r\n2023\r\nChicago\r\n✔️\r\n✔️\r\n✔️\r\n\r\n2024\r\n7Seattle\r\n✔️\r\n✔️\r\n✔️\r\n️✔️\r\nPosit review process\r\n2021\r\nTitle\r\nLeveraging labelled data in R\r\nAbstract\r\nIf you are at rstudio::global(2021), the thought of working with SPSS or SAS data sets may make you cringe. However, with R’s haven, labelled, and sjlabelled packages, you can leverage the inherent data labelling structure in these data sets to put metadata about your data (variable labels, value labels) right at your fingertips, making it easier to navigate data while also allowing the user to convert metadata to data. In this presentation, I will discuss general characteristics of labelled data, importing labelled data in R, storage of metadata as attributes, and practical tips for data analysis with labelled data. I will also address some potentially unexpected consequences when working with labelled data. By the end of the presentation, you may be wishing that your R workflow started with labelled data!\r\nMy take\r\n2023\r\nTitle\r\nThe Case for Variable Labels in R\r\nAbstract\r\nVariable labels are valuable metadata providing brief descriptions of variables. Although historically associated with SAS, SPSS, or Stata data sets, variable labels can be embedded in R data frames as well. Integrating variable labels with your data requires minimal one-time effort, reduces the burden of referring to external data documentation, and alleviates the tension between succinct variable names for programming ease and longer descriptive text for interpretable output. In this talk, I will showcase various R packages that allow you to import, assign, manage, and retrieve labels, as well as packages that automatically incorporate those labels in presentation ready outputs such as tables and figures.\r\nMy take\r\n2024\r\nTitle\r\nContext is King\r\nAbstract\r\nThe quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!\r\nMy take\r\nAcknowledgments\r\nChun Su\r\n\r\nI was not aware of the Conference.↩︎\r\nLiving in California, road trip with Kelly Bodwin and my husband!↩︎\r\nSecond child was an infant and I was between jobs, no way.↩︎\r\nLast big trip prior to COVID lockdown.↩︎\r\nOnline only; loved the accessibility for all.↩︎\r\nFirst year teaching WTF workshop, it was intense preparation.↩︎\r\nFirst time giving a talk.↩︎\r\n",
+    "preview": {},
+    "last_modified": "2024-09-15T11:11:17-04:00",
+    "input_file": "labels-talk.knit.md"
+  },
+  {
     "path": "posts/2024-07-26-gtsummary-to-excel/",
     "title": "Exporting {gtsummary} tables to Excel.",
     "description": "Workflows with {huxtable} and {openxlsx}.",
