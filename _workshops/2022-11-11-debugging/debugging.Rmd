@@ -1,0 +1,91 @@
+---
+title: "Debugging"
+description: |
+  Various workshops
+base_url: https://www.pipinghotdata.com/
+preview: debugging_tools.svg
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2022-11-11
+output:
+  distill::distill_article:
+    toc: false
+    toc_depth: 3
+    self_contained: false
+draft: false
+---
+
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Overview of debugging tools in R.
+#| fig.alt: >
+#|  Figure organize by functions, options, and the RStudio IDE, with icons
+#|  to indicate traceback, interactive debugger, your code, their code.
+knitr::include_graphics("debugging_tools.svg")
+```
+
+
+# Various presentations
+
+I have given this workshop many times! Search for "Pileggi debugging"
+on YouTube to find more recordings,
+
+# SLC RUG 1 hour tutorial
+
+May 16, 2024
+
+```{r, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "images",
+          text = "slides",
+          url = "https://github.com/shannonpileggi/debugging-1hr")
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://www.youtube.com/live/aTQIKA17o2c?si=xOYWL6qrA5wR9d49")
+
+```
+
+
+
+
+
+# NHS-R 3 hour workshop
+
+A 3-hour zoom workshop on debugging for the NHS-R conference on Nov 11, 2022.
+
+```{r icon-links, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "images",
+          text = "slides",
+          url = "https://shannonpileggi.github.io/debugging-nhsr/#/title-slide")
+```
+
+
+```{r icon-links-2, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://youtu.be/evzo-F2Yp5g?si=qJohnUYGj99tzGzr")
+
+```
+
+
+
+# Pre-requisites
+
+Knowledge of how to write a function in R.
+
+# Learning objectives:
+
+* Review code troubleshooting tips.
+
+* Discuss debugging functions (`traceback()`, `browser()`, `debug()`, `trace()`, and `recover()`) and the additional benefits of employing some of these strategies within RStudio.
+
+* Distinguish between strategies for debugging your own code versus someone else’s code.
+
+# Licensing
+
+Under the [Creative Commons Share Alike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), workshop materials have been adapted from the [2022 RStudio What They Forgot To Teach You About R](https://rstats-wtf.github.io/wtf-2022-rsc/) Workshop.

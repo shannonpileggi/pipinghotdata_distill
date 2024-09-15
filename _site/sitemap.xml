@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.pipinghotdata.com/about.html</loc>
-    <lastmod>2022-11-02T17:51:46-04:00</lastmod>
+    <lastmod>2024-09-14T21:04:36-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/blog.html</loc>
@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/</loc>
-    <lastmod>2023-12-18T13:02:09-05:00</lastmod>
+    <lastmod>2024-09-14T21:05:04-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/README.html</loc>
@@ -137,24 +137,8 @@
     <lastmod>2021-11-01T22:24:26-04:00</lastmod>
   </url>
   <url>
-    <loc>https://www.pipinghotdata.com/talks/2023-09-11-project-oriented-workflows/</loc>
-    <lastmod>2023-12-15T15:02:03-05:00</lastmod>
-  </url>
-  <url>
     <loc>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg/</loc>
-    <lastmod>2022-11-10T14:07:56-05:00</lastmod>
-  </url>
-  <url>
-    <loc>https://www.pipinghotdata.com/talks/2022-11-11-debugging/</loc>
-    <lastmod>2022-11-10T14:16:25-05:00</lastmod>
-  </url>
-  <url>
-    <loc>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr/</loc>
-    <lastmod>2022-11-10T13:51:37-05:00</lastmod>
-  </url>
-  <url>
-    <loc>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r/</loc>
-    <lastmod>2021-11-23T19:12:45-05:00</lastmod>
+    <lastmod>2024-09-14T21:38:47-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate/</loc>
@@ -162,10 +146,6 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/</loc>
-    <lastmod>2021-11-01T22:24:28-04:00</lastmod>
-  </url>
-  <url>
-    <loc>https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour/</loc>
     <lastmod>2021-11-01T22:24:28-04:00</lastmod>
   </url>
 </urlset>

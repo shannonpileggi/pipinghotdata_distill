@@ -36,6 +36,12 @@ distilltools::icon_link(icon = "images",
           url = "https://rstats-wtf.github.io/wtf-project-oriented-workflow-slides/#/title-slide")
 ```
 
+```{r icon-links-2, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://youtu.be/T4V1SMVllvY?si=P_a2o8AojJB0pYZK")
+
+```
 
 
 # Overview

@@ -1,7 +1,7 @@
 ---
-title: "Various {gtreg} presentations"
+title: "{gtreg} workshop"
 description: |
-  Confererence talks
+  R in Pharma workshop
 base_url: https://www.pipinghotdata.com/
 preview: gtreg_overview.svg
 author:
@@ -31,40 +31,18 @@ See the package documentation at <https://shannonpileggi.github.io/gtreg/>.
 
 
 
-
-# R in Pharma (2022) - 10 min talk
-
-```{r, eval=TRUE, echo=FALSE}
-distilltools::icon_link(icon = "images",
-          text = "slides",
-          url = "https://shannonpileggi.github.io/gtreg-talk-rinpharma-2022/#/title-slide")
-```
-
-<br>
-
-# NHS-R (2022) - 15 min talk
+# R in Pharma (2022) - 3 hour workshop
 
 ```{r, eval=TRUE, echo=FALSE}
 distilltools::icon_link(icon = "images",
-          text = "slides",
-          url = "https://shannonpileggi.github.io/gtreg-talk-nhsr-2022/#/title-slide")
+          text = "website",
+          url = "https://shannonpileggi.github.io/gtreg-workshop-rinpharma-2022/")
 ```
 
-<br>
-
-# R in Medicine (2022) - 20 min talk
-
-```{r, eval=TRUE, echo=FALSE}
-distilltools::icon_link(icon = "images",
-          text = "slides",
-          url = "https://shannonpileggi.github.io/introducing-gtreg-rmed-2022/#/title-slide")
-```
-
-
-```{r, eval=TRUE, echo=FALSE}
+```{r icon-links-2, eval=TRUE, echo=FALSE}
 distilltools::icon_link(icon = "fas fa-play-circle",
           text = "recording",
-          url = "https://youtu.be/DmslEfczYqM")
+          url = "https://www.youtube.com/watch?v=hgE_aWMvd1Y&t=15s")
 
 ```
 
