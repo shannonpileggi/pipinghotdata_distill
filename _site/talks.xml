@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 10 Nov 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Context is King</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2024-08-13-context-is-king</link>
+      <description>posit::conf(2024)</description>
+      <guid>https://www.pipinghotdata.com/talks/2024-08-13-context-is-king</guid>
+      <pubDate>Tue, 13 Aug 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/view_labelled.png" medium="image" type="image/png" width="1665" height="761"/>
+    </item>
     <item>
       <title>Various {gtreg} presentations</title>
       <dc:creator>Shannon Pileggi</dc:creator>

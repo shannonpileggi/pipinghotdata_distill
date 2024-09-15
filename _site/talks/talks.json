@@ -1,5 +1,24 @@
 [
   {
+    "path": "talks/2024-08-13-context-is-king/",
+    "title": "Context is King",
+    "description": "posit::conf(2024)",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2024-08-13",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide 24 showing the difference between viewing labelled and unlabelled data.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nAbstract\r\nThe quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!\r\n\r\n\r\n\r\n",
+    "preview": "talks/2024-08-13-context-is-king/view_labelled.png",
+    "last_modified": "2024-09-15T05:10:02-04:00",
+    "input_file": {},
+    "preview_width": 1665,
+    "preview_height": 761
+  },
+  {
     "path": "talks/2022-11-10-various-gtreg/",
     "title": "Various {gtreg} presentations",
     "description": "Confererence talks",
