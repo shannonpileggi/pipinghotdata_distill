@@ -1,12 +1,13 @@
 ---
-title: "Ease renv::restore() by updating your repository to Posit Public Package Manager"
+title: "Ease `renv::restore()` by updating your repository to Posit Public Package Manager"
 description: |
-  P3M hosts CRAN binaries of previous releases of R packages
+  P3M hosts CRAN binaries of R packages' previous releases
 base_url: https://www.pipinghotdata.com/
 twitter:
   site: "@PipingHotData"
   creator: "@PipingHotData"
-date: 2024-09-13
+date: 2024-09-16
+preview: renv_p3m.png
 author:
   - name: Shannon Pileggi
 output:
@@ -19,10 +20,17 @@ draft: false
 creative_commons: CC BY
 ---
 
+```{r, eval=TRUE, echo=FALSE}
+#| fig.alt: > 
+#|    Logo/hex sticker from {renv} and logo for posit Package manager with a 
+#|    plus sign in between.
+knitr::include_graphics("renv_p3m.png")
+```
+
 # TL; DR
 
 Updating a `renv` project's package repository from CRAN to P3M allows a user
-to more quickly install previous versions of R packages. 
+to more quickly install previous versions of R packages. It is also easy and free!
 
 # Background
 
@@ -48,7 +56,7 @@ might look something like this by default:
 This will vary user to user based on their specific settings and configurations.
 What this means is that `{renv}` is going to that specific url to find and install
 packages that are available there. In this case, we are installing from
-a cloud instance of CRAN.
+the cloud instance of a CRAN mirror.
 
 However, if the packages documented in the `renv.lock` are of an older version, then the binaries for this package are likely no longer available on CRAN. This means that
 when `{renv}` attempts to install that older package from CRAN,
@@ -57,7 +65,7 @@ various reasons. This can be a frustrating process to work through.
 
 # Solution
 
-Luckily, the [Posit Public Package Manager (P3M)](https://packagemanager.posit.co/client/#/) exists! This free service hosts binaries of both latest packages and older packages, solving the time-consuming problem of installing from source. Learn more in [Bring Your Own Binary Packages with RSPM (2022)](https://posit.co/blog/publishing-your-own-binary-packages-with-rspm-2022-07/). 
+Luckily, the [Posit Public Package Manager (P3M)](https://packagemanager.posit.co/client/#/) exists! This free service hosts binaries of both latest and older packages, solving the time-consuming problem of installing from source. Learn more in [Announcing Public Package Manager and v1.1.6 (2020)](https://posit.co/blog/announcing-public-package-manager/). 
 
 To take advantage, you need to update the repositories
 specified in the `renv.lock` - replace the CRAN repository with P3M. You can do manually edit the `renv.lock`, or achieve this via
@@ -80,8 +88,8 @@ which would result in a modified `renv.lock` that looks like this:
     ]
 ```
 
-Note 1: The P3M url specified here works for both Mac and Windows OS (not Linux).
-Use the [`SETUP`](https://packagemanager.posit.co/client/#/repos/cran/setup) tool to determine what url to use for your needs.
+Note 1: The P3M url specified here works for both macOS and Windows (not Linux).
+Use the [`SETUP`](https://packagemanager.posit.co/client/#/repos/cran/setup) page to determine what url to use for your needs.
 
 Note 2: You can specify more than one repository for package installation. For 
 example, you can also specify [R-universe](https://r-universe.dev/search) from [ROpenSci](https://ropensci.org/) or your organization's 
@@ -117,7 +125,7 @@ renv::lockfile_modify(repos = c(
 # More generally
 
 Outside the scope of `{renv}` projects, you can set the default repository for
-package installation via the `Global Options` menu in RStudio - see the P3M `SETUP` tool for details. Alternatively, you can specify this via options in your R profile:
+package installation via the `Global Options` menu in RStudio - see the P3M `SETUP` page for details. Alternatively, you can specify this via `options` in your R profile:
 
 ```
 options("repos" = c(
@@ -135,8 +143,9 @@ If these are your default options, then they will be adopted when you initiate a
 If you have not yet taken advantage of the Posit Public Package Manager, I highly
 recommend you do so! It can save a lot of time and frustration when working on 
 `renv` projects that utilize older versions of packages, and more generally is
-a great package installation resource to default to.
+a great default package installation resource.
 
 # Acknowledgments
 
-Thanks to [E. David Aja](https://edavidaja.com/) for reviewing this post. ❤️
+Thanks to [E. David Aja](https://edavidaja.com/) for providing suggestions and 
+feedback on this post. ❤️
