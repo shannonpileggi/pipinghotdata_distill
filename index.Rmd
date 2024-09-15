@@ -12,7 +12,7 @@ links:
   - label: '<i class="fab fa-twitter"></i> Twitter'
     url: "https://twitter.com/PipingHotData"
   - label: '<i class="fas fa-envelope"></i> Email'
-    url: "mailto:shannon@pipinghotdata.com"
+    url: "mailto:shannon.pileggi@gmail.com"
 base_url: https://www.pipinghotdata.com
 preview: Shannon-circle.png
 twitter:
