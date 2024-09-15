@@ -18,6 +18,15 @@
       <media:content url="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/view_labelled.png" medium="image" type="image/png" width="1665" height="761"/>
     </item>
     <item>
+      <title>Balancing Global Infrastructure and Local Autonomy: Lessons from R-Ladies Global</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2024-07-10-lessons-from-rladies-global</link>
+      <description>useR 2024 &amp; posit::conf(2024)</description>
+      <guid>https://www.pipinghotdata.com/talks/2024-07-10-lessons-from-rladies-global</guid>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2024-07-10-lessons-from-rladies-global/infrastructure.png" medium="image" type="image/png" width="960" height="540"/>
+    </item>
+    <item>
       <title>Various {gtreg} presentations</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</link>
