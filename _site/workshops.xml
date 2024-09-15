@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 11 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>What They Forgot to Teach You About R</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/workshops/2024-08-12-what-they-forgot-to-teach-you-about-r</link>
+      <description>Various conferences</description>
+      <guid>https://www.pipinghotdata.com/workshops/2024-08-12-what-they-forgot-to-teach-you-about-r</guid>
+      <pubDate>Mon, 12 Aug 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/workshops/2024-08-12-what-they-forgot-to-teach-you-about-r/wtf-logo-square-transparent.png" medium="image" type="image/png" width="230" height="230"/>
+    </item>
     <item>
       <title>Project Oriented Workflows</title>
       <dc:creator>Shannon Pileggi</dc:creator>
