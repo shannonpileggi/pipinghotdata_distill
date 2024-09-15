@@ -25,12 +25,16 @@
     <lastmod>2021-11-01T22:24:28-04:00</lastmod>
   </url>
   <url>
+    <loc>https://www.pipinghotdata.com/workshops.html</loc>
+    <lastmod>2024-09-14T21:06:26-04:00</lastmod>
+  </url>
+  <url>
     <loc>https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m/</loc>
-    <lastmod>2024-09-14T20:50:48-04:00</lastmod>
+    <lastmod>2024-09-14T20:50:49-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2024-07-26-gtsummary-to-excel/</loc>
-    <lastmod>2024-07-26T11:56:46-04:00</lastmod>
+    <lastmod>2024-09-13T14:52:52-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/posts/2023-12-18-2023-year-in-review/</loc>
@@ -138,7 +142,7 @@
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg/</loc>
-    <lastmod>2024-09-14T21:38:47-04:00</lastmod>
+    <lastmod>2024-09-14T21:38:48-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-10-07-be-great-and-curate/</loc>
@@ -147,5 +151,33 @@
   <url>
     <loc>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/</loc>
     <lastmod>2021-11-01T22:24:28-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2023-09-11-project-oriented-workflows/</loc>
+    <lastmod>2024-09-14T21:38:26-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2023-06-06-cleaning-medical-data-with-r/</loc>
+    <lastmod>2024-09-14T21:36:03-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2022-11-11-debugging/</loc>
+    <lastmod>2024-09-14T21:37:07-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2022-11-10-gtreg-workshop/</loc>
+    <lastmod>2024-09-14T21:37:51-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2022-06-08-iterating-well-with-purrr/</loc>
+    <lastmod>2024-09-14T21:08:22-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2021-11-11-getting-started-with-unit-testing-in-r/</loc>
+    <lastmod>2021-11-23T19:12:45-05:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pipinghotdata.com/workshops/2020-10-25-your-first-r-package-in-1-hour/</loc>
+    <lastmod>2024-09-14T21:08:22-04:00</lastmod>
   </url>
 </urlset>

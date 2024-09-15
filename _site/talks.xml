@@ -12,31 +12,7 @@
       <title>Various {gtreg} presentations</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</link>
-      <description>
-
-
-&lt;div class="figure"&gt;
-&lt;img src="https://www.pipinghotdata.com/talks/2022-11-10-various-gtreggtreg_overview.svg" alt="A figure that groups various functions of the {gtreg} package in adverse event tables, other tables, modifications, and exporting."  /&gt;
-&lt;p class="caption"&gt;
-(#fig:thumbnail)Overview of the {gtreg} package.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;See the package documentation at &lt;a
-href="https://shannonpileggi.github.io/gtreg/"
-class="uri"&gt;https://shannonpileggi.github.io/gtreg/&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="r-in-pharma-2022---10-min-talk"&gt;R in Pharma (2022) - 10 min
-talk&lt;/h1&gt;
-&lt;a href="https://shannonpileggi.github.io/gtreg-talk-rinpharma-2022/#/title-slide" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-images"&gt;&lt;/i&gt; slides&lt;/a&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;h1 id="nhs-r-2022---15-min-talk"&gt;NHS-R (2022) - 15 min talk&lt;/h1&gt;
-&lt;a href="https://shannonpileggi.github.io/gtreg-talk-nhsr-2022/#/title-slide" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-images"&gt;&lt;/i&gt; slides&lt;/a&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;h1 id="r-in-medicine-2022---20-min-talk"&gt;R in Medicine (2022) - 20 min
-talk&lt;/h1&gt;
-&lt;a href="https://shannonpileggi.github.io/introducing-gtreg-rmed-2022/#/title-slide" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-images"&gt;&lt;/i&gt; slides&lt;/a&gt;
-&lt;a href="https://youtu.be/DmslEfczYqM" class="icon-link" target="_blank" rel="noopener"&gt;&lt;i class="fas fa-play-circle"&gt;&lt;/i&gt; recording&lt;/a&gt;
-&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
-      <distill:md5>7b7468889b4258e218347dae21f6d1fa</distill:md5>
+      <description>Confererence talks</description>
       <guid>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</guid>
       <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg/gtreg_overview.svg" medium="image" type="image/svg+xml"/>

@@ -13,8 +13,8 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of the {gtreg} package.\r\n\r\n\r\n\r\nSee the package documentation at https://shannonpileggi.github.io/gtreg/.\r\nR in Pharma (2022) - 10 min talk\r\n\r\n slides\r\n\r\n\r\nNHS-R (2022) - 15 min talk\r\n\r\n slides\r\n\r\n\r\nR in Medicine (2022) - 20 min talk\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\n\r\n\r\n\r\n",
     "preview": "talks/2022-11-10-various-gtreg/gtreg_overview.svg",
-    "last_modified": "2024-09-14T21:38:47-04:00",
-    "input_file": "various-gtreg.knit.md"
+    "last_modified": "2024-09-14T21:38:48-04:00",
+    "input_file": {}
   },
   {
     "path": "talks/2021-10-07-be-great-and-curate/",
