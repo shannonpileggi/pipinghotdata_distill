@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Sep 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Ease `renv::restore()` by updating your repository to Posit Public Package Manager</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m</link>
+      <description>P3M hosts CRAN binaries of R packages' previous releases</description>
+      <guid>https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m</guid>
+      <pubDate>Mon, 16 Sep 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m/renv_p3m.png" medium="image" type="image/png" width="1280" height="720"/>
+    </item>
     <item>
       <title>Exporting {gtsummary} tables to Excel.</title>
       <dc:creator>Shannon Pileggi</dc:creator>

@@ -1,7 +1,7 @@
 ---
 title: "Various {gtreg} presentations"
 description: |
-  Confererence talks and workshops
+  Confererence talks
 base_url: https://www.pipinghotdata.com/
 preview: gtreg_overview.svg
 author:
@@ -31,15 +31,6 @@ See the package documentation at <https://shannonpileggi.github.io/gtreg/>.
 
 
 
-# R in Pharma (2022) - 3 hour workshop
-
-```{r, eval=TRUE, echo=FALSE}
-distilltools::icon_link(icon = "images",
-          text = "website",
-          url = "https://shannonpileggi.github.io/gtreg-workshop-rinpharma-2022/")
-```
-
-<br>
 
 # R in Pharma (2022) - 10 min talk
 

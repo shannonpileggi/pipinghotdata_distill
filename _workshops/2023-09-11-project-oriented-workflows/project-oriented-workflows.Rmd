@@ -1,0 +1,68 @@
+---
+title: "Project Oriented Workflows"
+description: |
+  A 2-hour R-Ladies workshop
+base_url: https://www.pipinghotdata.com/
+preview: project-screenshot.png
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2023-09-11
+output:
+  distill::distill_article:
+    toc: false
+    toc_depth: 3
+    self_contained: false
+draft: false
+---
+
+
+```{r thumbnail, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|   Overview of debugging tools in R.
+#| fig.alt: >
+#|  Figure organize by functions, options, and the RStudio IDE, with icons
+#|  to indicate traceback, interactive debugger, your code, their code.
+knitr::include_graphics("project-screenshot.png")
+```
+
+
+
+
+
+```{r icon-links, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "images",
+          text = "slides",
+          url = "https://rstats-wtf.github.io/wtf-project-oriented-workflow-slides/#/title-slide")
+```
+
+```{r icon-links-2, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://youtu.be/T4V1SMVllvY?si=P_a2o8AojJB0pYZK")
+
+```
+
+
+# Overview
+
+A 2-hour zoom workshop on Project Oriented Workflows for R-Ladies St. Louis.
+
+Under the [Creative Commons Share Alike 4.0 International license](https://creativecommons.org/licenses/by-sa/4.0/), workshop materials have been adapted from the [2022 RStudio What They Forgot To Teach You About R](https://rstats-wtf.github.io/wtf-2022-rsc/) Workshop.
+
+
+# Learning objectives:
+
+* Establish the concept of the project as the basic organizational unit of work. RStudio offers rich support for this way of working via **P**rojects.
+
+* Describe benefits of project oriented workflows.
+
+* Apply best practices for working in RStudio projects, including
+
+  - Creating robust file paths that travel well in time and space (someone else's computer, your computer a year from now) with base R and with the {here} and {fs} packages.
+
+  - Constructing human and machine readable file names that sort nicely.
+
+  - Differentiating workflow elements, analysis inputs, and analysis outputs in project structure to create navigable programming interfaces.
+
+  - Restarting R frequently, with a blank slate.

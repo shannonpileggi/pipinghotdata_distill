@@ -1,27 +1,46 @@
 [
   {
-    "path": "talks/2023-09-11-project-oriented-workflows/",
-    "title": "Project Oriented Workflows",
-    "description": "A 2-hour R-Ladies workshop",
+    "path": "talks/2024-08-13-context-is-king/",
+    "title": "Context is King",
+    "description": "posit::conf(2024)",
     "author": [
       {
         "name": "Shannon Pileggi",
         "url": {}
       }
     ],
-    "date": "2023-09-11",
+    "date": "2024-08-13",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of debugging tools in R.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nOverview\r\nA 2-hour zoom workshop on Project Oriented Workflows for R-Ladies St. Louis.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2022 RStudio What They Forgot To Teach You About R Workshop.\r\nLearning objectives:\r\nEstablish the concept of the project as the basic organizational unit of work. RStudio offers rich support for this way of working via Projects.\r\nDescribe benefits of project oriented workflows.\r\nApply best practices for working in RStudio projects, including\r\nCreating robust file paths that travel well in time and space (someone else’s computer, your computer a year from now) with base R and with the {here} and {fs} packages.\r\nConstructing human and machine readable file names that sort nicely.\r\nDifferentiating workflow elements, analysis inputs, and analysis outputs in project structure to create navigable programming interfaces.\r\nRestarting R frequently, with a blank slate.\r\n\r\n",
-    "preview": "talks/2023-09-11-project-oriented-workflows/project-screenshot.png",
-    "last_modified": "2023-12-15T15:02:03-05:00",
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide 24 showing the difference between viewing labelled and unlabelled data.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nAbstract\r\nThe quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!\r\n\r\n\r\n\r\n",
+    "preview": "talks/2024-08-13-context-is-king/view_labelled.png",
+    "last_modified": "2024-09-15T05:10:02-04:00",
     "input_file": {},
-    "preview_width": 1920,
-    "preview_height": 1080
+    "preview_width": 1665,
+    "preview_height": 761
+  },
+  {
+    "path": "talks/2024-07-10-lessons-from-rladies-global/",
+    "title": "Balancing Global Infrastructure and Local Autonomy: Lessons from R-Ladies Global",
+    "description": "useR 2024 & posit::conf(2024)",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2024-07-10",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide discussing the importance of both technical and social infrastructure.\r\n\r\n\r\n\r\n\r\n useR slides\r\n posit::conf slides\r\n\r\nConferences\r\nuseR 2024 | Salzburg, Austria | 2024-07-10\r\nposit::conf(2024) | Seattle, Washington (USA) | 2024-08-14\r\nAbstract\r\nAs a global non-profit established in 2016, R-Ladies has more than 100k members from 233 chapters in 63 countries to support the mission of increasing gender diversity in the R community. Empowering local chapters is challenging as accessibility and awareness of communication methods, software choices, social platforms, and support avenues varies internationally. Join us for insights into our journey of developing a global technical and social infrastructure while fostering collaboration and growth and granting chapters the freedom to tailor their activities to local contexts. Walk away with practical technical and social strategies to empower and diversify your own data science communities based on learning from continuous feedback.\r\n\r\n\r\n\r\n",
+    "preview": "talks/2024-07-10-lessons-from-rladies-global/infrastructure.png",
+    "last_modified": "2024-09-15T05:25:38-04:00",
+    "input_file": {},
+    "preview_width": 960,
+    "preview_height": 540
   },
   {
     "path": "talks/2022-11-10-various-gtreg/",
     "title": "Various {gtreg} presentations",
-    "description": "Confererence talks and workshops",
+    "description": "Confererence talks",
     "author": [
       {
         "name": "Shannon Pileggi",
@@ -30,65 +49,10 @@
     ],
     "date": "2022-11-10",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of the {gtreg} package.\r\n\r\n\r\n\r\nSee the package documentation at https://shannonpileggi.github.io/gtreg/.\r\nR in Pharma (2022) - 3 hour workshop\r\n\r\n website\r\n\r\n\r\nR in Pharma (2022) - 10 min talk\r\n\r\n slides\r\n\r\n\r\nNHS-R (2022) - 15 min talk\r\n\r\n slides\r\n\r\n\r\nR in Medicine (2022) - 20 min talk\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of the {gtreg} package.\r\n\r\n\r\n\r\nSee the package documentation at https://shannonpileggi.github.io/gtreg/.\r\nR in Pharma (2022) - 10 min talk\r\n\r\n slides\r\n\r\n\r\nNHS-R (2022) - 15 min talk\r\n\r\n slides\r\n\r\n\r\nR in Medicine (2022) - 20 min talk\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\n\r\n\r\n\r\n",
     "preview": "talks/2022-11-10-various-gtreg/gtreg_overview.svg",
-    "last_modified": "2022-11-10T14:07:56-05:00",
+    "last_modified": "2024-09-14T21:38:48-04:00",
     "input_file": {}
-  },
-  {
-    "path": "talks/2022-11-11-debugging/",
-    "title": "Debugging",
-    "description": "A 3-hour NHS-R workshop",
-    "author": [
-      {
-        "name": "Shannon Pileggi",
-        "url": {}
-      }
-    ],
-    "date": "2022-11-10",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of debugging tools in R.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nOverview\r\nA 3-hour zoom workshop on debugging for the NHS-R conference.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2022 RStudio What They Forgot To Teach You About R Workshop.\r\nPre-requisites\r\nKnowledge of how to write a function in R.\r\nLearning objectives:\r\nReview code troubleshooting tips.\r\nDiscuss debugging functions (traceback(), browser(), debug(), trace(), and recover()) and the additional benefits of employing some of these strategies within RStudio.\r\nDistinguish between strategies for debugging your own code versus someone else’s code.\r\n\r\n\r\n\r\n",
-    "preview": "talks/2022-11-11-debugging/debugging_tools.svg",
-    "last_modified": "2022-11-10T14:16:25-05:00",
-    "input_file": {}
-  },
-  {
-    "path": "talks/2022-06-08-iterating-well-with-purrr/",
-    "title": "Iterating well with purrr",
-    "description": "An R-Ladies workshop",
-    "author": [
-      {
-        "name": "Shannon Pileggi",
-        "url": {}
-      }
-    ],
-    "date": "2022-06-08",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Slide from the workshop.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\nOverview\r\nA zoom workshop on iterating well with purrr for R-Ladies Rabat.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2020 RStudio What They Forgot To Teach You About R Workshop.\r\nAbstract\r\nIn this workshop we discuss approaches to iteration in R. We briefly discuss iterative techniques that do not require loops or purrr::map_ (for example, group_by, vectorized functions, etc.). Then we explore lists as an object to store information of varying types and sizes and explain how to extract elements from a list via the purrr::map_ family.\r\n\r\n\r\n\r\n",
-    "preview": "talks/2022-06-08-iterating-well-with-purrr/purrr.PNG",
-    "last_modified": "2022-11-10T13:51:37-05:00",
-    "input_file": {},
-    "preview_width": 1805,
-    "preview_height": 757
-  },
-  {
-    "path": "talks/2021-11-11-getting-started-with-unit-testing-in-r/",
-    "title": "Getting started with unit testing in R",
-    "description": "Automating the dev work you are probably already doing",
-    "author": [
-      {
-        "name": "Shannon Pileggi",
-        "url": {}
-      }
-    ],
-    "date": "2021-11-11",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Question and answer, paraphrased, from the workshop.\r\n\r\n\r\n\r\n\r\n blog post recording\r\n\r\nOverview\r\nA zoom workshop on unit testing for R-Ladies Philly.\r\nAbstract\r\nIn this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in usethis and devtools, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.\r\nThis workshop picks up exactly where we left our little ralph (aka R-Ladies Philly) package one year ago with “Your first R package in 1 hour: Tools that make R package development easy”. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with devtools and usethis.\r\n\r\n\r\n\r\n",
-    "preview": "talks/2021-11-11-getting-started-with-unit-testing-in-r/unit-testing-thumbnail.png",
-    "last_modified": "2021-11-23T19:12:45-05:00",
-    "input_file": {},
-    "preview_width": 1280,
-    "preview_height": 720
   },
   {
     "path": "talks/2021-10-07-be-great-and-curate/",
@@ -127,22 +91,5 @@
     "input_file": {},
     "preview_width": 700,
     "preview_height": 364
-  },
-  {
-    "path": "talks/2020-10-25-your-first-r-package-in-1-hour/",
-    "title": "Your first R package in 1 hour",
-    "description": "Tools that make R package development easy",
-    "author": [
-      {
-        "name": "Shannon Pileggi",
-        "url": {}
-      }
-    ],
-    "date": "2020-10-25",
-    "categories": [],
-    "contents": "\r\n\r\n\r\n\r\n\r\n materials video\r\n\r\nOverview\r\nA zoom workshop on introductory R package development for R-Ladies Philly.\r\nAbstract\r\nThis workshop is for people looking to learn how to make their own R packages and learn how to use usethis and devtools for package development. The workshop will cover handy one time functions (i.e., usethis::create_package) as well as functions used continuously throughout package development (i.e., devtools::document). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.\r\nThis workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.\r\n\r\n\r\n\r\n",
-    "preview": "talks/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg",
-    "last_modified": "2021-11-01T22:24:28-04:00",
-    "input_file": {}
   }
 ]

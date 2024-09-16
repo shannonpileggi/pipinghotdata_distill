@@ -7,51 +7,33 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 11 Sep 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Aug 2024 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Project Oriented Workflows</title>
+      <title>Context is King</title>
       <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/talks/2023-09-11-project-oriented-workflows</link>
-      <description>A 2-hour R-Ladies workshop</description>
-      <guid>https://www.pipinghotdata.com/talks/2023-09-11-project-oriented-workflows</guid>
-      <pubDate>Mon, 11 Sep 2023 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/talks/2023-09-11-project-oriented-workflows/project-screenshot.png" medium="image" type="image/png" width="1920" height="1080"/>
+      <link>https://www.pipinghotdata.com/talks/2024-08-13-context-is-king</link>
+      <description>posit::conf(2024)</description>
+      <guid>https://www.pipinghotdata.com/talks/2024-08-13-context-is-king</guid>
+      <pubDate>Tue, 13 Aug 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/view_labelled.png" medium="image" type="image/png" width="1665" height="761"/>
+    </item>
+    <item>
+      <title>Balancing Global Infrastructure and Local Autonomy: Lessons from R-Ladies Global</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2024-07-10-lessons-from-rladies-global</link>
+      <description>useR 2024 &amp; posit::conf(2024)</description>
+      <guid>https://www.pipinghotdata.com/talks/2024-07-10-lessons-from-rladies-global</guid>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2024-07-10-lessons-from-rladies-global/infrastructure.png" medium="image" type="image/png" width="960" height="540"/>
     </item>
     <item>
       <title>Various {gtreg} presentations</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</link>
-      <description>Confererence talks and workshops</description>
+      <description>Confererence talks</description>
       <guid>https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg</guid>
       <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/talks/2022-11-10-various-gtreg/gtreg_overview.svg" medium="image" type="image/svg+xml"/>
-    </item>
-    <item>
-      <title>Debugging</title>
-      <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/talks/2022-11-11-debugging</link>
-      <description>A 3-hour NHS-R workshop</description>
-      <guid>https://www.pipinghotdata.com/talks/2022-11-11-debugging</guid>
-      <pubDate>Thu, 10 Nov 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/talks/2022-11-11-debugging/debugging_tools.svg" medium="image" type="image/svg+xml"/>
-    </item>
-    <item>
-      <title>Iterating well with purrr</title>
-      <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr</link>
-      <description>An R-Ladies workshop</description>
-      <guid>https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr</guid>
-      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/talks/2022-06-08-iterating-well-with-purrr/purrr.PNG" medium="image" type="image/png" width="1805" height="757"/>
-    </item>
-    <item>
-      <title>Getting started with unit testing in R</title>
-      <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r</link>
-      <description>Automating the dev work you are probably already doing</description>
-      <guid>https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r</guid>
-      <pubDate>Thu, 11 Nov 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/talks/2021-11-11-getting-started-with-unit-testing-in-r/unit-testing-thumbnail.png" medium="image" type="image/png" width="1280" height="720"/>
     </item>
     <item>
       <title>Be great and curate!</title>
@@ -70,15 +52,6 @@
       <guid>https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community</guid>
       <pubDate>Thu, 22 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/talks/2021-04-22-growing-into-the-r-community/cover.PNG" medium="image" type="image/png" width="700" height="364"/>
-    </item>
-    <item>
-      <title>Your first R package in 1 hour</title>
-      <dc:creator>Shannon Pileggi</dc:creator>
-      <link>https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour</link>
-      <description>Tools that make R package development easy</description>
-      <guid>https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour</guid>
-      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://www.pipinghotdata.com/talks/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg" medium="image" type="image/jpeg"/>
     </item>
   </channel>
 </rss>

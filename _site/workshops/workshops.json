@@ -1,0 +1,148 @@
+[
+  {
+    "path": "workshops/2024-08-12-what-they-forgot-to-teach-you-about-r/",
+    "title": "What They Forgot to Teach You About R",
+    "description": "Various conferences",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2024-08-12",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: WTF hex sticker\r\n\r\n\r\n\r\nposit::conf(2022)\r\nCo-instructed with Jenny Bryan and E.David Aja.\r\nWashington, D.C. (USA)\r\n2022-07-24\r\nWorkshop materials: https://github.com/rstudio-conf-2022/wtf-rstats\r\nFormat: 2 day\r\nTopics: project oriented workflows, version control with git/GitHub, debugging,\r\npersonal R administration, iterating with purrr\r\nposit::conf(2023)\r\nCo-instructed with E.David Aja.\r\nChicago, IL (USA)\r\n2023-09-16\r\nWorkshop materials: https://github.com/posit-conf-2023/wtf\r\nFormat: 1 day\r\nTopics: project oriented workflows & version control with git/GitHub\r\nposit::conf(2024)\r\nCo-instructed with E.David Aja.\r\nSeattle, Washington (USA)\r\n2024-08-12\r\nWorkshop materials: https://github.com/posit-conf-2024/wtf\r\nFormat: 1 day\r\nTopics: debugging & personal R administration\r\nIs this course for me?\r\nThis course will be appropriate for you if you answer yes to these questions:\r\nHave you been using R for a while and feel there might be better ways to organize your R life, but don’t know what they are?\r\nDo you want to streamline your workflow for doing analysis and automating repetitive tasks in R?\r\nAre you willing to get into the weeds of your R installation, project organization, error messages, and source code?\r\nLearning objectives\r\nProject-oriented workflow\r\nEstablish the concept of the project as the basic organizational unit of work.\r\nRStudio offers rich support for this way of working via Projects.\r\nDescribe benefits of project oriented workflows.\r\nApply best practices for working in RStudio projects, including\r\nCreating robust file paths that travel well in time and space (someone else’s computer, your computer a year from now) with base R and with the {here} and {fs} packages.\r\nConstructing human and machine readable file names that sort nicely.\r\nDifferentiating workflow elements, analysis inputs, and analysis outputs in project structure to create navigable programming interfaces.\r\nRestarting R frequently, with a blank slate.\r\n\r\nGit/GitHub\r\nEmploy version control via git and GitHub with operations including commit, push and pull.\r\nFork and clone from remote repositories.\r\nDescribe importance of viewing commits and diffs.\r\nCompile markdown reports from an R script for sharing code products on GitHub.\r\nCreate a project web site via GitHub Pages.\r\nCompare and execute different methods to re-visit previous versions of projects.\r\nUtilize branches as safety nets for code experimentation.\r\nExplain situations that can create merge conflicts and strategies to resolve them.\r\nPersonal R Administration\r\nIdentify where software, packages, and configuration files are located on your operating system via base R, {fs}, {usethis}, and {devtools} functions.\r\nExplain the scope and purpose of .Renviron and .Rprofile configuration files when starting R.\r\nModify these files for your personal needs and preferences.\r\nEmploy strategies for package management, including establishing where packages are installed, how to upgrade and downgrade, how to install from source, and actual package managers.\r\nLocate and navigate R package source code for better understanding of internal operations or troubleshooting.\r\nIdentify what is in your current R session (packages, versions); briefly introduce {renv} to create a reproducible environment.\r\nDebugging\r\nLocate and view function source code.\r\nExamine function source code to generate insights on errors.\r\nApply strategies to effectively search GitHub.\r\nDistinguish between strategies for debugging your own code versus someone else’s code.\r\nDiscuss debugging functions (traceback(), browser(), debug(), trace(), and recover()) and the additional benefits of employing some of these strategies within RStudio.\r\nIterating well with purrr\r\nDescribe drawbacks of copying and pasting R code.\r\nComplete tidyverse style code with the pipe operator (%>% in {magrittr}, and the newer |> in base R).\r\nAccomplish iteration through vectorized functions.\r\nLeverage group_by() as an iterative technique.\r\nExplain differences between base R and {purrr} iterative functions.\r\nExplore lists as an object to store information of varying types and sizes; explain how to extract elements from a list.\r\nApply functions from the purrr::map_ family to perform iteration as an alternative to loops.\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2024-08-12-what-they-forgot-to-teach-you-about-r/wtf-logo-square-transparent.png",
+    "last_modified": "2024-09-15T05:49:19-04:00",
+    "input_file": {},
+    "preview_width": 230,
+    "preview_height": 230
+  },
+  {
+    "path": "workshops/2023-09-11-project-oriented-workflows/",
+    "title": "Project Oriented Workflows",
+    "description": "A 2-hour R-Ladies workshop",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2023-09-11",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of debugging tools in R.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\nOverview\r\nA 2-hour zoom workshop on Project Oriented Workflows for R-Ladies St. Louis.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2022 RStudio What They Forgot To Teach You About R Workshop.\r\nLearning objectives:\r\nEstablish the concept of the project as the basic organizational unit of work. RStudio offers rich support for this way of working via Projects.\r\nDescribe benefits of project oriented workflows.\r\nApply best practices for working in RStudio projects, including\r\nCreating robust file paths that travel well in time and space (someone else’s computer, your computer a year from now) with base R and with the {here} and {fs} packages.\r\nConstructing human and machine readable file names that sort nicely.\r\nDifferentiating workflow elements, analysis inputs, and analysis outputs in project structure to create navigable programming interfaces.\r\nRestarting R frequently, with a blank slate.\r\n\r\n",
+    "preview": "workshops/2023-09-11-project-oriented-workflows/project-screenshot.png",
+    "last_modified": "2024-09-14T21:38:26-04:00",
+    "input_file": {},
+    "preview_width": 1920,
+    "preview_height": 1080
+  },
+  {
+    "path": "workshops/2023-06-06-cleaning-medical-data-with-r/",
+    "title": "Cleaning Medical Data with R",
+    "description": "A 3-hour R in Medicine Workshop",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2023-06-06",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n website\r\n\r\n\r\n recording\r\n\r\nOverview\r\nIn this workshop you will learn how to import messy data from an Excel\r\nspreadsheet, and develop the R skills to turn this mess into tidy data\r\nready for analysis.\r\nLearning objectives\r\nThe acquire a foundational understanding of how data should be organized.\r\nTo import Excel files with (common, messy) data problems.\r\nTo address and clean common messy data problems in each variable.\r\nTo address and clean data with more complex meta-problems, like pivoting to long format for data analysis, thickening timestamped data to manageable time units, padding missing dates, and joining different datasets together.\r\nIs this course for me?\r\nIf your answer to any of the following questions is “yes”, then this is\r\nthe right workshop for you.\r\nDo you frequently receive untidy data for analysis in Excel\r\nspreadsheets?\r\nDoes this drive you slightly batty?\r\nDo you want to learn how to make your life easier with a suite of\r\ndata cleaning tools?\r\nThe workshop is designed for those with some experience in R. It will be\r\nassumed that participants can perform basic data manipulation.\r\nExperience with the {tidyverse} and the %>%/|> operator is a major plus,\r\nbut is not required.\r\nCo-Instructors\r\nCrystal Lewis (she/her) is a Freelance Research Data Management Consultant, helping people better understand how to organize, document, and share their data. She has been wrangling data in the field of Education for over 10 years. She is also a co-organizer for R-Ladies St. Louis.\r\nPeter Higgins (he/him) is\r\na Professor at the University of Michigan, a translational researcher\r\ninterested in reproducible research, and the creator of the\r\n{medicaldata} package. He enjoys clean and tidy data when he (rarely)\r\nencounters it in the wild.\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2023-06-06-cleaning-medical-data-with-r/taming-data.png",
+    "last_modified": "2024-09-14T21:36:03-04:00",
+    "input_file": {},
+    "preview_width": 1217,
+    "preview_height": 777
+  },
+  {
+    "path": "workshops/2022-11-11-debugging/",
+    "title": "Debugging",
+    "description": "Various workshops",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2022-11-11",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of debugging tools in R.\r\n\r\n\r\n\r\nVarious presentations\r\nI have given this workshop many times! Search for “Pileggi debugging”\r\non YouTube to find more recordings,\r\nSLC RUG 1 hour tutorial\r\nMay 16, 2024\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\nNHS-R 3 hour workshop\r\nA 3-hour zoom workshop on debugging for the NHS-R conference on Nov 11, 2022.\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\nPre-requisites\r\nKnowledge of how to write a function in R.\r\nLearning objectives:\r\nReview code troubleshooting tips.\r\nDiscuss debugging functions (traceback(), browser(), debug(), trace(), and recover()) and the additional benefits of employing some of these strategies within RStudio.\r\nDistinguish between strategies for debugging your own code versus someone else’s code.\r\nLicensing\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2022 RStudio What They Forgot To Teach You About R Workshop.\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2022-11-11-debugging/debugging_tools.svg",
+    "last_modified": "2024-09-14T21:37:07-04:00",
+    "input_file": {}
+  },
+  {
+    "path": "workshops/2022-11-10-gtreg-workshop/",
+    "title": "{gtreg} workshop",
+    "description": "R in Pharma workshop",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2022-11-10",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of the {gtreg} package.\r\n\r\n\r\n\r\nSee the package documentation at https://shannonpileggi.github.io/gtreg/.\r\nR in Pharma (2022) - 3 hour workshop\r\n\r\n website\r\n\r\n\r\n recording\r\n\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2022-11-10-gtreg-workshop/gtreg_overview.svg",
+    "last_modified": "2024-09-14T21:37:51-04:00",
+    "input_file": {}
+  },
+  {
+    "path": "workshops/2022-06-08-iterating-well-with-purrr/",
+    "title": "Iterating well with purrr",
+    "description": "An R-Ladies workshop",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2022-06-08",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Slide from the workshop.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\nOverview\r\nA zoom workshop on iterating well with purrr for R-Ladies Rabat.\r\nUnder the Creative Commons Share Alike 4.0 International license, workshop materials have been adapted from the 2020 RStudio What They Forgot To Teach You About R Workshop.\r\nAbstract\r\nIn this workshop we discuss approaches to iteration in R. We briefly discuss iterative techniques that do not require loops or purrr::map_ (for example, group_by, vectorized functions, etc.). Then we explore lists as an object to store information of varying types and sizes and explain how to extract elements from a list via the purrr::map_ family.\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2022-06-08-iterating-well-with-purrr/purrr.PNG",
+    "last_modified": "2024-09-14T21:08:22-04:00",
+    "input_file": {},
+    "preview_width": 1805,
+    "preview_height": 757
+  },
+  {
+    "path": "workshops/2021-11-11-getting-started-with-unit-testing-in-r/",
+    "title": "Getting started with unit testing in R",
+    "description": "Automating the dev work you are probably already doing",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2021-11-11",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Question and answer, paraphrased, from the workshop.\r\n\r\n\r\n\r\n\r\n blog post recording\r\n\r\nOverview\r\nA zoom workshop on unit testing for R-Ladies Philly.\r\nAbstract\r\nIn this workshop, Shannon Pileggi and Gordon Shotwell discuss how to get started with unit testing in R, which is formal automated testing of functions within packages. We demonstrate handy functions in usethis and devtools, strategies for writing tests, debugging techniques, and broad concepts in function writing that facilitate a smoother testing process.\r\nThis workshop picks up exactly where we left our little ralph (aka R-Ladies Philly) package one year ago with “Your first R package in 1 hour: Tools that make R package development easy”. Participants will get the most out of this workshop if they review those materials in advance, or if they are already familiar with building R packages with devtools and usethis.\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2021-11-11-getting-started-with-unit-testing-in-r/unit-testing-thumbnail.png",
+    "last_modified": "2021-11-23T19:12:45-05:00",
+    "input_file": {},
+    "preview_width": 1280,
+    "preview_height": 720
+  },
+  {
+    "path": "workshops/2020-10-25-your-first-r-package-in-1-hour/",
+    "title": "Your first R package in 1 hour",
+    "description": "Tools that make R package development easy",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-25",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n\r\n materials video\r\n\r\nOverview\r\nA zoom workshop on introductory R package development for R-Ladies Philly.\r\nAbstract\r\nThis workshop is for people looking to learn how to make their own R packages and learn how to use usethis and devtools for package development. The workshop will cover handy one time functions (i.e., usethis::create_package) as well as functions used continuously throughout package development (i.e., devtools::document). At the end of the hour you should have a working, well-documented package with a single function, as well as a better understanding of the files and file structure required for R packages.\r\nThis workshop is suitable for beginner to intermediate R users. Attendees should be familiar with functions, but will not be writing their own function in this workshop. Familiarity with pipe or tidyverse is helpful.\r\n\r\n\r\n\r\n",
+    "preview": "workshops/2020-10-25-your-first-r-package-in-1-hour/workshop_thumnnail4.jpg",
+    "last_modified": "2024-09-14T21:08:22-04:00",
+    "input_file": {}
+  }
+]
