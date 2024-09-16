@@ -2626,16 +2626,16 @@ gtag('config', 'UA-128676462-1');
 
 <div class="d-article">
 <h2 id="tldr">TL;DR</h2>
-<p>This year I was thrilled to speak at posit::conf for the first time on Context
-is King, a talk about variable labels in R. Part of my elation was due to actually
+<p>This year I was thrilled to speak at posit::conf for the first time ever on <a href="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/">Context
+is King</a>, a talk about variable labels in R. Part of my elation was due to actually
 having a talk accepted after two prior rejections on related submissions.</p>
 <h2 id="overview">Overview</h2>
 <p>I have attended six out the eight RStudio / Posit conferences, and I have
 instructed a workshop at the past three. People are often surprised to hear
 that up until 2024 I had actually never given a talk at this conference. It wasn’t
 because I didn’t try.</p>
-<p>In this post I share the talks I submitted and my thoughts on what went wrong,
-as well as how I prepared for my accepted talk.</p>
+<p>In this post I share the previous abstracts I submitted and how I iterated
+on the submissions.</p>
 <h2 id="timeline">Timeline</h2>
 <table>
 <colgroup>
@@ -2724,22 +2724,49 @@ as well as how I prepared for my accepted talk.</p>
 </tbody>
 </table>
 <h2 id="posit-review-process">Posit review process</h2>
+<p>I am grateful that the posit::conf(2023) program committee wrote the blog post
+<a href="https://posit.co/blog/how-we-build-the-positconf-program/">How we build the posit::conf() program</a>. To paraphrase,
+the committee is looking for talks that</p>
+<ol type="1">
+<li><p>contain actionable and impactful insights.</p></li>
+<li><p>are of broad interest.</p></li>
+</ol>
+<p>This post was published after my 2021 and 2023 rejections. Understanding
+how the process works made it easier to not take the rejections personally, and to
+try to figure out how to frame a new submission.</p>
 <h2 id="rejected">2021 – rejected</h2>
 <p><strong>In R:</strong> At this point I was working in market research, where my daily workflow
 included importing SPSS labelled data sets into R and doing subsequent wrangling
-and analysis.</p>
+and analysis. I had also recently started blogging, but I had not yet
+blogged about labelled data at the time of the submission.</p>
 <p><strong>Title:</strong> <em>Leveraging labelled data in R</em></p>
 <p><strong>Abstract:</strong> If you are at rstudio::global(2021), the thought of working with SPSS or SAS data sets may make you cringe. However, with R’s haven, labelled, and sjlabelled packages, you can leverage the inherent data labelling structure in these data sets to put metadata about your data (variable labels, value labels) right at your fingertips, making it easier to navigate data while also allowing the user to convert metadata to data. In this presentation, I will discuss general characteristics of labelled data, importing labelled data in R, storage of metadata as attributes, and practical tips for data analysis with labelled data. I will also address some potentially unexpected consequences when working with labelled data. By the end of the presentation, you may be wishing that your R workflow started with labelled data!</p>
+<p><strong>Email response:</strong></p>
+<blockquote>
+<p>Thank you for your submission to rstudio::global(2021).
+Unfortunately, your submission was not accepted for a talk this year. We received a huge number of excellent submissions and could only accept a small fraction of them. It was an especially tough competition, because rstudio::global(2021) will have fewer talks than we typically have for the in-person rstudio::conf.
+We know that putting together a conference submission takes significant effort
+(especially putting together a video, during a pandemic) and we sincerely
+appreciate the time you’ve invested. We hope you find a venue for your proposal
+– maybe even a future RStudio conference! Thank you again and we hope to still
+see you at rstudio::global(2021).</p>
+</blockquote>
 <p><strong>My take:</strong> The “cringe” phrasing is problematic; posit::conf is really about
 keeping a positive vibe. Also, maybe the conference committee didn’t consider
 SAS/SPSS users to be a wide target audience.</p>
 <h2 id="rejected-1">2023 – rejected</h2>
 <p><strong>In R:</strong> I was now working in clinical research, where my daily workflow
 includes importing SAS labelled data sets into R and doing subsequent wrangling
-and reporting. I had also published two blog posts since my previous submission: <a href="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/">Leveraging labelled data in R (2020)</a> (related to the 2021 submitted abstract) and <a href="https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/">The case for variable labels in R (2022)</a>
+and reporting. I had also published two blog posts since my previous submission: <a href="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/">Leveraging labelled data in R (2020)</a> (related to the 2021 submission) and <a href="https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/">The case for variable labels in R (2022)</a>
 (related to this submission).</p>
 <p><strong>Title:</strong> <em>The Case for Variable Labels in R</em></p>
 <p><strong>Abstract:</strong> Variable labels are valuable metadata providing brief descriptions of variables. Although historically associated with SAS, SPSS, or Stata data sets, variable labels can be embedded in R data frames as well. Integrating variable labels with your data requires minimal one-time effort, reduces the burden of referring to external data documentation, and alleviates the tension between succinct variable names for programming ease and longer descriptive text for interpretable output. In this talk, I will showcase various R packages that allow you to import, assign, manage, and retrieve labels, as well as packages that automatically incorporate those labels in presentation ready outputs such as tables and figures.</p>
+<p><strong>Email response:</strong></p>
+<blockquote>
+<p>Thank you for your submission to posit::conf(2023).
+Unfortunately, your submission was not accepted for a talk this year. We received more excellent submissions than we can fit into the two days and we faced some tough decisions. In many cases, the deciding factor is creating a cohesive talk program, with a balance of topics.
+We know that putting together a conference submission takes significant effort (especially recording a video) and we sincerely appreciate the time and mental energy that you invested. Thank you again and we hope to still see you at posit::conf(2023).</p>
+</blockquote>
 <p><strong>My take:</strong> Maybe it isn’t exciting? Do I sound like a robot? I state what variable
 labels do but maybe not why you should be using them?</p>
 <h2 id="accepted">2024 – accepted</h2>
@@ -2748,9 +2775,25 @@ perhaps at this time I even more firmly believed not just that creating labelled
 data is is workflow you <em>could</em> incorporate but one that you <em>should</em> incorporate.</p>
 <p><strong>Title:</strong> <em>Context is King</em></p>
 <p><strong>Abstract:</strong> The quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!</p>
+<p><strong>Email response:</strong></p>
+<blockquote>
+<p>Thank you for your submission to posit::conf(2024).
+We’re excited to let you know that it has been accepted as a regular, 20 minute talk!
+We’ll contact you again, at this same email, in the near future to confirm your interest and get some more information from you. These next communications will also provide additional details, such as how to claim your complimentary registration (including instructions for those who have already registered), and information about the speaker training provided by Articulation, Inc.
+Thanks again for your submission, we’re looking forward to hearing from you!</p>
+</blockquote>
 <p><strong>My take:</strong> I really tried to focus on the human problems that this workflow
-addresses, and I tried to pep it up.</p>
+addresses, and I tried to imbue more energy and enthusiasm in the abstract.</p>
 <h2 id="why-keep-trying">Why keep trying?</h2>
+<p>Some may wonder why I persistently submitted similar abstracts three times.
+It is because I feel that there is not sufficient mainstream documentation
+to demonstrate workflows with labelled data. I suspect that there is a large audience
+that could benefit from either (1) workflows starting with labelled data, or (2)
+workflows that create labelled data. And since not many were talking about it,
+I wanted to share what I could via posit::conf in hopes of reaching large audience. However,
+if my 2024 submission was not accepted, I doubt I would have tried on the same
+topic again.</p>
+<h2 id="reflection">Reflection</h2>
 <h2 id="acknowledgments">Acknowledgments</h2>
 <p>Over the three submissions, many individual provided feedback at various stages
 of this process, including the title, abstract, content for the one minute submission
@@ -2761,13 +2804,13 @@ Sarah Susnea, and Alice Walsh. Thank you all for your moral support and feedback
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>I was not aware of the Conference.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Living in California at the time, road trip with Kelly Bodwin and my husband!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Second child was an infant and I was between jobs, no way.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>I was not aware of the conference.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>I was living in California at the time, road trip with Kelly Bodwin and my husband!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This was a tough year - my second child was an infant and I was between jobs trying to transition from academia to industry. I applied for the opportunity scholarship but I did not receive it.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Last big trip prior to COVID lockdown.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Online only; loved the accessibility for all.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>First year teaching WTF workshop, it was intense preparation.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>Was bummed to not being giving a talk, but it was nice that workshop preparation was easier.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>I was elated to be invited to co-instruct the WTF workshop for the first time; due to the amount of preparation required I decided not to submit an abstract.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>I was bummed to not being giving a talk, but also still really enjoyed co-instructing the WTF workshop.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>First time giving a talk! I actually ended up giving two talks this week because a colleague on the R-Ladies leadership team was unable to give her talk in person last minute.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p>If you helped me with this talk at any point
 and I somehow managed to forget to list your name please, please let me know. There is
