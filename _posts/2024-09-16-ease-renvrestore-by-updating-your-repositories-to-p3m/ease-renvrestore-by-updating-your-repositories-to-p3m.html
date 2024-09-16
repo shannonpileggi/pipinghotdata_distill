@@ -1600,7 +1600,7 @@ various reasons. This can be a frustrating process to work through.</p>
 <h1 id="solution">Solution</h1>
 <p>Luckily, the <a href="https://packagemanager.posit.co/client/#/">Posit Public Package Manager (P3M)</a> exists! This free service hosts binaries of both latest and older packages, solving the time-consuming problem of installing from source. Learn more in <a href="https://posit.co/blog/announcing-public-package-manager/">Announcing Public Package Manager and v1.1.6 (2020)</a>.</p>
 <p>To take advantage, you need to update the repositories
-specified in the <code>renv.lock</code> - replace the CRAN repository with P3M. You can do manually edit the <code>renv.lock</code>, or achieve this via</p>
+specified in the <code>renv.lock</code> - replace the CRAN repository with P3M. You can manually edit the <code>renv.lock</code>, or achieve this via</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>renv</span><span class='fu'>::</span><span class='fu'><a href='https://rstudio.github.io/renv/reference/lockfiles.html'>lockfile_modify</a></span><span class='op'>(</span>repos <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>

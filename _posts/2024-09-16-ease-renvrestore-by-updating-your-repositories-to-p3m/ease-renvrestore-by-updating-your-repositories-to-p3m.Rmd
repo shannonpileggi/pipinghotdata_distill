@@ -69,7 +69,7 @@ various reasons. This can be a frustrating process to work through.
 Luckily, the [Posit Public Package Manager (P3M)](https://packagemanager.posit.co/client/#/) exists! This free service hosts binaries of both latest and older packages, solving the time-consuming problem of installing from source. Learn more in [Announcing Public Package Manager and v1.1.6 (2020)](https://posit.co/blog/announcing-public-package-manager/). 
 
 To take advantage, you need to update the repositories
-specified in the `renv.lock` - replace the CRAN repository with P3M. You can do manually edit the `renv.lock`, or achieve this via
+specified in the `renv.lock` - replace the CRAN repository with P3M. You can manually edit the `renv.lock`, or achieve this via
 
 ```{r, eval = FALSE}
 renv::lockfile_modify(repos = c(
