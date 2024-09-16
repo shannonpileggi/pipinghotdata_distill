@@ -29,8 +29,9 @@ knitr::include_graphics("renv_p3m.png")
 
 # TL; DR
 
-Updating a `renv` project's package repository from CRAN to P3M allows a user
-to more quickly install previous versions of R packages. It is also easy and free!
+Updating a `renv` project's package repository from CRAN to Posit Public Package 
+Manager allows a user to more quickly install previous versions of R packages. 
+It is also easy and free!
 
 # Background
 
@@ -72,7 +73,7 @@ specified in the `renv.lock` - replace the CRAN repository with P3M. You can do 
 
 ```{r, eval = FALSE}
 renv::lockfile_modify(repos = c(
-  P3M = "https://p3m.dev/cran/latest"
+  P3M = "https://packagemanager.posit.co/cran/latest"
   )) |> 
   renv::lockfile_write()
 ```
@@ -98,7 +99,7 @@ like:
 
 ```{r, eval = FALSE}
 renv::lockfile_modify(repos = c(
-  P3M = "https://p3m.dev/cran/latest",
+  P3M = "https://packagemanager.posit.co/cran/latest",
   ropensci = "https://ropensci.r-universe.dev",
   org_rspm = "http://rspm.xxxx.org/xxxREPO/latest"
   )) |> 
@@ -129,7 +130,7 @@ package installation via the `Global Options` menu in RStudio - see the P3M `SET
 
 ```
 options("repos" = c(
-  "P3M" = "https://p3m.dev/cran/latest",
+  "P3M" = "https://packagemanager.posit.co/cran/latest",
   "ropensci" = "https://ropensci.r-universe.dev",
   "org_rspm" = "http://rspm.xxxx.org/xxxREPO/latest"
   )

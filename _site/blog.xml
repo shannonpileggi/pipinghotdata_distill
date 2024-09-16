@@ -12,7 +12,121 @@
       <title>Ease `renv::restore()` by updating your repository to Posit Public Package Manager</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m</link>
-      <description>P3M hosts CRAN binaries of R packages' previous releases</description>
+      <description>
+
+
+&lt;p&gt;&lt;img src="https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3mrenv_p3m.png" alt="Logo/hex sticker from {renv} and logo for posit Package manager with a plus sign in between." width="640" /&gt;&lt;/p&gt;
+&lt;h1 id="tl-dr"&gt;TL; DR&lt;/h1&gt;
+&lt;p&gt;Updating a &lt;code&gt;renv&lt;/code&gt; project’s package repository from CRAN
+to Posit Public Package Manager allows a user to more quickly install
+previous versions of R packages. It is also easy and free!&lt;/p&gt;
+&lt;h1 id="background"&gt;Background&lt;/h1&gt;
+&lt;p&gt;The &lt;code&gt;{renv}&lt;/code&gt; package is wonderful for documenting and
+controlling package versions within an R project. See &lt;a
+href="https://youtu.be/GwVx_pf2uz4?si=agbC-r-us57GF-7f"&gt;You should use
+renv&lt;/a&gt; by E. David Aja at rstudio::conf(2022) for motivation and &lt;a
+href="https://rstudio.github.io/renv/articles/renv.html"&gt;Introduction to
+renv&lt;/a&gt; for how to get started.&lt;/p&gt;
+&lt;h1 id="package-restoration"&gt;Package restoration&lt;/h1&gt;
+&lt;p&gt;&lt;code&gt;{renv}&lt;/code&gt; facilitates restoration of specific versions of
+packages documented in the &lt;code&gt;renv.lock&lt;/code&gt; via
+&lt;code&gt;renv::restore()&lt;/code&gt;, which installs packages from a specified
+repository. In the &lt;code&gt;renv.lock&lt;/code&gt;, for many users the repository
+specification might look something like this by default:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   &amp;quot;Repositories&amp;quot;: [
+      {
+        &amp;quot;Name&amp;quot;: &amp;quot;CRAN&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;https://cloud.r-project.org&amp;quot;
+      }
+    ]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will vary user to user based on their specific settings and
+configurations. What this means is that &lt;code&gt;{renv}&lt;/code&gt; is going to
+that specific url to find and install packages that are available there.
+In this case, we are installing from the cloud instance of a CRAN
+mirror.&lt;/p&gt;
+&lt;p&gt;However, if the packages documented in the &lt;code&gt;renv.lock&lt;/code&gt; are
+of an older version, then the binaries for this package are likely no
+longer available on CRAN. This means that when &lt;code&gt;{renv}&lt;/code&gt;
+attempts to install that older package from CRAN, the packages will
+likely have to compile from source which takes longer and may fail for
+various reasons. This can be a frustrating process to work through.&lt;/p&gt;
+&lt;h1 id="solution"&gt;Solution&lt;/h1&gt;
+&lt;p&gt;Luckily, the &lt;a
+href="https://packagemanager.posit.co/client/#/"&gt;Posit Public Package
+Manager (P3M)&lt;/a&gt; exists! This free service hosts binaries of both
+latest and older packages, solving the time-consuming problem of
+installing from source. Learn more in &lt;a
+href="https://posit.co/blog/announcing-public-package-manager/"&gt;Announcing
+Public Package Manager and v1.1.6 (2020)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To take advantage, you need to update the repositories specified in
+the &lt;code&gt;renv.lock&lt;/code&gt; - replace the CRAN repository with P3M. You
+can do manually edit the &lt;code&gt;renv.lock&lt;/code&gt;, or achieve this via&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;renv::lockfile_modify(repos = c(
+  P3M = &amp;quot;https://packagemanager.posit.co/cran/latest&amp;quot;
+  )) |&amp;gt; 
+  renv::lockfile_write()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;which would result in a modified &lt;code&gt;renv.lock&lt;/code&gt; that looks
+like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   &amp;quot;Repositories&amp;quot;: [
+      {
+        &amp;quot;Name&amp;quot;: &amp;quot;P3M&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;https://packagemanager.posit.co/cran/latest&amp;quot;
+      }
+    ]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note 1: The P3M url specified here works for both macOS and Windows
+(not Linux). Use the &lt;a
+href="https://packagemanager.posit.co/client/#/repos/cran/setup"&gt;&lt;code&gt;SETUP&lt;/code&gt;&lt;/a&gt;
+page to determine what url to use for your needs.&lt;/p&gt;
+&lt;p&gt;Note 2: You can specify more than one repository for package
+installation. For example, you can also specify &lt;a
+href="https://r-universe.dev/search"&gt;R-universe&lt;/a&gt; from &lt;a
+href="https://ropensci.org/"&gt;ROpenSci&lt;/a&gt; or your organization’s Posit
+Package Manager if you subscribe to that service. That would look
+something like:&lt;/p&gt;
+&lt;pre class="r"&gt;&lt;code&gt;renv::lockfile_modify(repos = c(
+  P3M = &amp;quot;https://packagemanager.posit.co/cran/latest&amp;quot;,
+  ropensci = &amp;quot;https://ropensci.r-universe.dev&amp;quot;,
+  org_rspm = &amp;quot;http://rspm.xxxx.org/xxxREPO/latest&amp;quot;
+  )) |&amp;gt; 
+  renv::lockfile_write()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;   &amp;quot;Repositories&amp;quot;: [
+      {
+        &amp;quot;Name&amp;quot;: &amp;quot;P3M&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;https://packagemanager.posit.co/cran/latest&amp;quot;
+      },
+      {
+        &amp;quot;Name&amp;quot;: &amp;quot;ropensci&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;https://ropensci.r-universe.dev&amp;quot;
+      },
+      {
+        &amp;quot;Name&amp;quot;: &amp;quot;org_rspm&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;http://rspm.xxxx.org/xxxREPO/latest&amp;quot;
+      }
+    ]&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id="more-generally"&gt;More generally&lt;/h1&gt;
+&lt;p&gt;Outside the scope of &lt;code&gt;{renv}&lt;/code&gt; projects, you can set the
+default repository for package installation via the
+&lt;code&gt;Global Options&lt;/code&gt; menu in RStudio - see the P3M
+&lt;code&gt;SETUP&lt;/code&gt; page for details. Alternatively, you can specify this
+via &lt;code&gt;options&lt;/code&gt; in your R profile:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;options(&amp;quot;repos&amp;quot; = c(
+  &amp;quot;P3M&amp;quot; = &amp;quot;https://packagemanager.posit.co/cran/latest&amp;quot;,
+  &amp;quot;ropensci&amp;quot; = &amp;quot;https://ropensci.r-universe.dev&amp;quot;,
+  &amp;quot;org_rspm&amp;quot; = &amp;quot;http://rspm.xxxx.org/xxxREPO/latest&amp;quot;
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If these are your default options, then they will be adopted when you
+initiate a new &lt;code&gt;renv&lt;/code&gt; project.&lt;/p&gt;
+&lt;h1 id="conclusion"&gt;Conclusion&lt;/h1&gt;
+&lt;p&gt;If you have not yet taken advantage of the Posit Public Package
+Manager, I highly recommend you do so! It can save a lot of time and
+frustration when working on &lt;code&gt;renv&lt;/code&gt; projects that utilize
+older versions of packages, and more generally is a great default
+package installation resource.&lt;/p&gt;
+&lt;h1 id="acknowledgments"&gt;Acknowledgments&lt;/h1&gt;
+&lt;p&gt;Thanks to &lt;a href="https://edavidaja.com/"&gt;E. David Aja&lt;/a&gt; for
+providing suggestions and feedback on this post. ❤️&lt;/p&gt;
+&lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;</description>
+      <distill:md5>b88ba213583ca2f0854c5fc062f75627</distill:md5>
       <guid>https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m</guid>
       <pubDate>Mon, 16 Sep 2024 00:00:00 +0000</pubDate>
       <media:content url="https://www.pipinghotdata.com/posts/2024-09-16-ease-renvrestore-by-updating-your-repositories-to-p3m/renv_p3m.png" medium="image" type="image/png" width="1280" height="720"/>
