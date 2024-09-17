@@ -104,6 +104,16 @@ data is is workflow you _could_ incorporate but one that you _should_ incorporat
 **My take:** I really tried to focus on the human problems that this workflow addresses. 
 I also tried to make the title more compelling and to imbue more energy and enthusiasm in the abstract. 
 
+## Talk preparation
+
+| Time before conference | Organizer    | Task                                             |  
+| ---------------------- | ------------ | ------------------------------------------------ |  
+| 10 weeks               | Articulation | Discuss main takeaways                           |
+| 7 weeks                | Articulation | Review outline                                   |
+| 4 weeks                | Articulation | Present draft slides for a portion of talk       |
+| 2 weeks                | Articulation | Present 10 min of talk                           |
+| 7 days                 | Self         | Full practice talk                               |
+| 4 days                 | Self         | Follow-up to review suggested changes            |
 
 ## Why keep trying?
 
@@ -133,3 +143,4 @@ and I somehow managed to forget to list your name please, please let me know. Th
 no excuse but it has been a long four years.]: E. David Aja, Travis Gerke, 
 Crystal Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su, 
 Sarah Susnea, and Alice Walsh. Thank you all for your moral support and feedback!
+
