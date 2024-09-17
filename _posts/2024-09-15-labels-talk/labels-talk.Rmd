@@ -1,7 +1,7 @@
 ---
-title: "labels talk"
+title: "Iterating to achieve my first posit::conf talk"
 description: |
-  A short description of the post.
+  Three submissions regarding labelled data, two rejections and one success
 author:
   - name: Shannon Pileggi
     url: {}
@@ -19,10 +19,9 @@ having a talk accepted after two prior rejections on related submissions.
 
 ## Overview
 
-I have attended six out the eight RStudio / Posit conferences, and I have
-instructed a workshop at the past three. People are often surprised to hear
-that up until 2024 I had actually never given a talk at this conference. It wasn't 
-because I didn't try. 
+I have attended six out the eight past RStudio / Posit conferences, and I have
+instructed a workshop at the past three. Up until 2024, I had actually never 
+given a talk at this conference. It wasn't because I didn't try. 
 
 In this post I share the previous abstracts I submitted and how I iterated
 on the submissions.
@@ -43,17 +42,22 @@ on the submissions.
 
 
 
-## Posit review process
+## Posit submission and review process
 
-I am grateful that the posit::conf(2023) program committee wrote the blog post 
-[How we build the posit::conf() program](https://posit.co/blog/how-we-build-the-positconf-program/). To paraphrase,
+Submitting a talk to posit::conf requires both an abstract and a one minute
+video recording^[I do not have my older video recordings, so I did not include
+the submitted video recordings in this post.]. I am grateful that the posit::conf(2023) program committee wrote the blog post [How we build the posit::conf() program](https://posit.co/blog/how-we-build-the-positconf-program/). To paraphrase,
 the committee is looking for talks that
 
-1. contain actionable and impactful insights.
+1. contain actionable and impactful insights, and
 
 2. are of broad interest.
 
-This post was published after my 2021 and 2023 rejections. Understanding
+In addition, the post provides examples of strong video submissions, which
+are filmed in interesting locations, with props or engaging media, and 
+provide compelling stories.
+
+This program committee's post was published after my 2021 and 2023 rejections. Understanding
 how the process works made it easier to not take the rejections personally, and to
 try to figure out how to frame a new submission. 
 
@@ -87,7 +91,7 @@ SAS/SPSS users to be a wide target audience.
 
 **In R:** I was now working in clinical research, where my daily workflow
 includes importing SAS labelled data sets into R and doing subsequent wrangling 
-and reporting. I had also published two blog posts since my previous submission: [Leveraging labelled data in R (2020)](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) (related to the 2021 submission) and [The case for variable labels in R (2022)](https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/)
+and reporting. I had also published two blog posts since my previous submission: [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) (related to the 2021 submission) and [The case for variable labels in R](https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/)
 (related to this submission).
 
 **Title:** _The Case for Variable Labels in R_
@@ -101,7 +105,7 @@ Unfortunately, your submission was not accepted for a talk this year. We receive
 We know that putting together a conference submission takes significant effort (especially recording a video) and we sincerely appreciate the time and mental energy that you invested. Thank you again and we hope to still see you at posit::conf(2023).
 
 **My take:** Maybe it isn't exciting? Do I sound like a robot? I state what variable
-labels do but maybe not why you should be using them?
+labels do but maybe not emphasize enough why you should be using them?
 
 ## 2024 -- accepted
 
@@ -129,13 +133,19 @@ addresses, and I tried to imbue more energy and enthusiasm in the abstract.
 Some may wonder why I persistently submitted similar abstracts three times.
 It is because I feel that there is not sufficient mainstream documentation
 to demonstrate workflows with labelled data. I suspect that there is a large audience 
-that could benefit from either (1) workflows starting with labelled data, or (2)
+that could benefit from either (1) workflows starting with already labelled data, or (2)
 workflows that create labelled data. And since not many were talking about it,
-I wanted to share what I could via posit::conf in hopes of reaching large audience. However,
-if my 2024 submission was not accepted, I doubt I would have tried on the same 
+I wanted to share what I could via posit::conf in hopes of reaching large audience. 
+However, if my 2024 submission was not accepted, I doubt I would have tried on the same 
 topic again.
 
 ## Reflection
+
+Receiving multiple rejections is not fun, but in retrospect I am glad it happened
+this way. The talk would not have been the same if either of the prior submissions
+had been accepted. For my last submission, I focused on the human challenges we face as practitioners of data and tried my best to frame both the abstract and talk from that perspective. This is something I will carry forward if I submit again in the future; 
+because really, we are all just humans trying to solve problems.
+
 
 ## Acknowledgments
 

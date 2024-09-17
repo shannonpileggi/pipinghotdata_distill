@@ -9,7 +9,7 @@
     <generator>Distill</generator>
     <lastBuildDate>Sun, 15 Sep 2024 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>labels talk</title>
+      <title>Iterating to achieve my first posit::conf talk</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2024-09-15-labels-talk</link>
       <description>
@@ -23,10 +23,10 @@ is King&lt;/a&gt;, a talk about variable labels in R. Part of my elation was
 due to actually having a talk accepted after two prior rejections on
 related submissions.&lt;/p&gt;
 &lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
-&lt;p&gt;I have attended six out the eight RStudio / Posit conferences, and I
-have instructed a workshop at the past three. People are often surprised
-to hear that up until 2024 I had actually never given a talk at this
-conference. It wasn’t because I didn’t try.&lt;/p&gt;
+&lt;p&gt;I have attended six out the eight past RStudio / Posit conferences,
+and I have instructed a workshop at the past three. Up until 2024, I had
+actually never given a talk at this conference. It wasn’t because I
+didn’t try.&lt;/p&gt;
 &lt;p&gt;In this post I share the previous abstracts I submitted and how I
 iterated on the submissions.&lt;/p&gt;
 &lt;h2 id="timeline"&gt;Timeline&lt;/h2&gt;
@@ -124,20 +124,26 @@ id="fnref8"&gt;&lt;sup&gt;8&lt;/sup&gt;&lt;/a&gt;Seattle&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id="posit-review-process"&gt;Posit review process&lt;/h2&gt;
-&lt;p&gt;I am grateful that the posit::conf(2023) program committee wrote the
-blog post &lt;a
+&lt;h2 id="posit-submission-and-review-process"&gt;Posit submission and review
+process&lt;/h2&gt;
+&lt;p&gt;Submitting a talk to posit::conf requires both an abstract and a one
+minute video recording&lt;a href="#fn9" class="footnote-ref"
+id="fnref9"&gt;&lt;sup&gt;9&lt;/sup&gt;&lt;/a&gt;. I am grateful that the posit::conf(2023)
+program committee wrote the blog post &lt;a
 href="https://posit.co/blog/how-we-build-the-positconf-program/"&gt;How we
 build the posit::conf() program&lt;/a&gt;. To paraphrase, the committee is
 looking for talks that&lt;/p&gt;
 &lt;ol style="list-style-type: decimal"&gt;
-&lt;li&gt;&lt;p&gt;contain actionable and impactful insights.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;contain actionable and impactful insights, and&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;are of broad interest.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;This post was published after my 2021 and 2023 rejections.
-Understanding how the process works made it easier to not take the
-rejections personally, and to try to figure out how to frame a new
-submission.&lt;/p&gt;
+&lt;p&gt;In addition, the post provides examples of strong video submissions,
+which are filmed in interesting locations, with props or engaging media,
+and provide compelling stories.&lt;/p&gt;
+&lt;p&gt;This program committee’s post was published after my 2021 and 2023
+rejections. Understanding how the process works made it easier to not
+take the rejections personally, and to try to figure out how to frame a
+new submission.&lt;/p&gt;
 &lt;h2 id="rejected"&gt;2021 – rejected&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;In R:&lt;/strong&gt; At this point I was working in market
 research, where my daily workflow included importing SPSS labelled data
@@ -182,10 +188,9 @@ my daily workflow includes importing SAS labelled data sets into R and
 doing subsequent wrangling and reporting. I had also published two blog
 posts since my previous submission: &lt;a
 href="https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/"&gt;Leveraging
-labelled data in R (2020)&lt;/a&gt; (related to the 2021 submission) and &lt;a
+labelled data in R&lt;/a&gt; (related to the 2021 submission) and &lt;a
 href="https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/"&gt;The
-case for variable labels in R (2022)&lt;/a&gt; (related to this
-submission).&lt;/p&gt;
+case for variable labels in R&lt;/a&gt; (related to this submission).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Title:&lt;/strong&gt; &lt;em&gt;The Case for Variable Labels in
 R&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Abstract:&lt;/strong&gt; Variable labels are valuable metadata
@@ -212,8 +217,8 @@ energy that you invested. Thank you again and we hope to still see you
 at posit::conf(2023).&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;My take:&lt;/strong&gt; Maybe it isn’t exciting? Do I sound like a
-robot? I state what variable labels do but maybe not why you should be
-using them?&lt;/p&gt;
+robot? I state what variable labels do but maybe not emphasize enough
+why you should be using them?&lt;/p&gt;
 &lt;h2 id="accepted"&gt;2024 – accepted&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;In R:&lt;/strong&gt; I had been doing more of the same since my
 previous submission. But perhaps at this time I even more firmly
@@ -250,20 +255,27 @@ and enthusiasm in the abstract.&lt;/p&gt;
 times. It is because I feel that there is not sufficient mainstream
 documentation to demonstrate workflows with labelled data. I suspect
 that there is a large audience that could benefit from either (1)
-workflows starting with labelled data, or (2) workflows that create
-labelled data. And since not many were talking about it, I wanted to
-share what I could via posit::conf in hopes of reaching large audience.
-However, if my 2024 submission was not accepted, I doubt I would have
-tried on the same topic again.&lt;/p&gt;
+workflows starting with already labelled data, or (2) workflows that
+create labelled data. And since not many were talking about it, I wanted
+to share what I could via posit::conf in hopes of reaching large
+audience. However, if my 2024 submission was not accepted, I doubt I
+would have tried on the same topic again.&lt;/p&gt;
 &lt;h2 id="reflection"&gt;Reflection&lt;/h2&gt;
+&lt;p&gt;Receiving multiple rejections is not fun, but in retrospect I am glad
+it happened this way. The talk would not have been the same if either of
+the prior submissions had been accepted. For my last submission, I
+focused on the human challenges we face as practitioners of data and
+tried my best to frame both the abstract and talk from that perspective.
+This is something I will carry forward if I submit again in the future;
+because really, we are all just humans trying to solve problems.&lt;/p&gt;
 &lt;h2 id="acknowledgments"&gt;Acknowledgments&lt;/h2&gt;
 &lt;p&gt;Over the three submissions, many individual provided feedback at
 various stages of this process, including the title, abstract, content
 for the one minute submission video, and the talk itself. This
-includes&lt;a href="#fn9" class="footnote-ref"
-id="fnref9"&gt;&lt;sup&gt;9&lt;/sup&gt;&lt;/a&gt;: E. David Aja, Travis Gerke, Crystal Lewis,
-Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su, Sarah
-Susnea, and Alice Walsh. Thank you all for your moral support and
+includes&lt;a href="#fn10" class="footnote-ref"
+id="fnref10"&gt;&lt;sup&gt;10&lt;/sup&gt;&lt;/a&gt;: E. David Aja, Travis Gerke, Crystal
+Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su,
+Sarah Susnea, and Alice Walsh. Thank you all for your moral support and
 feedback!&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="footnotes footnotes-end-of-document"&gt;
@@ -293,9 +305,12 @@ class="footnote-back"&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 talks this week because a colleague on the R-Ladies leadership team was
 unable to give her talk in person last minute.&lt;a href="#fnref8"
 class="footnote-back"&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id="fn9"&gt;&lt;p&gt;If you helped me with this talk at any point and I
+&lt;li id="fn9"&gt;&lt;p&gt;I do not have my older video recordings, so I did not
+include the submitted video recordings in this post.&lt;a href="#fnref9"
+class="footnote-back"&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id="fn10"&gt;&lt;p&gt;If you helped me with this talk at any point and I
 somehow managed to forget to list your name please, please let me know.
-There is no excuse but it has been a long four years.&lt;a href="#fnref9"
+There is no excuse but it has been a long four years.&lt;a href="#fnref10"
 class="footnote-back"&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
