@@ -52,13 +52,10 @@ the committee is looking for talks that
 
 2. are of broad interest.
 
-In addition, the post provides examples of strong video submissions, which
-are filmed in interesting locations, with props or engaging media, and 
-provide compelling stories.
+In addition, the post provides examples of strong video submissions, which are filmed in interesting locations, with props or engaging media, and provide compelling stories.
 
-This program committee's post was published after my 2021 and 2023 rejections. Understanding
-how the process works made it easier to not take the rejections personally, and to
-try to figure out how to frame a new submission. 
+This program committee's post was published after my 2021 and 2023 rejections. 
+Understanding how the process works made it easier to not take the rejections personally, and to try to figure out how to frame a new submission. 
 
 ## 2021 -- rejected
 
@@ -106,14 +103,26 @@ I also tried to make the title more compelling and to imbue more energy and enth
 
 ## Talk preparation
 
-| Time before conference | Organizer    | Task                                             |  
+Posit provided training by Articulation for all conference speakers, and it was a great forum to discuss ideas and get feedback.
+The coach led sessions were 2 hours each, in which ~5 presenters took turns sharing their talk ideas and feedback on others'. 
+Having goals at fixed timepoints helped to pace the work, and I incorporated both the coach's and fellow speakers  diverse feedback at each stage.
+
+| Time before conference | Organizer    | Meeting topic                                    |  
 | ---------------------- | ------------ | ------------------------------------------------ |  
 | 10 weeks               | Articulation | Discuss main takeaways                           |
 | 7 weeks                | Articulation | Review outline                                   |
-| 4 weeks                | Articulation | Present draft slides for a portion of talk       |
+| 4 weeks                | Articulation | Present draft slides for portion of talk         |
 | 2 weeks                | Articulation | Present 10 min of talk                           |
 | 7 days                 | Self         | Full practice talk                               |
 | 4 days                 | Self         | Follow-up to review suggested changes            |
+
+However, not all portions of the talk, nor the full talk, were practiced during Articulate, and so the full content had not yet been pressure tested.
+I felt that I had tried too hard to get this talk on the program to have any obvious misses, big or small.
+So after the Articulation training completed, I invited five friends, a mix of those both familiar and not with the topic, for an hour long meeting in which I presented for the full talk and listened to feedback. 
+It is quite sobering when you think you are "done" with a talk and realize you aren't quite there yet. 😅 
+I am so glad I did this extra step, as every change suggested was spot on.
+
+It is hard to estimate how much time goes into preparing a talk. I worked on the talk pretty much continuously, bit by bit when I could, starting about 5 weeks before the talk until the day before the talk. 
 
 ## Why keep trying?
 
@@ -128,6 +137,10 @@ topic again.
 
 ## Reflection
 
+Despite the intense effort leading up to the talk, I did enjoy giving it. 
+I was fortunate to present in the "Beautiful and Effective Tables" session alongside friends, and the room was packed. 
+I am grateful some individuals took the time to share positive feedback indicating that the talk was both enjoyable and enlightening. After time has passed, it would be even more meaningful to hear that the ideas presented were actually implemented and had an impact on daily work.
+
 Receiving multiple rejections is not fun, but in retrospect I am glad it happened
 this way. The talk would not have been the same if either of the prior submissions
 had been accepted. For my last submission, I focused on the human challenges we face as practitioners of data and tried my best to frame both the abstract and talk from that perspective. This is something I will carry forward if I submit again in the future; 
@@ -136,11 +149,14 @@ because really, we are all just humans trying to solve problems.
 
 ## Acknowledgments
 
-Over the three submissions, many individual provided feedback at various stages
+Thank you to Maëlle Salmon for providing feedback on this post. 🤗
+
+Over the three talk submissions, many individual provided feedback at various stages
 of this process, including the title, abstract, content for the one minute submission 
 video, and the talk itself. This includes^[If you helped me with this talk at any point 
 and I somehow managed to forget to list your name please, please let me know. There is 
 no excuse but it has been a long four years.]: E. David Aja, Travis Gerke, 
 Crystal Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su, 
-Sarah Susnea, and Alice Walsh. Thank you all for your moral support and feedback!
+Sarah Susnea, and Alice Walsh. Thank you all for your moral support and feedback! ❤️
+
 
