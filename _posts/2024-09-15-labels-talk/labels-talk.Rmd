@@ -8,7 +8,12 @@ author:
 date: 2024-09-15
 output:
   distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
     self_contained: false
+draft: false
+creative_commons: CC BY
 ---
 
 ## TL;DR
@@ -40,7 +45,7 @@ Up until 2024, I had actually never given a talk at this conference. It wasn't b
 
 
 
-## Posit submission and review process
+## Posit review process
 
 Submitting a talk to posit::conf requires both an abstract and a one minute
 video recording^[I do not have my older video recordings, so I did not include
