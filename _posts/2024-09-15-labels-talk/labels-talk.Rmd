@@ -15,7 +15,7 @@ output:
 
 This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/), a talk about variable labels in R. 
 Part of my elation was due to actually having a talk accepted after two prior rejections on related submissions.
-In this post I share the previous abstracts I submitted and how I iterated on the submissions.
+In this post, I share the previous abstracts I submitted, how I iterated on the submissions, and briefly discuss the talk itself.
 
 ## Overview
 
@@ -103,9 +103,10 @@ I also tried to make the title more compelling and to imbue more energy and enth
 
 ## Talk preparation
 
+After an acceptance, the real work begins.
 Posit provided training by Articulation for all conference speakers, and it was a great forum to discuss ideas and get feedback.
 The coach led sessions were 2 hours each, in which ~5 presenters took turns sharing their talk ideas and feedback on others'. 
-Having goals at fixed timepoints helped to pace the work, and I incorporated both the coach's and fellow speakers  diverse feedback at each stage.
+Having goals at fixed timepoints helped pace the work, and I incorporated both the coach's and fellow speakers  diverse feedback at each stage.
 
 | Time before conference | Organizer    | Meeting topic                                    |  
 | ---------------------- | ------------ | ------------------------------------------------ |  
@@ -116,11 +117,12 @@ Having goals at fixed timepoints helped to pace the work, and I incorporated bot
 | 7 days                 | Self         | Full practice talk                               |
 | 4 days                 | Self         | Follow-up to review suggested changes            |
 
-However, not all portions of the talk, nor the full talk, were practiced during Articulate, and so the full content had not yet been pressure tested.
+However, at the conclusion of the Articulation session not all portions of the talk, nor the full talk, had been pressure tested.
 I felt that I had tried too hard to get this talk on the program to have any obvious misses, big or small.
-So after the Articulation training completed, I invited five friends, a mix of those both familiar and not with the topic, for an hour long meeting in which I presented for the full talk and listened to feedback. 
+So after the Articulation training completed, I invited five friends (a mix of those both familiar and not with the topic) for an hour long meeting in which I presented the full talk and listened to feedback. 
 It is quite sobering when you think you are "done" with a talk and realize you aren't quite there yet. 😅 
-I am so glad I did this extra step, as every change suggested was spot on.
+I am so glad I did this extra step, as every change suggested was spot on, which included some reorganization,
+modification of visuals, and addition of new content.
 
 It is hard to estimate how much time goes into preparing a talk. I worked on the talk pretty much continuously, bit by bit when I could, starting about 5 weeks before the talk until the day before the talk. 
 
@@ -141,15 +143,21 @@ Despite the intense effort leading up to the talk, I did enjoy giving it.
 I was fortunate to present in the "Beautiful and Effective Tables" session alongside friends, and the room was packed. 
 I am grateful some individuals took the time to share positive feedback indicating that the talk was both enjoyable and enlightening. After time has passed, it would be even more meaningful to hear that the ideas presented were actually implemented and had an impact on daily work.
 
-Receiving multiple rejections is not fun, but in retrospect I am glad it happened
+Receiving multiple rejections is not pleasant, but in retrospect I am glad it happened
 this way. The talk would not have been the same if either of the prior submissions
 had been accepted. For my last submission, I focused on the human challenges we face as practitioners of data and tried my best to frame both the abstract and talk from that perspective. This is something I will carry forward if I submit again in the future; 
 because really, we are all just humans trying to solve problems.
 
+## Advice
+
+Don't let rejection deter you from trying again. 
+Treat the abstract and the one minute video equally seriously (I'm not sure that I did for the video for my first couple of submissions). 
+Ask more than one person for feedback on your abstract and video content - everyone has a different and valuable point of view.
+Think about the way the principles of your content apply broadly to a general audience.
+Convince reviewers that your content can help alleviate the challenges of others.
+It's easy, right? 😂
 
 ## Acknowledgments
-
-Thank you to Maëlle Salmon for providing feedback on this post. 🤗
 
 Over the three talk submissions, many individual provided feedback at various stages
 of this process, including the title, abstract, content for the one minute submission 
@@ -159,4 +167,4 @@ no excuse but it has been a long four years.]: E. David Aja, Travis Gerke,
 Crystal Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su, 
 Sarah Susnea, and Alice Walsh. Thank you all for your moral support and feedback! ❤️
 
-
+Thank you to Maëlle Salmon for providing feedback on this post. 🤗
