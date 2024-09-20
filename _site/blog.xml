@@ -9,7 +9,7 @@
     <generator>Distill</generator>
     <lastBuildDate>Sun, 15 Sep 2024 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Iterating to achieve my first posit::conf talk</title>
+      <title>Iterating to achieve my first accepted posit::conf talk</title>
       <dc:creator>Shannon Pileggi</dc:creator>
       <link>https://www.pipinghotdata.com/posts/2024-09-15-labels-talk</link>
       <description>
@@ -21,14 +21,16 @@ ever on &lt;a
 href="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/"&gt;Context
 is King&lt;/a&gt;, a talk about variable labels in R. Part of my elation was
 due to actually having a talk accepted after two prior rejections on
-related submissions.&lt;/p&gt;
+related submissions. In this post, I share the previous abstracts I
+submitted, how I iterated on the submissions, and briefly discuss the
+talk itself.&lt;/p&gt;
 &lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
 &lt;p&gt;I have attended six out the eight past RStudio / Posit conferences,
-and I have instructed a workshop at the past three. Up until 2024, I had
-actually never given a talk at this conference. It wasn’t because I
-didn’t try.&lt;/p&gt;
-&lt;p&gt;In this post I share the previous abstracts I submitted and how I
-iterated on the submissions.&lt;/p&gt;
+and I have co-instructed the &lt;a
+href="https://www.pipinghotdata.com/workshops/2024-08-12-what-they-forgot-to-teach-you-about-r/"&gt;What
+They Forgot To Teach You About R (WTF)&lt;/a&gt; workshop at the past three.
+Up until 2024, I had actually never given a talk at this conference. It
+wasn’t because I didn’t try.&lt;/p&gt;
 &lt;h2 id="timeline"&gt;Timeline&lt;/h2&gt;
 &lt;table&gt;
 &lt;colgroup&gt;
@@ -128,8 +130,10 @@ id="fnref8"&gt;&lt;sup&gt;8&lt;/sup&gt;&lt;/a&gt;Seattle&lt;/td&gt;
 process&lt;/h2&gt;
 &lt;p&gt;Submitting a talk to posit::conf requires both an abstract and a one
 minute video recording&lt;a href="#fn9" class="footnote-ref"
-id="fnref9"&gt;&lt;sup&gt;9&lt;/sup&gt;&lt;/a&gt;. I am grateful that the posit::conf(2023)
-program committee wrote the blog post &lt;a
+id="fnref9"&gt;&lt;sup&gt;9&lt;/sup&gt;&lt;/a&gt;. The email responses to submissions from
+Posit are kind but generic (so there is no personalized feedback), and I
+am grateful that the posit::conf(2023) program committee wrote the blog
+post &lt;a
 href="https://posit.co/blog/how-we-build-the-positconf-program/"&gt;How we
 build the posit::conf() program&lt;/a&gt;. To paraphrase, the committee is
 looking for talks that&lt;/p&gt;
@@ -164,20 +168,6 @@ with labelled data. I will also address some potentially unexpected
 consequences when working with labelled data. By the end of the
 presentation, you may be wishing that your R workflow started with
 labelled data!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Email response:&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Thank you for your submission to rstudio::global(2021).
-Unfortunately, your submission was not accepted for a talk this year. We
-received a huge number of excellent submissions and could only accept a
-small fraction of them. It was an especially tough competition, because
-rstudio::global(2021) will have fewer talks than we typically have for
-the in-person rstudio::conf. We know that putting together a conference
-submission takes significant effort (especially putting together a
-video, during a pandemic) and we sincerely appreciate the time you’ve
-invested. We hope you find a venue for your proposal – maybe even a
-future RStudio conference! Thank you again and we hope to still see you
-at rstudio::global(2021).&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;My take:&lt;/strong&gt; The “cringe” phrasing is problematic;
 posit::conf is really about keeping a positive vibe. Also, maybe the
 conference committee didn’t consider SAS/SPSS users to be a wide target
@@ -204,18 +194,6 @@ for interpretable output. In this talk, I will showcase various R
 packages that allow you to import, assign, manage, and retrieve labels,
 as well as packages that automatically incorporate those labels in
 presentation ready outputs such as tables and figures.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Email response:&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Thank you for your submission to posit::conf(2023). Unfortunately,
-your submission was not accepted for a talk this year. We received more
-excellent submissions than we can fit into the two days and we faced
-some tough decisions. In many cases, the deciding factor is creating a
-cohesive talk program, with a balance of topics. We know that putting
-together a conference submission takes significant effort (especially
-recording a video) and we sincerely appreciate the time and mental
-energy that you invested. Thank you again and we hope to still see you
-at posit::conf(2023).&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;My take:&lt;/strong&gt; Maybe it isn’t exciting? Do I sound like a
 robot? I state what variable labels do but maybe not emphasize enough
 why you should be using them?&lt;/p&gt;
@@ -235,21 +213,79 @@ context that reduces human error, fosters collaboration, and ultimately
 elevates the overall data analysis experience. As an avid, daily user of
 variable labels, I am excited to help you discover new workflows to
 create and leverage variable labels in R!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Email response:&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Thank you for your submission to posit::conf(2024). We’re excited to
-let you know that it has been accepted as a regular, 20 minute talk!
-We’ll contact you again, at this same email, in the near future to
-confirm your interest and get some more information from you. These next
-communications will also provide additional details, such as how to
-claim your complimentary registration (including instructions for those
-who have already registered), and information about the speaker training
-provided by Articulation, Inc. Thanks again for your submission, we’re
-looking forward to hearing from you!&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;My take:&lt;/strong&gt; I really tried to focus on the human
-problems that this workflow addresses, and I tried to imbue more energy
-and enthusiasm in the abstract.&lt;/p&gt;
+problems that this workflow addresses. I also tried to make the title
+more compelling and to imbue more energy and enthusiasm in the
+abstract.&lt;/p&gt;
+&lt;h2 id="talk-preparation"&gt;Talk preparation&lt;/h2&gt;
+&lt;p&gt;After an acceptance, the real work begins. Posit provided training by
+Articulation for all conference speakers, and it was a great forum to
+discuss ideas and get feedback. The coach led sessions were 2 hours
+each, in which ~5 presenters took turns sharing their talk ideas and
+feedback on others’. Having goals at fixed timepoints helped pace the
+work, and I incorporated both the coach’s and fellow speakers diverse
+feedback at each stage.&lt;/p&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col width="26%" /&gt;
+&lt;col width="14%" /&gt;
+&lt;col width="58%" /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class="header"&gt;
+&lt;th&gt;Time before conference&lt;/th&gt;
+&lt;th&gt;Organizer&lt;/th&gt;
+&lt;th&gt;Meeting topic&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;10 weeks&lt;/td&gt;
+&lt;td&gt;Articulation&lt;/td&gt;
+&lt;td&gt;Discuss main takeaways&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;7 weeks&lt;/td&gt;
+&lt;td&gt;Articulation&lt;/td&gt;
+&lt;td&gt;Review outline&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;4 weeks&lt;/td&gt;
+&lt;td&gt;Articulation&lt;/td&gt;
+&lt;td&gt;Present draft slides for portion of talk&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;2 weeks&lt;/td&gt;
+&lt;td&gt;Articulation&lt;/td&gt;
+&lt;td&gt;Present 10 min of talk&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="odd"&gt;
+&lt;td&gt;7 days&lt;/td&gt;
+&lt;td&gt;Self&lt;/td&gt;
+&lt;td&gt;Full practice talk&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="even"&gt;
+&lt;td&gt;4 days&lt;/td&gt;
+&lt;td&gt;Self&lt;/td&gt;
+&lt;td&gt;Follow-up to review suggested changes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;However, at the conclusion of the Articulation session not all
+portions of the talk, nor the full talk, had been pressure tested. I
+felt that I had tried too hard to get this talk on the program to have
+any obvious misses, big or small. So after the Articulation training
+completed, I invited five friends (a mix of those both familiar and not
+with the topic) for an hour long meeting in which I presented the full
+talk and listened to feedback. It is quite sobering when you think you
+are “done” with a talk and realize you aren’t quite there yet. 😅 I am
+so glad I did this extra step, as every change suggested was spot on,
+which included some reorganization, modification of visuals, and
+addition of new content.&lt;/p&gt;
+&lt;p&gt;It is hard to estimate how much time goes into preparing a talk. I
+worked on the talk pretty much continuously, bit by bit when I could,
+starting about 5 weeks before the talk until the day before the
+talk.&lt;/p&gt;
 &lt;h2 id="why-keep-trying"&gt;Why keep trying?&lt;/h2&gt;
 &lt;p&gt;Some may wonder why I persistently submitted similar abstracts three
 times. It is because I feel that there is not sufficient mainstream
@@ -261,22 +297,41 @@ to share what I could via posit::conf in hopes of reaching large
 audience. However, if my 2024 submission was not accepted, I doubt I
 would have tried on the same topic again.&lt;/p&gt;
 &lt;h2 id="reflection"&gt;Reflection&lt;/h2&gt;
-&lt;p&gt;Receiving multiple rejections is not fun, but in retrospect I am glad
-it happened this way. The talk would not have been the same if either of
-the prior submissions had been accepted. For my last submission, I
-focused on the human challenges we face as practitioners of data and
-tried my best to frame both the abstract and talk from that perspective.
-This is something I will carry forward if I submit again in the future;
-because really, we are all just humans trying to solve problems.&lt;/p&gt;
+&lt;p&gt;Despite the intense effort leading up to the talk, I did enjoy giving
+it. I was fortunate to present in the “Beautiful and Effective Tables”
+session alongside friends, and the room was packed. I am grateful some
+individuals took the time to share positive feedback indicating that the
+talk was both enjoyable and enlightening. After time has passed, it
+would be even more meaningful to hear that the ideas presented were
+actually implemented and had an impact on daily work.&lt;/p&gt;
+&lt;p&gt;Receiving multiple rejections is not pleasant, but in retrospect I am
+glad it happened this way. The talk would not have been the same if
+either of the prior submissions had been accepted. For my last
+submission, I focused on the human challenges we face as practitioners
+of data and tried my best to frame both the abstract and talk from that
+perspective. This is something I will carry forward if I submit again in
+the future; because really, we are all just humans trying to solve
+problems.&lt;/p&gt;
+&lt;h2 id="advice"&gt;Advice&lt;/h2&gt;
+&lt;p&gt;Don’t let rejection deter you from trying again. Treat the abstract
+and the one minute video equally seriously (I’m not sure that I did for
+the video for my first couple of submissions). Ask more than one person
+for feedback on your abstract and video content - everyone has a
+different and valuable point of view. Think about the way the principles
+of your content apply broadly to a general audience. Convince reviewers
+that your content can help alleviate the challenges of others. It’s
+easy, right? 😂&lt;/p&gt;
 &lt;h2 id="acknowledgments"&gt;Acknowledgments&lt;/h2&gt;
-&lt;p&gt;Over the three submissions, many individual provided feedback at
+&lt;p&gt;Over the three talk submissions, many individual provided feedback at
 various stages of this process, including the title, abstract, content
 for the one minute submission video, and the talk itself. This
 includes&lt;a href="#fn10" class="footnote-ref"
 id="fnref10"&gt;&lt;sup&gt;10&lt;/sup&gt;&lt;/a&gt;: E. David Aja, Travis Gerke, Crystal
 Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su,
 Sarah Susnea, and Alice Walsh. Thank you all for your moral support and
-feedback!&lt;/p&gt;
+feedback! ❤️&lt;/p&gt;
+&lt;p&gt;Thank you to Maëlle Salmon for providing feedback on this post.
+🤗&lt;/p&gt;
 &lt;pre class="r distill-force-highlighting-css"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="footnotes footnotes-end-of-document"&gt;
 &lt;hr /&gt;
