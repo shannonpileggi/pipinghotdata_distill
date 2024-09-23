@@ -18,7 +18,8 @@ creative_commons: CC BY
 
 ## TL;DR
 
-This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/), a talk about variable labels in R. 
+This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/), a talk about variable labels in R with an emphasis on the general
+idea of data stewardship. 
 Part of my elation was due to actually having a talk accepted after two prior rejections on related submissions.
 In this post, I share the previous abstracts I submitted, how I iterated on the submissions, and briefly discuss the talk itself.
 
@@ -148,7 +149,17 @@ topic again.
 ## Reflection
 
 Despite the intense effort leading up to the talk, I did enjoy giving it. 
-I was fortunate to present in the "Beautiful and Effective Tables" session alongside friends, and the room was packed. 
+I was fortunate to present in the "Beautiful and Effective Tables" session alongside friends, and the room was packed.
+
+```{r, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|    Left: View from back of room during the _Context is King_ talk. Right: Speakers in the "Beautiful and Effective Tables" session: Becca Krouse (_Stitch by Stitch: The Art of Engaging New Users_), Shannon Pileggi (_Context is King_), Daniel Sjoberg (_gtsummary: Streamlining Summary Tables for Research and Regulatory Submissions_), and Richard Iannone (_Adequate Tables? No, We Want Great Tables_).
+#| fig.alt: >
+#|    Left: Shannon is on stage with large screen off to side; most seats appear full.
+#|    Right: Four speakers standing with arms around each other; corner of stage in back left and carpet has triangular pattern.
+knitr::include_graphics(("tables_session.jpg"))
+```
+
 I am grateful that some individuals took the time to share positive feedback indicating that the talk was both enjoyable and enlightening. 
 After time has passed, it would be also be wonderful to hear that the ideas presented were actually implemented and had an impact on daily work, or that it inspired people who build data tools to be mindful of ways to incorporate metadata^[Realistically, I doubt a single talk would have that much impact. The impact might come if others repeated similar messages in other conferences or mainstream materials.]. 
 
