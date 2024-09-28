@@ -35,7 +35,7 @@ Up until 2024, I had actually never given a talk at this conference. It wasn't b
 | ---- | ---------------- | :------: | :-----------------: | :------------: | :-----------: |
 | 2017 | ^[I was not aware of the conference.]Orlando          |          |                     |                |               |
 | 2018 | ^[I was living in California at the time, road trip with Kelly Bodwin and my husband!]San Diego        | ✔️       |                       |                |               |
-| 2019 | ^[This was a tough year - my second child was an infant and I was between jobs trying to transition from academia to industry. I applied for the opportunity scholarship but I did not receive it.]Austin           |          |                     |                |               |
+| 2019 | ^[This was a tough year - my second child was an infant and I was between jobs trying to transition from academia to industry.]Austin           |          |                     |                |               |
 | 2020 | ^[Last big trip prior to COVID lockdown.]San Francisco    | ✔️       |                     |                |               |
 | 2021 | ^[Online only; loved the accessibility for all.]Global           | ✔️        |                     | ✔️             |               |
 | 2022 | ^[I was elated to be invited to co-instruct the WTF workshop for the first time;  due to the amount of preparation required I decided not to submit an abstract.]Washington, D.C. | ✔️        | ✔️                   |                |               |
