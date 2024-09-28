@@ -162,7 +162,8 @@ knitr::include_graphics(("tables_session.jpg"))
 I am grateful that some individuals took the time to share positive feedback indicating that the talk was both enjoyable and enlightening. 
 After time has passed, it would be also be wonderful to hear that the ideas presented were actually implemented and had an impact on daily work, or that it inspired people who build data tools to be mindful of ways to incorporate metadata^[Realistically, I doubt a single talk would have that much impact. The impact might come if others repeated similar messages in other conferences or mainstream materials.]. 
 
-Receiving multiple rejections is not pleasant, but in retrospect I am glad it happened this way. The talk would not have been the same if either of the prior submissions had been accepted. 
+Receiving multiple rejections is not pleasant, but in retrospect I am glad it happened this way. 
+I can see flaws in my prior submissions, and the talk would not have been the same if either had been accepted. 
 For my last submission, I focused on the human challenges we face as practitioners of data and I tried my best to frame both the abstract and talk from that perspective. 
 This is something I will carry forward if I submit again in the future; because really, we are all just humans trying to solve problems.
 
