@@ -19,7 +19,7 @@ creative_commons: CC BY
 ## TL;DR
 
 This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/), a talk about variable labels in R with an emphasis on the general idea of data stewardship. 
-After to two previous rejections on related submissions, I was especially excited to finally have a talk accepted.
+After two previous rejections on related submissions, I was especially excited to finally have a talk accepted.
 In this post, I share the previous abstracts I submitted, how I iterated on the submissions, and briefly discuss the talk itself.
 
 ## Overview
@@ -106,34 +106,6 @@ data is is workflow you _could_ incorporate but one that you _should_ incorporat
 **My take:** I really tried to focus on the human problems that this workflow addresses. 
 I also tried to make the title more compelling and to imbue more energy and enthusiasm in the abstract. 
 
-## Talk preparation
-
-After an acceptance, the real work begins.
-Posit provided training by Articulation for all conference speakers, and it was a great forum to discuss ideas and get feedback.
-To learn more about Articulation's coaching and approach, watch the [Data Science Hangout](https://posit.co/data-science-hangout/acacia-duncan-and-blythe-coons/) with Articulation coaches Acacia Duncan and Blythe Coons.
-
-
-The coach led sessions were 2 hours each, in which ~5 presenters took turns sharing their talk ideas and feedback on others'. 
-Having goals at fixed timepoints helped pace the work, and I incorporated both the coach's and fellow speakers  diverse feedback at each stage.
-
-| Time before conference | Organizer    | Meeting topic                                    |  
-| ---------------------- | ------------ | ------------------------------------------------ |  
-| 10 weeks               | Articulation | Discuss main takeaways                           |
-| 7 weeks                | Articulation | Review outline                                   |
-| 4 weeks                | Articulation | Present draft slides for portion of talk         |
-| 2 weeks                | Articulation | Present 10 min of talk                           |
-| 7 days                 | Self         | Full practice talk                               |
-| 4 days                 | Self         | Follow-up to review suggested changes            |
-
-However, at the conclusion of the Articulation session not all portions of the talk, nor the full talk, had been pressure tested.
-I felt that I had tried too hard to get this talk on the program to have any obvious misses, big or small.
-So after the Articulation training completed, I invited five friends (a mix of those both familiar and not with the topic) for an hour long meeting in which I presented the full talk and listened to feedback. 
-It is quite sobering when you think you are "done" with a talk and realize you aren't quite there yet. 😅 
-I am so glad I did this extra step, as every change suggested was spot on, which included some reorganization,
-modification of visuals, and addition of new content.
-
-It is hard to estimate how much time goes into preparing a talk. 
-I worked on the talk pretty much continuously, bit by bit when I could, starting about 5 weeks before the talk until the day before the talk. 
 
 ## Why keep trying?
 
@@ -144,6 +116,24 @@ Beyond this narrow lens, there is also the more broad idea of data stewardship t
 And since not many were talking about it, I wanted to share what I could via posit::conf in hopes of reaching large audience. 
 However, if my 2024 submission was not accepted, I doubt I would have tried on the same 
 topic again.
+
+## Talk preparation
+
+After the abstract acceptance, much more work ensued on talk development.
+Posit provided training by Articulation^[To learn more about Articulation's coaching and approach, watch the [Data Science Hangout](https://posit.co/data-science-hangout/acacia-duncan-and-blythe-coons/) with Articulation coaches Acacia Duncan and Blythe Coons.] for all conference speakers, and it was a great forum to discuss ideas and get feedback. 
+In addition, having goals at fixed timepoints greatly helped to pace the effort.
+
+| Time before conference | Organizer    | Meeting topic                                    |  
+| ---------------------- | ------------ | ------------------------------------------------ |  
+| 10 weeks               | Articulation | Discuss main takeaways                           |
+| 7 weeks                | Articulation | Review outline                                   |
+| 4 weeks                | Articulation | Present draft slides for portion of talk         |
+| 2 weeks                | Articulation | Present 10 min of talk                           |
+| 7 days                 | Self         | Full practice talk                               |
+| 4 days                 | Self         | Follow-up to review suggested changes            |
+
+After the Articulation training completed, I invited friends to provide feedback on the full talk. 
+I am so glad I did this extra step, as the suggested changes of reorganization, modification of visuals, and addition of new content improved the talk.
 
 ## Reflection
 

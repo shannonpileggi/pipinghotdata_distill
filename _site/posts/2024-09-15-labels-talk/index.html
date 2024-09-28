@@ -2638,8 +2638,8 @@ gtag('config', 'UA-128676462-1');
 <li><a href="#rejected" id="toc-rejected">2021 – rejected</a></li>
 <li><a href="#rejected-1" id="toc-rejected-1">2023 – rejected</a></li>
 <li><a href="#accepted" id="toc-accepted">2024 – accepted</a></li>
-<li><a href="#talk-preparation" id="toc-talk-preparation">Talk preparation</a></li>
 <li><a href="#why-keep-trying" id="toc-why-keep-trying">Why keep trying?</a></li>
+<li><a href="#talk-preparation" id="toc-talk-preparation">Talk preparation</a></li>
 <li><a href="#reflection" id="toc-reflection">Reflection</a></li>
 <li><a href="#advice" id="toc-advice">Advice</a></li>
 <li><a href="#acknowledgments" id="toc-acknowledgments">Acknowledgments</a></li>
@@ -2647,9 +2647,8 @@ gtag('config', 'UA-128676462-1');
 </nav>
 </div>
 <h2 id="tldr">TL;DR</h2>
-<p>This year I was thrilled to speak at posit::conf for the first time ever on <a href="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/">Context is King</a>, a talk about variable labels in R with an emphasis on the general
-idea of data stewardship.
-Part of my elation was due to actually having a talk accepted after two prior rejections on related submissions.
+<p>This year I was thrilled to speak at posit::conf for the first time ever on <a href="https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/">Context is King</a>, a talk about variable labels in R with an emphasis on the general idea of data stewardship.
+After two previous rejections on related submissions, I was especially excited to finally have a talk accepted.
 In this post, I share the previous abstracts I submitted, how I iterated on the submissions, and briefly discuss the talk itself.</p>
 <h2 id="overview">Overview</h2>
 <p>I have attended six out the eight past RStudio / Posit conferences, and I have
@@ -2746,10 +2745,10 @@ Up until 2024, I had actually never given a talk at this conference. It wasn’t
 <p>Submitting a talk to posit::conf requires both an abstract and a one minute
 video recording<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. The email responses to submissions from Posit are
 kind but generic (so there is no personalized feedback), and I am grateful that the posit::conf(2023) program committee wrote the blog post <a href="https://posit.co/blog/how-we-build-the-positconf-program/">How we build the posit::conf() program</a>. To paraphrase,
-the committee is looking for talks that</p>
+the committee is looking for talks that:</p>
 <ol type="1">
-<li><p>contain actionable and impactful insights, and</p></li>
-<li><p>are of broad interest.</p></li>
+<li><p>Contain actionable and impactful insights, and</p></li>
+<li><p>Are of broad interest.</p></li>
 </ol>
 <p>In addition, the post provides examples of strong video submissions, which are filmed in interesting locations, with props or engaging media, and provide compelling stories.</p>
 <p>This program committee’s post was published after my 2021 and 2023 rejections.
@@ -2781,12 +2780,18 @@ data is is workflow you <em>could</em> incorporate but one that you <em>should</
 <p><strong>Abstract:</strong> The quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!</p>
 <p><strong>My take:</strong> I really tried to focus on the human problems that this workflow addresses.
 I also tried to make the title more compelling and to imbue more energy and enthusiasm in the abstract.</p>
+<h2 id="why-keep-trying">Why keep trying?</h2>
+<p>Some may wonder why I persistently submitted similar abstracts three times.
+It is because I feel that there is not sufficient mainstream documentation to demonstrate workflows with labelled data.
+I suspect that there is a large audience that could benefit from either (1) R workflows starting with already labelled data, or (2) R workflows that create labelled data.
+Beyond this narrow lens, there is also the more broad idea of data stewardship that I have not yet seen much discussion about in posit::conf.
+And since not many were talking about it, I wanted to share what I could via posit::conf in hopes of reaching large audience.
+However, if my 2024 submission was not accepted, I doubt I would have tried on the same
+topic again.</p>
 <h2 id="talk-preparation">Talk preparation</h2>
-<p>After an acceptance, the real work begins.
-Posit provided training by Articulation for all conference speakers, and it was a great forum to discuss ideas and get feedback.
-To learn more about Articulation’s coaching and approach, watch the <a href="https://posit.co/data-science-hangout/acacia-duncan-and-blythe-coons/">Data Science Hangout</a> with Articulation coaches Acacia Duncan and Blythe Coons.</p>
-<p>The coach led sessions were 2 hours each, in which ~5 presenters took turns sharing their talk ideas and feedback on others’.
-Having goals at fixed timepoints helped pace the work, and I incorporated both the coach’s and fellow speakers diverse feedback at each stage.</p>
+<p>After the abstract acceptance, much more work ensued on talk development.
+Posit provided training by Articulation<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> for all conference speakers, and it was a great forum to discuss ideas and get feedback.
+In addition, having goals at fixed timepoints greatly helped to pace the effort.</p>
 <table>
 <colgroup>
 <col style="width: 26%" />
@@ -2833,22 +2838,8 @@ Having goals at fixed timepoints helped pace the work, and I incorporated both t
 </tr>
 </tbody>
 </table>
-<p>However, at the conclusion of the Articulation session not all portions of the talk, nor the full talk, had been pressure tested.
-I felt that I had tried too hard to get this talk on the program to have any obvious misses, big or small.
-So after the Articulation training completed, I invited five friends (a mix of those both familiar and not with the topic) for an hour long meeting in which I presented the full talk and listened to feedback.
-It is quite sobering when you think you are “done” with a talk and realize you aren’t quite there yet. 😅
-I am so glad I did this extra step, as every change suggested was spot on, which included some reorganization,
-modification of visuals, and addition of new content.</p>
-<p>It is hard to estimate how much time goes into preparing a talk.
-I worked on the talk pretty much continuously, bit by bit when I could, starting about 5 weeks before the talk until the day before the talk.</p>
-<h2 id="why-keep-trying">Why keep trying?</h2>
-<p>Some may wonder why I persistently submitted similar abstracts three times.
-It is because I feel that there is not sufficient mainstream documentation to demonstrate workflows with labelled data.
-I suspect that there is a large audience that could benefit from either (1) R workflows starting with already labelled data, or (2) R workflows that create labelled data.
-Beyond this narrow lens, there is also the more broad idea of data stewardship that I have not yet seen much discussion about in posit::conf.
-And since not many were talking about it, I wanted to share what I could via posit::conf in hopes of reaching large audience.
-However, if my 2024 submission was not accepted, I doubt I would have tried on the same
-topic again.</p>
+<p>After the Articulation training completed, I invited friends to provide feedback on the full talk.
+I am so glad I did this extra step, as the suggested changes of reorganization, modification of visuals, and addition of new content improved the talk.</p>
 <h2 id="reflection">Reflection</h2>
 <p>Despite the intense effort leading up to the talk, I did enjoy giving it.
 I was fortunate to present in the “Beautiful and Effective Tables” session alongside friends, and the room was packed.</p>
@@ -2861,8 +2852,9 @@ Figure 1: Left: View from back of room during the <em>Context is King</em> talk.
 </div>
 </div>
 <p>I am grateful that some individuals took the time to share positive feedback indicating that the talk was both enjoyable and enlightening.
-After time has passed, it would be also be wonderful to hear that the ideas presented were actually implemented and had an impact on daily work, or that it inspired people who build data tools to be mindful of ways to incorporate metadata<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
-<p>Receiving multiple rejections is not pleasant, but in retrospect I am glad it happened this way. The talk would not have been the same if either of the prior submissions had been accepted.
+After time has passed, it would be also be wonderful to hear that the ideas presented were actually implemented and had an impact on daily work, or that it inspired people who build data tools to be mindful of ways to incorporate metadata<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
+<p>Receiving multiple rejections is not pleasant, but in retrospect I am glad it happened this way.
+I can see flaws in my prior submissions, and the talk would not have been the same if either had been accepted.
 For my last submission, I focused on the human challenges we face as practitioners of data and I tried my best to frame both the abstract and talk from that perspective.
 This is something I will carry forward if I submit again in the future; because really, we are all just humans trying to solve problems.</p>
 <h2 id="advice">Advice</h2>
@@ -2874,17 +2866,17 @@ Convince reviewers that your content can help alleviate the challenges of others
 So easy, right? 😂</p>
 <h2 id="acknowledgments">Acknowledgments</h2>
 <p>Over the three talk submissions, many individual provided feedback at various stages of this process, including the title, abstract, content for the one minute submission video, and the talk itself.
-This includes<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>:
+This includes<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>:
 E. David Aja, Travis Gerke, Crystal Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su, Sarah Susnea, and Alice Walsh.
 Thank you all for your moral support and feedback! ❤️</p>
-<p>Thank you to Maëlle Salmon for providing feedback on this post. 🤗</p>
+<p>Thank you to Maëlle Salmon and Megan McClintock for providing feedback on this post. 🤗</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1"><p>I was not aware of the conference.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>I was living in California at the time, road trip with Kelly Bodwin and my husband!<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>This was a tough year - my second child was an infant and I was between jobs trying to transition from academia to industry. I applied for the opportunity scholarship but I did not receive it.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This was a tough year - my second child was an infant and I was between jobs trying to transition from academia to industry.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Last big trip prior to COVID lockdown.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Online only; loved the accessibility for all.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>I was elated to be invited to co-instruct the WTF workshop for the first time; due to the amount of preparation required I decided not to submit an abstract.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
@@ -2892,8 +2884,9 @@ Thank you all for your moral support and feedback! ❤️</p>
 <li id="fn8"><p>First time giving a talk! I actually ended up giving two talks this week because a colleague on the R-Ladies leadership team was unable to give her talk in person last minute.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p>I do not have my older video recordings, so I did not include
 the submitted video recordings in this post.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn10"><p>Realistically, I doubt a single talk would have that much impact. The impact might come if others repeated similar messages in other conferences or mainstream materials.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn11"><p>If you helped me with this talk at any point and I somehow managed to forget to list your name please, please let me know. There is no excuse but it has been a long four years.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>To learn more about Articulation’s coaching and approach, watch the <a href="https://posit.co/data-science-hangout/acacia-duncan-and-blythe-coons/">Data Science Hangout</a> with Articulation coaches Acacia Duncan and Blythe Coons.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Realistically, I doubt a single talk would have that much impact. The impact might come if others repeated similar messages in other conferences or mainstream materials.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>If you helped me with this talk at any point and I somehow managed to forget to list your name please, please let me know. There is no excuse but it has been a long four years.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
