@@ -1,0 +1,187 @@
+---
+title: "Iterating to achieve my first accepted posit::conf talk"
+description: |
+  Three submissions regarding labelled data, two rejections and one success
+author:
+  - name: Shannon Pileggi
+    url: {}
+date: 2024-10-24
+preview: labelled_talk.png
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    self_contained: false
+draft: false
+creative_commons: CC BY
+---
+
+```{r, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|    Screen shot of posit::conf on demand video recording available to registered attendees. 
+#| fig.alt: > 
+#|    Left hand side has square image of Shannon on stage holding a clicker, right
+#|    hand side shows slide with title "Source data context can and should be embedded
+#|    in your data".
+knitr::include_graphics("labelled_talk.png")
+```
+
+## TL;DR
+
+This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/), a talk about variable labels in R with an emphasis on the general idea of data stewardship. 
+After two previous rejections on related submissions, I was especially excited to finally have a talk accepted.
+In this post, I share the previous abstracts I submitted, how I iterated on the submissions, and briefly discuss the talk itself.
+
+## Overview
+
+I have attended six out the eight past RStudio / Posit conferences, and I have
+co-instructed the [What They Forgot To Teach You About R (WTF)](https://www.pipinghotdata.com/workshops/2024-08-12-what-they-forgot-to-teach-you-about-r/) workshop at the past three. 
+Up until 2024, I had actually never given a talk at this conference. It wasn't because I didn't try. 
+
+
+## Timeline
+
+| Year | Location         | Attended | Instructed workshop | Submitted talk | Talk accepted |
+| ---- | ---------------- | :------: | :-----------------: | :------------: | :-----------: |
+| 2017 | ^[I was not aware of the conference.]Orlando          |          |                     |                |               |
+| 2018 | ^[I was living in California at the time, road trip with Kelly Bodwin and my husband!]San Diego        | ✔️       |                       |                |               |
+| 2019 | ^[This was a tough year - my second child was an infant and I was between jobs trying to transition from academia to industry.]Austin           |          |                     |                |               |
+| 2020 | ^[Last big trip prior to COVID lockdown.]San Francisco    | ✔️       |                     |                |               |
+| 2021 | ^[Online only; loved the accessibility for all.]Global           | ✔️        |                     | ✔️             |               |
+| 2022 | ^[I was elated to be invited to co-instruct the WTF workshop for the first time;  due to the amount of preparation required I decided not to submit an abstract.]Washington, D.C. | ✔️        | ✔️                   |                |               |
+| 2023 | ^[I was bummed to not being giving a talk, but also still really enjoyed co-instructing the WTF workshop.]Chicago          | ✔️        | ✔️                   | ✔️             |               |
+| 2024 | ^[First time giving a talk! I actually ended up giving two talks this week because a colleague on the R-Ladies leadership team was unable to give her talk in person last minute.]Seattle          | ✔️        | ✔️                   | ✔️       |   ️✔️   |
+
+
+
+
+## Posit review process
+
+Submitting a talk to posit::conf requires both an abstract and a one minute
+video recording^[I do not have my older video recordings, so I did not include
+the submitted video recordings in this post.]. The email responses to submissions from Posit are
+kind but generic (so there is no personalized feedback), and I am grateful that the posit::conf(2023) program committee wrote the blog post [How we build the posit::conf() program](https://posit.co/blog/how-we-build-the-positconf-program/). To paraphrase,
+the committee is looking for talks that:
+
+1. Contain actionable and impactful insights, and
+
+2. Are of broad interest.
+
+In addition, the post provides examples of strong video submissions, which are filmed in interesting locations, with props or engaging media, and provide compelling stories.
+
+This program committee's post was published after my 2021 and 2023 rejections. 
+Understanding how the process works made it easier to not take the rejections personally, and to try to figure out how to frame a new submission. 
+
+## 2021 -- rejected
+
+**In R:** At this point I was working in market research, where my daily workflow
+included importing SPSS labelled data sets into R and doing subsequent wrangling 
+and analysis. I had also recently started blogging, but I had not yet 
+blogged about labelled data at the time of the submission.
+
+**Title:** _Leveraging labelled data in R_
+
+**Abstract:** If you are at rstudio::global(2021), the thought of working with SPSS or SAS data sets may make you cringe. However, with R’s haven, labelled, and sjlabelled packages, you can leverage the inherent data labelling structure in these data sets to put metadata about your data (variable labels, value labels) right at your fingertips, making it easier to navigate data while also allowing the user to convert metadata to data. In this presentation, I will discuss general characteristics of labelled data, importing labelled data in R, storage of metadata as attributes, and practical tips for data analysis with labelled data. I will also address some potentially unexpected consequences when working with labelled data. By the end of the presentation, you may be wishing that your R workflow started with labelled data!
+
+**My take:** The "cringe" phrasing is problematic; posit::conf is really about 
+keeping a positive vibe. Also, maybe the conference committee didn't consider
+SAS/SPSS users to be a wide target audience. 
+
+
+## 2023 -- rejected
+
+**In R:** I was now working in clinical research, where my daily workflow
+includes importing SAS labelled data sets into R and doing subsequent wrangling 
+and reporting. I had also published two blog posts since my previous submission: [Leveraging labelled data in R](https://www.pipinghotdata.com/posts/2020-12-23-leveraging-labelled-data-in-r/) (related to the 2021 submission) and [The case for variable labels in R](https://www.pipinghotdata.com/posts/2022-09-13-the-case-for-variable-labels-in-r/)
+(related to this submission).
+
+**Title:** _The Case for Variable Labels in R_
+
+**Abstract:** Variable labels are valuable metadata providing brief descriptions of variables. Although historically associated with SAS, SPSS, or Stata data sets, variable labels can be embedded in R data frames as well. Integrating variable labels with your data requires minimal one-time effort, reduces the burden of referring to external data documentation, and alleviates the tension between succinct variable names for programming ease and longer descriptive text for interpretable output.  In this talk, I will showcase various R packages that allow you to import, assign, manage, and retrieve labels, as well as packages that automatically incorporate those labels in presentation ready outputs such as tables and figures.
+
+
+**My take:** Maybe it isn't exciting? Do I sound like a robot? I state what variable
+labels do but maybe not emphasize enough why you should be using them?
+
+## 2024 -- accepted
+
+**In R:** I had been doing more of the same since my previous submission. But
+perhaps at this time I even more firmly believed not just that creating labelled
+data is is workflow you _could_ incorporate but one that you _should_ incorporate.
+
+**Title:** _Context is King_
+
+**Abstract:** The quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!
+
+**My take:** I really tried to focus on the human problems that this workflow addresses. 
+I also tried to make the title more compelling and to imbue more energy and enthusiasm in the abstract. 
+
+
+## Why keep trying?
+
+Some may wonder why I persistently submitted similar abstracts three times.
+It is because I feel that there is not sufficient mainstream documentation to demonstrate workflows with labelled data. 
+I suspect that there is a large audience that could benefit from either (1) R workflows starting with already labelled data, or (2) R workflows that create labelled data. 
+Beyond this narrow lens, there is also the more broad idea of data stewardship that I have not yet seen much discussion about in posit::conf. 
+And since not many were talking about it, I wanted to share what I could via posit::conf in hopes of reaching large audience. 
+However, if my 2024 submission was not accepted, I doubt I would have tried on the same 
+topic again.
+
+## Talk preparation
+
+After the abstract acceptance, much more work ensued on talk development.
+Posit provided training by Articulation^[To learn more about Articulation's coaching and approach, watch the [Data Science Hangout](https://posit.co/data-science-hangout/acacia-duncan-and-blythe-coons/) with Articulation coaches Acacia Duncan and Blythe Coons.] for all conference speakers, and it was a great forum to discuss ideas and get feedback. 
+In addition, having goals at fixed timepoints greatly helped to pace the effort.
+
+| Time before conference | Organizer    | Meeting topic                                    |  
+| ---------------------- | ------------ | ------------------------------------------------ |  
+| 10 weeks               | Articulation | Discuss main takeaways                           |
+| 7 weeks                | Articulation | Review outline                                   |
+| 4 weeks                | Articulation | Present draft slides for portion of talk         |
+| 2 weeks                | Articulation | Present 10 min of talk                           |
+| 7 days                 | Self         | Full practice talk                               |
+| 4 days                 | Self         | Follow-up to review suggested changes            |
+
+After the Articulation training completed, I invited friends to provide feedback on the full talk. 
+I am so glad I did this extra step, as the suggested changes of reorganization, modification of visuals, and addition of new content improved the talk.
+
+## Reflection
+
+Despite the intense effort leading up to the talk, I did enjoy giving it. 
+I was fortunate to present in the "Beautiful and Effective Tables" session alongside friends, and the room was packed.
+
+```{r, eval=TRUE, echo=FALSE}
+#| fig.cap: > 
+#|    Left: View from back of room during the _Context is King_ talk. Right: Speakers in the "Beautiful and Effective Tables" session: Becca Krouse (_Stitch by Stitch: The Art of Engaging New Users_), Shannon Pileggi (_Context is King_), Daniel Sjoberg (_gtsummary: Streamlining Summary Tables for Research and Regulatory Submissions_), and Richard Iannone (_Adequate Tables? No, We Want Great Tables_).
+#| fig.alt: >
+#|    Left: Shannon is on stage with large screen off to side; most seats appear full.
+#|    Right: Four speakers standing with arms around each other; corner of stage in back left and carpet has triangular pattern.
+knitr::include_graphics(("tables_session.jpg"))
+```
+
+I am grateful that some individuals took the time to share positive feedback indicating that the talk was both enjoyable and enlightening. 
+After time has passed, it would be also be wonderful to hear that the ideas presented were actually implemented and had an impact on daily work, or that it inspired people who build data tools to be mindful of ways to incorporate metadata^[Realistically, I doubt a single talk would have that much impact. The impact might come if others repeated similar messages in other conferences or mainstream materials.]. 
+
+Receiving multiple rejections is not pleasant, but in retrospect I am glad it happened this way. 
+I can see flaws in my prior submissions, and the talk would not have been the same if either had been accepted. 
+For my last submission, I focused on the human challenges we face as practitioners of data and I tried my best to frame both the abstract and talk from that perspective. 
+This is something I will carry forward if I submit again in the future; because really, we are all just humans trying to solve problems.
+
+## Advice
+
+Don't let rejection deter you from trying again. 
+Treat the abstract and the one minute video equally seriously (I'm not sure that I did for the video for my first couple of submissions). 
+Ask more than one person for feedback on your abstract and video content - everyone has a different and valuable point of view.
+Think about the way the principles of your content apply broadly to a general audience.
+Convince reviewers that your content can help alleviate the challenges of others.
+So easy, right? 😂
+
+## Acknowledgments
+
+Over the three talk submissions, many individual provided feedback at various stages of this process, including the title, abstract, content for the one minute submission video, and the talk itself. 
+This includes^[If you helped me with this talk at any point and I somehow managed to forget to list your name please, please let me know. There is no excuse but it has been a long four years.]:
+E. David Aja, Travis Gerke, Crystal Lewis, Athanasia Mowinckel, Maëlle Salmon, Daniel Sjoberg, Chun Su, Sarah Susnea, and Alice Walsh. 
+Thank you all for your moral support and feedback! ❤️
+
+Thank you to Maëlle Salmon and Megan McClintock for providing feedback on this post. 🤗
