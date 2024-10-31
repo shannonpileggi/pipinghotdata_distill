@@ -29,7 +29,7 @@ knitr::include_graphics("labelled_talk.png")
 
 ## TL;DR
 
-This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/), a talk about variable labels in R with an emphasis on the general idea of data stewardship. 
+This year I was thrilled to speak at posit::conf for the first time ever on [Context is King](https://www.pipinghotdata.com/talks/2024-08-13-context-is-king/)^[[Recording on YouTube.](https://youtu.be/eoI9QZdHBMw?feature=shared)], a talk about variable labels in R with an emphasis on the general idea of data stewardship. 
 After two previous rejections on related submissions, I was especially excited to finally have a talk accepted.
 In this post, I share the previous abstracts I submitted, how I iterated on the submissions, and briefly discuss the talk itself.
 
