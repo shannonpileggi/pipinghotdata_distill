@@ -11,9 +11,9 @@
     ],
     "date": "2024-08-13",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide 24 showing the difference between viewing labelled and unlabelled data.\r\n\r\n\r\n\r\n\r\n slides\r\n\r\nAbstract\r\nThe quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide 24 showing the difference between viewing labelled and unlabelled data.\r\n\r\n\r\n\r\n\r\n recording\r\n\r\n\r\n slides\r\n\r\nAbstract\r\nThe quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!\r\n\r\n\r\n\r\n",
     "preview": "talks/2024-08-13-context-is-king/view_labelled.png",
-    "last_modified": "2024-10-24T09:50:51-04:00",
+    "last_modified": "2024-10-31T10:07:29-04:00",
     "input_file": {},
     "preview_width": 1665,
     "preview_height": 761
@@ -30,9 +30,9 @@
     ],
     "date": "2024-07-10",
     "categories": [],
-    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide discussing the importance of both technical and social infrastructure.\r\n\r\n\r\n\r\n\r\n useR slides\r\n posit::conf slides\r\n\r\nConferences\r\nuseR 2024 | Salzburg, Austria | 2024-07-10\r\nposit::conf(2024) | Seattle, Washington (USA) | 2024-08-14\r\nAbstract\r\nAs a global non-profit established in 2016, R-Ladies has more than 100k members from 233 chapters in 63 countries to support the mission of increasing gender diversity in the R community. Empowering local chapters is challenging as accessibility and awareness of communication methods, software choices, social platforms, and support avenues varies internationally. Join us for insights into our journey of developing a global technical and social infrastructure while fostering collaboration and growth and granting chapters the freedom to tailor their activities to local contexts. Walk away with practical technical and social strategies to empower and diversify your own data science communities based on learning from continuous feedback.\r\n\r\n\r\n\r\n",
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide discussing the importance of both technical and social infrastructure.\r\n\r\n\r\n\r\n\r\n useR slides\r\n posit::conf slides\r\n posit::conf recording\r\n\r\nConferences\r\nuseR 2024 | Salzburg, Austria | 2024-07-10\r\nposit::conf(2024) | Seattle, Washington (USA) | 2024-08-14\r\nAbstract\r\nAs a global non-profit established in 2016, R-Ladies has more than 100k members from 233 chapters in 63 countries to support the mission of increasing gender diversity in the R community. Empowering local chapters is challenging as accessibility and awareness of communication methods, software choices, social platforms, and support avenues varies internationally. Join us for insights into our journey of developing a global technical and social infrastructure while fostering collaboration and growth and granting chapters the freedom to tailor their activities to local contexts. Walk away with practical technical and social strategies to empower and diversify your own data science communities based on learning from continuous feedback.\r\n\r\n\r\n\r\n",
     "preview": "talks/2024-07-10-lessons-from-rladies-global/infrastructure.png",
-    "last_modified": "2024-10-24T09:50:51-04:00",
+    "last_modified": "2024-10-31T10:09:31-04:00",
     "input_file": {},
     "preview_width": 960,
     "preview_height": 540

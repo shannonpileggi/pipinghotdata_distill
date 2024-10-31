@@ -38,7 +38,14 @@ distilltools::icon_link(icon = "images",
 distilltools::icon_link(icon = "images",
           text = "posit::conf slides",
           url = "https://github.com/rladies/rladies_global_presentations/blob/master/20240813_positconf/posit_conf2024.pdf")
+
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "posit::conf recording",
+          url = "https://youtu.be/Baoa9Yr6TaM?feature=shared")
+
 ```
+
+
 
 # Conferences
 

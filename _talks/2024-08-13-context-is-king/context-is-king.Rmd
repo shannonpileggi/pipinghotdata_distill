@@ -29,6 +29,12 @@ draft: false
 knitr::include_graphics("view_labelled.png")
 ```
 
+```{r, eval=TRUE, echo=FALSE}
+distilltools::icon_link(icon = "fas fa-play-circle",
+          text = "recording",
+          url = "https://youtu.be/eoI9QZdHBMw?feature=shared")
+
+```
 
 
 ```{r, eval=TRUE, echo=FALSE}
