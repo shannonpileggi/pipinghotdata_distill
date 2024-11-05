@@ -9,8 +9,8 @@ links:
     url: "https://www.linkedin.com/in/shannon-m-pileggi/"
   - label: '<i class="fab fa-mastodon"></i> Mastodon'
     url: "https://fosstodon.org/\\@PipingHotData"
-  - label: '<i class="fab fa-twitter"></i> Twitter'
-    url: "https://twitter.com/PipingHotData"
+  - label: '<i class="fab fa-bluesky"></i> Bluesky'
+    url: "https://bsky.app/profile/pipinghotdata.com"
   - label: '<i class="fas fa-envelope"></i> Email'
     url: "mailto:shannon.pileggi@gmail.com"
 base_url: https://www.pipinghotdata.com
