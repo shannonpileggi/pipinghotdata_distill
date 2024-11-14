@@ -42,6 +42,6 @@ rss:
 collections:
   posts:
       categories: true
-      share: [twitter, linkedin]
+      share: [linkedin]
       citations: true
       subscribe: _subscribe.html
