@@ -25,8 +25,8 @@ navbar:
       href: https://www.linkedin.com/in/shannon-m-pileggi/
     - icon: fab fa-mastodon
       href: https://fosstodon.org/@PipingHotData
-    - icon: fa fa-twitter
-      href: https://twitter.com/PipingHotData
+    - icon: fab fa-bluesky
+      href: https://bsky.app/profile/pipinghotdata.com
     - icon: fa fa-rss
       href: blog.xml  
 output: 
@@ -42,6 +42,6 @@ rss:
 collections:
   posts:
       categories: true
-      share: [twitter, linkedin]
+      share: [linkedin]
       citations: true
       subscribe: _subscribe.html
