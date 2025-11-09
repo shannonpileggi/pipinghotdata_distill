@@ -7,7 +7,16 @@
     <description>The personsal website of Shannon Pileggi
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 13 Aug 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Practical renv</title>
+      <dc:creator>Shannon Pileggi</dc:creator>
+      <link>https://www.pipinghotdata.com/talks/2025-09-18-practical-renv</link>
+      <description>posit::conf(2025)</description>
+      <guid>https://www.pipinghotdata.com/talks/2025-09-18-practical-renv</guid>
+      <pubDate>Thu, 18 Sep 2025 00:00:00 +0000</pubDate>
+      <media:content url="https://www.pipinghotdata.com/talks/2025-09-18-practical-renv/practical-renv-screenshot.png" medium="image" type="image/png" width="1280" height="720"/>
+    </item>
     <item>
       <title>Context is King</title>
       <dc:creator>Shannon Pileggi</dc:creator>

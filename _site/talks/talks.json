@@ -1,5 +1,24 @@
 [
   {
+    "path": "talks/2025-09-18-practical-renv/",
+    "title": "Practical renv",
+    "description": "posit::conf(2025)",
+    "author": [
+      {
+        "name": "Shannon Pileggi",
+        "url": {}
+      }
+    ],
+    "date": "2025-09-18",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide with error message from failed renv restore.\r\n\r\n\r\n\r\n\r\n recording\r\n\r\n\r\n slides\r\n\r\n\r\n github repo\r\n\r\nAbstract\r\nThe {renv} package aims to help users create reproducible environments for R projects. In theory, this is great! In practice, restoring a package environment can be a frustrating process due to overlooked R configuration requirements. Join me to better understand the source of environment restoration issues and learn strategies for successful maintenance of {renv}-backed projects.\r\n\r\n\r\n\r\n",
+    "preview": "talks/2025-09-18-practical-renv/practical-renv-screenshot.png",
+    "last_modified": "2025-11-09T11:51:09-05:00",
+    "input_file": {},
+    "preview_width": 1280,
+    "preview_height": 720
+  },
+  {
     "path": "talks/2024-08-13-context-is-king/",
     "title": "Context is King",
     "description": "posit::conf(2024)",
@@ -13,7 +32,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide 24 showing the difference between viewing labelled and unlabelled data.\r\n\r\n\r\n\r\n\r\n recording\r\n\r\n\r\n slides\r\n\r\nAbstract\r\nThe quality of data science insights is predicated on the practitioner’s understanding of the data. Data documentation is the key to unlocking this understanding; with minimal effort, this documentation can be natively embedded in R data frames via variable labels. Variable labels seamlessly provide valuable data context that reduces human error, fosters collaboration, and ultimately elevates the overall data analysis experience. As an avid, daily user of variable labels, I am excited to help you discover new workflows to create and leverage variable labels in R!\r\n\r\n\r\n\r\n",
     "preview": "talks/2024-08-13-context-is-king/view_labelled.png",
-    "last_modified": "2024-11-05T16:29:38-05:00",
+    "last_modified": "2025-11-09T11:11:56-05:00",
     "input_file": {},
     "preview_width": 1665,
     "preview_height": 761
@@ -32,7 +51,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Screenshot of slide discussing the importance of both technical and social infrastructure.\r\n\r\n\r\n\r\n\r\n useR slides\r\n posit::conf slides\r\n posit::conf recording\r\n\r\nConferences\r\nuseR 2024 | Salzburg, Austria | 2024-07-10\r\nposit::conf(2024) | Seattle, Washington (USA) | 2024-08-14\r\nAbstract\r\nAs a global non-profit established in 2016, R-Ladies has more than 100k members from 233 chapters in 63 countries to support the mission of increasing gender diversity in the R community. Empowering local chapters is challenging as accessibility and awareness of communication methods, software choices, social platforms, and support avenues varies internationally. Join us for insights into our journey of developing a global technical and social infrastructure while fostering collaboration and growth and granting chapters the freedom to tailor their activities to local contexts. Walk away with practical technical and social strategies to empower and diversify your own data science communities based on learning from continuous feedback.\r\n\r\n\r\n\r\n",
     "preview": "talks/2024-07-10-lessons-from-rladies-global/infrastructure.png",
-    "last_modified": "2024-11-05T16:29:38-05:00",
+    "last_modified": "2025-11-09T11:11:56-05:00",
     "input_file": {},
     "preview_width": 960,
     "preview_height": 540
@@ -51,7 +70,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Overview of the {gtreg} package.\r\n\r\n\r\n\r\nSee the package documentation at https://shannonpileggi.github.io/gtreg/.\r\nR in Pharma (2022) - 10 min talk\r\n\r\n slides\r\n\r\n\r\nNHS-R (2022) - 15 min talk\r\n\r\n slides\r\n\r\n\r\nR in Medicine (2022) - 20 min talk\r\n\r\n slides\r\n\r\n\r\n recording\r\n\r\n\r\n\r\n\r\n",
     "preview": "talks/2022-11-10-various-gtreg/gtreg_overview.svg",
-    "last_modified": "2024-10-24T09:50:51-04:00",
+    "last_modified": "2025-11-09T11:11:56-05:00",
     "input_file": {}
   },
   {
@@ -68,7 +87,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\nFigure 1: Women in Statistics and Data Science poster presentation.\r\n\r\n\r\n\r\n\r\n recording poster\r\n\r\nOverview\r\nA poster presentation for the 2021 virtual Women in Statistics and Data Science conference.\r\nAbstract\r\nThe @WomenInStat (Women in Statistics and Data Science) and @WeAreRLadies (We are R-Ladies) rotating Twitter curator accounts promote visibility of women in our field and facilitates engagement with others. Serving as a rotating curator on a Twitter account with thousands of followers may seem daunting, but it is a great opportunity to share your knowledge, connect with others with similar interests, and learn something in return. In this talk, I’ll discuss how I planned ahead for my @WeAreRLadies curation week, what happened the week of, and the good things that followed.\r\nAcknowledgements\r\nI am grateful to Alison Hill, Ale Segura, Katherine Simeon, and Megan McClintock for their feedback, at various stages, on this content! 💜\r\n\r\n\r\n\r\n",
     "preview": "talks/2021-10-07-be-great-and-curate/WDS-Curating.png",
-    "last_modified": "2021-11-01T22:24:28-04:00",
+    "last_modified": "2025-11-09T11:11:56-05:00",
     "input_file": {},
     "preview_width": 2500,
     "preview_height": 1750
@@ -87,7 +106,7 @@
     "categories": [],
     "contents": "\r\n\r\n\r\n\r\n\r\n slides full meet-up recording lightning talk\r\n\r\nHistory\r\nApril 22, 2021 R-Ladies Miami meet-up\r\nJune 16, 2021 ⚡ abbreviated for an R-Ladies Philly lightning talk Leveraging the R community for a job interview\r\nSeptember 15, 2021 R-Ladies Coventry & R-Ladies Utrecht joint meet-up\r\nMaterials\r\n based on the blog post A job interview presentation inspired by the R community: How #tidytuesday and twitter helped me secure a job offer.\r\n repo for slides\r\nAbstract\r\nStarting something new in R can be daunting, but there are many community resources that can help! In this presentation, I’ll discuss how I crafted a job interview presentation by making modifications on publicly available TidyTuesday code. This built the technical and confidence-boosting scaffolding I needed for more open-ended projects. The success of this experience inspired me to transition from my role as a consumer and creator to contributor to give back to the R community, which has been incredibly fulfilling. Despite social distancing, I feel more connected to the R community than ever before!\r\n\r\n\r\n\r\n",
     "preview": "talks/2021-04-22-growing-into-the-r-community/cover.PNG",
-    "last_modified": "2021-11-01T22:24:28-04:00",
+    "last_modified": "2025-11-09T11:11:56-05:00",
     "input_file": {},
     "preview_width": 700,
     "preview_height": 364
